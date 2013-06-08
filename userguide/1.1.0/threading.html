@@ -40,8 +40,10 @@
 			<section class="top-bar-section">
 				<!-- Right Nav Section -->
 			    <ul class="right">
+                  <!-- Disable the API link for the moment...
 			      <li class="divider hide-for-small"></li>
 			      <li><a href="../../api" >API</a></li>
+                  -->
 			      <li class="divider hide-for-small"></li>
 			      <li><a href="../../developer" >Developer Guide</a></li>
 			      <li class="divider hide-for-small"></li>
@@ -80,7 +82,7 @@ most cases.</p>
 <h2>Immutable reference types</h2>
 
 <p>These are the simplest to document, and include all time zone and calendar implementations, the time zone providers,
-and <a href="../../api/html/T_NodaTime_Period.htm"><code>Period</code></a>. No members of these types modify visible state; if you have a reference to
+and <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Period.htm"><code>Period</code></a>. No members of these types modify visible state; if you have a reference to
 an instance of one of these types, you can do no harm to other threads by calling any members via that reference.</p>
 
 <p>Some of the reference types do contain mutable state internally (usually for caching purposes) but this is invisible to
@@ -102,13 +104,13 @@ are larger than that limited guarantee. I wouldn&#39;t want to start relying on 
 <p>So long as you either make your own fields read-only <em>or</em> synchronize access to the fields, you should be fine - but if you
 use unsynchronized access to writable fields, it&#39;s entirely possible for a &quot;hybrid&quot; value to be visible, with part of the old
 value and part of the new value. So as an example using Noda Time types, if you tried to format a
-<a href="../../api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a> field as a string, and at the same time another thread changed the value,
+<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a> field as a string, and at the same time another thread changed the value,
 you could end up with the date and time from the old value formatted using the calendar system from the new value. Needless to
 say, this is far from ideal - don&#39;t do it.</p>
 
 <h2>Mutable reference types</h2>
 
-<p>Some classes are deliberately mutable within Noda Time - <a href="../../api/html/T_NodaTime_PeriodBuilder.htm"><code>PeriodBuilder</code></a> is a good example.
+<p>Some classes are deliberately mutable within Noda Time - <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_PeriodBuilder.htm"><code>PeriodBuilder</code></a> is a good example.
 These types are very obviously mutable, and should <em>not</em> be shared between threads without explicit synchronization. No type
 in Noda Time has any specific thread affinity, so you shouldn&#39;t see any ill effects if you do use synchronization. Even so, we would
 generally recommend against doing this: the types are generally <em>designed</em> around making it easy to build a value within a single thread.</p>

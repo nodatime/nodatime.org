@@ -40,8 +40,10 @@
 			<section class="top-bar-section">
 				<!-- Right Nav Section -->
 			    <ul class="right">
+                  <!-- Disable the API link for the moment...
 			      <li class="divider hide-for-small"></li>
 			      <li><a href="../../api" >API</a></li>
+                  -->
 			      <li class="divider hide-for-small"></li>
 			      <li><a href="../../developer" >Developer Guide</a></li>
 			      <li class="divider hide-for-small"></li>
@@ -135,7 +137,7 @@ be for the system default time zone, which you should generally be explicit abou
 
 <h1>DateTimeOffset</h1>
 
-<p><a href="../../api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a> corresponds most closely to <code>DateTimeOffset</code>, although you can also use a <a href="../../api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> with a fixed time zone. That&#39;s exactly what <code>ZonedDateTime.FromDateTimeOffset</code> does,
+<p><a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a> corresponds most closely to <code>DateTimeOffset</code>, although you can also use a <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> with a fixed time zone. That&#39;s exactly what <code>ZonedDateTime.FromDateTimeOffset</code> does,
 but you must be aware that &quot;real&quot; time zone information is lost as soon as you&#39;ve got a <code>DateTimeOffset</code> - 
 it represents an exact instant in time, with a local offset from UTC, but that doesn&#39;t tell you what the
 local offset would be a minute later or earlier. The reverse conversion (<code>ZonedDateTime.ToDateTimeOffset</code>)
@@ -147,7 +149,7 @@ to represent the appropriate instant in time - but without any further trace of 
 
 <h1>TimeSpan</h1>
 
-<p>Both <a href="../../api/html/T_NodaTime_Offset.htm"><code>Offset</code></a> and <a href="../../api/html/T_NodaTime_Duration.htm"><code>Duration</code></a> are similar to <code>TimeSpan</code>,
+<p>Both <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Offset.htm"><code>Offset</code></a> and <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Duration.htm"><code>Duration</code></a> are similar to <code>TimeSpan</code>,
 but they&#39;re used in different senses; <code>Offset</code> is used to indicate the difference between UTC and local time, whereas
 a <code>Duration</code> is simply an arbitrary number of ticks.</p>
 
@@ -156,13 +158,13 @@ if the <code>TimeSpan</code> has a magnitude of 24 hours or more.</p>
 
 <h1>TimeZoneInfo</h1>
 
-<p>The main time zone type in Noda Time is <a href="../../api/html/T_NodaTime_DateTimeZone.htm"><code>DateTimeZone</code></a>, which the default provider
+<p>The main time zone type in Noda Time is <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_DateTimeZone.htm"><code>DateTimeZone</code></a>, which the default provider
 creates from the zoneinfo time zone database. However, if you want to create a
 <code>DateTimeZone</code> which corresponds exactly to a particular <code>TimeZoneInfo</code>,
-there are some options using <a href="../../api/html/T_NodaTime_TimeZones_BclDateTimeZone.htm"><code>BclDateTimeZone</code></a>:</p>
+there are some options using <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_TimeZones_BclDateTimeZone.htm"><code>BclDateTimeZone</code></a>:</p>
 
 <ul>
-<li>You can use <code>DateTimeZoneProviders.Bcl</code> everywhere you create time zones. (You may well want to inject this as an <a href="../../api/html/T_NodaTime_IDateTimeZoneProvider.htm"><code>IDateTimeZoneProvider</code></a>
+<li>You can use <code>DateTimeZoneProviders.Bcl</code> everywhere you create time zones. (You may well want to inject this as an <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_IDateTimeZoneProvider.htm"><code>IDateTimeZoneProvider</code></a>
 if you&#39;re using dependency injection). This is appropriate if you&#39;re going to work with various time zones,
 and you only ever care about the BCL versions.</li>
 <li>To convert a single time zone, you can use <code>BclDateTimeZone.FromTimeZoneInfo</code>.</li>
@@ -194,11 +196,11 @@ have changed in a meaningful way for your data)</li>
 <h1>DayOfWeek</h1>
 
 <p>For every day other than Sunday, <code>DayOfWeek</code> and
-<a href="../../api/html/T_NodaTime_IsoDayOfWeek.htm"><code>IsoDayOfWeek</code></a> have the same
+<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_IsoDayOfWeek.htm"><code>IsoDayOfWeek</code></a> have the same
 value. However, <code>DayOfWeek</code> uses 0 for Sunday, and <code>IsoDayOfWeek</code>
 uses 7 (as per ISO-8601). Converting between the two isn&#39;t
 difficult, but there are utility methods in
-<a href="../../api/html/T_NodaTime_Utility_BclConversions.htm"><code>BclConversions</code></a> to
+<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Utility_BclConversions.htm"><code>BclConversions</code></a> to
 make things slightly smoother:</p>
 
 <div class="example"><pre class="prettyprint code">DayOfWeek bcl = BclConversions.ToDayOfWeek(IsoDayOfWeek.Wednesday);
