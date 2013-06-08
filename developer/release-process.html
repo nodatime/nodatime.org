@@ -1,0 +1,323 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Release process</title>
+  
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../css/foundation.css" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="../css/syntax.css">
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../css/general_enclosed_foundicons.css">
+
+    <!-- Prettify -->
+    <script src="../js/prettify/run_prettify.js"></script>
+
+	<script src="../js/vendor/custom.modernizr.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../api" >API</a></li>
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../developer" class="active">Developer Guide</a></li>
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../userguide/1.1.0" >User Guide</a></li>
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form">
+			        <a class="button" href="../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Release process</h1>
+		<p>This document describes how Noda Time is released. It is intended to be used as
+a checklist by the person doing a release.</p>
+
+<h2>Prerequisites</h2>
+
+<ul>
+<li>Visual Studio 2012</li>
+<li>Sandcastle and Sandcastle Help File Builder</li>
+<li>NuGet command-line tool</li>
+<li>Access to the Noda Time release private key (to produce a strong-named
+assembly) and the nuget.org API key</li>
+</ul>
+
+<p>Note that we should not build releases on Mono at present, since the resulting
+IL triggers a bug in the .NET 4 64-bit CLR (see the
+<a href="building.html">building and testing</a> section in the developer guide).</p>
+
+<h2>When to release</h2>
+
+<p>When everybody&#39;s happy, there are no issues outstanding for the milestone, and
+all the tests pass.</p>
+
+<p>Search the issue tracker for open issues with the right label (e.g.
+<code>label:Milestone-1.0</code>).</p>
+
+<p>Update to the candidate revision (probably tip) of the correct branch (e.g.
+<code>1.0.x</code>) and <a href="building.html">build and run all the tests</a> as normal. The build
+and test steps should pass on Visual Studio 2012 and at least one supported
+OS/version combination for Mono (i.e. &#39;Mono 2.10.9 on Linux&#39;).</p>
+
+<h2>Update the embedded tzdb</h2>
+
+<p>If necessary, update the version of tzdb on the branch to the latest current
+version, following the instructions in the
+<a href="../userguide/tzdb.html">&quot;Updating the time zone database&quot;</a> section in the user guide.</p>
+
+<h2>Pre-release branching</h2>
+
+<p>Before building the first release with a given minor version number (i.e. 1.0.0,
+1.1.0, or more typically, a -beta or -rc version of the same), we&#39;ll need to
+branch. New user-visible functionality is introduced with a new minor version
+number (per the <a href="http://semver.org">Semantic versioning</a> spec).</p>
+
+<p>The branching model used by Noda Time is the Subversion-style backport model.
+In brief:</p>
+
+<ul>
+<li>feature development is carried out on the default branch</li>
+<li>named branches (called &#39;1.0.x&#39;, &#39;1.1.x&#39;, etc) are used for release lines</li>
+<li>fixes are typically backported to the earlier branches where necessary
+(typically using <code>hg graft</code>).</li>
+</ul>
+
+<p>Note the difference between the format of names used for tags (&#39;1.0.0-beta2&#39;,
+&#39;1.0.0&#39;) and those used for branches (&#39;1.0.x&#39;). Mercurial will allow both to be
+used as revision specifiers, so it is important that they do not collide.</p>
+
+<h3>Branch-specific changes</h3>
+
+<p>The only change that needs to be made to the branch after creation is to
+remove the <code>&lt;Preliminary/&gt;</code> tag from the Sandcastle project file; see e.g.
+<a href="http://code.google.com/p/noda-time/issues/detail?id=102">issue 102</a>.</p>
+
+<h2>Making the release</h2>
+
+<p>Switch to the correct branch (e.g. <code>1.0.x</code>).</p>
+
+<p>Update the version number by building the tools solution and then running the <code>SetVersion</code> tool:</p>
+
+<div class="example"><pre class="prettyprint code">msbuild src\NodaTime-Tools.sln
+src\NodaTime.Tools.SetVersion\bin\debug\SetVersion 1.2.3-beta4
+</pre></div>
+
+<blockquote>
+<p>This will update the following AssemblyInfo files and NuGet package specs to include the
+version number you are building:</p>
+
+<ul>
+<li><code>src/NodaTime/Properties/AssemblyInfo.cs</code></li>
+<li><code>src/NodaTime.Testing/Properties/AssemblyInfo.cs</code></li>
+<li><code>src/NodaTime/NodaTime.nuspec</code></li>
+<li><code>src/NodaTime.Testing/NodaTime.Testing.nuspec</code></li>
+</ul>
+
+<p>The various versions will be set according to the following scheme. Suppose
+we were building version 1.2.3-beta4, then:</p>
+
+<ul>
+<li>In the NuGet package specs, <code>&lt;version&gt;</code> should contain the version number
+(&#39;1.2.3-beta4&#39;). The <code>&lt;dependency&gt;</code> element in <code>NodaTime.Testing.nuspec</code>
+should reference the <em>initial release</em> for the major/minor version
+(i.e. &#39;1.2.0&#39;) for stable versions, or the full version for
+pre-release versions.</li>
+<li>In the AssemblyInfo files, <code>AssemblyVersion</code> should be set to just the
+major/minor version (&#39;1.2&#39;). <code>AssemblyFileVersion</code> should be set to the
+major, minor, and patch version (&#39;1.2.3&#39;), and <code>AssemblyInformationalVersion</code>
+should be set to the version number (&#39;1.2.3-beta4&#39;). (See <a href="http://stackoverflow.com/a/65062">this Stack
+Overflow post</a> for more information about how these are
+used.)</li>
+</ul>
+</blockquote>
+
+<p>Add the current date and TZDB version to the version history in
+<code>src/docs/userguide/markdown/versions.txt</code> and regenerate all documentation.</p>
+
+<p>Commit the above, then tag that commit:</p>
+
+<div class="example"><pre class="prettyprint code">hg tag 1.0.0-beta1
+</pre></div>
+
+<p>Switch back to the default branch and update the version history in that branch to match the changes applied to the release branch.</p>
+
+<p>Push these changes to Google Code.</p>
+
+<h2>Building the release artifacts</h2>
+
+<p>First, <em>create a new clone for building the release</em>. Doing this avoids the
+need to worry about ignored files and local changes making their way into
+the archives.</p>
+
+<p>Use the <code>buildrelease</code> batch file to build all the release artifacts:</p>
+
+<div class="example"><pre class="prettyprint code">buildrelease 1.0.0-beta1
+</pre></div>
+
+<p>This will create:</p>
+
+<ul>
+<li>A zip file of pristine sources (e.g. <code>NodaTime-1.0.0-beta1-src.zip</code>)</li>
+<li>A zip file for binary distribution (e.g. <code>NodaTime-1.0.0-beta1.zip</code>)</li>
+<li>NuGet packages (in the <code>nuget</code> directory)</li>
+</ul>
+
+<p>(See <code>buildrelease.bat</code> for details.)</p>
+
+<h2>Publishing the artifacts</h2>
+
+<p>Upload the source and release zipfiles to the
+<a href="http://code.google.com/p/noda-time/downloads/list">Google Code project</a>.
+Use the <code>Type-Source</code> label for the source zipfile, and the <code>Type-Archive</code> and
+<code>Featured</code> labels for the release zipfile.  Remove <code>Featured</code> from the previous
+binary zipfile.</p>
+
+<p>Update the version number and the links on the front page to point to the new
+downloads.</p>
+
+<p>Upload the two NuGet packages to nuget.org:</p>
+
+<div class="example"><pre class="prettyprint code">nuget push NodaTime.1.0.0-beta1.nupkg
+nuget push NodaTime.Testing.1.0.0-beta1.nupkg
+</pre></div>
+
+<h2>Announcing the release</h2>
+
+<p>Post to the mailing list, blog, etc.</p>
+
+<h2>Post-release branch updates</h2>
+
+<p>If this release required the creation of a new branch, then the following files
+on the <em>default</em> branch should be updated to bump (at least) the minor version
+number (and <code>NodaTime.Testing</code> dependency version), per the scheme above:</p>
+
+<ul>
+<li><code>src/NodaTime/Properties/AssemblyInfo.cs</code></li>
+<li><code>src/NodaTime.Testing/Properties/AssemblyInfo.cs</code></li>
+<li><code>src/NodaTime/NodaTime.nuspec</code></li>
+<li><code>src/NodaTime.Testing/NodaTime.Testing.nuspec</code></li>
+</ul>
+
+<p>The version number string should be of the form <code>1.1.0-dev</code>.</p>
+
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Guide</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../developer/building.html" >Building and testing</a></li>
+						
+							<li><a href="../developer/release-process.html" class="active">Release process</a></li>
+						
+							<li><a href="../developer/tzdb-file-format.html" >Time zone database file format</a></li>
+						
+					</ul>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+				<span>The latest version is 1.1.0, released April 6th 2013</span>
+			</div>
+			<div class="small-6 columns copy">
+				&copy; Jon Skeet and Contributors
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 columns">
+				<span>Released April 6th 2013</span>
+			</div>
+			<div class="small-6 columns copy">
+				Design by <a href="http://nathanpalmer.com">Nathan Palmer</a>
+			</div>
+		</div>
+	</footer>
+	
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../js/vendor/zepto' : '../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+  
+  	<script src="../js/foundation.min.js"></script>
+  	
+
+  <!--
+  <script src="js/foundation/foundation.js"></script>  
+  <script src="js/foundation/foundation.alerts.js"></script>
+  <script src="js/foundation/foundation.clearing.js"></script>  
+  <script src="js/foundation/foundation.cookie.js"></script>
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/foundation/foundation.forms.js"></script>
+  <script src="js/foundation/foundation.joyride.js"></script>
+  <script src="js/foundation/foundation.magellan.js"></script>
+  <script src="js/foundation/foundation.orbit.js"></script>
+  <script src="js/foundation/foundation.placeholder.js"></script>
+  <script src="js/foundation/foundation.reveal.js"></script>
+  <script src="js/foundation/foundation.section.js"></script>
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  <script src="js/foundation/foundation.topbar.js"></script>
+  <script src="js/foundation/foundation.interchange.js"></script>
+  -->
+  
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
+</html>

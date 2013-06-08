@@ -1,6 +1,200 @@
-<html>
-  <head>Noda Time</head>
-  <body>
-    <p>This will be the Noda Time web site.</p>
-  </body>
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Noda Time | Date utility for .NET</title>
+  
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="css/foundation.css" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="css/syntax.css">
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="css/general_enclosed_foundicons.css">
+
+    <!-- Prettify -->
+    <script src="js/prettify/run_prettify.js"></script>
+
+	<script src="js/vendor/custom.modernizr.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="api" >API</a></li>
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="developer" >Developer Guide</a></li>
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="userguide/1.1.0" >User Guide</a></li>
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form">
+			        <a class="button" href="#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	<div class="row section introduction">
+	<div class="large-12 columns">
+		<div class="logo">
+			<h1>Noda <i class="foundicon-clock"></i> Time</h1>
+		</div>
+		<h2>Industry standard date utility for .NET</h2>
+  	</div>
+</div>
+<div class="row section usage">
+	<div class="large-12 columns">
+		<div class="comment unit">
+			<p>Noda Time aims to create a library which is powerful and easy to use correctly.</p>
+	  	</div>
+		<div class="example unit">
+			<p class="title">Examples (see <a href="userguide/1.1.0">User Guide</a>)</p>
+			<div class="code">
+				<pre class="prettyprint">
+
+// Instant represents time from epoch
+Instant now = SystemClock.Instance.Now;
+
+// Convert an instant to a ZonedDateTime
+ZonedDateTime nowInIsoUtc = now.InUtc();
+
+// Create a duration
+Duration duration = Duration.FromMinutes(3);
+
+// Add it to our ZonedDateTime
+ZonedDateTime thenInIsoUtc = nowInIsoUtc + duration;
+
+// Timezone support (multiple providers)
+var london = DateTimeZoneProviders.Tzdb["Europe/London"];
+
+// Timezone conversions
+var localDate = new LocalDateTime(2012, 3, 27, 0, 45, 00);
+var before = london.AtStrictly(localDate);
+
+				</pre>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="section installation" id="info">
+	<div class="row">
+		<div class="large-12 columns">
+			<h1>More Info</h1>
+	  	</div>
+	</div>
+	<div class="row">
+		<div class="large-4 columns">
+			<h3><i class="foundicon-globe"></i> Community</h3>
+			<p>Find out more about Noda Time on our <a href="http://groups.google.com/group/noda-time">group mailing list</a> or our <a href="http://noda-time.blogspot.com/">blog</a>.</p>
+			<p>For more specific "How do I solve problem X?" questions, please ask on Stack Overflow using the <a href="http://stackoverflow.com/questions/tagged/nodatime">nodatime</a> tag.</p>
+		</div>
+		<div class="large-4 columns">
+			<h3><i class="foundicon-page"></i> Documentation</h3>
+			<p>It is recommended that you read at least the first few pages of <a href="userguide/1.1.0">user's guide</a> before starting to develop using Noda Time.</p>
+			<p>You can also check out the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/Index.html">API reference</a>.</p>
+		</div>
+		<div class="large-4 columns">
+			<h3><i class="foundicon-add-doc"></i> Contributing</h3>
+			<p>Developers interested in contributing to Noda Time itself should also check out the <a href="developer">developer guide</a> and <a href="userguide/1.1.0/roadmap.html">current roadmap</a>.</p>
+			<p><a href="http://teamcity.codebetter.com/project.html?projectId=project54">Our continuous build</a> is hosted by <a href="http://jetbrains.com/">JetBrains</a> on <a href="http://codebetter.com/">CodeBetter</a></p>
+		</div>
+	</div>
+	<div class="row install" id="install">
+		<div class="large-6 columns">
+			<h4>Main library</h4>
+			<div style="font-size: 0.8em;"><pre class="nuget-button">Install-Package NodaTime</pre></div>
+		</div>
+		<div class="large-6 columns">
+			<h4>Useful when testing code</h4>
+			<div style="font-size: 0.8em;"><pre class="nuget-button">Install-Package NodaTime.Testing</pre></div>
+		</div>
+	</div>
+</div>
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+				<span>The latest version is 1.1.0, released April 6th 2013</span>
+			</div>
+			<div class="small-6 columns copy">
+				&copy; Jon Skeet and Contributors
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 columns">
+				<span>Released April 6th 2013</span>
+			</div>
+			<div class="small-6 columns copy">
+				Design by <a href="http://nathanpalmer.com">Nathan Palmer</a>
+			</div>
+		</div>
+	</footer>
+	
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+  
+  	<script src="js/foundation.min.js"></script>
+  	
+
+  <!--
+  <script src="js/foundation/foundation.js"></script>  
+  <script src="js/foundation/foundation.alerts.js"></script>
+  <script src="js/foundation/foundation.clearing.js"></script>  
+  <script src="js/foundation/foundation.cookie.js"></script>
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/foundation/foundation.forms.js"></script>
+  <script src="js/foundation/foundation.joyride.js"></script>
+  <script src="js/foundation/foundation.magellan.js"></script>
+  <script src="js/foundation/foundation.orbit.js"></script>
+  <script src="js/foundation/foundation.placeholder.js"></script>
+  <script src="js/foundation/foundation.reveal.js"></script>
+  <script src="js/foundation/foundation.section.js"></script>
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  <script src="js/foundation/foundation.topbar.js"></script>
+  <script src="js/foundation/foundation.interchange.js"></script>
+  -->
+  
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
 </html>
