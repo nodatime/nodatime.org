@@ -8,7 +8,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
-	<title>Mono support</title>
+	<title>Noda Time User Guide</title>
   
 	<!-- foundation default -->
   	<link rel="stylesheet" href="../../css/foundation.css" />
@@ -68,141 +68,28 @@
 
 <div class="row">
 	<div class="large-9 columns">
-		<h1>Mono support</h1>
-		<p><a href="http://mono-project.com">Mono</a> is an open source implementation of
-the Common Language Infrastructure which runs on various platforms,
-including Windows, Linux and OS X.</p>
+		<h1>Noda Time User Guide</h1>
+		<p>This guide provides documentation to complement the API reference.
+It is recommended that you read at least the first few pages before
+starting to develop using Noda Time. If you have suggestions or
+questions which are likely to be discussion-based, please post to
+the <a href="http://groups.google.com/group/noda-time">mailing list</a>. For more specific &quot;How do I solve problem X?&quot;
+questions, please ask on <a href="http://stackoverflow.com">Stack Overflow</a> using the <a href="http://stackoverflow.com/questions/tagged/nodatime">nodatime tag</a>.</p>
 
-<p>Noda Time runs on Mono, but with some limitations:</p>
+<h2>Resources</h2>
 
 <ul>
-<li>Noda Time is not <em>developed</em> on Mono, so while releases will be tested
-against it (running all the unit tests), code which isn&#39;t part
-of a release may not work. Please raise an issue on the
-<a href="http://code.google.com/p/noda-time/issues/list">tracker page</a> if
-you come across a breakage like this, and we&#39;ll fix it as soon
-as possible.</li>
-<li><code>TimeZoneInfo</code> in Mono has some critical flaws in the latest stable
-Mono release at the time of this writing (2.10.8) - while
-<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_TimeZones_BclDateTimeZone.htm"><code>BclDateTimeZone</code></a> <em>may</em>
-do the right thing, it may disagree with the results of calling
-methods directly on the time zone (<a href="http://code.google.com/p/noda-time/issues/detail?id=97">issue 97</a>).</li>
-<li>Some cultures in Mono have standard date/time patterns including
-&quot;z&quot; for &quot;offset from UTC&quot;. These will not display appropriately
-when used for text formatting in Noda Time, as the &quot;z&quot; is
-meaningless for local dates and times (<a href="http://code.google.com/p/noda-time/issues/detail?id=98">issue 98</a>).</li>
-<li>Some cultures in Mono have standard date/time patterns which
-use the abbreviated am/pm designator, but have am/pm designators
-which are the same when abbreviated. In these cases, parsing
-is ambiguous.</li>
+<li><a href="http://noda-time.googlecode.com">Project home page</a></li>
+<li><a href="../developer/index.html">Developer guide</a> - a guide to developing Noda Time itself</li>
+<li><a href="http://noda-time.googlecode.com/hg/docs/userguide/index.html">Online user guide</a> (the latest version of this page)</li>
+<li><a href="http://noda-time.googlecode.com/hg/docs/api/Index.html">Latest API documentation</a></li>
+<li><a href="../api/Index.html">Relative API documentation</a> (if you&#39;re viewing this page
+offline, it&#39;s the offline API docs)</li>
+<li><a href="http://noda-time.blogspot.com">Blog</a></li>
+<li><a href="http://groups.google.com/group/noda-time">Mailing list</a></li>
 </ul>
 
-<p>The prebuilt binary packages can be used on Mono directly. To build from source,
-See the <a href="../developer/building.html">&quot;Building and testing&quot;</a> section in the developer guide.</p>
-
 		<ul class="pagination">
-		
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			<li class="current hide-for-small"><a href>Mono support</a></li>
-			
-			
-		
-			
-			<li><a href="../../userguide/1.1.0/limitations.html"><strong>Next</strong>: Limitations of Noda Time</a></li>
-			
-			
-			
-		
-			
-			
-			
-		
-			
-			
-			
-		
 		
 		</ul>
 	</div>
@@ -214,9 +101,9 @@ See the <a href="../developer/building.html">&quot;Building and testing&quot;</a
 				<div class="content" data-section-content>
 					<ul class="side-nav">
 						
-							<li><a href="../../userguide/1.1.0/rationale.html" >Why does Noda Time exist?</a></li>
+							<li><a href="../../userguide/1.2.0/rationale.html" >Why does Noda Time exist?</a></li>
 						
-							<li><a href="../../userguide/1.1.0/installation.html" >Installation</a></li>
+							<li><a href="../../userguide/1.2.0/installation.html" >Installation</a></li>
 						
 					</ul>
 				</div>
@@ -226,13 +113,13 @@ See the <a href="../developer/building.html">&quot;Building and testing&quot;</a
 				<div class="content" data-section-content>
 					<ul class="side-nav">
 						
-							<li><a href="../../userguide/1.1.0/concepts.html" >Core concepts</a></li>
+							<li><a href="../../userguide/1.2.0/concepts.html" >Core concepts</a></li>
 						
-							<li><a href="../../userguide/1.1.0/type-choices.html" >Choosing between the core types</a></li>
+							<li><a href="../../userguide/1.2.0/type-choices.html" >Choosing (and converting) between types</a></li>
 						
-							<li><a href="../../userguide/1.1.0/core-types.html" >Core types quick reference</a></li>
+							<li><a href="../../userguide/1.2.0/core-types.html" >Core types quick reference</a></li>
 						
-							<li><a href="../../userguide/1.1.0/design.html" >Design philosophy and conventions</a></li>
+							<li><a href="../../userguide/1.2.0/design.html" >Design philosophy and conventions</a></li>
 						
 					</ul>
 				</div>
@@ -242,19 +129,19 @@ See the <a href="../developer/building.html">&quot;Building and testing&quot;</a
 				<div class="content" data-section-content>
 					<ul class="side-nav">
 						
-							<li><a href="../../userguide/1.1.0/text.html" >Handling text in Noda Time</a></li>
+							<li><a href="../../userguide/1.2.0/text.html" >Text handling</a></li>
 						
-							<li><a href="../../userguide/1.1.0/offset-patterns.html" >Patterns for Offset values</a></li>
+							<li><a href="../../userguide/1.2.0/offset-patterns.html" >Patterns for Offset values</a></li>
 						
-							<li><a href="../../userguide/1.1.0/instant-patterns.html" >Patterns for Instant values</a></li>
+							<li><a href="../../userguide/1.2.0/instant-patterns.html" >Patterns for Instant values</a></li>
 						
-							<li><a href="../../userguide/1.1.0/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+							<li><a href="../../userguide/1.2.0/localtime-patterns.html" >Patterns for LocalTime values</a></li>
 						
-							<li><a href="../../userguide/1.1.0/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+							<li><a href="../../userguide/1.2.0/localdate-patterns.html" >Patterns for LocalDate values</a></li>
 						
-							<li><a href="../../userguide/1.1.0/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+							<li><a href="../../userguide/1.2.0/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
 						
-							<li><a href="../../userguide/1.1.0/period-patterns.html" >Patterns for Period values</a></li>
+							<li><a href="../../userguide/1.2.0/period-patterns.html" >Patterns for Period values</a></li>
 						
 					</ul>
 				</div>
@@ -264,13 +151,13 @@ See the <a href="../developer/building.html">&quot;Building and testing&quot;</a
 				<div class="content" data-section-content>
 					<ul class="side-nav">
 						
-							<li><a href="../../userguide/1.1.0/arithmetic.html" >Date and time arithmetic</a></li>
+							<li><a href="../../userguide/1.2.0/arithmetic.html" >Date and time arithmetic</a></li>
 						
-							<li><a href="../../userguide/1.1.0/bcl-conversions.html" >BCL conversions</a></li>
+							<li><a href="../../userguide/1.2.0/bcl-conversions.html" >BCL conversions</a></li>
 						
-							<li><a href="../../userguide/1.1.0/serialization.html" >Serialization</a></li>
+							<li><a href="../../userguide/1.2.0/serialization.html" >Serialization</a></li>
 						
-							<li><a href="../../userguide/1.1.0/threading.html" >Threading in Noda Time</a></li>
+							<li><a href="../../userguide/1.2.0/threading.html" >Threading</a></li>
 						
 					</ul>
 				</div>
@@ -280,22 +167,22 @@ See the <a href="../developer/building.html">&quot;Building and testing&quot;</a
 				<div class="content" data-section-content>
 					<ul class="side-nav">
 						
-							<li><a href="../../userguide/1.1.0/testing.html" >Unit testing with Noda Time</a></li>
+							<li><a href="../../userguide/1.2.0/testing.html" >Unit testing with Noda Time</a></li>
 						
-							<li><a href="../../userguide/1.1.0/tzdb.html" >Updating the time zone database in Noda Time</a></li>
+							<li><a href="../../userguide/1.2.0/tzdb.html" >Updating the time zone database</a></li>
 						
-							<li><a href="../../userguide/1.1.0/mono.html" class="active">Mono support</a></li>
+							<li><a href="../../userguide/1.2.0/mono.html" >Mono support</a></li>
 						
-							<li><a href="../../userguide/1.1.0/limitations.html" >Limitations of Noda Time</a></li>
+							<li><a href="../../userguide/1.2.0/limitations.html" >Limitations of Noda Time</a></li>
 						
-							<li><a href="../../userguide/1.1.0/roadmap.html" >Current roadmap</a></li>
+							<li><a href="../../userguide/1.2.0/roadmap.html" >Current roadmap</a></li>
 						
-							<li><a href="../../userguide/1.1.0/versions.html" >Version history</a></li>
+							<li><a href="../../userguide/1.2.0/versions.html" >Version history</a></li>
 						
 					</ul>
 				</div>
 			</section>
-			<footer>Version 1.1.0</footer>
+			<footer>Version 1.2.0</footer>
 		</div>
 	</div>
 </div>

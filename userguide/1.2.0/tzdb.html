@@ -8,7 +8,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
-	<title>Updating the time zone database in Noda Time</title>
+	<title>Updating the time zone database</title>
   
 	<!-- foundation default -->
   	<link rel="stylesheet" href="../../css/foundation.css" />
@@ -68,14 +68,17 @@
 
 <div class="row">
 	<div class="large-9 columns">
-		<h1>Updating the time zone database in Noda Time</h1>
-		<p>Noda Time comes with a version of the <a href="http://www.iana.org/time-zones">tzdb</a> (aka zoneinfo) database, which is
-now hosted by IANA. This database changes over time, as countries decide to change their time zone rules.
-As new versions of Noda Time are released, the version of tzdb will be updated. However, you may wish to use
-a new version of tzdb <em>without</em> changing which version of Noda Time you&#39;re using. This documentation tells you how
-to do so.</p>
+		<h1>Updating the time zone database</h1>
+		<p>Noda Time comes with a version of the
+<a href="http://www.iana.org/time-zones">tz database</a> (also known as the IANA Time Zone
+database, or zoneinfo or Olson database), which is now hosted by IANA. This
+database changes over time, as countries decide to change their time zone
+rules.  As new versions of Noda Time are released, the version of tzdb will be
+updated. However, you may wish to use a new version of tzdb <em>without</em> changing
+which version of Noda Time you&#39;re using. This documentation tells you how to do
+so.</p>
 
-<p>Noda Time&#39;s main library doesn&#39;t read tzdb text files directly - it uses a binary form which is the output of <code>ZoneInfoCompiler</code> - another
+<p>Noda Time&#39;s main library doesn&#39;t read tzdb text files directly - it uses a binary form which is the output of <code>NodaTime.TzdbCompiler</code> - another
 part of the Noda Time project. This saves both space (the 2012j version takes about 110K when compiled, or about 690K in text form) and
 time, as the binary form contains various precomputed transitions. The file also contains a mapping from Windows time zone names
 to tzdb time zone IDs, primarily so that Noda Time can map the local time zone reported by <code>TimeZoneInfo</code> to a tzdb time zone.</p>
@@ -99,15 +102,15 @@ as &quot;america&quot;, &quot;africa&quot;, &quot;etcetera&quot;.</li>
 <li>Ideally, rename the directory to match the version number, e.g. &quot;2012j&quot;. The directory name will be used in the version ID
 reported by the time zone provider later.</li>
 <li>Find the Windows mapping file you want to use. Currently, I&#39;d recommend using the version supplied with the Noda Time source
-in ZoneInfoCompiler\Data\winmap in a file beginning &quot;windowsZones&quot;. This file comes from <a href="http://cldr.unicode.org">CLDR</a>.</li>
-<li><p>Run ZoneInfoCompiler. I&#39;d suggest leaving it in its build directory and running it like this:</p>
+in NodaTime.TzdbCompiler\Data\winmap in a file beginning &quot;windowsZones&quot;. This file comes from <a href="http://cldr.unicode.org">CLDR</a>.</li>
+<li><p>Run NodaTime.TzdbCompiler. I&#39;d suggest leaving it in its build directory and running it like this:</p>
 
-<div class="example"><pre class="prettyprint code">path\to\ZoneInfoCompiler.exe -s path\to\tzdb-files -w path\to\windowsMapping-file.xml -o path\to\output.nzd -t NodaZoneData
+<div class="example"><pre class="prettyprint code">path\to\NodaTime.TzdbCompiler.exe -s path\to\tzdb-files -w path\to\windowsMapping-file.xml -o path\to\output.nzd -t NodaZoneData
 </pre></div>
 
-<p>For example, rebuilding the 2012j data from Noda Time itself, starting in the ZoneInfoCompiler directory:</p>
+<p>For example, rebuilding the 2012j data from Noda Time itself, starting in the NodaTime.TzdbCompiler directory:</p>
 
-<div class="example"><pre class="prettyprint code">bin\Release\ZoneInfoCompiler -s Data\2012j -w Data\winmap\windowsZones-21.xml -o tzdb-2012j.nzd -t NodaZoneData
+<div class="example"><pre class="prettyprint code">bin\Release\NodaTime.TzdbCompiler -s Data\2012j -w Data\winmap\windowsZones-21.xml -o tzdb-2012j.nzd -t NodaZoneData
 </pre></div></li>
 </ol>
 
@@ -170,15 +173,15 @@ as &quot;america&quot;, &quot;africa&quot;, &quot;etcetera&quot;.</li>
 <li>Ideally, rename the directory to match the version number, e.g. &quot;2012j&quot;. The directory name will be used in the version ID
 reported by the time zone provider later.</li>
 <li>Find the Windows mapping file you want to use. Currently, I&#39;d recommend using the version supplied with the Noda Time source
-in ZoneInfoCompiler\Data\winmap in a file beginning &quot;windowsZones&quot;. This file comes from <a href="http://cldr.unicode.org">CLDR</a>.</li>
-<li><p>Run ZoneInfoCompiler. I&#39;d suggest leaving it in its build directory and running it like this:</p>
+in NodaTime.TzdbCompiler\Data\winmap in a file beginning &quot;windowsZones&quot;. This file comes from <a href="http://cldr.unicode.org">CLDR</a>.</li>
+<li><p>Run NodaTime.TzdbCompiler. I&#39;d suggest leaving it in its build directory and running it like this:</p>
 
-<div class="example"><pre class="prettyprint code">path\to\ZoneInfoCompiler.exe -s path\to\tzdb-files -w path\to\windowsMapping-file.xml -o path\to\output.resources -t Resource
+<div class="example"><pre class="prettyprint code">path\to\NodaTime.TzdbCompiler.exe -s path\to\tzdb-files -w path\to\windowsMapping-file.xml -o path\to\output.resources -t Resource
 </pre></div>
 
-<p>For example, rebuilding the 2012j data from Noda Time itself, starting in the ZoneInfoCompiler directory:</p>
+<p>For example, rebuilding the 2012j data from Noda Time itself, starting in the NodaTime.TzdbCompiler directory:</p>
 
-<div class="example"><pre class="prettyprint code">bin\Release\ZoneInfoCompiler -s Data\2012j -w Data\winmap\windowsZones-21.xml -o tzdb-2012j.resources -t Resource
+<div class="example"><pre class="prettyprint code">bin\Release\NodaTime.TzdbCompiler -s Data\2012j -w Data\winmap\windowsZones-21.xml -o tzdb-2012j.resources -t Resource
 </pre></div></li>
 </ol>
 
@@ -304,12 +307,12 @@ most cases it probably isn&#39;t a big deal to have the handle to the resource f
 		
 			
 			
-			<li class="current hide-for-small"><a href>Updating the time zone database in Noda Time</a></li>
+			<li class="current hide-for-small"><a href>Updating the time zone database</a></li>
 			
 			
 		
 			
-			<li><a href="../../userguide/1.1.0/mono.html"><strong>Next</strong>: Mono support</a></li>
+			<li><a href="../../userguide/1.2.0/mono.html"><strong>Next</strong>: Mono support</a></li>
 			
 			
 			
@@ -337,9 +340,9 @@ most cases it probably isn&#39;t a big deal to have the handle to the resource f
 				<div class="content" data-section-content>
 					<ul class="side-nav">
 						
-							<li><a href="../../userguide/1.1.0/rationale.html" >Why does Noda Time exist?</a></li>
+							<li><a href="../../userguide/1.2.0/rationale.html" >Why does Noda Time exist?</a></li>
 						
-							<li><a href="../../userguide/1.1.0/installation.html" >Installation</a></li>
+							<li><a href="../../userguide/1.2.0/installation.html" >Installation</a></li>
 						
 					</ul>
 				</div>
@@ -349,13 +352,13 @@ most cases it probably isn&#39;t a big deal to have the handle to the resource f
 				<div class="content" data-section-content>
 					<ul class="side-nav">
 						
-							<li><a href="../../userguide/1.1.0/concepts.html" >Core concepts</a></li>
+							<li><a href="../../userguide/1.2.0/concepts.html" >Core concepts</a></li>
 						
-							<li><a href="../../userguide/1.1.0/type-choices.html" >Choosing between the core types</a></li>
+							<li><a href="../../userguide/1.2.0/type-choices.html" >Choosing (and converting) between types</a></li>
 						
-							<li><a href="../../userguide/1.1.0/core-types.html" >Core types quick reference</a></li>
+							<li><a href="../../userguide/1.2.0/core-types.html" >Core types quick reference</a></li>
 						
-							<li><a href="../../userguide/1.1.0/design.html" >Design philosophy and conventions</a></li>
+							<li><a href="../../userguide/1.2.0/design.html" >Design philosophy and conventions</a></li>
 						
 					</ul>
 				</div>
@@ -365,19 +368,19 @@ most cases it probably isn&#39;t a big deal to have the handle to the resource f
 				<div class="content" data-section-content>
 					<ul class="side-nav">
 						
-							<li><a href="../../userguide/1.1.0/text.html" >Handling text in Noda Time</a></li>
+							<li><a href="../../userguide/1.2.0/text.html" >Text handling</a></li>
 						
-							<li><a href="../../userguide/1.1.0/offset-patterns.html" >Patterns for Offset values</a></li>
+							<li><a href="../../userguide/1.2.0/offset-patterns.html" >Patterns for Offset values</a></li>
 						
-							<li><a href="../../userguide/1.1.0/instant-patterns.html" >Patterns for Instant values</a></li>
+							<li><a href="../../userguide/1.2.0/instant-patterns.html" >Patterns for Instant values</a></li>
 						
-							<li><a href="../../userguide/1.1.0/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+							<li><a href="../../userguide/1.2.0/localtime-patterns.html" >Patterns for LocalTime values</a></li>
 						
-							<li><a href="../../userguide/1.1.0/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+							<li><a href="../../userguide/1.2.0/localdate-patterns.html" >Patterns for LocalDate values</a></li>
 						
-							<li><a href="../../userguide/1.1.0/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+							<li><a href="../../userguide/1.2.0/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
 						
-							<li><a href="../../userguide/1.1.0/period-patterns.html" >Patterns for Period values</a></li>
+							<li><a href="../../userguide/1.2.0/period-patterns.html" >Patterns for Period values</a></li>
 						
 					</ul>
 				</div>
@@ -387,13 +390,13 @@ most cases it probably isn&#39;t a big deal to have the handle to the resource f
 				<div class="content" data-section-content>
 					<ul class="side-nav">
 						
-							<li><a href="../../userguide/1.1.0/arithmetic.html" >Date and time arithmetic</a></li>
+							<li><a href="../../userguide/1.2.0/arithmetic.html" >Date and time arithmetic</a></li>
 						
-							<li><a href="../../userguide/1.1.0/bcl-conversions.html" >BCL conversions</a></li>
+							<li><a href="../../userguide/1.2.0/bcl-conversions.html" >BCL conversions</a></li>
 						
-							<li><a href="../../userguide/1.1.0/serialization.html" >Serialization</a></li>
+							<li><a href="../../userguide/1.2.0/serialization.html" >Serialization</a></li>
 						
-							<li><a href="../../userguide/1.1.0/threading.html" >Threading in Noda Time</a></li>
+							<li><a href="../../userguide/1.2.0/threading.html" >Threading</a></li>
 						
 					</ul>
 				</div>
@@ -403,22 +406,22 @@ most cases it probably isn&#39;t a big deal to have the handle to the resource f
 				<div class="content" data-section-content>
 					<ul class="side-nav">
 						
-							<li><a href="../../userguide/1.1.0/testing.html" >Unit testing with Noda Time</a></li>
+							<li><a href="../../userguide/1.2.0/testing.html" >Unit testing with Noda Time</a></li>
 						
-							<li><a href="../../userguide/1.1.0/tzdb.html" class="active">Updating the time zone database in Noda Time</a></li>
+							<li><a href="../../userguide/1.2.0/tzdb.html" class="active">Updating the time zone database</a></li>
 						
-							<li><a href="../../userguide/1.1.0/mono.html" >Mono support</a></li>
+							<li><a href="../../userguide/1.2.0/mono.html" >Mono support</a></li>
 						
-							<li><a href="../../userguide/1.1.0/limitations.html" >Limitations of Noda Time</a></li>
+							<li><a href="../../userguide/1.2.0/limitations.html" >Limitations of Noda Time</a></li>
 						
-							<li><a href="../../userguide/1.1.0/roadmap.html" >Current roadmap</a></li>
+							<li><a href="../../userguide/1.2.0/roadmap.html" >Current roadmap</a></li>
 						
-							<li><a href="../../userguide/1.1.0/versions.html" >Version history</a></li>
+							<li><a href="../../userguide/1.2.0/versions.html" >Version history</a></li>
 						
 					</ul>
 				</div>
 			</section>
-			<footer>Version 1.1.0</footer>
+			<footer>Version 1.2.0</footer>
 		</div>
 	</div>
 </div>
