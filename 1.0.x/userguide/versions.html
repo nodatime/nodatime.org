@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <link href="prettify.css" type="text/css" rel="stylesheet" />
+    <link href="styles.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="prettify.js"></script>
+    <title>Version history</title>
+  </head>
+  <body onload="prettyPrint()">
+    <h1>Version history</h1>
+    <p>User-visible changes from 1.0.0-beta1 onwards. See the
+<a href="http://code.google.com/p/noda-time/source/list">project repository</a> for more
+details.</p>
+
+<h2>1.0.1, released 2012-11-13 with tzdb 2012i</h2>
+
+<p>No API changes; this release was purely to fix a problem
+with the NodaTime.Testing package.</p>
+
+<h2>1.0.0, released 2012-11-07 with tzdb 2012i</h2>
+
+<p>API changes:</p>
+
+<ul>
+<li>Added the <code>CalendarSystem.Id</code> property that returns a unique ID for a
+calendar system, along with the <code>ForId()</code> factory method and <code>Ids</code> static
+property; <code>ToString()</code> now returns the calendar ID rather than the name</li>
+<li>Added support for the <code>c</code> custom format specifier for local date values,
+which includes the calendar ID, representing the calendar system</li>
+<li>Added support for the <code>;</code> custom format specifier to parse both comma
+and period for fractions of a second; <code>InstantPattern.ExtendedIsoPattern</code>,
+<code>LocalTimePattern.ExtendedIsoPattern</code>, and
+<code>LocalDateTimePattern.ExtendedIsoPattern</code> now accept both as separators
+(issues <a href="http://code.google.com/p/noda-time/issues/detail?id=140">140</a> and <a href="http://code.google.com/p/noda-time/issues/detail?id=141">141</a>)</li>
+<li>Added support for the <code>r</code> standard pattern for <code>LocalDateTime</code> that includes
+the calendar system</li>
+<li>Renamed the <code>CreateWithInvariantInfo()</code> method on the pattern types to
+<code>CreateWithInvariantCulture()</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=137">issue 137</a>)</li>
+</ul>
+
+<p>Other:</p>
+
+<ul>
+<li>Set specific files to be ignored in ZoneInfoCompiler, so we don't
+need to remove them manually each time</li>
+</ul>
+
+<h2>1.0.0-rc1, released 2012-11-01 with tzdb 2012h</h2>
+
+<p>API changes:</p>
+
+<ul>
+<li>Renamed <code>DateTimeZone.GetOffsetFromUtc()</code> to <code>DateTimeZone.GetUtcOffset()</code> to
+match the BCL (<a href="http://code.google.com/p/noda-time/issues/detail?id=121">issue 121</a>)</li>
+<li>Added <code>LocalDate.FromWeekYearWeekAndDay()</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=120">issue 120</a>)</li>
+<li>Text formats can now parse negative values for absolute years (<a href="http://code.google.com/p/noda-time/issues/detail?id=118">issue 118</a>)</li>
+<li><code>Tick</code>, <code>SecondOfDay</code> and <code>MillisecondOfDay</code> properties removed from
+time-based types (<a href="http://code.google.com/p/noda-time/issues/detail?id=103">issue 103</a>)</li>
+<li>Removed the <code>NodaCultureInfo</code> and <code>NodaFormatInfo</code> types (<a href="http://code.google.com/p/noda-time/issues/detail?id=131">issue 131</a> and
+related issues), removed the <code>FormatInfo</code> property and <code>WithFormatInfo()</code>
+method on pattern types, and changed the culture-specific pattern factory
+methods to take a <code>CultureInfo</code> rather than a <code>NodaFormatInfo</code></li>
+<li>Removed <code>EmptyDateTimeZoneSource</code></li>
+<li>Many classes are now <code>sealed</code>: <code>PeriodPattern</code>, <code>BclDateTimeZoneProvider</code>,
+<code>BclDateTimeZoneSource</code>, <code>DateTimeZoneCache</code>, and <code>ZoneInterval</code>, along
+with various exception types and
+<code>NodaTime.Testing.SingleTransitionDateTimeZone</code></li>
+<li>The names of the special resources used by <code>TzdbDateTimeZoneSource</code>
+(<code>VersionKey</code>, etc) are now internal</li>
+<li>Format of the special resource keys has changed; clients using
+custom-built TZDB resources will need to rebuild</li>
+</ul>
+
+<p>Bug fixes:</p>
+
+<ul>
+<li>Various fixes to <code>BclDateTimeZone</code> not working the same way as a BCL
+<code>TimeZoneInfo</code> (issues <a href="http://code.google.com/p/noda-time/issues/detail?id=114">114</a>, <a href="http://code.google.com/p/noda-time/issues/detail?id=115">115</a>, and
+<a href="http://code.google.com/p/noda-time/issues/detail?id=122">122</a>)</li>
+</ul>
+
+<p>Other:</p>
+
+<ul>
+<li>Noda Time assemblies are now signed (<a href="http://code.google.com/p/noda-time/issues/detail?id=35">issue 35</a>)</li>
+<li>Removed support for building under Visual Studio 2008 (<a href="http://code.google.com/p/noda-time/issues/detail?id=107">issue 107</a>)</li>
+</ul>
+
+<h2>1.0.0-beta2, released 2012-08-04 with tzdb 2012e</h2>
+
+<p>API changes:</p>
+
+<ul>
+<li>Overhaul of how to get a <code>DateTimeZone</code> from an ID:
+<ul>
+<li><code>IDateTimeZoneProvider</code> (SPI for time zones) renamed to
+<code>IDateTimeZoneSource</code>, along with similar renaming for the built-in
+sources</li>
+<li>New interface <code>IDateTimeZoneProvider</code> aimed at <em>callers</em>, with caching
+assumed</li>
+<li>New class <code>DateTimeZoneProviders</code> with static properties to access the
+built-in providers: TZDB, BCL and default (currently TZDB)</li>
+<li>Removed various <code>DateTimeZone</code> static methods in favour of always going
+via an <code>IDateTimeZoneProvider</code> implementation</li>
+<li><code>DateTimeZoneCache</code> now public and implements <code>IDateTimeZoneProvider</code></li>
+</ul></li>
+<li><code>DateTimeZone</code> no longer has internal abstract methods, making third-party
+implementations possible (<a href="http://code.google.com/p/noda-time/issues/detail?id=77">issue 77</a>)</li>
+<li><code>DateTimeZone</code> now implements <code>IEquatable&lt;DateTimeZone&gt;</code>, and documents what
+it means for time zones to be equal (<a href="http://code.google.com/p/noda-time/issues/detail?id=81">issue 81</a>)</li>
+<li>New core type: <code>OffsetDateTime</code> representing a local date/time and an offset
+from UTC, but not full time zone information</li>
+<li>Added a new standard offset pattern of <code>G</code>, which is like <code>g</code> but using
+"Z" for zero; also available as <code>OffsetPattern.GeneralInvariantPatternWithZ</code></li>
+<li><code>Period</code> and <code>PeriodBuilder</code> no longer differentiate between absent and zero
+components (to the extent that they did at all): <code>Units</code> has been removed
+from <code>Period</code>, period formatting now omits all zero values unconditionally,
+and the <code>Year</code> (etc) properties on <code>PeriodBuilder</code> are no longer nullable
+(<a href="http://code.google.com/p/noda-time/issues/detail?id=90">issue 90</a>)</li>
+<li>Removed the BCL parsing methods and some of the BCL formatting methods from
+<code>Instant</code>, <code>LocalDate</code>, <code>LocalDateTime</code>, and <code>Offset</code> in favour of the
+pattern-based API (<a href="http://code.google.com/p/noda-time/issues/detail?id=87">issue 87</a>)</li>
+<li><p><code>Duration.ToString()</code> and <code>Interval.ToString()</code> now return more descriptive
+text</p></li>
+<li><p>Removed <code>DateTimeZone.GetSystemDefaultOrNull()</code>; callers should use the
+provider's <code>GetSystemDefault()</code> method and (if necessary) catch the
+<code>TimeZoneNotFoundException</code> that it can throw (<a href="http://code.google.com/p/noda-time/issues/detail?id=61">issue 61</a>)</p></li>
+<li>Removed <code>DateTimeZone.UtcId</code> and <code>DateTimeZone.IsFixed</code> (issues <a href="http://code.google.com/p/noda-time/issues/detail?id=64">64</a>
+and <a href="http://code.google.com/p/noda-time/issues/detail?id=62">62</a>)</li>
+<li>Removed most of the convenience static properties on <code>Duration</code> (e.g.
+<code>Duration.OneStandardDay</code>) in favour of the existing static methods; removed
+<code>MinValue</code> and <code>MaxValue</code>, and added <code>Epsilon</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=70">issue 70</a>)</li>
+<li>Removed <code>Instant.BeginningOfTimeLabel</code> and <code>Instant.EndOfTimeLabel</code></li>
+<li><code>Instant.InIsoUtc</code> renamed to <code>InUtc</code></li>
+<li><code>Instant.UnixEpoch</code> moved to <code>NodaConstants.UnixEpoch</code>;
+<code>NodaConstants.DateTimeEpochTicks</code> replaced by <code>BclEpoch</code></li>
+<li>Added <code>Instant.PlusTicks()</code></li>
+<li><code>LocalDate.LocalDateTime</code> property changed to <code>LocalDate.AtMidnight()</code> method
+(<a href="http://code.google.com/p/noda-time/issues/detail?id=56">issue 56</a>)</li>
+<li><code>LocalTime</code> now implements <code>IComparable&lt;LocalTime&gt;</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=51">issue 51</a>)</li>
+<li>Added a <code>LocalTime</code> constructor taking hours and minutes (<a href="http://code.google.com/p/noda-time/issues/detail?id=53">issue 53</a>)</li>
+<li>Removed "component" properties from <code>Offset</code>, and renamed the "total"
+properties to just <code>Ticks</code> and <code>Milliseconds</code></li>
+<li>Removed <code>Offset.Create()</code> methods (and moved them in slightly different form
+in a new internal <code>TestObjects</code> class in <code>NodaTime.Test</code>)</li>
+<li>Added <code>Period.ToDuration()</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=55">issue 55</a>) and <code>Period.CreateComparer()</code>
+(<a href="http://code.google.com/p/noda-time/issues/detail?id=69">issue 69</a>)</li>
+<li><code>Period.Empty</code> renamed to <code>Period.Zero</code> (as part of <a href="http://code.google.com/p/noda-time/issues/detail?id=90">issue 90</a>)</li>
+<li><code>PeriodBuilder</code> no longer implements <code>IEquatable&lt;PeriodBuilder&gt;</code>
+(<a href="http://code.google.com/p/noda-time/issues/detail?id=91">issue 91</a>)</li>
+<li>Removed <code>SystemClock.SystemNow</code> in favour of using <code>SystemClock.Instance.Now</code>
+if you really have to</li>
+<li>Added <code>ZonedDateTime.ToOffsetDateTime()</code>, which returns the <code>OffsetDateTime</code>
+equivalent to a <code>ZonedDateTime</code></li>
+<li><p>Removed the Buddhist <code>Era</code> (as there is no Buddhist calendar implementation)</p></li>
+<li><p><code>NodaTime.Testing.StubClock</code> renamed to <code>FakeClock</code>, and gains an
+auto-advance option (issues <a href="http://code.google.com/p/noda-time/issues/detail?id=72">72</a> and <a href="http://code.google.com/p/noda-time/issues/detail?id=73">73</a>)</p></li>
+<li><code>NodaTime.Testing.TimeZones.SingleTransitionZone</code> renamed to
+<code>SingleTransitionDateTimeZone</code></li>
+</ul>
+
+<p>Bug fixes:</p>
+
+<ul>
+<li>Many</li>
+</ul>
+
+<h2>1.0.0-beta1, released 2012-04-12 with tzdb 2012c</h2>
+
+<ul>
+<li>Initial beta release</li>
+</ul>
+
+  </body>
+</html>
