@@ -8,7 +8,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
-	<title>Patterns for LocalDateTime values</title>
+	<title>Patterns for ZonedDateTime values</title>
   
 	<!-- foundation default -->
   	<link rel="stylesheet" href="../../css/foundation.css" />
@@ -97,37 +97,27 @@
 
 <div class="row">
 	<div class="large-9 columns">
-		<h1>Patterns for LocalDateTime values</h1>
-		<p>The <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a> type supports the following patterns:</p>
+		<h1>Patterns for ZonedDateTime values</h1>
+		<p>The <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> type supports the following patterns:</p>
 
 <h2>Standard Patterns</h2>
 
-<p>The following standard patterns are supported:</p>
-
-<ul>
-<li><p><code>o</code> or <code>O</code>: The round-trip pattern, which is always &quot;yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss&#39;.&#39;fffffff&quot; using the invariant culture. The calendar
-system is not round-tripped in this pattern, but it&#39;s compatible with the BCL round-trip pattern (for <code>DateTime</code> values with a <code>Kind</code> of <code>Unspecified</code>, which is closest in meaning to <code>LocalDateTime</code>).</p></li>
-<li><p><code>r</code>: The full round-trip pattern including calendar system, which is always &quot;yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss&#39;.&#39;fffffff &#39;(&#39;c&#39;)&#39;&quot; using the invariant culture.</p></li>
-<li><p><code>s</code>: The sortable pattern, which is always &quot;yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss&quot; using the invariant culture.</p></li>
-<li><p><code>f</code>: The culture&#39;s <a href="http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longdatepattern.aspx">long date pattern</a> followed by a space,
-followed by the <a href="http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shorttimepattern.aspx">short time pattern</a>.</p></li>
-<li><p><code>F</code>: The full date and time pattern as defined by the culture&#39;s <a href="http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.fulldatetimepattern.aspx"><code>DateTimeFormatInfo.FullDateTimePattern</code></a> 
-For example, in the invariant culture this is &quot;dddd, dd MMMM yyyy HH:mm:ss&quot;.</p></li>
-<li><p><code>g</code>: The culture&#39;s <a href="http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shortdatepattern.aspx">short date pattern</a> followed by a space,
-followed by the <a href="http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shorttimepattern.aspx">short time pattern</a>.</p></li>
-<li><p><code>G</code>: The culture&#39;s <a href="http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shortdatepattern.aspx">short date pattern</a> followed by a space,
-followed by the <a href="http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longtimepattern.aspx">long time pattern</a>.</p></li>
-</ul>
+<p>TBD.</p>
 
 <h2>Custom Patterns</h2>
 
-<p>The custom format patterns for local date and time values are provided by combining the <a href="localdate-patterns.html">custom patterns for <code>LocalDate</code></a> with
-the <a href="localtime-patterns.html">custom patterns for <code>LocalTime</code></a>. The result is simply the combination of the date and the time.</p>
+<p>The custom format patterns for a zoned date and time are provided by combining the <a href="offsetdatetime-patterns.html">custom patterns for <code>OffsetDateTime</code></a> with
+the addition of two extra custom format specifiers: &#39;z&#39; and &#39;x&#39;.</p>
 
-<p>There is one exception to this: when parsing a <code>LocalDateTime</code>, an 24-hour (<code>HH</code>) specifier is allowed to have the value 24,
-instead of being limited to the range 00-23. This is only permitted if the resulting time of day is midnight, and it indicates
-the end of the specified day. The result is midnight on the following day. For example, using the ISO pattern, the values
-<code>2012-11-24T24:00:00</code> and <code>2012-11-25T00:00:00</code> are equivalent. A value of 24 is never produced when formatting.</p>
+<p>&#39;z&#39; is used to parse or format that time zone identifier. When parsing, an ]<code>IDateTimeZoneProvider</code>](http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T<em>NodaTime</em>IDateTimeZoneProvider.htm) is used to extract candidate identifiers and fetch time zones for them. The UTC+/-xx:xx format for fixed offset time zones is always valid, regardless of provider. The provider is part of the <code>ZonedDateTimePattern</code>, and a new pattern with a different provider can be created using the <code>WithZoneProvider</code> method. The provider is not used when formatting: the time zone identifier is simply used directly. Note that if you format a <code>ZonedDateTime</code> which uses a time zone from a different provider than the one in the pattern, you may not be able to parse it again with the same pattern.</p>
+
+<p><code>x</code> is used <em>only</em> for formatting; it includes the abbreviation associated with the time zone at the given time, such as &quot;PST&quot; or &quot;PDT&quot;. This is format-only as abbreviations are often ambiguous; they are not a substitute for full time zone identifiers.</p>
+
+<p>When parsing, if the pattern does not contain the <code>z</code> specifier, the time zone from the default value is used. The standard patterns all use a default value with the UTC time zone.</p>
+
+<p>If the pattern does not contain an offset specifier (&quot;o&lt;...&gt;&quot;) the local date and time represented by the text is interpreted according to the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_TimeZones_ZoneLocalMappingResolver.htm"><code>ZoneLocalMappingResolver</code></a> associated with the pattern. A new pattern can be created from an existing one, just with a different resolver, using the <code>WithResolver</code> method. If the resolver throws a <code>SkippedTimeException</code> or <code>AmbiguousTimeException</code>, these are converted into <code>UnparsableValueException</code> results. Note that a pattern without an offset specifier will always lead to potential data loss when used with time zones which aren&#39;t a single fixed offset, due to the normal issues of time zone transitions (typically for daylight saving time). </p>
+
+<p>If the pattern <em>does</em> contain an offset specifier, then when parsing, the offset present in the text is validated against the time zone. By specifying both a time zone identifier and an offset, the ambiguity around time zone transitions is eliminated. Again, if the offset is invalid for the time zone at the given local date and time, an <code>UnparsableValueException</code> result is produced.</p>
 
 		<ul class="pagination">
 		
@@ -186,14 +176,6 @@ the end of the specified day. The result is midnight on the following day. For e
 		
 			
 			
-			<li class="current hide-for-small"><a href>Patterns for LocalDateTime values</a></li>
-			
-			
-		
-			
-			<li><a href="../../unstable/userguide/offsetdatetime-patterns.html"><strong>Next</strong>: Patterns for OffsetDateTime values</a></li>
-			
-			
 			
 		
 			
@@ -204,6 +186,14 @@ the end of the specified day. The result is midnight on the following day. For e
 			
 			
 		
+			
+			
+			<li class="current hide-for-small"><a href>Patterns for ZonedDateTime values</a></li>
+			
+			
+		
+			
+			<li><a href="../../unstable/userguide/period-patterns.html"><strong>Next</strong>: Patterns for Period values</a></li>
 			
 			
 			
@@ -289,11 +279,11 @@ the end of the specified day. The result is midnight on the following day. For e
 						
 							<li><a href="../../unstable/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
 						
-							<li><a href="../../unstable/userguide/localdatetime-patterns.html" class="active">Patterns for LocalDateTime values</a></li>
+							<li><a href="../../unstable/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
 						
 							<li><a href="../../unstable/userguide/offsetdatetime-patterns.html" >Patterns for OffsetDateTime values</a></li>
 						
-							<li><a href="../../unstable/userguide/zoneddatetime-patterns.html" >Patterns for ZonedDateTime values</a></li>
+							<li><a href="../../unstable/userguide/zoneddatetime-patterns.html" class="active">Patterns for ZonedDateTime values</a></li>
 						
 							<li><a href="../../unstable/userguide/period-patterns.html" >Patterns for Period values</a></li>
 						
