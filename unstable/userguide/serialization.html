@@ -164,17 +164,37 @@ properties, which would entirely defeat the point of the exercise.</p>
 
 <p>Finally, serialization of <code>ZonedDateTime</code> comes with the tricky question of which <code>IDateTimeZoneProvider</code> to use in order to convert a time zone ID specified in the XML into a <code>DateTimeZone</code>.
 Noda Time has no concept of a &quot;time zone provider registry&quot; nor does a time zone &quot;know&quot; which provider it came from. Likewise XML serialization doesn&#39;t allow any particular local context to be
-specified as part of the deserialization process. As a horrible workaround, a static (thread-safe) <code>DateTimeZoneProviders.XmlSerialization</code> property is used. This would normally be set on application start-up,
+specified as part of the deserialization process. As a horrible workaround, a static (thread-safe) <code>DateTimeZoneProviders.Serialization</code> property is used. This would normally be set on application start-up,
 and will be consulted when deserializing <code>ZonedDateTime</code> values. It defaults (lazily) to using <code>DateTimeZoneProviders.Tzdb</code>.</p>
 
 <p>While these details are undoubtedly unpleasant, it is hoped that they strike a pragmatic balance, providing a significant benefit to those who require XML serialization support, while staying
 out of the way of those who don&#39;t.</p>
 
+<h2>Binary serialization</h2>
+
+<p>As of Noda Time 1.2, for the desktop build only, the following types implement <code>ISerializable</code> and have the <code>[Serializable]</code> attribute applied to them, and can therefore be serialized using <code>BinaryFormatter</code>: </p>
+
+<ul>
+<li><code>Instant</code></li>
+<li><code>OffsetDateTime</code></li>
+<li><code>ZonedDateTime</code></li>
+<li><code>LocalDateTime</code></li>
+<li><code>LocalDate</code></li>
+<li><code>LocalTime</code></li>
+<li><code>Offset</code></li>
+<li><code>Interval</code></li>
+<li><code>Duration</code></li>
+<li><code>Period</code></li>
+</ul>
+
+<p>Binary serialization is simpler than XML serialization in terms of not interfering with immutability, which is why <code>Period</code> itself is serializable. However, the issue of requiring a time zone provider to be configured via <code>DateTimeZoneProviders.Serialization</code> is still present. (The same property is used for both binary and XML serialization.)</p>
+
+<p>The PCL itself does not support binary serialization, so the interface and attribute are not applied to the above types in the PCL Noda Time build.</p>
+
 <h2>Third-party serialization</h2>
 
 <p>Currently third-party serialization is experimental. We will have one serialization assembly for each type of
-serialization we support which requires separate dependencies; if and when &quot;stock&quot; binary and XML
-serialization are supported, they will be included within the main Noda Time assembly.</p>
+serialization we support which requires separate dependencies.</p>
 
 <h2>Json.NET: NodaTime.Serialization.JsonNet</h2>
 
