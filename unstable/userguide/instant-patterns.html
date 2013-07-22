@@ -107,7 +107,8 @@
 <ul>
 <li><p><code>g</code>: General format pattern.<br>
 The ISO-8601 representation of this instant in UTC, using the
-pattern &quot;yyyy-MM-ddTHH:mm:ss&quot;.</p></li>
+pattern &quot;yyyy-MM-ddTHH:mm:ss&quot; and always using the invariant culture,
+with the default &quot;start of time&quot; and &quot;end of time&quot; labels.</p></li>
 <li><p><code>n</code>: Numeric with thousand separators.<br>
 This gives the number of ticks since the Unix epoch as an integer,
 including thousands separators. Sample on September 16th 2011:
@@ -123,6 +124,8 @@ not including thousands separators. Sample on September 16th 2011:
 <p><a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Instant.htm"><code>Instant</code></a> supports all the <a href="localdatetime-patterns.html"><code>LocalDateTime</code> custom patterns</a>.
 The pattern allows the culture to be specified, but <em>always</em> uses the ISO-8601 calendar, and <em>always</em> uses the UTC
 time zone. The &quot;template value&quot; is always the unix epoch.</p>
+
+<p>All instant patterns (other than the standard <em>numeric</em> ones) handle <code>Instant.MinValue</code> and <code>Instant.MaxValue</code> separately. The default formatting of the values are simply &quot;MinInstant&quot; and &quot;MaxInstant&quot; respectively, but a new <code>InstantPattern</code> with different min/max labels can be created using the <code>WithMinMaxLabels</code> method. The labels must be non-empty strings which differ from each other.</p>
 
 		<ul class="pagination">
 		
