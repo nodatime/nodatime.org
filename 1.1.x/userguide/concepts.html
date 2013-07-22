@@ -1,80 +1,170 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-  <head>
-    <link href="prettify.css" type="text/css" rel="stylesheet" />
-    <link href="styles.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript" src="prettify.js"></script>
-    <title>Core concepts in Noda Time</title>
-  </head>
-  <body onload="prettyPrint()">
-    <h1>Core concepts in Noda Time</h1>
-    <p>This is a companion page to the
-<a href="core-types.html">"core types quick reference"</a>, and <a href="type-choices.html">"choosing between types"</a>
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Core concepts</title>
+  
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="../../css/syntax.css">
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+    <!-- Prettify -->
+    <script src="../../js/prettify/run_prettify.js"></script>
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mobile.css">
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">Api</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" >Developer Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/developer">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/developer">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/developer">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Core concepts</h1>
+		<p>This is a companion page to the
+<a href="core-types.html">&quot;core types quick reference&quot;</a>, and <a href="type-choices.html">&quot;choosing between types&quot;</a>
 pages, describing the fundamental concepts in Noda Time.</p>
 
 <p>One of the benefits of Noda Time over the Base Class Library (BCL)
 time support is the representation of different concepts with
 different types. The downside of this is that there are more types
-to learn about, and you're forced to make decisions between subtly
+to learn about, and you&#39;re forced to make decisions between subtly
 different concepts where in the BCL you could just use <code>DateTime</code>
 and <em>hope</em> you were doing the right thing.</p>
 
-<p>By forcing you to think a little bit more upfront, we're hoping
-you'll gain a greater understanding not only of how your code works
-but sometimes what data you're trying to represent anyway - you
+<p>By forcing you to think a little bit more upfront, we&#39;re hoping
+you&#39;ll gain a greater understanding not only of how your code works
+but sometimes what data you&#39;re trying to represent anyway - you
 should <em>expect</em> the use of Noda Time to clarify your thinking around
 date and time data for your whole project.</p>
 
 <p>This document introduces the core concepts, but in order to avoid it
-being too overwhelming, we won't go into the fine details. See
-individual pages (particularly the <a href="type-choices.html">"choosing between
-types"</a> page) and the <a href="../api/Index.html">API documentation</a>
+being too overwhelming, we won&#39;t go into the fine details. See
+individual pages (particularly the <a href="type-choices.html">&quot;choosing between
+types&quot;</a> page) and the <a href="../api/Index.html">API documentation</a>
 for more information.</p>
 
-<h2>"Local" and "global" (or "absolute") types</h2>
+<h2>&quot;Local&quot; and &quot;global&quot; (or &quot;absolute&quot;) types</h2>
 
 <p>Many of the concepts can be considered as either <em>local</em> or
 <em>global</em>. These terms are fairly common within other APIs and
 documentation, but they can be confusing to start with. (Global
 values are also called <em>absolute</em> values in <a href="http://blogs.msdn.com/b/bclteam/archive/2007/06/18/a-brief-history-of-datetime-anthony-moore.aspx">some writing</a>, although
-we don't use this name in Noda Time.)</p>
+we don&#39;t use this name in Noda Time.)</p>
 
 <p>The key difference is that people all around the world will agree on
 a <em>global</em> value simultaneously, whereas they may all see different
 <em>local</em> values for the same global value, due to time zones. A local
 value has no associated time zone in Noda Time; in particular it is
-<em>not</em> just "a date and time fixed to the local time of the computer
-running the code" as a <code>DateTime</code> with a <code>Kind</code> of <code>Local</code> is
+<em>not</em> just &quot;a date and time fixed to the local time of the computer
+running the code&quot; as a <code>DateTime</code> with a <code>Kind</code> of <code>Local</code> is
 interpreted in .NET.</p>
 
 <p>Internally, Noda Time has a concept of a <code>LocalInstant</code> which is a
 local value without reference to any particular calendar system, but
-this is currently not exposed. Similarly, <a href="../api/html/T_NodaTime_LocalTime.htm"><code>LocalTime</code></a> does
+this is currently not exposed. Similarly, <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_LocalTime.htm"><code>LocalTime</code></a> does
 not refer to a calendar system - we assume that all calendars are based
 around solar days 24 hours in length (give or take daylight saving
-changes). However, the <a href="../api/html/T_NodaTime_LocalDate.htm"><code>LocalDate</code></a> and
-<a href="../api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a> types <em>do</em> both refer to calendar
+changes). However, the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_LocalDate.htm"><code>LocalDate</code></a> and
+<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a> types <em>do</em> both refer to calendar
 systems... see the later section on calendars for more information.</p>
 
 <h2>The global time line, and <code>Instant</code></h2>
 
 <p>Noda Time assumes a single non-relativistic time line: global time
 progresses linearly, and everyone in the universe would agree on the
-global concept of "now". Time is measured with a granularity of
+global concept of &quot;now&quot;. Time is measured with a granularity of
 <em>ticks</em> where there are 10,000 ticks in a millisecond. This is the
 same concept of a tick which is used in <code>DateTime</code> and <code>TimeSpan</code> in
 .NET, although a <code>Stopwatch</code> tick in .NET can vary based on the
 timer used.</p>
 
-<p>The "zero point" used everywhere in Noda Time is the Unix epoch:
+<p>The &quot;zero point&quot; used everywhere in Noda Time is the Unix epoch:
 midnight at the start of January 1st 1970, UTC. (UTC itself did not
-exist in 1970, but that's another matter.) The Unix epoch happens
+exist in 1970, but that&#39;s another matter.) The Unix epoch happens
 to be a common zero point used in many other systems - but if we had
 used some other zero point (such a January 1st 2000 UTC) it would
 simply have offset the values, and changed the maximum and minimum
-representable values. It's just an origin.</p>
+representable values. It&#39;s just an origin.</p>
 
-<p>The Noda Time <a href="../api/html/T_NodaTime_Instant.htm"><code>Instant</code></a> type represents a point on this
+<p>The Noda Time <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Instant.htm"><code>Instant</code></a> type represents a point on this
 global timeline: the number of ticks which have elapsed since the Unix
 epoch. The value can be negative for dates and times before 1970 of
 course - the range of supported dates is from around 27000 BCE to
@@ -84,8 +174,8 @@ around 31000 CE in the Gregorian calendar.</p>
 <em>just</em> the number of ticks which have occurred since
 the Unix epoch. The fact that the Unix epoch is defined in terms of
 UTC is irrelevant - it could have been defined in terms of a
-different time zone just as easily, such as "1am on January 1st 1970
-in the Europe/London time zone" (as the UK time zone was
+different time zone just as easily, such as &quot;1am on January 1st 1970
+in the Europe/London time zone&quot; (as the UK time zone was
 experimentally an hour ahead of UTC at the time). The tick values
 would remain the same.</p>
 
@@ -94,7 +184,7 @@ system - it is meaningless to ask which month an instant occurs in,
 as the concept of a month (or year, etc) is only relevant within a
 particular calendar system.</p>
 
-<p><code>Instant</code> is a good type to use for "when something happened" - a
+<p><code>Instant</code> is a good type to use for &quot;when something happened&quot; - a
 timestamp in a log file, for example. The instant can then be
 <em>interpreted</em> in a particular time zone and calendar system, in a
 way which is useful to the person looking at the log.</p>
@@ -104,7 +194,7 @@ way which is useful to the person looking at the log.</p>
 <p>Humans break up time into units such as years, months, days, hours,
 minutes and so on. While time itself has no such concept, it makes
 life more convenient for people. Unfortunately - and this is a
-recurrent theme in software - humanity hasn't done very well in
+recurrent theme in software - humanity hasn&#39;t done very well in
 agreeing a single system to use. So there are multiple different
 calendars, including Gregorian, Julian, Coptic and Buddhist. These
 allow different people to talk about the same local time in
@@ -113,10 +203,10 @@ the Julian calendar system, for example.</p>
 
 <p>The calendar system you use is one of the few things Noda Time is
 willing to use a default for: unless you specify otherwise, the
-ISO-8601 calendar is used. If you don't know which calendar you ought
+ISO-8601 calendar is used. If you don&#39;t know which calendar you ought
 to use, this is almost certainly the one for you.</p>
 
-<p>In Noda Time, the <a href="../api/html/T_NodaTime_CalendarSystem.htm"><code>CalendarSystem</code></a> type handles the
+<p>In Noda Time, the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_CalendarSystem.htm"><code>CalendarSystem</code></a> type handles the
 details of different calendar systems. Most of the methods are internal,
 although a few useful methods are exposed. Most of the time even if you
 <em>do</em> need to use a <code>CalendarSystem</code>, you can just fetch a reference to
@@ -129,14 +219,14 @@ little bundle of magic which simply does the right thing for you.</p>
 date/times and local date/times - or equivalently, a mapping from
 UTC instants to <em>offsets</em>, where an offset is simply the difference
 between UTC and local time. In Noda Time, time zones are represented
-by the <a href="../api/html/T_NodaTime_DateTimeZone.htm"><code>DateTimeZone</code></a> class, and offsets are represented
-by the <a href="../api/html/T_NodaTime_Offset.htm"><code>Offset</code></a> struct.</p>
+by the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_DateTimeZone.htm"><code>DateTimeZone</code></a> class, and offsets are represented
+by the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Offset.htm"><code>Offset</code></a> struct.</p>
 
 <p>An offset is positive if local time is later than (ahead of) UTC,
 and negative if local time is earlier than (behind) UTC. For
 example, the offset in France is +1 hour in the winter and +2 hours in
 the summer; the offset in California is -8 hours in the winter and
--7 hours in the summer. So at noon UTC in winter, it's 4am in
+-7 hours in the summer. So at noon UTC in winter, it&#39;s 4am in
 California and 1pm in France.</p>
 
 <p>As well as mapping any particular instant to an offset,
@@ -144,14 +234,14 @@ California and 1pm in France.</p>
 time zone for that instant, as well as when the next or previous
 change occurs - usually for daylight saving changes.</p>
 
-<p>Most of the time when you use a <code>DateTimeZone</code> you won't need
+<p>Most of the time when you use a <code>DateTimeZone</code> you won&#39;t need
 worry about that - the main purpose is usually to convert between a
-<a href="../api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> and a <a href="../api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a>
-- where the names mean exactly what you expect them to. There's a slight
+<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> and a <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a>
+- where the names mean exactly what you expect them to. There&#39;s a slight
 twist to this: converting from an <code>Instant</code> or a <code>ZonedDateTime</code> to a
 <code>LocalDateTime</code> is unambiguous; at any point in time, all the (accurate)
 clocks in a particular time zone will show the same time... but the
-reverse isn't true. Any one local time can map to:</p>
+reverse isn&#39;t true. Any one local time can map to:</p>
 
 <ul>
 <li>A single instant in time: this is the case for almost all the time.</li>
@@ -163,43 +253,295 @@ Time which of the possibilities you want to account for.</li>
 <li>Zero instants in time: this occurs around a time zone transition
 which goes from one offset to a later one, e.g. turning clocks
 forward in the spring. If the clocks go forward at 1am local time to
-2am local time, then 1.30am doesn't occur at all.</li>
+2am local time, then 1.30am doesn&#39;t occur at all.</li>
 </ul>
 
 <p>Noda Time makes it <em>reasonably</em> easy to handle these situations, but
-you need to work out what you want to happen. See the <a href="../api/html/T_NodaTime_DateTimeZone.htm"><code>DateTimeZone</code>
+you need to work out what you want to happen. See the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_DateTimeZone.htm"><code>DateTimeZone</code>
 documentation</a> for more details and options.</p>
 
 <p>There are various different sources of time zone information available, and Noda Time
 handles two of them: it is able to map BCL <code>TimeZoneInfo</code> objects using <code>BclDateTimeZone</code>,
 and the <a href="http://www.iana.org/time-zones">TZDB</a> (aka Olson) database. A version of TZDB is embedded within the Noda Time
 distribution, and if you need a more recent one, there are <a href="tzdb.html">instructions on how to download and
-use new data</a>. We generally recommend that you isolate yourself from the provider you're
-using by only depending on <a href="../api/html/T_NodaTime_IDateTimeZoneProvider.htm"><code>IDateTimeZoneProvider</code></a>, and injecting the appropriate
-provider in the normal way. "Stock" providers are available via the <a href="../api/html/T_NodaTime_DateTimeZoneProviders.htm"><code>DateTimeZoneProviders</code></a>
+use new data</a>. We generally recommend that you isolate yourself from the provider you&#39;re
+using by only depending on <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_IDateTimeZoneProvider.htm"><code>IDateTimeZoneProvider</code></a>, and injecting the appropriate
+provider in the normal way. &quot;Stock&quot; providers are available via the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_DateTimeZoneProviders.htm"><code>DateTimeZoneProviders</code></a>
 class.</p>
 
 <p>Also note that in some cases, you may not have full time zone information,
-but have just a local time and an offset. For example, if you're parsing the string
-"2012-06-26T20:41:00+01:00" that gives the information that the local time is one hour
-ahead of UTC - but it doesn't give any indication of what the offset would be at any other
-time. In this situation, you should use <a href="../api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a>.</p>
+but have just a local time and an offset. For example, if you&#39;re parsing the string
+&quot;2012-06-26T20:41:00+01:00&quot; that gives the information that the local time is one hour
+ahead of UTC - but it doesn&#39;t give any indication of what the offset would be at any other
+time. In this situation, you should use <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a>.</p>
 
 <h2>Periods and durations</h2>
 
-<p>There are two similar types in Noda Time used to represent "lengths of time". The simplest is <a href="../api/html/T_NodaTime_Duration.htm"><code>Duration</code></a>
-which is equivalent to [<code>TimeSpan</code>] in the BCL. This is a fixed number of ticks - it's the same length of time
+<p>There are two similar types in Noda Time used to represent &quot;lengths of time&quot;. The simplest is <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Duration.htm"><code>Duration</code></a>
+which is equivalent to [<code>TimeSpan</code>] in the BCL. This is a fixed number of ticks - it&#39;s the same length of time
 wherever its applied. <code>Duration</code> is used for arithmetic on <code>Instant</code> and <code>DateTime</code> values.</p>
 
 <p>A more complex type is [<code>Period</code>], which is a set of values associated with different calendar-based periods: years,
 months, weeks, days, hours, minutes and so on. Some of these periods represent different lengths of time depending on
-what they're applied to - if you add "one month" to January 1st, that's going to be 31 days long. Adding the
+what they&#39;re applied to - if you add &quot;one month&quot; to January 1st, that&#39;s going to be 31 days long. Adding the
 same period to February 1st will give a shorter length of time - which then depends on whether the year is a leap
 year or not. Periods based on smaller units (hours, minutes and so on) will always represent the same length of time,
-but they're still available within periods. [<code>Period</code>] is used for arithmetic on locally-based values (<code>LocalDateTime</code>,
+but they&#39;re still available within periods. [<code>Period</code>] is used for arithmetic on locally-based values (<code>LocalDateTime</code>,
 <code>LocalDate</code>, <code>LocalTime</code>).</p>
 
 <p>See the <a href="arithmetic.html">arithemtic</a> page for more information.</p>
 
-  </body>
+		<ul class="pagination">
+		
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			<li class="current hide-for-small"><a href>Core concepts</a></li>
+			
+			
+		
+			
+			<li><a href="../../1.1.x/userguide/type-choices.html"><strong>Next</strong>: Choosing (and converting) between types</a></li>
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+		
+		</ul>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Introduction</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/rationale.html" >Why does Noda Time exist?</a></li>
+						
+							<li><a href="../../1.1.x/userguide/installation.html" >Installation</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Core</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/concepts.html" class="active">Core concepts</a></li>
+						
+							<li><a href="../../1.1.x/userguide/type-choices.html" >Choosing (and converting) between types</a></li>
+						
+							<li><a href="../../1.1.x/userguide/core-types.html" >Core types quick reference</a></li>
+						
+							<li><a href="../../1.1.x/userguide/design.html" >Design philosophy and conventions</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Text</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/text.html" >Text handling</a></li>
+						
+							<li><a href="../../1.1.x/userguide/offset-patterns.html" >Patterns for Offset values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/instant-patterns.html" >Patterns for Instant values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/period-patterns.html" >Patterns for Period values</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Advanced</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/arithmetic.html" >Date and time arithmetic</a></li>
+						
+							<li><a href="../../1.1.x/userguide/bcl-conversions.html" >BCL conversions</a></li>
+						
+							<li><a href="../../1.1.x/userguide/serialization.html" >Serialization</a></li>
+						
+							<li><a href="../../1.1.x/userguide/threading.html" >Threading</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Library</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/testing.html" >Unit testing with Noda Time</a></li>
+						
+							<li><a href="../../1.1.x/userguide/tzdb.html" >Updating the time zone database</a></li>
+						
+							<li><a href="../../1.1.x/userguide/mono.html" >Mono support</a></li>
+						
+							<li><a href="../../1.1.x/userguide/limitations.html" >Limitations of Noda Time</a></li>
+						
+							<li><a href="../../1.1.x/userguide/roadmap.html" >Current roadmap</a></li>
+						
+							<li><a href="../../1.1.x/userguide/versions.html" >Version history</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<footer>Version userguide</footer>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+				<span>The latest version is , released April 6th 2013</span>
+			</div>
+			<div class="small-6 columns copy">
+				&copy; The Noda Time Authors, <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+	
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+  
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <!--
+  <script src="js/foundation/foundation.js"></script>  
+  <script src="js/foundation/foundation.alerts.js"></script>
+  <script src="js/foundation/foundation.clearing.js"></script>  
+  <script src="js/foundation/foundation.cookie.js"></script>
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/foundation/foundation.forms.js"></script>
+  <script src="js/foundation/foundation.joyride.js"></script>
+  <script src="js/foundation/foundation.magellan.js"></script>
+  <script src="js/foundation/foundation.orbit.js"></script>
+  <script src="js/foundation/foundation.placeholder.js"></script>
+  <script src="js/foundation/foundation.reveal.js"></script>
+  <script src="js/foundation/foundation.section.js"></script>
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  <script src="js/foundation/foundation.topbar.js"></script>
+  <script src="js/foundation/foundation.interchange.js"></script>
+  -->
+  
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
 </html>

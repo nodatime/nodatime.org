@@ -1,15 +1,105 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-  <head>
-    <link href="prettify.css" type="text/css" rel="stylesheet" />
-    <link href="styles.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript" src="prettify.js"></script>
-    <title>Time zone database file format</title>
-  </head>
-  <body onload="prettyPrint()">
-    <h1>Time zone database file format</h1>
-    <p>This document describes the Noda Time-specific binary file format that is
-produced by Noda Time's <code>ZoneInfoCompiler</code> tool. <code>ZoneInfoCompiler</code> reads
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Time zone database file format</title>
+  
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="../../css/syntax.css">
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+    <!-- Prettify -->
+    <script src="../../js/prettify/run_prettify.js"></script>
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mobile.css">
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">Api</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">Developer Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/developer">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/developer">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/developer">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" >User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Time zone database file format</h1>
+		<p>This document describes the Noda Time-specific binary file format that is
+produced by Noda Time&#39;s <code>ZoneInfoCompiler</code> tool. <code>ZoneInfoCompiler</code> reads
 the text files from <a href="http://www.iana.org/time-zones">tzdb</a> (aka zoneinfo)
 along with some additional input from CLDR; it produces output in one of two
 different formats:</p>
@@ -20,7 +110,7 @@ different formats:</p>
   an XML (<code>.resx</code>) or compiled (<code>.resources</code>) file. This is the only
   format accepted by Noda Time 1.0.x. The intention is to remove support
   for this format in Noda Time 2.0.</p></li>
-<li><p>a binary file format (the "NodaZoneData" format) that does not depend
+<li><p>a binary file format (the &quot;NodaZoneData&quot; format) that does not depend
   upon a .NET resource file acting as a container. This is the default
   format in Noda Time 1.1 and later, and is the only format supported by
   the Portable Class Library versions of Noda Time.</p></li>
@@ -75,7 +165,7 @@ requires a database compiled against at least that version to work.</p>
 <h1>NodaZoneData format</h1>
 
 <p>Compiling the input data using the (default) <code>NodaZoneData</code> option produces
-a compiled database in the "NodaZoneData" format, with an extension of ".nzd".
+a compiled database in the &quot;NodaZoneData&quot; format, with an extension of &quot;.nzd&quot;.
 This is intended as the long-term format, and is designed with more extensibility
 in mind than the resource file format.</p>
 
@@ -102,12 +192,12 @@ The expected data within each field is governed by its ID.</p>
 
 <h2>Serialization primitives</h2>
 
-<p>The "NodaZoneData" format makes use of the following serialization primitives:</p>
+<p>The &quot;NodaZoneData&quot; format makes use of the following serialization primitives:</p>
 
 <ul>
 <li><code>byte</code>, a general 8-bit unsigned integer, simply serialized as a single byte.</li>
 <li><code>fixed16</code>, <code>fixed32</code>, and <code>fixed64</code>, general 16-bit, 32-bit, and 64-bit signed integers,
-ssimply serialized as 2-, 4-, or 8-byte twos-complement values of the appropriate length,
+simply serialized as 2-, 4-, or 8-byte twos-complement values of the appropriate length,
 in MSB-first order. For example, <code>0x1234</code> would be serialized as the bytes <code>[0x12 0x34]</code> using
 the <code>fixed16</code> serialization, while -1 would be serialized as <code>[0xff 0xff]</code></li>
 <li><code>count</code>, a non-negative (typically small) <code>int32</code> value, stored as a 7-bit-encoded integer:
@@ -115,11 +205,11 @@ the value is written 7 bits at a time (least significant first), with the highes
 byte set if this is not the final byte of the value. For example, the value <code>0x16a</code> would be
 serialized as the bytes <code>[0xea 0x02]</code>.</li>
 <li><code>signed count</code>, a potentially-negative (typically small in magnitude) <code>int32</code> value, stored
-in a "ZigZag" encoding: first mapping the signed number to an unsigned number, alternating
+in a &quot;ZigZag&quot; encoding: first mapping the signed number to an unsigned number, alternating
 between signed and unsigned values: 0 maps to 0, -1 maps to 1, 1 maps 2, -2 maps to 3, 2 maps
 to 4 etc. The result is then written in the same 7-bit encoding as <code>count</code>.</li>
 <li><code>string</code>, a UTF-8 encoded text string or entry into a string pool. Each field either has a
-string pool associated with it or it doesn't. In a field with a string pool, strings are simply
+string pool associated with it or it doesn&#39;t. In a field with a string pool, strings are simply
 stored using the <code>count</code> encoding to specify which entry in the string pool is used. In a field
 without a string pool, the UTF-8-encoded size of the string is written using the <code>count</code> encoding,
 then the UTF-8 encoded bytes themselves are written.</li>
@@ -128,23 +218,25 @@ values of +/-24 hours (exclusive on both sides). The offset is first made positi
 24 hours, and then the resulting integer is represented in one of four ways, based on how neatly
 the offset divides into a whole number of larger units. In each case where the representation is
 more than one byte, the data is written with the most significant bits first. The representations are:
+
 <ul>
 <li>A single byte with a top bit of 0, indicating the number of half hours of the offset. (This is
 by far the most common form.)</li>
-<li>Two bytes with the top three bits of the first byte set to "100" and the remaining 13 bits
+<li>Two bytes with the top three bits of the first byte set to &quot;100&quot; and the remaining 13 bits
 indicating the number of minutes in the offset.</li>
-<li>Three bytes with the top three bits of the first byte set to "101" and the remaining 21 bits
+<li>Three bytes with the top three bits of the first byte set to &quot;101&quot; and the remaining 21 bits
 indicating the number of seconds in the offset.</li>
-<li>Four bytes with the top three bits of the first byte set to "110" and the remaining 29 bits
+<li>Four bytes with the top three bits of the first byte set to &quot;110&quot; and the remaining 29 bits
 indicating the number of milliseconds in the offset.</li>
 </ul></li>
 <li><code>zoneintervaltransition</code>, an encoding for an instant possibly relative to an earlier or equal one. This
 is used when writing transitions between zone intervals, where the additional context of a previous value
 helps to reduce the data required. The format is (in order of preference):
+
 <ul>
 <li>For <code>Instant.MinValue</code>, a single byte <code>0</code>.</li>
 <li>For <code>Instant.MaxValue</code>, a single byte <code>1</code>.</li>
-<li>For an instant which is a whole number of hours since the "previous" instant, where that
+<li>For an instant which is a whole number of hours since the &quot;previous&quot; instant, where that
 whole number is in the range [128, 1048576), the format is that whole number of hours written as a <code>count</code>.</li>
 <li>For an instant which is a whole number of minutes since 1800-01-01T00:00:00Z, and that number of
 minutes is in the range (1048576, Int32.MaxValue], the format is that number of minutes written as a <code>count</code>.</li>
@@ -167,19 +259,19 @@ to be represented very efficiently by later fields which use the string pool.</p
 
 <h2>Field 1: Time zone</h2>
 
-<p>The time zone field provides full details of one of the "canonical" time zones in TZDB. (Time zone aliases always
+<p>The time zone field provides full details of one of the &quot;canonical&quot; time zones in TZDB. (Time zone aliases always
 eventually refer to a canonical time zone for their data.)</p>
 
 <p>The format depends on the type of time zone. At the time of this writing, there are only two options, described below.
 In both cases, the format starts with the zone ID (as a string) and then a 1-byte flag to indicate the type.</p>
 
-<p>Fixed time zones (which have a single <a href="../api/html/T_NodaTime_TimeZones_ZoneInterval.htm"><code>ZoneInterval</code></a> covering
+<p>Fixed time zones (which have a single <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_TimeZones_ZoneInterval.htm"><code>ZoneInterval</code></a> covering
   the whole of time). The flag value for a fixed zone is 1, and the remaining data is simply the offset. (The name
   of the zone interval is always just the ID of the time zone.)</p>
 
 <p>Everything else, represented as a <code>PrecalculatedDateTimeZone</code> - a number of abutting <code>ZoneIntervals</code> from the start of
 time until either the end of time, or some stable period where a pair of rules governing when daylight saving time starts
-and stops continues until the end of time. This final stable period is the "tail zone" - and is optional, as a zone which
+and stops continues until the end of time. This final stable period is the &quot;tail zone&quot; - and is optional, as a zone which
 ends in a fixed offset can simply represent that as a final zone interval to the end of time.</p>
 
 <p>The flag value for a precalculated zone is 2, and the remaining data is:</p>
@@ -187,8 +279,9 @@ ends in a fixed offset can simply represent that as a final zone interval to the
 <ul>
 <li>The number of precalculated zone intervals as a <code>count</code></li>
 <li>The zone intervals themselves, each of which has a format of:
+
 <ul>
-<li>A <code>zoneintervaltransition</code> from the start of the previous interval (except for the first interval, which has no "previous")
+<li>A <code>zoneintervaltransition</code> from the start of the previous interval (except for the first interval, which has no &quot;previous&quot;)
 to the start of the current one.</li>
 <li>The <code>string</code> name of the interval</li>
 <li>The wall <code>offset</code> (i.e. standard + daylight savings)</li>
@@ -197,34 +290,37 @@ to the start of the current one.</li>
 tail zone, if there is one).</li>
 <li>A <code>byte</code> to indicate the presence (1) or absence (0) of a tail zone</li>
 <li>The tail zone, if the previous flag indicated that one was present, as:
+
 <ul>
 <li>The standard <code>offset</code></li>
-<li>The <code>string</code> name used for intervals in "standard time"</li>
+<li>The <code>string</code> name used for intervals in &quot;standard time&quot;</li>
 <li>The standard recurrence rule (see below)</li>
-<li>The <code>string</code> name used for intervals in "daylight saving time"</li>
+<li>The <code>string</code> name used for intervals in &quot;daylight saving time&quot;</li>
 <li>The daylight savings recurrence rule</li>
 <li>The daylight savings <code>offset</code> (to be added to the standard offset)</li>
 </ul></li>
 </ul></li>
 </ul>
 
-<p>A recurrence rule provides data about when a transition occurs. For example, "The first Sunday in October at 1am local time." The format
+<p>A recurrence rule provides data about when a transition occurs. For example, &quot;The first Sunday in October at 1am local time.&quot; The format
 is:</p>
 
 <ul>
 <li>A single byte representing four flags:
+
 <ul>
-<li>Bits 5-6: the "mode" of the rule, indicating whether transitions are specified relative to:
+<li>Bits 5-6: the &quot;mode&quot; of the rule, indicating whether transitions are specified relative to:
+
 <ul>
 <li>0: UTC</li>
 <li>1: Wall time (local time)</li>
 <li>2: Standard time</li>
 </ul></li>
 <li>Bits 2-4: the day of the week in which the recurrence starts,
-where 0 means "not set", and 1 to 7 mean Monday to Sunday respectively.</li>
+where 0 means &quot;not set&quot;, and 1 to 7 mean Monday to Sunday respectively.</li>
 <li>Bit 1: whether the day of month represents an upper bound (0) or lower bound (1);
 this is only relevant if a day of week is also specified, where the rule might be
-described as e.g. "first Tuesday on or after the 15th"</li>
+described as e.g. &quot;first Tuesday on or after the 15th&quot;</li>
 <li>Bit 0: whether an extra day should be added to the calculation (1) or not (0), to
 cope with transitions documented as occurring at 24:00 - these may potentially
 spill into a following month</li>
@@ -240,13 +336,13 @@ month, for example.)</li>
 
 <h2>Field 2: TZDB version</h2>
 
-<p>This is simply a single <code>string</code> representing the version of TZDB being serialized, such as "2013a".</p>
+<p>This is simply a single <code>string</code> representing the version of TZDB being serialized, such as &quot;2013a&quot;.</p>
 
 <p>This field must occur exactly once, and it does not use the string pool.</p>
 
 <h2>Field 3: ID map</h2>
 
-<p>This is a map from alias to canonical ID. So for example, "Europe/Guernsey" maps to "Europe/London". The
+<p>This is a map from alias to canonical ID. So for example, &quot;Europe/Guernsey&quot; maps to &quot;Europe/London&quot;. The
 representation is a single <code>dictionary</code>.</p>
 
 <p>This field must occur exactly once, and it uses the string pool.</p>
@@ -259,8 +355,9 @@ representation is a single <code>dictionary</code>.</p>
 <li>A <code>string</code> for the mapping version number (currently a string representation of the revision number)</li>
 <li>A <code>string</code> for the TZDB version the mapping was generated against</li>
 <li>A <code>string</code> for the Windows time zone version the mapping was generated against</li>
-<li>A <code>count</code> for the number of "map zones" to follow</li>
+<li>A <code>count</code> for the number of &quot;map zones&quot; to follow</li>
 <li>The map zone data, each of which is:
+
 <ul>
 <li>A <code>string</code> for the Windows system time zone ID</li>
 <li>A <code>string</code> for the territory ID</li>
@@ -275,7 +372,7 @@ representation is a single <code>dictionary</code>.</p>
 
 <p>This field is only present for the sake of the PCL version, but is loaded in both builds anyway.
 It contains a mapping from Windows <code>TimeZoneInfo</code> standard name to TZDB ID for those time zones
-where the two differ. (There are only a few.) This is required as the PCL doesn't expose the 
+where the two differ. (There are only a few.) This is required as the PCL doesn&#39;t expose the 
 <code>TimeZoneInfo.Id</code> property.</p>
 
 <p>The field data is a single <code>dictionary</code>. It must occur exactly once, and it uses the string pool.</p>
@@ -309,7 +406,7 @@ resource for each time zone, and four additional meta-information resources.</p>
 
 <ul>
 <li><code>--meta-VersionId</code>, a <code>String</code> resource containing the tzdb version ID
- (e.g. "2012i")</li>
+ (e.g. &quot;2012i&quot;)</li>
 <li><code>--meta-IdMap</code>, a <code>byte[]</code> resource containing a serialized
  <code>dictionary</code> (see below for the definition of these types), mapping all
  known time zone IDs (aliases and non-aliases) to a non-alias time zone
@@ -318,7 +415,7 @@ resource for each time zone, and four additional meta-information resources.</p>
  <code>dictionary</code>, mapping Windows time zone names to the corresponding tzdb
  time zone ID</li>
 <li><code>--meta-WindowsToPosixVersion</code>, a <code>String</code> resource containing the
- revision number of the Windows mapping data (e.g. "7825")</li>
+ revision number of the Windows mapping data (e.g. &quot;7825&quot;)</li>
 </ul>
 
 <p>Each non-alias time zone is represented by a <code>byte[]</code> resource containing a
@@ -326,7 +423,7 @@ serialized <code>timezone</code>. The name of the resource is derived from the t
 ID, with (theoretically) some substitutions for invalid characters.  (The
 substitutions are not documented here, since they do not actually appear to be
 used in practice; for example, the name of the Europe/London resource is simply
-"Europe/London", and the same appears to be true for all other time zones as of
+&quot;Europe/London&quot;, and the same appears to be true for all other time zones as of
 the 2012i tzdb). </p>
 
 <p>All of these resources may (theoretically) contain extra appended data not
@@ -394,7 +491,7 @@ scheme:</p>
 <p>An <code>offset</code> encodes an <code>int32</code> value representing an offset in milliseconds
 from UTC. While the encoding below can in theory represent any <code>int32</code>
 value, the use in Noda Time is solely for values in the range (-24 hours,
-+24 hours); commonly for 'round' numbers of minutes, etc.</p>
++24 hours); commonly for &#39;round&#39; numbers of minutes, etc.</p>
 
 <p>An <code>offset</code> is serialized as a variable-length field as follows:</p>
 
@@ -415,7 +512,7 @@ value, the use in Noda Time is solely for values in the range (-24 hours,
 </ul>
 
 <p>(The serialization method used additionally defines an encoding for
-'out-of-range' offsets, but these cannot occur in practice, as the
+&#39;out-of-range&#39; offsets, but these cannot occur in practice, as the
 underlying C# data type restricts the range of the offset to that described
 above.)</p>
 
@@ -445,12 +542,12 @@ type of the time zone. The serialized format may be any of the following:</p>
  each transition</li>
 <li><code>0x02</code> followed by an <code>offset</code>, representing a time zone with a fixed
  offset (and no DST); this is used natively when encoding time zones
- with no DST (such as "Etc/UTC") and as part of the composite
- "pre-calculated" time zone</li>
-<li><code>0x03</code>, representing 'no time zone' (only used when encoding an absent
- 'tail zone' for a pre-calculated zone)</li>
+ with no DST (such as &quot;Etc/UTC&quot;) and as part of the composite
+ &quot;pre-calculated&quot; time zone</li>
+<li><code>0x03</code>, representing &#39;no time zone&#39; (only used when encoding an absent
+ &#39;tail zone&#39; for a pre-calculated zone)</li>
 <li><code>0x04</code> followed by a <code>precalculatedtimezone</code>, representing a zone that
- expands all known transitions explicitly, up to an optional 'tail zone'
+ expands all known transitions explicitly, up to an optional &#39;tail zone&#39;
  representing a final (possibly DST-using) stable state</li>
 </ul>
 
@@ -466,35 +563,35 @@ guaranteed to have a zero offset.</p>
 <h5>zonerecurrence</h5>
 
 <p>A <code>zonerecurrence</code> is serialized as the <code>string</code> name of the recurrence
-(e.g. "PST"), the <code>offset</code> containing the offset of this recurrence, a
-description of when the recurrence occurs (the 'year offset'), and finally
+(e.g. &quot;PST&quot;), the <code>offset</code> containing the offset of this recurrence, a
+description of when the recurrence occurs (the &#39;year offset&#39;), and finally
 two <code>count</code> values indicating the (inclusive) years the recurrence covers,
 where a zero start year indicates a recurrence that starts at the beginning
 of time.</p>
 
-<p>(Note that 1.0 versions of NodaTime serialized the 'beginning of time' as
+<p>(Note that 1.0 versions of NodaTime serialized the &#39;beginning of time&#39; as
 the year <code>int32.MinValue</code> instead of zero. The two should be treated
 equally.)</p>
 
-<p>The 'year offset' is:</p>
+<p>The &#39;year offset&#39; is:</p>
 
 <ul>
 <li>a <code>count</code> indicating whether transitions are relative to UTC (0), the
- 'wall' (daylight savings) offset (1), or the standard offset (2)</li>
+ &#39;wall&#39; (daylight savings) offset (1), or the standard offset (2)</li>
 <li>a <code>count</code> of the month-of-year in which this recurrence starts, with a
  bias such that 13 represents January and 24 represents December</li>
 <li>a <code>count</code> of the day-of-month in which this recurrence starts; values
  from 0..30 indicate a number of days [-31..-1] counted from the end of
- a (31 day) month (in practice, only 30 is used, to represent 'last
- [day-of-week] of the month'), while values from 32..62 represent the
+ a (31 day) month (in practice, only 30 is used, to represent &#39;last
+ [day-of-week] of the month&#39;), while values from 32..62 represent the
  number of days [1..31] counted from the start of the month</li>
 <li>a <code>count</code> of the day of week in which this recurrence start, with a
- bias such that 7 represents 'no day', and 8..13 represent
+ bias such that 7 represents &#39;no day&#39;, and 8..13 represent
  Monday..Sunday</li>
 <li>a <code>byte</code> indicating whether the day of month represents an upper bound
  (0) or lower bound (1); this is only relevant if a day of week is also
- specified, where the rule might be described as e.g. "first Tuesday on
- or after the 15th"</li>
+ specified, where the rule might be described as e.g. &quot;first Tuesday on
+ or after the 15th&quot;</li>
 <li>an <code>offset</code> representing the (non-negative) time of day that the
  recurrence starts</li>
 <li>a <code>byte</code> indicating whether an additional day should be added to the
@@ -506,16 +603,16 @@ equally.)</p>
 
 <p>A <code>precalculatedtimezone</code> is serialized as a string pool, a sequence of
 <code>zoneinterval</code> periods representing an expansion of all known transitions
-before the rules stabilize, and an optional 'tail zone' representing a final stable
+before the rules stabilize, and an optional &#39;tail zone&#39; representing a final stable
 state. There is no tail zone if the final state is fixed (if the overall zone has
-stopped observing DST); otherwise, it's a <code>daylightsavingstimezone</code> with a pair of
+stopped observing DST); otherwise, it&#39;s a <code>daylightsavingstimezone</code> with a pair of
 rules which extend to the end of time.</p>
 
 <p>Specifically:</p>
 
 <ul>
 <li>a per-time-zone string pool containing all the names of the intervals
- (e.g. "PST") used in this zone, as a <code>count</code> of the number of entries
+ (e.g. &quot;PST&quot;) used in this zone, as a <code>count</code> of the number of entries
  in the pool, followed by that number of <code>string</code> values</li>
 <li>a <code>count</code> of the number of precalculated periods, followed by that
  number of <code>zoneinterval</code> values</li>
@@ -529,7 +626,7 @@ rules which extend to the end of time.</p>
 
 <p>A <code>zoneinterval</code> is serialized as the <code>zoneintervaltransition</code> representing
 the start of the transition (the beginning of time for the first one), an
-index into the zone's interval name string pool, as either <code>byte</code> or
+index into the zone&#39;s interval name string pool, as either <code>byte</code> or
 <code>fixed32</code> depending on the total number of entries in the pool, an <code>offset</code>
 representing the wall-time offset from UTC (including any daylight savings
 time) and a second <code>offset</code> representing the daylight savings contribution
@@ -571,5 +668,81 @@ following scheme, based on the (signed) number of ticks from the Unix epoch:</p>
  the number of ticks.</li>
 </ul>
 
-  </body>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Guide</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/developer/building.html" >Building and testing</a></li>
+						
+							<li><a href="../../1.1.x/developer/coding-conventions.html" >Coding conventions</a></li>
+						
+							<li><a href="../../1.1.x/developer/release-process.html" >Release process</a></li>
+						
+							<li><a href="../../1.1.x/developer/tzdb-file-format.html" class="active">Time zone database file format</a></li>
+						
+					</ul>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+				<span>The latest version is , released April 6th 2013</span>
+			</div>
+			<div class="small-6 columns copy">
+				&copy; The Noda Time Authors, <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+	
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+  
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <!--
+  <script src="js/foundation/foundation.js"></script>  
+  <script src="js/foundation/foundation.alerts.js"></script>
+  <script src="js/foundation/foundation.clearing.js"></script>  
+  <script src="js/foundation/foundation.cookie.js"></script>
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/foundation/foundation.forms.js"></script>
+  <script src="js/foundation/foundation.joyride.js"></script>
+  <script src="js/foundation/foundation.magellan.js"></script>
+  <script src="js/foundation/foundation.orbit.js"></script>
+  <script src="js/foundation/foundation.placeholder.js"></script>
+  <script src="js/foundation/foundation.reveal.js"></script>
+  <script src="js/foundation/foundation.section.js"></script>
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  <script src="js/foundation/foundation.topbar.js"></script>
+  <script src="js/foundation/foundation.interchange.js"></script>
+  -->
+  
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
 </html>

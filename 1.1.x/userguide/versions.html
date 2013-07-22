@@ -1,14 +1,104 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-  <head>
-    <link href="prettify.css" type="text/css" rel="stylesheet" />
-    <link href="styles.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript" src="prettify.js"></script>
-    <title>Version history</title>
-  </head>
-  <body onload="prettyPrint()">
-    <h1>Version history</h1>
-    <p>User-visible changes from 1.0.0-beta1 onwards. See the
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Version history</title>
+  
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="../../css/syntax.css">
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+    <!-- Prettify -->
+    <script src="../../js/prettify/run_prettify.js"></script>
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mobile.css">
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">Api</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" >Developer Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/developer">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/developer">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/developer">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Version history</h1>
+		<p>User-visible changes from 1.0.0-beta1 onwards. See the
 <a href="http://code.google.com/p/noda-time/source/list">project repository</a> for more
 details.</p>
 
@@ -22,7 +112,7 @@ details.</p>
 date/time or the underlying instant</li>
 <li><code>TzdbDateTimeZoneSource.WindowsZones</code> renamed to <code>WindowsMapping</code></li>
 <li><code>ZoneEqualityComparer</code> converted to use factory methods rather than
-multiple constructors; some options' names changed</li>
+multiple constructors; some options&#39; names changed</li>
 </ul>
 
 <h2>1.1.0-rc1, released 2013-03-28 with tzdb 2013b</h2>
@@ -48,6 +138,7 @@ equality with varying degrees of strictness, over a given interval</li>
 implement the non-generic <code>IComparable</code> interface (explicitly, to
 avoid accidental use)</li>
 <li>Much more information is now exposed via <code>TzdbDateTimeZoneSource</code>:
+
 <ul>
 <li>Added <code>Aliases</code> and <code>CanonicalIdMap</code> properties, which together provide
 bidirectional mappings between a canonical TZDB ID and its aliases
@@ -58,9 +149,10 @@ IDs (<a href="http://code.google.com/p/noda-time/issues/detail?id=82">issue 82</
 <li>Added a <code>ZoneLocations</code> property, which exposes the location data from
 <code>zone.tab</code> and <code>iso3166.tab</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=194">issue 194</a>)</li>
 <li>Added a <code>TzdbVersion</code> property, which returns the TZDB version string
-(e.g. "2013a")</li>
+(e.g. &quot;2013a&quot;)</li>
 </ul></li>
 <li>Changed the means of constructing a <code>TzdbDateTimeZoneSource</code>:
+
 <ul>
 <li>Added a <code>Default</code> property, which provides access to the underlying source
 of TZDB data distributed with Noda Time (<a href="http://code.google.com/p/noda-time/issues/detail?id=144">issue 144</a>)</li>
@@ -123,17 +215,17 @@ that allows the time zone ID to be specified</li>
 
 <ul>
 <li>Workaround for a Mono bug where abbreviated genitive month names are provided
-as "1", "2" etc (<a href="http://code.google.com/p/noda-time/issues/detail?id=202">issue 202</a>)</li>
+as &quot;1&quot;, &quot;2&quot; etc (<a href="http://code.google.com/p/noda-time/issues/detail?id=202">issue 202</a>)</li>
 <li>Fixed parsing issue for cultures where the AM designator is a leading
 substring of the PM designator (<a href="http://code.google.com/p/noda-time/issues/detail?id=201">issue 201</a>)</li>
 <li>Not part of the main release, but <code>NodaIntervalConverter</code> now handles values
 embedded in a larger object being deserialized (<a href="http://code.google.com/p/noda-time/issues/detail?id=191">issue 191</a>)</li>
-<li>Behaviour at extremes of time is now improved (<a href="http://code.google.com/p/noda-time/issues/detail?id=197">issue 197</a>); there's more
+<li>Behaviour at extremes of time is now improved (<a href="http://code.google.com/p/noda-time/issues/detail?id=197">issue 197</a>); there&#39;s more
 work to come here in 1.2, but this is at least an improvement</li>
 <li>Day-of-week and month names are now parsed by choosing the longest possible
 match, allowing dates to be parsed in cultures where one string is a prefix
 of another (<a href="http://code.google.com/p/noda-time/issues/detail?id=159">issue 159</a>)</li>
-<li>Fixed a minor bug that made the "Asia/Amman" time zone (Jordan) give
+<li>Fixed a minor bug that made the &quot;Asia/Amman&quot; time zone (Jordan) give
 incorrect values or a <code>NullReferenceException</code> when asked for a value in 2040
 (and possibly other times). Other time zones should not be affected
 (<a href="http://code.google.com/p/noda-time/issues/detail?id=174">issue 174</a>)</li>
@@ -149,7 +241,7 @@ initialised via default (parameterless) constructors (<a href="http://code.googl
 Time using this</li>
 <li>The version of SHFB used to generate the documentation has changed, along
 with some settings around which members to generate documentation for.
-(Members simply inherited from the BCL aren't documented.)</li>
+(Members simply inherited from the BCL aren&#39;t documented.)</li>
 </ul>
 
 <h2>1.0.1, released 2012-11-13 with tzdb 2012i</h2>
@@ -181,7 +273,7 @@ the calendar system</li>
 <p>Other:</p>
 
 <ul>
-<li>Set specific files to be ignored in ZoneInfoCompiler, so we don't
+<li>Set specific files to be ignored in ZoneInfoCompiler, so we don&#39;t
 need to remove them manually each time</li>
 </ul>
 
@@ -232,6 +324,7 @@ custom-built TZDB resources will need to rebuild</li>
 
 <ul>
 <li>Overhaul of how to get a <code>DateTimeZone</code> from an ID:
+
 <ul>
 <li><code>IDateTimeZoneProvider</code> (SPI for time zones) renamed to
 <code>IDateTimeZoneSource</code>, along with similar renaming for the built-in
@@ -251,7 +344,7 @@ it means for time zones to be equal (<a href="http://code.google.com/p/noda-time
 <li>New core type: <code>OffsetDateTime</code> representing a local date/time and an offset
 from UTC, but not full time zone information</li>
 <li>Added a new standard offset pattern of <code>G</code>, which is like <code>g</code> but using
-"Z" for zero; also available as <code>OffsetPattern.GeneralInvariantPatternWithZ</code></li>
+&quot;Z&quot; for zero; also available as <code>OffsetPattern.GeneralInvariantPatternWithZ</code></li>
 <li><code>Period</code> and <code>PeriodBuilder</code> no longer differentiate between absent and zero
 components (to the extent that they did at all): <code>Units</code> has been removed
 from <code>Period</code>, period formatting now omits all zero values unconditionally,
@@ -263,40 +356,40 @@ pattern-based API (<a href="http://code.google.com/p/noda-time/issues/detail?id=
 <li><p><code>Duration.ToString()</code> and <code>Interval.ToString()</code> now return more descriptive
 text</p></li>
 <li><p>Removed <code>DateTimeZone.GetSystemDefaultOrNull()</code>; callers should use the
-provider's <code>GetSystemDefault()</code> method and (if necessary) catch the
+provider&#39;s <code>GetSystemDefault()</code> method and (if necessary) catch the
 <code>TimeZoneNotFoundException</code> that it can throw (<a href="http://code.google.com/p/noda-time/issues/detail?id=61">issue 61</a>)</p></li>
-<li>Removed <code>DateTimeZone.UtcId</code> and <code>DateTimeZone.IsFixed</code> (issues <a href="http://code.google.com/p/noda-time/issues/detail?id=64">64</a>
-and <a href="http://code.google.com/p/noda-time/issues/detail?id=62">62</a>)</li>
-<li>Removed most of the convenience static properties on <code>Duration</code> (e.g.
+<li><p>Removed <code>DateTimeZone.UtcId</code> and <code>DateTimeZone.IsFixed</code> (issues <a href="http://code.google.com/p/noda-time/issues/detail?id=64">64</a>
+and <a href="http://code.google.com/p/noda-time/issues/detail?id=62">62</a>)</p></li>
+<li><p>Removed most of the convenience static properties on <code>Duration</code> (e.g.
 <code>Duration.OneStandardDay</code>) in favour of the existing static methods; removed
-<code>MinValue</code> and <code>MaxValue</code>, and added <code>Epsilon</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=70">issue 70</a>)</li>
-<li>Removed <code>Instant.BeginningOfTimeLabel</code> and <code>Instant.EndOfTimeLabel</code></li>
-<li><code>Instant.InIsoUtc</code> renamed to <code>InUtc</code></li>
-<li><code>Instant.UnixEpoch</code> moved to <code>NodaConstants.UnixEpoch</code>;
-<code>NodaConstants.DateTimeEpochTicks</code> replaced by <code>BclEpoch</code></li>
-<li>Added <code>Instant.PlusTicks()</code></li>
-<li><code>LocalDate.LocalDateTime</code> property changed to <code>LocalDate.AtMidnight()</code> method
-(<a href="http://code.google.com/p/noda-time/issues/detail?id=56">issue 56</a>)</li>
-<li><code>LocalTime</code> now implements <code>IComparable&lt;LocalTime&gt;</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=51">issue 51</a>)</li>
-<li>Added a <code>LocalTime</code> constructor taking hours and minutes (<a href="http://code.google.com/p/noda-time/issues/detail?id=53">issue 53</a>)</li>
-<li>Removed "component" properties from <code>Offset</code>, and renamed the "total"
-properties to just <code>Ticks</code> and <code>Milliseconds</code></li>
-<li>Removed <code>Offset.Create()</code> methods (and moved them in slightly different form
-in a new internal <code>TestObjects</code> class in <code>NodaTime.Test</code>)</li>
-<li>Added <code>Period.ToDuration()</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=55">issue 55</a>) and <code>Period.CreateComparer()</code>
-(<a href="http://code.google.com/p/noda-time/issues/detail?id=69">issue 69</a>)</li>
-<li><code>Period.Empty</code> renamed to <code>Period.Zero</code> (as part of <a href="http://code.google.com/p/noda-time/issues/detail?id=90">issue 90</a>)</li>
-<li><code>PeriodBuilder</code> no longer implements <code>IEquatable&lt;PeriodBuilder&gt;</code>
-(<a href="http://code.google.com/p/noda-time/issues/detail?id=91">issue 91</a>)</li>
-<li>Removed <code>SystemClock.SystemNow</code> in favour of using <code>SystemClock.Instance.Now</code>
-if you really have to</li>
-<li>Added <code>ZonedDateTime.ToOffsetDateTime()</code>, which returns the <code>OffsetDateTime</code>
-equivalent to a <code>ZonedDateTime</code></li>
+<code>MinValue</code> and <code>MaxValue</code>, and added <code>Epsilon</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=70">issue 70</a>)</p></li>
+<li><p>Removed <code>Instant.BeginningOfTimeLabel</code> and <code>Instant.EndOfTimeLabel</code></p></li>
+<li><p><code>Instant.InIsoUtc</code> renamed to <code>InUtc</code></p></li>
+<li><p><code>Instant.UnixEpoch</code> moved to <code>NodaConstants.UnixEpoch</code>;
+<code>NodaConstants.DateTimeEpochTicks</code> replaced by <code>BclEpoch</code></p></li>
+<li><p>Added <code>Instant.PlusTicks()</code></p></li>
+<li><p><code>LocalDate.LocalDateTime</code> property changed to <code>LocalDate.AtMidnight()</code> method
+(<a href="http://code.google.com/p/noda-time/issues/detail?id=56">issue 56</a>)</p></li>
+<li><p><code>LocalTime</code> now implements <code>IComparable&lt;LocalTime&gt;</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=51">issue 51</a>)</p></li>
+<li><p>Added a <code>LocalTime</code> constructor taking hours and minutes (<a href="http://code.google.com/p/noda-time/issues/detail?id=53">issue 53</a>)</p></li>
+<li><p>Removed &quot;component&quot; properties from <code>Offset</code>, and renamed the &quot;total&quot;
+properties to just <code>Ticks</code> and <code>Milliseconds</code></p></li>
+<li><p>Removed <code>Offset.Create()</code> methods (and moved them in slightly different form
+in a new internal <code>TestObjects</code> class in <code>NodaTime.Test</code>)</p></li>
+<li><p>Added <code>Period.ToDuration()</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=55">issue 55</a>) and <code>Period.CreateComparer()</code>
+(<a href="http://code.google.com/p/noda-time/issues/detail?id=69">issue 69</a>)</p></li>
+<li><p><code>Period.Empty</code> renamed to <code>Period.Zero</code> (as part of <a href="http://code.google.com/p/noda-time/issues/detail?id=90">issue 90</a>)</p></li>
+<li><p><code>PeriodBuilder</code> no longer implements <code>IEquatable&lt;PeriodBuilder&gt;</code>
+(<a href="http://code.google.com/p/noda-time/issues/detail?id=91">issue 91</a>)</p></li>
+<li><p>Removed <code>SystemClock.SystemNow</code> in favour of using <code>SystemClock.Instance.Now</code>
+if you really have to</p></li>
+<li><p>Added <code>ZonedDateTime.ToOffsetDateTime()</code>, which returns the <code>OffsetDateTime</code>
+equivalent to a <code>ZonedDateTime</code></p></li>
 <li><p>Removed the Buddhist <code>Era</code> (as there is no Buddhist calendar implementation)</p></li>
 <li><p><code>NodaTime.Testing.StubClock</code> renamed to <code>FakeClock</code>, and gains an
 auto-advance option (issues <a href="http://code.google.com/p/noda-time/issues/detail?id=72">72</a> and <a href="http://code.google.com/p/noda-time/issues/detail?id=73">73</a>)</p></li>
-<li><code>NodaTime.Testing.TimeZones.SingleTransitionZone</code> renamed to
-<code>SingleTransitionDateTimeZone</code></li>
+<li><p><code>NodaTime.Testing.TimeZones.SingleTransitionZone</code> renamed to
+<code>SingleTransitionDateTimeZone</code></p></li>
 </ul>
 
 <p>Bug fixes:</p>
@@ -311,5 +404,255 @@ auto-advance option (issues <a href="http://code.google.com/p/noda-time/issues/d
 <li>Initial beta release</li>
 </ul>
 
-  </body>
+		<ul class="pagination">
+		
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			<li class="current hide-for-small"><a href>Version history</a></li>
+			
+			
+		
+		
+		</ul>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Introduction</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/rationale.html" >Why does Noda Time exist?</a></li>
+						
+							<li><a href="../../1.1.x/userguide/installation.html" >Installation</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Core</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/concepts.html" >Core concepts</a></li>
+						
+							<li><a href="../../1.1.x/userguide/type-choices.html" >Choosing (and converting) between types</a></li>
+						
+							<li><a href="../../1.1.x/userguide/core-types.html" >Core types quick reference</a></li>
+						
+							<li><a href="../../1.1.x/userguide/design.html" >Design philosophy and conventions</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Text</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/text.html" >Text handling</a></li>
+						
+							<li><a href="../../1.1.x/userguide/offset-patterns.html" >Patterns for Offset values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/instant-patterns.html" >Patterns for Instant values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/period-patterns.html" >Patterns for Period values</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Advanced</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/arithmetic.html" >Date and time arithmetic</a></li>
+						
+							<li><a href="../../1.1.x/userguide/bcl-conversions.html" >BCL conversions</a></li>
+						
+							<li><a href="../../1.1.x/userguide/serialization.html" >Serialization</a></li>
+						
+							<li><a href="../../1.1.x/userguide/threading.html" >Threading</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Library</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/testing.html" >Unit testing with Noda Time</a></li>
+						
+							<li><a href="../../1.1.x/userguide/tzdb.html" >Updating the time zone database</a></li>
+						
+							<li><a href="../../1.1.x/userguide/mono.html" >Mono support</a></li>
+						
+							<li><a href="../../1.1.x/userguide/limitations.html" >Limitations of Noda Time</a></li>
+						
+							<li><a href="../../1.1.x/userguide/roadmap.html" >Current roadmap</a></li>
+						
+							<li><a href="../../1.1.x/userguide/versions.html" class="active">Version history</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<footer>Version userguide</footer>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+				<span>The latest version is , released April 6th 2013</span>
+			</div>
+			<div class="small-6 columns copy">
+				&copy; The Noda Time Authors, <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+	
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+  
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <!--
+  <script src="js/foundation/foundation.js"></script>  
+  <script src="js/foundation/foundation.alerts.js"></script>
+  <script src="js/foundation/foundation.clearing.js"></script>  
+  <script src="js/foundation/foundation.cookie.js"></script>
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/foundation/foundation.forms.js"></script>
+  <script src="js/foundation/foundation.joyride.js"></script>
+  <script src="js/foundation/foundation.magellan.js"></script>
+  <script src="js/foundation/foundation.orbit.js"></script>
+  <script src="js/foundation/foundation.placeholder.js"></script>
+  <script src="js/foundation/foundation.reveal.js"></script>
+  <script src="js/foundation/foundation.section.js"></script>
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  <script src="js/foundation/foundation.topbar.js"></script>
+  <script src="js/foundation/foundation.interchange.js"></script>
+  -->
+  
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
 </html>

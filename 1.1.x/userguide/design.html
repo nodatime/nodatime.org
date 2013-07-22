@@ -1,70 +1,160 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-  <head>
-    <link href="prettify.css" type="text/css" rel="stylesheet" />
-    <link href="styles.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript" src="prettify.js"></script>
-    <title>Design philosophy and conventions in Noda Time</title>
-  </head>
-  <body onload="prettyPrint()">
-    <h1>Design philosophy and conventions in Noda Time</h1>
-    <p>(I should note that the "we" below is mostly the royal "we",
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Design philosophy and conventions</title>
+  
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="../../css/syntax.css">
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+    <!-- Prettify -->
+    <script src="../../js/prettify/run_prettify.js"></script>
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mobile.css">
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">Api</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" >Developer Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/developer">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/developer">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/developer">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Design philosophy and conventions</h1>
+		<p>(I should note that the &quot;we&quot; below is mostly the royal &quot;we&quot;,
 expressed by the author, Jon Skeet. Hopefully most of the
 contributors to Noda Time agree with most of the below, but please
-don't assume that they all agree with everything.)</p>
+don&#39;t assume that they all agree with everything.)</p>
 
 <p>Noda Time has been designed with the following goals in mind:</p>
 
 <ul>
 <li><p><strong>We want to force you to think about decisions you really <em>need</em> to
-think about.</strong><br />
+think about.</strong><br>
 In particular, what kind of data do you <em>really</em> have
 and <em>really</em> need? Is it local or global? Do you need the system
-time zone or some other time zone? If you're converting from a local
+time zone or some other time zone? If you&#39;re converting from a local
 time to a global one in a particular time zone, how do you want to
 handle ambiguities or gaps?</p></li>
-<li><p><strong>We want to solve the 99% case.</strong><br />
-Noda Time doesn't support leap
+<li><p><strong>We want to solve the 99% case.</strong><br>
+Noda Time doesn&#39;t support leap
 seconds, relativity or various other subtleties around time lines.
-While we support some other calendars, we don't support you creating
-your own calendar - because you almost certainly don't need to.
+While we support some other calendars, we don&#39;t support you creating
+your own calendar - because you almost certainly don&#39;t need to.
 By focusing on the needs of the vast majority of users, we will make
 <em>their</em> lives easier... but this does mean that if you need
-something really specialized, Noda Time isn't likely to be right for
+something really specialized, Noda Time isn&#39;t likely to be right for
 you.</p>
 
-<p>While we sympathize with the "make simple things easy, make
-complex things possible" motto, our experience is typically that in
+<p>While we sympathize with the &quot;make simple things easy, make
+complex things possible&quot; motto, our experience is typically that in
 making complex things possible (with no indication that anyone
 actually wants to do those things), the simple things become that
 much harder.</p></li>
-<li><p><strong>We don't want to be your performance bottleneck.</strong><br />
-We regard Noda Time as a system-level library: we don't know exactly
-how you'll use it, or how performance-criticial that use will be.
-We're willing to do more work (occasionally at the expense of
-<em>internal</em> complexity) to get out of your way, but we're not going
+<li><p><strong>We don&#39;t want to be your performance bottleneck.</strong><br>
+We regard Noda Time as a system-level library: we don&#39;t know exactly
+how you&#39;ll use it, or how performance-critical that use will be.
+We&#39;re willing to do more work (occasionally at the expense of
+<em>internal</em> complexity) to get out of your way, but we&#39;re not going
 to sacrifice <em>public</em> elegance for this.</p></li>
-<li><p><strong>We want your code to be robust in the face of new versions.</strong><br />
+<li><p><strong>We want your code to be robust in the face of new versions.</strong><br>
 Noda Time follows <a href="http://semver.org/">Semantic Versioning</a> so you should be able to
 spot incompatible versions - but additionally, by limiting the
-amount of "hooks" we provide, we've reduced the opportunities for coupling between
+amount of &quot;hooks&quot; we provide, we&#39;ve reduced the opportunities for coupling between
 your code and ours.</p></li>
-<li><p><strong>We want your code using Noda Time to be testable.</strong><br />
+<li><p><strong>We want your code using Noda Time to be testable.</strong><br>
 To some people that will conjure up images of interfaces and virtual
-methods everywhere - but that's not the case. Instead, we recommend
+methods everywhere - but that&#39;s not the case. Instead, we recommend
 that you inject appropriate dependencies (such as clocks) and we
 provide designed-for-testing implementations of types such as time
 zones.</p></li>
-<li><p><strong>We don't like defaults.</strong><br />
+<li><p><strong>We don&#39;t like defaults.</strong><br>
 Just about the only thing Noda Time will default for you is the use
-of the ISO calendar, as we believe that's what the majority of
+of the ISO calendar, as we believe that&#39;s what the majority of
 developers want. However, we do <em>not</em> default to using the system
-time zone, or using "now" as a default date/time value, or using
-the current thread's current format provider for parsing and
+time zone, or using &quot;now&quot; as a default date/time value, or using
+the current thread&#39;s current format provider for parsing and
 formatting (except for the BCL-compatible method calls; see <a href="text.html">text
 handling</a> for more information on this).
-We make it easy to do all of these things, but they're just not
-appropriate as implicit defaults. It's too easy to <em>accidentally</em>
+We make it easy to do all of these things, but they&#39;re just not
+appropriate as implicit defaults. It&#39;s too easy to <em>accidentally</em>
 depend on the time zone your system happens to be running in (etc)
 without anything obvious in your code.</p></li>
 </ul>
@@ -73,11 +163,11 @@ without anything obvious in your code.</p></li>
 
 <ul>
 <li><p>There are rather more types and <a href="concepts.html">concepts</a> to learn about in
-Noda Time than in .NET. One of the <em>problems</em> with .NET's date and
-time API is that <code>DateTime</code> doesn't have a single well-defined
+Noda Time than in .NET. One of the <em>problems</em> with .NET&#39;s date and
+time API is that <code>DateTime</code> doesn&#39;t have a single well-defined
 meaning.</p></li>
 <li><p>There are more value types in Noda Time than in many other
-libraries. We believe they're justified as value types (they
+libraries. We believe they&#39;re justified as value types (they
 represent single values) but you need to be aware of the impact on
 boxing and the like. In many cases the default value of the type (e.g. <code>new
 LocalDateTime()</code> or <code>default(LocalDateTime)</code>) is <em>not</em> a useful
@@ -85,20 +175,20 @@ value. This is unfortunate, but hard to avoid.</p></li>
 <li><p>All the value types and almost all the reference types are
 immutable and <a href="threading.html">thread-safe</a>. We expect objects like calendars, time
 zones, and patterns for formatting and parsing text to be reused
-freely between many threads. Occasionally there's hidden mutability
+freely between many threads. Occasionally there&#39;s hidden mutability
 in terms of caches, but this should not affect you, the user. We make sure it
 all stays thread-safe for you.</p></li>
-<li><p>Almost all types are sealed, and there actually aren't very many
+<li><p>Almost all types are sealed, and there actually aren&#39;t very many
 interfaces. Even the abstract classes often have internal abstract
-methods, so can't be derived from by your code. This follows Josh
-Bloch's approach of "design for inheritance or prohibit it" -
-inheritance takes a lot of effort to do robustly, and we don't want
+methods, so can&#39;t be derived from by your code. This follows Josh
+Bloch&#39;s approach of &quot;design for inheritance or prohibit it&quot; -
+inheritance takes a lot of effort to do robustly, and we don&#39;t want
 to break your code because you happen to rely on us calling a
 particular method at a particular time.</p>
 
-<p>We're aware that this is one of the most contentious aspects of
-Noda Time's design - particularly as <a href="http://joda-time.sf.net">Joda Time</a> is <em>very</em>
-extensible - but we believe that it's highly unlikely that you'll
+<p>We&#39;re aware that this is one of the most contentious aspects of
+Noda Time&#39;s design - particularly as <a href="http://joda-time.sf.net">Joda Time</a> is <em>very</em>
+extensible - but we believe that it&#39;s highly unlikely that you&#39;ll
 ever <em>want</em> to extend Noda Time anyway. We want to be an
 externally-simple library you can just rely on. If you have extra
 requirements, chances are someone else will want to do something
@@ -106,5 +196,257 @@ similar - so pop along to the <a href="http://groups.google.com/group/noda-time"
 trying to solve your problem within Noda Time itself.</p></li>
 </ul>
 
-  </body>
+		<ul class="pagination">
+		
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			<li class="current hide-for-small"><a href>Design philosophy and conventions</a></li>
+			
+			
+		
+			
+			<li><a href="../../1.1.x/userguide/arithmetic.html"><strong>Next</strong>: Date and time arithmetic</a></li>
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+		
+		</ul>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Introduction</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/rationale.html" >Why does Noda Time exist?</a></li>
+						
+							<li><a href="../../1.1.x/userguide/installation.html" >Installation</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Core</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/concepts.html" >Core concepts</a></li>
+						
+							<li><a href="../../1.1.x/userguide/type-choices.html" >Choosing (and converting) between types</a></li>
+						
+							<li><a href="../../1.1.x/userguide/core-types.html" >Core types quick reference</a></li>
+						
+							<li><a href="../../1.1.x/userguide/design.html" class="active">Design philosophy and conventions</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Text</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/text.html" >Text handling</a></li>
+						
+							<li><a href="../../1.1.x/userguide/offset-patterns.html" >Patterns for Offset values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/instant-patterns.html" >Patterns for Instant values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+						
+							<li><a href="../../1.1.x/userguide/period-patterns.html" >Patterns for Period values</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Advanced</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/arithmetic.html" >Date and time arithmetic</a></li>
+						
+							<li><a href="../../1.1.x/userguide/bcl-conversions.html" >BCL conversions</a></li>
+						
+							<li><a href="../../1.1.x/userguide/serialization.html" >Serialization</a></li>
+						
+							<li><a href="../../1.1.x/userguide/threading.html" >Threading</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Library</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.1.x/userguide/testing.html" >Unit testing with Noda Time</a></li>
+						
+							<li><a href="../../1.1.x/userguide/tzdb.html" >Updating the time zone database</a></li>
+						
+							<li><a href="../../1.1.x/userguide/mono.html" >Mono support</a></li>
+						
+							<li><a href="../../1.1.x/userguide/limitations.html" >Limitations of Noda Time</a></li>
+						
+							<li><a href="../../1.1.x/userguide/roadmap.html" >Current roadmap</a></li>
+						
+							<li><a href="../../1.1.x/userguide/versions.html" >Version history</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<footer>Version userguide</footer>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+				<span>The latest version is , released April 6th 2013</span>
+			</div>
+			<div class="small-6 columns copy">
+				&copy; The Noda Time Authors, <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+	
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+  
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <!--
+  <script src="js/foundation/foundation.js"></script>  
+  <script src="js/foundation/foundation.alerts.js"></script>
+  <script src="js/foundation/foundation.clearing.js"></script>  
+  <script src="js/foundation/foundation.cookie.js"></script>
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/foundation/foundation.forms.js"></script>
+  <script src="js/foundation/foundation.joyride.js"></script>
+  <script src="js/foundation/foundation.magellan.js"></script>
+  <script src="js/foundation/foundation.orbit.js"></script>
+  <script src="js/foundation/foundation.placeholder.js"></script>
+  <script src="js/foundation/foundation.reveal.js"></script>
+  <script src="js/foundation/foundation.section.js"></script>
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  <script src="js/foundation/foundation.topbar.js"></script>
+  <script src="js/foundation/foundation.interchange.js"></script>
+  -->
+  
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
 </html>
