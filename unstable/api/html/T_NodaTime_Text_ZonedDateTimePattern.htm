@@ -9,8 +9,14 @@
             </div><br /></td></tr><tr data="method; public; static; declared"><td><img src="../icons/pubmethod.gif" /><img src="../icons/static.gif" title="static member" /></td><td><a href="M_NodaTime_Text_ZonedDateTimePattern_CreateWithInvariantCulture.htm">CreateWithInvariantCulture(String, IDateTimeZoneProvider)</a></td><td><div class="summary">
             Creates a pattern for the given pattern text and time zone provider, using a strict resolver, the invariant
             culture, and a default template value of midnight January 1st 2000 UTC.
+            </div><br /></td></tr><tr data="property; public; static; declared"><td><img src="../icons/pubproperty.gif" /><img src="../icons/static.gif" title="static member" /></td><td><a href="P_NodaTime_Text_ZonedDateTimePattern_ExtendedFormatOnlyInvariantPattern.htm">ExtendedFormatOnlyInvariantPattern</a></td><td><div class="summary">
+            Returns an invariant local date/time pattern based on ISO-8601 (down to the tick) including offset from UTC and zone ID.
+            The calendar system is not formatted as part of this pattern, and it cannot be used for parsing.
             </div><br /></td></tr><tr data="method; public; instance; declared"><td><img src="../icons/pubmethod.gif" /></td><td><a href="M_NodaTime_Text_ZonedDateTimePattern_Format.htm">Format(ZonedDateTime)</a></td><td><div class="summary">
             Formats the given zoned date/time as text according to the rules of this pattern.
+            </div><br /></td></tr><tr data="property; public; static; declared"><td><img src="../icons/pubproperty.gif" /><img src="../icons/static.gif" title="static member" /></td><td><a href="P_NodaTime_Text_ZonedDateTimePattern_GeneralFormatOnlyInvariantPattern.htm">GeneralFormatOnlyInvariantPattern</a></td><td><div class="summary">
+            Returns an invariant local date/time pattern based on ISO-8601 (down to the second) including offset from UTC and zone ID.
+            The calendar system is not formatted as part of this pattern, and it cannot be used for parsing.
             </div><br /></td></tr><tr data="method; public; instance; declared"><td><img src="../icons/pubmethod.gif" /></td><td><a href="M_NodaTime_Text_ZonedDateTimePattern_Parse.htm">Parse(String)</a></td><td><div class="summary">
             Parses the given text value according to the rules of this pattern.
             </div><br /></td></tr><tr data="property; public; instance; declared"><td><img src="../icons/pubproperty.gif" /></td><td><a href="P_NodaTime_Text_ZonedDateTimePattern_PatternText.htm">PatternText</a></td><td><div class="summary">
@@ -37,7 +43,8 @@
             time zone provider.
             </div><br /></td></tr><tr data="property; public; instance; declared"><td><img src="../icons/pubproperty.gif" /></td><td><a href="P_NodaTime_Text_ZonedDateTimePattern_ZoneProvider.htm">ZoneProvider</a></td><td><div class="summary">
             Returns the provider which is used to look up time zones when parsing a pattern
-            which contains a time zone identifier.
+            which contains a time zone identifier. This may be null, in which case the pattern can
+            only be used for formatting (not parsing).
             </div><br /></td></tr></table></div></div></div><div class="section"><div class="sectionTitle" onclick="toggleSection(this.parentNode)"><img src="../icons/collapse_all.gif" /> Thread Safety</div><div class="sectionContent">
             When used with a read-only <a href="http://msdn2.microsoft.com/en-us/library/kx54z3k7" target="_blank">CultureInfo</a>, this type is immutable and instances
             may be shared freely between threads. We recommend only using read-only cultures for patterns, although this is
