@@ -1,50 +1,139 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-  <head>
-    <link href="prettify.css" type="text/css" rel="stylesheet" />
-    <link href="styles.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript" src="prettify.js"></script>
-    <title>Limitations of Noda Time</title>
-  </head>
-  <body onload="prettyPrint()">
-    <h1>Limitations of Noda Time</h1>
-    <p>Noda Time is a work in progress. It has various limitations, some of
-which we'd obviously like to remove over time. Here's a list of some
-aspects we'd like to improve; see the 
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Limitations of Noda Time</title>
+  
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="../../css/syntax.css">
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+    <!-- Prettify -->
+    <script src="../../js/prettify/run_prettify.js"></script>
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mobile.css">
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">API</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" >Developer Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/developer">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/developer">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/developer">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Limitations of Noda Time</h1>
+		<p>Noda Time is a work in progress. It has various limitations, some of
+which we&#39;d obviously like to remove over time. Here&#39;s a list of some
+aspects we&#39;d like to improve; see the 
 <a href="http://code.google.com/p/noda-time/issues/list">issues list</a> for
 others.</p>
 
-<p>Without <em>your</em> help, we won't know which of these features to work
-on first - or whether there are other limitations we hadn't even
-considered. If there's something that should be within Noda Time's
-scope, but we don't support it yet, then <em>please</em> either raise an
+<p>Without <em>your</em> help, we won&#39;t know which of these features to work
+on first - or whether there are other limitations we hadn&#39;t even
+considered. If there&#39;s something that should be within Noda Time&#39;s
+scope, but we don&#39;t support it yet, then <em>please</em> either raise an
 issue or post on the
 <a href="http://groups.google.com/group/noda-time">mailing list</a>.</p>
 
 <h1>Fuller text support</h1>
 
-<p>Currently there's no way of parsing or formatting a
-<a href="../api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> or 
-<a href="../api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a>, partly due to
+<p>Currently there&#39;s no way of parsing or formatting a
+<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> or 
+<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a>, partly due to
 the difficulty of representing time zones or offsets. While this is
-the primary deficiency of our current text support, it's not the
+the primary deficiency of our current text support, it&#39;s not the
 only one. Some other types lack flexible formatting, and we may want
 to optimize further at some point too.</p>
 
 <h1>Better resource handling</h1>
 
-<p>We'd like to be able to bundle appropriate patterns (and other
+<p>We&#39;d like to be able to bundle appropriate patterns (and other
 internationalizable materials) within Noda Time while keeping it as
 a single DLL. (Satellite DLLs are fine for some scenarios, but messy
-in others.) Additionally we'd like to allow these resources to be
+in others.) Additionally we&#39;d like to allow these resources to be
 augmented or replaced by the caller at execution time, to allow
-hot-fixes for cultures which we don't support as well as we might.</p>
+hot-fixes for cultures which we don&#39;t support as well as we might.</p>
 
 <h1>More time zone information</h1>
 
 <p><a href="http://cldr.unicode.org">CLDR</a> provides useful information about
 time zones such as a canonical ID and user-friendly representations
-(countries and sample cities). We'd also like to make it clearer
+(countries and sample cities). We&#39;d also like to make it clearer
 when one zoneinfo time zone is an alias for another.</p>
 
 <h1>More calendars</h1>
@@ -55,10 +144,256 @@ highest priority is probably an adapter for the BCL calendars.</p>
 <h1>Smarter arithmetic</h1>
 
 <p>As noted in the <a href="arithmetic.html">arithmetic guide</a>, arithmetic using
-<a href="../api/html/T_NodaTime_Period.htm"><code>Period</code></a> is pretty simplistic. We may
-want something smarter, probably to go alongside the "dumb but
-predictable" existing logic. This will definitely be driven by real
+<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Period.htm"><code>Period</code></a> is pretty simplistic. We may
+want something smarter, probably to go alongside the &quot;dumb but
+predictable&quot; existing logic. This will definitely be driven by real
 user requirements though - it would be far too easy to speculate.</p>
 
-  </body>
+		<ul class="pagination">
+		
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			<li class="current hide-for-small"><a href>Limitations of Noda Time</a></li>
+			
+			
+		
+			
+			<li><a href="../../1.0.x/userguide/versions.html"><strong>Next</strong>: Version history</a></li>
+			
+			
+			
+		
+		
+		</ul>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Introduction</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.0.x/userguide/rationale.html" >Why does Noda Time exist?</a></li>
+						
+							<li><a href="../../1.0.x/userguide/installation.html" >Installation</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Core</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.0.x/userguide/concepts.html" >Core concepts</a></li>
+						
+							<li><a href="../../1.0.x/userguide/type-choices.html" >Choosing (and converting) between types</a></li>
+						
+							<li><a href="../../1.0.x/userguide/core-types.html" >Core types quick reference</a></li>
+						
+							<li><a href="../../1.0.x/userguide/design.html" >Design philosophy and conventions</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Text</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.0.x/userguide/text.html" >Text handling</a></li>
+						
+							<li><a href="../../1.0.x/userguide/offset-patterns.html" >Patterns for Offset values</a></li>
+						
+							<li><a href="../../1.0.x/userguide/instant-patterns.html" >Patterns for Instant values</a></li>
+						
+							<li><a href="../../1.0.x/userguide/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+						
+							<li><a href="../../1.0.x/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+						
+							<li><a href="../../1.0.x/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+						
+							<li><a href="../../1.0.x/userguide/period-patterns.html" >Patterns for Period values</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Advanced</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.0.x/userguide/arithmetic.html" >Date and time arithmetic</a></li>
+						
+							<li><a href="../../1.0.x/userguide/bcl-conversions.html" >BCL conversions</a></li>
+						
+							<li><a href="../../1.0.x/userguide/serialization.html" >Serialization</a></li>
+						
+							<li><a href="../../1.0.x/userguide/threading.html" >Threading</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Library</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.0.x/userguide/testing.html" >Unit testing with Noda Time</a></li>
+						
+							<li><a href="../../1.0.x/userguide/tzdb.html" >Updating the time zone database</a></li>
+						
+							<li><a href="../../1.0.x/userguide/mono.html" >Mono support</a></li>
+						
+							<li><a href="../../1.0.x/userguide/limitations.html" class="active">Limitations of Noda Time</a></li>
+						
+							<li><a href="../../1.0.x/userguide/versions.html" >Version history</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<footer>Version 1.0.x</footer>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+                                <span>The latest version is 1.1.0, released April 6th 2013</span>
+			</div>
+			<div class="small-6 columns copy">
+				&copy; The Noda Time Authors, <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+	
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+  
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <!--
+  <script src="js/foundation/foundation.js"></script>  
+  <script src="js/foundation/foundation.alerts.js"></script>
+  <script src="js/foundation/foundation.clearing.js"></script>  
+  <script src="js/foundation/foundation.cookie.js"></script>
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/foundation/foundation.forms.js"></script>
+  <script src="js/foundation/foundation.joyride.js"></script>
+  <script src="js/foundation/foundation.magellan.js"></script>
+  <script src="js/foundation/foundation.orbit.js"></script>
+  <script src="js/foundation/foundation.placeholder.js"></script>
+  <script src="js/foundation/foundation.reveal.js"></script>
+  <script src="js/foundation/foundation.section.js"></script>
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  <script src="js/foundation/foundation.topbar.js"></script>
+  <script src="js/foundation/foundation.interchange.js"></script>
+  -->
+  
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
 </html>

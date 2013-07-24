@@ -1,15 +1,104 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-  <head>
-    <link href="prettify.css" type="text/css" rel="stylesheet" />
-    <link href="styles.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript" src="prettify.js"></script>
-    <title>Serialization</title>
-  </head>
-  <body onload="prettyPrint()">
-    <h1>Serialization</h1>
-    <p>Currently serialization is experimental. We will have one serialization assembly for each type of
-serialization we support which requires separate dependencies; if and when "stock" binary and XML
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Serialization</title>
+  
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="../../css/syntax.css">
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+    <!-- Prettify -->
+    <script src="../../js/prettify/run_prettify.js"></script>
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mobile.css">
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">API</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" >Developer Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/developer">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/developer">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/developer">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Serialization</h1>
+		<p>Currently serialization is experimental. We will have one serialization assembly for each type of
+serialization we support which requires separate dependencies; if and when &quot;stock&quot; binary and XML
 serialization are supported, they will be included within the main Noda Time assembly.</p>
 
 <h2>Json.NET: NodaTime.Serialization.JsonNet</h2>
@@ -18,10 +107,10 @@ serialization are supported, they will be included within the main Noda Time ass
 of the same name.</p>
 
 <p>An extension method of <code>ConfigureForNodaTime</code> is provided on both <code>JsonSerializer</code> and
-<code>JsonSerializerSettings</code>. Alternatively, the <a href="../api/html/T_NodaTime_Serialization_JsonNet_NodaConverters.htm"><code>NodaConverters</code></a> type provides public static read-only fields
+<code>JsonSerializerSettings</code>. Alternatively, the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Serialization_JsonNet_NodaConverters.htm"><code>NodaConverters</code></a> type provides public static read-only fields
 for individual converters. (All converters are immutable.)</p>
 
-<p>Custom converters can be created easily from patterns using <a href="../api/html/T_NodaTime_Serialization_JsonNet_NodaPatternConverter_1.htm"><code>NodaPatternConverter</code></a>.</p>
+<p>Custom converters can be created easily from patterns using <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Serialization_JsonNet_NodaPatternConverter_1.htm"><code>NodaPatternConverter</code></a>.</p>
 
 <h1>Supported types and default representations</h1>
 
@@ -29,10 +118,10 @@ for individual converters. (All converters are immutable.)</p>
 
 <ul>
 <li><code>Offset</code>: general pattern, e.g. <code>+05</code> or <code>-03:30</code></li>
-<li><code>LocalDate</code>: ISO-8601 date pattern: <code>yyyy'-'MM'-'dd</code></li>
-<li><code>LocalTime</code>: ISO-8601 time pattern, extended to handle fractional seconds: <code>HH':'mm':'ss.FFFFFFF</code></li>
-<li><code>LocalDateTime</code>: ISO-8601 date/time pattern with no time zone specifier, extended to handle fractional seconds: <code>yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFF</code></li>
-<li><code>Instant</code>: an ISO-8601 pattern extended to handle fractional seconds: <code>yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFF'Z'</code></li>
+<li><code>LocalDate</code>: ISO-8601 date pattern: <code>yyyy&#39;-&#39;MM&#39;-&#39;dd</code></li>
+<li><code>LocalTime</code>: ISO-8601 time pattern, extended to handle fractional seconds: <code>HH&#39;:&#39;mm&#39;:&#39;ss.FFFFFFF</code></li>
+<li><code>LocalDateTime</code>: ISO-8601 date/time pattern with no time zone specifier, extended to handle fractional seconds: <code>yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss.FFFFFFF</code></li>
+<li><code>Instant</code>: an ISO-8601 pattern extended to handle fractional seconds: <code>yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss.FFFFFFF&#39;Z&#39;</code></li>
 <li><code>Interval</code>: A compound object of the form <code>{ Start: xxx, End: yyy }</code> where <code>xxx</code> and <code>yyy</code> are represented however the serializer sees fit. (Typically using the default representation above.)</li>
 <li><code>Period</code>: The round-trip period pattern; <code>NodaConverters.NormalizingIsoPeriodConverter</code> provides a converter using the normalizing ISO-like pattern</li>
 <li><code>Duration</code>: TBD</li>
@@ -44,8 +133,258 @@ for individual converters. (All converters are immutable.)</p>
 
 <ul>
 <li>Currently only ISO calendars are supported, and handling for negative and non-four-digit years will depend on the appropriate underlying pattern implementation.</li>
-<li>There's no indication of the time zone provider or its version in the <code>DateTimeZone</code> representation.</li>
+<li>There&#39;s no indication of the time zone provider or its version in the <code>DateTimeZone</code> representation.</li>
 </ul>
 
-  </body>
+		<ul class="pagination">
+		
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			<li class="current hide-for-small"><a href>Patterns for Period values</a></li>
+			
+			
+		
+			
+			<li><a href="../../1.0.x/userguide/serialization.html"><strong>Next</strong>: Serialization</a></li>
+			
+			
+			<li class="current hide-for-small"><a href>Serialization</a></li>
+			
+			
+		
+			
+			<li><a href="../../1.0.x/userguide/testing.html"><strong>Next</strong>: Unit testing with Noda Time</a></li>
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+		
+		</ul>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Introduction</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.0.x/userguide/rationale.html" >Why does Noda Time exist?</a></li>
+						
+							<li><a href="../../1.0.x/userguide/installation.html" >Installation</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Core</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.0.x/userguide/concepts.html" >Core concepts</a></li>
+						
+							<li><a href="../../1.0.x/userguide/type-choices.html" >Choosing (and converting) between types</a></li>
+						
+							<li><a href="../../1.0.x/userguide/core-types.html" >Core types quick reference</a></li>
+						
+							<li><a href="../../1.0.x/userguide/design.html" >Design philosophy and conventions</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Text</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.0.x/userguide/text.html" >Text handling</a></li>
+						
+							<li><a href="../../1.0.x/userguide/offset-patterns.html" >Patterns for Offset values</a></li>
+						
+							<li><a href="../../1.0.x/userguide/instant-patterns.html" >Patterns for Instant values</a></li>
+						
+							<li><a href="../../1.0.x/userguide/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+						
+							<li><a href="../../1.0.x/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+						
+							<li><a href="../../1.0.x/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+						
+							<li><a href="../../1.0.x/userguide/period-patterns.html" >Patterns for Period values</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Advanced</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.0.x/userguide/arithmetic.html" >Date and time arithmetic</a></li>
+						
+							<li><a href="../../1.0.x/userguide/bcl-conversions.html" >BCL conversions</a></li>
+						
+							<li><a href="../../1.0.x/userguide/serialization.html" class="active">Serialization</a></li>
+						
+							<li><a href="../../1.0.x/userguide/threading.html" >Threading</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Library</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+							<li><a href="../../1.0.x/userguide/testing.html" >Unit testing with Noda Time</a></li>
+						
+							<li><a href="../../1.0.x/userguide/tzdb.html" >Updating the time zone database</a></li>
+						
+							<li><a href="../../1.0.x/userguide/mono.html" >Mono support</a></li>
+						
+							<li><a href="../../1.0.x/userguide/limitations.html" >Limitations of Noda Time</a></li>
+						
+							<li><a href="../../1.0.x/userguide/versions.html" >Version history</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<footer>Version 1.0.x</footer>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+                                <span>The latest version is 1.1.0, released April 6th 2013</span>
+			</div>
+			<div class="small-6 columns copy">
+				&copy; The Noda Time Authors, <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+	
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+  
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <!--
+  <script src="js/foundation/foundation.js"></script>  
+  <script src="js/foundation/foundation.alerts.js"></script>
+  <script src="js/foundation/foundation.clearing.js"></script>  
+  <script src="js/foundation/foundation.cookie.js"></script>
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/foundation/foundation.forms.js"></script>
+  <script src="js/foundation/foundation.joyride.js"></script>
+  <script src="js/foundation/foundation.magellan.js"></script>
+  <script src="js/foundation/foundation.orbit.js"></script>
+  <script src="js/foundation/foundation.placeholder.js"></script>
+  <script src="js/foundation/foundation.reveal.js"></script>
+  <script src="js/foundation/foundation.section.js"></script>
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  <script src="js/foundation/foundation.topbar.js"></script>
+  <script src="js/foundation/foundation.interchange.js"></script>
+  -->
+  
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
 </html>
