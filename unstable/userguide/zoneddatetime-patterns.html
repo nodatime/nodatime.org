@@ -40,6 +40,17 @@
 			<section class="top-bar-section">
 				<!-- Right Nav Section -->
 			    <ul class="right">
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
                   <!-- Disable the API link for the moment...
 			      <li class="divider hide-for-small"></li>
 			      <li><a href="../../api" >API</a></li>
@@ -58,17 +69,6 @@
 			      <li class="divider"></li>
 			      <li>
                                 <a href="../../developer" >Developer Guide</a>
-			      </li>
-			      <li class="divider"></li>
-			      <li class="has-dropdown">
-			      	<a href="#" class="active">User Guide</a>
-			      	<ul class="dropdown">
-			      		<li><label>Versions</label></li>
-			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
-			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
-			      		<li class="divider hide-for-small"></li>
-			      		<li><a href="../../unstable/userguide">Unstable</a></li>
-			      	</ul>
 			      </li>
 			      <li class="divider"></li>
 			      <li><a href="../../#info">More Info</a></li>
@@ -90,7 +90,7 @@
 <div class="row">
 	<div class="large-9 columns">
 		<h1>Patterns for ZonedDateTime values</h1>
-		<p>The <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> type supports the following patterns:</p>
+		<p>The <a href="../api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> type supports the following patterns:</p>
 
 <h2>Standard Patterns</h2>
 
@@ -101,14 +101,14 @@
 <p>The custom format patterns for a zoned date and time are provided by combining the <a href="offsetdatetime-patterns.html">custom patterns for <code>OffsetDateTime</code></a> with
 the addition of two extra custom format specifiers: &#39;z&#39; and &#39;x&#39;.</p>
 
-<p>&#39;z&#39; is used to parse or format that time zone identifier. When parsing, an ]<code>IDateTimeZoneProvider</code>](http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T<em>NodaTime</em>IDateTimeZoneProvider.htm) is used to extract candidate identifiers and fetch time zones for them. The UTC+/-xx:xx format for fixed offset time zones is always valid, regardless of provider. The provider is part of the <code>ZonedDateTimePattern</code>, and a new pattern with a different provider can be created using the <code>WithZoneProvider</code> method. The provider is not used when formatting: the time zone identifier is simply used directly. Note that if you format a <code>ZonedDateTime</code> which uses a time zone from a different provider than the one in the pattern, you may not be able to parse it again with the same pattern. A null provider can be specified, in which case
+<p>&#39;z&#39; is used to parse or format that time zone identifier. When parsing, an ]<code>IDateTimeZoneProvider</code>](../api/html/T<em>NodaTime</em>IDateTimeZoneProvider.htm) is used to extract candidate identifiers and fetch time zones for them. The UTC+/-xx:xx format for fixed offset time zones is always valid, regardless of provider. The provider is part of the <code>ZonedDateTimePattern</code>, and a new pattern with a different provider can be created using the <code>WithZoneProvider</code> method. The provider is not used when formatting: the time zone identifier is simply used directly. Note that if you format a <code>ZonedDateTime</code> which uses a time zone from a different provider than the one in the pattern, you may not be able to parse it again with the same pattern. A null provider can be specified, in which case
 the pattern can only be used for formatting. (This is used in the <code>ToString</code> override, for example.)</p>
 
 <p><code>x</code> is used <em>only</em> for formatting; it includes the abbreviation associated with the time zone at the given time, such as &quot;PST&quot; or &quot;PDT&quot;. This is format-only as abbreviations are often ambiguous; they are not a substitute for full time zone identifiers.</p>
 
 <p>When parsing, if the pattern does not contain the <code>z</code> specifier, the time zone from the default value is used. The standard patterns all use a default value with the UTC time zone.</p>
 
-<p>If the pattern does not contain an offset specifier (&quot;o&lt;...&gt;&quot;) the local date and time represented by the text is interpreted according to the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_TimeZones_ZoneLocalMappingResolver.htm"><code>ZoneLocalMappingResolver</code></a> associated with the pattern. A new pattern can be created from an existing one, just with a different resolver, using the <code>WithResolver</code> method. If the resolver throws a <code>SkippedTimeException</code> or <code>AmbiguousTimeException</code>, these are converted into <code>UnparsableValueException</code> results. Note that a pattern without an offset specifier will always lead to potential data loss when used with time zones which aren&#39;t a single fixed offset, due to the normal issues of time zone transitions (typically for daylight saving time). </p>
+<p>If the pattern does not contain an offset specifier (&quot;o&lt;...&gt;&quot;) the local date and time represented by the text is interpreted according to the <a href="../api/html/T_NodaTime_TimeZones_ZoneLocalMappingResolver.htm"><code>ZoneLocalMappingResolver</code></a> associated with the pattern. A new pattern can be created from an existing one, just with a different resolver, using the <code>WithResolver</code> method. If the resolver throws a <code>SkippedTimeException</code> or <code>AmbiguousTimeException</code>, these are converted into <code>UnparsableValueException</code> results. Note that a pattern without an offset specifier will always lead to potential data loss when used with time zones which aren&#39;t a single fixed offset, due to the normal issues of time zone transitions (typically for daylight saving time). </p>
 
 <p>If the pattern <em>does</em> contain an offset specifier, then when parsing, the offset present in the text is validated against the time zone. By specifying both a time zone identifier and an offset, the ambiguity around time zone transitions is eliminated. Again, if the offset is invalid for the time zone at the given local date and time, an <code>UnparsableValueException</code> result is produced.</p>
 

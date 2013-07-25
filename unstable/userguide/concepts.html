@@ -40,6 +40,17 @@
 			<section class="top-bar-section">
 				<!-- Right Nav Section -->
 			    <ul class="right">
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
                   <!-- Disable the API link for the moment...
 			      <li class="divider hide-for-small"></li>
 			      <li><a href="../../api" >API</a></li>
@@ -58,17 +69,6 @@
 			      <li class="divider"></li>
 			      <li>
                                 <a href="../../developer" >Developer Guide</a>
-			      </li>
-			      <li class="divider"></li>
-			      <li class="has-dropdown">
-			      	<a href="#" class="active">User Guide</a>
-			      	<ul class="dropdown">
-			      		<li><label>Versions</label></li>
-			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
-			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
-			      		<li class="divider hide-for-small"></li>
-			      		<li><a href="../../unstable/userguide">Unstable</a></li>
-			      	</ul>
 			      </li>
 			      <li class="divider"></li>
 			      <li><a href="../../#info">More Info</a></li>
@@ -131,11 +131,11 @@ interpreted in .NET.</p>
 
 <p>Internally, Noda Time has a concept of a <code>LocalInstant</code> which is a
 local value without reference to any particular calendar system, but
-this is currently not exposed. Similarly, <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_LocalTime.htm"><code>LocalTime</code></a> does
+this is currently not exposed. Similarly, <a href="../api/html/T_NodaTime_LocalTime.htm"><code>LocalTime</code></a> does
 not refer to a calendar system - we assume that all calendars are based
 around solar days 24 hours in length (give or take daylight saving
-changes). However, the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_LocalDate.htm"><code>LocalDate</code></a> and
-<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a> types <em>do</em> both refer to calendar
+changes). However, the <a href="../api/html/T_NodaTime_LocalDate.htm"><code>LocalDate</code></a> and
+<a href="../api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a> types <em>do</em> both refer to calendar
 systems... see the later section on calendars for more information.</p>
 
 <h2>The global time line, and <code>Instant</code></h2>
@@ -156,7 +156,7 @@ used some other zero point (such a January 1st 2000 UTC) it would
 simply have offset the values, and changed the maximum and minimum
 representable values. It&#39;s just an origin.</p>
 
-<p>The Noda Time <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Instant.htm"><code>Instant</code></a> type represents a point on this
+<p>The Noda Time <a href="../api/html/T_NodaTime_Instant.htm"><code>Instant</code></a> type represents a point on this
 global timeline: the number of ticks which have elapsed since the Unix
 epoch. The value can be negative for dates and times before 1970 of
 course - the range of supported dates is from around 27000 BCE to
@@ -198,7 +198,7 @@ willing to use a default for: unless you specify otherwise, the
 ISO-8601 calendar is used. If you don&#39;t know which calendar you ought
 to use, this is almost certainly the one for you.</p>
 
-<p>In Noda Time, the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_CalendarSystem.htm"><code>CalendarSystem</code></a> type handles the
+<p>In Noda Time, the <a href="../api/html/T_NodaTime_CalendarSystem.htm"><code>CalendarSystem</code></a> type handles the
 details of different calendar systems. Most of the methods are internal,
 although a few useful methods are exposed. Most of the time even if you
 <em>do</em> need to use a <code>CalendarSystem</code>, you can just fetch a reference to
@@ -211,8 +211,8 @@ little bundle of magic which simply does the right thing for you.</p>
 date/times and local date/times - or equivalently, a mapping from
 UTC instants to <em>offsets</em>, where an offset is simply the difference
 between UTC and local time. In Noda Time, time zones are represented
-by the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_DateTimeZone.htm"><code>DateTimeZone</code></a> class, and offsets are represented
-by the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Offset.htm"><code>Offset</code></a> struct.</p>
+by the <a href="../api/html/T_NodaTime_DateTimeZone.htm"><code>DateTimeZone</code></a> class, and offsets are represented
+by the <a href="../api/html/T_NodaTime_Offset.htm"><code>Offset</code></a> struct.</p>
 
 <p>An offset is positive if local time is later than (ahead of) UTC,
 and negative if local time is earlier than (behind) UTC. For
@@ -228,7 +228,7 @@ change occurs - usually for daylight saving changes.</p>
 
 <p>Most of the time when you use a <code>DateTimeZone</code> you won&#39;t need
 worry about that - the main purpose is usually to convert between a
-<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> and a <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a>
+<a href="../api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> and a <a href="../api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a>
 - where the names mean exactly what you expect them to. There&#39;s a slight
 twist to this: converting from an <code>Instant</code> or a <code>ZonedDateTime</code> to a
 <code>LocalDateTime</code> is unambiguous; at any point in time, all the (accurate)
@@ -249,7 +249,7 @@ forward in the spring. If the clocks go forward at 1am local time to
 </ul>
 
 <p>Noda Time makes it <em>reasonably</em> easy to handle these situations, but
-you need to work out what you want to happen. See the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_DateTimeZone.htm"><code>DateTimeZone</code>
+you need to work out what you want to happen. See the <a href="../api/html/T_NodaTime_DateTimeZone.htm"><code>DateTimeZone</code>
 documentation</a> for more details and options.</p>
 
 <p>There are various different sources of time zone information available, and
@@ -259,19 +259,19 @@ the IANA Time Zone database, or zoneinfo or Olson database). A version of TZDB
 is embedded within the Noda Time distribution, and if you need a more recent
 one, there are <a href="tzdb.html">instructions on how to download and use new data</a>.
 We generally recommend that you isolate yourself from the provider you&#39;re using
-by only depending on <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_IDateTimeZoneProvider.htm"><code>IDateTimeZoneProvider</code></a>, and
+by only depending on <a href="../api/html/T_NodaTime_IDateTimeZoneProvider.htm"><code>IDateTimeZoneProvider</code></a>, and
 injecting the appropriate provider in the normal way. &quot;Stock&quot; providers are
-available via the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_DateTimeZoneProviders.htm"><code>DateTimeZoneProviders</code></a> class.</p>
+available via the <a href="../api/html/T_NodaTime_DateTimeZoneProviders.htm"><code>DateTimeZoneProviders</code></a> class.</p>
 
 <p>Also note that in some cases, you may not have full time zone information,
 but have just a local time and an offset. For example, if you&#39;re parsing the string
 &quot;2012-06-26T20:41:00+01:00&quot; that gives the information that the local time is one hour
 ahead of UTC - but it doesn&#39;t give any indication of what the offset would be at any other
-time. In this situation, you should use <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a>.</p>
+time. In this situation, you should use <a href="../api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a>.</p>
 
 <h2>Periods and durations</h2>
 
-<p>There are two similar types in Noda Time used to represent &quot;lengths of time&quot;. The simplest is <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Duration.htm"><code>Duration</code></a>
+<p>There are two similar types in Noda Time used to represent &quot;lengths of time&quot;. The simplest is <a href="../api/html/T_NodaTime_Duration.htm"><code>Duration</code></a>
 which is equivalent to [<code>TimeSpan</code>] in the BCL. This is a fixed number of ticks - it&#39;s the same length of time
 wherever its applied. <code>Duration</code> is used for arithmetic on <code>Instant</code> and <code>DateTime</code> values.</p>
 

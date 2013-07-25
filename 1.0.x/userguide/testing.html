@@ -40,6 +40,17 @@
 			<section class="top-bar-section">
 				<!-- Right Nav Section -->
 			    <ul class="right">
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
                   <!-- Disable the API link for the moment...
 			      <li class="divider hide-for-small"></li>
 			      <li><a href="../../api" >API</a></li>
@@ -58,17 +69,6 @@
 			      <li class="divider"></li>
 			      <li>
                                 <a href="../../developer" >Developer Guide</a>
-			      </li>
-			      <li class="divider"></li>
-			      <li class="has-dropdown">
-			      	<a href="#" class="active">User Guide</a>
-			      	<ul class="dropdown">
-			      		<li><label>Versions</label></li>
-			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
-			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
-			      		<li class="divider hide-for-small"></li>
-			      		<li><a href="../../unstable/userguide">Unstable</a></li>
-			      	</ul>
 			      </li>
 			      <li class="divider"></li>
 			      <li><a href="../../#info">More Info</a></li>
@@ -105,20 +105,20 @@ easy-to-use test doubles which can be used instead of the real implementations.<
 no particular support for any specific dependency injection framework, but should be easy to configure with any
 reasonably-powerful implementation. (If it&#39;s not, please file a bug report.)</p>
 
-<p>The most obvious dependency is a clock - an implementation of <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_IClock.htm"><code>NodaTime.IClock</code></a>,
+<p>The most obvious dependency is a clock - an implementation of <a href="../api/html/T_NodaTime_IClock.htm"><code>NodaTime.IClock</code></a>,
 which simply provides &quot;the current date and time&quot; (as an <code>Instant</code>, given that the concept of &quot;now&quot; isn&#39;t
-inherently bound to any time zone or calendar). The <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Testing_FakeClock.htm"><code>FakeClock</code></a> can
+inherently bound to any time zone or calendar). The <a href="../api/html/T_NodaTime_Testing_FakeClock.htm"><code>FakeClock</code></a> can
 be set to any given instant, advanced manually, or set to advance a given amount each time it&#39;s accessed. The production
-environment should normally inject the singleton <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_SystemClock.htm"><code>SystemClock</code></a> instance which simply
+environment should normally inject the singleton <a href="../api/html/T_NodaTime_SystemClock.htm"><code>SystemClock</code></a> instance which simply
 uses <code>DateTime.UtcNow</code> behind the scenes.</p>
 
-<p>For code which is sensitive to time zone fetching, an <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_IDateTimeZoneProvider.htm"><code>IDateTimeZoneProvider</code></a> can
+<p>For code which is sensitive to time zone fetching, an <a href="../api/html/T_NodaTime_IDateTimeZoneProvider.htm"><code>IDateTimeZoneProvider</code></a> can
 be injected. There are currently no test doubles for this interface - please contact the mailing list with requirements
 if to give us feedback on exactly what you&#39;d like provided here. The production environment should usually be
-configured with one of the providers in <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_DateTimeZoneProviders.htm"><code>DateTimeZoneProviders</code></a>.</p>
+configured with one of the providers in <a href="../api/html/T_NodaTime_DateTimeZoneProviders.htm"><code>DateTimeZoneProviders</code></a>.</p>
 
 <p>For time zones themselves, a fake implementation representing a time zone with a single transition between different offsets
-is available as <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone.htm"><code>SingleTransitionDateTimeZone</code></a>. Creating
+is available as <a href="../api/html/T_NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone.htm"><code>SingleTransitionDateTimeZone</code></a>. Creating
 a time zone with no transitions at all is simple via <code>DateTimeZone.ForOffset</code>.</p>
 
 		<ul class="pagination">

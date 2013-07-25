@@ -40,6 +40,17 @@
 			<section class="top-bar-section">
 				<!-- Right Nav Section -->
 			    <ul class="right">
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
                   <!-- Disable the API link for the moment...
 			      <li class="divider hide-for-small"></li>
 			      <li><a href="../../api" >API</a></li>
@@ -58,17 +69,6 @@
 			      <li class="divider"></li>
 			      <li>
                                 <a href="../../developer" >Developer Guide</a>
-			      </li>
-			      <li class="divider"></li>
-			      <li class="has-dropdown">
-			      	<a href="#" class="active">User Guide</a>
-			      	<ul class="dropdown">
-			      		<li><label>Versions</label></li>
-			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
-			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
-			      		<li class="divider hide-for-small"></li>
-			      		<li><a href="../../unstable/userguide">Unstable</a></li>
-			      	</ul>
 			      </li>
 			      <li class="divider"></li>
 			      <li><a href="../../#info">More Info</a></li>
@@ -97,8 +97,8 @@ subtle bugs where developers may be tempted to mix concepts inappropriately.</p>
 
 <h1>Time Line Arithmetic</h1>
 
-<p>The <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Instant.htm"><code>Instant</code></a> and
-<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> types both unambiguously
+<p>The <a href="../api/html/T_NodaTime_Instant.htm"><code>Instant</code></a> and
+<a href="../api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> types both unambiguously
 refer to a point in time (with the latter additionally holding time
 zone and calendar information). We can add a length of time to that point to get
 another point in time - but only if it&#39;s a truly fixed length of time, such as
@@ -108,7 +108,7 @@ that Noda Time doesn&#39;t support leap seconds, otherwise even &quot;3
 minutes&quot; wouldn&#39;t be a fixed length of time.)</p>
 
 <p>These &quot;fixed lengths of time&quot; are represented in Noda Time with the
-<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Duration.htm"><code>Duration</code></a> type, and they can be
+<a href="../api/html/T_NodaTime_Duration.htm"><code>Duration</code></a> type, and they can be
 added to either an <code>Instant</code> or <code>ZonedDateTime</code> using either the <code>+</code> operator
 or <code>Plus</code> methods:</p>
 
@@ -150,13 +150,13 @@ Noda Time doesn&#39;t involve elapsed time directly, or even truly fixed
 lengths of time - it involves calendrical concepts such as months.
 These operations involve the &quot;local&quot; date and time types, which are
 associated with a
-<a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_CalendarSystem.htm"><code>CalendarSystem</code></a>, but not a
+<a href="../api/html/T_NodaTime_CalendarSystem.htm"><code>CalendarSystem</code></a>, but not a
 time zone:</p>
 
 <ul>
-<li><a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a></li>
-<li><a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_LocalDate.htm"><code>LocalDate</code></a></li>
-<li><a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_LocalTime.htm"><code>LocalTime</code></a></li>
+<li><a href="../api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a></li>
+<li><a href="../api/html/T_NodaTime_LocalDate.htm"><code>LocalDate</code></a></li>
+<li><a href="../api/html/T_NodaTime_LocalTime.htm"><code>LocalTime</code></a></li>
 </ul>
 
 <p>(<code>LocalTime</code> doesn&#39;t actually have an associated calendar, as Noda
@@ -213,7 +213,7 @@ sure the simple cases are clear before moving on to more complex ones.</p>
 <h2>Adding a <code>Period</code></h2>
 
 <p>Sometimes you need a more general representation of the value to
-add, which is where <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_Period.htm"><code>Period</code></a> comes
+add, which is where <a href="../api/html/T_NodaTime_Period.htm"><code>Period</code></a> comes
 in. This is essentially just a collection of unit/value pairs - so
 you can have a period of &quot;1 month and 3 days&quot; or &quot;2 weeks and 10
 hours&quot;. Periods aren&#39;t normalized, so a period of &quot;2 days&quot; is not
@@ -242,7 +242,7 @@ period containing time units to a <code>LocalDate</code> will result in an
 simply summed, with no normalization. Subtraction works in the same
 way.</p>
 
-<p>An alternative way of creating a period is to use <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_PeriodBuilder.htm"><code>PeriodBuilder</code></a>
+<p>An alternative way of creating a period is to use <a href="../api/html/T_NodaTime_PeriodBuilder.htm"><code>PeriodBuilder</code></a>
 which is mutable, with a nullable property for each component:</p>
 
 <div class="example"><pre class="prettyprint code">Period compound = new PeriodBuilder { Days = 1, Months = 1 }.Build();
@@ -292,7 +292,7 @@ There are six overloads - two for each local type, with one using a
 default set of units (year, month, day for dates; all time units for
 times; year, month, day and all time units for date/times) and the
 other allowing you to specify your own value. The units are specified
-with the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_PeriodUnits.htm"><code>PeriodUnits</code></a> enum, and
+with the <a href="../api/html/T_NodaTime_PeriodUnits.htm"><code>PeriodUnits</code></a> enum, and
 can be combined using the <code>|</code> operator. So for example, to find out
 how many &quot;months and days&quot; old I am at the time of this writing, I&#39;d use:</p>
 
@@ -334,7 +334,7 @@ extra requirements if you have them.</p>
 <h1>Why doesn&#39;t this work with <code>ZonedDateTime</code>?</h1>
 
 <p>All of this code using periods only works with the &quot;local&quot; types - notably there&#39;s
-no part of the <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> which mentions <code>Period</code>.
+no part of the <a href="../api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> which mentions <code>Period</code>.
 This is entirely deliberate, due to the complexities that time zones introduce. Every time
 you perform a calculation on a <code>ZonedDateTime</code>, you may end up changing your offset from UTC.</p>
 
@@ -354,7 +354,7 @@ skipped times in the normal way. We believe this makes the API easier to follow 
 to think about the problems which you might otherwise brush under the carpet... but if you have
 better suggestions, please raise them!</p>
 
-<p>Currently Noda Time doesn&#39;t support arithmetic with <a href="http://noda-time.googlecode.com/hg-history/1.1.x/docs/api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a>
+<p>Currently Noda Time doesn&#39;t support arithmetic with <a href="../api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a>
 either, mostly because it&#39;s not clear what the use cases would be. You can always convert to either local or
 zoned date/time values, perform arithmetic in that domain and convert back if necessary - but if you find
 yourself in this situation, we&#39;d love to hear about it on the Noda Time mailing list.</p>
