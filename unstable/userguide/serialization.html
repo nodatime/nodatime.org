@@ -162,11 +162,11 @@ and will be consulted when deserializing <code>ZonedDateTime</code> values. It d
 <p>While these details are undoubtedly unpleasant, it is hoped that they strike a pragmatic balance, providing a significant benefit to those who require XML serialization support, while staying
 out of the way of those who don&#39;t.</p>
 
-<h1>Serialized representation</h1>
+<h3>Serialized representation</h3>
 
-<p>Most serialized forms just consist of element text using the corresponding text handling pattern. Types which support multiple calendar systems use the <code>calendar</code> attribute for the calendar system ID, but only when the calendar system of the value isn&#39;t the ISO calendar, and <code>ZonedDateTime</code> uses the <code>zone</code> attribute for the time zone ID (in all cases).</p>
+<p>Most serialized forms just consist of element text using a specified text handling pattern, as described below. Types which support multiple calendar systems additionally use the <code>calendar</code> attribute for the calendar system ID (but only when the calendar system of the value isn&#39;t the ISO calendar), while <code>ZonedDateTime</code> always uses an extra <code>zone</code> attribute for the time zone ID.</p>
 
-<p><code>PeriodBuilder</code> uses the round-trip text representation of the <code>Period</code> that would be built by it, and <code>Interval</code> just has <code>start</code> and <code>end</code> attributes, each of which has an <code>Instant</code> converted using the extended ISO pattern.</p>
+<p><code>PeriodBuilder</code> and <code>Interval</code> are somewhat different: <code>PeriodBuilder</code> uses the round-trip text representation of the <code>Period</code> that would be built by it, while <code>Interval</code> has only <code>start</code> and <code>end</code> attributes, each of which is represented as the respective <code>Instant</code> converted using the extended ISO pattern.</p>
 
 <table>
   <thead>
@@ -269,7 +269,7 @@ for individual converters. (All converters are immutable.)</p>
 
 <p>Custom converters can be created easily from patterns using <a href="../api/html/T_NodaTime_Serialization_JsonNet_NodaPatternConverter_1.htm"><code>NodaPatternConverter</code></a>.</p>
 
-<h1>Supported types and default representations</h1>
+<h3>Supported types and default representations</h3>
 
 <p>All default patterns use the invariant culture.</p>
 
@@ -283,11 +283,11 @@ for individual converters. (All converters are immutable.)</p>
 <li><code>Interval</code>: A compound object of the form <code>{ Start: xxx, End: yyy }</code> where <code>xxx</code> and <code>yyy</code> are represented however the serializer sees fit. (Typically using the default representation above.)</li>
 <li><code>Offset</code>: general pattern, e.g. <code>+05</code> or <code>-03:30</code></li>
 <li><code>Period</code>: The round-trip period pattern; <code>NodaConverters.NormalizingIsoPeriodConverter</code> provides a converter using the normalizing ISO-like pattern</li>
-<li><code>Duration</code>: A duration pattern of <code>-H:mm:ss.FFFFFFF</code> (like the standard round-trip pattern, but starting with hours instead of days).</li>
-<li><code>DateTimeZone</code>: The ID is written as a string.</li>
+<li><code>Duration</code>: A duration pattern of <code>-H:mm:ss.FFFFFFF</code> (like the standard round-trip pattern, but starting with hours instead of days)</li>
+<li><code>DateTimeZone</code>: The ID, as a string</li>
 </ul>
 
-<h1>Limitations</h1>
+<h3>Limitations</h3>
 
 <ul>
 <li>Currently only ISO calendars are supported, and handling for negative and non-four-digit years will depend on the appropriate underlying pattern implementation. (Non-ISO converters are now possible, but the results would be very specific to Noda Time.)</li>
