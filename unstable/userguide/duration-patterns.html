@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
-	<title>BCL conversions</title>
+	<title>Patterns for Duration values</title>
   
 	<!-- foundation default -->
   	<link rel="stylesheet" href="../../css/foundation.css" />
@@ -89,150 +89,154 @@
 
 <div class="row">
 	<div class="large-9 columns">
-		<h1>BCL conversions</h1>
-		<p>Various Noda Time types have &quot;broadly similar&quot; types in the .NET
-framework&#39;s Base Class Library (BCL). Where appropriate,
-conversions are provided - we have no illusions that you&#39;ll be able 
-to use Noda Time for <em>everything</em>. Noda Time attempts to shield you
-from using &quot;the wrong kind of <code>DateTime</code>&quot;</p>
+		<h1>Patterns for Duration values</h1>
+		<p>The <a href="../api/html/T_NodaTime_Duration.htm"><code>Duration</code></a> type supports the following patterns:</p>
 
-<p>All BCL type conversions to Noda Time types which have implicit calendar systems (<code>LocalDateTime</code> etc) use
-the ISO-8601 calendar.</p>
+<h2>Standard Patterns</h2>
 
-<h1>DateTime</h1>
+<p>The following standard pattern is supported:</p>
 
-<p><code>DateTime</code> can represent many things (which is <a href="http://noda-time.blogspot.com/2011/08/what-wrong-with-datetime-anyway.html">one of the reasons</a> Noda Time exists).</p>
+<ul>
+<li><code>o</code>: Round-trip pattern, which always uses the invariant culture and a pattern string of <code>-D:hh:mm:ss.FFFFFFF</code>.</li>
+</ul>
 
-<p>However, the following mappings are reasonable:</p>
+<h2>Custom Patterns</h2>
+
+<p>The following custom pattern characters are supported for durations. See <a href="text.html#custom-patterns">custom pattern notes</a>
+for general notes on custom patterns, including characters used for escaping and text literals.</p>
+
+<p>The pattern letters basically split into two categories:
+- &quot;Total&quot; values, which represent as much of the duration as possible. For example, 1 day and 2 hours has a &quot;total hours&quot; value of 26. 
+- &quot;Partial&quot; values, which represent part of a duration within a larger unit. For example, 1 day and 2 hours has an &quot;hours of day&quot; value of 2.</p>
+
+<p>A pattern can only have a single &quot;total&quot; value, and typically will have exactly one total value, which would be the largest unit represented. You would normally want to then use each successive &quot;partial&quot; unit until you&#39;ve got to the precision you&#39;re interested in. For example, useful patterns are:</p>
+
+<ul>
+<li><code>-D:hh:mm:ss</code> - days, hours, minutes and seconds</li>
+<li><code>-H:mm:ss.fff</code> - hours, minutes, seconds and milliseconds</li>
+<li><code>M:ss</code> - just minutes and seconds (not terribly useful for very long durations, or negative ones)<br></li>
+</ul>
+
+<p>Bad (but legal) patterns would be:</p>
+
+<ul>
+<li><code>hh:MM:ss</code> - total minutes, but only partial hours!</li>
+<li><code>HH:ss</code> - total hours, partial seconds... but no partial minutes</li>
+</ul>
+
+<p>It&#39;s possible that a future release will be detect &quot;bad&quot; patterns and reject them more aggressively.</p>
+
+<p>Every total letter can be repeated up to 10 times, indicating the level of zero-padding applied. Total letter values are parsed for up to 10 digits. </p>
 
 <table>
   <thead>
     <tr>
-      <td>Noda Time type</td>
-      <td>DateTime kind</td>
-      <td>Noda Time to BCL conversion</td>
-      <td>BCL to Noda Time conversion</td>
-      <td>Notes</td>
+      <td>Character</td>
+      <td>Meaning</td>
+      <td>Example</td>
     </tr>
   </thead>
-  <tbody>
+  <tbody>    
     <tr>
-      <td>Instant</td>
-      <td>Utc</td>
-      <td>Instant.ToDateTimeUtc</td>
-      <td>Instant.FromDateTimeUtc</td>
-      <td></td>
+      <td><code>D</code> (<code>DD</code> etc)</td>
+      <td>Total days</td>
+      <td>54 hours with a pattern of <code>D:hh:mm</code> => 2:06:00</td>
     </tr>
     <tr>
-      <td>ZonedDateTime</td>
-      <td>Universal</td>
-      <td>ZonedDateTime.ToDateTimeUtc</td>
-      <td>n/a</td>
-      <td>This preserves the instant, but loses the time zone information</td>
+      <td><code>H</code> (<code>HH</code> etc)</td>
+      <td>Total hours</td>
+      <td>54 hours with a pattern of <code>H:mm</code> => 54:00</td>
     </tr>
     <tr>
-      <td>ZonedDateTime</td>
-      <td>Unspecified</td>
-      <td>ZonedDateTime.ToDateTimeUnspecified</td>
-      <td>n/a</td>
-      <td>This preserves the local time, but loses the time zone information</td>
+      <td><code>h</code> or <code>hh</code></td>
+      <td>Hours within a day (0-23)</td>
+      <td>54 hours with a pattern of <code>D:hh</code> => 2:06</td>
     </tr>
     <tr>
-      <td>LocalDateTime</td>
-      <td>Unspecified</td>
-      <td>LocalDateTime.ToDateTimeUnspecified</td>
-      <td>LocalDateTime.FromDateTime</td>
-      <td>FromDateTime uses the "local" value of the DateTime regardless of kind</td>
+      <td><code>M</code> (<code>MM</code> etc)</td>
+      <td>Total minutes</td>
+      <td>3 hours and 10 minutes with a pattern of <code>M:ss</code> => 190:00</td>
     </tr>
     <tr>
-      <td>OffsetDateTime</td>
-      <td>Unspecified</td>
-      <td>OffsetDateTime.ToDateTimeOffset</td>
-      <td>OffsetDateTime.FromDateTimeOffset</td>
-      <td>FromDateTimeOffset uses the "local" value of the DateTime regardless of kind</td>
+      <td><code>m</code> or <code>mm</code></td>
+      <td>Minutes within an hour (0-59)</td>
+      <td>3 hours and 10 minutes with a pattern of <code>H:mm:ss</code> => 3:10:00</td>
     </tr>
-  </tbody>
+    <tr>
+      <td><code>S</code> (<code>SS</code> etc)</td>
+      <td>Total seconds</td>
+      <td>2 minutes and 10 seconds with a pattern of <code>S.fff</code> => 70.000</td>
+    </tr>
+    <tr>
+      <td><code>s</code> or <code>ss</code></td>
+      <td>Seconds within a minute (0-59)</td>
+      <td>2 minutes and 10 seconds with a pattern of <code>M:ss.fff</code> => 2:10.000</td>
+    </tr>
+    <tr>
+      <td><code>f</code> ... <code>fffffff</code>
+      <td>
+        The fractional second part of the offset, using exactly the specified number of characters.
+        Trailing digits are truncated towards zero.
+      </td>
+      <td>
+        1 second, 1234500 ticks: <code>s.fffffff</code> => <code>1.1234500</code> <br />
+        Exactly 1 second: <code>s.f</code> => <code>1.0</code> <br />
+      </td>
+    </tr>
+    <tr>
+      <td><code>F</code> ... <code>FFFFFFF</code></td>
+      <td>
+        The fractional second part of the offset, using at most the specified number of characters (up to 7).
+        Trailing digits are truncated towards zero, and trailing insignificant zeroes are truncated.
+        If this comes after a decimal separator and the value is zero, the decimal separator is
+        also truncated.
+      </td>
+      <td>
+        1 second, 1234500 ticks: <code>s.FFFFFFF</code> => <code>1.12345</code> <br />
+        Exactly 1 second: <code>s.F</code> => <code>1</code> <br />
+      </td>
+    </tr>
+    <tr>
+      <td><code>+</code></td>
+      <td>
+        The sign of the value, always specified whether positive or negative.
+        The character used will depend on the format provider; <code>+</code> and <code>-</code> are used by the invariant culture.
+      </td>
+      <td>
+        Positive value: <code>+HH:mm</code> => <code>+07:30</code> <br />
+        Negative value: <code>+HH:mm</code> => <code>-07:30</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>-</code></td>
+      <td>
+        The sign of the value, only specified when the value is negative.
+        The character used will depend on the format provider; <code>-</code> is
+        used by the invariant culture.
+      </td>
+      <td>
+        Positive value: <code>-HH:mm</code> => <code>07:30</code> <br />
+        Negative value: <code>-HH:mm</code> => <code>-07:30</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.</code></td>
+      <td>
+        This is *always* a period ("."); not a culture-sensitive decimal separator as one might expect. This
+        follows the example of other standard libraries, however odd it may appear. The only difference
+        between a period and any other literal character is that when followed by a series of "F" characters,
+        the period will be removed if there are no fractional seconds.
+      </td>
+    </tr>
+    <tr>
+      <td><code>:</code></td>
+      <td>
+        The time separator for the format provider; colon in the invariant culture.
+      </td>
+      <td><code>HH:mm</code> => <code>07:30</code></td>
+    </tr>
+  </tbody>    
 </table>
-
-<p>Note that there are no conversions to a <code>DateTime</code> with a kind of <code>Local</code> - this would effectively
-be for the system default time zone, which you should generally be explicit about to start with.</p>
-
-<h1>DateTimeOffset</h1>
-
-<p><a href="../api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a> corresponds most closely to <code>DateTimeOffset</code>, although you can also use a <a href="../api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> with a fixed time zone. That&#39;s exactly what <code>ZonedDateTime.FromDateTimeOffset</code> does,
-but you must be aware that &quot;real&quot; time zone information is lost as soon as you&#39;ve got a <code>DateTimeOffset</code> - 
-it represents an exact instant in time, with a local offset from UTC, but that doesn&#39;t tell you what the
-local offset would be a minute later or earlier. The reverse conversion (<code>ZonedDateTime.ToDateTimeOffset</code>)
-loses the time zone information in a similar way.</p>
-
-<p><code>Instant</code> also provides conversions to and from <code>DateTimeOffset</code>; <code>ToDateTimeOffset</code> will always return a
-<code>DateTimeOffset</code> with an offset of zero, and <code>FromDateTimeOffset</code> will &quot;subtract&quot; the offset from local time,
-to represent the appropriate instant in time - but without any further trace of the offset, which isn&#39;t stored in an <code>Instant</code>.</p>
-
-<h1>TimeSpan</h1>
-
-<p>Both <a href="../api/html/T_NodaTime_Offset.htm"><code>Offset</code></a> and <a href="../api/html/T_NodaTime_Duration.htm"><code>Duration</code></a> are similar to <code>TimeSpan</code>,
-but they&#39;re used in different senses; <code>Offset</code> is used to indicate the difference between UTC and local time, whereas
-a <code>Duration</code> is simply an arbitrary number of ticks.</p>
-
-<p>Both types have <code>ToTimeSpan</code> and <code>FromTimeSpan</code> methods, although <code>Offset.FromTimeSpan</code> will throw an <code>ArgumentOutOfRangeException</code>
-if the <code>TimeSpan</code> has a magnitude of 24 hours or more.</p>
-
-<h1>TimeZoneInfo</h1>
-
-<p>The main time zone type in Noda Time is <a href="../api/html/T_NodaTime_DateTimeZone.htm"><code>DateTimeZone</code></a>, which the default provider
-creates from the zoneinfo time zone database. However, if you want to create a
-<code>DateTimeZone</code> which corresponds exactly to a particular <code>TimeZoneInfo</code>,
-there are some options using <a href="../api/html/T_NodaTime_TimeZones_BclDateTimeZone.htm"><code>BclDateTimeZone</code></a>:</p>
-
-<ul>
-<li>You can use <code>DateTimeZoneProviders.Bcl</code> everywhere you create time zones. (You may well want to inject this as an <a href="../api/html/T_NodaTime_IDateTimeZoneProvider.htm"><code>IDateTimeZoneProvider</code></a>
-if you&#39;re using dependency injection). This is appropriate if you&#39;re going to work with various time zones,
-and you only ever care about the BCL versions.</li>
-<li>To convert a single time zone, you can use <code>BclDateTimeZone.FromTimeZoneInfo</code>.</li>
-<li>If you just need the system default time zone, you can call
-<code>BclDateTimeZone.ForSystemDefault</code>. There are some (rare) circumstances where
-using <code>DateTimeZoneProviders.Tzdb.GetSystemDefault</code> may throw an exception,
-indicating that there&#39;s no known mapping from the local BCL time zone ID to
-TZDB. Using <code>BclDateTimeZone.ForSystemDefault()</code> <em>always</em> returns a converted
-version of the BCL local time zone.</li>
-</ul>
-
-<p>There are various pros and cons involved in using the zoneinfo time
-zones vs the BCL ones. In particular:</p>
-
-<ul>
-<li>If you need to interoperate with non-Windows systems, they&#39;re
-likely to use the zoneinfo IDs</li>
-<li>If you need to interoperate with Windows systems, they&#39;re likely
-to use the Windows IDs</li>
-<li>zoneinfo provides more historical information</li>
-<li>If you&#39;re running Noda Time under Windows, changes to BCL time zone
-information will become available automatically</li>
-<li>Using the zoneinfo database allows you to decide exactly when you
-update your time zone information (e.g. if you need to check that
-all the zones still have the same IDs, or even to find zones which
-have changed in a meaningful way for your data)</li>
-</ul>
-
-<h1>DayOfWeek</h1>
-
-<p>For every day other than Sunday, <code>DayOfWeek</code> and
-<a href="../api/html/T_NodaTime_IsoDayOfWeek.htm"><code>IsoDayOfWeek</code></a> have the same
-value. However, <code>DayOfWeek</code> uses 0 for Sunday, and <code>IsoDayOfWeek</code>
-uses 7 (as per ISO-8601). Converting between the two isn&#39;t
-difficult, but there are utility methods in
-<a href="../api/html/T_NodaTime_Utility_BclConversions.htm"><code>BclConversions</code></a> to
-make things slightly smoother:</p>
-
-<div class="example"><pre class="prettyprint code">DayOfWeek bcl = BclConversions.ToDayOfWeek(IsoDayOfWeek.Wednesday);
-IsoDayOfWeek iso = BclConversions.ToIsoDayOfWeek(DayOfWeek.Wednesday);
-</pre></div>
-
-<h1>Any others?</h1>
-
-<p>If you have other requirements around BCL conversions, please ask on
-the <a href="http://groups.google.com/group/noda-time">mailing list</a>.</p>
 
 		<ul class="pagination">
 		
@@ -275,6 +279,14 @@ the <a href="http://groups.google.com/group/noda-time">mailing list</a>.</p>
 		
 			
 			
+			<li class="current hide-for-small"><a href>Patterns for Duration values</a></li>
+			
+			
+		
+			
+			<li><a href="../../unstable/userguide/offset-patterns.html"><strong>Next</strong>: Patterns for Offset values</a></li>
+			
+			
 			
 		
 			
@@ -299,20 +311,8 @@ the <a href="http://groups.google.com/group/noda-time">mailing list</a>.</p>
 		
 			
 			
-			<li class="current hide-for-small"><a href>Patterns for OffsetDateTime values</a></li>
-			
 			
 		
-			
-			<li><a href="../../unstable/userguide/bcl-conversions.html"><strong>Next</strong>: BCL conversions</a></li>
-			
-			
-			<li class="current hide-for-small"><a href>BCL conversions</a></li>
-			
-			
-		
-			
-			<li><a href="../../unstable/userguide/zoneddatetime-patterns.html"><strong>Next</strong>: Patterns for ZonedDateTime values</a></li>
 			
 			
 			
@@ -394,7 +394,7 @@ the <a href="http://groups.google.com/group/noda-time">mailing list</a>.</p>
 						
 							<li><a href="../../unstable/userguide/text.html" >Text handling</a></li>
 						
-							<li><a href="../../unstable/userguide/duration-patterns.html" >Patterns for Duration values</a></li>
+							<li><a href="../../unstable/userguide/duration-patterns.html" class="active">Patterns for Duration values</a></li>
 						
 							<li><a href="../../unstable/userguide/offset-patterns.html" >Patterns for Offset values</a></li>
 						
@@ -422,7 +422,7 @@ the <a href="http://groups.google.com/group/noda-time">mailing list</a>.</p>
 						
 							<li><a href="../../unstable/userguide/arithmetic.html" >Date and time arithmetic</a></li>
 						
-							<li><a href="../../unstable/userguide/bcl-conversions.html" class="active">BCL conversions</a></li>
+							<li><a href="../../unstable/userguide/bcl-conversions.html" >BCL conversions</a></li>
 						
 							<li><a href="../../unstable/userguide/serialization.html" >Serialization</a></li>
 						
