@@ -215,7 +215,7 @@ runner:</p>
 
 <h3>Source layout</h3>
 
-<p>All the source code and user/developer guide source is under the <code>src</code> directory. There are multiple projects:</p>
+<p>All the source code is under the <code>src</code> directory. There are multiple projects:</p>
 
 <ul>
 <li>NodaTime: The main library to be distributed</li>
@@ -226,13 +226,16 @@ runner:</p>
 <li>NodaTime.Serialization.Test: Tests for all serialization assemblies, under the assumption that at some point we&#39;ll support more than just Json.NET.</li>
 <li>NodaTime.Test: Tests for the main library</li>
 <li>NodaTime.Testing: Library to help users test code which depends on Noda Time. Also used within our own tests.</li>
-<li>NodaTime.Tools.BuildMarkdownDocs: Tool to build the user and developer guides</li>
 <li>NodaTime.Tools.SetVersion: Tool to set version numbers on appropriate assemblies as part of the release process</li>
 <li>NodaTime.TzdbCompiler: Tool to take a TZDB database and convert it into the NodaTime internal format</li>
 <li>NodaTime.TzdbCompiler.Test: Tests for NodaTime.TzdbCompiler</li>
 </ul>
 
-<p>Additionally the <code>docs</code> directory contains the source for the documentation, and <code>JodaDump</code> contains Java code to be used with NodaTime.CheckTimeZones.</p>
+<p>Additionally the <code>JodaDump</code> contains Java code to be used with NodaTime.CheckTimeZones.</p>
+
+<p>The documentation is in the <code>www</code> directory with the rest of the website: <code>www/developer</code> for the developer guide, and <code>www/unstable/userguide</code> for the latest user guide. 
+c
+Additionally the <code>www</code> directory contains the source for the documentation, and <code>JodaDump</code> contains Java code to be used with NodaTime.CheckTimeZones.</p>
 
 <p>There are four solutions, containing a variety of projects depending on the task at hand. The aim is to have everything you immediately need in one
 place, without too many distractions.</p>
@@ -243,7 +246,7 @@ place, without too many distractions.</p>
 This is the &quot;day to day development&quot; solution, containing everything that&#39;s shipped and the primary tests for those projects. When we&#39;re updating NodaTime.TzdbCompiler,
 that project and its tests may temporarily live in this solution.</li>
 <li>NodaTime-Documentation.sln: Contains the documentation sources, NodaTime, NodaTime.Testing.SerializationJsonNet and NodaTime.Testing. Useful when writing documentation.</li>
-<li>NodaTime-Tools.sln: Contains NodaTime (so that project references work), NodaTime.CheckTimeZones, NodaTime.Tools.BuildMarkdownDocs, NodaTime.Tools.SetVersion, NodaTime.TzdbCompiler
+<li>NodaTime-Tools.sln: Contains NodaTime (so that project references work), NodaTime.CheckTimeZones, NodaTime.Tools.SetVersion, NodaTime.TzdbCompiler
 and NodaTime.TzdbCompiler.Test. Aimed at times when we need to change our supporting toolset.</li>
 </ul>
 
