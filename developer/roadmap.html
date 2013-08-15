@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
-	<title>Coding conventions</title>
+	<title>Current roadmap</title>
   
 	<!-- foundation default -->
   	<link rel="stylesheet" href="../css/foundation.css" />
@@ -89,91 +89,47 @@
 
 <div class="row">
 	<div class="large-9 columns">
-		<h1>Coding conventions</h1>
-		<h2>Use of C# and .NET features</h2>
+		<h1>Current roadmap</h1>
+		<p>The following is an <em>approximate</em> roadmap for the major features that
+we hope to support in Noda Time.  Some of this roadmap is inspired by
+Noda Time&#39;s <a href="/1.1.x/userguide/limitations.html">current limitations</a>.</p>
 
-<p>Noda Time targets .NET 3.5, and the code only uses features available in C# 3. While we normally build against a C# 4 or C# 5 compiler, most later features aren&#39;t useful:</p>
+<p>If there&#39;s something not mentioned here that you feel should be on this
+roadmap, then <em>please</em> either raise an issue or post on the
+<a href="http://groups.google.com/group/noda-time">mailing list</a>.</p>
 
-<ul>
-<li>Dynamic typing requires .NET 4</li>
-<li>Generic variance relies on the appropriate attributes being applied to the types in question, and the most useful types (e.g. <code>IEnumerable&lt;T&gt;</code>) don&#39;t have those attributes in .NET 3.5</li>
-<li>Async methods require .NET 4.5, or .NET 4 with the async targeting pack</li>
-<li>The iteration variable capture rules for <code>foreach</code> would require <em>all</em> developers to use C# 5 compilers. <strong>Please</strong> do not rely on this.</li>
-<li>Optional parameters wouldn&#39;t be useful to C# 3 users, so our API design assumes they&#39;re <em>not</em> available</li>
-<li>Caller member info attributes require .NET 4.5.</li>
-</ul>
-
-<p>Additionally, we&#39;re trying not to use framework features we don&#39;t need to gratuitously, in case we ever want to backport to .NET 2.0. That&#39;s unlikely given that it would mean
-dropping <code>TimeZoneInfo</code> support, but it&#39;s always a possibility. Additionally, we&#39;re very likely to want to create a Portable Class Library at some point, so where possible, stick
-to core features which won&#39;t make this harder than it needs to be. (Don&#39;t worry too much though - don&#39;t feel you need to look up every member.)</p>
-
-<h2>PCL support</h2>
-
-<p>See the <a href="/1.1.x/userguide/installation.html">Installation</a> section of the user guide for which versions of the
-PCL are currently
-supported. Supporting Silverlight restricts us more than the other targets; in particular the
-<code>System.IO.Compression</code> namespace is entirely absent from Silverlight, whereas it&#39;s present
-in the other PCL targets we&#39;re supporting.</p>
-
-<p>The PCL build is a separate project configuration, hand-crafted into the existing project files. These configurations
-define the <code>PCL</code> conditional compilation symbol, which is used for areas where the code needs to differ between builds.</p>
-
-<h2>Code Layout</h2>
+<p>This roadmap was last updated on <strong>2013-04-03</strong>.</p>
 
 <ul>
-<li>Use the Visual Studio <em>default</em> settings in Tools | Options | Text Editor |
-C# | Formatting.</li>
-<li>Use spaces not tabs
-(<a href="http://groups.google.com/group/noda-time/msg/54e7262a08d1ce38">discussion</a>).</li>
-</ul>
-
-<h2>File Layout</h2>
+<li>1.2
 
 <ul>
-<li>Place using statements at the top of the file (not in the namespace).</li>
-<li> A single namespace in any one file.</li>
-<li><em>Prefer</em> a single type in a file.</li>
-</ul>
-
-<h2>Example</h2>
-
-<div class="example"><pre class="prettyprint code">using System;
-
-namespace ConsoleApplication1
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            if (args.Length &gt; 1)
-            {
-                Console.WriteLine(&quot;Hello &quot; + args[0]);
-            }
-            else
-            {
-                Console.WriteLine(&quot;Hello world!&quot;);
-            }
-        }
-    }
-}
-</pre></div>
-
-<h2>Working With Multiple C# Formatting Configurations</h2>
-
-<p>Using Tools | Import and Export Settings the C# formatting settings can be selectively saved and then reloading. All the C# formatting options fall under All Options | Options | Text Editor | C# Editor. (The &quot;C#&quot; option holds the non-formatting settings.)</p>
-
-<h2>Naming of tests</h2>
-
-<p>Follow a <code>Method_State_Result</code> pattern:</p>
+<li>Better serialization: add native support for XML serialization,
+complete the Json.NET serialization (and release as a package)</li>
+<li>Better parsing/formatting: custom parsing and formatting for
+<code>ZonedDateTime</code> and <code>OffsetDateTime</code>; <em>possibly</em> likewise for
+<code>Period</code>, and more consistency around access to standard
+patterns</li>
+<li>Revisit <code>NodaFormatInfo</code></li>
+<li>Refactor calendar engine</li>
+</ul></li>
+<li>1.3
 
 <ul>
-<li><code>Method</code> is the name of the method being tested, possibly with some more information for overload disambiguation</li>
-<li><code>State</code> describes the scenario that is being tested</li>
-<li><code>Result</code> describes what is the expected behavior</li>
+<li>Provide more information from CLDR for time zone information
+(e.g. sample cities to display to users)</li>
+<li>Possibly, use CLDR for other l10n resources</li>
+</ul></li>
 </ul>
 
-<p>When any of the last two is really redundant, it can be omitted, like when the
-<code>State</code> would be <code>ValidValues</code> or similar, or the <code>Result</code> would be <code>ItWorks</code>.</p>
+<p>Features currently scheduled for removal or breaking change in 2.0:</p>
+
+<ul>
+<li>all obsolete API members</li>
+<li>support for the legacy resource-based time zone data format</li>
+<li>revisit all ordering and equality comparison operations, quite possibly
+ rewriting them to be calendar-insensitive</li>
+</ul>
 
 	</div>
 
@@ -188,9 +144,9 @@ namespace ConsoleApplication1
 						
 							<li><a href="../developer/release-process.html" >Release process</a></li>
 						
-							<li><a href="../developer/roadmap.html" >Current roadmap</a></li>
+							<li><a href="../developer/roadmap.html" class="active">Current roadmap</a></li>
 						
-							<li><a href="../developer/coding-conventions.html" class="active">Coding conventions</a></li>
+							<li><a href="../developer/coding-conventions.html" >Coding conventions</a></li>
 						
 							<li><a href="../developer/building.html" >Building and testing</a></li>
 						
