@@ -166,7 +166,7 @@ in mind than the resource file format.</p>
 <p>The first four bytes of the file contain the format version number. At the time of
 this writing, the only supported version number is 0. Not all changes in the future
 will require a change in version number (as even within a version the format is extensible)
-but this provides flexibility in the future, where as a single binary may be able to read a
+but this provides flexibility in the future, where a single binary may be able to read a
 range of versions. At that point, this document will be extended to give details for each version
 separately. Each version may be completely independent of previous versions, so may redefine
 the meaning of particular field IDs, or even contain a different field structure.</p>
@@ -192,7 +192,7 @@ The expected data within each field is governed by its ID.</p>
 simply serialized as 2-, 4-, or 8-byte twos-complement values of the appropriate length,
 in MSB-first order. For example, <code>0x1234</code> would be serialized as the bytes <code>[0x12 0x34]</code> using
 the <code>fixed16</code> serialization, while -1 would be serialized as <code>[0xff 0xff]</code></li>
-<li><code>count</code>, a non-negative (typically small) <code>int32</code> value, stored as a 7-bit-encoded integer:
+<li><code>count</code>, a non-negative (typically small) <code>int32</code> value, serialized as a variably-sized integer:
 the value is written 7 bits at a time (least significant first), with the highest bit of each
 byte set if this is not the final byte of the value. For example, the value <code>0x16a</code> would be
 serialized as the bytes <code>[0xea 0x02]</code>.</li>
@@ -228,10 +228,10 @@ helps to reduce the data required. The format is (in order of preference):
 <ul>
 <li>For <code>Instant.MinValue</code>, a single byte <code>0</code>.</li>
 <li>For <code>Instant.MaxValue</code>, a single byte <code>1</code>.</li>
-<li>For an instant which is a whole number of hours since the &quot;previous&quot; instant, where that
-whole number is in the range [128, 1048576), the format is that whole number of hours written as a <code>count</code>.</li>
+<li>For an instant which is a whole number of hours since the &quot;previous&quot; instant, and
+that number of hours is in the range [128, 1048576), the format is that number of hours written as a <code>count</code>.</li>
 <li>For an instant which is a whole number of minutes since 1800-01-01T00:00:00Z, and that number of
-minutes is in the range (1048576, Int32.MaxValue], the format is that number of minutes written as a <code>count</code>.</li>
+minutes is in the range [1048576, Int32.MaxValue], the format is that number of minutes written as a <code>count</code>.</li>
 <li>For any other instant, a single byte <code>2</code> followed by a <code>fixed64</code> value for the number of ticks since the Unix epoch.</li>
 </ul></li>
 <li><code>dictionary</code>, a string-to-string dictionary where no keys or values can be null. This is simply a
@@ -258,15 +258,15 @@ eventually refer to a canonical time zone for their data.)</p>
 In both cases, the format starts with the zone ID (as a string) and then a 1-byte flag to indicate the type.</p>
 
 <p>Fixed time zones (which have a single <a href="../api/html/T_NodaTime_TimeZones_ZoneInterval.htm"><code>ZoneInterval</code></a> covering
-  the whole of time). The flag value for a fixed zone is 1, and the remaining data is simply the offset. (The name
+  the whole of time). The flag value for a fixed zone is <code>1</code>, and the remaining data is simply the offset. (The name
   of the zone interval is always just the ID of the time zone.)</p>
 
-<p>Everything else, represented as a <code>PrecalculatedDateTimeZone</code> - a number of abutting <code>ZoneIntervals</code> from the start of
+<p>Everything else is represented as a <code>PrecalculatedDateTimeZone</code> - a number of abutting <code>ZoneIntervals</code> from the start of
 time until either the end of time, or some stable period where a pair of rules governing when daylight saving time starts
 and stops continues until the end of time. This final stable period is the &quot;tail zone&quot; - and is optional, as a zone which
 ends in a fixed offset can simply represent that as a final zone interval to the end of time.</p>
 
-<p>The flag value for a precalculated zone is 2, and the remaining data is:</p>
+<p>The flag value for a precalculated zone is <code>2</code>, and the remaining data is:</p>
 
 <ul>
 <li>The number of precalculated zone intervals as a <code>count</code></li>
@@ -278,8 +278,10 @@ to the start of the current one.</li>
 <li>The <code>string</code> name of the interval</li>
 <li>The wall <code>offset</code> (i.e. standard + daylight savings)</li>
 <li>The daylight savings <code>offset</code></li>
-<li>A <code>zoneintervaltransition</code> from the start of the final interval to the end of the final interval (which is the start of the
-tail zone, if there is one).</li>
+</ul></li>
+<li>A <code>zoneintervaltransition</code> from the start of the final zone interval above to
+the end of the final interval (which is the start of the tail zone, if there
+is one, or <code>Instant.MaxValue</code> otherwise).</li>
 <li>A <code>byte</code> to indicate the presence (1) or absence (0) of a tail zone</li>
 <li>The tail zone, if the previous flag indicated that one was present, as:
 
@@ -290,7 +292,6 @@ tail zone, if there is one).</li>
 <li>The <code>string</code> name used for intervals in &quot;daylight saving time&quot;</li>
 <li>The daylight savings recurrence rule</li>
 <li>The daylight savings <code>offset</code> (to be added to the standard offset)</li>
-</ul></li>
 </ul></li>
 </ul>
 
@@ -363,7 +364,8 @@ representation is a single <code>dictionary</code>.</p>
 <h2>Field 5: Additional information for Windows mapping</h2>
 
 <p>This field is only present for the sake of the PCL version, but is loaded in both builds anyway.
-It contains a mapping from Windows <code>TimeZoneInfo</code> standard name to TZDB ID for those time zones
+It contains a mapping from Windows <code>TimeZoneInfo</code> standard name (in the en-US
+locale) to TZDB ID for those time zones
 where the two differ. (There are only a few.) This is required as the PCL doesn&#39;t expose the 
 <code>TimeZoneInfo.Id</code> property.</p>
 
