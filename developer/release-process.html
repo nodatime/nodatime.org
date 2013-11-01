@@ -47,6 +47,7 @@
 			      		<li><label>Versions</label></li>
 			      		<li><a href="../1.0.x/userguide">1.0.x</a></li>
 			      		<li><a href="../1.1.x/userguide">1.1.x</a></li>
+			      		<li><a href="../1.2.x/userguide">1.2.x</a></li>
 			      		<li class="divider hide-for-small"></li>
 			      		<li><a href="../unstable/userguide">Unstable</a></li>
 			      	</ul>
@@ -62,6 +63,7 @@
 			      		<li><label>Versions</label></li>
 			      		<li><a href="../1.0.x/api">1.0.x</a></li>
 			      		<li><a href="../1.1.x/api">1.1.x</a></li>
+			      		<li><a href="../1.2.x/api">1.2.x</a></li>
 			      		<li class="divider hide-for-small"></li>
 			      		<li><a href="../unstable/api">Unstable</a></li>
 			      	</ul>
@@ -98,9 +100,11 @@ a checklist by the person doing a release.</p>
 <ul>
 <li>Visual Studio 2012</li>
 <li>Sandcastle and Sandcastle Help File Builder</li>
+<li><a href="http://jekyllrb.com/docs/installation/">Jekyll</a> and <a href="http://rubygems.org/gems/redcarpet">redcarpet</a> (following the Jekyll Windows installation instructions)</li>
 <li>NuGet command-line tool</li>
 <li>Access to the Noda Time release private key (to produce a strong-named
 assembly) and the nuget.org API key</li>
+<li>Access to the (git) repository for the nodatime.org web site</li>
 </ul>
 
 <p>Note that we should not build releases on Mono at present, since the resulting
@@ -193,14 +197,21 @@ used.)</li>
 </blockquote>
 
 <p>Add the current date and TZDB version to the version history in
-<code>www/docs/userguide/unstable/versions.md</code> and regenerate all documentation.</p>
+<code>www/unstable/userguide/versions.md</code> and regenerate all documentation.
+(The branch version of the <code>www/</code> directory is only used for the offline
+user guide; we leave the documentation in <code>unstable/</code> for branches.)</p>
 
 <p>Commit the above, then tag that commit:</p>
 
 <div class="example"><pre class="prettyprint code">hg tag 1.0.0-beta1
 </pre></div>
 
-<p>Switch back to the default branch and update the version history in that branch to match the changes applied to the release branch.</p>
+<p>Switch back to the default branch and update the version history in that branch
+to match the changes applied to the release branch, then (if this release
+changes the latest stable release), update the date and version number of the
+latest stable version in <code>www/_config.yml</code>, and (if that new stable release is
+not a patch release), also update the <code>/api</code> and <code>/userguide</code> redirects in
+<code>www/web.config</code>.</p>
 
 <p>Push these changes to Google Code.</p>
 
@@ -242,11 +253,16 @@ downloads.</p>
 nuget push NodaTime.Testing.1.0.0-beta1.nupkg
 </pre></div>
 
+<h2>Updating the generated API documentation</h2>
+
+<p>Copy the generated API documentation from <code>docs/api</code> to the nodatime.org git
+repository (in <code>/$BRANCH/api/</code>) to update the version shown on the web site.</p>
+
 <h2>Announcing the release</h2>
 
 <p>Post to the mailing list, blog, etc.</p>
 
-<h2>Post-release branch updates</h2>
+<h2>Post-release updates on the default branch</h2>
 
 <p>If this release required the creation of a new branch, then the following files
 on the <em>default</em> branch should be updated to bump (at least) the minor version
@@ -261,12 +277,15 @@ number (and <code>NodaTime.Testing</code> dependency version), per the scheme ab
 
 <p>The version number string should be of the form <code>1.1.0-dev</code>.</p>
 
-<p>Additionally, the user guide source in <code>www/unstable/userguide</code> should be
-copied to <code>www/$BRANCH/userguide</code>, the Jekyll/Liquid templates should be
-adjusted to add the new branch for the &quot;API&quot; and &quot;User Guide&quot; links (and to
-point to the latest released guide; see <code>www/_config.yml</code>), and the scripts on
-the continuous build machine should be changed to copy the generated API
-documentation for the new branch.</p>
+<p>Additionally:</p>
+
+<ul>
+<li>the user guide source in <code>www/unstable/userguide</code> should be copied to
+<code>www/$BRANCH/userguide</code> (except for <code>versions.md</code>, which should come from the
+branch copy)</li>
+<li>the Jekyll/Liquid templates (<code>www/_layouts/foundation.html</code>) should be
+adjusted to add the new branch for the &quot;API&quot; and &quot;User Guide&quot; dropdowns</li>
+</ul>
 
 	</div>
 
@@ -277,15 +296,15 @@ documentation for the new branch.</p>
 				<div class="content" data-section-content>
 					<ul class="side-nav">
 						
-							<li><a href="../developer/tzdb-file-format.html" >Time zone database file format</a></li>
-						
 							<li><a href="../developer/release-process.html" class="active">Release process</a></li>
 						
 							<li><a href="../developer/roadmap.html" >Current roadmap</a></li>
 						
-							<li><a href="../developer/coding-conventions.html" >Coding conventions</a></li>
+							<li><a href="../developer/tzdb-file-format.html" >Time zone database file format</a></li>
 						
 							<li><a href="../developer/building.html" >Building and testing</a></li>
+						
+							<li><a href="../developer/coding-conventions.html" >Coding conventions</a></li>
 						
 					</ul>
 				</div>
