@@ -96,8 +96,12 @@
             </p><p>Note that Noda Time does not require that <span class="selflink">DateTimeZone</span> instances be singletons.
             As far as reasonably possible, implementations should implement <a href="http://msdn2.microsoft.com/en-us/library/ms131187" target="_blank">IEquatable<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="nu">(</span><span class="fs">&lt;'</span></span>T<span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="nu">)</span><span class="fs">&gt;</span></span></a> in such a way
             that equivalent time zones compare as equal.</p></div></div><div class="section"><div class="sectionTitle" onclick="toggleSection(this.parentNode)"><img src="../icons/collapse_all.gif" /> Thread Safety</div><div class="sectionContent">
-            All time zone implementations within Noda Time are immutable and thread-safe. See the thread safety
-            section of the user guide for more information.
+            All time zone implementations within Noda Time are immutable and thread-safe.
+            See the thread safety section of the user guide for more information.
+            It is expected that third party implementations will be immutable and thread-safe as well:
+            code within Noda Time assumes that it can hand out time zones to any thread without any concerns. If you
+            implement a non-thread-safe time zone, you will need to use it extremely carefully. We'd recommend that you
+            avoid this if possible.
             </div></div><div class="section"><div class="sectionTitle" onclick="toggleSection(this.parentNode)"><img src="../icons/collapse_all.gif" /> Inheritance Hierarchy</div><div class="sectionContent"><table cellspacing="0" cellpadding="0"><tr><td colspan="3"><a href="http://msdn2.microsoft.com/en-us/library/e5kfa45b" target="_blank">Object</a></td></tr><tr><td><img src="../icons/LastChild.gif" /></td><td colspan="2"><span class="selflink">DateTimeZone</span></td></tr><tr><td> </td><td><img src="../icons/NotLastChild.gif" /></td><td><a href="T_NodaTime_Testing_TimeZones_MultiTransitionDateTimeZone.htm">MultiTransitionDateTimeZone</a></td></tr><tr><td> </td><td><img src="../icons/NotLastChild.gif" /></td><td><a href="T_NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone.htm">SingleTransitionDateTimeZone</a></td></tr><tr><td> </td><td><img src="../icons/LastChild.gif" /></td><td><a href="T_NodaTime_TimeZones_BclDateTimeZone.htm">BclDateTimeZone</a></td></tr></table></div></div><div id="footer"><p />Send comments on this topic to
         <a id="HT_MailLink" href="mailto:noda-time%40googlegroups.com?Subject=Noda Time">Noda Time Google Groups</a><script type="text/javascript">
         var HT_mailLink = document.getElementById("HT_MailLink");
