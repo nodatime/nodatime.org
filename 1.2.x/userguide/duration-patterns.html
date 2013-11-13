@@ -129,7 +129,12 @@ for general notes on custom patterns, including characters used for escaping and
 
 <p>It&#39;s possible that a future release will be detect &quot;bad&quot; patterns and reject them more aggressively.</p>
 
-<p>Every total letter can be repeated up to 10 times, indicating the level of zero-padding applied. Total letter values are parsed for up to 10 digits. </p>
+<p>Every total letter can be repeated up to 10 times, indicating the level of zero-padding applied.
+Total letter values are parsed for up to 10 digits.
+Partial letters for hours, minutes and seconds can be repeated once or twice
+(so &#39;h&#39; and &#39;hh&#39; are valid, but &#39;hhh&#39; is not); again, this is for zero-padding, so a value of 3 hours
+and 2 minutes formatted with &#39;H:m&#39; would simply be &quot;3:2&quot;, whereas formatted with &#39;H:mm&#39; it would be &quot;3:02&quot;.
+We recommend using the repeated form in most cases.</p>
 
 <table>
   <thead>
