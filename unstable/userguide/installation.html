@@ -94,18 +94,16 @@
 	<div class="large-9 columns">
 		<h1>Installation</h1>
 		<p>Our primary distribution channel is <a href="http://nuget.org">NuGet</a> with
-two packages:</p>
+three packages:</p>
 
 <ul>
 <li><a href="http://nuget.org/packages/NodaTime">NodaTime</a></li>
 <li><a href="http://nuget.org/packages/NodaTime.Testing">NodaTime.Testing</a></li>
+<li><a href="http://nuget.org/packages/NodaTime.Serialization.JsonNet">NodaTime.Serialization.JsonNet</a></li>
 </ul>
 
 <p>Alternatively, source and binary downloads are available on the
 <a href="https://code.google.com/p/noda-time/downloads/list">project download page</a>.</p>
-
-<p>An experimental assembly to support Json.NET is also available (in source form
-only); see the <a href="serialization.html">serialization guide</a> for more information.</p>
 
 <p>See the <a href="http://nodatime.org/developer/building.html">&quot;Building and testing&quot;</a> section in the developer guide for
 instructions on building Noda Time from source.</p>
@@ -125,9 +123,17 @@ instructions on building Noda Time from source.</p>
 <li>.NET for Windows Store apps</li>
 </ul>
 
+<p>The PCL build also appears to work with Xamarin.iOS and Xamarin.Android apps, but that is implicit in the set of configured targets. This has not been extensively tested, although we do not particularly expect to see significantly different issues in Xamarin applications to those seen under Mono in general.</p>
+
 <p>Noda Time does <em>not</em> support XBox 360 or Silverlight 3, and it&#39;s unlikely that we&#39;d ever want to introduce support
 for these. (It&#39;s more likely that over time, we&#39;ll drop support for Silverlight - but not imminently, of course.)
 See the <a href="limitations.html">limitations</a> page for differences between the PCL build and the desktop build.</p>
+
+<p>The NodaTime.Serialization.JsonNet assembly is built and tested against Json.NET version 4.5.11. It&#39;s likely that any version
+of Json.NET from 4.5.0 onwards will work with Noda Time, but we&#39;d recommend using at least 4.5.11. As far as we know, there
+have been no breaking changes in Json.NET after that which affect Noda Time, but semantic versioning rules suggest that it
+would at least be <em>possible</em> for later major versions to cause issues. If you discover any such problem, please report it to the
+<a href="http://groups.google.com/group/noda-time">Noda Time mailing list</a>.</p>
 
 <h2>Package contents and getting started</h2>
 
@@ -135,6 +141,12 @@ See the <a href="limitations.html">limitations</a> page for differences between 
 for testing code which uses Noda Time. See the <a href="testing.html">testing guide</a> for more information. It is expected
 that production code will only refer to the <code>NodaTime.dll</code> assembly, and that&#39;s all that&#39;s required at execution time.
 This assembly includes the <a href="tzdb.html">TZDB database</a> as an embedded resource.</p>
+
+<p>For Json.NET serialization, the NodaTime.Serialzation.JsonNet package (containing a single assembly of the same name) is 
+required, as well as an appropriate version of Json.NET itself. There is a NuGet dependency from NodaTime.Serialization.JsonNet
+to the newtonsoft.json package, so if you&#39;re using NuGet you just need to refer to NodaTime.Serialization.JsonNet and an 
+appropriate version of Json.NET will be installed automatically. See the <a href="serialization.html">serialization guide</a> for more
+information on using Noda Time with Json.NET.</p>
 
 <p>Everything within the NodaTime assembly is in the NodaTime namespace or a &quot;child&quot; namespace. After adding a reference to
 the main assembly (either directly via the file system or with NuGet) and including an appropriate <code>using</code> directive, you should
@@ -404,7 +416,7 @@ much better to just fetch the <a href="https://code.google.com/p/noda-time/sourc
 	<footer>
 		<div class="row">
 			<div class="small-6 columns">
-                                <span>The latest version is 1.1.1, released August 30th 2013</span>
+                                <span>The latest version is 1.2.0, released November 16th 2013</span>
 			</div>
 			<div class="small-6 columns copy">
                                 &copy; <a href="http://noda-time.googlecode.com/hg/AUTHORS.txt">The Noda Time Authors</a>,
