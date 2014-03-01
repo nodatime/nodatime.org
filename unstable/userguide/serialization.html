@@ -258,9 +258,7 @@ out of the way of those who don&#39;t.</p>
 
 <h2>Third-party serialization</h2>
 
-<p>Currently <a href="http://json.net">Json.NET</a> is the only supported third party serialization framework.
-If others are introduced, we will have one serialization assembly (and NuGet package) for each type of
-serialization we support which requires separate dependencies.</p>
+<p>The Noda Time project itself has support for <a href="http://json.net">Json.NET</a>. Additionally, there is a separate project for <a href="https://github.com/ServiceStack/ServiceStack.Text/">ServiceStack.Text</a> support. Details of both are given below.</p>
 
 <h2>Json.NET: NodaTime.Serialization.JsonNet</h2>
 
@@ -296,7 +294,7 @@ for individual converters. (All converters are immutable.)</p>
 <li><code>LocalDateTime</code>: ISO-8601 date/time pattern with no time zone specifier, extended to handle fractional seconds: <code>yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss.FFFFFFF</code></li>
 <li><code>OffsetDateTime</code>: ISO-8601 date/time with offset pattern: <code>yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss;FFFFFFFo&lt;G&gt;</code></li>
 <li><code>ZonedDateTime</code>: As <code>OffsetDateTime</code>, but with a time zone ID at the end: <code>yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss;FFFFFFFo&lt;G&gt; z</code></li>
-<li><code>Interval</code>: A compound object of the form <code>{ Start: xxx, End: yyy }</code> where <code>xxx</code> and <code>yyy</code> are represented however the serializer sees fit. (Typically using the default representation above.)</li>
+<li><code>Interval</code>: A compound object of the form <code>{ Start: xxx, End: yyy }</code> where <code>xxx</code> and <code>yyy</code> are represented however the serializer sees fit. (Typically using the default representation above.) An alternative form can be specified using the <code>WithIsoIntervalConverter</code> extension method on <code>JsonSerializer</code>/<code>JsonSerializerSettings</code>.</li>
 <li><code>Offset</code>: general pattern, e.g. <code>+05</code> or <code>-03:30</code></li>
 <li><code>Period</code>: The round-trip period pattern; <code>NodaConverters.NormalizingIsoPeriodConverter</code> provides a converter using the normalizing ISO-like pattern</li>
 <li><code>Duration</code>: A duration pattern of <code>-H:mm:ss.FFFFFFF</code> (like the standard round-trip pattern, but starting with hours instead of days)</li>
@@ -309,6 +307,14 @@ for individual converters. (All converters are immutable.)</p>
 <li>Currently only ISO calendars are supported, and handling for negative and non-four-digit years will depend on the appropriate underlying pattern implementation. (Non-ISO converters are now possible, but the results would be very specific to Noda Time.)</li>
 <li>There&#39;s no indication of the time zone provider or its version in the <code>DateTimeZone</code> representation.</li>
 </ul>
+
+<h2>ServiceStack.Text: NodaTime.Serialization.ServiceStackText</h2>
+
+<p><a href="https://github.com/ServiceStack/ServiceStack.Text/">ServiceStack.Text</a> is supported via a
+<a href="https://github.com/AnthonyCarl/NodaTime.Serialization.ServiceStackText">separate project on GitHub</a>.
+There is a <a href="https://www.nuget.org/packages/NodaTime.Serialization.ServiceStackText/">NuGet package</a>, and documentation is on the project page. The package supports Noda Time version ≥ 1.2.0 and ServiceStack.Text ≥ 3.9.44.</p>
+
+<p>The JSON representation is the same as that used by Json.NET above.</p>
 
 		<ul class="pagination">
 		
