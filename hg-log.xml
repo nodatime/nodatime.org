@@ -1,13 +1,79 @@
 <?xml version="1.0"?>
 <log>
-<logentry revision="2457" node="f49f3365677a7602c42268821461dda5db395683">
+<logentry revision="2472" node="75f000d0e1441adb1199ad7833c449eb73c09b80">
 <tag>tip</tag>
+<parent revision="2471" node="c08e9bb130c82ff28ab23d71580ac85f22d46446" />
+<parent revision="2458" node="f49f3365677a7602c42268821461dda5db395683" />
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-04-15T06:35:26+01:00</date>
+<msg xml:space="preserve">Merge</msg>
+</logentry>
+<logentry revision="2471" node="c08e9bb130c82ff28ab23d71580ac85f22d46446">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-04-15T06:35:06+01:00</date>
+<msg xml:space="preserve">Note for further optimization (and simplification).</msg>
+</logentry>
+<logentry revision="2470" node="651d5f415b1cdf0f3b25f36e1c9d0b1e9b3e189d">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-04-14T22:52:55+01:00</date>
+<msg xml:space="preserve">Fix the average &quot;ticks per year&quot; based on a better approximation.</msg>
+</logentry>
+<logentry revision="2469" node="6eceeff167573fa3bcf284336287aab27a130a1c">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-04-14T22:40:52+01:00</date>
+<msg xml:space="preserve">Avoid redundant computations.</msg>
+</logentry>
+<logentry revision="2468" node="d455837515f9ca629cbee3a6baeb8e2c20cfe842">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-04-14T21:41:13+01:00</date>
+<msg xml:space="preserve">Cache the answer for &quot;is Heshvan long this year&quot; and &quot;is Kislev
+short this year&quot; as well as the elapsed number of days. At
+this point the tests are about 6 times faster than they were
+before caching. We can still do better though...</msg>
+</logentry>
+<logentry revision="2467" node="e6e618e27496d8fe5605af5a32469b6c49e17066">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-04-14T11:02:57+01:00</date>
+<msg xml:space="preserve">Make a note of room for further performance improvements.</msg>
+</logentry>
+<logentry revision="2466" node="345a2685aa352e3ba6a50c7e8f3e22d71be81f2f">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-04-14T10:44:17+01:00</date>
+<msg xml:space="preserve">Move YearStartCacheEntry to the top level, so that we can reuse it in the
+HebrewEcclesiasticalCalculator. This improves the unit test
+performance by abot 30%, but I suspect we can do a lot better with
+a bit of profiling.</msg>
+</logentry>
+<logentry revision="2465" node="05f15f733f6299d1308a463472f9b2e156bc4c5b">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-04-14T10:23:47+01:00</date>
+<msg xml:space="preserve">Remove the Noda Time versions of Func and Action. I&#39;m confident
+we&#39;re not going to lose the .NET 3.5 dependency now.</msg>
+</logentry>
+<logentry revision="2464" node="eb27089d1703a4b6870ec3e49e0a96325a2bfe72">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-04-14T10:20:02+01:00</date>
+<msg xml:space="preserve">Fix description of tests. We really need to improve the
+performance of these tests though - the Month and Day
+properties are painfully slow.</msg>
+</logentry>
+<logentry revision="2463" node="b03c0a4d7e1308b78ea2a3ca38a75499e2529fc4">
+<parent revision="2452" node="2b3ff84d284166846d624802785cbeecd013bdaf" />
+<parent revision="2461" node="e27dc171074b55280516e24a851b97a0d7561433" />
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-04-14T09:59:25+01:00</date>
+<msg xml:space="preserve">Merge Hebrew Calendar branch into default branch, as I&#39;m 99% sure we&#39;re going
+in the right direction, and will want to ship this in 1.3.</msg>
+</logentry>
+<logentry revision="2458" node="f49f3365677a7602c42268821461dda5db395683">
+<parent revision="2456" node="46bdb6813d77cee170406eb202b1c3edd9363cde" />
 <author email="malcolm.rowe@gmail.com">Malcolm Rowe</author>
 <date>2014-04-13T11:58:37+01:00</date>
 <msg xml:space="preserve">Add cross-references from LocalDate.At()/LocalTime.On() to the operator+
 versions. Also fix a typo.</msg>
 </logentry>
 <logentry revision="2456" node="46bdb6813d77cee170406eb202b1c3edd9363cde">
+<parent revision="2454" node="a9c5b66ee3cd9e6139455a94f4457a664af3e0e9" />
 <author email="malcolm.rowe@gmail.com">Malcolm Rowe</author>
 <date>2014-04-13T11:53:19+01:00</date>
 <msg xml:space="preserve">Fix a documentation typo.
@@ -15,14 +81,13 @@ versions. Also fix a typo.</msg>
 (I&#39;m still not entirely happy with the description, but it&#39;s better than
 what we had before.)</msg>
 </logentry>
-<logentry revision="2455" node="a9c5b66ee3cd9e6139455a94f4457a664af3e0e9">
-<parent revision="2453" node="2b3ff84d284166846d624802785cbeecd013bdaf" />
+<logentry revision="2454" node="a9c5b66ee3cd9e6139455a94f4457a664af3e0e9">
+<parent revision="2452" node="2b3ff84d284166846d624802785cbeecd013bdaf" />
 <author email="malcolm.rowe@gmail.com">Malcolm Rowe</author>
 <date>2014-04-13T11:46:11+01:00</date>
 <msg xml:space="preserve">Update the version history for 1.3.0-dev so far.</msg>
 </logentry>
-<logentry revision="2453" node="2b3ff84d284166846d624802785cbeecd013bdaf">
-<parent revision="2451" node="995f2844508ad34b13d162735a2cb2447206e6fb" />
+<logentry revision="2452" node="2b3ff84d284166846d624802785cbeecd013bdaf">
 <author email="skeet@pobox.com">Jon Skeet</author>
 <date>2014-04-13T08:11:31+01:00</date>
 <msg xml:space="preserve">Rename PersianYearMonthDayCalendar to PersianYearMonthDayCalculator.</msg>
