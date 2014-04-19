@@ -135,6 +135,16 @@ change, but it does affect how you <a href="tzdb.html">build and use a custom ve
 still lacking in some areas: some other types lack flexible formatting, and
 we may want to optimize further at some point too.</p>
 
+<p>Additionally, all our text localization resources (day and month names) come from the .NET
+framework itself. That has some significant limitations, and makes Noda Time more reliant
+on <code>CultureInfo</code> than is ideal. <a href="http://cldr.unicode.org">CLDR</a> more information,
+which should allow for features such as ordinal day numbers (&quot;1st&quot;, &quot;2nd&quot;, &quot;3rd&quot;) and
+a broader set of supported calendar/culture combinations (such as English names for the
+Hebrew calendar months).</p>
+
+<p>Speaking of the Hebrew calendar, initial support for the calendar has been introduced
+in 1.3.0, but month names are <em>not</em> properly supported currently. See <a href="localdate-patterns.html">local date formatting</a> for more details of this limitation.</p>
+
 <h1>Better resource handling</h1>
 
 <p>We&#39;d like to be able to bundle appropriate patterns (and other
