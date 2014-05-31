@@ -292,7 +292,10 @@ for individual converters. (All converters are immutable.)</p>
 <li><code>LocalDate</code>: ISO-8601 date pattern: <code>yyyy&#39;-&#39;MM&#39;-&#39;dd</code></li>
 <li><code>LocalTime</code>: ISO-8601 time pattern, extended to handle fractional seconds: <code>HH&#39;:&#39;mm&#39;:&#39;ss.FFFFFFF</code></li>
 <li><code>LocalDateTime</code>: ISO-8601 date/time pattern with no time zone specifier, extended to handle fractional seconds: <code>yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss.FFFFFFF</code></li>
-<li><code>OffsetDateTime</code>: ISO-8601 date/time with offset pattern: <code>yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss;FFFFFFFo&lt;G&gt;</code></li>
+<li><code>OffsetDateTime</code>: ISO-8601 date/time with offset pattern:
+<code>yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss;FFFFFFFo&lt;HH:mm&gt;</code>; note that the
+offset always includes hours and minutes, to conform with ECMA-262.
+It does not support round-tripping offsets with sub-minute components.</li>
 <li><code>ZonedDateTime</code>: As <code>OffsetDateTime</code>, but with a time zone ID at the end: <code>yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss;FFFFFFFo&lt;G&gt; z</code></li>
 <li><code>Interval</code>: A compound object of the form <code>{ Start: xxx, End: yyy }</code> where <code>xxx</code> and <code>yyy</code> are represented however the serializer sees fit. (Typically using the default representation above.) An alternative form can be specified using the <code>WithIsoIntervalConverter</code> extension method on <code>JsonSerializer</code>/<code>JsonSerializerSettings</code>.</li>
 <li><code>Offset</code>: general pattern, e.g. <code>+05</code> or <code>-03:30</code></li>
