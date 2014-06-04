@@ -103,9 +103,10 @@ which version of Noda Time you&#39;re using. This documentation tells you how to
 so.</p>
 
 <p>Noda Time&#39;s main library doesn&#39;t read tzdb text files directly - it uses a binary form which is the output of <code>NodaTime.TzdbCompiler</code> - another
-part of the Noda Time project. This saves both space (the 2012j version takes about 110K when compiled, or about 690K in text form) and
+part of the Noda Time project. This saves both space (the 2013h version takes about 125K when compiled) and
 time, as the binary form contains various precomputed transitions. The file also contains a mapping from Windows time zone names
-to tzdb time zone IDs, primarily so that Noda Time can map the local time zone reported by <code>TimeZoneInfo</code> to a tzdb time zone.</p>
+to tzdb time zone IDs, primarily so that Noda Time can map the local time zone reported by <code>TimeZoneInfo</code> to a tzdb time zone,
+and (from Noda Time 1.1 onwards) TZDB location data.</p>
 
 <p>In Noda Time 1.0, the data was stored in .NET resources. This became awkward in a number of ways, not least because of
 the lack of full resource support in Portable Class Libraries. In 1.1, a new file format was introduced, along with methods
@@ -114,7 +115,18 @@ format will be removed in Noda Time 2.0.</p>
 
 <p>For more details on the exact formats, please see the <a href="http://nodatime.org/developer/tzdb-file-format.html">documentation in the developer guide</a>.</p>
 
-<h1>Creating and using a &quot;NodaZoneData&quot; file (1.1+ format)</h1>
+<h1>Obtaining and using a &quot;NodaZoneData&quot; file (1.1+ format)</h1>
+
+<h2>Fetching a NodaZoneData file from nodatime.org</h2>
+
+<p>The http://nodatime.org/tzdb directory contains NodaZoneData files
+from 2013h onwards. These can be downloaded and used with any Noda
+Time 1.1+ binary, so you don&#39;t need to update to the latest version
+of Noda Time in order to get the latest version of TZDB, and you
+don&#39;t have to build the file yourself either.</p>
+
+<p>The http://nodatime.org/tzdb/latest.txt file contains a URL to the
+latest version. This may be used for automation.</p>
 
 <h2>Building a NodaZoneData file</h2>
 
@@ -123,7 +135,7 @@ format will be removed in Noda Time 2.0.</p>
 <li>Unpack the tar.gz file - you may need to download extra tools for this; <a href="http://www.7-zip.org/">7-Zip</a> can cope with .tar.gz
 files for example, and I&#39;d expect other zip tools to do so too. You should end up with a directory containing files such
 as &quot;america&quot;, &quot;africa&quot;, &quot;etcetera&quot;.</li>
-<li>Ideally, rename the directory to match the version number, e.g. &quot;2012j&quot;. The directory name will be used in the version ID
+<li>Ideally, rename the directory to match the version number, e.g. &quot;2013h&quot;. The directory name will be used in the version ID
 reported by the time zone provider later.</li>
 <li>Find the Windows mapping file you want to use. Currently, I&#39;d recommend using the version supplied with the Noda Time source
 in NodaTime.TzdbCompiler\Data\winmap in a file beginning &quot;windowsZones&quot;. This file comes from <a href="http://cldr.unicode.org">CLDR</a>.</li>
@@ -132,17 +144,14 @@ in NodaTime.TzdbCompiler\Data\winmap in a file beginning &quot;windowsZones&quot
 <div class="example"><pre class="prettyprint code">path\to\NodaTime.TzdbCompiler.exe -s path\to\tzdb-files -w path\to\windowsMapping-file.xml -o path\to\output.nzd -t NodaZoneData
 </pre></div>
 
-<p>For example, rebuilding the 2012j data from Noda Time itself, starting in the NodaTime.TzdbCompiler directory:</p>
+<p>For example, rebuilding the 2013h data from Noda Time itself, starting in the NodaTime.TzdbCompiler directory:</p>
 
-<div class="example"><pre class="prettyprint code">bin\Release\NodaTime.TzdbCompiler -s Data\2012j -w Data\winmap\windowsZones-21.xml -o tzdb-2012j.nzd -t NodaZoneData
+<div class="example"><pre class="prettyprint code">bin\Release\NodaTime.TzdbCompiler -s Data\2013h -w Data\winmap\windowsZones-23.xml -o tzdb-2013h.nzd -t NodaZoneData
 </pre></div></li>
 </ol>
 
 <p>The NodaZoneData format is the default output format, so you can omit the final <code>-t NodaZoneData</code> if you wish; you may prefer
 to be explicit for clarity.</p>
-
-<p>As an alternative, if there&#39;s enough demand, we may well provide pre-built files in the Noda Time project download section.
-It&#39;s worth knowing the above steps, however, in case you wish to use a cut-down set of time zones for resource-constrained environments.</p>
 
 <h2>Using a NodaZoneData file</h2>
 
@@ -170,7 +179,7 @@ public class CustomTzdb
     {
         IDateTimeZoneProvider provider;
         // Or use Assembly.GetManifestResourceStream for an embedded file
-        using (var stream = File.OpenRead(&quot;tzdb-2012j.nzd&quot;))
+        using (var stream = File.OpenRead(&quot;tzdb-2013h.nzd&quot;))
         {
             var source = TzdbDateTimeZoneSource.FromStream(stream);
             provider = new DateTimeZoneCache(source);
@@ -194,7 +203,7 @@ system, or an embedded resource file within one of your assemblies. You certainl
 <li>Unpack the tar.gz file - you may need to download extra tools for this; <a href="http://www.7-zip.org/">7-Zip</a> can cope with .tar.gz
 files for example, and I&#39;d expect other zip tools to do so too. You should end up with a directory containing files such
 as &quot;america&quot;, &quot;africa&quot;, &quot;etcetera&quot;.</li>
-<li>Ideally, rename the directory to match the version number, e.g. &quot;2012j&quot;. The directory name will be used in the version ID
+<li>Ideally, rename the directory to match the version number, e.g. &quot;2013h&quot;. The directory name will be used in the version ID
 reported by the time zone provider later.</li>
 <li>Find the Windows mapping file you want to use. Currently, I&#39;d recommend using the version supplied with the Noda Time source
 in NodaTime.TzdbCompiler\Data\winmap in a file beginning &quot;windowsZones&quot;. This file comes from <a href="http://cldr.unicode.org">CLDR</a>.</li>
@@ -203,9 +212,9 @@ in NodaTime.TzdbCompiler\Data\winmap in a file beginning &quot;windowsZones&quot
 <div class="example"><pre class="prettyprint code">path\to\NodaTime.TzdbCompiler.exe -s path\to\tzdb-files -w path\to\windowsMapping-file.xml -o path\to\output.resources -t Resource
 </pre></div>
 
-<p>For example, rebuilding the 2012j data from Noda Time itself, starting in the NodaTime.TzdbCompiler directory:</p>
+<p>For example, rebuilding the 2013h data from Noda Time itself, starting in the NodaTime.TzdbCompiler directory:</p>
 
-<div class="example"><pre class="prettyprint code">bin\Release\NodaTime.TzdbCompiler -s Data\2012j -w Data\winmap\windowsZones-21.xml -o tzdb-2012j.resources -t Resource
+<div class="example"><pre class="prettyprint code">bin\Release\NodaTime.TzdbCompiler -s Data\2013h -w Data\winmap\windowsZones-23.xml -o tzdb-2013h.resources -t Resource
 </pre></div></li>
 </ol>
 
@@ -236,7 +245,7 @@ public class CustomTzdb
 {
     static void Main()
     {
-        var resourceSet = new ResourceSet(&quot;tzdb-2012j.resources&quot;);
+        var resourceSet = new ResourceSet(&quot;tzdb-2013h.resources&quot;);
         var source = new TzdbDateTimeZoneSource(resourceSet);
         IDateTimeZoneProvider provider = new DateTimeZoneCache(source);
         Console.WriteLine(provider.SourceVersionId);
