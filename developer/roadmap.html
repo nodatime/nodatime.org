@@ -100,39 +100,52 @@ Noda Time&#39;s <a href="http://nodatime.org/userguide/limitations.html">current
 roadmap, then <em>please</em> either raise an issue or post on the
 <a href="http://groups.google.com/group/noda-time">mailing list</a>.</p>
 
-<p>This roadmap was last updated on <strong>2014-04-21</strong>.</p>
+<p>This roadmap was last updated on <strong>2014-06-16</strong>.</p>
 
 <ul>
 <li><p>1.3</p>
 
 <ul>
 <li>Use of ReSharper annotations to allow better code analysis, both of Noda Time code itself and code using Noda Time</li>
-<li>Provide more information from CLDR for time zone information
-(e.g. sample cities to display to users)</li>
-<li>Enable embedding Noda Time in SQLCLR</li>
 <li>Support for the Persian (solar Hijri) calendar</li>
 <li>Experimental support for the Hebrew calendar</li>
 </ul></li>
-<li><p>1.4</p>
+<li><p>2.0</p>
 
 <ul>
-<li>Support month name parsing/formatting for the Hebrew calendar (support leap months)</li>
-<li>Fix any issues with the previously-experimental Hebrew calendar calculations (e.g. what it means to add a year)</li>
-<li>Use CLDR for some other resources (month/day names, and possibly date/time formats, via new pattern classes)</li>
-<li>Possibly support Ethiopian and Um Al Qura calendars</li>
-<li>Address the issues of values going outside the supported range.</li>
-<li>Introduce new extension methods to the Testing assembly, and possibly make some existing methods in the main
-library into extension methods (e.g. in BclConversions).</li>
+<li>Remove all obsolete API members</li>
+<li>Remove support for the legacy resource-based time zone data format</li>
+<li>Make all public static fields properties</li>
+<li>Revisit all ordering and equality comparison operations. (Many may be removed, others may
+be exposed via specific comparers.)</li>
+<li>Change granularity to be nanoseconds</li>
+<li>Change internal representations (almost entirely hidden from the API, but will have
+performance impact - probably in both directions)</li>
+<li>Introduce &quot;adjusters&quot; - functions such as &quot;end of month&quot;, &quot;next Wednesday&quot;,
+&quot;truncate to second&quot; which can be expressed in a unified API. Similar specific methods
+in the API may be removed.</li>
+<li>Fix handling of all extreme values, with well-understood limits, no &quot;beginning of time&quot;
+values, etc.</li>
+<li>Introduce new extension methods in Testing assembly, and make some existing methods
+extension methods. (We&#39;re pretty sure we don&#39;t need to support .NET 2.0, ever...)</li>
+<li>Rename some methods which map cleanly to those in the BCL.</li>
+<li>Consider adding a time zone to a clock, making it easier to express &quot;now in the local time 
+zone&quot; in one go.</li>
 </ul></li>
-</ul>
-
-<p>Features currently scheduled for removal or breaking change in 2.0:</p>
+<li><p>Unscheduled features and issues which we hope to address at some point:</p>
 
 <ul>
-<li>all obsolete API members</li>
-<li>support for the legacy resource-based time zone data format</li>
-<li>revisit all ordering and equality comparison operations, quite possibly
- rewriting them to be calendar-insensitive (and zone-insensitive in the case of ZonedDateTime)</li>
+<li>Support month name parsing/formatting for the Hebrew calendar using <code>CultureInfo</code></li>
+<li>Ethopian and Um Al Qura calendars</li>
+<li>Enable embedding Noda Time in SQLCLR</li>
+<li>More code analysis using Roslyn (e.g. check that all non-nullable parameters are validated)</li>
+</ul></li>
+<li><p>Separate CLDR project</p>
+
+<ul>
+<li>Formatting (probably not parsing) using CLDR data for month names, Unicode pattern symbols, possibly non-ASCII numbers.</li>
+<li>CLDR time zone information (e.g. sample cities to display to users)</li>
+</ul></li>
 </ul>
 
 	</div>
