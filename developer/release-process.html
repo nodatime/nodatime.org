@@ -157,11 +157,45 @@ used as revision specifiers, so it is important that they do not collide.</p>
 remove the <code>&lt;Preliminary/&gt;</code> tag from the Sandcastle project file; see e.g.
 <a href="http://code.google.com/p/noda-time/issues/detail?id=102">issue 102</a>.</p>
 
+<h3>Post-branch updates on the default branch</h3>
+
+<p>If this release required the creation of a new branch, then the following files
+on the <em>default</em> branch should be updated to bump (at least) the minor version
+number (and <code>NodaTime.Testing</code> / <code>NodaTime.Serialization.JsonNet</code> dependency
+version), per the following scheme:</p>
+
+<p>Suppose we were building version 1.2.3-beta4, then:</p>
+
+<blockquote>
+<ul>
+<li>In the NuGet package specs, <code>&lt;version&gt;</code> should contain the version number
+(&#39;1.2.3-beta4&#39;). The <code>&lt;dependency&gt;</code> element in <code>NodaTime.Testing.nuspec</code>
+should reference the <em>initial release</em> for the major/minor version
+(i.e. &#39;1.2.0&#39;) for stable versions, or the full version for
+pre-release versions.</li>
+<li>In the AssemblyInfo files, <code>AssemblyVersion</code> should be set to just the
+major/minor version (&#39;1.2&#39;). <code>AssemblyFileVersion</code> should be set to the
+major, minor, and patch version (&#39;1.2.3&#39;), and <code>AssemblyInformationalVersion</code>
+should be set to the version number (&#39;1.2.3-beta4&#39;). (See <a href="http://stackoverflow.com/a/65062">this Stack
+Overflow post</a> for more information about how these are
+used.)</li>
+</ul>
+</blockquote>
+
+<p>Update the version number by building the tools solution and then running the <code>SetVersion</code> tool:</p>
+
+<div class="example"><pre class="prettyprint code">msbuild src\NodaTime-Tools.sln
+src\NodaTime.Tools.SetVersion\bin\debug\SetVersion 1.1.0-dev
+</pre></div>
+
+<p>The version number string should be of the form <code>1.1.0-dev</code>.</p>
+
 <h2>Making the release</h2>
 
 <p>Switch to the correct branch (e.g. <code>1.0.x</code>).</p>
 
-<p>Update the version number by building the tools solution and then running the <code>SetVersion</code> tool:</p>
+<p>Update the version number according to the scheme above by building the tools
+solution and then running the <code>SetVersion</code> tool:</p>
 
 <div class="example"><pre class="prettyprint code">msbuild src\NodaTime-Tools.sln
 src\NodaTime.Tools.SetVersion\bin\debug\SetVersion 1.2.3-beta4
@@ -178,23 +212,6 @@ version number you are building:</p>
 <li><code>src/NodaTime/NodaTime.nuspec</code></li>
 <li><code>src/NodaTime.Serialization.JsonNet/NodaTime.Serialization.JsonNet.nuspec</code></li>
 <li><code>src/NodaTime.Testing/NodaTime.Testing.nuspec</code></li>
-</ul>
-
-<p>The various versions will be set according to the following scheme. Suppose
-we were building version 1.2.3-beta4, then:</p>
-
-<ul>
-<li>In the NuGet package specs, <code>&lt;version&gt;</code> should contain the version number
-(&#39;1.2.3-beta4&#39;). The <code>&lt;dependency&gt;</code> element in <code>NodaTime.Testing.nuspec</code>
-should reference the <em>initial release</em> for the major/minor version
-(i.e. &#39;1.2.0&#39;) for stable versions, or the full version for
-pre-release versions.</li>
-<li>In the AssemblyInfo files, <code>AssemblyVersion</code> should be set to just the
-major/minor version (&#39;1.2&#39;). <code>AssemblyFileVersion</code> should be set to the
-major, minor, and patch version (&#39;1.2.3&#39;), and <code>AssemblyInformationalVersion</code>
-should be set to the version number (&#39;1.2.3-beta4&#39;). (See <a href="http://stackoverflow.com/a/65062">this Stack
-Overflow post</a> for more information about how these are
-used.)</li>
 </ul>
 </blockquote>
 
@@ -223,6 +240,8 @@ not a patch release), also update the <code>/api</code> and <code>/userguide</co
 need to worry about ignored files and local changes making their way into
 the archives.</p>
 
+<p>Copy the Noda Time private key into the top-level directory.</p>
+
 <p>Use the <code>buildrelease</code> batch file to build all the release artifacts:</p>
 
 <div class="example"><pre class="prettyprint code">buildrelease 1.0.0-beta1
@@ -247,8 +266,8 @@ control repository ; typically Jon does this on Bagpuss.)</p>
 <p>Edit the <code>www/downloads/index.html</code> file to include the new downloads,
 including SHA-1 hash.</p>
 
-<p>Update the version number and the links on the front page to point to the new
-downloads.</p>
+<p>If this is a stable release, update the version number and the links on the
+front page to point to the new downloads.</p>
 
 <p>Upload the three NuGet packages to nuget.org:</p>
 
@@ -268,22 +287,8 @@ repository (in <code>/$BRANCH/api/</code>) to update the version shown on the we
 
 <h2>Post-release updates on the default branch</h2>
 
-<p>If this release required the creation of a new branch, then the following files
-on the <em>default</em> branch should be updated to bump (at least) the minor version
-number (and <code>NodaTime.Testing</code> / <code>NodaTime.Serialization.JsonNet</code> dependency version), per the scheme above:</p>
-
-<ul>
-<li><code>src/NodaTime/Properties/AssemblyInfo.cs</code></li>
-<li><code>src/NodaTime.Serialization.JsonNet/Properties/AssemblyInfo.cs</code></li>
-<li><code>src/NodaTime.Testing/Properties/AssemblyInfo.cs</code></li>
-<li><code>src/NodaTime/NodaTime.nuspec</code></li>
-<li><code>src/NodaTime.Serialization.JsonNet/NodaTime.Serialization.JsonNet.nuspec</code></li>
-<li><code>src/NodaTime.Testing/NodaTime.Testing.nuspec</code></li>
-</ul>
-
-<p>The version number string should be of the form <code>1.1.0-dev</code>.</p>
-
-<p>Additionally:</p>
+<p>If this release required the creation of a new branch, then the following
+updates need to be made to the default branch for the website:</p>
 
 <ul>
 <li>the user guide source in <code>www/unstable/userguide</code> should be copied to
