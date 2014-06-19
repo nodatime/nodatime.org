@@ -94,17 +94,19 @@
 	<div class="large-9 columns">
 		<h1>Trivia</h1>
 		<p>The history of time contains many amusing quirks. In many cases, Noda Time
-doesn&#39;t make any attempt to support the oddity described below. In
+doesn&#39;t make any attempt to support the oddities described below. In
 particular, Noda Time takes an idealized view of calendar systems, ignoring
-changes specific countries made to which calendar they used when. Still,
-it&#39;s fun to think about what&#39;s happened in history, if only to persuade you
-that it would be much worse if Noda Time <em>did</em> try to support them...</p>
+(for example) the fact that countries have switched between calendar systems
+(and sometimes <em>invented</em> calendar systems) at various points in recent
+history. Still, it&#39;s fun to think about what&#39;s happened over time, if only
+to persuade you that it would be much worse if Noda Time <em>did</em> try to
+support them...</p>
 
 <p>More will be added as I discover them.</p>
 
 <h2>The Curious Disappearance of December 30th (Samoa)</h2>
 
-<p>In 2011, Samoa (time zone ID Pacific/Apia) decided to change their UTC
+<p>In 2011, Samoa (time zone ID <code>Pacific/Apia</code>) decided to change their UTC
 offset from UTC-10 to UTC+14. This means they went from being the
 western-most time zone (the further behind UTC) to the eastern-most time
 zone (the furthest ahead of UTC). This took place at midnight local time at
@@ -119,8 +121,8 @@ was:</p>
 <li>2011-12-31T00:00:02+14</li>
 </ul>
 
-<p>As an act, it makes a certain amount of sense: Samoa does a lot of trade
-with Australia and New Zealand, and I can imagine it was a pain being a day
+<p>As an act, it made a certain amount of sense: Samoa does a lot of trade with
+Australia and New Zealand, and I can imagine it was a pain being a day
 behind them most of the time. Additionally, this means that hotels in Samoa
 can offer the experience of being &quot;the first to experience the New Year&quot; for
 tourists who are particularly keen on that sort of thing.</p>
@@ -131,11 +133,12 @@ which made December 30th not occur at all. I suspect that a transition at
 followed by a day lasting twenty one hours. While this is mostly a problem
 for computers, I would expect many automated systems to get thoroughly
 confused by a day not happening at all. (The counter-argument is that it&#39;s
-possible that few automated systems would cope with two significantly
+possible that a few automated systems would cope with two significantly
 shorter days, too...)</p>
 
-<p>Pacific/Apia isn&#39;t the only time zone to have made this sort of transition,
-although it is the largest population to do so, as far as I&#39;m aware.</p>
+<p><code>Pacific/Apia</code> isn&#39;t the only time zone to have made this sort of
+transition, although it is the largest population to do so, as far as I&#39;m
+aware.</p>
 
 <p><strong>Noda Time support:</strong> fully supported!
 <code>DateTimeZoneProviders.Tzdb[&quot;Pacific/Apia&quot;].AtStartOfDay(new LocalDate(2011,
@@ -156,20 +159,19 @@ divisible by 100, except that what it&#39;s also divisible by 400 it <em>is</em>
 year again. This system was devised to keep the length of a calendar year
 very close to the solar year. It&#39;s more accurate than the Julian calendar
 system, which simply has every 4th year being a leap year. This is a little
-bit like 3 being a very bad approximation for pi, but 22/7 being more
-complicated by more accurate. In this case, it means that there are more
-leap years in the Julian calendar system than in the Gregorian calendar
-system: if you run the two side-by-side from the same start date, the
-Gregorian system will gradually get further ahead of the Julian system by
-including fewer February 29th days.</p>
+bit like 3 being a very bad approximation for π, while 22/7 is more accurate
+but also more complicated. In this case, it means that there are more leap
+years in the Julian calendar system than in the Gregorian calendar system:
+if you run the two side-by-side from the same start date, the Gregorian
+system will gradually get further ahead of the Julian system by including
+fewer February 29th days.</p>
 
 <p>Many countries switched from the Julian calendar system to the Gregorian
-calendar system in the 18th century. They did so at varying points of time,
-but most made the change by skipping ten or eleven days to &quot;catch up&quot; with
-where the Gregorian calendar would be if the two calendars had both started
-with the same date at some point in the 3rd century AD. For example, Great
-Britain made the change in September 1752. September 2nd was followed by
-September 14th.</p>
+calendar system in the 16th and 18th centuries.  Most made this change by
+skipping ten or eleven days to &quot;catch up&quot; with where the Gregorian calendar
+would be if the two calendars had both started with the same date at some
+point in the 3rd century AD. For example, when Great Britain made the change
+in September 1752, September 2nd was followed by September 14th.</p>
 
 <p>Sweden did things a little differently. Rather than skipping lots of days
 all in one go, they decided to skip February 29th altogether from 1700,
@@ -192,11 +194,12 @@ leap year in 1704 and 1708.</p>
 
 <p>At this point the Swedes apparently realized they were in a crazy situation,
 and decided to go back to the Julian calendar. In order to do that, they had
-to insert an extra leap day into their calendar. They could have done so in
-a regular year (1710 for example), just making that an extra leap year - but
-no, they decided to make 1712 a <em>double</em> leap year, by giving February 30
-days. Sweden made the final change to the Gregorian calendar in the &quot;normal&quot;
-way of skipping 11 days, in February 1753.</p>
+to to insert the leap year they&#39;d missed in 1700 back into their calendar.
+They could have done so in a regular year (1710 for example), just making
+that an extra leap year - but no, they decided to make 1712 a <em>double</em> leap
+year, by giving February 30 days. Sweden made the final change to the
+Gregorian calendar in the &quot;normal&quot; way of skipping 11 days, in February
+1753.</p>
 
 <p>So there we have it: February 30th was only a valid date once, and in one
 place: 1712 in Sweden.</p>
@@ -219,23 +222,23 @@ UTC<sup>1</sup>. Those who are aware that UTC itself was only introduced in
 it was midnight on January 1st 1970 at Greenwich, expecting that Greenwich
 would be using GMT (Greenwich Mean Time) at the epoch.</p>
 
-<p>Unfortunately that&#39;s incorrect. At the Unix epoch, the time in London was
-observing British Standard Time, as introduced in 1968. During British
-Standard Time, the United Kingdom did not observe daylight saving, but
-instead used UTC+1 for the entire period, until it was scrapped in 1971.</p>
+<p>Unfortunately, that&#39;s incorrect. At the Unix epoch, the time in London was
+observing British <em>Standard</em> Time, which had been introduced in 1968. During
+British Standard Time, the United Kingdom did not observe daylight saving,
+but instead used UTC+1 for the entire period, until it was scrapped in 1971.</p>
 
-<p>Thus there are two time zone abbreviations of &quot;BST&quot; - &quot;British Standard
-Time&quot; and the rather more common &quot;British Summer Time&quot;. Both have an overall
-offset from UTC of 1 hour, but British Standard Time  has a &quot;standard&quot;
-offset of 1 hour from UTC with no daylight saving component, and British
-Summer Time has a standard offset of 0 hours from UTC, but one hour of
-daylight saving time.</p>
+<p>There are thus two British time zones abbreviated to &quot;BST&quot; - &quot;British
+Standard Time&quot; and the rather more common &quot;British Summer Time&quot;. Both have
+an overall offset from UTC of 1 hour, but British Standard Time  has a
+&quot;standard&quot; offset of 1 hour from UTC with no daylight saving component, and
+British Summer Time has a standard offset of 0 hours from UTC, but one hour
+of daylight saving time.</p>
 
-<p>The Java standard library has a <a href="http://developer.java.sun.com/developer/bugParade/bugs/4832236.html">known
-bug</a> on
-this matter. When formatting the Unix epoch in the Europe/London time zone,
-it correctly gives output of 1am, but incorrectly states that the time zone
-abbreviation is GMT.</p>
+<p>The Java standard library has a <a href="http://bugs.java.com/view_bug.do?bug_id=4832236">known
+bug</a> on this matter. When
+formatting the Unix epoch in the <code>Europe/London</code> time zone, it correctly
+gives output of 1am, but incorrectly states that the time zone abbreviation
+is GMT.</p>
 
 <p><strong>Noda Time support:</strong> Correct, but only by virtue of writing this article.
 Until late January 2014, the time zone data compiler considered a time zone
@@ -318,9 +321,9 @@ remained ever since.</p>
 
 <p>All of this means that when you see a date in history, you need to be very
 careful before you compare it with another date. To avoid <em>too</em> much
-confusion, many historical dates are given using the Julian calendar which
-was being observed at the time (depending on the place, of course) but using
-the &quot;New Style&quot; of year numbering. For example, <a href="http://en.wikipedia.org/wiki/Henry_VIII_of_England">Henry
+confusion, many historical dates are given using the Julian calendar, which
+was being observed at the time (depending on the place, of course), while
+using the &quot;New Style&quot; of year numbering. For example, <a href="http://en.wikipedia.org/wiki/Henry_VIII_of_England">Henry
 VIII</a> died on January
 28th 1547 (New Style) or January 28th 1546 (Old Style). In my experience,
 some web pages explicitly call out which numbering style they&#39;re using,
@@ -341,16 +344,16 @@ anyway.</p>
 <li><a href="http://en.wikipedia.org/wiki/Calendar_(New_Style)_Act_1750">Wikipedia: Calender (New Style) act</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Old_Style_and_New_Style_dates">Wikipedia: Old and New Style
 dates</a></li>
-<li><a href="https://plus.google.com/u/0/+MalcolmRowe/posts/Bf5swesMPUV">Malcolm Rowe&#39;s write-up in
+<li><a href="https://plus.google.com/+MalcolmRowe/posts/Bf5swesMPUV">Malcolm Rowe&#39;s write-up in
 Google+</a></li>
 </ul>
 
 <p><sup>1</sup> When I say &quot;we&quot; here, I really mean &quot;Malcolm&quot; who did most of
 the work on understanding this issue based on Wikipedia and primary
 sources...
-<sup>2</sup> Possibly 1800, possibly 1801 - we haven&#39;t found details yet, and
-it would depend on whether the Treasury was considering the <em>tax</em> year for
-1800, or the <em>calendar</em> year for 1800 to be a leap year.</p>
+<sup>2</sup> Possibly 1800, possibly 1801 - we haven&#39;t found
+details yet, and it would depend on whether the Treasury was considering the
+<em>tax</em> year for 1800, or the <em>calendar</em> year for 1800 to be a leap year.</p>
 
 <h2>Warning! Warning! This time zone is changing...</h2>
 
@@ -379,7 +382,7 @@ confusion in their wake.</p>
 <p><strong>Noda Time support:</strong> Well, there are five steps which need to occur
 between a change being announced and Noda Time supporting it in production:</p>
 
-<ul>
+<ol>
 <li>The change is announced in a suitably credible manner</li>
 <li>The change is committed within the TZDB source repository</li>
 <li>The TZDB maintainers release a new version</li>
@@ -387,14 +390,14 @@ between a change being announced and Noda Time supporting it in production:</p>
 file and push it to the Noda Time web site</li>
 <li>The system in question pulls the latest version from the web site and
 <a href="tzdb.html">starts using it</a></li>
-</ul>
+</ol>
 
 <p>As you can see, this depends on a lot of different people, so some delay is
 inevitable. However, if your application is configured to poll the web site
 reasonably often (once a day, for example) you&#39;re likely to see changes
-applied within a week of them being announced. That&#39;s considerably quicker
-than Microsoft typically deploys changes to the <em>Windows</em> time zone
-database...</p>
+applied within a week of them being announced (and of course, you can always
+build the NZD file yourself). That&#39;s considerably quicker than Microsoft
+typically deploys changes to the <em>Windows</em> time zone database...</p>
 
 <p><strong>Read more:</strong></p>
 
