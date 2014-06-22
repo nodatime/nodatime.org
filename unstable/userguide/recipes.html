@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
-	<title>Threading</title>
+	<title>Recipes</title>
   
 	<!-- foundation default -->
   	<link rel="stylesheet" href="../../css/foundation.css" />
@@ -92,63 +92,29 @@
 
 <div class="row">
 	<div class="large-9 columns">
-		<h1>Threading</h1>
-		<p>Each type in the public API has its thread safety documented briefly, but that documentation usually
-refers to this entry in the user guide, too. Readers are advised to read Eric Lippert&#39;s blog post,
-<a href="http://blogs.msdn.com/b/ericlippert/archive/2009/10/19/what-is-this-thing-you-call-thread-safe.aspx">&quot;What is this thing you call thread safe?&quot;</a> in addition to this guide. This page aims for
-the <em>spirit</em> of a useful guide to the thread safety of Noda Time, but if it leaves your questions unanswered,
-please feel free to request clarification on the <a href="http://groups.google.com/group/noda-time">mailing list</a>.</p>
+		<h1>Recipes</h1>
+		<p>New users can sometimes be a little overwhelmed by Noda Time, and want examples. This
+page collects a lot of them in one place. A lot of these are small, because once you
+know what operation you&#39;re trying to achieve, Noda Time makes it very easy to express
+that... but it can still be tricky finding that if you&#39;re new to the API.</p>
 
-<p>Many of the types in Noda Time are immutable to a greater or lesser extent (again, Eric Lippert&#39;s blog provides
-a <a href="http://blogs.msdn.com/b/ericlippert/archive/tags/immutability/">rich seam of information on the topic of mutability</a>). When used carefully, this allows values
-of these types to be accessed safely between multiple threads - and the degree of care required is <em>reasonably</em> small in
-most cases.</p>
+<p>These examples typically use explicitly-typed local variables so that you can tell
+all the types involved easily. You can use implicitly-typed local variables (<code>var</code>)
+in your own code, of course. All examples assume a <code>using</code> directive of <code>using NodaTime;</code>.</p>
 
-<h2>Immutable reference types</h2>
+<p>TODO: more examples, and use C# Pad...</p>
 
-<p>These are the simplest to document, and include all time zone and calendar implementations, the time zone providers,
-and <a href="../api/html/T_NodaTime_Period.htm"><code>Period</code></a>. No members of these types modify visible state; if you have a reference to
-an instance of one of these types, you can do no harm to other threads by calling any members via that reference.</p>
+<h1>How old is Jon?</h1>
 
-<p>Some of the reference types do contain mutable state internally (usually for caching purposes) but this is invisible to
-the caller: locks are acquired carefully to avoid deadlocks, and (as far as we&#39;re aware!) only internal code is called while
-a lock is being held, avoiding the prospect of user code causing problems.</p>
+<p>Jon was born on June 19th, 1976 (Gregorian). How old is he now, in the UK time zone?</p>
 
-<p>If you choose to have writable fields of these types visible between multiple threads, you are responsible for ensuring
-that any changes are visible to other threads (there&#39;s nothing we can do about that) but you at least won&#39;t cause any
-strange behaviour within the types that way: if you call a method via a field which is being changed by another thread,
-you&#39;ll either see the result of the call on the original value, or on the new value.</p>
-
-<h2>Immutable value types</h2>
-
-<p>All the value types in Noda Time are immutable, but this doesn&#39;t give quite as much thread safety as immutable reference
-types. While the CLI specification guarantees that modifications to a reference type field are atomic, there are no such
-<em>general</em> guarantees for value types. (There are guarantees around certain sizes, but some of the value types in Noda Time
-are larger than that limited guarantee. I wouldn&#39;t want to start relying on it directly anyway.)</p>
-
-<p>So long as you either make your own fields read-only <em>or</em> synchronize access to the fields, you should be fine - but if you
-use unsynchronized access to writable fields, it&#39;s entirely possible for a &quot;hybrid&quot; value to be visible, with part of the old
-value and part of the new value. So as an example using Noda Time types, if you tried to format a
-<a href="../api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a> field as a string, and at the same time another thread changed the value,
-you could end up with the date and time from the old value formatted using the calendar system from the new value. Needless to
-say, this is far from ideal - don&#39;t do it.</p>
-
-<h2>Mutable reference types</h2>
-
-<p>Some classes are deliberately mutable within Noda Time - <a href="../api/html/T_NodaTime_PeriodBuilder.htm"><code>PeriodBuilder</code></a> is a good example.
-These types are very obviously mutable, and should <em>not</em> be shared between threads without explicit synchronization. No type
-in Noda Time has any specific thread affinity, so you shouldn&#39;t see any ill effects if you do use synchronization. Even so, we would
-generally recommend against doing this: the types are generally <em>designed</em> around making it easy to build a value within a single thread.</p>
-
-<h2>Exceptions</h2>
-
-<p>The exceptions within Noda Time are documented in the same way as the .NET types, partly as we can&#39;t make any firmer guarantees around
-safety than the base class provides. That said, none of the exceptions within Noda Time have any mutable state declared within Noda Time code.</p>
-
-<h2>Enums</h2>
-
-<p>Enums should generally be treated as immutable value types. Accessing the enum values directly can <em>never</em> have any nasty effects,
-but be careful around using a writable field of an enum type, for the same reasons as given in the earlier discussion.</p>
+<div class="example"><pre class="prettyprint code">LocalDate birthDate = new LocalDate(1976, 6, 19);
+IClock clock = SystemClock.Instance;
+LocalDate today = clock.Now.InUtc().Date;
+Period age = Period.Between(birthDate, today);
+Console.WriteLine(&quot;Jon is: {0} years, {1} months, {2} days old.&quot;,
+                  age.Years, age.Months, age.Days);
+</pre></div>
 
 		<ul class="pagination">
 		
@@ -179,6 +145,14 @@ but be careful around using a writable field of an enum type, for the same reaso
 		
 			
 			
+			<li class="current hide-for-small"><a href>Recipes</a></li>
+			
+			
+		
+			
+			<li><a href="../../unstable/userguide/design.html"><strong>Next</strong>: Design philosophy and conventions</a></li>
+			
+			
 			
 		
 			
@@ -245,14 +219,6 @@ but be careful around using a writable field of an enum type, for the same reaso
 			
 			
 		
-			
-			
-			<li class="current hide-for-small"><a href>Threading</a></li>
-			
-			
-		
-			
-			<li><a href="../../unstable/userguide/trivia.html"><strong>Next</strong>: Trivia</a></li>
 			
 			
 			
@@ -319,7 +285,7 @@ but be careful around using a writable field of an enum type, for the same reaso
 							<li><a href="../../unstable/userguide/core-types.html" >Core types quick reference</a></li>
 						
                             
-							<li><a href="../../unstable/userguide/recipes.html" >Recipes</a></li>
+							<li><a href="../../unstable/userguide/recipes.html" class="active">Recipes</a></li>
 						
                             
 							<li><a href="../../unstable/userguide/design.html" >Design philosophy and conventions</a></li>
@@ -386,7 +352,7 @@ but be careful around using a writable field of an enum type, for the same reaso
 							<li><a href="../../unstable/userguide/calendars.html" >Calendars</a></li>
 						
                             
-							<li><a href="../../unstable/userguide/threading.html" class="active">Threading</a></li>
+							<li><a href="../../unstable/userguide/threading.html" >Threading</a></li>
 						
                             
 							<li><a href="../../unstable/userguide/trivia.html" >Trivia</a></li>
