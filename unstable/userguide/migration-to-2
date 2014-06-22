@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
-	<title>Mono support</title>
+	<title>Migrating from 1.x to 2.0</title>
   
 	<!-- foundation default -->
   	<link rel="stylesheet" href="../../css/foundation.css" />
@@ -92,48 +92,10 @@
 
 <div class="row">
 	<div class="large-9 columns">
-		<h1>Mono support</h1>
-		<p><a href="http://mono-project.com">Mono</a> is an open source implementation of
-the Common Language Infrastructure which runs on various platforms,
-including Windows, Linux and OS X.</p>
-
-<p>Noda Time runs on Mono, but with some limitations:</p>
-
-<ul>
-<li>Noda Time is not <em>developed</em> on Mono, so while releases will be tested
-against it (running all the unit tests), code which isn&#39;t part
-of a release may not work. Please raise an issue on the
-<a href="http://code.google.com/p/noda-time/issues/list">tracker page</a> if
-you come across a breakage like this, and we&#39;ll fix it as soon
-as possible.</li>
-<li><code>TimeZoneInfo</code> in Mono has some critical flaws in the latest stable
-Mono release at the time of this writing (2.10.8) - while
-<a href="../api/html/T_NodaTime_TimeZones_BclDateTimeZone.htm"><code>BclDateTimeZone</code></a> <em>may</em>
-do the right thing, it may disagree with the results of calling
-methods directly on the time zone (<a href="http://code.google.com/p/noda-time/issues/detail?id=97">issue 97</a>). <code>TimeZoneInfo.Local</code> has
-particular issues on the latest tested version of Mono. As a result, trying
-to use the system local time zone on Mono or convert from
-that to the TZDB equivalent is likely to cause issues.
-
-<ul>
-<li>On Windows, <code>TimeZoneInfo.Local</code> throws <code>TimeZoneNotFoundException</code></li>
-<li>On Unix it returns a <code>TimeZoneInfo</code> with an <code>Id</code> of &quot;Local&quot;, which isn&#39;t
-terribly useful (although it may contain the correct rules)</li>
-<li>On Android it returns a null reference</li>
-</ul></li>
-<li>Some cultures in Mono have standard date/time patterns including
-&quot;z&quot; for &quot;offset from UTC&quot;. These will not display appropriately
-when used for text formatting in Noda Time, as the &quot;z&quot; is
-meaningless for local dates and times (<a href="http://code.google.com/p/noda-time/issues/detail?id=98">issue 98</a>).</li>
-<li>Some cultures in Mono have standard date/time patterns which
-use the abbreviated am/pm designator, but have am/pm designators
-which are the same when abbreviated. In these cases, parsing
-is ambiguous.</li>
-</ul>
-
-<p>The prebuilt binary packages can be used on Mono directly. To build from source,
-See the <a href="http://nodatime.org/developer/building.html">&quot;Building and testing&quot;</a> section in the developer guide.</p>
-
+		<h1>Migrating from 1.x to 2.0</h1>
+		Noda Time 2.0 contains a number of breaking changes. If you have a project which uses Noda Time
+1.x and are considering upgrading to 2.0, please read the following migration guide carefully.
+In particular, there are some changes which are changes to execution-time behaviour, and won't show up as compile-time errors.
 		<ul class="pagination">
 		
 		
@@ -207,6 +169,22 @@ See the <a href="http://nodatime.org/developer/building.html">&quot;Building and
 		
 			
 			
+			<li class="current hide-for-small"><a href>Migrating from 1.x to 2.0</a></li>
+			
+			
+		
+			
+			<li><a href="../../unstable/userguide/arithmetic.html"><strong>Next</strong>: Date and time arithmetic</a></li>
+			
+			
+			<li class="current hide-for-small"><a href>Date and time arithmetic</a></li>
+			
+			
+		
+			
+			<li><a href="../../unstable/userguide/bcl-conversions.html"><strong>Next</strong>: BCL conversions</a></li>
+			
+			
 			
 		
 			
@@ -237,18 +215,6 @@ See the <a href="http://nodatime.org/developer/building.html">&quot;Building and
 			
 			
 		
-			
-			
-			
-		
-			
-			
-			<li class="current hide-for-small"><a href>Mono support</a></li>
-			
-			
-		
-			
-			<li><a href="../../unstable/userguide/limitations.html"><strong>Next</strong>: Limitations of Noda Time</a></li>
 			
 			
 			
@@ -302,7 +268,7 @@ See the <a href="http://nodatime.org/developer/building.html">&quot;Building and
 							<li><a href="../../unstable/userguide/design.html" >Design philosophy and conventions</a></li>
 						
                             
-							<li><a href="../../unstable/userguide/migration-to-2" >Migrating from 1.x to 2.0</a></li>
+							<li><a href="../../unstable/userguide/migration-to-2" class="active">Migrating from 1.x to 2.0</a></li>
 						
 					</ul>
 				</div>
@@ -383,7 +349,7 @@ See the <a href="http://nodatime.org/developer/building.html">&quot;Building and
 							<li><a href="../../unstable/userguide/tzdb.html" >Updating the time zone database</a></li>
 						
                             
-							<li><a href="../../unstable/userguide/mono.html" class="active">Mono support</a></li>
+							<li><a href="../../unstable/userguide/mono.html" >Mono support</a></li>
 						
                             
 							<li><a href="../../unstable/userguide/limitations.html" >Limitations of Noda Time</a></li>
