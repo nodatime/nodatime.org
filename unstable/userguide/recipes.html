@@ -110,7 +110,8 @@ in your own code, of course. All examples assume a <code>using</code> directive 
 
 <div class="example"><pre class="prettyprint code">LocalDate birthDate = new LocalDate(1976, 6, 19);
 IClock clock = SystemClock.Instance;
-LocalDate today = clock.Now.InUtc().Date;
+DateTimeZone zone = DateTimeZoneProviders.Tzdb[&quot;Europe/London&quot;];
+LocalDate today = clock.Now.InZone(zone).Date;
 Period age = Period.Between(birthDate, today);
 Console.WriteLine(&quot;Jon is: {0} years, {1} months, {2} days old.&quot;,
                   age.Years, age.Months, age.Days);
