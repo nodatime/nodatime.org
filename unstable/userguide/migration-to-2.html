@@ -125,6 +125,27 @@ As the resolution of 2.0 is nanoseconds, a constructor taking a number of <em>ti
 Unix epoch is confusing. The static method is self-describing, and this allows the constructor
 to be rewritten for use within Noda Time itself.</p>
 
+<h1>Period</h1>
+
+<p>The <code>Years</code>, <code>Months</code>, <code>Weeks</code> and <code>Days</code> properties of <code>Period</code> (and <code>PeriodBuilder</code>) are
+now <code>int</code> rather than <code>long</code> properties. Any property for those units outside the range of <code>int</code> 
+could never be added to a date anyway, as it would immediately go out of range. This change just
+makes that clearer, and embraces the new &quot;<code>int</code> for dates, <code>long</code> for times&quot; approach which 
+applies throughout Noda Time 2.0. The indexer for <code>PeriodBuilder</code> is still of type <code>long</code>, but 
+it will throw an <code>ArgumentOutOfRangeException</code> for values outside the range of <code>int</code> when 
+setting date-based units.</p>
+
+<p>Normalization of a period which has time units which add up to a &quot;days&quot; range outside the range
+of <code>int</code> will similarly fail.</p>
+
+<h1>Serialization</h1>
+
+<p>TBD (this will be awkward). To note so far:</p>
+
+<ul>
+<li>Periods with year/month/week/day values outside the range of <code>int</code></li>
+</ul>
+
 		<ul class="pagination">
 		
 		
