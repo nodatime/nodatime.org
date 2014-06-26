@@ -125,6 +125,11 @@ As the resolution of 2.0 is nanoseconds, a constructor taking a number of <em>ti
 Unix epoch is confusing. The static method is self-describing, and this allows the constructor
 to be rewritten for use within Noda Time itself.</p>
 
+<p>The <code>LocalDate.LocalDateTime</code> property has been removed. It was rarely a good idea to
+arbitrarily pick the Unix epoch as the date, and usually indicates a broken design. If you
+still need this behaviour, you can easily construct a <code>LocalDate</code> for the Unix epoch and use
+the addition operator instead.</p>
+
 <h1>Period</h1>
 
 <p>The <code>Years</code>, <code>Months</code>, <code>Weeks</code> and <code>Days</code> properties of <code>Period</code> (and <code>PeriodBuilder</code>) are
@@ -145,6 +150,21 @@ of <code>int</code> will similarly fail.</p>
 <ul>
 <li>Periods with year/month/week/day values outside the range of <code>int</code></li>
 </ul>
+
+<h1>Default values</h1>
+
+<p>The default values of some structs have changed, from returning the Unix epoch to returning January 1st 1AD (at midnight where applicable):</p>
+
+<ul>
+<li><code>LocalDate</code></li>
+<li><code>LocalDateTime</code></li>
+<li><code>ZonedDateTime</code> (in UTC, as in 1.x)</li>
+<li><code>OffsetDateTime</code> (with an offset of 0, as in 1.x)</li>
+</ul>
+
+<p>(The fate of <code>Instant</code> remains unknown at this point...)</p>
+
+<p>We recommend that you avoid relying on the default values at all - partly for the sake of clarity.</p>
 
 		<ul class="pagination">
 		
