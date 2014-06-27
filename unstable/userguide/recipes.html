@@ -117,6 +117,31 @@ Console.WriteLine(&quot;Jon is: {0} years, {1} months, {2} days old.&quot;,
                   age.Years, age.Months, age.Days);
 </pre></div>
 
+<h1>How can I get to the start or end of a month?</h1>
+
+<p>Use the <a href="../api/html/T_NodaTime_DateAdjusters.htm"><code>DateAdjusters</code></a> factory class to obtain a suitable adjuster, and then either apply it
+directly (it&#39;s just a <code>Func&lt;LocalDate, LocalDate&gt;</code>) or use the <code>With</code> method to apply it in a fluent
+style:</p>
+
+<div class="example"><pre class="prettyprint code">LocalDate today = new LocalDate(2014, 6, 27);
+LocalDate endOfMonth = today.With(DateAdjusters.EndOfMonth); // 2014-06-30
+</pre></div>
+
+<p>Date adjusters also work with <code>LocalDateTime</code> and <code>OffsetDateTime</code> values. For example:</p>
+
+<div class="example"><pre class="prettyprint code">LocalDateTime now = new LocalDate(2014, 6, 27, 7, 14, 25);
+LocalDateTime startOfMonth = now.With(DateAdjusters.StartOfMonth); // 2014-06-01T07:14:25
+</pre></div>
+
+<h1>How can I truncate a time to a particular unit?</h1>
+
+<p>Use the <a href="../api/html/T_NodaTime_TimeAdjusters.htm"><code>TimeAdjusters</code></a> factory class to obtain a suitable adjuster, which can be applied to a
+<code>LocalTime</code>, <code>LocalDateTime</code> or <code>OffsetDateTime</code>:</p>
+
+<div class="example"><pre class="prettyprint code">LocalDateTime now = new LocalDate(2014, 6, 27, 7, 14, 25, 500);
+LocalDateTime now = now.With(TimeAdjusters.TruncateToMinute); // 2014-06-27T07:14:00
+</pre></div>
+
 		<ul class="pagination">
 		
 		
