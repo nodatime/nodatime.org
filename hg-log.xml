@@ -1,7 +1,42 @@
 <?xml version="1.0"?>
 <log>
-<logentry revision="2598" node="6367cbe2f82180f118ea786f3c809ccdaf8bd4f0">
+<logentry revision="2603" node="11f461e8d8f27eed2eaeb425f948fbeca0594df7">
 <tag>tip</tag>
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-06-28T07:37:03+01:00</date>
+<msg xml:space="preserve">Fix ArgumentOutOfRangeException in HebrewScripturalCalculator for PCL.</msg>
+</logentry>
+<logentry revision="2602" node="90ae4c25023937014238e816800d971ff0de4c77">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-06-27T23:05:27+01:00</date>
+<msg xml:space="preserve">Refactor YearMonthDayCalculator to take the same approach for all calendars -
+GetYearMonthDay(int daysSinceEpoch) is now in the base class, and works out the
+year and day-of-year, then gets the subclasses to work out the month/day based
+on those.
+
+This involved a major refactor of the Hebrew calendar code, which simplified it
+*and* made it faster (with room for further optimization...)</msg>
+</logentry>
+<logentry revision="2601" node="9f9604888c500bec2eacdf764ccd34722cc8e000">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-06-27T19:56:25+01:00</date>
+<msg xml:space="preserve">Add a benchmark for the HebrewCalendarSystem, just to convert each day of
+a leap cycle to ISO and back. This is a pretty coarse benchmark, but it should
+be enough to prove whether or not optimizations around other calendars are
+awful for the Hebrew calendar.</msg>
+</logentry>
+<logentry revision="2600" node="3b155951f81b3074fce83228821f2db52a05faee">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-06-27T19:21:16+01:00</date>
+<msg xml:space="preserve">Optimize time fields and day field.</msg>
+</logentry>
+<logentry revision="2599" node="a70cdf8f26c4c9bfeca0805e825a654d5003b866">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-06-27T17:59:47+01:00</date>
+<msg xml:space="preserve">Optimize GetDayOfYear - we already know the year/month/day, and we can get the
+day-of-start-of-month from that.</msg>
+</logentry>
+<logentry revision="2598" node="6367cbe2f82180f118ea786f3c809ccdaf8bd4f0">
 <author email="skeet@pobox.com">Jon Skeet</author>
 <date>2014-06-27T17:28:35+01:00</date>
 <msg xml:space="preserve">Extra benchmarks in anticipation of optimization for same-day calculations.</msg>
