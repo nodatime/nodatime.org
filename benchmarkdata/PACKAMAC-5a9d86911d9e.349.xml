@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<benchmark start="2014-07-02T14:11:05.722468Z" label="5a9d86911d9e.349" end="2014-07-02T14:57:33.969864Z">
+  <environment runtime="4.0.30319.17020" os="Unix 13.2.0.0" cores="4" is-64bit-process="false" is-64bit-os="false" machine="PACKAMAC" />
+  <options type-filter="" method-filter="" test-time="PT10S" warmup-time="PT1S" />
+  <type name="DateTimeBenchmarks" full-name="NodaTime.Benchmarks.BclTests.DateTimeBenchmarks" namespace="NodaTime.Benchmarks.BclTests" />
+  <type name="DateTimeOffsetBenchmarks" full-name="NodaTime.Benchmarks.BclTests.DateTimeOffsetBenchmarks" namespace="NodaTime.Benchmarks.BclTests" />
+  <type name="TimeZoneInfoBenchmarks" full-name="NodaTime.Benchmarks.BclTests.TimeZoneInfoBenchmarks" namespace="NodaTime.Benchmarks.BclTests" />
+  <type name="UtcDateTimeBenchmarks" full-name="NodaTime.Benchmarks.BclTests.UtcDateTimeBenchmarks" namespace="NodaTime.Benchmarks.BclTests" />
+  <type name="BclDateTimeZoneBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.BclDateTimeZoneBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests">
+    <test method="GetZoneInterval" iterations="246165080" duration="97432314" />
+  </type>
+  <type name="CachedDateTimeZoneBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.CachedDateTimeZoneBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests">
+    <test method="GetZoneInterval_UnixEpoch" iterations="421981701" duration="100581429" />
+    <test method="GetZoneInterval_CacheBustingInstants" iterations="12889010" duration="100028983" />
+    <test method="GetZoneInterval_CachedInstants" iterations="333137288" duration="100401011" />
+    <test method="GetZoneInterval_TwoYears" iterations="330979012" duration="99544379" />
+    <test method="GetUtcOffset" iterations="314959986" duration="95524776" />
+    <test method="ConvertUtcToLocal" iterations="37984606" duration="100249770" />
+    <test method="ConvertLocalToUtc" iterations="28578420" duration="99960358" />
+  </type>
+  <type name="HebrewCalendarBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.Calendars.HebrewCalendarBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests.Calendars">
+    <test method="ScripturalConversion" iterations="3588" duration="99793687" />
+    <test method="CivilConversion" iterations="3381" duration="98858626" />
+  </type>
+  <type name="IsoCalendarBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.Calendars.IsoCalendarBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests.Calendars">
+    <test method="GetDaysInMonth_NotFebruary" iterations="902012111" duration="100339823" />
+    <test method="GetDaysInMonth_FebruaryNonLeap" iterations="546977872" duration="100006641" />
+    <test method="GetDaysInMonth_FebruaryLeap" iterations="509444815" duration="99887580" />
+    <test method="GetDaysSinceEpoch_InOptimizedRange" iterations="985744822" duration="99862852" />
+    <test method="GetDaysSinceEpoch_OutsideOptimizedRange" iterations="252115961" duration="100094072" />
+    <test method="GetStartOfYearInDays_InOptimizedRange" iterations="1342673618" duration="99209763" />
+    <test method="GetStartOfYearInDays_OutsideOptimizedRange" iterations="725755367" duration="100280444" />
+  </type>
+  <type name="InstantBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.InstantBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests">
+    <test method="ToStringIso" iterations="10686651" duration="100173737" />
+    <test method="ToStringNumericWithThousandsSeparator" iterations="17310915" duration="100164266" />
+    <test method="ToStringNumericWithoutThousandsSeparator" iterations="24712126" duration="95087850" />
+    <test method="PlusDuration" iterations="544800501" duration="99947760" />
+    <test method="PlusOffset" iterations="291917351" duration="100020601" />
+    <test method="InUtc" iterations="41562737" duration="100036246" />
+    <test method="InZoneLondon" iterations="38412396" duration="99757395" />
+  </type>
+  <type name="FormattingBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.JsonNet.FormattingBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests.JsonNet">
+    <test method="FormatInstant" iterations="2604075" duration="100865052" />
+    <test method="FormatLocalDate" iterations="3246647" duration="100093195" />
+    <test method="FormatLocalTime" iterations="2710816" duration="100286784" />
+    <test method="FormatLocalDateTime" iterations="2492891" duration="99967581" />
+    <test method="FormatOffsetDateTime" iterations="1947938" duration="100357465" />
+    <test method="FormatZonedDateTime" iterations="1735199" duration="100360750" />
+    <test method="FormatInterval" iterations="1494195" duration="100128272" />
+    <test method="FormatOffset" iterations="2891980" duration="99704540" />
+    <test method="FormatDuration" iterations="2337597" duration="100667451" />
+    <test method="FormatPeriod" iterations="2401995" duration="94714579" />
+    <test method="FormatDateTimeZone" iterations="2903366" duration="99940502" />
+  </type>
+  <type name="ParsingBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.JsonNet.ParsingBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests.JsonNet">
+    <test method="ParseInstant" iterations="850996" duration="99719710" />
+    <test method="ParseLocalDate" iterations="884980" duration="99861976" />
+    <test method="ParseLocalTime" iterations="869465" duration="100042495" />
+    <test method="ParseLocalDateTime" iterations="828313" duration="100337046" />
+    <test method="ParseOffsetDateTime" iterations="759228" duration="100128371" />
+    <test method="ParseZonedDateTime" iterations="559325" duration="100450092" />
+    <test method="ParseInterval" iterations="688459" duration="99984581" />
+    <test method="ParseOffset" iterations="748757" duration="98783648" />
+    <test method="ParseDuration" iterations="811405" duration="99815303" />
+    <test method="ParsePeriod" iterations="825806" duration="99090086" />
+    <test method="ParseDateTimeZone" iterations="807742" duration="99766741" />
+  </type>
+  <type name="LocalDateBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.LocalDateBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests">
+    <test method="PatternFormat" iterations="33309169" duration="100163196" />
+    <test method="PatternParse" iterations="31420226" duration="100999912" />
+    <test method="Construction" iterations="520694272" duration="100114288" />
+    <test method="ConstructionOutsidePrecomputedRange" iterations="522473762" duration="100308013" />
+    <test method="ConstructionAvoidingCache" iterations="217317" duration="100307676" />
+    <test method="FromWeekYearWeekAndDay" iterations="81095426" duration="99870990" />
+    <test method="Year" iterations="2147483646" duration="79504417" />
+    <test method="Month" iterations="2147483646" duration="79448432" />
+    <test method="DayOfMonth" iterations="2147483646" duration="79602982" />
+    <test method="IsoDayOfWeek" iterations="317142389" duration="99990009" />
+    <test method="IsoDayOfWeek_BeforeEpoch" iterations="315345364" duration="100177678" />
+    <test method="DayOfYear" iterations="346015011" duration="100368174" />
+    <test method="WeekOfWeekYear" iterations="102052471" duration="99723317" />
+    <test method="WeekYear" iterations="140992811" duration="99704943" />
+    <test method="Era" iterations="279612497" duration="99698295" />
+    <test method="CenturyOfEra" iterations="506515681" duration="101303581" />
+    <test method="YearOfCentury" iterations="510922870" duration="101923102" />
+    <test method="YearOfEra" iterations="641781939" duration="100209458" />
+    <test method="PlusYears" iterations="280177932" duration="99717591" />
+    <test method="PlusMonths" iterations="222088722" duration="100052114" />
+    <test method="PlusWeeks" iterations="139919322" duration="99642683" />
+    <test method="PlusDays" iterations="313229003" duration="99344205" />
+    <test method="PlusDays_MonthBoundary" iterations="149237901" duration="99951164" />
+    <test method="PlusDays_MonthYearBoundary" iterations="139964572" duration="99729303" />
+    <test method="PlusDays_LargeGap" iterations="101045563" duration="99965847" />
+    <test method="PlusPeriod" iterations="48339766" duration="100216395" />
+    <test method="MinusPeriod" iterations="64359110" duration="100039520" />
+  </type>
+  <type name="LocalDateTimeBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.LocalDateTimeBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests">
+    <test method="ConstructionToMinute" iterations="236294599" duration="99882998" />
+    <test method="ConstructionToSecond" iterations="197716512" duration="100148300" />
+    <test method="ConstructionToTick" iterations="152332427" duration="100828879" />
+    <test method="Year" iterations="1604509500" duration="100219617" />
+    <test method="Month" iterations="1606004013" duration="100638347" />
+    <test method="DayOfMonth" iterations="1607754688" duration="100343820" />
+    <test method="IsoDayOfWeek" iterations="268671852" duration="100149693" />
+    <test method="DayOfYear" iterations="286963344" duration="99852977" />
+    <test method="Hour" iterations="949878322" duration="99590092" />
+    <test method="Minute" iterations="220989314" duration="99831344" />
+    <test method="Second" iterations="220680477" duration="100225942" />
+    <test method="Millisecond" iterations="145216332" duration="99731624" />
+    <test method="Date" iterations="2045423645" duration="100180878" />
+    <test method="TimeOfDay" iterations="1055205062" duration="99736581" />
+    <test method="TickOfDay" iterations="1243239449" duration="99761246" />
+    <test method="TickOfSecond" iterations="278494243" duration="99922302" />
+    <test method="WeekOfWeekYear" iterations="97283481" duration="100559491" />
+    <test method="WeekYear" iterations="130008388" duration="99690339" />
+    <test method="ClockHourOfHalfDay" iterations="695700959" duration="100001051" />
+    <test method="Era" iterations="247091460" duration="100323485" />
+    <test method="CenturyOfEra" iterations="397498710" duration="100249076" />
+    <test method="YearOfCentury" iterations="398049565" duration="100480597" />
+    <test method="YearOfEra" iterations="490096239" duration="99976845" />
+    <test method="ToString_Parameterless" iterations="12308447" duration="99089265" />
+    <test method="ToString_ExplicitPattern_Invariant" iterations="13520713" duration="99809663" />
+    <test method="ToString_ExplicitPattern_MutableCulture" iterations="525203" duration="98835065" />
+    <test method="PlusYears" iterations="202732900" duration="99812952" />
+    <test method="PlusMonths" iterations="169573656" duration="100366977" />
+    <test method="PlusWeeks" iterations="118599624" duration="100097175" />
+    <test method="PlusDays" iterations="224895232" duration="100060289" />
+    <test method="PlusHours" iterations="135958617" duration="102284009" />
+    <test method="PlusHours_Negative" iterations="126936940" duration="100014432" />
+    <test method="PlusHours_UnderflowDay" iterations="60099969" duration="99577124" />
+    <test method="PlusMinutes" iterations="134928971" duration="100048845" />
+    <test method="PlusSeconds" iterations="135081182" duration="99700762" />
+    <test method="PlusMilliseconds" iterations="133143432" duration="99960248" />
+    <test method="PlusTicks" iterations="134579747" duration="99848463" />
+    <test method="PlusDatePeriod" iterations="26451558" duration="99638131" />
+    <test method="MinusDatePeriod" iterations="30543174" duration="100141777" />
+    <test method="PlusTimePeriod" iterations="23452354" duration="100147094" />
+    <test method="MinusTimePeriod" iterations="21597490" duration="100506155" />
+    <test method="PlusMixedPeriod" iterations="18038557" duration="101899501" />
+    <test method="MinusMixedPeriod" iterations="18689529" duration="100108611" />
+  </type>
+  <type name="LocalTimeBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.LocalTimeBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests">
+    <test method="ConstructionToMinute" iterations="564445898" duration="100929401" />
+    <test method="ConstructionToSecond" iterations="412886999" duration="100289801" />
+    <test method="ConstructionToMillisecond" iterations="308082596" duration="100329406" />
+    <test method="ConstructionToTick" iterations="282940204" duration="100256261" />
+    <test method="ConversionFromLocalDateTime" iterations="1062349897" duration="100251292" />
+    <test method="Hour" iterations="1418537445" duration="100077476" />
+    <test method="Minute" iterations="245385197" duration="99922338" />
+    <test method="Second" iterations="245378857" duration="100191555" />
+    <test method="Millisecond" iterations="154858159" duration="99558547" />
+    <test method="ClockHourOfHalfDay" iterations="916416786" duration="100247778" />
+    <test method="TickOfSecond" iterations="314834232" duration="100166735" />
+    <test method="TickOfDay" iterations="2147483646" duration="95859553" />
+    <test method="PlusHours" iterations="180190806" duration="99845689" />
+    <test method="PlusHours_OverflowDay" iterations="101024628" duration="99279666" />
+    <test method="PlusHours_Negative" iterations="162709726" duration="102120604" />
+    <test method="PlusHours_UnderflowDay" iterations="84216456" duration="99813668" />
+    <test method="PlusMinutes" iterations="178500964" duration="99078934" />
+    <test method="PlusSeconds" iterations="180637653" duration="100117086" />
+    <test method="PlusMilliseconds" iterations="179400467" duration="99676958" />
+    <test method="PlusTicks" iterations="179971028" duration="100069958" />
+    <test method="PlusPeriod" iterations="25781915" duration="99915960" />
+    <test method="MinusPeriod" iterations="23463002" duration="99662588" />
+  </type>
+  <type name="OffsetBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.OffsetBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests">
+    <test method="ParseExactIncludingPreparse_Valid" iterations="3679017" duration="100440573" />
+    <test method="PreparsedParseExact_Valid" iterations="55114494" duration="99815641" />
+    <test method="ParsePattern_Valid" iterations="4643896" duration="100316183" />
+    <test method="PreparedParseExact_InvalidValue" iterations="25641499" duration="100057293" />
+    <test method="ToString_ExplicitFormat" iterations="33704830" duration="100354907" />
+    <test method="ParsedPattern_Format" iterations="52071617" duration="99828391" />
+  </type>
+  <type name="OffsetDateTimeBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.OffsetDateTimeBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests">
+    <test method="Construction" iterations="1363039504" duration="101338945" />
+    <test method="TickOfDay" iterations="853455295" duration="99971958" />
+    <test method="TickOfSecond" iterations="256044782" duration="100362328" />
+    <test method="WeekOfWeekYear" iterations="89975470" duration="98867633" />
+    <test method="WeekYear" iterations="121530911" duration="100374503" />
+    <test method="ClockHourOfHalfDay" iterations="545858300" duration="100001064" />
+    <test method="Era" iterations="208305637" duration="100254011" />
+    <test method="CenturyOfEra" iterations="305825820" duration="100019639" />
+    <test method="YearOfCentury" iterations="305663943" duration="100102838" />
+    <test method="YearOfEra" iterations="353878725" duration="100163947" />
+    <test method="LocalComparer_Compare" iterations="26168648" duration="100152707" />
+    <test method="InstantComparer_Compare" iterations="16652974" duration="100050285" />
+  </type>
+  <type name="PacificZonedDateTimeBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.PacificZonedDateTimeBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests">
+    <test method="Construction" iterations="31723565" duration="99903150" />
+    <test method="Year" iterations="409023213" duration="100448273" />
+    <test method="Month" iterations="405836186" duration="101887776" />
+    <test method="DayOfMonth" iterations="407294743" duration="101159709" />
+    <test method="IsoDayOfWeek" iterations="168246242" duration="101255244" />
+    <test method="DayOfYear" iterations="177156607" duration="100171074" />
+    <test method="Hour" iterations="314256569" duration="100097257" />
+    <test method="Minute" iterations="159398509" duration="100369457" />
+    <test method="Second" iterations="160595194" duration="100402061" />
+    <test method="Millisecond" iterations="113683377" duration="100246047" />
+    <test method="ToInstant" iterations="92167583" duration="100366015" />
+  </type>
+  <type name="PeriodBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.PeriodBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests">
+    <test method="Between_LocalDate" iterations="25460458" duration="99757507" />
+    <test method="Between_LocalDate_Years" iterations="70238623" duration="100374220" />
+    <test method="Between_LocalDate_Months" iterations="93593936" duration="100118415" />
+    <test method="Between_LocalDate_Days" iterations="106352119" duration="100064770" />
+    <test method="Between_LocalDate_Days_SameMonth" iterations="106300342" duration="100081064" />
+    <test method="Between_LocalDate_Days_SameYear" iterations="106678039" duration="101962133" />
+    <test method="Between_LocalTime" iterations="23704091" duration="99950439" />
+    <test method="Between_LocalDateTime" iterations="7697534" duration="100335919" />
+    <test method="Between_LocalDateTime_Ticks" iterations="29003265" duration="99535213" />
+  </type>
+  <type name="InstantPatternBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.Text.InstantPatternBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests.Text">
+    <test method="NumberPatternFormat" iterations="21207105" duration="99711042" />
+    <test method="GeneralPatternFormat" iterations="12177360" duration="100293836" />
+    <test method="ExtendedIsoPatternFormat" iterations="8823401" duration="100351075" />
+    <test method="ExtendedIsoPatternFormatWithTicks" iterations="9586222" duration="100142508" />
+    <test method="FormatPatternWithNonTruncatedTicks" iterations="9786706" duration="100285361" />
+    <test method="NumberPatternParse" iterations="11522976" duration="99974309" />
+    <test method="GeneralPatternParse" iterations="12350149" duration="100372101" />
+    <test method="ExtendedIsoPatternParse" iterations="12319613" duration="100078458" />
+    <test method="ParsePatternExtendedIso" iterations="587341" duration="100681614" />
+  </type>
+  <type name="LocalDatePatternBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.Text.LocalDatePatternBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests.Text">
+    <test method="FormatWithIso" iterations="35145905" duration="99654465" />
+    <test method="FormatWithLongMonth" iterations="37732703" duration="101706328" />
+    <test method="FormatWithShortMonth" iterations="35022997" duration="99727380" />
+    <test method="FormatWithLongDay" iterations="25017875" duration="100608957" />
+    <test method="FormatWithShortDay" iterations="23753919" duration="100567216" />
+  </type>
+  <type name="LocalDateTimePatternBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.Text.LocalDateTimePatternBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests.Text">
+    <test method="ParseLongMonthAndDay" iterations="1292726" duration="99679793" />
+    <test method="ParseWithNumbersToSecond" iterations="15089168" duration="100517038" />
+    <test method="FormatWithNumbersToSecond" iterations="16545803" duration="100489894" />
+  </type>
+  <type name="PeriodPatternBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.Text.PeriodPatternBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests.Text">
+    <test method="ParseNormalized" iterations="14610686" duration="99119415" />
+    <test method="ParseRoundtrip" iterations="13896510" duration="100560465" />
+    <test method="FormatNormalized" iterations="7100903" duration="100155489" />
+    <test method="FormatRoundtrip" iterations="7817208" duration="100291061" />
+  </type>
+  <type name="UtcZonedDateTimeBenchmarks" full-name="NodaTime.Benchmarks.NodaTimeTests.UtcZonedDateTimeBenchmarks" namespace="NodaTime.Benchmarks.NodaTimeTests">
+    <test method="Construction" iterations="34321509" duration="100146683" />
+    <test method="Year" iterations="404941683" duration="99809675" />
+    <test method="Month" iterations="401421783" duration="99084944" />
+    <test method="DayOfMonth" iterations="405678609" duration="101251446" />
+    <test method="IsoDayOfWeek" iterations="169105675" duration="99747093" />
+    <test method="DayOfYear" iterations="176036868" duration="100969602" />
+    <test method="Hour" iterations="313745015" duration="100090896" />
+    <test method="Minute" iterations="158738319" duration="100032118" />
+    <test method="Second" iterations="160231095" duration="100083367" />
+    <test method="Millisecond" iterations="112904259" duration="99455735" />
+    <test method="TickOfDay" iterations="353226344" duration="99594559" />
+    <test method="TickOfSecond" iterations="191485965" duration="100525189" />
+    <test method="WeekOfWeekYear" iterations="80093913" duration="100174305" />
+    <test method="WeekYear" iterations="101692600" duration="99961868" />
+    <test method="ClockHourOfHalfDay" iterations="248420906" duration="100601866" />
+    <test method="Era" iterations="157087957" duration="99691719" />
+    <test method="CenturyOfEra" iterations="214368102" duration="100437635" />
+    <test method="YearOfCentury" iterations="213680494" duration="101519278" />
+    <test method="YearOfEra" iterations="233040379" duration="100052463" />
+  </type>
+</benchmark>
