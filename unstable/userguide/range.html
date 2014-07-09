@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
-	<title>Patterns for OffsetDateTime values</title>
+	<title>Range of valid values</title>
 
 	<!-- foundation default -->
   	<link rel="stylesheet" href="../../css/foundation.css" />
@@ -94,22 +94,77 @@
 
 <div class="row">
 	<div class="large-9 columns">
-		<h1>Patterns for OffsetDateTime values</h1>
-		<p>The <a href="../api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a> type supports the following patterns:</p>
+		<h1>Range of valid values</h1>
+		<p>(None of this is implemented yet!)</p>
 
-<h2>Standard Patterns</h2>
+<p>Noda Time can only represent values within a limited range. This is for pragmatic reasons:
+while it would be possible to try to model every instant since some estimate of the big
+bang until some expected &quot;end of time,&quot; this would come at a significant cost to the
+experience of the 99.99% of programmers who just need to deal with dates and times in a
+reasonably modern (but not far-flung future) era.</p>
 
-<ul>
-<li><code>G</code>: General invariant ISO-8601 pattern, down to the second. This corresponds to the custom pattern <code>yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;sso&lt;G&gt;</code>. This is the default format pattern.</li>
-<li><code>o</code>: Extended invariant ISO-8601 pattern, down to the tick. This will round-trip values except for the calendar system. This corresponds to the custom pattern <code>yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss;FFFFFFFo&lt;G&gt;</code>.</li>
-<li><code>r</code>: Full round-trip pattern including calendar system. This corresponds to the custom pattern <code>yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss;FFFFFFFo&lt;G&gt; &#39;(&#39;c&#39;)&#39;</code>.</li>
-</ul>
+<p>The Noda Time 1.x releases supported years between around -27000 and +32000 (in the Gregorian
+calendar), but had significant issues around the extremes. Noda Time 2.0 has a smaller range,
+with more clearly-defined behaviour.</p>
 
-<h2>Custom Patterns</h2>
+<h2>Ranges for calendars</h2>
 
-<p>The custom format patterns for the local date and time parts of the value are the same as the <a href="localdatetime-patterns.html">custom patterns for <code>LocalDateTime</code></a>. There is an additional specifier for the offset.</p>
+<p>The &quot;main&quot; calendar for Noda Time is the Gregorian calendar. (We actually use <code>CalendarSystem.Iso</code>
+by default, but that&#39;s just the Gregorian calendar with slightly different numbering around centuries;
+it doesn&#39;t affect ranges.) This is the maximal calendar: a date in any other calendar can <em>always</em> be
+converted to the Gregorian calendar.</p>
 
-<p>The &quot;o&quot; specifier must always be followed by a <a href="offset-patterns.html">pattern for <code>Offset</code></a> within angle brackets. The pattern may be a standard pattern or a custom pattern. For example, a pattern of &quot;yyyy-MM-dd HH:mm:ss o&lt;G&gt;&quot; might produce output of &quot;2013-07-17 06:20:35 Z&quot; or &quot;2013-07-17 07:20:35 +01:00&quot;.</p>
+<p>Additionally, all calendars are restricted to four digit formats, even in year-of-era representations,
+which avoids ever having to parse 5-digit years. This leads to a Gregorian calendar from 9999BC to
+9999AD inclusive, or -9998 to 9999 in &quot;absolute&quot; years. The range of other calendars is determined from this
+and from natural restrictions (such as not being proleptic).</p>
+
+<p>The date range is always a complete number of years - the range shown below is inclusive at both ends, so every
+date from the start of the minimum year to the end of the maximum year is valid.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Calendar</th>
+            <th>Min year</th>
+            <th>Max year</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Gregorian/ISO</td>
+            <td>-9998</td>
+            <td>9999</td>
+        </tr>
+        <tr>
+            <td>Julian</td>
+            <td>-9997</td>
+            <td>9997</td>
+        </tr>
+        <tr>
+            <td>Islamic</td>
+            <td>1</td>
+            <td>9664</td>
+        </tr>
+        <tr>
+            <td>Persian</td>
+            <td>1</td>
+            <td>9376</td>
+        </tr>
+        <tr>
+            <td>Hebrew</td>
+            <td>1</td>
+            <td>9999</td>
+        </tr>
+        <tr>
+            <td>Coptic</td>
+            <td>1</td>
+            <td>9714</td>
+        </tr>       
+    </tbody>
+</table>
+
+<p>TODO: Talk about Duration, Instant etc.</p>
 
 		<ul class="pagination">
 		
@@ -180,14 +235,6 @@
 		
 			
 			
-			<li class="current hide-for-small"><a href>Patterns for OffsetDateTime values</a></li>
-			
-			
-		
-			
-			<li><a href="../../unstable/userguide/zoneddatetime-patterns.html"><strong>Next</strong>: Patterns for ZonedDateTime values</a></li>
-			
-			
 			
 		
 			
@@ -202,6 +249,14 @@
 			
 			
 		
+			
+			
+			<li class="current hide-for-small"><a href>Range of valid values</a></li>
+			
+			
+		
+			
+			<li><a href="../../unstable/userguide/bcl-conversions.html"><strong>Next</strong>: BCL conversions</a></li>
 			
 			
 			
@@ -322,7 +377,7 @@
 							<li><a href="../../unstable/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
 						
                             
-							<li><a href="../../unstable/userguide/offsetdatetime-patterns.html" class="active">Patterns for OffsetDateTime values</a></li>
+							<li><a href="../../unstable/userguide/offsetdatetime-patterns.html" >Patterns for OffsetDateTime values</a></li>
 						
                             
 							<li><a href="../../unstable/userguide/zoneddatetime-patterns.html" >Patterns for ZonedDateTime values</a></li>
@@ -342,7 +397,7 @@
 							<li><a href="../../unstable/userguide/arithmetic.html" >Date and time arithmetic</a></li>
 						
                             
-							<li><a href="../../unstable/userguide/range.html" >Range of valid values</a></li>
+							<li><a href="../../unstable/userguide/range.html" class="active">Range of valid values</a></li>
 						
                             
 							<li><a href="../../unstable/userguide/bcl-conversions.html" >BCL conversions</a></li>
