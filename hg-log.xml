@@ -1,7 +1,43 @@
 <?xml version="1.0"?>
 <log>
-<logentry revision="2697" node="0c7fc8bef494c013c240af26690dac3917a7aab5">
+<logentry revision="2703" node="de18946ba9ed463d6d2e1294e6a998a01eb77818">
 <tag>tip</tag>
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-10T18:36:00+01:00</date>
+<msg xml:space="preserve">Fix previous change which was slightly broken - and make it less confusing, at the same time.</msg>
+</logentry>
+<logentry revision="2702" node="4e780fabc6be00650d950f3d670256cddf995f98">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-10T17:50:19+01:00</date>
+<msg xml:space="preserve">Perform a cruder but cheaper check to see whether a given local time *might*
+be ambiguous.</msg>
+</logentry>
+<logentry revision="2701" node="0b372fdd016c15ad11f9f32a10f34a858a01c9ef">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-10T17:20:58+01:00</date>
+<msg xml:space="preserve">Further slight optimization in GetOccurrenceForYear - avoid computing DayOfWeek
+twice (as this involves converting to day-since-epoch).</msg>
+</logentry>
+<logentry revision="2700" node="596a096a5355d834c4ee13a9dce53936e0259822">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-10T17:08:16+01:00</date>
+<msg xml:space="preserve">Use debug preconditions within ZoneLocalMapping.</msg>
+</logentry>
+<logentry revision="2699" node="5e4b66ec4035d4a63608429787815548d19e3327">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-10T16:17:15+01:00</date>
+<msg xml:space="preserve">Use unchecked arithmetic in Duration. (We&#39;ll need to add a check for the days range
+in the constructor at some point, but I suspect the range will allow us to be pretty
+confident within arithmetic...)</msg>
+</logentry>
+<logentry revision="2698" node="59bd0f6f02f2b34002c6c92bb5c406ba8ddedba0">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-10T16:00:55+01:00</date>
+<msg xml:space="preserve">Add a &quot;debug only&quot; precondition - used for checking our own internal
+preconditions, only within a debug build of Noda Time. These won&#39;t be present
+at all in a release build.</msg>
+</logentry>
+<logentry revision="2697" node="0c7fc8bef494c013c240af26690dac3917a7aab5">
 <author email="skeet@pobox.com">Jon Skeet</author>
 <date>2014-07-10T12:24:52+01:00</date>
 <msg xml:space="preserve">Only do half as many transition lookups when we&#39;re asking for a ZoneInterval,
