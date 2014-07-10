@@ -1,7 +1,44 @@
 <?xml version="1.0"?>
 <log>
-<logentry revision="2690" node="0c56d6e0553cd47a6261cae39356072769ca5c3e">
+<logentry revision="2695" node="4c01c564ad915d46cce6317c7ea5b8271fd91267">
 <tag>tip</tag>
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-10T11:29:42+01:00</date>
+<msg xml:space="preserve">We don&#39;t *need* to specify the old offset when working out the transition,
+so why bother? It doesn&#39;t seem to make a very significant performance difference,
+but it can&#39;t hurt.
+
+(We might even be able to get rid of Transition entirely, and just use an
+OffsetDateTime... that can come later.)</msg>
+</logentry>
+<logentry revision="2694" node="709760442ffa25ef4b3902bd791e30c1ed310532">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-10T11:20:31+01:00</date>
+<msg xml:space="preserve">Fix test namespaces which I missed when renaming the TzdbCompiler namespace
+ages ago.</msg>
+</logentry>
+<logentry revision="2693" node="4827caf758e17123de3a49c195dbe011e17ecb5f">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-10T11:14:24+01:00</date>
+<msg xml:space="preserve">Optimize OffsetDateTime.WithOffset to avoid expensive LocalInstant conversions.</msg>
+</logentry>
+<logentry revision="2692" node="abdd248400622fda852532b00543b68e33ce35f1">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-10T11:00:56+01:00</date>
+<msg xml:space="preserve">Move the conversion of a character representing a TransitionMode from
+ZoneYearOffset to the one class which was calling the method.</msg>
+</logentry>
+<logentry revision="2691" node="029cef9a385b059e3bd6ad102e8c4d16458c3926">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-10T10:49:14+01:00</date>
+<msg xml:space="preserve">Simplify ZoneYearOffset so it&#39;s really just about getting a transition for a
+single year. Logic for &quot;next and previous&quot; is now in ZoneRecurrence - which
+already *had* Next/Previous logic, but delegated some of it. As ZoneRecurrence
+has the information about the min/max years, this ends up being a bit cleaner.
+
+Lots more to do, but this is a start...</msg>
+</logentry>
+<logentry revision="2690" node="0c56d6e0553cd47a6261cae39356072769ca5c3e">
 <author email="skeet@pobox.com">Jon Skeet</author>
 <date>2014-07-09T20:55:27+01:00</date>
 <msg xml:space="preserve">Update OffsetDateTime.Comparer.Local and ZonedDateTime.Comparer.Local to be
