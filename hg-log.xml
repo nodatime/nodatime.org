@@ -1,7 +1,18 @@
 <?xml version="1.0"?>
 <log>
-<logentry revision="2708" node="64bfb0385513d5e162bada42ef85020b2f91bf0c">
+<logentry revision="2709" node="710a324592c1e641396768460826bb7306b41665">
 <tag>tip</tag>
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-11T08:11:02+01:00</date>
+<msg xml:space="preserve">Improve day -&gt; YMD conversion for the Gregorian calendar by changing the
+result of the binary search from &quot;month&quot; to &quot;start of month in days&quot;. We can
+then just divide by 29 to get the month, and subtract this from &quot;days from
+start of year&quot; to get the day of month... no need for an array lookup.
+
+The microbenchmark results, while positive, are probably less important than
+the bigger result of not pulling an array from the heap into CPU cache.</msg>
+</logentry>
+<logentry revision="2708" node="64bfb0385513d5e162bada42ef85020b2f91bf0c">
 <author email="skeet@pobox.com">Jon Skeet</author>
 <date>2014-07-11T07:01:05+01:00</date>
 <msg xml:space="preserve">Add benchmarks specifically for constructing dates from &quot;days of epoch&quot;,
