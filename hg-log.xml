@@ -1,7 +1,23 @@
 <?xml version="1.0"?>
 <log>
-<logentry revision="2710" node="4d61269df92bd063bd8f04a2cb059d79b7c08d00">
+<logentry revision="2712" node="a9cf93ab4196dfebde6dbcb2e82739994d67af70">
 <tag>tip</tag>
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-12T23:14:26+01:00</date>
+<msg xml:space="preserve">Tweak the caching in date time zones; shifting the number of days since the epoch
+is much more efficient than converting to ticks and back. Also, check whether
+the node is a &quot;one interval only&quot; node (which most are) before checking whether
+the current node contains the instant we&#39;re looking for.
+
+(This still doesn&#39;t do *much* to ConvertUtcToLocal... there&#39;s more to look for,
+I think.)</msg>
+</logentry>
+<logentry revision="2711" node="6aa4d2aa8cba3ed6a9ed2299b82ab4345e537859">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-12T15:37:16+01:00</date>
+<msg xml:space="preserve">Remove ITzdbDataSource, as there was only one implementation left.</msg>
+</logentry>
+<logentry revision="2710" node="4d61269df92bd063bd8f04a2cb059d79b7c08d00">
 <author email="skeet@pobox.com">Jon Skeet</author>
 <date>2014-07-11T21:48:39+01:00</date>
 <msg xml:space="preserve">Add some tests for the recent optimizations, and a comment to come back to.</msg>
