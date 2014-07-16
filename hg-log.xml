@@ -1,7 +1,27 @@
 <?xml version="1.0"?>
 <log>
-<logentry revision="2722" node="2b9119e1b0edd5e5a163ea07c7a5fd98c31e7488">
+<logentry revision="2724" node="e53a0ecfc25f1077cce2b1e6e6bdfc43f2b4e674">
 <tag>tip</tag>
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-16T07:23:28+01:00</date>
+<msg xml:space="preserve">Remove a couple of ZonedDateTime constructors that didn&#39;t perform validation:
+now favour one which takes OffsetDateTime and DateTimeZone directly.
+
+(Also fixed a validation bug, which may also have been present in previous
+commit...)</msg>
+</logentry>
+<logentry revision="2723" node="9f56be1a6d73562b44a52a8496841b4d2189f303">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-16T07:01:02+01:00</date>
+<msg xml:space="preserve">Make ZonedDateTime just contain an OffsetDateTime and a DateTimeZone, which
+is sensible - but make most value-type fields within structs non-readonly. This
+avoids creating a copy of them when calling methods etc, which shaves quite a
+bit of time off. Now the only reason for having the separate fields within
+OffsetDateTime (instead of a LocalDateTime and an Offset) is for size - which
+we still haven&#39;t fixed yet. (I think we need a YearMonthDayOffset struct,
+containing both of the 32-bit structs.)</msg>
+</logentry>
+<logentry revision="2722" node="2b9119e1b0edd5e5a163ea07c7a5fd98c31e7488">
 <author email="skeet@pobox.com">Jon Skeet</author>
 <date>2014-07-15T19:16:16+01:00</date>
 <msg xml:space="preserve">More optimizations for OffsetDateTime and ZonedDateTime to avoid converting
