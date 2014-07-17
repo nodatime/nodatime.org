@@ -1,7 +1,40 @@
 <?xml version="1.0"?>
 <log>
-<logentry revision="2728" node="55432bf57e0c288ac3742a1d25fcddc1d147d56c">
+<logentry revision="2733" node="e88edfb539446fbb52ab28bdc26cde3d437b0f93">
 <tag>tip</tag>
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-17T06:20:52+02:00</date>
+<msg xml:space="preserve">Remove references to BCL calendars, to satisfy the PCL build. While it
+would be possible to conditionalize everything, it would be ugly as the whole
+member would have to be conditionalized each time :(</msg>
+</logentry>
+<logentry revision="2732" node="074f3f1035c90da28666ba373969304b8c7ecde5">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-17T06:15:20+02:00</date>
+<msg xml:space="preserve">Backed out changeset: ca70fedb22a4
+The problem is with the PCL build, where those calendars don&#39;t exist.</msg>
+</logentry>
+<logentry revision="2731" node="ca70fedb22a473b559d11dc68e6f1516ec427c03">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-17T06:10:53+02:00</date>
+<msg xml:space="preserve">Fully-qualify XML-only references to System.Globalization.
+It&#39;s unclear why this was working locally for me but doesn&#39;t work on Bagpuss...</msg>
+</logentry>
+<logentry revision="2730" node="e7b341ee324a63b9f2ce5cef2816659bf634fec5">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-16T22:54:06+02:00</date>
+<msg xml:space="preserve">Use CommonCalendars in tests etc. Definitely looks nicer.</msg>
+</logentry>
+<logentry revision="2729" node="79474e1c7c9c83b1493eefcd04127c5c2b950f2e">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-16T22:40:44+02:00</date>
+<msg xml:space="preserve">I&#39;m fed up with writing CalendarSystem.GetJulianCalendar(4) in tests. It&#39;s about
+time we had a simple property-based way of getting calendars for common cases.
+
+I&#39;m open to new ideas for names, including CalendarFactory. Unfortunately it
+can&#39;t be Calendars as that&#39;s the name of a namespace too.</msg>
+</logentry>
+<logentry revision="2728" node="55432bf57e0c288ac3742a1d25fcddc1d147d56c">
 <author email="skeet@pobox.com">Jon Skeet</author>
 <date>2014-07-16T20:44:30+01:00</date>
 <msg xml:space="preserve">Fix bug in OffsetDateTime.WithCalendar, where it basically... didn&#39;t work properly at all.</msg>
