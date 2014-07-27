@@ -148,12 +148,38 @@ setting date-based units.</p>
 <p>Normalization of a period which has time units which add up to a &quot;days&quot; range outside the range
 of <code>int</code> will similarly fail.</p>
 
+<h1>Offset</h1>
+
+<p>In Noda Time 1.x, <code>Offset</code> was implemented as a number-of-milliseconds.
+Sub-second time zone offsets aren&#39;t used in practice (modulo a <em>very</em> small
+number of historical cases), and in any case aren&#39;t supported by the TZDB or
+BCL source data that we are able to use, so we supported more precision than
+was useful.</p>
+
+<p>In Noda Time 2.0, <code>Offset</code> is implemented as a number-of-seconds. This should
+be mostly transparent, though <code>Offset.FromMilliseconds()</code> will now effectively
+truncate to the whole number of seconds.  (Similarly, <code>Offset.FromTicks()</code> will
+now trunctate to the whole number of seconds rather than a whole number of
+milliseconds.)</p>
+
+<p>As a consequence of this change, offset formatting and parsing patterns no
+longer support the <code>f</code> or <code>F</code> custom patterns, nor the <code>f</code> (full) standard
+pattern.  Attempting to use these will generate an error, and attempting to
+parse <code>Offset</code> (or <code>OffsetDateTime</code>) values containing fractional second
+offsets will fail (though as mentioned above, these values do not tend to exist
+in practice).</p>
+
+<p>Note that binary serialization for <code>Offset</code> <em>is</em> compatible with 1.x, other
+than the value being truncated to a whole number of seconds: the serialized
+form is still based on milliseconds.</p>
+
 <h1>Serialization</h1>
 
 <p>TBD (this will be awkward). To note so far:</p>
 
 <ul>
 <li>Periods with year/month/week/day values outside the range of <code>int</code></li>
+<li>Offset truncation to seconds (see above)</li>
 </ul>
 
 <h1>Default values</h1>
