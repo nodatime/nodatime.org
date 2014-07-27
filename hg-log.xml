@@ -1,7 +1,16 @@
 <?xml version="1.0"?>
 <log>
-<logentry revision="2799" node="fe0a5e9be7a2f437955df6f734bb2e619d37a793">
+<logentry revision="2800" node="f949b77e9a1afed0427d1b5abbac15b74719a891">
 <tag>tip</tag>
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-07-27T15:15:48+01:00</date>
+<msg xml:space="preserve">Combine the offset and local time into a single 64-bit integer. This involves
+some duplication of LocalTime logic, but significantly reduces the size of both
+OffsetDateTime and ZonedDateTime.
+
+Locally, benchmarks seemed to be positive - we&#39;ll see what happens on Bagpuss...</msg>
+</logentry>
+<logentry revision="2799" node="fe0a5e9be7a2f437955df6f734bb2e619d37a793">
 <author email="skeet@pobox.com">Jon Skeet</author>
 <date>2014-07-27T14:47:06+01:00</date>
 <msg xml:space="preserve">Reduce the range of Offset to +/- 18 hours (inclusive, which is simpler to
