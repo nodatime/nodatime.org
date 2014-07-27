@@ -187,15 +187,13 @@ ability to create arbitrary calendar systems later, however.</p>
 <h1>Offset</h1>
 
 <p>An <code>Offset</code> stores the number of seconds difference
-between UTC and local time. This is within exclusive bounds of +/- 1 day.</p>
+between UTC and local time. This is within inclusive bounds of +/- 18 hours.</p>
 
 <ul>
 <li><code>int seconds</code></li>
 </ul>
 
-<p>Note that even this representation still takes up 18 bits, as the range of 2 days is 172,800
-seconds. If we limited ourselves to +/- 18 hours, we could use just 17 bits... which would allow
-a <code>LocalTime</code> and an <code>Offset</code> to be stored in a single 64-bit integer.</p>
+<p>(4 bytes; 17 bits used)</p>
 
 <h1>OffsetDateTime</h1>
 
@@ -204,14 +202,18 @@ fields, as that has shown some surprising performance benefits:</p>
 
 <ul>
 <li><code>YearMonthDay yearMonthDay</code></li>
-<li><code>LocalTime time</code></li>
-<li><code>Offset offset</code></li>
+<li><code>long nanosecondsAndOffset</code></li>
 <li><code>CalendarSystem calendar</code></li>
 </ul>
 
-<p>(16 bytes + 1 reference - theoretically. In reality, it seems that the 64-bit CLR (as of 2014-07-23)
-treats the <code>Offset</code> and <code>YearMonthDay</code> values as 8 bytes each, rather than packing them
-efficiently. That leads to a total size of 32 bytes.)</p>
+<p>(12 bytes + 1 reference)</p>
+
+<p>The nanosecondsAndOffset value is split into two parts as:</p>
+
+<ul>
+<li>Nanosecond-of-day: 47 bits</li>
+<li>Offset: 17 bits</li>
+</ul>
 
 <h1>ZonedDateTime</h1>
 
@@ -222,7 +224,7 @@ efficiently. That leads to a total size of 32 bytes.)</p>
 <li><code>DateTimeZone zone</code></li>
 </ul>
 
-<p>(In theory, 16 bytes + 2 references; in reality, 40 bytes at the moment)</p>
+<p>(12 bytes + 2 references)</p>
 
 	</div>
 
