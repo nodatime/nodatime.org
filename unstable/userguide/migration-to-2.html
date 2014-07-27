@@ -159,8 +159,11 @@ was useful.</p>
 <p>In Noda Time 2.0, <code>Offset</code> is implemented as a number-of-seconds. This should
 be mostly transparent, though <code>Offset.FromMilliseconds()</code> will now effectively
 truncate to the whole number of seconds.  (Similarly, <code>Offset.FromTicks()</code> will
-now trunctate to the whole number of seconds rather than a whole number of
-milliseconds.)</p>
+now truncate to the whole number of seconds rather than a whole number of
+milliseconds.) The range of <code>Offset</code> is also reduced from +/- 23:59:59.999 to
++/- 18:00:00. The range reduction should have no practical consequence for real
+situations, but test code which tried to use offsets between 18 and 24 hours
+ahead of or behind UTC will need to be adjusted.</p>
 
 <p>As a consequence of this change, offset formatting and parsing patterns no
 longer support the <code>f</code> or <code>F</code> custom patterns, nor the <code>f</code> (full) standard
