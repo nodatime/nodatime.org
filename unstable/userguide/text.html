@@ -218,13 +218,16 @@ specifiers being available for some types but not others.</p>
 <li>Where valid, <code>/</code> always refers to the culture-specific date separator (a forward slash in the invariant culture)</li>
 </ul>
 
-<p>Any characters within a custom format which <em>don&#39;t</em> have a specific
-meaning are treated as text literals (when parsing, they must be
-matched exactly; when formatting they are reproduced exactly). This
-is supported mostly for the sake of compatibility. We <strong>strongly
-recommend</strong> that you quote any text literals, to avoid nasty
-surprises if extra characters take on special meanings in later
-versions.</p>
+<p>Any ASCII letters (a-z, A-Z) which are intended to be used as text literals (when parsing, they must be
+matched exactly; when formatting they are reproduced exactly) <em>must</em> be quoted or escaped. Even if they do not have
+a specific meaning for the given pattern type, their presence within the pattern would be a potential cause for 
+confusion and error. Additionally, by effectively reserving all ASCII letters, Noda Time has more room for future
+expansion without compatibility concerns. The one exception to this rule is &#39;T&#39;, which is explicitly allowed within
+date/time-based patterns (<code>LocalDateTime</code> etc) as a common separator between the two parts. It is <em>not</em> permitted
+(without quoting or escaping) in other patterns such as for <code>LocalDate</code> or <code>LocalTime</code>.</p>
+
+<p>Any non-letter characters within a custom format which <em>don&#39;t</em> have a specific meaning are treated as text literals.
+You may wish to escape or quote such characters anyway, for the sake of consistency.</p>
 
 <h3>Related fields</h3>
 
