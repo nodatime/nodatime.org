@@ -387,7 +387,7 @@
     <HelpKINode Title="Period.Days Property " Url="html/P_NodaTime_Period_Days.htm" />
     <HelpKINode Title="PeriodBuilder.Days Property " Url="html/P_NodaTime_PeriodBuilder_Days.htm" />
   </HelpKINode>
-  <HelpKINode Title="DaysPerStandardWeek field" Url="html/F_NodaTime_NodaConstants_DaysPerStandardWeek.htm" />
+  <HelpKINode Title="DaysPerWeek field" Url="html/F_NodaTime_NodaConstants_DaysPerWeek.htm" />
   <HelpKINode Title="Default property" Url="html/P_NodaTime_TimeZones_TzdbDateTimeZoneSource_Default.htm" />
   <HelpKINode Title="DisplayName property" Url="html/P_NodaTime_TimeZones_BclDateTimeZone_DisplayName.htm" />
   <HelpKINode Title="Divide method" Url="html/M_NodaTime_Duration_Divide.htm" />
@@ -414,13 +414,12 @@
   <HelpKINode Title="Duration.Epsilon field" Url="html/F_NodaTime_Duration_Epsilon.htm" />
   <HelpKINode Title="Duration.Equality operator" Url="html/M_NodaTime_Duration_op_Equality.htm" />
   <HelpKINode Title="Duration.Equals method" Url="html/Overload_NodaTime_Duration_Equals.htm" />
+  <HelpKINode Title="Duration.FromDays method" Url="html/M_NodaTime_Duration_FromDays.htm" />
   <HelpKINode Title="Duration.FromHours method" Url="html/M_NodaTime_Duration_FromHours.htm" />
   <HelpKINode Title="Duration.FromMilliseconds method" Url="html/M_NodaTime_Duration_FromMilliseconds.htm" />
   <HelpKINode Title="Duration.FromMinutes method" Url="html/M_NodaTime_Duration_FromMinutes.htm" />
   <HelpKINode Title="Duration.FromNanoseconds method" Url="html/Overload_NodaTime_Duration_FromNanoseconds.htm" />
   <HelpKINode Title="Duration.FromSeconds method" Url="html/M_NodaTime_Duration_FromSeconds.htm" />
-  <HelpKINode Title="Duration.FromStandardDays method" Url="html/M_NodaTime_Duration_FromStandardDays.htm" />
-  <HelpKINode Title="Duration.FromStandardWeeks method" Url="html/M_NodaTime_Duration_FromStandardWeeks.htm" />
   <HelpKINode Title="Duration.FromTicks method" Url="html/M_NodaTime_Duration_FromTicks.htm" />
   <HelpKINode Title="Duration.FromTimeSpan method" Url="html/M_NodaTime_Duration_FromTimeSpan.htm" />
   <HelpKINode Title="Duration.GetHashCode method" Url="html/M_NodaTime_Duration_GetHashCode.htm" />
@@ -630,7 +629,10 @@
     <HelpKINode Title="ZonedDateTime.FromDateTimeOffset Method " Url="html/M_NodaTime_ZonedDateTime_FromDateTimeOffset.htm" />
   </HelpKINode>
   <HelpKINode Title="FromDateTimeUtc method" Url="html/M_NodaTime_Instant_FromDateTimeUtc.htm" />
-  <HelpKINode Title="FromDays method" Url="html/M_NodaTime_Period_FromDays.htm" />
+  <HelpKINode Title="FromDays method">
+    <HelpKINode Title="Duration.FromDays Method " Url="html/M_NodaTime_Duration_FromDays.htm" />
+    <HelpKINode Title="Period.FromDays Method " Url="html/M_NodaTime_Period_FromDays.htm" />
+  </HelpKINode>
   <HelpKINode Title="FromHourMinuteSecondNanosecond method" Url="html/M_NodaTime_LocalTime_FromHourMinuteSecondNanosecond.htm" />
   <HelpKINode Title="FromHourMinuteSecondTick method" Url="html/M_NodaTime_LocalTime_FromHourMinuteSecondTick.htm" />
   <HelpKINode Title="FromHours method">
@@ -663,8 +665,6 @@
   </HelpKINode>
   <HelpKINode Title="FromSecondsSinceMidnight method" Url="html/M_NodaTime_LocalTime_FromSecondsSinceMidnight.htm" />
   <HelpKINode Title="FromSecondsSinceUnixEpoch method" Url="html/M_NodaTime_Instant_FromSecondsSinceUnixEpoch.htm" />
-  <HelpKINode Title="FromStandardDays method" Url="html/M_NodaTime_Duration_FromStandardDays.htm" />
-  <HelpKINode Title="FromStandardWeeks method" Url="html/M_NodaTime_Duration_FromStandardWeeks.htm" />
   <HelpKINode Title="FromStream method" Url="html/M_NodaTime_TimeZones_TzdbDateTimeZoneSource_FromStream.htm" />
   <HelpKINode Title="FromTicks method">
     <HelpKINode Title="Duration.FromTicks Method " Url="html/M_NodaTime_Duration_FromTicks.htm" />
@@ -807,8 +807,8 @@
     <HelpKINode Title="Period.Hours Property " Url="html/P_NodaTime_Period_Hours.htm" />
     <HelpKINode Title="PeriodBuilder.Hours Property " Url="html/P_NodaTime_PeriodBuilder_Hours.htm" />
   </HelpKINode>
-  <HelpKINode Title="HoursPerStandardDay field" Url="html/F_NodaTime_NodaConstants_HoursPerStandardDay.htm" />
-  <HelpKINode Title="HoursPerStandardWeek field" Url="html/F_NodaTime_NodaConstants_HoursPerStandardWeek.htm" />
+  <HelpKINode Title="HoursPerDay field" Url="html/F_NodaTime_NodaConstants_HoursPerDay.htm" />
+  <HelpKINode Title="HoursPerWeek field" Url="html/F_NodaTime_NodaConstants_HoursPerWeek.htm" />
   <HelpKINode Title="IClock interface">
     <HelpKINode Title="IClock Interface" Url="html/T_NodaTime_IClock.htm" />
     <HelpKINode Title="IClock Members" Url="html/AllMembers_T_NodaTime_IClock.htm" />
@@ -1362,11 +1362,11 @@
     <HelpKINode Title="Period.Milliseconds Property " Url="html/P_NodaTime_Period_Milliseconds.htm" />
     <HelpKINode Title="PeriodBuilder.Milliseconds Property " Url="html/P_NodaTime_PeriodBuilder_Milliseconds.htm" />
   </HelpKINode>
+  <HelpKINode Title="MillisecondsPerDay field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerDay.htm" />
   <HelpKINode Title="MillisecondsPerHour field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerHour.htm" />
   <HelpKINode Title="MillisecondsPerMinute field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerMinute.htm" />
   <HelpKINode Title="MillisecondsPerSecond field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerSecond.htm" />
-  <HelpKINode Title="MillisecondsPerStandardDay field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerStandardDay.htm" />
-  <HelpKINode Title="MillisecondsPerStandardWeek field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerStandardWeek.htm" />
+  <HelpKINode Title="MillisecondsPerWeek field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerWeek.htm" />
   <HelpKINode Title="Min method">
     <HelpKINode Title="Instant.Min Method " Url="html/M_NodaTime_Instant_Min.htm" />
     <HelpKINode Title="Offset.Min Method " Url="html/M_NodaTime_Offset_Min.htm" />
@@ -1392,9 +1392,9 @@
     <HelpKINode Title="Period.Minutes Property " Url="html/P_NodaTime_Period_Minutes.htm" />
     <HelpKINode Title="PeriodBuilder.Minutes Property " Url="html/P_NodaTime_PeriodBuilder_Minutes.htm" />
   </HelpKINode>
+  <HelpKINode Title="MinutesPerDay field" Url="html/F_NodaTime_NodaConstants_MinutesPerDay.htm" />
   <HelpKINode Title="MinutesPerHour field" Url="html/F_NodaTime_NodaConstants_MinutesPerHour.htm" />
-  <HelpKINode Title="MinutesPerStandardDay field" Url="html/F_NodaTime_NodaConstants_MinutesPerStandardDay.htm" />
-  <HelpKINode Title="MinutesPerStandardWeek field" Url="html/F_NodaTime_NodaConstants_MinutesPerStandardWeek.htm" />
+  <HelpKINode Title="MinutesPerWeek field" Url="html/F_NodaTime_NodaConstants_MinutesPerWeek.htm" />
   <HelpKINode Title="MinValue field">
     <HelpKINode Title="Instant.MinValue Field" Url="html/F_NodaTime_Instant_MinValue.htm" />
     <HelpKINode Title="Offset.MinValue Field" Url="html/F_NodaTime_Offset_MinValue.htm" />
@@ -1464,13 +1464,13 @@
     <HelpKINode Title="Period.Nanoseconds Property " Url="html/P_NodaTime_Period_Nanoseconds.htm" />
     <HelpKINode Title="PeriodBuilder.Nanoseconds Property " Url="html/P_NodaTime_PeriodBuilder_Nanoseconds.htm" />
   </HelpKINode>
+  <HelpKINode Title="NanosecondsPerDay field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerDay.htm" />
   <HelpKINode Title="NanosecondsPerHour field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerHour.htm" />
   <HelpKINode Title="NanosecondsPerMillisecond field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerMillisecond.htm" />
   <HelpKINode Title="NanosecondsPerMinute field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerMinute.htm" />
   <HelpKINode Title="NanosecondsPerSecond field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerSecond.htm" />
-  <HelpKINode Title="NanosecondsPerStandardDay field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerStandardDay.htm" />
-  <HelpKINode Title="NanosecondsPerStandardWeek field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerStandardWeek.htm" />
   <HelpKINode Title="NanosecondsPerTick field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerTick.htm" />
+  <HelpKINode Title="NanosecondsPerWeek field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerWeek.htm" />
   <HelpKINode Title="Negate method">
     <HelpKINode Title="Duration.Negate Method " Url="html/M_NodaTime_Duration_Negate.htm" />
     <HelpKINode Title="Offset.Negate Method " Url="html/M_NodaTime_Offset_Negate.htm" />
@@ -1487,34 +1487,34 @@
     <HelpKINode Title="fields" Url="html/Fields_T_NodaTime_NodaConstants.htm" />
   </HelpKINode>
   <HelpKINode Title="NodaConstants.BclEpoch field" Url="html/F_NodaTime_NodaConstants_BclEpoch.htm" />
-  <HelpKINode Title="NodaConstants.DaysPerStandardWeek field" Url="html/F_NodaTime_NodaConstants_DaysPerStandardWeek.htm" />
-  <HelpKINode Title="NodaConstants.HoursPerStandardDay field" Url="html/F_NodaTime_NodaConstants_HoursPerStandardDay.htm" />
-  <HelpKINode Title="NodaConstants.HoursPerStandardWeek field" Url="html/F_NodaTime_NodaConstants_HoursPerStandardWeek.htm" />
+  <HelpKINode Title="NodaConstants.DaysPerWeek field" Url="html/F_NodaTime_NodaConstants_DaysPerWeek.htm" />
+  <HelpKINode Title="NodaConstants.HoursPerDay field" Url="html/F_NodaTime_NodaConstants_HoursPerDay.htm" />
+  <HelpKINode Title="NodaConstants.HoursPerWeek field" Url="html/F_NodaTime_NodaConstants_HoursPerWeek.htm" />
+  <HelpKINode Title="NodaConstants.MillisecondsPerDay field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerDay.htm" />
   <HelpKINode Title="NodaConstants.MillisecondsPerHour field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerHour.htm" />
   <HelpKINode Title="NodaConstants.MillisecondsPerMinute field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerMinute.htm" />
   <HelpKINode Title="NodaConstants.MillisecondsPerSecond field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerSecond.htm" />
-  <HelpKINode Title="NodaConstants.MillisecondsPerStandardDay field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerStandardDay.htm" />
-  <HelpKINode Title="NodaConstants.MillisecondsPerStandardWeek field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerStandardWeek.htm" />
+  <HelpKINode Title="NodaConstants.MillisecondsPerWeek field" Url="html/F_NodaTime_NodaConstants_MillisecondsPerWeek.htm" />
+  <HelpKINode Title="NodaConstants.MinutesPerDay field" Url="html/F_NodaTime_NodaConstants_MinutesPerDay.htm" />
   <HelpKINode Title="NodaConstants.MinutesPerHour field" Url="html/F_NodaTime_NodaConstants_MinutesPerHour.htm" />
-  <HelpKINode Title="NodaConstants.MinutesPerStandardDay field" Url="html/F_NodaTime_NodaConstants_MinutesPerStandardDay.htm" />
-  <HelpKINode Title="NodaConstants.MinutesPerStandardWeek field" Url="html/F_NodaTime_NodaConstants_MinutesPerStandardWeek.htm" />
+  <HelpKINode Title="NodaConstants.MinutesPerWeek field" Url="html/F_NodaTime_NodaConstants_MinutesPerWeek.htm" />
+  <HelpKINode Title="NodaConstants.NanosecondsPerDay field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerDay.htm" />
   <HelpKINode Title="NodaConstants.NanosecondsPerHour field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerHour.htm" />
   <HelpKINode Title="NodaConstants.NanosecondsPerMillisecond field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerMillisecond.htm" />
   <HelpKINode Title="NodaConstants.NanosecondsPerMinute field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerMinute.htm" />
   <HelpKINode Title="NodaConstants.NanosecondsPerSecond field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerSecond.htm" />
-  <HelpKINode Title="NodaConstants.NanosecondsPerStandardDay field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerStandardDay.htm" />
-  <HelpKINode Title="NodaConstants.NanosecondsPerStandardWeek field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerStandardWeek.htm" />
   <HelpKINode Title="NodaConstants.NanosecondsPerTick field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerTick.htm" />
+  <HelpKINode Title="NodaConstants.NanosecondsPerWeek field" Url="html/F_NodaTime_NodaConstants_NanosecondsPerWeek.htm" />
+  <HelpKINode Title="NodaConstants.SecondsPerDay field" Url="html/F_NodaTime_NodaConstants_SecondsPerDay.htm" />
   <HelpKINode Title="NodaConstants.SecondsPerHour field" Url="html/F_NodaTime_NodaConstants_SecondsPerHour.htm" />
   <HelpKINode Title="NodaConstants.SecondsPerMinute field" Url="html/F_NodaTime_NodaConstants_SecondsPerMinute.htm" />
-  <HelpKINode Title="NodaConstants.SecondsPerStandardDay field" Url="html/F_NodaTime_NodaConstants_SecondsPerStandardDay.htm" />
   <HelpKINode Title="NodaConstants.SecondsPerWeek field" Url="html/F_NodaTime_NodaConstants_SecondsPerWeek.htm" />
+  <HelpKINode Title="NodaConstants.TicksPerDay field" Url="html/F_NodaTime_NodaConstants_TicksPerDay.htm" />
   <HelpKINode Title="NodaConstants.TicksPerHour field" Url="html/F_NodaTime_NodaConstants_TicksPerHour.htm" />
   <HelpKINode Title="NodaConstants.TicksPerMillisecond field" Url="html/F_NodaTime_NodaConstants_TicksPerMillisecond.htm" />
   <HelpKINode Title="NodaConstants.TicksPerMinute field" Url="html/F_NodaTime_NodaConstants_TicksPerMinute.htm" />
   <HelpKINode Title="NodaConstants.TicksPerSecond field" Url="html/F_NodaTime_NodaConstants_TicksPerSecond.htm" />
-  <HelpKINode Title="NodaConstants.TicksPerStandardDay field" Url="html/F_NodaTime_NodaConstants_TicksPerStandardDay.htm" />
-  <HelpKINode Title="NodaConstants.TicksPerStandardWeek field" Url="html/F_NodaTime_NodaConstants_TicksPerStandardWeek.htm" />
+  <HelpKINode Title="NodaConstants.TicksPerWeek field" Url="html/F_NodaTime_NodaConstants_TicksPerWeek.htm" />
   <HelpKINode Title="NodaConstants.UnixEpoch field" Url="html/F_NodaTime_NodaConstants_UnixEpoch.htm" />
   <HelpKINode Title="NodaConverterBase(Of T) class">
     <HelpKINode Title="NodaConverterBase(T) Class" Url="html/T_NodaTime_Serialization_JsonNet_NodaConverterBase_1.htm" />
@@ -2319,9 +2319,9 @@
     <HelpKINode Title="Period.Seconds Property " Url="html/P_NodaTime_Period_Seconds.htm" />
     <HelpKINode Title="PeriodBuilder.Seconds Property " Url="html/P_NodaTime_PeriodBuilder_Seconds.htm" />
   </HelpKINode>
+  <HelpKINode Title="SecondsPerDay field" Url="html/F_NodaTime_NodaConstants_SecondsPerDay.htm" />
   <HelpKINode Title="SecondsPerHour field" Url="html/F_NodaTime_NodaConstants_SecondsPerHour.htm" />
   <HelpKINode Title="SecondsPerMinute field" Url="html/F_NodaTime_NodaConstants_SecondsPerMinute.htm" />
-  <HelpKINode Title="SecondsPerStandardDay field" Url="html/F_NodaTime_NodaConstants_SecondsPerStandardDay.htm" />
   <HelpKINode Title="SecondsPerWeek field" Url="html/F_NodaTime_NodaConstants_SecondsPerWeek.htm" />
   <HelpKINode Title="Serialization property" Url="html/P_NodaTime_DateTimeZoneProviders_Serialization.htm" />
   <HelpKINode Title="Single method" Url="html/M_NodaTime_TimeZones_ZoneLocalMapping_Single.htm" />
@@ -2432,12 +2432,12 @@
     <HelpKINode Title="Period.Ticks Property " Url="html/P_NodaTime_Period_Ticks.htm" />
     <HelpKINode Title="PeriodBuilder.Ticks Property " Url="html/P_NodaTime_PeriodBuilder_Ticks.htm" />
   </HelpKINode>
+  <HelpKINode Title="TicksPerDay field" Url="html/F_NodaTime_NodaConstants_TicksPerDay.htm" />
   <HelpKINode Title="TicksPerHour field" Url="html/F_NodaTime_NodaConstants_TicksPerHour.htm" />
   <HelpKINode Title="TicksPerMillisecond field" Url="html/F_NodaTime_NodaConstants_TicksPerMillisecond.htm" />
   <HelpKINode Title="TicksPerMinute field" Url="html/F_NodaTime_NodaConstants_TicksPerMinute.htm" />
   <HelpKINode Title="TicksPerSecond field" Url="html/F_NodaTime_NodaConstants_TicksPerSecond.htm" />
-  <HelpKINode Title="TicksPerStandardDay field" Url="html/F_NodaTime_NodaConstants_TicksPerStandardDay.htm" />
-  <HelpKINode Title="TicksPerStandardWeek field" Url="html/F_NodaTime_NodaConstants_TicksPerStandardWeek.htm" />
+  <HelpKINode Title="TicksPerWeek field" Url="html/F_NodaTime_NodaConstants_TicksPerWeek.htm" />
   <HelpKINode Title="TimeAdjusters class">
     <HelpKINode Title="TimeAdjusters Class" Url="html/T_NodaTime_TimeAdjusters.htm" />
     <HelpKINode Title="TimeAdjusters Members" Url="html/AllMembers_T_NodaTime_TimeAdjusters.htm" />

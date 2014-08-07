@@ -1,7 +1,42 @@
 <?xml version="1.0"?>
 <log>
-<logentry revision="2868" node="df7b65a4f621187f2f498cfdef19957e26ddf012">
+<logentry revision="2871" node="a6c95f2f2ca3836c716d943539e881a88872807c">
 <tag>tip</tag>
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-08-07T21:56:05+01:00</date>
+<msg xml:space="preserve">- Removed &quot;Standard&quot; from NodaConstants.* names
+- Renamed Duration.FromStandardDays to Duration.FromDays
+- Removed Duration.FromWeeks
+- Updated user guide</msg>
+</logentry>
+<logentry revision="2870" node="07cc678f909ce3d1258d0dcde080d5e70cd1752f">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-08-07T21:44:09+01:00</date>
+<msg xml:space="preserve">Tidy up the &quot;we couldn&#39;t initialize the Um Al Qura calendar&quot; code a bit, just
+by removing redundant null assignments.</msg>
+</logentry>
+<logentry revision="2869" node="5c8c1383ee39c58c6e397f324a1af7df24f71d8d">
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-08-07T21:38:26+01:00</date>
+<msg xml:space="preserve">Support the Um Al Qura calendar conditionally. There are 5 situations:
+
+1. Non-PCL build, on .NET: We can build an instance of UmAlQuraCalendar statically,
+   and it will work.
+2. Non-PCL build, on Mono: We can build an instance of UmAlQuraCalendar statically,
+   and it will be broken.
+3. PCL build, on an MS platform with the calendar: We can&#39;t express a compile-time
+   dependency on UmAlQuraCalendar statically, but we can create an instance with
+   Activator.CreateInstance, and it should work.
+4. PCL build, on a platform without the calendar: We can&#39;t create an instance of
+   UmAlQuraCalendar at all.
+5. PCL build, on Mono: We can create an instance with Activator.CreateInstance,
+   but it&#39;ll still be broken.
+
+I believe this should work for all those cases. When in doubt, we say it&#39;s not
+supported. (We then need to implement being able to obtain that calendar only
+when it&#39;s supported...)</msg>
+</logentry>
+<logentry revision="2868" node="df7b65a4f621187f2f498cfdef19957e26ddf012">
 <author email="skeet@pobox.com">Jon Skeet</author>
 <date>2014-08-07T19:54:30+01:00</date>
 <msg xml:space="preserve">Don&#39;t include the UmAlQura calendar in the PCL build.

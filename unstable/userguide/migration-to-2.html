@@ -120,7 +120,7 @@ removing some documented edge cases where the legacy resource format didn&#39;t 
 information as the more recent &quot;nzd&quot; format. If you were previously using the resource format,
 just move to the &quot;nzd&quot; format, using the static factory members of <code>TzdbDateTimeZoneSource</code>.</p>
 
-<h1>Removed (or now private) members</h1>
+<h1>Removed, renamed or now private members</h1>
 
 <p>The <code>Instant(long)</code> constructor is now private; use <code>Instant.FromTicksSinceUnixEpoch</code> instead.
 As the resolution of 2.0 is nanoseconds, a constructor taking a number of <em>ticks</em> since the
@@ -141,6 +141,15 @@ almost certainly not helpful. Users who wish to compute the century and year of 
 particular form can do so reasonably easily in their own code. With this change in place, the
 distinction between the ISO calendar system and Gregorian-4 is only maintained for simplicity,
 compatibility and consistency; the two calendars behave identically.</p>
+
+<p><code>Duration.FromStandardWeeks</code> has been removed on the grounds that it was quite odd; it&#39;s unusual
+to want a duration of a standard week - you can always just multiply by 7 and call <code>Duration.FromDays</code>
+instead.</p>
+
+<p>The word <code>Standard</code> has been removed from the members of <code>NodaConstants</code> and also from <code>Duration.FromStandardDays</code>
+(so that&#39;s now <code>Duration.FromDays</code>). If it was annoying for the Noda Time developers, it was probably annoying
+for users too... the meaning is exactly the same, and the documentation still talks about &quot;standard&quot; days/weeks,
+but having it in the names was a bit obnoxious, particularly in code which used a lot of constants.</p>
 
 <h1>Period</h1>
 
