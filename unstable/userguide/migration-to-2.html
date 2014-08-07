@@ -135,6 +135,13 @@ the addition operator instead.</p>
 <p><code>CalendarSystem.GetMaxMonth</code> has been renamed to <code>GetMonthsInYear</code>, to match the equivalent
 method in <code>System.Globalization.Calendar</code>.</p>
 
+<p><code>CenturyOfEra</code> and <code>YearOfCentury</code> have both been removed. We considered it unlikely that they
+were being used, and the subtle differences between the Gregorian and ISO calendar systems were
+almost certainly not helpful. Users who wish to compute the century and year of century in a
+particular form can do so reasonably easily in their own code. With this change in place, the
+distinction between the ISO calendar system and Gregorian-4 is only maintained for simplicity,
+compatibility and consistency; the two calendars behave identically.</p>
+
 <h1>Period</h1>
 
 <p>The <code>Years</code>, <code>Months</code>, <code>Weeks</code> and <code>Days</code> properties of <code>Period</code> (and <code>PeriodBuilder</code>) are
