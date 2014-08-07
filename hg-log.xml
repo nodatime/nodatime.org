@@ -1,7 +1,20 @@
 <?xml version="1.0"?>
 <log>
-<logentry revision="2865" node="49e7f1361d210d344e7878656f0fab31aa59ec9e">
+<logentry revision="2866" node="75909dea0603853bab4b86936292a13a3bc96ba0">
 <tag>tip</tag>
+<author email="skeet@pobox.com">Jon Skeet</author>
+<date>2014-08-07T09:02:05+01:00</date>
+<msg xml:space="preserve">A little work around YearMonthDayCalculator - primarily moving methods around
+to be more conveniently grouped when implementing a new calculator, but also
+removing the assumption that a year has 366 or 365 days - that&#39;s pushed down
+to the calendars for which that assumption is valid.
+
+Also include a speculative optimization for the Gregorian calendar of removing
+a virtual method call in GetDaysInYear. We&#39;ll see what difference that makes -
+it&#39;s likely to be in converting an Instant to a LocalDate (or anywhere else we&#39;re
+converting &quot;number of days since epoch&quot; to year/month/day).</msg>
+</logentry>
+<logentry revision="2865" node="49e7f1361d210d344e7878656f0fab31aa59ec9e">
 <author email="skeet@pobox.com">Jon Skeet</author>
 <date>2014-08-07T07:51:34+01:00</date>
 <msg xml:space="preserve">Remove year-of-century and century-of-era, which behaved weirdly for BC dates
