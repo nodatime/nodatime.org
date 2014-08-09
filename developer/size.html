@@ -133,10 +133,9 @@ each of the value types consists of, and any possible space savings in the futur
 
 <p>The value is always non-negative, and requires 47 bits (to represent a maximum value one less than 86,400,000,000,000).</p>
 
-<h1>YearMonthDay</h1>
+<h1>YearMonthDay and YearMonthDayCalendar</h1>
 
-<p><code>YearMonthDay</code> is used to split a date into year, month and day in a particular calendar, which
-isn&#39;t represented in the value itself. Its representation is just a single <code>int</code>:</p>
+<p><code>YearMonthDay</code> and <code>YearMonthDayCalendar</code> are used to split a date into year, month and day. Its representation is just a single <code>int</code>:</p>
 
 <ul>
 <li><code>int value</code></li>
@@ -144,34 +143,34 @@ isn&#39;t represented in the value itself. Its representation is just a single <
 
 <p>(4 bytes)</p>
 
-<p>The value is split into the three parts as:</p>
+<p>The value is split into the three or four parts as:</p>
 
 <ul>
 <li>Day: 6 bits</li>
-<li>Month: 6 bits</li>
+<li>Month: 4 bits</li>
 <li>Year: 15 bits</li>
+<li>Calendar: 7 bits (only in <code>YearMonthDayCalendar</code>)</li>
 </ul>
 
-<p>This leaves 5 bits available for future expansion, should they be useful - while actually allowing 
-for days and months of up to 64. (If we reasonably assume no day-of-month above 32 and no month 
-above 16, we can save an extra 3 bits.) Each component stores the desired value minus one, i.e. a 
-raw value of 0 represents 0001-01-01. This ensures that a &quot;default&quot; <code>YearMonthDay</code> (for example
-in the context of <code>new LocalDate()</code>) represents a valid value.</p>
+<p><code>YearMonthDay</code> is used within <code>YearMonthCalculator</code> code, whereas <code>YearMonthDayCalendar</code> is used in <code>LocalDate</code> and <code>OffsetDateTime</code>.
+The calendar is represented in 7 bits by assigning an ordinal to each calendar system. This approach limits Noda Time to having
+a maximum of 128 calendar systems (including variants such as leap year patterns, epochs and month numbering systems). However,
+as of August 2014 it seems unlikely that we&#39;ll ever hit that limit. Perhaps more importantly, it does mean that we can&#39;t easily
+allow user-provided calendar systems.</p>
 
-<p>With an extra 3 bits, we could <em>potentially</em> encode a calendar system ID into <code>YearMonthDay</code> as well,
-so that <code>LocalDate</code> was just a wrapper around <code>YearMonthDay</code>. This would have an impact on our
-ability to create arbitrary calendar systems later, however.</p>
+<p>The ISO calendar system is calendar 0, making it a natural default for the type. The other components are encoded such that a 0
+in the value means 1 in the component itself, so the default values of <code>YearMonthDay</code> and <code>YearMonthDayCalendar</code> are 0001-01-01
+and 0001-01-01 ISO respectively.</p>
 
 <h1>LocalDate</h1>
 
-<p>A <code>LocalDate</code> is a <code>YearMonthDay</code> and a calendar system reference:</p>
+<p>A <code>LocalDate</code> is simply a <code>YearMonthDayCalendar</code>:</p>
 
 <ul>
-<li><code>YearMonthDay yearMonthDay</code></li>
-<li><code>CalendarSystem calendar</code></li>
+<li><code>YearMonthDayCalendar yearMonthDayCalendar</code></li>
 </ul>
 
-<p>(4 bytes + 1 reference)</p>
+<p>(4 bytes)</p>
 
 <h1>LocalDateTime</h1>
 
@@ -182,7 +181,7 @@ ability to create arbitrary calendar systems later, however.</p>
 <li><code>LocalTime time</code></li>
 </ul>
 
-<p>(12 bytes + 1 reference)</p>
+<p>(12 bytes)</p>
 
 <h1>Offset</h1>
 
@@ -197,16 +196,15 @@ between UTC and local time. This is within inclusive bounds of +/- 18 hours.</p>
 
 <h1>OffsetDateTime</h1>
 
-<p>An <code>OffsetDateTime</code> is <em>logically</em> a <code>LocalDateTime</code> and an <code>Offset</code>, but it&#39;s stored with separate
-fields, as that has shown some surprising performance benefits:</p>
+<p>An <code>OffsetDateTime</code> is <em>logically</em> a <code>LocalDateTime</code> and an <code>Offset</code>, but it&#39;s stored somewhat differently,
+as that has shown some surprising performance benefits:</p>
 
 <ul>
-<li><code>YearMonthDay yearMonthDay</code></li>
+<li><code>YearMonthDayCalendar yearMonthDayCalendar</code></li>
 <li><code>long nanosecondsAndOffset</code></li>
-<li><code>CalendarSystem calendar</code></li>
 </ul>
 
-<p>(12 bytes + 1 reference)</p>
+<p>(12 bytes)</p>
 
 <p>The nanosecondsAndOffset value is split into two parts as:</p>
 
@@ -224,7 +222,7 @@ fields, as that has shown some surprising performance benefits:</p>
 <li><code>DateTimeZone zone</code></li>
 </ul>
 
-<p>(12 bytes + 2 references)</p>
+<p>(12 bytes + 1 reference)</p>
 
 	</div>
 
