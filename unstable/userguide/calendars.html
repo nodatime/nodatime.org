@@ -111,6 +111,10 @@ are currently out of scope for Noda Time.</p>
 another calendar system, please contact <a href="http://groups.google.com/group/noda-time">the mailing list</a> or
 <a href="https://code.google.com/p/noda-time/issues/list">file a bug</a>.</p>
 
+<p>Note that although the API version listed indicates when a calendar system was first introduced into Noda Time,
+the access to most calendars was simplified in 2.0 to use properties instead of methods. The API access listed
+is from 2.0.0 onwards; please refer to the relevant copy of this user guide if you are using an older version.</p>
+
 <h1>ISO</h1>
 
 <p>First supported in v1.0.0<br>
@@ -132,7 +136,12 @@ in the year.</p>
 <h1>Gregorian</h1>
 
 <p>First supported in v1.0.0<br>
-API access: <a href="../api/html/M_NodaTime_CalendarSystem_GetGregorianCalendar.htm"><code>CalendarSystem.GetGregorianCalendar()</code></a></p>
+API access:</p>
+
+<ul>
+<li><a href="../api/html/P_NodaTime_CalendarSystem_Gregorian.htm"><code>CalendarSystem.Gregorian</code></a></li>
+<li>[<code>CalendarSystem.GetGregorianCalendar</code>](../api/html/P<em>NodaTime</em>CalendarSystem_GetGregorianCalendar.htm</li>
+</ul>
 
 <p>The <a href="http://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian calendar</a> was a refinement to the Julian calendar,
 changing the formula for which years are leap years from &quot;whenever the year is divisible by 4&quot; to
@@ -145,12 +154,13 @@ no support for a &quot;cutover&quot; calendar system which observes the Julian c
 cuts over to the Gregorian calendar system. Although such a calendar system would more accurately represent
 the calendar observed in many countries over time, it causes all sorts of API difficulties.</p>
 
-<p>The parameter to <code>GetGregorianCalendar()</code> indicates the minimum number of days in the first week of the week-year.</p>
+<p>The parameter to <code>GetGregorianCalendar()</code> indicates the minimum number of days in the first week of the week-year;
+the <code>Gregorian</code> properties returns the same calendar as <code>GetGregorianCalendar(4)</code>.</p>
 
 <h1>Julian</h1>
 
 <p>First supported in v1.0.0<br>
-API access: <a href="../api/html/M_NodaTime_CalendarSystem_GetJulianCalendar.htm"><code>CalendarSystem.GetJulianCalendar()</code></a></p>
+API access: <a href="../api/html/M_NodaTime_CalendarSystem_Julian.htm"><code>CalendarSystem.Julian</code></a></p>
 
 <p>The <a href="http://en.wikipedia.org/wiki/Julian_calendar">Julian calendar</a> was introduced by Julius Caesar in 46BC, and took
 effect in 45BC. It was like the Gregorian calendar, but with a simpler leap year rule - every year number divisible by
@@ -163,7 +173,7 @@ details of this leap year error, along with suggestions of how history might hav
 <h1>Coptic (Alexandrian)</h1>
 
 <p>First supported in v1.0.0<br>
-API access: <a href="../api/html/M_NodaTime_CalendarSystem_GetCopticCalendar.htm"><code>CalendarSystem.GetCopticCalendar()</code></a></p>
+API access: <a href="../api/html/P_NodaTime_CalendarSystem_Coptic.htm"><code>CalendarSystem.Coptic</code></a></p>
 
 <p>The Coptic calendar system is used by the Coptic Orthodox Church. Each year has 12 months of exactly 30 days, followed by
 one month with either 5 or 6 days depending on whether or not the year is a leap year. Like the Julian calendar,
@@ -175,7 +185,12 @@ dates earlier than year 1 cannot be represented in the Coptic calendar in Noda T
 <h1>Islamic (Hijri)</h1>
 
 <p>First supported in v1.0.0<br>
-API access: <a href="../api/html/M_NodaTime_CalendarSystem_GetIslamicCalendar.htm"><code>CalendarSystem.GetIslamicCalendar()</code></a></p>
+API access:</p>
+
+<ul>
+<li><a href="../api/html/M_NodaTime_CalendarSystem_GetIslamicCalendar.htm"><code>CalendarSystem.GetIslamicCalendar()</code></a></li>
+<li><a href="../api/html/P_NodaTime_CalendarSystem_IslamicBcl.htm"><code>CalendarSystem.IslamicBcl</code></a></li>
+</ul>
 
 <p>The <a href="http://en.wikipedia.org/wiki/Islamic_calendar">Islamic (or Hijri) calendar</a> is a lunar calendar with years of 12
 months, totalling either 355 or 354 days depending on whether or not it&#39;s a leap year. There are various schemes
@@ -191,15 +206,23 @@ astronomical (July 15th CE Julian) and civil (July 16th CE Julian) and are speci
 <a href="../api/html/T_NodaTime_Calendars_IslamicEpoch.htm"><code>IslamicEpoch</code></a> enumeration.</p>
 
 <p>The <code>GetIslamicCalendar()</code> method accepts two parameters, specifying the leap year pattern and epoch. You should carefully
-consider which other systems you need to interoperate with when deciding which values to specify for these parameters.</p>
+consider which other systems you need to interoperate with when deciding which values to specify for these parameters.
+The <code>IslamicBcl</code> property follows the same leap year pattern and epoch as the BCL <code>IslamicCalendar</code> type. It is
+equivalent to the result of calling <code>GetIslamicCalendar(IslamicLeapYearPattern.Base16, IslamicEpoch.Astronomical)</code>.</p>
 
 <p>This calendar is not to be confused with the Solar Hijri calendar which is implemented in a simplified form within
 Noda Time, as described below.</p>
 
 <h1>Persian (or Solar Hijri)</h1>
 
-<p>First supported in v1.3.0 (&quot;simple&quot; form only)<br>
-API access: <a href="../api/html/M_NodaTime_CalendarSystem_GetPersianCalendar.htm"><code>CalendarSystem.GetPersianCalendar()</code></a></p>
+<p>First supported in v1.3.0 (&quot;simple&quot; form only; arithmetic and astronomical introduced in 2.0.0)<br>
+API access:</p>
+
+<ul>
+<li><a href="../api/html/P_NodaTime_CalendarSystem_PersianSimple.htm"><code>CalendarSystem.PersianSimple</code></a></li>
+<li><a href="../api/html/P_NodaTime_CalendarSystem_PersianAstronomical.htm"><code>CalendarSystem.PersianAstronomical</code></a></li>
+<li><a href="../api/html/P_NodaTime_CalendarSystem_PersianArithmetic.htm"><code>CalendarSystem.PersianArithmetic</code></a></li>
+</ul>
 
 <p>The <a href="http://en.wikipedia.org/wiki/Solar_Hijri_calendar">Persian (or Solar Hijri) calendar</a> is the official calendar of
 Iran and Pakistan. Three variants of this are supported in Noda Time:</p>
@@ -218,39 +241,10 @@ subcycle consists of a 29 year sub-subcycle, and three 33 year sub-subcycles. A 
 128-year subcycle, except the final sub-subcycle has 37 years instead of 33.</li>
 </ul>
 
-<h1>Hebrew</h1>
-
-<p>First supported in v1.3.0<br>
-API access: <a href="../api/html/M_NodaTime_CalendarSystem_GetHebrewCalendar.htm"><code>CalendarSystem.GetHebrewCalendar()</code></a></p>
-
-<p>The <a href="http://en.wikipedia.org/wiki/Hebrew_calendar">Hebrew calendar</a> is a lunisolar calendar used primarily for determination
-of religious holidays within Judaism. It was originally observational, but a computed version is now commonly used. Even
-this is very complicated, however: most years have 12 months, but 7 in every 19 years are leap years, with 13 months. Two
-of the months in the regular calendar have variable numbers of days depending on other aspects of the calendar, in order
-to avoid religious holidays from falling on inappropriate days of the week.</p>
-
-<p>The additional month in a leap year presents challenges for text handling, as well as for calendrical calculations in general.
-The support in Noda Time 1.3.0 should be seen as somewhat experimental, but feedback is very warmly welcomed. It&#39;s important
-to note that parsing and formatting of month names is <em>expected</em> to be incorrect in this version.</p>
-
-<p>Like the Islamic calendar, a Hebrew day properly starts at sunset, but this is not modelled within Noda Time.</p>
-
-<p>The <code>GetHebrewCalendar()</code> method accepts one parameter, specifying which month numbering system to use. The scriptural
-month numbering system uses Nisan as month 1, even though the new year (when the year number changes) occurs at the start of
-Tishri. In the scriptural system, Adar is month 12 in a non-leap year, and Adar I and Adar II are months 12 and 13 in a leap year.</p>
-
-<p>The civil month numbering system uses Tishri as month 1 (so the year number increases when the month number becomes 1 again,
-as in most calendars) but this means that Adar is month 6 in a non-leap year, and Adar I and Adar II are months 6 and 7 in a leap year.
-This then means that the subsequent months (Nisan, Iyar, Sivan, Tamuz, Av, Elul) have different numbers in leap and non-leap years.</p>
-
-<p>Unlike the parameters for the Islamic calendar, the month numbering in the Hebrew calendar doesn&#39;t affect any calculations - it <em>only</em>
-affects the numeric values of the months both accepted when constructing values (such as in the <code>LocalDate</code> constructor)
-and retrieving them (such as with <code>LocalDate.Month</code>).</p>
-
 <h1>Um Al Qura</h1>
 
 <p>First supported in v2.0.0<br>
-API access: <a href="../api/html/M_NodaTime_CalendarSystem_GetUmAlQuraCalendar.htm"><code>CalendarSystem.GetUmAlQuraCalendar()</code></a></p>
+API access: <a href="../api/html/P_NodaTime_CalendarSystem_UmAlQura.htm"><code>CalendarSystem.UmAlQura</code></a></p>
 
 <p>The <a href="http://en.wikipedia.org/wiki/Islamic_calendar#Saudi_Arabia.27s_Umm_al-Qura_calendar">Um Al Qura (or Umm al-Qura) calendar</a>,
 primarily used in Saudi Arabia, is similar to the Islamic Hijri calendar, except that instead of being algorithmic it relies on
@@ -278,6 +272,43 @@ implementation is not available, requesting this calendar will throw a <code>Not
 <li>Windows Phone 8.1 store apps (despite MSDN claiming otherwise)</li>
 <li>Windows 8.1 store apps</li>
 </ul>
+
+<h1>Hebrew</h1>
+
+<p>First supported in v1.3.0<br>
+API access:</p>
+
+<ul>
+<li><a href="../api/html/M_NodaTime_CalendarSystem_GetHebrewCalendar.htm"><code>CalendarSystem.GetHebrewCalendar()</code></a></li>
+<li><a href="../api/html/P_NodaTime_CalendarSystem_HebrewCivil.htm"><code>CalendarSystem.HebrewCivil</code></a></li>
+<li><a href="../api/html/P_NodaTime_CalendarSystem_HebrewScriptural.htm"><code>CalendarSystem.HebrewScriptural</code></a></li>
+</ul>
+
+<p>The <a href="http://en.wikipedia.org/wiki/Hebrew_calendar">Hebrew calendar</a> is a lunisolar calendar used primarily for determination
+of religious holidays within Judaism. It was originally observational, but a computed version is now commonly used. Even
+this is very complicated, however: most years have 12 months, but 7 in every 19 years are leap years, with 13 months. Two
+of the months in the regular calendar have variable numbers of days depending on other aspects of the calendar, in order
+to avoid religious holidays from falling on inappropriate days of the week.</p>
+
+<p>The additional month in a leap year presents challenges for text handling, as well as for calendrical calculations in general.
+The support in Noda Time 1.3.0 should be seen as somewhat experimental, but feedback is very warmly welcomed. It&#39;s important
+to note that parsing and formatting of month names is <em>expected</em> to be incorrect in this version.</p>
+
+<p>Like the Islamic calendar, a Hebrew day properly starts at sunset, but this is not modelled within Noda Time.</p>
+
+<p>The <code>GetHebrewCalendar()</code> method accepts one parameter, specifying which month numbering system to use. The scriptural
+month numbering system uses Nisan as month 1, even though the new year (when the year number changes) occurs at the start of
+Tishri. In the scriptural system, Adar is month 12 in a non-leap year, and Adar I and Adar II are months 12 and 13 in a leap year.</p>
+
+<p>The civil month numbering system uses Tishri as month 1 (so the year number increases when the month number becomes 1 again,
+as in most calendars) but this means that Adar is month 6 in a non-leap year, and Adar I and Adar II are months 6 and 7 in a leap year.
+This then means that the subsequent months (Nisan, Iyar, Sivan, Tamuz, Av, Elul) have different numbers in leap and non-leap years.</p>
+
+<p>Unlike the parameters for the Islamic calendar, the month numbering in the Hebrew calendar doesn&#39;t affect any calculations - it <em>only</em>
+affects the numeric values of the months both accepted when constructing values (such as in the <code>LocalDate</code> constructor)
+and retrieving them (such as with <code>LocalDate.Month</code>).</p>
+
+<p>The convenience properties <code>HebrewScriptural</code> and <code>HebrewCivil</code> are just simpler alternatives to the <code>GetHebrewCalendar</code> method call.</p>
 
 		<ul class="pagination">
 		
