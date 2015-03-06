@@ -137,6 +137,37 @@ in the interpretation of when an adjustment rule starts and ends. It is now know
 with the BCL in well-understood ways which we don&#39;t intend to change.</li>
 </ul>
 
+<h2>1.3.1, released 2015-03-06 with tzdb 2015a</h2>
+
+<p>Bug fixes:</p>
+
+<ul>
+<li>Worked around a limitation of the .NET <code>TimeZoneInfo</code> API that caused
+<code>BclDateTimeZone</code> to incorrectly calculate time zone conversions for
+Russian time zones before 2014-10-26 (<a href="http://code.google.com/p/noda-time/issues/detail?id=342">issue 342</a>). (This is essentially
+the same problem documented in <a href="https://support.microsoft.com/kb/3012229">Microsoft KB
+3012229</a>.)</li>
+<li>TZDB zone transitions that occur at 24:00 at the end of the last year in a
+zone rule are now handled correctly (<a href="http://code.google.com/p/noda-time/issues/detail?id=335">issue 335</a>)</li>
+<li>Instances of <code>BclDateTimeZone</code> are now considered equal if they wrap the
+same underlying <code>TimeZoneInfo</code>, rather than always throwing
+<code>NotImplementedException</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=334">issue 334</a>)</li>
+<li>The <code>NodaTime</code> assembly now correctly declares a dependency on
+<code>System.Xml</code>, required due to XML serialization support (<a href="http://code.google.com/p/noda-time/issues/detail?id=339">issue 339</a>)</li>
+</ul>
+
+<p>Other:</p>
+
+<ul>
+<li>Fixed a case issue in the NuGet package definition that broke ASP.NET&#39;s
+<code>kpm restore</code> (<a href="http://code.google.com/p/noda-time/issues/detail?id=345">issue 345</a>)</li>
+<li>Added XamariniOS1 as a NuGet target (<a href="http://code.google.com/p/noda-time/issues/detail?id=340">issue 340</a>)</li>
+<li>Various reported documentation issues resolved (issues <a href="http://code.google.com/p/noda-time/issues/detail?id=326">326</a>
+and <a href="http://code.google.com/p/noda-time/issues/detail?id=346">346</a>, among others)</li>
+<li>Updated <code>TzdbCompiler</code> to handle newer versions of the TZDB source
+distribution</li>
+</ul>
+
 <h2>1.3.0, released 2014-06-27 with tzdb 2014e</h2>
 
 <p>Major features:</p>
@@ -932,7 +963,7 @@ auto-advance option (issues <a href="http://code.google.com/p/noda-time/issues/d
 	<footer>
 		<div class="row">
 			<div class="small-6 columns">
-                                <span>The latest version is 1.3.0, released June 27th 2014</span>
+                                <span>The latest version is 1.3.1, released March 6th 2015</span>
 			</div>
 			<div class="small-6 columns copy">
                                 &copy; <a href="http://noda-time.googlecode.com/hg/AUTHORS.txt">The Noda Time Authors</a>,
