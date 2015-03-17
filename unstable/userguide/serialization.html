@@ -281,6 +281,10 @@ for individual converters. (All converters are immutable.)</p>
 
 <p>Custom converters can be created easily from patterns using <a href="../api/html/T_NodaTime_Serialization_JsonNet_NodaPatternConverter_1.htm"><code>NodaPatternConverter</code></a>.</p>
 
+<p>Please ensure that <em>all</em> relevant JSON handlers are configured appropriately. In some cases there may be more than
+one involved, possibly one for reading and one for writing, depending on your configuration. For ASP.NET using
+<code>HttpConfiguration</code>, you probably want to configure <code>HttpConfiguration.Formatters.JsonFormatter.SerializerSettings</code>.</p>
+
 <h3>Disabling automatic date parsing</h3>
 
 <p>Between releases 4.0 and 4.5.11, Json.NET introduced automatic date parsing: by default, if the parser detects a value which looks like a date, it will automatically convert it to a <code>DateTime</code> or (optionally) to a <code>DateTimeOffset</code>. In order to give Noda Time control over the serialization, this must be disabled in <code>JsonSerializerSettings</code> or <code>JsonSerializer</code>, like this:</p>
@@ -618,7 +622,7 @@ There is a <a href="https://www.nuget.org/packages/NodaTime.Serialization.Servic
                                 <span>The latest version is 1.3.1, released March 6th 2015</span>
 			</div>
 			<div class="small-6 columns copy">
-                                &copy; <a href="http://noda-time.googlecode.com/hg/AUTHORS.txt">The Noda Time Authors</a>,
+                                &copy; <a href="https://github.com/nodatime/nodatime/blob/master/AUTHORS.txt">The Noda Time Authors</a>,
                                 <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
 			</div>
 		</div>
