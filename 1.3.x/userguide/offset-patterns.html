@@ -1,0 +1,580 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Patterns for Offset values</title>
+
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="../../css/syntax.css">
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mobile.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-60886284-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/userguide">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/userguide">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">API</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/api">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/api">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li>
+                                <a href="../../developer" >Developer Guide</a>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Patterns for Offset values</h1>
+		<p>The <a href="../api/html/T_NodaTime_Offset.htm"><code>Offset</code></a> type supports the following patterns:</p>
+
+<h2>Standard Patterns</h2>
+
+<p>The following standard patterns are supported:</p>
+
+<ul>
+<li><code>f</code>: Full format, displaying all information including fractional seconds.<br>
+Typical pattern text: <code>+HH:mm:ss.fff</code></li>
+<li><code>l</code>: Long format, displaying information down to the second.<br>
+Typical pattern text: <code>+HH:mm:ss</code></li>
+<li><code>m</code>: Medium format, displaying information down to the minute.<br>
+Typical pattern text: <code>+HH:mm</code></li>
+<li><code>s</code>: Short format, displaying information down to the hour.<br>
+Typical pattern text: <code>+HH</code></li>
+<li><code>g</code>: General pattern. Formatting depends on the value passed in:
+
+<ul>
+<li>If the offset has fractional seconds, the full format is used; otherwise</li>
+<li>If the offset has seconds, the long format is used; otherwise</li>
+<li>If the offset has minutes, the medium format is used; otherwise</li>
+<li>The short format is used
+When parsing, the other standard format patterns are tried one at a time. This is the default format pattern.</li>
+</ul></li>
+<li><code>G</code>: As <code>g</code>, but using <code>Z</code> for an offset of 0, as if it were Z-prefixed. (See below.)</li>
+</ul>
+
+<h2>Custom Patterns</h2>
+
+<p>The following custom pattern characters are supported for offsets. See <a href="text.html#custom-patterns">custom pattern notes</a>
+for general notes on custom patterns, including characters used for escaping and text literals.</p>
+
+<table>
+  <thead>
+    <tr>
+      <td>Character</td>
+      <td>Meaning</td>
+      <td>Example</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Z</code></td>
+      <td>
+        This can only occur at the start of a pattern, as a prefix to a normal pattern. When it's
+        used, an offset of zero is always formatted as "Z", and "Z" will be parsed as a zero offset.
+        When formatting, a non-zero offset falls back to the remainder of the pattern. When parsing,
+        a non-Z value is always parsed by the remainder of the pattern, and a result of a zero offset
+        is still acceptable. (So a pattern of "ZHH:mm" can still parse a value of "00:00" even though
+        it would be formatted as "Z".)
+      </td>
+      <td>
+        Zero: <code>ZHH:mm</code> => <code>Z</code> <br />
+        5 hours: <code>ZHH:mm</code> => <code>05:00</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>H</code> or <code>HH</code></td>
+      <td>
+        Number of hours in the offset. <code>HH</code> is zero-padded; <code>H</code> is not.
+      </td>
+      <td>
+        <code>H:mm</code> => <code>7:30</code> <br />
+        <code>HH:mm</code> => <code>07:30</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>m</code> or <code>mm</code></td>
+      <td>
+        Number of minutes within the hour. <code>mm</code> is zero-padded; <code>m</code> is not.
+      </td>
+      <td>
+        5 minutes: <code>m:ss</code> => <code>5:00</code> <br />
+        5 minutes: <code>mm:ss</code> => <code>05:00</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>s</code> or <code>ss</code></td>
+      <td>
+        Number of seconds within the minute. <code>ss</code> is zero-padded; <code>s</code> is not.
+      </td>
+      <td>
+        5 seconds: <code>s.fff</code> => <code>5.000</code> <br />
+        5 seconds: <code>ss.fff</code> => <code>05.000</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>f</code>, <code>ff</code> or <code>fff</code></td>
+      <td>
+        The fractional second part of the offset, using exactly the specified number of characters.
+        Trailing digits are truncated towards zero.
+      </td>
+      <td>
+        1 second, 340 milliseconds: <code>s.fff</code> => 340 <br />
+        1 second, 340 milliseconds: <code>s.ff</code> => 34 <br />
+        1 second, 340 milliseconds: <code>s.f</code> => 3 <br />
+      </td>
+    </tr>
+    <tr>
+      <td><code>F</code>, <code>FF</code> or <code>FFF</code></td>
+      <td>
+        The fractional second part of the offset, using at most the specified number of characters.
+        Trailing digits are truncated towards zero, and trailing insignificant zeroes are truncated.
+        If this comes after a decimal separator and the value is zero, the decimal separator is
+        also truncated.
+      </td>
+      <td>
+        1 second, 340 milliseconds: <code>s.FFF</code> => <code>1.34</code> <br />
+        1 second, 340 milliseconds: <code>s.FF</code> => <code>1.34</code> <br />
+        1 second, 340 milliseconds: <code>s.F</code> => <code>1.3</code> <br />
+        Exactly 1 second: <code>s.F</code> => <code>1</code> <br />
+      </td>
+    </tr>
+    <tr>
+      <td><code>+</code></td>
+      <td>
+        The sign of the value, always specified whether positive or negative.
+        The character used will depend on the format provider; <code>+</code> and <code>-</code> are
+        used by the invariant culture. A positive offset is used when local time is ahead of
+        UTC (e.g. Europe) and a negative offset is used when local time is behind UTC (e.g. America).
+      </td>
+      <td>
+        Positive value: <code>+HH:mm</code> => <code>+07:30</code> <br />
+        Negative value: <code>+HH:mm</code> => <code>-07:30</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>-</code></td>
+      <td>
+        The sign of the value, only specified when the value is negative.
+        The character used will depend on the format provider; <code>-</code> is
+        used by the invariant culture.
+      </td>
+      <td>
+        Positive value: <code>-HH:mm</code> => <code>07:30</code> <br />
+        Negative value: <code>-HH:mm</code> => <code>-07:30</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.</code></td>
+      <td>
+        This is *always* a period ("."); not a culture-sensitive decimal separator as one might expect. This
+        follows the example of other standard libraries, however odd it may appear. The only difference
+        between a period and any other literal character is that when followed by a series of "F" characters,
+        the period will be removed if there are no fractional seconds.
+      </td>
+      <td>
+        12 seconds, 500 milliseconds (en-US): <code>ss.FFF</code> => <code>12.5</code> <br />
+        12 seconds, 500 milliseconds (fr-FR): <code>ss.FFF</code> => <code>12.5</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>:</code></td>
+      <td>
+        The time separator for the format provider; colon in the invariant culture.
+      </td>
+      <td><code>HH:mm</code> => <code>07:30</code></td>
+    </tr>
+  </tbody>    
+</table>
+
+		<ul class="pagination">
+		
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			<li class="current hide-for-small"><a href>Patterns for Offset values</a></li>
+			
+			
+		
+			
+			<li><a href="../../1.3.x/userguide/instant-patterns.html"><strong>Next</strong>: Patterns for Instant values</a></li>
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+		
+		</ul>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Introduction</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.3.x/userguide/index.html" >Overview</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/rationale.html" >Why does Noda Time exist?</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/installation.html" >Installation</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Core</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.3.x/userguide/concepts.html" >Core concepts</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/type-choices.html" >Choosing (and converting) between types</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/core-types.html" >Core types quick reference</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/design.html" >Design philosophy and conventions</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Text</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.3.x/userguide/text.html" >Text handling</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/duration-patterns.html" >Patterns for Duration values</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/offset-patterns.html" class="active">Patterns for Offset values</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/instant-patterns.html" >Patterns for Instant values</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/offsetdatetime-patterns.html" >Patterns for OffsetDateTime values</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/zoneddatetime-patterns.html" >Patterns for ZonedDateTime values</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/period-patterns.html" >Patterns for Period values</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Advanced</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.3.x/userguide/arithmetic.html" >Date and time arithmetic</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/bcl-conversions.html" >BCL conversions</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/serialization.html" >Serialization</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/calendars.html" >Calendars</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/threading.html" >Threading</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/trivia.html" >Trivia</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Library</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.3.x/userguide/testing.html" >Unit testing with Noda Time</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/tzdb.html" >Updating the time zone database</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/mono.html" >Mono support</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/limitations.html" >Limitations of Noda Time</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/roadmap.html" >Current roadmap</a></li>
+						
+                            
+							<li><a href="../../1.3.x/userguide/versions.html" >Version history</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<footer>Version  1.3.x  </footer>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+                                <span>The latest version is 1.3.1, released March 6th 2015</span>
+			</div>
+			<div class="small-6 columns copy">
+                                &copy; <a href="https://github.com/nodatime/nodatime/blob/master/AUTHORS.txt">The Noda Time Authors</a>,
+                                <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <!--
+  <script src="js/foundation/foundation.js"></script>
+  <script src="js/foundation/foundation.alerts.js"></script>
+  <script src="js/foundation/foundation.clearing.js"></script>
+  <script src="js/foundation/foundation.cookie.js"></script>
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/foundation/foundation.forms.js"></script>
+  <script src="js/foundation/foundation.joyride.js"></script>
+  <script src="js/foundation/foundation.magellan.js"></script>
+  <script src="js/foundation/foundation.orbit.js"></script>
+  <script src="js/foundation/foundation.placeholder.js"></script>
+  <script src="js/foundation/foundation.reveal.js"></script>
+  <script src="js/foundation/foundation.section.js"></script>
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  <script src="js/foundation/foundation.topbar.js"></script>
+  <script src="js/foundation/foundation.interchange.js"></script>
+  -->
+
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
+</html>

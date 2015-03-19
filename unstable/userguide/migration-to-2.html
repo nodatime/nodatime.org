@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Migrating from 1.x to 2.0</title>
+
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="../../css/syntax.css">
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mobile.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-60886284-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/userguide">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/userguide">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">API</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/api">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/api">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li>
+                                <a href="../../developer" >Developer Guide</a>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Migrating from 1.x to 2.0</h1>
+		<p>Noda Time 2.0 contains a number of breaking changes. If you have a project which uses Noda Time
+1.x and are considering upgrading to 2.0, please read the following migration guide carefully.
+In particular, there are some changes which are changes to execution-time behaviour, and won&#39;t show up as compile-time errors.</p>
+
+<h1>Obsolete members</h1>
+
+<p>A few members in 1.x were already marked as obsolete, and they have now been removed. Code using 
+these members will no longer compile. Two of these were simple typos in the name - fixing code 
+using these is simply a matter of using the correct name instead:</p>
+
+<ul>
+<li><code>Era.AnnoMartyrm</code> should be <code>Era.AnnoMartyrum</code></li>
+<li><code>Period.FromMillseconds</code> should be <code>Period.FromMilliseconds</code></li>
+</ul>
+
+<p>In addition, <code>DateTimeZoneProviders.Default</code> has been removed. It wasn&#39;t the default in any Noda 
+Time code, and it&#39;s clearer to use the <code>DateTimeZoneProviders.Tzdb</code> member, which the <code>Default</code>
+member was equivalent to anyway.</p>
+
+<p>Support for the resource-based time zone database format was removed in Noda Time 2.0. In terms
+of the public API, this just meant removing three <code>TzdbDateTimeZoneSource</code> constructors, and
+removing some documented edge cases where the legacy resource format didn&#39;t include as much
+information as the more recent &quot;nzd&quot; format. If you were previously using the resource format,
+just move to the &quot;nzd&quot; format, using the static factory members of <code>TzdbDateTimeZoneSource</code>.</p>
+
+<h1>Removed, renamed or now private members</h1>
+
+<p>The <code>Instant(long)</code> constructor is now private; use <code>Instant.FromTicksSinceUnixEpoch</code> instead.
+As the resolution of 2.0 is nanoseconds, a constructor taking a number of <em>ticks</em> since the
+Unix epoch is confusing. The static method is self-describing, and this allows the constructor
+to be rewritten for use within Noda Time itself.</p>
+
+<p>The <code>LocalTime.LocalDateTime</code> property has been removed. It was rarely a good idea to
+arbitrarily pick the Unix epoch as the date, and usually indicates a broken design. If you
+still need this behaviour, you can easily construct a <code>LocalDate</code> for the Unix epoch and use
+the addition operator instead.</p>
+
+<p><code>CalendarSystem.GetMaxMonth</code> has been renamed to <code>GetMonthsInYear</code>, to match the equivalent
+method in <code>System.Globalization.Calendar</code>.</p>
+
+<p><code>CenturyOfEra</code> and <code>YearOfCentury</code> have both been removed. We considered it unlikely that they
+were being used, and the subtle differences between the Gregorian and ISO calendar systems were
+almost certainly not helpful. Users who wish to compute the century and year of century in a
+particular form can do so reasonably easily in their own code. With this change in place, the
+distinction between the ISO calendar system and Gregorian-4 is only maintained for simplicity,
+compatibility and consistency; the two calendars behave identically.</p>
+
+<p><code>Duration.FromStandardWeeks</code> has been removed on the grounds that it was quite odd; it&#39;s unusual
+to want a duration of a standard week - you can always just multiply by 7 and call <code>Duration.FromDays</code>
+instead.</p>
+
+<p>The word <code>Standard</code> has been removed from the members of <code>NodaConstants</code> and also from <code>Duration.FromStandardDays</code>
+(so that&#39;s now <code>Duration.FromDays</code>). If it was annoying for the Noda Time developers, it was probably annoying
+for users too... the meaning is exactly the same, and the documentation still talks about &quot;standard&quot; days/weeks,
+but having it in the names was a bit obnoxious, particularly in code which used a lot of constants.</p>
+
+<p>Factory methods in <code>CalendarSystem</code> which either didn&#39;t take any parameters (<code>GetPersianCalendar</code>) or which
+no longer support those parameters (<code>GetCopticCalendar</code>, <code>GetJulianCalendar</code>) have been converted into properties.
+So for example, the equivalent of <code>CalendarSystem.GetJulianCalendar(4)</code> is now just <code>CalendarSystem.Julian</code>.</p>
+
+<h1>Period</h1>
+
+<p>The <code>Years</code>, <code>Months</code>, <code>Weeks</code> and <code>Days</code> properties of <code>Period</code> (and <code>PeriodBuilder</code>) are
+now <code>int</code> rather than <code>long</code> properties. Any property for those units outside the range of <code>int</code> 
+could never be added to a date anyway, as it would immediately go out of range. This change just
+makes that clearer, and embraces the new &quot;<code>int</code> for dates, <code>long</code> for times&quot; approach which 
+applies throughout Noda Time 2.0. The indexer for <code>PeriodBuilder</code> is still of type <code>long</code>, but 
+it will throw an <code>ArgumentOutOfRangeException</code> for values outside the range of <code>int</code> when 
+setting date-based units.</p>
+
+<p>Normalization of a period which has time units which add up to a &quot;days&quot; range outside the range
+of <code>int</code> will similarly fail.</p>
+
+<h1>Offset</h1>
+
+<p>In Noda Time 1.x, <code>Offset</code> was implemented as a number-of-milliseconds.
+Sub-second time zone offsets aren&#39;t used in practice (modulo a <em>very</em> small
+number of historical cases), and in any case aren&#39;t supported by the TZDB or
+BCL source data that we are able to use, so we supported more precision than
+was useful.</p>
+
+<p>In Noda Time 2.0, <code>Offset</code> is implemented as a number-of-seconds. This should
+be mostly transparent, though <code>Offset.FromMilliseconds()</code> will now effectively
+truncate to the whole number of seconds.  (Similarly, <code>Offset.FromTicks()</code> will
+now truncate to the whole number of seconds rather than a whole number of
+milliseconds.) The range of <code>Offset</code> is also reduced from +/- 23:59:59.999 to
++/- 18:00:00. The range reduction should have no practical consequence for real
+situations, but test code which tried to use offsets between 18 and 24 hours
+ahead of or behind UTC will need to be adjusted.</p>
+
+<p>As a consequence of this change, offset formatting and parsing patterns no
+longer support the <code>f</code> or <code>F</code> custom patterns, nor the <code>f</code> (full) standard
+pattern.  Attempting to use these will generate an error, and attempting to
+parse <code>Offset</code> (or <code>OffsetDateTime</code>) values containing fractional second
+offsets will fail (though as mentioned above, these values do not tend to exist
+in practice).</p>
+
+<p>Note that binary serialization for <code>Offset</code> <em>is</em> compatible with 1.x, other
+than the value being truncated to a whole number of seconds: the serialized
+form is still based on milliseconds. (Serialized data which stored values which
+are now outside the range of valid values cannot be deserialized, however.)</p>
+
+<h1>Calendars</h1>
+
+<p>The Coptic and Julian calendars no longer support variants based on &quot;minimum number of days in the first week of the week
+year&quot; - it was felt this was really only important for the Gregorian calendar. This affects the calls used to fetch
+Coptic/Julian calendars, the ID in formatted text, and also serialized values.</p>
+
+<p>As noted above (when talking about removed members), the ISO calendar is now equivalent to the Gregorian 4 calendar.</p>
+
+<h1>Serialization</h1>
+
+<p>TBD (this will be awkward). To note so far:</p>
+
+<ul>
+<li>Periods with year/month/week/day values outside the range of <code>int</code></li>
+<li>Offset truncation to seconds (see above)</li>
+<li>Calendar names</li>
+</ul>
+
+<h1>Default values</h1>
+
+<p>The default values of some structs have changed, from returning the Unix epoch to returning January 1st 1AD (at midnight where applicable):</p>
+
+<ul>
+<li><code>LocalDate</code></li>
+<li><code>LocalDateTime</code></li>
+<li><code>ZonedDateTime</code> (in UTC, as in 1.x)</li>
+<li><code>OffsetDateTime</code> (with an offset of 0, as in 1.x)</li>
+</ul>
+
+<p>(The fate of <code>Instant</code> remains unknown at this point...)</p>
+
+<p>We recommend that you avoid relying on the default values at all - partly for the sake of clarity.</p>
+
+<h1>Text handling</h1>
+
+<p>The numeric standard patterns for <code>Instant</code> and <code>Offset</code> have been removed, with no direct equivalent.
+These were not known to be useful, felt &quot;alien&quot; in various ways, and cause issues within the 
+implementation. If you need these features - possibly in a specialized way - please contact the
+mailing list and we may be able to suggest alternative implementations to meet your specific 
+requirements.</p>
+
+<p>Patterns no longer allow ASCII letters (a-z, A-Z) to act as literals when they&#39;re not escaped or quoted.
+Quoting make the intention more explicit, and avoids unintended use of a literal when a specifier was
+expected (e.g. a date pattern of &quot;yyyy-mm-dd&quot;). One exception here is &#39;T&#39;, which is allowed for date/time
+patterns only - so a date/time pattern of &quot;yyyy-MM-ddTHH:mm:ss&quot; is still acceptable for ISO-8601, for example.
+If this change breaks your code, simply escape or quote the literals within the pattern.</p>
+
+		<ul class="pagination">
+		
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			<li class="current hide-for-small"><a href>Migrating from 1.x to 2.0</a></li>
+			
+			
+		
+			
+			<li><a href="../../unstable/userguide/text.html"><strong>Next</strong>: Text handling</a></li>
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+		
+		</ul>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Introduction</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/index.html" >Overview</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/rationale.html" >Why does Noda Time exist?</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/installation.html" >Installation</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Core</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/concepts.html" >Core concepts</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/type-choices.html" >Choosing (and converting) between types</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/core-types.html" >Core types quick reference</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/recipes.html" >Recipes</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/design.html" >Design philosophy and conventions</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/migration-to-2.html" class="active">Migrating from 1.x to 2.0</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Text</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/text.html" >Text handling</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/duration-patterns.html" >Patterns for Duration values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/offset-patterns.html" >Patterns for Offset values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/instant-patterns.html" >Patterns for Instant values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/offsetdatetime-patterns.html" >Patterns for OffsetDateTime values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/zoneddatetime-patterns.html" >Patterns for ZonedDateTime values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/period-patterns.html" >Patterns for Period values</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Advanced</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/arithmetic.html" >Date and time arithmetic</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/range.html" >Range of valid values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/bcl-conversions.html" >BCL conversions</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/serialization.html" >Serialization</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/calendars.html" >Calendars</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/threading.html" >Threading</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/trivia.html" >Trivia</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Library</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/testing.html" >Unit testing with Noda Time</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/tzdb.html" >Updating the time zone database</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/mono.html" >Mono support</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/limitations.html" >Limitations of Noda Time</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/roadmap.html" >Current roadmap</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/versions.html" >Version history</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<footer>Version  unstable  </footer>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+                                <span>The latest version is 1.3.1, released March 6th 2015</span>
+			</div>
+			<div class="small-6 columns copy">
+                                &copy; <a href="https://github.com/nodatime/nodatime/blob/master/AUTHORS.txt">The Noda Time Authors</a>,
+                                <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <!--
+  <script src="js/foundation/foundation.js"></script>
+  <script src="js/foundation/foundation.alerts.js"></script>
+  <script src="js/foundation/foundation.clearing.js"></script>
+  <script src="js/foundation/foundation.cookie.js"></script>
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/foundation/foundation.forms.js"></script>
+  <script src="js/foundation/foundation.joyride.js"></script>
+  <script src="js/foundation/foundation.magellan.js"></script>
+  <script src="js/foundation/foundation.orbit.js"></script>
+  <script src="js/foundation/foundation.placeholder.js"></script>
+  <script src="js/foundation/foundation.reveal.js"></script>
+  <script src="js/foundation/foundation.section.js"></script>
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  <script src="js/foundation/foundation.topbar.js"></script>
+  <script src="js/foundation/foundation.interchange.js"></script>
+  -->
+
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
+</html>

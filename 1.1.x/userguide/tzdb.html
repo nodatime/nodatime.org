@@ -1,0 +1,526 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Updating the time zone database</title>
+
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="../../css/syntax.css">
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mobile.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-60886284-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/userguide">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/userguide">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">API</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/api">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/api">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li>
+                                <a href="../../developer" >Developer Guide</a>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Updating the time zone database</h1>
+		<p>Noda Time comes with a version of the <a href="http://www.iana.org/time-zones">tzdb</a> (aka zoneinfo) database, which is
+now hosted by IANA. This database changes over time, as countries decide to change their time zone rules.
+As new versions of Noda Time are released, the version of tzdb will be updated. However, you may wish to use
+a new version of tzdb <em>without</em> changing which version of Noda Time you&#39;re using. This documentation tells you how
+to do so.</p>
+
+<p>Noda Time&#39;s main library doesn&#39;t read tzdb text files directly - it uses a binary form which is the output of <code>ZoneInfoCompiler</code> - another
+part of the Noda Time project. This saves both space (the 2012j version takes about 110K when compiled, or about 690K in text form) and
+time, as the binary form contains various precomputed transitions. The file also contains a mapping from Windows time zone names
+to tzdb time zone IDs, primarily so that Noda Time can map the local time zone reported by <code>TimeZoneInfo</code> to a tzdb time zone.</p>
+
+<p>In Noda Time 1.0, the data was stored in .NET resources. This became awkward in a number of ways, not least because of
+the lack of full resource support in Portable Class Libraries. In 1.1, a new file format was introduced, along with methods
+to read this format from any stream. If you&#39;re not using 1.0, we strongly advise you to use the new format; support for the resource
+format will be removed in Noda Time 2.0.</p>
+
+<p>For more details on the exact formats, please see the <a href="http://nodatime.org/developer/tzdb-file-format.html">documentation in the developer guide</a></p>
+
+<h1>Creating and using a &quot;NodaZoneData&quot; file (1.1+ format)</h1>
+
+<h2>Building a NodaZoneData file</h2>
+
+<ol>
+<li>Download the <a href="http://www.iana.org/time-zones">latest tzdb release</a></li>
+<li>Unpack the tar.gz file - you may need to download extra tools for this; <a href="http://www.7-zip.org/">7-Zip</a> can cope with .tar.gz
+files for example, and I&#39;d expect other zip tools to do so too. You should end up with a directory containing files such
+as &quot;america&quot;, &quot;africa&quot;, &quot;etcetera&quot;.</li>
+<li>Ideally, rename the directory to match the version number, e.g. &quot;2012j&quot;. The directory name will be used in the version ID
+reported by the time zone provider later.</li>
+<li>Find the Windows mapping file you want to use. Currently, I&#39;d recommend using the version supplied with the Noda Time source
+in ZoneInfoCompiler\Data\winmap in a file beginning &quot;windowsZones&quot;. This file comes from <a href="http://cldr.unicode.org">CLDR</a>.</li>
+<li>Run ZoneInfoCompiler. I&#39;d suggest leaving it in its build directory and running it like this:</li>
+</ol>
+<div class="highlight"><pre><code class="language-bat" data-lang="bat">path\to\ZoneInfoCompiler.exe -s path\to\tzdb-files -w path\to\windowsMapping-file.xml -o path\to\output.nzd -t NodaZoneData
+</code></pre></div>
+<p>For example, rebuilding the 2012j data from Noda Time itself, starting in the ZoneInfoCompiler directory:</p>
+<div class="highlight"><pre><code class="language-bat" data-lang="bat">bin\Release\ZoneInfoCompiler -s Data\2012j -w Data\winmap\windowsZones-21.xml -o tzdb-2012j.nzd -t NodaZoneData
+</code></pre></div>
+<p>The NodaZoneData format is the default output format, so you can omit the final <code>-t NodaZoneData</code> if you wish; you may prefer
+to be explicit for clarity.</p>
+
+<p>As an alternative, if there&#39;s enough demand, we may well provide pre-built files in the Noda Time project download section.
+It&#39;s worth knowing the above steps, however, in case you wish to use a cut-down set of time zones for resource-constrained environments.</p>
+
+<h2>Using a NodaZoneData file</h2>
+
+<p>Typically you&#39;ll want to use the newly-created resource file as the default time zone provider, across your whole application.
+While it&#39;s possible to have multiple time zone providers in play at a time, that&#39;s a very rare scenario. Using a resource
+file is relatively straightforward:</p>
+
+<ul>
+<li>Open a stream to the file</li>
+<li>Create a <a href="../api/html/T_NodaTime_TimeZones_TzdbDateTimeZoneSource.htm"><code>TzdbDateTimeZoneSource</code></a> with the stream, using the static <code>FromStream</code> method</li>
+<li>Create <a href="../api/html/T_NodaTime_TimeZones_DateTimeZoneCache.htm"><code>DateTimeZoneCache</code></a> with the source </li>
+<li>Use that cache (usually by way of dependency injection as an <code>IDateTimeZoneProvider</code>) wherever you need time zone information</li>
+</ul>
+
+<p>Here&#39;s some sample code for the first three steps above:</p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">using NodaTime;
+using NodaTime.TimeZones;
+using System;
+using System.IO;
+
+public class CustomTzdb
+{
+    static void Main()
+    {
+        IDateTimeZoneProvider provider;
+        // Or use Assembly.GetManifestResourceStream for an embedded file
+        using (var stream = File.OpenRead(&quot;tzdb-2012j.nzd&quot;))
+        {
+            var source = TzdbDateTimeZoneSource.FromStream(stream);
+            provider = new DateTimeZoneCache(source);
+        }
+        Console.WriteLine(provider.SourceVersionId);
+    }
+}
+</code></pre></div>
+<p>The stream is fully read in the call to <code>TzdbDateTimeZoneSource.FromStream</code>, so disposing of it afterwards (as shown above) doesn&#39;t
+affect the source you&#39;ve created. The stream can come from anywhere - typically it would either be a standalone file in the file
+system, or an embedded resource file within one of your assemblies. You certainly <em>could</em> fetch it across a network, if you wanted.
+(It is read sequentially from start to end - no seeking is required.)</p>
+
+<h1>Creating and using a resource file (legacy format)</h1>
+
+<h2>Building the resource file</h2>
+
+<ol>
+<li>Download the <a href="http://www.iana.org/time-zones">latest tzdb release</a></li>
+<li>Unpack the tar.gz file - you may need to download extra tools for this; <a href="http://www.7-zip.org/">7-Zip</a> can cope with .tar.gz
+files for example, and I&#39;d expect other zip tools to do so too. You should end up with a directory containing files such
+as &quot;america&quot;, &quot;africa&quot;, &quot;etcetera&quot;.</li>
+<li>Ideally, rename the directory to match the version number, e.g. &quot;2012j&quot;. The directory name will be used in the version ID
+reported by the time zone provider later.</li>
+<li>Find the Windows mapping file you want to use. Currently, I&#39;d recommend using the version supplied with the Noda Time source
+in ZoneInfoCompiler\Data\winmap in a file beginning &quot;windowsZones&quot;. This file comes from <a href="http://cldr.unicode.org">CLDR</a>.</li>
+<li>Run ZoneInfoCompiler. I&#39;d suggest leaving it in its build directory and running it like this:</li>
+</ol>
+<div class="highlight"><pre><code class="language-bat" data-lang="bat">path\to\ZoneInfoCompiler.exe -s path\to\tzdb-files -w path\to\windowsMapping-file.xml -o path\to\output.resources -t Resource
+</code></pre></div>
+<p>For example, rebuilding the 2012j data from Noda Time itself, starting in the ZoneInfoCompiler directory:</p>
+<div class="highlight"><pre><code class="language-bat" data-lang="bat">bin\Release\ZoneInfoCompiler -s Data\2012j -w Data\winmap\windowsZones-21.xml -o tzdb-2012j.resources -t Resource
+</code></pre></div>
+<p>As an alternative, if there&#39;s enough demand, we may well provide pre-built resource files in the Noda Time project download section.
+It&#39;s worth knowing the above steps, however, in case you wish to use a cut-down set of time zones for resource-constrained environments.</p>
+
+<h2>Using a compiled resource file</h2>
+
+<p>Typically you&#39;ll want to use the newly-created resource file as the default time zone provider, across your whole application.
+While it&#39;s possible to have multiple time zone providers in play at a time, that&#39;s a very rare scenario. Using a resource
+file is relatively straightforward:</p>
+
+<ul>
+<li>Create a <a href="http://msdn.microsoft.com/en-us/library/t15hy0dt.aspx"><code>ResourceSet</code></a> from the file</li>
+<li>Create a <a href="../api/html/T_NodaTime_TimeZones_TzdbDateTimeZoneSource.htm"><code>TzdbDateTimeZoneSource</code></a> with the <code>ResourceSet</code></li>
+<li>Create <a href="../api/html/T_NodaTime_TimeZones_DateTimeZoneCache.htm"><code>DateTimeZoneCache</code></a> with the source </li>
+<li>Use that cache (usually by way of dependency injection as an <code>IDateTimeZoneProvider</code>) wherever you need time zone information</li>
+</ul>
+
+<p>Here&#39;s some sample code for the first three steps above:</p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">using NodaTime;
+using NodaTime.TimeZones;
+using System;
+using System.Resources;
+
+public class CustomTzdb
+{
+    static void Main()
+    {
+        var resourceSet = new ResourceSet(&quot;tzdb-2012j.resources&quot;);
+        var source = new TzdbDateTimeZoneSource(resourceSet);
+        IDateTimeZoneProvider provider = new DateTimeZoneCache(source);
+        Console.WriteLine(provider.SourceVersionId);
+    }
+}
+</code></pre></div>
+<p>You may be surprised that <code>TzdbDateTimeZoneSource</code> doesn&#39;t implement <code>IDisposable</code> even though <code>ResourceSet</code> does. <code>TzdbDateTimeZoneSource</code>
+will never close or dispose the resource set it&#39;s given - it doesn&#39;t assume ownership of it. However, it will fail if you dispose the
+resource set and then ask for a time zone which hasn&#39;t yet been loaded. If you wish to have a completely disconnected time zone provider,
+I&#39;d recommend loading the contents of the file into a <code>MemoryStream</code> and passing <em>that</em> to the <code>ResourceSet</code> constructor. Otherwise, in
+most cases it probably isn&#39;t a big deal to have the handle to the resource file open throughout the lifetime of the application.</p>
+
+		<ul class="pagination">
+		
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			<li class="current hide-for-small"><a href>Updating the time zone database</a></li>
+			
+			
+		
+			
+			<li><a href="../../1.1.x/userguide/mono.html"><strong>Next</strong>: Mono support</a></li>
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+		
+		</ul>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Introduction</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.1.x/userguide/index.html" >Overview</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/rationale.html" >Why does Noda Time exist?</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/installation.html" >Installation</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Core</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.1.x/userguide/concepts.html" >Core concepts</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/type-choices.html" >Choosing (and converting) between types</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/core-types.html" >Core types quick reference</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/design.html" >Design philosophy and conventions</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Text</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.1.x/userguide/text.html" >Text handling</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/offset-patterns.html" >Patterns for Offset values</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/instant-patterns.html" >Patterns for Instant values</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/period-patterns.html" >Patterns for Period values</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Advanced</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.1.x/userguide/arithmetic.html" >Date and time arithmetic</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/bcl-conversions.html" >BCL conversions</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/serialization.html" >Serialization</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/threading.html" >Threading</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Library</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.1.x/userguide/testing.html" >Unit testing with Noda Time</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/tzdb.html" class="active">Updating the time zone database</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/mono.html" >Mono support</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/limitations.html" >Limitations of Noda Time</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/roadmap.html" >Current roadmap</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/versions.html" >Version history</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<footer>Version  1.1.x  </footer>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+                                <span>The latest version is 1.3.1, released March 6th 2015</span>
+			</div>
+			<div class="small-6 columns copy">
+                                &copy; <a href="https://github.com/nodatime/nodatime/blob/master/AUTHORS.txt">The Noda Time Authors</a>,
+                                <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <!--
+  <script src="js/foundation/foundation.js"></script>
+  <script src="js/foundation/foundation.alerts.js"></script>
+  <script src="js/foundation/foundation.clearing.js"></script>
+  <script src="js/foundation/foundation.cookie.js"></script>
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/foundation/foundation.forms.js"></script>
+  <script src="js/foundation/foundation.joyride.js"></script>
+  <script src="js/foundation/foundation.magellan.js"></script>
+  <script src="js/foundation/foundation.orbit.js"></script>
+  <script src="js/foundation/foundation.placeholder.js"></script>
+  <script src="js/foundation/foundation.reveal.js"></script>
+  <script src="js/foundation/foundation.section.js"></script>
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  <script src="js/foundation/foundation.topbar.js"></script>
+  <script src="js/foundation/foundation.interchange.js"></script>
+  -->
+
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
+</html>

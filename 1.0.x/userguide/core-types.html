@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Core types quick reference</title>
+
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="../../css/syntax.css">
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mobile.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-60886284-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/userguide">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/userguide">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">API</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/api">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/api">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li>
+                                <a href="../../developer" >Developer Guide</a>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Core types quick reference</h1>
+		<p>This is a companion page to the
+<a href="concepts.html">&quot;core concepts&quot;</a>, and <a href="type-choices.html">&quot;choosing between types&quot;</a>
+pages, describing the fundamental types in Noda Time very briefly, primarily for reference.
+If you&#39;re not familiar with the core concepts, read that page first.</p>
+
+<h2>Instant</h2>
+
+<p>An <a href="../api/html/T_NodaTime_Instant.htm"><code>Instant</code></a> is a point on notional a global time-line, regardless of calendar system and time zone.
+It&#39;s simply a number of &quot;ticks&quot; since some arbitrary epoch, where a tick in Noda Time is 100 nanoseconds (a definition
+inherited from the BCL). Noda Time always uses the Unix epoch, which corresponds to midnight on January 1st 1970 UTC.
+(This is merely one way of expressing the epoch - it would be equally valid to express it using other calendar systems
+and time zones; the epoch itself has no notion of a time zone or calendar system.)</p>
+
+<h2>Offset</h2>
+
+<p>An <a href="../api/html/T_NodaTime_Offset.htm"><code>Offset</code></a> is used to express the difference between UTC and local time. It is always <em>added</em> to a UTC value
+to obtain a local time, or <em>subtracted</em> from a local time to obtain a UTC value.</p>
+
+<h2>CalendarSystem</h2>
+
+<p>A <a href="../api/html/T_NodaTime_CalendarSystem.htm"><code>CalendarSystem</code></a> is a way of dividing up a time line into human-friendly units - minutes, hours, days, months, years
+and so forth. The &quot;default&quot; calendar system in Noda Time is the ISO-8601 calendar, which is basically the Gregorian calendar.
+Other calendar systems are available, including Julian and Islamic calendars.</p>
+
+<p>A calendar system is orthogonal to a time zone - a time zone effectively just offsets the global time line.</p>
+
+<h2>LocalDateTime</h2>
+
+<p>A <a href="../api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a> is a point on a time line in a particular calendar system, but with no concept of the offset from UTC.
+In order to identify which specific instant in time a <code>LocalDateTime</code> refers to, you have to supply time zone or offset information.</p>
+
+<h2>LocalDate</h2>
+
+<p>A <a href="../api/html/T_NodaTime_LocalDate.htm"><code>LocalDate</code></a> is simply the date portion of a <code>LocalDateTime</code> - it has no concept of the time of day; it&#39;s just a date.</p>
+
+<h2>LocalTime</h2>
+
+<p>A <a href="../api/html/T_NodaTime_LocalTime.htm"><code>LocalTime</code></a> is simply the time portion of a <code>LocalDateTime</code> - it has no concept of the date on which the time occurs; it&#39;s just a time.</p>
+
+<h2>OffsetDateTime</h2>
+
+<p>An <a href="../api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a> is a <code>LocalDateTime</code> with an associated <code>Offset</code> - it uniquely identifies an <code>Instant</code>, but because the full time zone
+information is missing, there&#39;s no indication what the local time would be 5 minutes later or earlier, as the offset within the time zone can change.
+Dates and times are often transmitted between systems using this information - and the offset is often misnamed as a time zone or time zone identifier. It&#39;s not -
+it&#39;s just an offset.</p>
+
+<h2>DateTimeZone</h2>
+
+<p>A <a href="../api/html/T_NodaTime_DateTimeZone.htm"><code>DateTimeZone</code></a> (or just time zone) is a mapping between UTC and local times. Many time zones alternate between two offsets over the course of time,
+based on <a href="http://en.wikipedia.org/wiki/Daylight_saving_time">daylight saving time</a>. To obtain a time zone in Noda Time, you have to choose where the information will come from,
+via an <code>IDateTimeZoneProvider</code>. Two providers are built into Noda Time - one which uses TZDB (also known as zoneinfo or the Olson database) and one to wrap the 
+information provided by the BCL via <code>TimeZoneInfo</code>. Both providers are available through <a href="../api/html/T_NodaTime_DateTimeZoneProviders.htm"><code>DateTimeZoneProviders</code></a> as <code>DateTimeProviders.Tzdb</code> and
+<code>DateTimeProviders.Bcl</code>. Once you&#39;ve chosen a provider, you can find the identifiers that provider publishes, and fetch any specific time zone by ID.</p>
+
+<h2>ZonedDateTime</h2>
+
+<p>A <a href="../api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a> is a <code>LocalDateTime</code> within a specific time zone - with the added information of the exact <code>Offset</code>, in case of ambiguity. (During daylight
+saving transitions, the same local date/time can occur twice.) An alternative way of looking at it is the combination of an <code>Instant</code>, a <code>DateTimeZone</code>, and a <code>CalendarSystem</code>.</p>
+
+<h2>Duration</h2>
+
+<p>A <a href="../api/html/T_NodaTime_Duration.htm"><code>Duration</code></a> is simply a number of ticks, which can be added to (or subtracted from) an <code>Instant</code> or a <code>ZonedDateTime</code>. A particular value will always represent the same
+amount of elapsed time, however it&#39;s used.</p>
+
+<h2>Period</h2>
+
+<p>A <a href="../api/html/T_NodaTime_Period.htm"><code>Period</code></a> is a number of years, months, weeks, days, hours and so on, which can be added to (or subtracted from) a <code>LocalDateTime</code>, <code>LocalDate</code> or <code>LocalTime</code>. The amount of
+elapsed time represented by a <code>Period</code> isn&#39;t fixed: a period of &quot;one month&quot; is effectively longer when added to January 1st than when added to February 1st, because February is always shorter than
+January.</p>
+
+<h2>IClock</h2>
+
+<p>An <a href="../api/html/T_NodaTime_IClock.htm"><code>IClock</code></a> implementation provides information about the current instant. It knows nothing about time zones or calendar systems. For <a href="testing.html">testability</a>, this is defined
+as an interface; in a production deployment you&#39;re likely to use the <a href="../api/html/T_NodaTime_SystemClock.htm"><code>SystemClock</code></a> singleton implementation.</p>
+
+<h2>Interval</h2>
+
+<p>An <a href="../api/html/T_NodaTime_Interval.htm"><code>Interval</code></a> is simply two instants - a start and an end. The interval includes the start, and excludes the end, which means that if you have abutting intervals any instant will be in
+exactly one of those intervals.</p>
+
+		<ul class="pagination">
+		
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			<li class="current hide-for-small"><a href>Core types quick reference</a></li>
+			
+			
+		
+			
+			<li><a href="../../1.0.x/userguide/design.html"><strong>Next</strong>: Design philosophy and conventions</a></li>
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+		
+		</ul>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Introduction</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.0.x/userguide/index.html" >Overview</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/rationale.html" >Why does Noda Time exist?</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/installation.html" >Installation</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Core</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.0.x/userguide/concepts.html" >Core concepts</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/type-choices.html" >Choosing (and converting) between types</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/core-types.html" class="active">Core types quick reference</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/design.html" >Design philosophy and conventions</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Text</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.0.x/userguide/text.html" >Text handling</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/offset-patterns.html" >Patterns for Offset values</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/instant-patterns.html" >Patterns for Instant values</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/period-patterns.html" >Patterns for Period values</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Advanced</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.0.x/userguide/arithmetic.html" >Date and time arithmetic</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/bcl-conversions.html" >BCL conversions</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/serialization.html" >Serialization</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/threading.html" >Threading</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Library</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.0.x/userguide/testing.html" >Unit testing with Noda Time</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/tzdb.html" >Updating the time zone database</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/mono.html" >Mono support</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/limitations.html" >Limitations of Noda Time</a></li>
+						
+                            
+							<li><a href="../../1.0.x/userguide/versions.html" >Version history</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<footer>Version  1.0.x  </footer>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+                                <span>The latest version is 1.3.1, released March 6th 2015</span>
+			</div>
+			<div class="small-6 columns copy">
+                                &copy; <a href="https://github.com/nodatime/nodatime/blob/master/AUTHORS.txt">The Noda Time Authors</a>,
+                                <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <!--
+  <script src="js/foundation/foundation.js"></script>
+  <script src="js/foundation/foundation.alerts.js"></script>
+  <script src="js/foundation/foundation.clearing.js"></script>
+  <script src="js/foundation/foundation.cookie.js"></script>
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/foundation/foundation.forms.js"></script>
+  <script src="js/foundation/foundation.joyride.js"></script>
+  <script src="js/foundation/foundation.magellan.js"></script>
+  <script src="js/foundation/foundation.orbit.js"></script>
+  <script src="js/foundation/foundation.placeholder.js"></script>
+  <script src="js/foundation/foundation.reveal.js"></script>
+  <script src="js/foundation/foundation.section.js"></script>
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  <script src="js/foundation/foundation.topbar.js"></script>
+  <script src="js/foundation/foundation.interchange.js"></script>
+  -->
+
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
+</html>
