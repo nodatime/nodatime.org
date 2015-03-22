@@ -12,17 +12,12 @@
 	<!-- foundation default -->
   	<link rel="stylesheet" href="../../css/foundation.css" />
 
-    <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="../../css/syntax.css">
-
     <!-- Foundicons -->
     <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
 
 	<script src="../../js/vendor/custom.modernizr.js"></script>
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/mobile.css">
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -135,21 +130,21 @@ we <em>do</em> have a test double: <a href="../api/html/T_NodaTime_Testing_TimeZ
 is constructed (via a builder) with any <code>DateTimeZone</code> instances you want, and you can also specify custom Windows <code>TimeZoneInfo</code> ID mappings.</p>
 
 <p>If you only need to specify the time zones, it&#39;s simplest to just use a collection initializer with the builder, like this:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">var source = new FakeDateTimeZoneSource.Builder
-{
-    // Where CreateZone is just a method returning a DateTimeZone...
-    CreateZone(&quot;x&quot;),
-    CreateZone(&quot;y&quot;),
-    CreateZone(&quot;a&quot;),
-    CreateZone(&quot;b&quot;)
-}.Build();
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">source</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FakeDateTimeZoneSource</span><span class="p">.</span><span class="n">Builder</span>
+<span class="p">{</span>
+    <span class="c1">// Where CreateZone is just a method returning a DateTimeZone...</span>
+    <span class="n">CreateZone</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">),</span>
+    <span class="n">CreateZone</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">),</span>
+    <span class="n">CreateZone</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">),</span>
+    <span class="n">CreateZone</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">)</span>
+<span class="p">}.</span><span class="n">Build</span><span class="p">();</span>
 </code></pre></div>
 <p>If you need to set other properties on the builder, the zones have to be specified through the <code>Zones</code> property:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">var source = new FakeDateTimeZoneSource.Builder
-{
-    VersionId = &quot;CustomVersionId&quot;,
-    Zones = { CreateZone(&quot;x&quot;), CreateZone(&quot;y&quot;) }
-}.Build();
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">source</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FakeDateTimeZoneSource</span><span class="p">.</span><span class="n">Builder</span>
+<span class="p">{</span>
+    <span class="n">VersionId</span> <span class="p">=</span> <span class="s">&quot;CustomVersionId&quot;</span><span class="p">,</span>
+    <span class="n">Zones</span> <span class="p">=</span> <span class="p">{</span> <span class="n">CreateZone</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">),</span> <span class="n">CreateZone</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}.</span><span class="n">Build</span><span class="p">();</span>
 </code></pre></div>
 <p>The production environment should usually be
 configured with one of the providers in <a href="../api/html/T_NodaTime_DateTimeZoneProviders.htm"><code>DateTimeZoneProviders</code></a>.</p>
@@ -159,8 +154,8 @@ configured with one of the providers in <a href="../api/html/T_NodaTime_DateTime
 <p>For time zones themselves, there are two fake implementations.
 <a href="../api/html/T_NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone.htm"><code>SingleTransitionDateTimeZone</code></a> represents a time zone
 with a single transition between different offsets, and is suitable for most test purposes.</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">var transition = new Instant(100000L); // Or use Instant.FromUtc
-var zone = new SingleTransitionDateTimeZone(transition, 3, 5);
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">transition</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Instant</span><span class="p">(</span><span class="m">100000L</span><span class="p">);</span> <span class="c1">// Or use Instant.FromUtc</span>
+<span class="kt">var</span> <span class="n">zone</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SingleTransitionDateTimeZone</span><span class="p">(</span><span class="n">transition</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">);</span>
 </code></pre></div>
 <p>This will create a zone which moves from UTC+3 to UTC+5 at the transition point. The ID of the zone can also be specified,
 and the names of the early/late zone intervals are based on the ID. The zone intervals within the time zone do not have a
@@ -169,13 +164,13 @@ daylight saving aspect; they just have the specified standard offsets.</p>
 <p>For more complex scenarios, <a href="../api/html/T_NodaTime_Testing_TimeZones_MultiTransitionDateTimeZone.htm"><code>MultiTransitionDateTimeZone</code></a>
 allows you to create a time zone from a collection of transitions, using a builder type. The standard and saving offsets for
 each part of the time zone can be specified separately. For example:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">var transition1 = new Instant(0L);
-var transition2 = new Instant(100000L);
-var zone = new MultiTransitionDateTimeZone.Builder(2, 1, &quot;X&quot;)
-{
-    { transition1, 2, 0, &quot;Y&quot; },
-    { transition2, 1, 1, &quot;Z&quot; }
-}.Build();
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">transition1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Instant</span><span class="p">(</span><span class="m">0L</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">transition2</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Instant</span><span class="p">(</span><span class="m">100000L</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">zone</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MultiTransitionDateTimeZone</span><span class="p">.</span><span class="n">Builder</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="s">&quot;X&quot;</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="p">{</span> <span class="n">transition1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="s">&quot;Y&quot;</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="n">transition2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="s">&quot;Z&quot;</span> <span class="p">}</span>
+<span class="p">}.</span><span class="n">Build</span><span class="p">();</span>
 </code></pre></div>
 <p>The offsets and ID provided to the constructor are used for the beginning of time up until the first specified transition,
 at which point the offsets and ID provided with that transition are used until the next transition, etc.</p>
@@ -454,24 +449,6 @@ at which point the offsets and ID provided with that transition are used until t
 
   	<script src="../../js/foundation.min.js"></script>
   	
-
-  <!--
-  <script src="js/foundation/foundation.js"></script>
-  <script src="js/foundation/foundation.alerts.js"></script>
-  <script src="js/foundation/foundation.clearing.js"></script>
-  <script src="js/foundation/foundation.cookie.js"></script>
-  <script src="js/foundation/foundation.dropdown.js"></script>
-  <script src="js/foundation/foundation.forms.js"></script>
-  <script src="js/foundation/foundation.joyride.js"></script>
-  <script src="js/foundation/foundation.magellan.js"></script>
-  <script src="js/foundation/foundation.orbit.js"></script>
-  <script src="js/foundation/foundation.placeholder.js"></script>
-  <script src="js/foundation/foundation.reveal.js"></script>
-  <script src="js/foundation/foundation.section.js"></script>
-  <script src="js/foundation/foundation.tooltips.js"></script>
-  <script src="js/foundation/foundation.topbar.js"></script>
-  <script src="js/foundation/foundation.interchange.js"></script>
-  -->
 
   <script>
     $(document).foundation();

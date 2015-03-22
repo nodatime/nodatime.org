@@ -12,17 +12,12 @@
 	<!-- foundation default -->
   	<link rel="stylesheet" href="../../css/foundation.css" />
 
-    <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="../../css/syntax.css">
-
     <!-- Foundicons -->
     <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
 
 	<script src="../../js/vendor/custom.modernizr.js"></script>
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/mobile.css">
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -135,7 +130,7 @@ in ZoneInfoCompiler\Data\winmap in a file beginning &quot;windowsZones&quot;. Th
 <div class="highlight"><pre><code class="language-bat" data-lang="bat">path\to\ZoneInfoCompiler.exe -s path\to\tzdb-files -w path\to\windowsMapping-file.xml -o path\to\output.resources -t Resource
 </code></pre></div>
 <p>For example, rebuilding the 2012c data from Noda Time itself, starting in the ZoneInfoCompiler directory:</p>
-<div class="highlight"><pre><code class="language-bat" data-lang="bat">bin\Release\ZoneInfoCompiler -s Data\2012c -w Data\winmap\windowsZones-21.xml -o tzdb-2012c.resources -t Resource
+<div class="highlight"><pre><code class="language-bat" data-lang="bat">bin\Release\ZoneInfoCompiler -s Data\<span class="m">2012</span>c -w Data\winmap\windowsZones<span class="m">-21</span>.xml -o tzdb<span class="m">-2012</span>c.resources -t Resource
 </code></pre></div>
 <p>As an alternative, if there&#39;s enough demand, we may well provide pre-built resource files in the Noda Time project download section.
 It&#39;s worth knowing the above steps, however, in case you wish to use a cut-down set of time zones for resource-constrained environments.</p>
@@ -154,21 +149,21 @@ file is relatively straightforward:</p>
 </ul>
 
 <p>Here&#39;s some sample code for the first three steps above:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">using NodaTime;
-using NodaTime.TimeZones;
-using System;
-using System.Resources;
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">NodaTime</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">NodaTime.TimeZones</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Resources</span><span class="p">;</span>
 
-public class CustomTzdb
-{
-    static void Main()
-    {
-        var resourceSet = new ResourceSet(&quot;tzdb-2012c.resources&quot;);
-        var source = new TzdbDateTimeZoneSource(resourceSet);
-        IDateTimeZoneProvider provider = new DateTimeZoneCache(source);
-        Console.WriteLine(provider.SourceVersionId);
-    }
-}
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CustomTzdb</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">resourceSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ResourceSet</span><span class="p">(</span><span class="s">&quot;tzdb-2012c.resources&quot;</span><span class="p">);</span>
+        <span class="kt">var</span> <span class="n">source</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TzdbDateTimeZoneSource</span><span class="p">(</span><span class="n">resourceSet</span><span class="p">);</span>
+        <span class="n">IDateTimeZoneProvider</span> <span class="n">provider</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DateTimeZoneCache</span><span class="p">(</span><span class="n">source</span><span class="p">);</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">provider</span><span class="p">.</span><span class="n">SourceVersionId</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>You may be surprised that <code>TzdbDateTimeZoneSource</code> doesn&#39;t implement <code>IDisposable</code> even though <code>ResourceSet</code> does. <code>TzdbDateTimeZoneSource</code>
 will never close or dispose the resource set it&#39;s given - it doesn&#39;t assume ownership of it. However, it will fail if you dispose the
@@ -417,24 +412,6 @@ most cases it probably isn&#39;t a big deal to have the handle to the resource f
 
   	<script src="../../js/foundation.min.js"></script>
   	
-
-  <!--
-  <script src="js/foundation/foundation.js"></script>
-  <script src="js/foundation/foundation.alerts.js"></script>
-  <script src="js/foundation/foundation.clearing.js"></script>
-  <script src="js/foundation/foundation.cookie.js"></script>
-  <script src="js/foundation/foundation.dropdown.js"></script>
-  <script src="js/foundation/foundation.forms.js"></script>
-  <script src="js/foundation/foundation.joyride.js"></script>
-  <script src="js/foundation/foundation.magellan.js"></script>
-  <script src="js/foundation/foundation.orbit.js"></script>
-  <script src="js/foundation/foundation.placeholder.js"></script>
-  <script src="js/foundation/foundation.reveal.js"></script>
-  <script src="js/foundation/foundation.section.js"></script>
-  <script src="js/foundation/foundation.tooltips.js"></script>
-  <script src="js/foundation/foundation.topbar.js"></script>
-  <script src="js/foundation/foundation.interchange.js"></script>
-  -->
 
   <script>
     $(document).foundation();

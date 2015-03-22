@@ -12,17 +12,12 @@
 	<!-- foundation default -->
   	<link rel="stylesheet" href="../../css/foundation.css" />
 
-    <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="../../css/syntax.css">
-
     <!-- Foundicons -->
     <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
 
 	<script src="../../js/vendor/custom.modernizr.js"></script>
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/mobile.css">
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -122,7 +117,7 @@
 mutable types with a parameterless constructor - which is somewhat problematic for a library composed primarily
 of immutable types. However, as all structs implicitly have a parameterless constructor, and the <code>this</code> expression
 is effectively a <code>ref</code> parameter in methods in structs, all the value types listed above have <code>ReadXml</code> methods which effectively end with:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">this = valueParsedFromXml;
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">this</span> <span class="p">=</span> <span class="n">valueParsedFromXml</span><span class="p">;</span>
 </code></pre></div>
 <p>This looks somewhat alarming, but is effectively sensible. It doesn&#39;t mutate the existing value so much as replace it with a completely new
 value. XML serialization has been performed using explicit interface implementation in all types, so it&#39;s very unlikely that you&#39;ll end up
@@ -132,28 +127,28 @@ accidentally changing the value of a variable when you didn&#39;t expect to.</p>
 constructor (nor do we want one). <code>PeriodBuilder</code> is a mutable type with a parameterless constructor, however, making it ideal for serialization. Typically
 other classes wouldn&#39;t contain a <code>PeriodBuilder</code> property or field of course - but by exposing a &quot;proxy&quot; property solely for XML serialization purposes,
 an appropriate effect can be achieved. The class might look something like this:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">/// &lt;summary&gt;
-/// Sample class to show how to serialize classes which have Period properties.
-/// &lt;/summary&gt;
-public class XmlSerializationDemo
-{
-    /// &lt;summary&gt;
-    /// Use this property!
-    /// &lt;/summary&gt;
-    [XmlIgnore]
-    public Period Period { get; set; }
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// Sample class to show how to serialize classes which have Period properties.</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">XmlSerializationDemo</span>
+<span class="p">{</span>
+    <span class="c1">/// &lt;summary&gt;</span>
+    <span class="c1">/// Use this property!</span>
+    <span class="c1">/// &lt;/summary&gt;</span>
+<span class="na">    [XmlIgnore]</span>
+    <span class="k">public</span> <span class="n">Period</span> <span class="n">Period</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
-    /// &lt;summary&gt;
-    /// Don&#39;t use this property! It&#39;s only present for the purposes of XML serialization.
-    /// &lt;/summary&gt;
-    [XmlElement(&quot;period&quot;)]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public PeriodBuilder PeriodBuilder
-    {
-        get { return Period == null ? null : Period.ToBuilder(); }
-        set { Period = value == null ? null : value.Build(); }
-    }
-}
+    <span class="c1">/// &lt;summary&gt;</span>
+    <span class="c1">/// Don&#39;t use this property! It&#39;s only present for the purposes of XML serialization.</span>
+    <span class="c1">/// &lt;/summary&gt;</span>
+<span class="na">    [XmlElement(&quot;period&quot;)]</span>
+<span class="na">    [EditorBrowsable(EditorBrowsableState.Never)]</span>
+    <span class="k">public</span> <span class="n">PeriodBuilder</span> <span class="n">PeriodBuilder</span>
+    <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">Period</span> <span class="p">==</span> <span class="k">null</span> <span class="p">?</span> <span class="k">null</span> <span class="p">:</span> <span class="n">Period</span><span class="p">.</span><span class="n">ToBuilder</span><span class="p">();</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="n">Period</span> <span class="p">=</span> <span class="k">value</span> <span class="p">==</span> <span class="k">null</span> <span class="p">?</span> <span class="k">null</span> <span class="p">:</span> <span class="k">value</span><span class="p">.</span><span class="n">Build</span><span class="p">();</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>When serializing, the <code>XmlSerializer</code> will fetch the value from the <code>PeriodBuilder</code> property, which will in turn fetch the period from the <code>Period</code> property and convert it into a builder.
 When deserializing, the <code>XmlSerializer</code> will set the value of <code>PeriodBuilder</code> from the XML - and the property will in turn build the builder and set the <code>Period</code> property.</p>
@@ -290,7 +285,7 @@ one involved, possibly one for reading and one for writing, depending on your co
 <h3>Disabling automatic date parsing</h3>
 
 <p>Between releases 4.0 and 4.5.11, Json.NET introduced automatic date parsing: by default, if the parser detects a value which looks like a date, it will automatically convert it to a <code>DateTime</code> or (optionally) to a <code>DateTimeOffset</code>. In order to give Noda Time control over the serialization, this must be disabled in <code>JsonSerializerSettings</code> or <code>JsonSerializer</code>, like this:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">settings.DateParseHandling = DateParseHandling.None;
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">settings</span><span class="p">.</span><span class="n">DateParseHandling</span> <span class="p">=</span> <span class="n">DateParseHandling</span><span class="p">.</span><span class="n">None</span><span class="p">;</span>
 </code></pre></div>
 <p>(The same code is valid for both <code>JsonSerializer</code> and <code>JsonSerializerSettings</code>.)</p>
 
@@ -636,24 +631,6 @@ There is a <a href="https://www.nuget.org/packages/NodaTime.Serialization.Servic
 
   	<script src="../../js/foundation.min.js"></script>
   	
-
-  <!--
-  <script src="js/foundation/foundation.js"></script>
-  <script src="js/foundation/foundation.alerts.js"></script>
-  <script src="js/foundation/foundation.clearing.js"></script>
-  <script src="js/foundation/foundation.cookie.js"></script>
-  <script src="js/foundation/foundation.dropdown.js"></script>
-  <script src="js/foundation/foundation.forms.js"></script>
-  <script src="js/foundation/foundation.joyride.js"></script>
-  <script src="js/foundation/foundation.magellan.js"></script>
-  <script src="js/foundation/foundation.orbit.js"></script>
-  <script src="js/foundation/foundation.placeholder.js"></script>
-  <script src="js/foundation/foundation.reveal.js"></script>
-  <script src="js/foundation/foundation.section.js"></script>
-  <script src="js/foundation/foundation.tooltips.js"></script>
-  <script src="js/foundation/foundation.topbar.js"></script>
-  <script src="js/foundation/foundation.interchange.js"></script>
-  -->
 
   <script>
     $(document).foundation();

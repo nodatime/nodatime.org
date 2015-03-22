@@ -12,17 +12,12 @@
 	<!-- foundation default -->
   	<link rel="stylesheet" href="../../css/foundation.css" />
 
-    <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="../../css/syntax.css">
-
     <!-- Foundicons -->
     <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
 
 	<script src="../../js/vendor/custom.modernizr.js"></script>
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/mobile.css">
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -115,32 +110,32 @@ in your own code, of course. All examples assume a <code>using</code> directive 
 <h1>How old is Jon?</h1>
 
 <p>Jon was born on June 19th, 1976 (Gregorian). How old is he now, in the UK time zone?</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">LocalDate birthDate = new LocalDate(1976, 6, 19);
-DateTimeZone zone = DateTimeZoneProviders.Tzdb[&quot;Europe/London&quot;];
-ZonedClock clock = SystemClock.Instance.InZone(zone);
-LocalDate today = clock.GetCurrentLocalDateTime().Date;
-Period age = Period.Between(birthDate, today);
-Console.WriteLine(&quot;Jon is: {0} years, {1} months, {2} days old.&quot;,
-                  age.Years, age.Months, age.Days);
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">LocalDate</span> <span class="n">birthDate</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalDate</span><span class="p">(</span><span class="m">1976</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">19</span><span class="p">);</span>
+<span class="n">DateTimeZone</span> <span class="n">zone</span> <span class="p">=</span> <span class="n">DateTimeZoneProviders</span><span class="p">.</span><span class="n">Tzdb</span><span class="p">[</span><span class="s">&quot;Europe/London&quot;</span><span class="p">];</span>
+<span class="n">ZonedClock</span> <span class="n">clock</span> <span class="p">=</span> <span class="n">SystemClock</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">InZone</span><span class="p">(</span><span class="n">zone</span><span class="p">);</span>
+<span class="n">LocalDate</span> <span class="n">today</span> <span class="p">=</span> <span class="n">clock</span><span class="p">.</span><span class="n">GetCurrentLocalDateTime</span><span class="p">().</span><span class="n">Date</span><span class="p">;</span>
+<span class="n">Period</span> <span class="n">age</span> <span class="p">=</span> <span class="n">Period</span><span class="p">.</span><span class="n">Between</span><span class="p">(</span><span class="n">birthDate</span><span class="p">,</span> <span class="n">today</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Jon is: {0} years, {1} months, {2} days old.&quot;</span><span class="p">,</span>
+                  <span class="n">age</span><span class="p">.</span><span class="n">Years</span><span class="p">,</span> <span class="n">age</span><span class="p">.</span><span class="n">Months</span><span class="p">,</span> <span class="n">age</span><span class="p">.</span><span class="n">Days</span><span class="p">);</span>
 </code></pre></div>
 <h1>How can I get to the start or end of a month?</h1>
 
 <p>Use the <a href="../api/html/T_NodaTime_DateAdjusters.htm"><code>DateAdjusters</code></a> factory class to obtain a suitable adjuster, and then either apply it
 directly (it&#39;s just a <code>Func&lt;LocalDate, LocalDate&gt;</code>) or use the <code>With</code> method to apply it in a fluent
 style:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">LocalDate today = new LocalDate(2014, 6, 27);
-LocalDate endOfMonth = today.With(DateAdjusters.EndOfMonth); // 2014-06-30
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">LocalDate</span> <span class="n">today</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalDate</span><span class="p">(</span><span class="m">2014</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">27</span><span class="p">);</span>
+<span class="n">LocalDate</span> <span class="n">endOfMonth</span> <span class="p">=</span> <span class="n">today</span><span class="p">.</span><span class="n">With</span><span class="p">(</span><span class="n">DateAdjusters</span><span class="p">.</span><span class="n">EndOfMonth</span><span class="p">);</span> <span class="c1">// 2014-06-30</span>
 </code></pre></div>
 <p>Date adjusters also work with <code>LocalDateTime</code> and <code>OffsetDateTime</code> values. For example:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">LocalDateTime now = new LocalDate(2014, 6, 27, 7, 14, 25);
-LocalDateTime startOfMonth = now.With(DateAdjusters.StartOfMonth); // 2014-06-01T07:14:25
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">LocalDateTime</span> <span class="n">now</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalDate</span><span class="p">(</span><span class="m">2014</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">27</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="m">14</span><span class="p">,</span> <span class="m">25</span><span class="p">);</span>
+<span class="n">LocalDateTime</span> <span class="n">startOfMonth</span> <span class="p">=</span> <span class="n">now</span><span class="p">.</span><span class="n">With</span><span class="p">(</span><span class="n">DateAdjusters</span><span class="p">.</span><span class="n">StartOfMonth</span><span class="p">);</span> <span class="c1">// 2014-06-01T07:14:25</span>
 </code></pre></div>
 <h1>How can I truncate a time to a particular unit?</h1>
 
 <p>Use the <a href="../api/html/T_NodaTime_TimeAdjusters.htm"><code>TimeAdjusters</code></a> factory class to obtain a suitable adjuster, which can be applied to a
 <code>LocalTime</code>, <code>LocalDateTime</code> or <code>OffsetDateTime</code>:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp">LocalDateTime now = new LocalDate(2014, 6, 27, 7, 14, 25, 500);
-LocalDateTime now = now.With(TimeAdjusters.TruncateToMinute); // 2014-06-27T07:14:00
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">LocalDateTime</span> <span class="n">now</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalDate</span><span class="p">(</span><span class="m">2014</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">27</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="m">14</span><span class="p">,</span> <span class="m">25</span><span class="p">,</span> <span class="m">500</span><span class="p">);</span>
+<span class="n">LocalDateTime</span> <span class="n">now</span> <span class="p">=</span> <span class="n">now</span><span class="p">.</span><span class="n">With</span><span class="p">(</span><span class="n">TimeAdjusters</span><span class="p">.</span><span class="n">TruncateToMinute</span><span class="p">);</span> <span class="c1">// 2014-06-27T07:14:00</span>
 </code></pre></div>
 		<ul class="pagination">
 		
@@ -446,24 +441,6 @@ LocalDateTime now = now.With(TimeAdjusters.TruncateToMinute); // 2014-06-27T07:1
 
   	<script src="../../js/foundation.min.js"></script>
   	
-
-  <!--
-  <script src="js/foundation/foundation.js"></script>
-  <script src="js/foundation/foundation.alerts.js"></script>
-  <script src="js/foundation/foundation.clearing.js"></script>
-  <script src="js/foundation/foundation.cookie.js"></script>
-  <script src="js/foundation/foundation.dropdown.js"></script>
-  <script src="js/foundation/foundation.forms.js"></script>
-  <script src="js/foundation/foundation.joyride.js"></script>
-  <script src="js/foundation/foundation.magellan.js"></script>
-  <script src="js/foundation/foundation.orbit.js"></script>
-  <script src="js/foundation/foundation.placeholder.js"></script>
-  <script src="js/foundation/foundation.reveal.js"></script>
-  <script src="js/foundation/foundation.section.js"></script>
-  <script src="js/foundation/foundation.tooltips.js"></script>
-  <script src="js/foundation/foundation.topbar.js"></script>
-  <script src="js/foundation/foundation.interchange.js"></script>
-  -->
 
   <script>
     $(document).foundation();
