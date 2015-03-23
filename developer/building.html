@@ -97,6 +97,9 @@
 		<h1>Building and testing</h1>
 		<h2>Visual Studio (Windows)</h2>
 
+<p>TODO: As of 2.0, the following is no longer correct: <em>building</em> Noda Time
+2.0 requires a C# 6 compiler.</p>
+
 <p>Noda Time is mostly developed on Visual Studio 2010 and Visual Studio 2012.
 All versions of Visual Studio 2010 and 2012 which support C#, including Express editions,
 should be able to build Noda Time. If you&#39;re using Visual Studio Express, you <em>may</em> have
@@ -111,8 +114,8 @@ versions 3.5, 4 and 4.5 of the Framework. Install the appropriate
 version or versions as defined by your needs.</p>
 
 <p>To fetch the source code from the main GitHub repository, you&#39;ll need a
-<a href="http://mercurial.selenic.com/">Mercurial</a> client. A good alternative for Microsoft Windows users is
-<a href="http://tortoisehg.bitbucket.org/download/">TortoiseHg</a> which installs shell extensions so that Mercurial can be used
+<a href="http://git-scm.com/">git</a> client. A good alternative for Microsoft Windows users is
+<a href="https://tortoisegit.org/">TortoiseGit</a> which installs shell extensions so that Mercurial can be used
 from the Windows Explorer.</p>
 
 <p>To run the tests, you&#39;ll need <a href="http://nunit.org/index.php?p=download">NUnit</a> version 2.5.10 or higher.</p>
@@ -128,7 +131,7 @@ be able to test the desktop build that way, if you really need to.</p>
 <h3>Fetching and building</h3>
 
 <p>To fetch the source code, just clone the GitHub repository:</p>
-<div class="highlight"><pre><code class="language-bat" data-lang="bat"><span class="p">&gt;</span> <span class="n">hg</span> clone https:<span class="n">//code.google.com/p/noda-time/</span>
+<div class="highlight"><pre><code class="language-bat" data-lang="bat"><span class="p">&gt;</span> <span class="n">git</span> clone https:<span class="n">//github.com/nodatime/nodatime.git</span>
 </code></pre></div>
 <p>To build everything under Visual Studio, simply open the <code>src\NodaTime-All.sln</code> file.
 To build with just the SDK and msbuild, run</p>
@@ -140,6 +143,10 @@ To build with just the SDK and msbuild, run</p>
 <p>(Include the other test DLLs should you wish to, of course.)</p>
 
 <h2>Mono</h2>
+
+<p>TODO: Again, the following is incorrect for 2.0, as we require a C# 6
+compiler to build from source.  It&#39;s not clear whether any version of Mono
+meets these requirements.</p>
 
 <p><em>Note:</em> If you build Noda Time under Mono but execute it under the Microsoft
 .NET 4 64-bit CLR, you may see exceptions around type initializers and
@@ -170,8 +177,8 @@ runtime-only package.  To use the provided <code>Makefile</code>, you&#39;ll eit
 install <a href="https://developer.apple.com/xcode/">Xcode</a> or obtain <code>make</code> separately (for example, using
 <a href="https://github.com/kennethreitz/osx-gcc-installer#readme">osx-gcc-installer</a> to install just the open-source parts of Xcode).</p>
 
-<p>To fetch the source code from the main GitHub repository,
-you&#39;ll need a <a href="http://mercurial.selenic.com/">Mercurial</a> client.</p>
+<p>To fetch the source code from the main GitHub repository, you&#39;ll need a
+<a href="http://git-scm.com/">git</a> client.</p>
 
 <p>To run the tests, you&#39;ll need <a href="http://nunit.org/index.php?p=download">NUnit</a> version 2.5.10 or higher. (The version
 that comes with stable builds of Mono at the time of this writing doesn&#39;t
@@ -183,12 +190,12 @@ of the larger suites.</p>
 <h3>Fetching and building</h3>
 
 <p>To fetch the source code, just clone the GitHub repository:</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>hg clone https://code.google.com/p/noda-time/
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>git clone https://github.com/nodatime/nodatime.git
 </code></pre></div>
 <p>Building is performed with <code>make</code>, using the included Makefile. (If you don&#39;t
 have a working <code>make</code>, you can also run <code>xbuild</code> by hand; see <code>Makefile</code> for
 the commands you&#39;ll need to run.)</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span><span class="nb">cd </span>noda-time
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span><span class="nb">cd </span>nodatime
 <span class="nv">$ </span>make
 </code></pre></div>
 <p>This will build all the Noda Time main projects. The main assembly will be
