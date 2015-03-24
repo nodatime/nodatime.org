@@ -144,16 +144,33 @@ To build with just the SDK and msbuild, run</p>
 
 <h2>Mono</h2>
 
-<p>TODO: Again, the following is incorrect for 2.0, as we require a C# 6
-compiler to build from source.  It&#39;s not clear whether any version of Mono
-meets these requirements.</p>
+<p><em>Building</em> Noda Time 2.0 requires a C# 6 compiler.</p>
 
-<p><em>Note:</em> If you build Noda Time under Mono but execute it under the Microsoft
-.NET 4 64-bit CLR, you may see exceptions around type initializers and
-<code>RuntimeHelpers.InitializeArray</code>. We believe this to be due to a
-<a href="http://connect.microsoft.com/VisualStudio/feedback/details/635365">bug in .NET</a> which the Mono compiler happens to trigger. We
-would recommend that you use a binary built by the Microsoft C# compiler if you
-wish to run using this CLR.</p>
+<p>As of March 2015, no released version of Mono supports C# 6, though
+built-from-source versions of what will become Mono 4.0.0 do.</p>
+
+<p>While not intended to be a complete guide to installing Mono from source, on
+Linux, you probably want to do something approximately like the following:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>sudo apt-get install autoconf automake libtool-bin  <span class="c"># etc</span>
+
+<span class="nv">$ PREFIX</span><span class="o">=</span><span class="nv">$HOME</span>/mono/4.0.0  <span class="c"># or wherever</span>
+<span class="nv">$ </span>git clone git@github.com:mono/mono.git mono-git
+<span class="nv">$ </span><span class="nb">cd </span>mono-git/
+<span class="nv">$ </span>git checkout mono-4.0.0-branch
+<span class="nv">$ </span>git submodule init
+<span class="nv">$ </span>git submodule update
+<span class="nv">$ </span>./autogen.sh --prefix<span class="o">=</span><span class="nv">$PREFIX</span>
+<span class="nv">$ </span>make get-monolite-latest
+<span class="nv">$ </span>make <span class="nv">EXTERNAL_MCS</span><span class="o">=</span><span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>/mcs/class/lib/monolite/basic.exe
+<span class="nv">$ </span>make install
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PREFIX</span>/bin:<span class="nv">$PATH</span>
+<span class="nv">$ </span>mono --version <span class="p">|</span> head -n1
+Mono JIT compiler version 4.0.0 <span class="o">(</span>mono-4.0.0-branch/b7bcd23 Tue <span class="m">24</span> Mar 16:03:12 GMT 2015<span class="o">)</span>
+</code></pre></div>
+<p>(More generally, see the <a href="http://www.mono-project.com/docs/compiling-mono/linux/#building-mono-from-a-git-source-code-checkout" title="Compiling Mono on Linux: Building Mono From a Git Source Code Checkout">Mono documentation</a> for more details
+about building from source on Linux.)</p>
+
+<h3>Noda Time 1.x</h3>
 
 <p>We have tested Mono support using Mono 2.10.5 and 2.10.8.</p>
 
@@ -177,19 +194,10 @@ runtime-only package.  To use the provided <code>Makefile</code>, you&#39;ll eit
 install <a href="https://developer.apple.com/xcode/">Xcode</a> or obtain <code>make</code> separately (for example, using
 <a href="https://github.com/kennethreitz/osx-gcc-installer#readme">osx-gcc-installer</a> to install just the open-source parts of Xcode).</p>
 
-<p>To fetch the source code from the main GitHub repository, you&#39;ll need a
-<a href="http://git-scm.com/">git</a> client.</p>
-
-<p>To run the tests, you&#39;ll need <a href="http://nunit.org/index.php?p=download">NUnit</a> version 2.5.10 or higher. (The version
-that comes with stable builds of Mono at the time of this writing doesn&#39;t
-support everything used by the unit tests of Noda Time.) Version 2.6.1 is
-recommended on non-Windows platforms due to an <a href="https://bugs.launchpad.net/nunitv2/+bug/993247" title="NUnit Bug #993247: Tests fail with IOException: Too many open files">NUnit bug</a> that
-causes tests to fail with a &quot;Too many open files&quot; exception when running some
-of the larger suites.</p>
-
 <h3>Fetching and building</h3>
 
-<p>To fetch the source code, just clone the GitHub repository:</p>
+<p>To fetch the source code from the main GitHub repository, you&#39;ll need a
+<a href="http://git-scm.com/">git</a> client.</p>
 <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>git clone https://github.com/nodatime/nodatime.git
 </code></pre></div>
 <p>Building is performed with <code>make</code>, using the included Makefile. (If you don&#39;t
@@ -202,13 +210,19 @@ the commands you&#39;ll need to run.)</p>
 written to <code>src/NodaTime/bin/Debug/NodaTime.dll</code>; this is all you need to use
 Noda Time itself.</p>
 
-<p>Other build targets are also available; again, see <code>Makefile</code> for documentation.
-In particular, to build and run the tests, run:</p>
+<p>Other build targets are also available; again, see <code>Makefile</code> for documentation.</p>
+
+<p>To run the tests, you&#39;ll need <a href="http://nunit.org/index.php?p=download">NUnit</a> version 2.5.10 or higher. (The
+version that comes with Mono doesn&#39;t support everything used by the unit
+tests of Noda Time.) Version 2.6.1 or higher is recommended on non-Windows
+platforms due to an <a href="https://bugs.launchpad.net/nunitv2/+bug/993247" title="NUnit Bug #993247: Tests fail with IOException: Too many open files">NUnit bug</a> that causes tests to fail with
+a &quot;Too many open files&quot; exception when running some of the larger suites.</p>
+
+<p>To build and run the tests, run:</p>
 <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>make check
 </code></pre></div>
-<p>to use the default (probably Mono-supplied) version of NUnit to run the tests,
-or something like the following to override the location of the NUnit test
-runner:</p>
+<p>to use the default (from <code>PATH</code>) version of NUnit, or something like the
+following to override the location of the NUnit test runner:</p>
 <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>make check <span class="nv">NUNIT</span><span class="o">=</span><span class="s1">&#39;mono ../NUnit-2.6.1/bin/nunit-console.exe&#39;</span>
 </code></pre></div>
 <h3>Source layout</h3>
