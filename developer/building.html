@@ -166,6 +166,17 @@ Linux, you probably want to do something approximately like the following:</p>
 <span class="nv">$ </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PREFIX</span>/bin:<span class="nv">$PATH</span>
 <span class="nv">$ </span>mono --version <span class="p">|</span> head -n1
 Mono JIT compiler version 4.0.0 <span class="o">(</span>mono-4.0.0-branch/b7bcd23 Tue <span class="m">24</span> Mar 16:03:12 GMT 2015<span class="o">)</span>
+<span class="nv">$ </span>mozroots --import --sync  <span class="c"># otherwise NuGet will fail with SSL errors later</span>
+Mozilla Roots Importer - version 4.0.0.0
+Download and import trusted root certificates from Mozilla<span class="s1">&#39;s MXR.</span>
+<span class="s1">Copyright 2002, 2003 Motus Technologies. Copyright 2004-2008 Novell. BSD</span>
+<span class="s1">licensed.</span>
+
+<span class="s1">Downloading from</span>
+<span class="s1">&#39;</span>http://mxr.mozilla.org/seamonkey/source/security/nss/lib/ckfw/builtins/certdata.txt?raw<span class="o">=</span>1<span class="err">&#39;</span>...
+Importing certificates into user store...
+<span class="m">140</span> new root certificates were added to your trust store.
+Import process completed.
 </code></pre></div>
 <p>(More generally, see the <a href="http://www.mono-project.com/docs/compiling-mono/linux/#building-mono-from-a-git-source-code-checkout" title="Compiling Mono on Linux: Building Mono From a Git Source Code Checkout">Mono documentation</a> for more details
 about building from source on Linux.)</p>
@@ -194,23 +205,41 @@ runtime-only package.  To use the provided <code>Makefile</code>, you&#39;ll eit
 install <a href="https://developer.apple.com/xcode/">Xcode</a> or obtain <code>make</code> separately (for example, using
 <a href="https://github.com/kennethreitz/osx-gcc-installer#readme">osx-gcc-installer</a> to install just the open-source parts of Xcode).</p>
 
-<h3>Fetching and building</h3>
+<h3>Fetching the source</h3>
 
 <p>To fetch the source code from the main GitHub repository, you&#39;ll need a
 <a href="http://git-scm.com/">git</a> client.</p>
 <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>git clone https://github.com/nodatime/nodatime.git
+<span class="nv">$ </span><span class="nb">cd </span>nodatime
 </code></pre></div>
 <p>Building is performed with <code>make</code>, using the included Makefile. (If you don&#39;t
 have a working <code>make</code>, you can also run <code>xbuild</code> by hand; see <code>Makefile</code> for
 the commands you&#39;ll need to run.)</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span><span class="nb">cd </span>nodatime
-<span class="nv">$ </span>make
+
+<h3>Fetching dependencies</h3>
+
+<p>Building Noda Time requires a small number of third-party packages.  These
+can be most easily obtained via <a href="https://www.nuget.org/">NuGet</a>.</p>
+
+<p>To fetch NuGet.exe locally, download and run (using <code>mono</code>) the
+(auto-updating) <a href="http://nuget.codeplex.com/releases/view/58939">NuGet.exe command-line
+tool</a>.</p>
+
+<p>You can then fetch the NuGet packages locally (into <code>src/packages/</code>):</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>make fetch-packages <span class="nv">NUGET</span><span class="o">=</span>/path/to/NuGet.exe
+</code></pre></div>
+<p>(<code>NUGET=</code> can be omitted if NuGet.exe is in the current directory.)</p>
+
+<h3>Building</h3>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>make
 </code></pre></div>
 <p>This will build all the Noda Time main projects. The main assembly will be
 written to <code>src/NodaTime/bin/Debug/NodaTime.dll</code>; this is all you need to use
 Noda Time itself.</p>
 
 <p>Other build targets are also available; again, see <code>Makefile</code> for documentation.</p>
+
+<h3>Testing</h3>
 
 <p>To run the tests, you&#39;ll need <a href="http://nunit.org/index.php?p=download">NUnit</a> version 2.5.10 or higher. (The
 version that comes with Mono doesn&#39;t support everything used by the unit
@@ -225,7 +254,7 @@ a &quot;Too many open files&quot; exception when running some of the larger suit
 following to override the location of the NUnit test runner:</p>
 <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>make check <span class="nv">NUNIT</span><span class="o">=</span><span class="s1">&#39;mono ../NUnit-2.6.1/bin/nunit-console.exe&#39;</span>
 </code></pre></div>
-<h3>Source layout</h3>
+<h2>Source layout</h2>
 
 <p>All the source code is under the <code>src</code> directory. There are multiple projects:</p>
 
