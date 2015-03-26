@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Patterns for LocalTime values</title>
+
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <link rel="stylesheet" href="../../css/main.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-60886284-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/userguide">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/userguide">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">API</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/api">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/api">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li>
+                                <a href="../../developer" >Developer Guide</a>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Patterns for LocalTime values</h1>
+		<p>The <a href="../api/html/T_NodaTime_LocalTime.htm"><code>LocalTime</code></a> type supports the following patterns:</p>
+
+<h2>Standard Patterns</h2>
+
+<p>The following standard patterns are supported:</p>
+
+<ul>
+<li><p><code>t</code>: Short format pattern.<br>
+This is the short time pattern as defined by the culture&#39;s <a href="http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shorttimepattern.aspx"><code>DateTimeFormatInfo.ShortTimePattern</code></a> 
+For example, in the invariant culture this is &quot;HH:mm&quot;.</p></li>
+<li><p><code>T</code>: Long format pattern.<br>
+This is the long time pattern as defined by the culture&#39;s <a href="http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longtimepattern.aspx"><code>DateTimeFormatInfo.LongTimePattern</code></a> 
+For example, in the invariant culture this is &quot;HH:mm:ss&quot;.</p></li>
+<li><p><code>r</code>: Round-trip pattern.<br>
+This always uses a pattern of &quot;HH:mm:ss.FFFFFFF&quot;, but with the culture-specific time separator.</p></li>
+</ul>
+
+<h2>Custom Patterns</h2>
+
+<p>The following custom offset pattern characters are supported for local times. See <a href="text.html#custom-patterns">custom pattern notes</a>
+for general notes on custom patterns, including characters used for escaping and text literals.</p>
+
+<table>
+  <thead>
+    <tr>
+      <td>Character</td>
+      <td>Meaning</td>
+      <td>Example</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>H</code> or <code>HH</code></td>
+      <td>
+        The hour of day in the 24-hour clock; a value 0-23.
+
+        <p>Note that when parsing local date/time values, a value of `24`
+        may be exceptionally permitted to allow
+        <a href="localdatetime-patterns.html">specification of a following day's
+        midnight</a>.
+      </td>
+      <td>
+        7.30am: <code>H:mm</code> => <code>7:30</code> <br />
+        7.30am: <code>HH:mm</code> => <code>07:30</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>h</code> or <code>hh</code></td>
+      <td>
+        The hour of day in the 12-hour clock; a value 1-12. When parsing, if no
+        am/pm designator is specified, the parsed value is in the morning.
+      </td>
+      <td>
+        8.30pm: <code>H:mm</code> => <code>7:30</code> <br />
+        8.30pm: <code>HH:mm</code> => <code>07:30</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>m</code> or <code>mm</code></td>
+      <td>
+        Number of minutes within the hour. <code>mm</code> is zero-padded; <code>m</code> is not.
+      </td>
+      <td>
+        5 minutes: <code>m:ss</code> => <code>5:00</code> <br />
+        5 minutes: <code>mm:ss</code> => <code>05:00</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>s</code> or <code>ss</code></td>
+      <td>
+        Number of seconds within the minute. <code>ss</code> is zero-padded; <code>s</code> is not.
+      </td>
+      <td>
+        5 seconds: <code>s.fff</code> => <code>5.000</code> <br />
+        5 seconds: <code>ss.fff</code> => <code>05.000</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>f</code>, <code>ff</code> ... up to <code>fffffff</code></td>
+      <td>
+        The fractional second part of the offset, using exactly the specified number of characters
+        (up to 7, for a representation accurate to a tick).
+      </td>
+      <td>
+        1 second, 340 milliseconds: <code>s.fff</code> => <code>1.340</code> <br />
+        1 second, 340 milliseconds: <code>s.ff</code> => <code>1.34</code> <br />
+        1 second, 340 milliseconds: <code>s.f</code> => <code>1.3</code> <br />
+      </td>
+    </tr>
+    <tr>
+      <td><code>F</code>, <code>FF</code> ... up to <code>FFFFFFF</code></td>
+      <td>
+        The fractional second part of the offset, using at most the specified number of characters
+        (up to 7, for a representation accurate to a tick).
+        Trailing digits are truncated towards zero, and trailing insignificant zeroes are truncated.
+        If this comes after a period (".") and the value is zero, the period is
+        also truncated.
+      </td>
+      <td>
+        1 second, 340 milliseconds: <code>s.FFF</code> => <code>1.34</code> <br />
+        1 second, 340 milliseconds: <code>s.FF</code> => <code>1.34</code> <br />
+        1 second, 340 milliseconds: <code>s.F</code> => <code>1.3</code> <br />
+        Exactly 1 second: <code>s.F</code> => <code>1</code> <br />
+      </td>
+    </tr>
+    <tr>
+      <td><code>t</code> or <code>tt</code></td>
+      <td>
+        The culture-specific AM/PM designator, either in full (for <code>tt</code>) or just the first character
+        (for <code>t</code>).
+      </td>
+      <td>
+        13:10: <code>h:mm tt</code> => <code>1:10 PM</code>
+        13:10: <code>h:mm:sst</code> => <code>1:10:00P</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.</code></td>
+      <td>
+        This is *always* a period ("."); not a culture-sensitive decimal separator as one might expect. This
+        follows the example of other standard libraries, however odd it may appear. The only difference
+        between a period and any other literal character is that when followed by a series of "F" characters,
+        the period will be removed if there are no fractional seconds.
+      </td>
+      <td>
+        12 seconds, 500 milliseconds (en-US): <code>ss.FFF</code> => <code>12.5</code> <br />
+        12 seconds, 500 milliseconds (fr-FR): <code>ss.FFF</code> => <code>12.5</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>;</code></td>
+      <td>
+        This is always *formatted* as a period, but can *parse* either a period or a comma.
+        In all other respects it behaves as the period custom specifier. The purpose of
+        this specifier is to properly parse ISO-8601 times, where a comma is allowed as
+        the separator for subsecond values.
+      </td>
+      <td>
+        Pattern <code>ss;fff</code> parses <code>53,123</code> and <code>53.123</code>
+        identically.
+      </td>
+    </tr>
+    <tr>
+      <td><code>:</code></td>
+      <td>
+        The time separator for the format provider; colon in the invariant culture.
+      </td>
+      <td><code>HH:mm</code> => <code>07:30</code></td>
+    </tr>
+  </tbody>
+    
+</table>
+
+		<ul class="pagination">
+		
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			<li class="current hide-for-small"><a href>Patterns for LocalTime values</a></li>
+			
+			
+		
+			
+			<li><a href="../../1.1.x/userguide/localdate-patterns.html"><strong>Next</strong>: Patterns for LocalDate values</a></li>
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+		
+		</ul>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Introduction</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.1.x/userguide/index.html" >Overview</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/rationale.html" >Why does Noda Time exist?</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/installation.html" >Installation</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Core</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.1.x/userguide/concepts.html" >Core concepts</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/type-choices.html" >Choosing (and converting) between types</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/core-types.html" >Core types quick reference</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/design.html" >Design philosophy and conventions</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Text</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.1.x/userguide/text.html" >Text handling</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/offset-patterns.html" >Patterns for Offset values</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/instant-patterns.html" >Patterns for Instant values</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/localtime-patterns.html" class="active">Patterns for LocalTime values</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/period-patterns.html" >Patterns for Period values</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Advanced</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.1.x/userguide/arithmetic.html" >Date and time arithmetic</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/bcl-conversions.html" >BCL conversions</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/serialization.html" >Serialization</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/threading.html" >Threading</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Library</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.1.x/userguide/testing.html" >Unit testing with Noda Time</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/tzdb.html" >Updating the time zone database</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/mono.html" >Mono support</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/limitations.html" >Limitations of Noda Time</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/roadmap.html" >Current roadmap</a></li>
+						
+                            
+							<li><a href="../../1.1.x/userguide/versions.html" >Version history</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<footer>Version  1.1.x  </footer>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+                                <span>The latest version is 1.3.1, released March 6th 2015</span>
+			</div>
+			<div class="small-6 columns copy">
+                                &copy; <a href="https://github.com/nodatime/nodatime/blob/master/AUTHORS.txt">The Noda Time Authors</a>,
+                                <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
+</html>
