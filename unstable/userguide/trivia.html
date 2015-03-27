@@ -1,0 +1,739 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Trivia</title>
+
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <link rel="stylesheet" href="../../css/main.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-60886284-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/userguide">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/userguide">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">API</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/api">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/api">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li>
+                                <a href="../../developer" >Developer Guide</a>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Trivia</h1>
+		<p>The history of time contains many amusing quirks. In many cases, Noda Time
+doesn&#39;t make any attempt to support the oddities described below. In
+particular, Noda Time takes an idealized view of calendar systems, ignoring
+(for example) the fact that countries have switched between calendar systems
+(and sometimes <em>invented</em> calendar systems) at various points in recent
+history. Still, it&#39;s fun to think about what&#39;s happened over time, if only
+to persuade you that it would be much worse if Noda Time <em>did</em> try to
+support them...</p>
+
+<p>More will be added as I discover them.</p>
+
+<h2>The Curious Disappearance of December 30th (Samoa)</h2>
+
+<p>In 2011, Samoa (time zone ID <code>Pacific/Apia</code>) decided to change their UTC
+offset from UTC-10 to UTC+14. This means they went from being the
+western-most time zone (the further behind UTC) to the eastern-most time
+zone (the furthest ahead of UTC). This took place at midnight local time at
+the end of December 29th, so the local time for the few seconds around this
+was:</p>
+
+<ul>
+<li>2011-12-29T23:59:58-10</li>
+<li>2011-12-29T23:59:59-10</li>
+<li>2011-12-31T00:00:00+14</li>
+<li>2011-12-31T00:00:01+14</li>
+<li>2011-12-31T00:00:02+14</li>
+</ul>
+
+<p>As an act, it made a certain amount of sense: Samoa does a lot of trade with
+Australia and New Zealand, and I can imagine it was a pain being a day
+behind them most of the time. Additionally, this means that hotels in Samoa
+can offer the experience of being &quot;the first to experience the New Year&quot; for
+tourists who are particularly keen on that sort of thing.</p>
+
+<p>However, I question the wisdom of making the transition occur at midnight,
+which made December 30th not occur at all. I suspect that a transition at
+(say) 3am would have been cleaner, leading to a day lasting only three hours
+followed by a day lasting twenty one hours. While this is mostly a problem
+for computers, I would expect many automated systems to get thoroughly
+confused by a day not happening at all. (The counter-argument is that it&#39;s
+possible that a few automated systems would cope with two significantly
+shorter days, too...)</p>
+
+<p><code>Pacific/Apia</code> isn&#39;t the only time zone to have made this sort of
+transition, although it is the largest population to do so, as far as I&#39;m
+aware.</p>
+
+<p><strong>Noda Time support:</strong> fully supported!
+<code>DateTimeZoneProviders.Tzdb[&quot;Pacific/Apia&quot;].AtStartOfDay(new LocalDate(2011,
+12, 30))</code> will throw a <code>SkippedTimeException</code> to indicate that the day never
+occurred.</p>
+
+<p><strong>Read more:</strong></p>
+
+<ul>
+<li><a href="http://www.bbc.co.uk/news/world-asia-16351377">BBC News</a></li>
+</ul>
+
+<h2>February 30th? Only in Sweden...</h2>
+
+<p>Many people understand the leap year rule for the Gregorian calendar: a year
+number denotes a leap year if it&#39;s divisible by 4, except when it&#39;s also
+divisible by 100, except that what it&#39;s also divisible by 400 it <em>is</em> a leap
+year again. This system was devised to keep the length of a calendar year
+very close to the solar year. It&#39;s more accurate than the Julian calendar
+system, which simply has every 4th year being a leap year. This is a little
+bit like 3 being a very bad approximation for π, while 22/7 is more accurate
+but also more complicated. In this case, it means that there are more leap
+years in the Julian calendar system than in the Gregorian calendar system:
+if you run the two side-by-side from the same start date, the Gregorian
+system will gradually get further ahead of the Julian system by including
+fewer February 29th days.</p>
+
+<p>Many countries switched from the Julian calendar system to the Gregorian
+calendar system in the 16th and 18th centuries.  Most made this change by
+skipping ten or eleven days to &quot;catch up&quot; with where the Gregorian calendar
+would be if the two calendars had both started with the same date at some
+point in the 3rd century AD. For example, when Great Britain made the change
+in September 1752, September 2nd was followed by September 14th.</p>
+
+<p>Sweden did things a little differently. Rather than skipping lots of days
+all in one go, they decided to skip February 29th altogether from 1700,
+until they&#39;d missed enough leap years to catch up to the Gregorian calendar.
+So instead of being first correct in one calendar system and then the next
+day correct in a different system (albeit leading to a very short month and
+year), they&#39;d be somewhere in between for about 40 years.</p>
+
+<p>While this almost sounds like a reasonable plan (almost like the way that
+<a href="http://googleblog.blogspot.com/2011/09/time-technology-and-leaping-seconds.html">Google &quot;smears&quot; a leap second across a whole minute rather than simply
+adding a
+second</a>),
+it went horribly wrong. In February 1700, Sweden skipped the leap year,
+according to plan. That meant that they were one day ahead of the countries
+still following the Julian calendar. Unfortunately, in the  same year -
+although ironically <em>before</em> February 28th - the <a href="http://en.wikipedia.org/wiki/Great_Northern_War">Great Northern
+War</a> broke out. This
+distracted Sweden from their calendrical machinations, and they <em>did</em> have a
+leap year in 1704 and 1708.</p>
+
+<p>At this point the Swedes apparently realized they were in a crazy situation,
+and decided to go back to the Julian calendar. In order to do that, they had
+to to insert the leap year they&#39;d missed in 1700 back into their calendar.
+They could have done so in a regular year (1710 for example), just making
+that an extra leap year - but no, they decided to make 1712 a <em>double</em> leap
+year, by giving February 30 days. Sweden made the final change to the
+Gregorian calendar in the &quot;normal&quot; way of skipping 11 days, in February
+1753.</p>
+
+<p>So there we have it: February 30th was only a valid date once, and in one
+place: 1712 in Sweden.</p>
+
+<p><strong>Noda Time support:</strong> Absolutely not. Noda Time doesn&#39;t support calendars
+cutting over from the Julian to the Gregorian calendar system anyway, let
+alone in such an odd way.</p>
+
+<p><strong>Read more:</strong></p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/February_30">Wikipedia</a></li>
+</ul>
+
+<h2>The time in Greenwich at the Unix epoch</h2>
+
+<p>Many developers know that the Unix epoch is midnight on January 1st 1970
+UTC<sup>1</sup>. Those who are aware that UTC itself was only introduced in
+1972, and so to avoid applying it proleptically, decide to instead say that
+it was midnight on January 1st 1970 at Greenwich, expecting that Greenwich
+would be using GMT (Greenwich Mean Time) at the epoch.</p>
+
+<p>Unfortunately, that&#39;s incorrect. At the Unix epoch, the time in London was
+observing British <em>Standard</em> Time, which had been introduced in 1968. During
+British Standard Time, the United Kingdom did not observe daylight saving,
+but instead used UTC+1 for the entire period, until it was scrapped in 1971.</p>
+
+<p>There are thus two British time zones abbreviated to &quot;BST&quot; - &quot;British
+Standard Time&quot; and the rather more common &quot;British Summer Time&quot;. Both have
+an overall offset from UTC of 1 hour, but British Standard Time  has a
+&quot;standard&quot; offset of 1 hour from UTC with no daylight saving component, and
+British Summer Time has a standard offset of 0 hours from UTC, but one hour
+of daylight saving time.</p>
+
+<p>The Java standard library has a <a href="http://bugs.java.com/view_bug.do?bug_id=4832236">known
+bug</a> on this matter. When
+formatting the Unix epoch in the <code>Europe/London</code> time zone, it correctly
+gives output of 1am, but incorrectly states that the time zone abbreviation
+is GMT.</p>
+
+<p><strong>Noda Time support:</strong> Correct, but only by virtue of writing this article.
+Until late January 2014, the time zone data compiler considered a time zone
+transition to be invalid unless it either changed the name or the wall
+offset. The transition from summer time to standard time on October 27th
+1968 was therefore ignored.</p>
+
+<p><strong>Read more:</strong></p>
+
+<ul>
+<li><a href="http://www.bbc.co.uk/news/uk-scotland-11643098">BBC News</a></li>
+<li><a href="http://www.polyomino.org.uk/british-time/">History of Legal Time in
+Britain</a></li>
+</ul>
+
+<p><sup>1</sup> I&#39;m studiously avoiding the differentiation between, UTC, UT,
+UT0, TAI and the like. They make my head hurt, and in common usage time zone
+offsets are given relative to UTC.</p>
+
+<h2>Skipping midnight</h2>
+
+<p>How would you define midnight? There are two obvious ways to do this:</p>
+
+<ul>
+<li>12am at the start of a day</li>
+<li>The transition between one day and the next</li>
+</ul>
+
+<p>You might expect these to be the same, but in reality they&#39;re not. In most
+time zones, transitions (usually for daylight saving changes) occur in the
+early morning - often 1am or 2am. However, a surprising number of time zones
+have had at least <em>one</em> transition which started at midnight - typically
+skipping forward, so that midnight didn&#39;t actually occur. I first came up
+against the problem when modelling all-day calendar events as events that
+started and ended at midnight. That&#39;s not so smart in São Paulo (as one
+example) when midnight doesn&#39;t always exist - at least if we assume that
+&quot;midnight&quot; is &quot;12am&quot;.</p>
+
+<p>The smart approach is to effectively use the second definition: when one day
+becomes the next.</p>
+
+<p><strong>Noda Time support:</strong> Although <code>LocalTime</code> supports the idea of midnight,
+if you want to convert a <code>LocalDate</code> into a <code>ZonedDateTime</code>, you&#39;d typically
+use
+<a href="../api/html/M_NodaTime_DateTimeZone_AtStartOfDay.htm"><code>DateTimeZone.AtStartOfDay</code></a>
+which avoids the problem - so long as the date hasn&#39;t been skipped as we saw
+earlier...</p>
+
+<h2>Which year is it anyway?</h2>
+
+<p>I mentioned earlier that Great Britain changed from the Julian calendar to
+the Gregorian calendar in 1752... but the same Act of Parliament which made
+that change also changed the year numbering system in most of Great Britain.
+Before then, March 25th (Lady Day, celebrating the Annunciation) was deemed
+to be the start of the year. So for example, in the early 1700s the dates
+would run:</p>
+
+<ul>
+<li>December 31st 1735</li>
+<li>January 1st 1735</li>
+<li>...</li>
+<li>March 24th 1735</li>
+<li>March 25th 1736</li>
+<li>March 26th 1736</li>
+</ul>
+
+<p>Due to the Calendar (New Style) act, 1751 was the last year for which this
+was true. December 31st 1751 was followed by January 1st 1752, leaving 1751
+as a very short year (only 282 days). 1752 was also a short year (355 days)
+due to the transition to the Gregorian calendar system skipping 11 days of
+September.</p>
+
+<p>For some reason, the Treasury decided it was too awkward to have tax years
+that were short like this. Therefore in 1752 the tax year still started on
+March 25th, and in 1753 it started on April 5th. In 1800, for reasons
+we<sup>1</sup> haven&#39;t yet discovered, the Treasury decided it still liked
+the Julian calendar&#39;s way of determining leap years, so around<sup>2</sup>
+1800 the tax year shifted by another day, to April 6th - where it was
+remained ever since.</p>
+
+<p>All of this means that when you see a date in history, you need to be very
+careful before you compare it with another date. To avoid <em>too</em> much
+confusion, many historical dates are given using the Julian calendar, which
+was being observed at the time (depending on the place, of course), while
+using the &quot;New Style&quot; of year numbering. For example, <a href="http://en.wikipedia.org/wiki/Henry_VIII_of_England">Henry
+VIII</a> died on January
+28th 1547 (New Style) or January 28th 1546 (Old Style). In my experience,
+some web pages explicitly call out which numbering style they&#39;re using,
+others record it as &quot;January 28th 1546/1547&quot; and hope that readers
+understand why, and others just use the New Style without any explanation.</p>
+
+<p>It&#39;s unclear to me at the moment whether before 1752, January 1st was still
+celebrated as &quot;the New Year&quot;. It wouldn&#39;t be the New Year according to the
+obvious definition (&quot;when the year number changes&quot;) but given that humanity
+never seems to miss a chance for a party, I suspect there were festivities
+anyway.</p>
+
+<p><strong>Noda Time support</strong>: Definitely not, although it would be <em>possible</em>...</p>
+
+<p><strong>Read more:</strong></p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Calendar_(New_Style)_Act_1750">Wikipedia: Calender (New Style) act</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Old_Style_and_New_Style_dates">Wikipedia: Old and New Style
+dates</a></li>
+<li><a href="https://plus.google.com/+MalcolmRowe/posts/Bf5swesMPUV">Malcolm Rowe&#39;s write-up in
+Google+</a></li>
+</ul>
+
+<p><sup>1</sup> When I say &quot;we&quot; here, I really mean &quot;Malcolm&quot; who did most of
+the work on understanding this issue based on Wikipedia and primary
+sources...
+<sup>2</sup> Possibly 1800, possibly 1801 - we haven&#39;t found
+details yet, and it would depend on whether the Treasury was considering the
+<em>tax</em> year for 1800, or the <em>calendar</em> year for 1800 to be a leap year.</p>
+
+<h2>Warning! Warning! This time zone is changing...</h2>
+
+<p>You might expect that time zone changes are planned years in advance, to
+avoid confusion when planning events. Alas, it is not so. My first encounter
+with a short amount of warning for a time zone change was in 2009. I was
+working on Google Mobile Sync at the time, synchronizing calendars. One day,
+a unit test failed. It was trying to infer a correct time zone from a very
+broken representation, and it mistook the time zone in Greenland for the one
+in Argentina. This was <em>partly</em> due to a bug in my own code, but the sudden
+nature of the problem was due to Argentina giving a mere 11 days of notice
+of their decision to cancel daylight saving time for 2009/2010. This was due
+to a large amount of rainfall in 2009, leading to full hydroelectric dams.
+The Argentine government considered that one of the major benefits of
+daylight saving time was reduced electricity consumption, and so when the
+dams were full, there was less reason to observe the change. This was the
+first - and I hope the last - time that a unit test failure was caused by
+the weather.</p>
+
+<p>Since then, I&#39;ve learned that this isn&#39;t as rare an occurrence as one would
+hope - and that 11 days is quite a lot of notice compared with some
+examples. In 2013, both Morocco and Libya gave less than a day&#39;s notice that
+they were changing their time zone rules, leaving a certain amount of
+confusion in their wake.</p>
+
+<p>In 2011, Turkey gave a fair amount of warning (over two weeks!) that it
+was delaying the DST transition, just by a single day, but the reason was
+slightly odd - a nationwide exam that 1.5 million students were taking.</p>
+
+<p><strong>Noda Time support:</strong> Well, there are five steps which need to occur
+between a change being announced and Noda Time supporting it in production:</p>
+
+<ol>
+<li>The change is announced in a suitably credible manner</li>
+<li>The change is committed within the TZDB source repository</li>
+<li>The TZDB maintainers release a new version</li>
+<li>I run a script to pull the latest version from TZDB, build it as an NZD
+file and push it to the Noda Time web site</li>
+<li>The system in question pulls the latest version from the web site and
+<a href="tzdb.html">starts using it</a></li>
+</ol>
+
+<p>As you can see, this depends on a lot of different people, so some delay is
+inevitable. However, if your application is configured to poll the web site
+reasonably often (once a day, for example) you&#39;re likely to see changes
+applied within a week of them being announced (and of course, you can always
+build the NZD file yourself). That&#39;s considerably quicker than Microsoft
+typically deploys changes to the <em>Windows</em> time zone database...</p>
+
+<p><strong>Read more:</strong></p>
+
+<ul>
+<li><a href="http://www.timeanddate.com/news/time/argentina-dst-2009-2010.html">Argentina (announcement on 7th October 2009, due 18th
+October)</a></li>
+<li><a href="http://www.timeanddate.com/news/time/morocco-ends-dst-2013.html">Morocco (September
+2013)</a></li>
+<li><a href="http://www.timeanddate.com/news/time/libya-cancels-dst-switch-2013.html">Libya (October
+2013)</a></li>
+<li><a href="http://www.timeanddate.com/news/time/turkey-starts-dst-2011.html">Turkey (March 2011)</a></li>
+</ul>
+
+		<ul class="pagination">
+		
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			<li class="current hide-for-small"><a href>Trivia</a></li>
+			
+			
+		
+			
+			<li><a href="../../unstable/userguide/testing.html"><strong>Next</strong>: Unit testing with Noda Time</a></li>
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+		
+		</ul>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Introduction</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/index.html" >Overview</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/rationale.html" >Why does Noda Time exist?</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/installation.html" >Installation</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Core</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/concepts.html" >Core concepts</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/type-choices.html" >Choosing (and converting) between types</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/core-types.html" >Core types quick reference</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/recipes.html" >Recipes</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/design.html" >Design philosophy and conventions</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/migration-to-2.html" >Migrating from 1.x to 2.0</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Text</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/text.html" >Text handling</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/duration-patterns.html" >Patterns for Duration values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/offset-patterns.html" >Patterns for Offset values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/instant-patterns.html" >Patterns for Instant values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/offsetdatetime-patterns.html" >Patterns for OffsetDateTime values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/zoneddatetime-patterns.html" >Patterns for ZonedDateTime values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/period-patterns.html" >Patterns for Period values</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Advanced</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/arithmetic.html" >Date and time arithmetic</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/range.html" >Range of valid values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/bcl-conversions.html" >BCL conversions</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/serialization.html" >Serialization</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/calendars.html" >Calendars</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/threading.html" >Threading</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/trivia.html" class="active">Trivia</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Library</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/testing.html" >Unit testing with Noda Time</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/tzdb.html" >Updating the time zone database</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/mono.html" >Mono support</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/limitations.html" >Limitations of Noda Time</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/roadmap.html" >Current roadmap</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/versions.html" >Version history</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<footer>Version  unstable  </footer>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+                                <span>The latest version is 1.3.1, released March 6th 2015</span>
+			</div>
+			<div class="small-6 columns copy">
+                                &copy; <a href="https://github.com/nodatime/nodatime/blob/master/AUTHORS.txt">The Noda Time Authors</a>,
+                                <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
+</html>

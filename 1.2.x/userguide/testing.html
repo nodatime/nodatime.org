@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Unit testing with Noda Time</title>
+
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <link rel="stylesheet" href="../../css/main.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-60886284-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/userguide">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/userguide">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">API</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/api">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/api">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li>
+                                <a href="../../developer" >Developer Guide</a>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Unit testing with Noda Time</h1>
+		<p>This page is not about how Noda Time itself is tested - it&#39;s about how you to test code
+which <em>uses</em> Noda Time.</p>
+
+<h2>NodaTime.Testing</h2>
+
+<p>Firstly, get hold of the <a href="http://nuget.org/packages/NodaTime.Testing">NodaTime.Testing</a> assembly. It&#39;s currently fairly
+small, but it will no doubt grow - and it will make your life much easier. The purpose of the assembly is to provide
+easy-to-use test doubles which can be used instead of the real implementations.</p>
+
+<p>While you <em>can</em> use Noda Time without dependency injection, it will make your code harder to test. Noda Time has
+no particular support for any specific dependency injection framework, but should be easy to configure with any
+reasonably-powerful implementation. (If it&#39;s not, please file a bug report.)</p>
+
+<h1>Clocks</h1>
+
+<p>The most obvious dependency is a clock - an implementation of <a href="../api/html/T_NodaTime_IClock.htm"><code>NodaTime.IClock</code></a>,
+which simply provides &quot;the current date and time&quot; (as an <code>Instant</code>, given that the concept of &quot;now&quot; isn&#39;t
+inherently bound to any time zone or calendar). The <a href="../api/html/T_NodaTime_Testing_FakeClock.htm"><code>FakeClock</code></a> can
+be set to any given instant, advanced manually, or set to advance a given amount each time it&#39;s accessed. The production
+environment should normally inject the singleton <a href="../api/html/T_NodaTime_SystemClock.htm"><code>SystemClock</code></a> instance which simply
+uses <code>DateTime.UtcNow</code> behind the scenes.</p>
+
+<h1>Time zone providers and sources</h1>
+
+<p>For code which is sensitive to time zone fetching, an <a href="../api/html/T_NodaTime_IDateTimeZoneProvider.htm"><code>IDateTimeZoneProvider</code></a> can
+be injected. There are currently no test doubles for this interface, but usually
+<a href="../api/html/T_NodaTime_TimeZones_DateTimeZoneCache.htm"><code>DateTimeZoneCache</code></a> works perfectly well.</p>
+
+<p>The cache uses another interface
+- <a href="../api/html/T_NodaTime_TimeZones_IDateTimeZoneSource.htm"><code>IDateTimeZoneSource</code></a> - to retrieve time zones under the hood, and there
+we <em>do</em> have a test double: <a href="../api/html/T_NodaTime_Testing_TimeZones_FakeDateTimeZoneSource.htm"><code>FakeDateTimeZoneSource</code></a>. This source
+is constructed (via a builder) with any <code>DateTimeZone</code> instances you want, and you can also specify custom Windows <code>TimeZoneInfo</code> ID mappings.</p>
+
+<p>If you only need to specify the time zones, it&#39;s simplest to just use a collection initializer with the builder, like this:</p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">source</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FakeDateTimeZoneSource</span><span class="p">.</span><span class="n">Builder</span>
+<span class="p">{</span>
+    <span class="c1">// Where CreateZone is just a method returning a DateTimeZone...</span>
+    <span class="n">CreateZone</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">),</span>
+    <span class="n">CreateZone</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">),</span>
+    <span class="n">CreateZone</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">),</span>
+    <span class="n">CreateZone</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">)</span>
+<span class="p">}.</span><span class="n">Build</span><span class="p">();</span>
+</code></pre></div>
+<p>If you need to set other properties on the builder, the zones have to be specified through the <code>Zones</code> property:</p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">source</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FakeDateTimeZoneSource</span><span class="p">.</span><span class="n">Builder</span>
+<span class="p">{</span>
+    <span class="n">VersionId</span> <span class="p">=</span> <span class="s">&quot;CustomVersionId&quot;</span><span class="p">,</span>
+    <span class="n">Zones</span> <span class="p">=</span> <span class="p">{</span> <span class="n">CreateZone</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">),</span> <span class="n">CreateZone</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}.</span><span class="n">Build</span><span class="p">();</span>
+</code></pre></div>
+<p>The production environment should usually be
+configured with one of the providers in <a href="../api/html/T_NodaTime_DateTimeZoneProviders.htm"><code>DateTimeZoneProviders</code></a>.</p>
+
+<h1>Time zones</h1>
+
+<p>For time zones themselves, there are two fake implementations.
+<a href="../api/html/T_NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone.htm"><code>SingleTransitionDateTimeZone</code></a> represents a time zone
+with a single transition between different offsets, and is suitable for most test purposes.</p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">transition</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Instant</span><span class="p">(</span><span class="m">100000L</span><span class="p">);</span> <span class="c1">// Or use Instant.FromUtc</span>
+<span class="kt">var</span> <span class="n">zone</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SingleTransitionDateTimeZone</span><span class="p">(</span><span class="n">transition</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">);</span>
+</code></pre></div>
+<p>This will create a zone which moves from UTC+3 to UTC+5 at the transition point. The ID of the zone can also be specified,
+and the names of the early/late zone intervals are based on the ID. The zone intervals within the time zone do not have a
+daylight saving aspect; they just have the specified standard offsets.</p>
+
+<p>For more complex scenarios, <a href="../api/html/T_NodaTime_Testing_TimeZones_MultiTransitionDateTimeZone.htm"><code>MultiTransitionDateTimeZone</code></a>
+allows you to create a time zone from a collection of transitions, using a builder type. The standard and saving offsets for
+each part of the time zone can be specified separately. For example:</p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">transition1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Instant</span><span class="p">(</span><span class="m">0L</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">transition2</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Instant</span><span class="p">(</span><span class="m">100000L</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">zone</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MultiTransitionDateTimeZone</span><span class="p">.</span><span class="n">Builder</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="s">&quot;X&quot;</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="p">{</span> <span class="n">transition1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="s">&quot;Y&quot;</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="n">transition2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="s">&quot;Z&quot;</span> <span class="p">}</span>
+<span class="p">}.</span><span class="n">Build</span><span class="p">();</span>
+</code></pre></div>
+<p>The offsets and ID provided to the constructor are used for the beginning of time up until the first specified transition,
+at which point the offsets and ID provided with that transition are used until the next transition, etc.</p>
+
+<p>(With both <code>SingleTransitionDateTimeZone</code> and <code>MultiTransitionDateTimeZone</code>, the offsets can also be specified with
+<code>Offset</code> values, but in many tests it&#39;s simplest just to give the number of hours, as in the code above.)</p>
+
+<p>Creating a time zone with no transitions at all is simple via <code>DateTimeZone.ForOffset</code>.</p>
+
+		<ul class="pagination">
+		
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			<li class="current hide-for-small"><a href>Unit testing with Noda Time</a></li>
+			
+			
+		
+			
+			<li><a href="../../1.2.x/userguide/tzdb.html"><strong>Next</strong>: Updating the time zone database</a></li>
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+		
+		</ul>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Introduction</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.2.x/userguide/index.html" >Overview</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/rationale.html" >Why does Noda Time exist?</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/installation.html" >Installation</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Core</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.2.x/userguide/concepts.html" >Core concepts</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/type-choices.html" >Choosing (and converting) between types</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/core-types.html" >Core types quick reference</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/design.html" >Design philosophy and conventions</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Text</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.2.x/userguide/text.html" >Text handling</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/duration-patterns.html" >Patterns for Duration values</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/offset-patterns.html" >Patterns for Offset values</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/instant-patterns.html" >Patterns for Instant values</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/offsetdatetime-patterns.html" >Patterns for OffsetDateTime values</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/zoneddatetime-patterns.html" >Patterns for ZonedDateTime values</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/period-patterns.html" >Patterns for Period values</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Advanced</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.2.x/userguide/arithmetic.html" >Date and time arithmetic</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/bcl-conversions.html" >BCL conversions</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/serialization.html" >Serialization</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/threading.html" >Threading</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Library</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../1.2.x/userguide/testing.html" class="active">Unit testing with Noda Time</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/tzdb.html" >Updating the time zone database</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/mono.html" >Mono support</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/limitations.html" >Limitations of Noda Time</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/roadmap.html" >Current roadmap</a></li>
+						
+                            
+							<li><a href="../../1.2.x/userguide/versions.html" >Version history</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<footer>Version  1.2.x  </footer>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+                                <span>The latest version is 1.3.1, released March 6th 2015</span>
+			</div>
+			<div class="small-6 columns copy">
+                                &copy; <a href="https://github.com/nodatime/nodatime/blob/master/AUTHORS.txt">The Noda Time Authors</a>,
+                                <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
+</html>

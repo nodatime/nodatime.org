@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Choosing (and converting) between types</title>
+
+	<!-- foundation default -->
+  	<link rel="stylesheet" href="../../css/foundation.css" />
+
+    <!-- Foundicons -->
+    <link rel="stylesheet" href="../../css/general_enclosed_foundicons.css">
+
+	<script src="../../js/vendor/custom.modernizr.js"></script>
+
+    <link rel="stylesheet" href="../../css/main.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-60886284-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+
+	<div class="fixed">
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name"><h1><a href="../../">Noda Time</a></h1></li>
+				<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+			    <ul class="right">
+			      <li class="divider"></li>
+			      <li class="has-dropdown">
+			      	<a href="#" class="active">User Guide</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/userguide">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/userguide">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/userguide">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/userguide">Unstable</a></li>
+			      	</ul>
+			      </li>
+                  <!-- Disable the API link for the moment...
+			      <li class="divider hide-for-small"></li>
+			      <li><a href="../../api" >API</a></li>
+                  -->
+			      <li class="divider hide-for-small"></li>
+			      <li class="has-dropdown">
+			      	<a href="#">API</a>
+			      	<ul class="dropdown">
+			      		<li><label>Versions</label></li>
+			      		<li><a href="../../1.0.x/api">1.0.x</a></li>
+			      		<li><a href="../../1.1.x/api">1.1.x</a></li>
+			      		<li><a href="../../1.2.x/api">1.2.x</a></li>
+			      		<li><a href="../../1.3.x/api">1.3.x</a></li>
+			      		<li class="divider hide-for-small"></li>
+			      		<li><a href="../../unstable/api">Unstable</a></li>
+			      	</ul>
+			      </li>
+			      <li class="divider"></li>
+			      <li>
+                                <a href="../../developer" >Developer Guide</a>
+			      </li>
+			      <li class="divider"></li>
+			      <li><a href="../../#info">More Info</a></li>
+			      <li class="divider show-for-small"></li>
+			      <li class="has-form hide-for-small">
+			        <a class="button" href="../../#install">Install</a>
+			      </li>
+			    </ul>
+			</section>
+
+		</nav>
+	</div>
+
+
+	<section class="body">
+	
+
+
+
+<div class="row">
+	<div class="large-9 columns">
+		<h1>Choosing (and converting) between types</h1>
+		<p>This is a companion page to the
+<a href="concepts.html">&quot;core concepts&quot;</a>, and <a href="core-types.html">&quot;core types quick reference&quot;</a>
+pages, describing when it&#39;s appropriate to use which type, and how to convert between them.</p>
+
+<p>Ultimately, you should be thinking about what data you really have,
+and what it really represents. Although the guidelines here will
+give some ideas about how you can think about that, you shouldn&#39;t
+expect them to be appropriate for every situation. These aren&#39;t
+rules to be blindly followed - they&#39;re guidance while you&#39;re
+coming up to speed with the novelty of having to think about this
+sort of thing in the first place.</p>
+
+<h2>What&#39;s the original data source?</h2>
+
+<p>Broadly speaking, there are two major sources of date and time data:
+clocks, and the brains of users.</p>
+
+<p>I&#39;m using &quot;clock&quot; here as anything which is used to represent the
+current time, in whatever form it does so. You may receive the 
+value as part of a web service request, you may request it from an
+<a href="../api/html/T_NodaTime_IClock.htm"><code>IClock</code></a>, it may be the &quot;last
+modified&quot; part of a file-system entry, it may be a database
+timestamp: all of these are trying to represent <em>the current point in
+time</em> in some fashion.</p>
+
+<p>Compare that with a value entered by a user: a meeting request time,
+a credit card expiry date, an alarm clock time. You may still have
+retrieved the value from a database, or been given it in a web
+request, or something similar - but at some point, a user decided
+what the value would be.</p>
+
+<p>There are some areas of overlap, of course: a user can enter their
+date of birth, which is a coarse representation of a specific clock
+time. Or you may have someone manually logging events somewhere,
+with that log later being reconciled with system-generated events.
+These can sometimes lead to grey areas with no one &quot;right&quot; decision,
+but I would still tend to consider these as user data.</p>
+
+<p>One indicator as to the data source is the kind of values you end up
+with - users tend to favour round values (whole numbers of minutes,
+for example) whereas system-generated values are typically more
+uniform. Of course the <em>precision</em> of the system-generated value may
+still be coarse, although it&#39;s relatively rare to see such values
+with a precision of worse than a second.</p>
+
+<h2>Clock/system-generated values</h2>
+
+<p>Clock-related &quot;point in time&quot; values are usually best represented as
+<a href="../api/html/T_NodaTime_Instant.htm"><code>Instant</code></a> values in Noda Time. Even
+if they have been recorded in a particular time zone, that time zone
+is rarely relevant other than as a way of converting the local time
+to a universal one. Likewise the calendar system isn&#39;t really
+relevant to the real meaning of the data: the instant at which
+something has occurred.</p>
+
+<p>Note that a clock-related value doesn&#39;t <em>have</em> to represent a moment
+which has already passed - for example, if you want to schedule
+something to start &quot;one hour from now&quot; you would start with &quot;now&quot;
+and add a duration of an hour: it&#39;s still <em>based</em> on a value read
+from a clock, so it&#39;s still reasonable to represent it with an
+<code>Instant</code>.</p>
+
+<p>Note that scheduling something &quot;a month from now&quot; becomes trickier,
+as &quot;one month&quot; isn&#39;t a fixed duration; it requires you to know which
+calendar and time zone you&#39;re interested in. In that case you&#39;d need
+to convert to a <code>LocalDateTime</code>, add the month and then <em>probably</em>
+convert back to an <code>Instant</code> (via <code>ZonedDateTime</code>). At that point,
+you should also consider whether your original requirements of &quot;add
+a month&quot; are actually specific enough... Noda Time will force you to
+consider what time zone you&#39;re interested in, how to handle
+ambiguities converting back and so on.</p>
+
+<h2>User-generated values</h2>
+
+<p>If a user has entered the value (whether directly into your
+application or not), Noda Time offers five types which may be
+appropriate:</p>
+
+<ul>
+<li><a href="../api/html/T_NodaTime_ZonedDateTime.htm"><code>ZonedDateTime</code></a></li>
+<li><a href="../api/html/T_NodaTime_OffsetDateTime.htm"><code>OffsetDateTime</code></a></li>
+<li><a href="../api/html/T_NodaTime_LocalDateTime.htm"><code>LocalDateTime</code></a></li>
+<li><a href="../api/html/T_NodaTime_LocalDate.htm"><code>LocalDate</code></a></li>
+<li><a href="../api/html/T_NodaTime_LocalTime.htm"><code>LocalTime</code></a></li>
+</ul>
+
+<p>It&#39;s usually easy to spot when the last two are appropriate: if
+you&#39;ve <em>only</em> got a date or <em>only</em> got a time, use the obvious
+corresponding type. Of course you may well want to then combine this
+with the other half for some default value (e.g. &quot;today&quot;) to come up
+with a full <code>LocalDateTime</code> - but the representation for &quot;what the
+user has entered&quot; is clear.</p>
+
+<p>The choice between <code>ZonedDateTime</code> and <code>LocalDateTime</code> is trickier.
+If you don&#39;t have any knowledge of the user&#39;s time zone, you&#39;re
+pretty much stuck with <code>LocalDateTime</code>, but even if you <em>do</em> know
+the time zone, it may not be appropriate to use it. Is the user
+intending to indicate a specific instant, or just a date and time?
+For example, suppose you were creating an alarm for a mobile phone -
+the user&#39;s time zone may change between when it&#39;s first scheduled,
+and when it actually rings... you need to decide (and make it clear
+to the user) whether that time zone change should affect the alarm
+or not.</p>
+
+<p>Sometimes - particularly when parsing values from headers - you may not
+know the user&#39;s full time zone, but you <em>do</em> know the offset from UTC at
+that particular point in time. In that case, <code>OffsetDateTime</code> is the most
+appropriate choice: it preserves the offset information you genuinely have,
+but without giving the impression of knowing the &quot;real&quot; time zone.</p>
+
+<p>If it&#39;s definitely meant to represent an instant in time, then
+<code>Instant</code> <em>may</em> be even more appropriate than <code>ZonedDateTime</code> - it
+depends on what information you&#39;ll need later on. In particular,
+you&#39;ll lose the information about the calendar and time zone, which
+makes it impossible to perform calendrical arithmetic without
+potentially surprising the user. This information may very well be
+crucial to using the value correctly.</p>
+
+<p>For example, suppose we have a <code>ZonedDateTime</code> representing a
+meeting which has just taken place. The user then asks the system to
+schedule another meeting &quot;the same time next month&quot; - when <em>exactly</em>
+would that be? The time zone - including any transitions - makes a
+big difference here. Indeed, if two users in different time zones
+have a meeting and then decide to repeat it a month later &quot;at the
+same time&quot; they&#39;ll need to pick one time zone to be a &quot;master&quot; as
+otherwise they could miss each other.</p>
+
+<p>It&#39;s this sort of situation where the familiar advice of &quot;store
+everything in UTC&quot; falls down: you need to be aware of when the time
+zone is important. Storing UTC values when the time zone is not
+merely unimportant, but actively <em>unhelpful</em> (as in our mobile phone
+alarm example) is reasonable so long as you&#39;re aware that you&#39;re
+really just representing a local (or &quot;zone-less&quot;) value and
+happening to use UTC as a simple way of storing it. You mustn&#39;t
+confuse that value with one which really <em>is</em> an instant in time at
+that moment in UTC.</p>
+
+<h2>Converting between types</h2>
+
+<p>The following diagram shows various different ways of converting between
+the types.</p>
+
+<p><img src="conversions.png" alt="Noda Time Conversions"></p>
+
+<p>Note that I haven&#39;t shown <em>every</em> possible option here - in particular
+you can often use the constructor for the target type as an
+alternative to calling a method on the source type, and all the
+operators have method equivalents. (I also haven&#39;t highlighted the <code>OffsetDateTime</code> conversions,
+as they&#39;re generally very straightforward.)</p>
+
+<p>Most of these are pretty simple, but a few are worth calling out
+specifically. The biggest &quot;gotcha&quot; is converting <code>LocalDateTime</code> to
+<code>ZonedDateTime</code> - it has some corner cases you need to consider. See the <a href="concepts.html#time-zones">&quot;times zones&quot; section of
+the core concepts guide</a> and the <a href="../api/html/T_NodaTime_DateTimeZone.htm"><code>DateTimeZone</code></a> documentation
+for more information.</p>
+
+		<ul class="pagination">
+		
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			<li class="current hide-for-small"><a href>Choosing (and converting) between types</a></li>
+			
+			
+		
+			
+			<li><a href="../../unstable/userguide/core-types.html"><strong>Next</strong>: Core types quick reference</a></li>
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+			
+			
+			
+		
+		
+		</ul>
+	</div>
+
+	<div class="large-3 columns">
+		<div class="section-container accordian">
+			<section>
+				<p class="title" data-section-title>Introduction</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/index.html" >Overview</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/rationale.html" >Why does Noda Time exist?</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/installation.html" >Installation</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Core</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/concepts.html" >Core concepts</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/type-choices.html" class="active">Choosing (and converting) between types</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/core-types.html" >Core types quick reference</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/recipes.html" >Recipes</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/design.html" >Design philosophy and conventions</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/migration-to-2.html" >Migrating from 1.x to 2.0</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Text</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/text.html" >Text handling</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/duration-patterns.html" >Patterns for Duration values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/offset-patterns.html" >Patterns for Offset values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/instant-patterns.html" >Patterns for Instant values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/localtime-patterns.html" >Patterns for LocalTime values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/localdate-patterns.html" >Patterns for LocalDate values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/localdatetime-patterns.html" >Patterns for LocalDateTime values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/offsetdatetime-patterns.html" >Patterns for OffsetDateTime values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/zoneddatetime-patterns.html" >Patterns for ZonedDateTime values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/period-patterns.html" >Patterns for Period values</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Advanced</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/arithmetic.html" >Date and time arithmetic</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/range.html" >Range of valid values</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/bcl-conversions.html" >BCL conversions</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/serialization.html" >Serialization</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/calendars.html" >Calendars</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/threading.html" >Threading</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/trivia.html" >Trivia</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title>Library</p>
+				<div class="content" data-section-content>
+					<ul class="side-nav">
+						
+                            
+							<li><a href="../../unstable/userguide/testing.html" >Unit testing with Noda Time</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/tzdb.html" >Updating the time zone database</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/mono.html" >Mono support</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/limitations.html" >Limitations of Noda Time</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/roadmap.html" >Current roadmap</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/versions.html" >Version history</a></li>
+						
+					</ul>
+				</div>
+			</section>
+			<footer>Version  unstable  </footer>
+		</div>
+	</div>
+</div>
+
+	</section>
+
+	<footer>
+		<div class="row">
+			<div class="small-6 columns">
+                                <span>The latest version is 1.3.1, released March 6th 2015</span>
+			</div>
+			<div class="small-6 columns copy">
+                                &copy; <a href="https://github.com/nodatime/nodatime/blob/master/AUTHORS.txt">The Noda Time Authors</a>,
+                                <span class="design">Web Design by <a href="http://nathanpalmer.com">Nathan Palmer</a></span>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+	document.write('<script src=' +
+	('__proto__' in {} ? '../../js/vendor/zepto' : '../../js/vendor/jquery') +
+	'.js><\/script>')
+	</script>
+
+  	<script src="../../js/foundation.min.js"></script>
+  	
+
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- Nuget Button -->
+  <script type="text/javascript">
+  (function () {
+      var nb = document.createElement('script'); nb.type = 'text/javascript'; nb.async = true;
+      nb.src = 'http://s.prabir.me/nuget-button/0.2.1/nuget-button.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nb, s);
+  })();
+  </script>
+</body>
+</html>
