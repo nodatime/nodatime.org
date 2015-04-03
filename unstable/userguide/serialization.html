@@ -175,7 +175,8 @@ out of the way of those who don&#39;t.</p>
 
 <p>Most serialized forms just consist of element text using a specified text handling pattern, as described below. Types which support multiple calendar systems additionally use the <code>calendar</code> attribute for the calendar system ID (but only when the calendar system of the value isn&#39;t the ISO calendar), while <code>ZonedDateTime</code> always uses an extra <code>zone</code> attribute for the time zone ID.</p>
 
-<p><code>PeriodBuilder</code> and <code>Interval</code> are somewhat different: <code>PeriodBuilder</code> uses the round-trip text representation of the <code>Period</code> that would be built by it, while <code>Interval</code> has only <code>start</code> and <code>end</code> attributes, each of which is represented as the respective <code>Instant</code> converted using the extended ISO pattern.</p>
+<p><code>PeriodBuilder</code> and <code>Interval</code> are somewhat different: <code>PeriodBuilder</code> uses the round-trip text representation of the <code>Period</code> that would be built by it, while <code>Interval</code> has only <code>start</code> and <code>end</code> attributes, each of which is represented as the respective <code>Instant</code> converted using the extended ISO pattern. (If an interval has no start or has no end, due to extending to the start or end of time,
+the corresponding attribute is omitted.)</p>
 
 <table>
   <thead>
@@ -305,7 +306,10 @@ one involved, possibly one for reading and one for writing, depending on your co
 offset always includes hours and minutes, to conform with ECMA-262.
 It does not support round-tripping offsets with sub-minute components.</li>
 <li><code>ZonedDateTime</code>: As <code>OffsetDateTime</code>, but with a time zone ID at the end: <code>yyyy&#39;-&#39;MM&#39;-&#39;dd&#39;T&#39;HH&#39;:&#39;mm&#39;:&#39;ss;FFFFFFFFFo&lt;G&gt; z</code></li>
-<li><code>Interval</code>: A compound object of the form <code>{ Start: xxx, End: yyy }</code> where <code>xxx</code> and <code>yyy</code> are represented however the serializer sees fit. (Typically using the default representation above.) An alternative form can be specified using the <code>WithIsoIntervalConverter</code> extension method on <code>JsonSerializer</code>/<code>JsonSerializerSettings</code>.</li>
+<li><code>Interval</code>: A compound object of the form <code>{ Start: xxx, End: yyy }</code> where <code>xxx</code> and <code>yyy</code> are represented however the serializer
+sees fit. (Typically using the default representation above.) An alternative form can be specified using the <code>WithIsoIntervalConverter</code> 
+extension method on <code>JsonSerializer</code>/<code>JsonSerializerSettings</code>. If an interval is infinite in either direction, the corresponding
+property is omitted.</li>
 <li><code>Offset</code>: general pattern, e.g. <code>+05</code> or <code>-03:30</code></li>
 <li><code>Period</code>: The round-trip period pattern; <code>NodaConverters.NormalizingIsoPeriodConverter</code> provides a converter using the normalizing ISO-like pattern</li>
 <li><code>Duration</code>: A duration pattern of <code>-H:mm:ss.FFFFFFFFF</code> (like the standard round-trip pattern, but starting with hours instead of days)</li>

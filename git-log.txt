@@ -1,3 +1,39 @@
+commit f77f371dfe2be4240734b3fbe902dbc9ded6aa01
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Fri Apr 3 16:31:18 2015 +0100
+
+    Fix ambiguous XML documentation references.
+
+commit 279555565406326c608d7b5e9280b142c92b1c5f
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Fri Apr 3 00:02:16 2015 -0700
+
+    Lots of tidying up, mostly converting to C# 6.
+
+commit 4dbadda70bd1365ab02a54e32f8975c3239026bd
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Thu Apr 2 23:40:22 2015 -0700
+
+    Some very minor optimizations around BclEquivalenceHelper, which is now used in HebrewCalendarSystemTest, as well as extra conversion methods:
+    - FromDateTime with a calendar system
+    - Conversions between DateTime and LocalDate
+
+commit 3627c2bce2605e7eb859d91f92ffa5d9e585ddc1
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Thu Apr 2 22:44:29 2015 -0700
+
+    Implement serialization for infinite intervals:
+    - For binary serialization, don't specify the infinite fields. (A separate "presence" field says which fields have been serialized)
+    - For XML, omit attributes for infinite fields
+    - For JSON (separate properties) omit the properties for infinite fields
+    - For JSON (ISO-8601) omit whichever side is infinite (so "/" become the representation of an "infinite in both directions" interval)
+    
+    Unlike these, ToString still uses StartOfTime and EndOfTime.
+    
+    Also fix equality, hashing and ToString for Interval... we were using the property when we shouldn't have been.
+    
+    Fixes issue #344, assuming we're happy with the serialization format.
+
 commit 37e5f46a71dab4a066ac187e6ede8c1ea341a900
 Author: Jon Skeet <skeet@pobox.com>
 Date:   Thu Apr 2 17:03:46 2015 -0700
