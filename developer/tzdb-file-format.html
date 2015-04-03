@@ -263,8 +263,10 @@ eventually refer to a canonical time zone for their data.)</p>
 In both cases, the format starts with the zone ID (as a string) and then a 1-byte flag to indicate the type.</p>
 
 <p>Fixed time zones (which have a single <a href="../api/html/T_NodaTime_TimeZones_ZoneInterval.htm"><code>ZoneInterval</code></a> covering
-  the whole of time). The flag value for a fixed zone is <code>1</code>, and the remaining data is simply the offset. (The name
-  of the zone interval is always just the ID of the time zone.)</p>
+  the whole of time). The flag value for a fixed zone is <code>1</code>. This is followed by the offset, and as of time zone data
+  generated under Noda Time 2.x, also the name for the zone interval. Noda Time 1.x code will ignore the name part,
+  and always use the time zone ID as the name for the interval. Noda Time 2.x code will read the name if it exists,
+  but default to the ID if the name data isn&#39;t present.</p>
 
 <p>Everything else is represented as a <code>PrecalculatedDateTimeZone</code> - a number of abutting <code>ZoneIntervals</code> from the start of
 time until either the end of time, or some stable period where a pair of rules governing when daylight saving time starts
