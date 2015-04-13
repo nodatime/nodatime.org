@@ -1,3 +1,16 @@
+commit 72c3cadf22fe48cb05b5945ec53471332a832d54
+Author: Malcolm Rowe <malcolm.rowe@gmail.com>
+Date:   Mon Apr 13 16:30:18 2015 +0100
+
+    Work around a test failure in the prerelease Mono 4.0 runtime.
+    
+    Current prerelease versions of Mono 4.0.0 return a broken en-SA
+    culture from CultureInfo.GetCultures(CultureTypes.SpecificCultures); we
+    can work around that by checking and fetching it again via
+    CultureInfo.GetCultureInfo().
+    
+    Refs #358.
+
 commit d3050e87991894d37194110316ae105c465e86b4
 Author: Jon Skeet <skeet@pobox.com>
 Date:   Sun Apr 12 15:19:36 2015 +0100
