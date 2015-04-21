@@ -1,3 +1,24 @@
+commit ca880d4ccff326c4a7150d7b2c5e20f0ff0e6b47
+Author: Malcolm Rowe <malcolm.rowe@gmail.com>
+Date:   Tue Apr 21 22:44:32 2015 +0100
+
+    For checkfakepcl, don't attempt to run tests we don't build.
+    
+    In 1d21b64, we started running the TzdbCompiler tests. However, we don't
+    build them in fakepcl mode, so we shouldn't have tried to run them in
+    checkfakepcl.
+
+commit 7405513a441d9c256c71484a4cad74fe0ad0c9b1
+Author: Malcolm Rowe <malcolm.rowe@gmail.com>
+Date:   Tue Apr 21 22:39:18 2015 +0100
+
+    Override to target .NET 4.5 when building under Mono.
+    
+    Previously (6829a1f), we were forcing v4.0, but that's not going to work
+    when we have projects (NodaTime.Test, e.g.) that require v4.5.
+    
+    Refs #358.
+
 commit a6fcd2b7f3fbf43d32cb5a02c4b8c889f87e0234
 Author: Jon Skeet <skeet@pobox.com>
 Date:   Tue Apr 14 16:58:54 2015 +0100
