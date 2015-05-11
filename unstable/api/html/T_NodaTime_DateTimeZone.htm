@@ -34,8 +34,8 @@
             Noda Time provides various options when mapping local time to a specific instant:
             <ul><li><a href="M_NodaTime_DateTimeZone_AtStrictly.htm" target="">AtStrictly(LocalDateTime)</a> will throw an exception if the mapping from local time is either ambiguous
                 or impossible, i.e. if there is anything other than one instant which maps to the given local time.</li><li><a href="M_NodaTime_DateTimeZone_AtLeniently.htm" target="">AtLeniently(LocalDateTime)</a> will never throw an exception due to ambiguous or skipped times,
-                resolving to the later option of ambiguous matches or the start of the zone interval after the gap for
-                skipped times.</li><li><a href="M_NodaTime_DateTimeZone_ResolveLocal.htm" target="">ResolveLocal(LocalDateTime, ZoneLocalMappingResolver)</a> will apply a <a href="T_NodaTime_TimeZones_ZoneLocalMappingResolver.htm" target="">ZoneLocalMappingResolver</a> to the result of
+                resolving to the earlier option of ambiguous matches, or to a value that's forward-shifted by the duration
+                of the gap for skipped times.</li><li><a href="M_NodaTime_DateTimeZone_ResolveLocal.htm" target="">ResolveLocal(LocalDateTime, ZoneLocalMappingResolver)</a> will apply a <a href="T_NodaTime_TimeZones_ZoneLocalMappingResolver.htm" target="">ZoneLocalMappingResolver</a> to the result of
                 a mapping.</li><li><a href="M_NodaTime_DateTimeZone_MapLocal.htm" target="">MapLocal(LocalDateTime)</a> will return a <a href="T_NodaTime_TimeZones_ZoneLocalMapping.htm" target="">ZoneLocalMapping</a>
                 with complete information about whether the given local time occurs zero times, once or twice. This is the most
                 fine-grained approach, which is the fiddliest to use but puts the caller in the most control.</li></ul></p><p>

@@ -245,6 +245,29 @@ expected (e.g. a date pattern of &quot;yyyy-mm-dd&quot;). One exception here is 
 patterns only - so a date/time pattern of &quot;yyyy-MM-ddTHH:mm:ss&quot; is still acceptable for ISO-8601, for example.
 If this change breaks your code, simply escape or quote the literals within the pattern.</p>
 
+<h1>Lenient resolver changes</h1>
+
+<p>In 2.0, the <code>LenientResolver</code>, which is used by <code>DateTimeZone.AtLeniently</code> and <code>LocalDateTime.InZoneLeniently</code>,
+was changed to more closely match real-world usage.
+  - For ambiguous values, the lenient resolver used to return the later of the two possible instants.
+    It now returns the <em>earlier</em> of the two possible instants.  For example, if 01:00 is ambiguous, it used to return
+    1:00 standard time and it now will return 01:00 <em>daylight</em> time.
+  - For skipped values, the lenient resolver used to return the instant corresponding to the first possible local time
+    following the &quot;gap&quot;.  It now returns the instant that would have occurred if the gap had not existed.  This
+    corresponds to a local time that is shifted forward by the duration of the gap.  For example, if values from
+    02:00 to 02:59 were skipped, a value of 02:30 used to return 03:00 and it will now return 03:30.</p>
+
+<p>If you require the behavior of the 1.x implementation, you can create a custom resolver that combines the <code>ReturnLater</code>
+and <code>ReturnStartOfIntervalAfter</code> resolvers.  For example:</p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">resolver</span> <span class="p">=</span> <span class="n">Resolvers</span><span class="p">.</span><span class="n">CreateMappingResolver</span><span class="p">(</span>
+    <span class="n">Resolvers</span><span class="p">.</span><span class="n">ReturnLater</span><span class="p">,</span> <span class="n">Resolvers</span><span class="p">.</span><span class="n">ReturnStartOfIntervalAfter</span><span class="p">);</span>
+</code></pre></div>
+<p>You can use this resolver as an argument to <code>LocalDateTime.InZone</code> instead of calling <code>LocalDateTime.InZoneLeniently</code>,
+or to <code>DateTimeZone.ResolveLocal</code> instead of calling <code>DateTimeZone.AtLeniently</code></p>
+
+<p>We would strongly encourage you to carefully evaluate whether you truly need the old behavior or not before making these
+compatibility changes, as we have found that the new behavior aligns more closely with most real-world scenarios.</p>
+
 		<ul class="pagination">
 		
 		
