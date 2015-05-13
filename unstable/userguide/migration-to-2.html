@@ -248,14 +248,17 @@ If this change breaks your code, simply escape or quote the literals within the 
 <h1>Lenient resolver changes</h1>
 
 <p>In 2.0, the <code>LenientResolver</code>, which is used by <code>DateTimeZone.AtLeniently</code> and <code>LocalDateTime.InZoneLeniently</code>,
-was changed to more closely match real-world usage.
-  - For ambiguous values, the lenient resolver used to return the later of the two possible instants.
-    It now returns the <em>earlier</em> of the two possible instants.  For example, if 01:00 is ambiguous, it used to return
-    1:00 standard time and it now will return 01:00 <em>daylight</em> time.
-  - For skipped values, the lenient resolver used to return the instant corresponding to the first possible local time
-    following the &quot;gap&quot;.  It now returns the instant that would have occurred if the gap had not existed.  This
-    corresponds to a local time that is shifted forward by the duration of the gap.  For example, if values from
-    02:00 to 02:59 were skipped, a value of 02:30 used to return 03:00 and it will now return 03:30.</p>
+was changed to more closely match real-world usage.</p>
+
+<ul>
+<li><p>For ambiguous values, the lenient resolver used to return the later of the two possible instants.
+It now returns the <em>earlier</em> of the two possible instants.  For example, if 01:00 is ambiguous, it used to return
+1:00 standard time and it now will return 01:00 <em>daylight</em> time.</p></li>
+<li><p>For skipped values, the lenient resolver used to return the instant corresponding to the first possible local time
+following the &quot;gap&quot;.  It now returns the instant that would have occurred if the gap had not existed.  This
+corresponds to a local time that is shifted forward by the duration of the gap.  For example, if values from
+02:00 to 02:59 were skipped, a value of 02:30 used to return 03:00 and it will now return 03:30.</p></li>
+</ul>
 
 <p>If you require the behavior of the 1.x implementation, you can create a custom resolver that combines the <code>ReturnLater</code>
 and <code>ReturnStartOfIntervalAfter</code> resolvers.  For example:</p>
