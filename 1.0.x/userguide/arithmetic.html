@@ -117,13 +117,24 @@ minutes&quot; wouldn&#39;t be a fixed length of time.)</p>
 <a href="../api/html/T_NodaTime_Duration.htm"><code>Duration</code></a> type, and they can be
 added to either an <code>Instant</code> or <code>ZonedDateTime</code> using either the <code>+</code> operator
 or <code>Plus</code> methods:</p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">Duration</span> <span class="n">duration</span> <span class="p">=</span> <span class="n">Duration</span><span class="p">.</span><span class="n">FromMinutes</span><span class="p">(</span><span class="m">3</span><span class="p">);</span>
+<span class="n">Instant</span> <span class="n">now</span> <span class="p">=</span> <span class="n">SystemClock</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Now</span><span class="p">;</span>
+<span class="n">Instant</span> <span class="n">future</span> <span class="p">=</span> <span class="n">now</span> <span class="p">+</span> <span class="n">duration</span><span class="p">;</span> <span class="c1">// Or now.Plus(duration)</span>
 
+<span class="n">ZonedDateTime</span> <span class="n">nowInIsoUtc</span> <span class="p">=</span> <span class="n">now</span><span class="p">.</span><span class="n">InUtc</span><span class="p">();</span>
+<span class="n">ZonedDateTime</span> <span class="n">thenInIsoUtc</span> <span class="p">=</span> <span class="n">nowInIsoUtc</span> <span class="p">+</span> <span class="n">duration</span><span class="p">;</span>
+</code></pre></div>
 <p>(There are also static <code>Add</code> and <code>Subtract</code> methods, the <code>-</code> operator and
 the instance <code>Minus</code> method on both <code>Instant</code> and <code>ZonedDateTime</code>.)</p>
 
 <p>Time line arithmetic is pretty simple, except you might not <em>always</em> get
 what you expect when using <code>ZonedDateTime</code>, due to daylight saving transitions:</p>
-
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">DateTimeZone</span> <span class="n">london</span> <span class="p">=</span> <span class="n">DateTimeZoneProviders</span><span class="p">.</span><span class="n">Tzdb</span><span class="p">[</span><span class="s">&quot;Europe/London&quot;</span><span class="p">];</span>
+<span class="c1">// 12:45am on March 27th 2012</span>
+<span class="n">LocalDateTime</span> <span class="n">local</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalDateTime</span><span class="p">(</span><span class="m">2012</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">27</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">45</span><span class="p">,</span> <span class="m">00</span><span class="p">);</span>
+<span class="n">ZonedDateTime</span> <span class="n">before</span> <span class="p">=</span> <span class="n">london</span><span class="p">.</span><span class="n">AtStrictly</span><span class="p">(</span><span class="n">local</span><span class="p">);</span>
+<span class="n">ZonedDateTime</span> <span class="n">after</span> <span class="p">=</span> <span class="n">before</span> <span class="p">+</span> <span class="n">Duration</span><span class="p">.</span><span class="n">FromMinutes</span><span class="p">(</span><span class="m">20</span><span class="p">);</span>
+</code></pre></div>
 <p>We start off with a <em>local</em> time of 12.45am. The time that we add is effectively
 &quot;experienced&quot; time - as if we&#39;d simply waited twenty minutes. However, at 1am on that day,
 the clocks in the Europe/London time zone go forward by an hour - so we end up with a local
@@ -160,7 +171,16 @@ it&#39;s clearly closely related to the other two types.)</p>
 years, days, hours etc to a value - a quantity of a single &quot;unit&quot;,
 in other words. This is easily achieved via the <code>PlusXyz</code> methods on
 all of the local types:</p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">LocalDate</span> <span class="n">date</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalDate</span><span class="p">(</span><span class="m">2012</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">21</span><span class="p">);</span>
+<span class="n">date</span> <span class="p">=</span> <span class="n">date</span><span class="p">.</span><span class="n">PlusMonths</span><span class="p">(</span><span class="m">1</span><span class="p">);</span> <span class="c1">// March 21st 2012</span>
+<span class="n">date</span> <span class="p">=</span> <span class="n">date</span><span class="p">.</span><span class="n">PlusDays</span><span class="p">(-</span><span class="m">1</span><span class="p">);</span> <span class="c1">// March 20th 2012</span>
 
+<span class="n">LocalTime</span> <span class="n">time</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="p">(</span><span class="m">7</span><span class="p">,</span> <span class="m">15</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+<span class="n">time</span> <span class="p">=</span> <span class="n">time</span><span class="p">.</span><span class="n">PlusHours</span><span class="p">(</span><span class="m">3</span><span class="p">);</span> <span class="c1">// 10:15 am</span>
+
+<span class="n">LocalDateTime</span> <span class="n">dateTime</span> <span class="p">=</span> <span class="n">date</span> <span class="p">+</span> <span class="n">time</span><span class="p">;</span>
+<span class="n">dateTime</span> <span class="p">=</span> <span class="n">dateTime</span><span class="p">.</span><span class="n">PlusWeeks</span><span class="p">(</span><span class="m">1</span><span class="p">);</span> <span class="c1">// March 27th 2012, 10:15am</span>
+</code></pre></div>
 <p>All of these types are immutable of course: the <code>PlusXyz</code> methods
 don&#39;t modify the value they&#39;re called on; they return a new value
 with the new date/time.</p>
@@ -169,10 +189,20 @@ with the new date/time.</p>
 to unequal month lengths and the like. When adding a month or a year
 would create an invalid date, the day-of-month is truncated. For
 example:</p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">LocalDate</span> <span class="n">date</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalDate</span><span class="p">(</span><span class="m">2012</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">29</span><span class="p">);</span>
+<span class="n">LocalDate</span> <span class="n">date1</span> <span class="p">=</span> <span class="n">date</span><span class="p">.</span><span class="n">PlusYears</span><span class="p">(</span><span class="m">1</span><span class="p">);</span> <span class="c1">// February 28th 2013</span>
 
+<span class="n">LocalDate</span> <span class="n">date2</span> <span class="p">=</span> <span class="n">date</span><span class="p">.</span><span class="n">PlusMonths</span><span class="p">(</span><span class="m">1</span><span class="p">).</span><span class="n">PlusDays</span><span class="p">(</span><span class="m">1</span><span class="p">);</span> <span class="c1">// March 30th 2012</span>
+<span class="n">date2</span> <span class="p">=</span> <span class="n">date2</span><span class="p">.</span><span class="n">PlusMonths</span><span class="p">(-</span><span class="m">1</span><span class="p">);</span> <span class="c1">// Back to February 29th 2012</span>
+</code></pre></div>
 <p><code>LocalTime</code> wraps around midnight transparently, but the same
 operations on <code>LocalDateTime</code> will change the date appropriately too:</p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">LocalTime</span> <span class="n">time</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="m">30</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+<span class="n">time</span> <span class="p">=</span> <span class="n">time</span><span class="p">.</span><span class="n">PlusHours</span><span class="p">(</span><span class="m">6</span><span class="p">);</span> <span class="c1">// 2:30 am</span>
 
+<span class="n">LocalDateTime</span> <span class="n">dateTime</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalDate</span><span class="p">(</span><span class="m">2012</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">21</span><span class="p">)</span> <span class="p">+</span> <span class="n">time</span><span class="p">;</span>
+<span class="n">dateTime</span> <span class="p">=</span> <span class="n">dateTime</span><span class="p">.</span><span class="n">PlusHours</span><span class="p">(-</span><span class="m">6</span><span class="p">);</span> <span class="c1">// 8:30pm on February 20th</span>
+</code></pre></div>
 <p>Hopefully all of this is what you&#39;d expect, but it&#39;s worth making
 sure the simple cases are clear before moving on to more complex ones.</p>
 
@@ -189,13 +219,17 @@ number of hours in a period of &quot;1 day&quot; the answer will be 0, not 24.</
 <p>Single-unit periods can be obtained using the <code>FromXyz</code> methods, and
 can then be added to the &quot;local&quot; types using the <code>+</code> operator or the
 <code>Plus</code> method:</p>
-
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">LocalDateTime</span> <span class="n">dateTime</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalDateTime</span><span class="p">(</span><span class="m">2012</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">21</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="m">48</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+<span class="n">dateTime</span> <span class="p">=</span> <span class="n">dateTime</span> <span class="p">+</span> <span class="n">Period</span><span class="p">.</span><span class="n">FromDays</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">+</span> <span class="n">Period</span><span class="p">.</span><span class="n">FromMinutes</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+<span class="n">dateTime</span> <span class="p">=</span> <span class="n">dateTime</span><span class="p">.</span><span class="n">Plus</span><span class="p">(</span><span class="n">Period</span><span class="p">.</span><span class="n">FromHours</span><span class="p">(</span><span class="m">1</span><span class="p">));</span>
+</code></pre></div>
 <p>Adding a period containing date units to a <code>LocalTime</code> or adding a
 period containing time units to a <code>LocalDate</code> will result in an
 <code>ArgumentException</code>.</p>
 
 <p>Periods can be combined using simple addition too:</p>
-
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">Period</span> <span class="n">compound</span> <span class="p">=</span> <span class="n">Period</span><span class="p">.</span><span class="n">FromDays</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">+</span> <span class="n">Period</span><span class="p">.</span><span class="n">FromMonths</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+</code></pre></div>
 <p>Again, this is very simple - the components in the two periods are
 simply summed, with no normalization. Subtraction works in the same
 way.</p>
