@@ -1,3 +1,91 @@
+commit 20d57967e04f1b57a10c00910f337a1c3caf7522
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Fri Jul 17 23:26:53 2015 +0100
+
+    Significant reworking of TZDB generation.
+    
+    This is now simpler, more clearly documented, and matches exactly with zic, at least for 1905-2035, tested in 2012e, 2013e, 2014e, and 2015e.
+    (More tests to come.) We no longer match with Joda Time in all cases - I'll let the Joda Time maintainers know that their current code is flawed,
+    if zic is viewed as canonical.
+    
+    Phew. More tests for DateTimeZoneBuilder would be useful, but I'm happier testing on actual tz data than just theoretical data anyway.
+
+commit 58bb12ab1bd353731b34c5a508640d8766003d84
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Wed Jul 15 07:04:41 2015 +0100
+
+    First pass at changes to time zone construction.
+    
+    This appears to match the existing code in terms of results, but has a slightly smaller nzd file as fewer transitions are recorded before the tail zone (in some cases; more in one).
+    
+    However, this doesn't match zic's behaviour for changes into standard time, so more reworking is required.
+
+commit c063a3ca3040eb8b527eb2686a41e92b538d915c
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Wed Jul 8 19:55:31 2015 +0200
+
+    Next refactoring steps for TzdbCompiler.
+    
+    Move transformation logic from TzdbDatabase into Zone, and improve some naming.
+
+commit 0888bb4c9bbbbcbf32db6c8dbc8a8092a00f4b8f
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Wed Jul 8 18:57:45 2015 +0200
+
+    First step in refactoring/removing DateTimeZoneBuilder.
+    
+    Gets rid of the stateful nature of DateTimeZoneBuilder - instead, we basically resolve the rule names against our rule sets, then pass them all to DateTimeZoneBuilder.
+
+commit c59023f68aa43d48a008e9b5fb6e3d4b3a8e7736
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Tue Jul 7 22:10:45 2015 +0200
+
+    Some tidying up of the TzdbZoneInfoParser, prepping the TZDB compiler for more major surgery.
+
+commit ce50f3258d7276da8678b3ce837c0dcbcfcd0413
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Tue Jul 7 19:03:41 2015 +0200
+
+    More diagnostics and comments around time zone building.
+    
+    - Allow us not to write output, when testing
+    - Allow us to build a single zone, when testing
+    - Some more comments
+
+commit 30195d8534769c5208ed8e0d19b929ab86f4d837
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Mon Jul 6 19:31:36 2015 +0200
+
+    Convert two methods returning YearMonthDay to YearMonthDayCalendar.
+    
+    All callers were performing the conversion immediately afterwards anyway.
+
+commit 2181b4415a78ec4f6d0185b2713279eb02c8db36
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Mon Jul 6 19:18:28 2015 +0200
+
+    Refactor OffsetDateTime to avoid repeating the same combination code multiple times.
+
+commit d6cbb5e606f465ca4842ad1d3731165191986dfc
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Mon Jul 6 17:14:53 2015 +0100
+
+    Split Instant(Duration) constructor into trusted and untrusted callers.
+
+commit 140313d7d61d346c1594d849fe9594503e2f5cd3
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Mon Jul 6 16:48:25 2015 +0100
+
+    Remove an unnecessary LocalDate constructor (YearMonthDay, CalendarSystem)
+    
+    Existing uses of the constructor have been converted to call the constructor taking a YearMonthDayCalendar.
+
+commit 1061147ce290b23195e3dc8b22cd0b569986b753
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Mon Jul 6 15:06:11 2015 +0100
+
+    Remove some TODOs (and add a new one...)
+
 commit 4688bbc0fdd1337a5bcf73ffaf628e7610fadd67
 Author: Jon Skeet <skeet@pobox.com>
 Date:   Mon Jul 6 14:28:10 2015 +0100
