@@ -1,3 +1,24 @@
+commit 953f962636239ab1bbe5446c322606e433cef611
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Mon Jul 20 06:55:44 2015 +0100
+
+    Improvments to tz data handling:
+    
+    - Tokens can now handle quoted strings
+    - Long month names are accepted as well as short (supports some old data)
+    - Time with a single digit for minutes is accepted as a time pattern (supports Antarctica, 2009)
+    - Non-infinite rules with types of "even" or "odd" are supported. (Currently no support for uspres, nonuspres, or infinite rules)
+
+commit c9c54d2032bd1ca3944c0a5c63878d135813af10
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Mon Jul 20 06:51:08 2015 +0100
+
+    New tool to dump time zones in tzvalidate format.
+    
+    This may eventually be rolled into TzdbCompiler, although notably we don't need to provide a CLDR file to generate the tzvalidate format - and we can do it straight from an nzd file too, so it may be worth keeping them separate.
+    
+    Usefully though, the tool can process a .tar.gz file (fetching it from the web if appropriate) which may be functionality worth including in TzdbCompiler.
+
 commit 2a5ba16087e566aced98fc388b9d51c1dfe29746
 Author: Jon Skeet <skeet@pobox.com>
 Date:   Sat Jul 18 08:36:03 2015 +0100
