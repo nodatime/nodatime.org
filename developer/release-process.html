@@ -101,7 +101,7 @@ a checklist by the person doing a release.</p>
 <h2>Prerequisites</h2>
 
 <ul>
-<li>Visual Studio 2012</li>
+<li>Visual Studio 2015</li>
 <li>Sandcastle and Sandcastle Help File Builder</li>
 <li><a href="http://jekyllrb.com/docs/installation/">Jekyll</a> and <a href="http://rubygems.org/gems/redcarpet">redcarpet</a> (following the Jekyll Windows installation instructions)</li>
 <li>NuGet command-line tool</li>
@@ -119,12 +119,12 @@ IL triggers a bug in the .NET 4 64-bit CLR (see the
 <p>When everybody&#39;s happy, there are no issues outstanding for the milestone, and
 all the tests pass.</p>
 
-<p>Search the issue tracker for open issues with the right label (e.g.
-<code>label:Milestone-1.0</code>).</p>
+<p>Search the issue tracker for open issues with the right milestone (e.g.
+<code>is:open is:issue milestone:1.4.0</code>).</p>
 
-<p>Update to the candidate revision (probably tip) of the correct branch (e.g.
+<p>Update to the candidate revision (probably HEAD) of the correct branch (e.g.
 <code>1.0.x</code>) and <a href="building.html">build and run all the tests</a> as normal. The build
-and test steps should pass on Visual Studio 2012 and at least one supported
+and test steps should pass on Visual Studio 2015 and at least one supported
 OS/version combination for Mono (i.e. &#39;Mono 2.10.9 on Linux&#39;).</p>
 
 <h2>Update the embedded tzdb</h2>
@@ -144,15 +144,15 @@ number (per the <a href="http://semver.org">Semantic versioning</a> spec).</p>
 In brief:</p>
 
 <ul>
-<li>feature development is carried out on the default branch</li>
+<li>feature development is carried out on the master branch</li>
 <li>named branches (called &#39;1.0.x&#39;, &#39;1.1.x&#39;, etc) are used for release lines</li>
 <li>fixes are typically backported to the earlier branches where necessary
-(typically using <code>hg graft</code>).</li>
+(typically using <code>git cherry-pick</code>).</li>
 </ul>
 
 <p>Note the difference between the format of names used for tags (&#39;1.0.0-beta2&#39;,
-&#39;1.0.0&#39;) and those used for branches (&#39;1.0.x&#39;). Mercurial will allow both to be
-used as revision specifiers, so it is important that they do not collide.</p>
+&#39;1.0.0&#39;) and those used for branches (&#39;1.0.x&#39;). Git will allow both to be
+used as &quot;tree-ish&quot; values, so it is important that they do not collide.</p>
 
 <h3>Branch-specific changes</h3>
 
@@ -160,10 +160,10 @@ used as revision specifiers, so it is important that they do not collide.</p>
 remove the <code>&lt;Preliminary/&gt;</code> tag from the Sandcastle project file; see e.g.
 <a href="https://github.com/nodatime/nodatime/issues/102">issue 102</a>.</p>
 
-<h3>Post-branch updates on the default branch</h3>
+<h3>Post-branch updates on the master branch</h3>
 
 <p>If this release required the creation of a new branch, then the following files
-on the <em>default</em> branch should be updated to bump (at least) the minor version
+on the <code>master</code> branch should be updated to bump (at least) the minor version
 number (and <code>NodaTime.Testing</code> / <code>NodaTime.Serialization.JsonNet</code> dependency
 version), per the following scheme:</p>
 
@@ -186,8 +186,8 @@ used.)</li>
 </blockquote>
 
 <p>Update the version number by building the tools solution and then running the <code>SetVersion</code> tool:</p>
-<div class="highlight"><pre><code class="language-bat" data-lang="bat">msbuild src\NodaTime-Tools.sln
-src\NodaTime.Tools.SetVersion\bin\debug\SetVersion <span class="m">1</span>.<span class="m">1</span>.<span class="m">0</span>-dev
+<div class="highlight"><pre><code class="language-bat" data-lang="bat">msbuild build\Tools.sln
+build\SetVersion\bin\Debug\SetVersion.exe <span class="m">1</span>.<span class="m">1</span>.<span class="m">0</span>-dev
 </code></pre></div>
 <p>The version number string should be of the form <code>1.1.0-dev</code>.</p>
 
@@ -197,8 +197,8 @@ src\NodaTime.Tools.SetVersion\bin\debug\SetVersion <span class="m">1</span>.<spa
 
 <p>Update the version number according to the scheme above by building the tools
 solution and then running the <code>SetVersion</code> tool:</p>
-<div class="highlight"><pre><code class="language-bat" data-lang="bat">msbuild src\NodaTime-Tools.sln
-src\NodaTime.Tools.SetVersion\bin\debug\SetVersion <span class="m">1</span>.<span class="m">2</span>.<span class="m">3</span>-beta<span class="m">4</span>
+<div class="highlight"><pre><code class="language-bat" data-lang="bat">msbuild tools\Tools.sln
+build\SetVersion\bin\Debug\SetVersion.exe <span class="m">1</span>.<span class="m">2</span>.<span class="m">3</span>-beta<span class="m">4</span>
 </code></pre></div>
 <blockquote>
 <p>This will update the following AssemblyInfo files and NuGet package specs to include the
@@ -220,16 +220,19 @@ version number you are building:</p>
 user guide; we leave the documentation in <code>unstable/</code> for branches.)</p>
 
 <p>Commit the above, then tag that commit:</p>
-<div class="highlight"><pre><code class="language-bat" data-lang="bat">hg tag <span class="m">1</span>.<span class="m">0</span>.<span class="m">0</span>-beta<span class="m">1</span>
+<div class="highlight"><pre><code class="language-bat" data-lang="bat">git tag <span class="m">1</span>.<span class="m">0</span>.<span class="m">0</span>-beta<span class="m">1</span>
 </code></pre></div>
-<p>Switch back to the default branch and update the version history in that branch
+<p>(If the tag has already been applied, use <code>-f</code> to force it.)</p>
+
+<p>Switch back to the master branch and update the version history in that branch
 to match the changes applied to the release branch, then (if this release
 changes the latest stable release), update the date and version number of the
 latest stable version in <code>www/_config.yml</code>, and (if that new stable release is
 not a patch release), also update the <code>/api</code> and <code>/userguide</code> redirects in
 <code>src/NodaTime.Web/web.config</code>.</p>
 
-<p>Push these changes to GitHub.</p>
+<p>Push these changes to GitHub, ensuring that you push the tags as well as any changes.
+(Use <code>--tags</code> from the command line.)</p>
 
 <h2>Building the release artifacts</h2>
 
@@ -239,8 +242,9 @@ the archives.</p>
 
 <p>Copy the Noda Time private key into the top-level directory.</p>
 
-<p>Use the <code>buildrelease</code> batch file to build all the release artifacts:</p>
-<div class="highlight"><pre><code class="language-bat" data-lang="bat">buildrelease <span class="m">1</span>.<span class="m">0</span>.<span class="m">0</span>-beta<span class="m">1</span>
+<p>Use the <code>build\buildrelease.bat</code> batch file to build all the release artifacts:</p>
+<div class="highlight"><pre><code class="language-bat" data-lang="bat"><span class="k">cd</span> build
+buildrelease <span class="m">1</span>.<span class="m">0</span>.<span class="m">0</span>-beta<span class="m">1</span>
 </code></pre></div>
 <p>This will create:</p>
 
@@ -255,11 +259,13 @@ the archives.</p>
 <h2>Publishing the artifacts</h2>
 
 <p>Upload the source and release zipfiles to the project website, under
-the <code>downloads</code> directory. (This directory is not mapped in the main source
-control repository ; typically Jon does this on Bagpuss.)</p>
+the <code>downloads</code> directory. To do this, pull the
+<a href="https://github.com/nodatime/nodatime.org"><code>nodatime.org</code> repository</a>,
+update the <code>downloads</code> directory accordingly, commit and then push back
+up to GitHub. The web site will update automatically.</p>
 
-<p>Edit the <code>www/downloads/index.html</code> file to include the new downloads,
-including SHA-1 hash.</p>
+<p>Edit the <code>downloads/index.html</code> file to include the new downloads,
+including SHA-256 hash.</p>
 
 <p>If this is a stable release, update the version number and the links on the
 front page to point to the new downloads.</p>
@@ -271,20 +277,20 @@ nuget push NodaTime.Serialization.JsonNet.<span class="m">1</span>.<span class="
 </code></pre></div>
 <h2>Updating the generated API documentation</h2>
 
-<p>Copy the generated API documentation from <code>docs/api</code> to the <code>StableWebDocs</code>
-directory on Bagpuss (in <code>/$BRANCH/api/</code>) to update the web site.</p>
+<p>Copy the generated API documentation from <code>docs/api</code> to the corresponding
+<code>/$BRANCH/api</code> directory in the <code>nodatime.org</code> repository.</p>
 
 <h2>Announcing the release</h2>
 
 <p>Post to the mailing list, blog, etc.</p>
 
-<h2>Post-release updates on the default branch</h2>
+<h2>Post-release updates on the master branch</h2>
 
 <p>If this release was a stable release, then the generated XML documentation
-should be copied to <code>data/versionxml/</code> on the default branch.</p>
+should be copied to <code>data/versionxml/</code> on the master branch.</p>
 
 <p>If this release required the creation of a new branch, then the following
-updates need to be made to the default branch for the website:</p>
+updates need to be made to the master branch for the website:</p>
 
 <ul>
 <li>the user guide source in <code>www/unstable/userguide</code> should be copied to
