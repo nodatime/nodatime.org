@@ -117,13 +117,24 @@ minutes&quot; wouldn&#39;t be a fixed length of time.)</p>
 <a href="../api/html/T_NodaTime_Duration.htm"><code>Duration</code></a> type, and they can be
 added to either an <code>Instant</code> or <code>ZonedDateTime</code> using either the <code>+</code> operator
 or <code>Plus</code> methods:</p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">Duration</span> <span class="n">duration</span> <span class="p">=</span> <span class="n">Duration</span><span class="p">.</span><span class="n">FromMinutes</span><span class="p">(</span><span class="m">3</span><span class="p">);</span>
+<span class="n">Instant</span> <span class="n">now</span> <span class="p">=</span> <span class="n">SystemClock</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Now</span><span class="p">;</span>
+<span class="n">Instant</span> <span class="n">future</span> <span class="p">=</span> <span class="n">now</span> <span class="p">+</span> <span class="n">duration</span><span class="p">;</span> <span class="c1">// Or now.Plus(duration)</span>
 
+<span class="n">ZonedDateTime</span> <span class="n">nowInIsoUtc</span> <span class="p">=</span> <span class="n">now</span><span class="p">.</span><span class="n">InUtc</span><span class="p">();</span>
+<span class="n">ZonedDateTime</span> <span class="n">thenInIsoUtc</span> <span class="p">=</span> <span class="n">nowInIsoUtc</span> <span class="p">+</span> <span class="n">duration</span><span class="p">;</span>
+</code></pre></div>
 <p>(There are also static <code>Add</code> and <code>Subtract</code> methods, the <code>-</code> operator and
 the instance <code>Minus</code> method on both <code>Instant</code> and <code>ZonedDateTime</code>.)</p>
 
 <p>Time line arithmetic is pretty simple, except you might not <em>always</em> get
 what you expect when using <code>ZonedDateTime</code>, due to daylight saving transitions:</p>
-
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">DateTimeZone</span> <span class="n">london</span> <span class="p">=</span> <span class="n">DateTimeZoneProviders</span><span class="p">.</span><span class="n">Tzdb</span><span class="p">[</span><span class="s">&quot;Europe/London&quot;</span><span class="p">];</span>
+<span class="c1">// 12:45am on March 27th 2012</span>
+<span class="n">LocalDateTime</span> <span class="n">local</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalDateTime</span><span class="p">(</span><span class="m">2012</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">27</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">45</span><span class="p">,</span> <span class="m">00</span><span class="p">);</span>
+<span class="n">ZonedDateTime</span> <span class="n">before</span> <span class="p">=</span> <span class="n">london</span><span class="p">.</span><span class="n">AtStrictly</span><span class="p">(</span><span class="n">local</span><span class="p">);</span>
+<span class="n">ZonedDateTime</span> <span class="n">after</span> <span class="p">=</span> <span class="n">before</span> <span class="p">+</span> <span class="n">Duration</span><span class="p">.</span><span class="n">FromMinutes</span><span class="p">(</span><span class="m">20</span><span class="p">);</span>
+</code></pre></div>
 <p>We start off with a <em>local</em> time of 12.45am. The time that we add is effectively
 &quot;experienced&quot; time - as if we&#39;d simply waited twenty minutes. However, at 1am on that day,
 the clocks in the Europe/London time zone go forward by an hour - so we end up with a local
@@ -330,7 +341,8 @@ either, mostly because it&#39;s not clear what the use cases would be. You can a
 zoned date/time values, perform arithmetic in that domain and convert back if necessary - but if you find
 yourself in this situation, we&#39;d love to hear about it on the Noda Time mailing list.</p>
 
-<h1>Days of the week
+<h1>Days of the week</h1>
+
 <p>One aspect of calendar arithmetic which is often required but doesn&#39;t fit in anywhere
 else is finding an appropriate day of the week. <code>LocalDateTime</code> and <code>LocalDate</code> both provide
 <code>Next(IsoDayOfWeek)</code> and <code>Previous(IsoDayOfWeek)</code> methods for this purpose. Both give the
