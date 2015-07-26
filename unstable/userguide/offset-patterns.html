@@ -109,17 +109,18 @@ Typical pattern text: <code>+HH:mm:ss</code></li>
 Typical pattern text: <code>+HH:mm</code></li>
 <li><code>s</code>: Short format, displaying information down to the hour.<br>
 Typical pattern text: <code>+HH</code></li>
-<li><code>g</code>: General pattern. Formatting depends on the value passed in:
-
-<ul>
-<li>If the offset has seconds, the long format is used; otherwise</li>
-<li>If the offset has minutes, the medium format is used; otherwise</li>
-<li>The short format is used</li>
-</ul></li>
+<li><code>L</code>: Long format without punctuation, displaying information down to the second.<br>
+Typical pattern text: <code>+HHmmss</code></li>
+<li><code>M</code>: Medium format without punctuation, displaying information down to the minute.<br>
+Typical pattern text: <code>+HHmm</code></li>
+<li><code>S</code>: Short format without punctuation, displaying information down to the minute.<br>
+Typical pattern text: <code>+HH</code> (so equivalent to <code>s</code> in many cases, but can vary by culture)</li>
+<li><code>g</code>: General pattern. Formatting depends on the value passed in. If the offset has seconds, the long 
+format is used; otherwise, if the offset has minutes, the medium format is used; otherwise the short format is used. When parsing, the other standard format patterns are tried one at a time. This is the default format pattern.</li>
+<li><code>G</code>: As <code>g</code>, but using <code>Z</code> for an offset of 0, as if it were Z-prefixed. (See below.)</li>
+<li><code>i</code>: As <code>g</code>, but using the colon-free formats (<code>L</code>, <code>M</code>, <code>S</code>)</li>
+<li><code>I</code>: As <code>i</code>, but using <code>Z</code> for an offset of 0, as if it were Z-prefixed. (See below.)</li>
 </ul>
-
-<p>When parsing, the other standard format patterns are tried one at a time. This is the default format pattern.
-- <code>G</code>: As <code>g</code>, but using <code>Z</code> for an offset of 0, as if it were Z-prefixed. (See below.)  </p>
 
 <h2>Custom Patterns</h2>
 
