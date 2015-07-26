@@ -1,3 +1,21 @@
+commit 73476b86adb82d403d79d4daad02164beabab0be
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sun Jul 26 23:27:37 2015 +0100
+
+    Rename DaylightSavingTimeZone to StandardDaylightAlternatingMap.
+    
+    It's still called a tail zone in many places, but that's okay - at least the type name makes a lot more sense than before.
+
+commit 7f779ce83c8bbbd8d766c42fad3d6fc2322cda91
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sun Jul 26 23:11:10 2015 +0100
+
+    Stop DaylightSavingsDateTimeZone from being a DateTimeZone.
+    
+    This means we no longer have to pass in bogus IDs all the time which make no sense.
+    Admittedly we need something *just* more than IZoneIntervalMap, so I've introduced IZoneIntervalMinMaxOffset which just adds the Min/MaxOffset properties, and may DateTimeZone implement that.
+    After this commit, we can rename the type to something saner...
+
 commit 04e5f97d4d06f96582fef521fab2bbde96b76937
 Author: Jon Skeet <skeet@pobox.com>
 Date:   Sun Jul 26 21:41:30 2015 +0100
