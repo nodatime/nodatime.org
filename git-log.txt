@@ -1,3 +1,113 @@
+commit 06e52bba4e10fdf30afb5bfbb244e415e9e34be1
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Tue Jul 28 08:48:06 2015 +0100
+
+    Rename SetVersions to SetVersion.
+    
+    Fixes issue #370.
+
+commit bab261dfb39867eeb21818e51516f4c2c49ae1ca
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Mon Jul 27 14:41:21 2015 +0100
+
+    Update SharpCompress to 0.11.1, which doesn't depend on LinqBridge.
+
+commit 73476b86adb82d403d79d4daad02164beabab0be
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sun Jul 26 23:27:37 2015 +0100
+
+    Rename DaylightSavingTimeZone to StandardDaylightAlternatingMap.
+    
+    It's still called a tail zone in many places, but that's okay - at least the type name makes a lot more sense than before.
+
+commit 7f779ce83c8bbbd8d766c42fad3d6fc2322cda91
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sun Jul 26 23:11:10 2015 +0100
+
+    Stop DaylightSavingsDateTimeZone from being a DateTimeZone.
+    
+    This means we no longer have to pass in bogus IDs all the time which make no sense.
+    Admittedly we need something *just* more than IZoneIntervalMap, so I've introduced IZoneIntervalMinMaxOffset which just adds the Min/MaxOffset properties, and may DateTimeZone implement that.
+    After this commit, we can rename the type to something saner...
+
+commit 04e5f97d4d06f96582fef521fab2bbde96b76937
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sun Jul 26 21:41:30 2015 +0100
+
+    Rename Zone to ZoneLine and Rule to RuleLine to clarify how the types relate to tz data files.
+
+commit 66b90f3652da7f8d06d7c68af0d0510f59d79fc6
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sun Jul 26 21:37:54 2015 +0100
+
+    More TzdbCompiler tidying.
+
+commit 01e6f0ed51b9f23542eb05407edaf66d434534a3
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sun Jul 26 21:31:14 2015 +0100
+
+    Simplify TzdbCompiler
+    
+    - TzdbDatabase now no longer has the concept of a "current" zone (that's in the parser)
+    - ZoneAlias was pointless - we're fine with a tuple of two strings
+    - ZoneList was mostly pointless, particularly after the other change to TzdbDatabase
+    - Fix comment handling - it was trimming one character too many
+
+commit 4caa88e129c7e87cc821f9cfa202b89ff134eb14
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sun Jul 26 16:31:23 2015 +0100
+
+    Support %z in rule formats.
+    
+    Fixes issue #369.
+    
+    (It's highlighted an odd choice in a reuse of ZoneRecurrence, too...)
+
+commit 0fa4f784990e7bdfb1cfd8d0e66bf6bd1acb1c54
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sun Jul 26 15:42:22 2015 +0100
+
+    New standard patterns for offsets - basically the existing general/long/medium/short, but without punctuation.
+
+commit b1ba522a99e2554461cbe8785e3b3962e5a5bbf5
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sun Jul 26 09:55:50 2015 +0100
+
+    Simplify instructions for building nzd files.
+
+commit dd6105d315cd3c4639866fe34539dcf6f1fd4ffc
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sun Jul 26 09:48:32 2015 +0100
+
+    Update TzdbCompiler to be flexible in its data source.
+    
+    It can now load from a local directory, or a local archive, or a remote (ftp/http/https) archive.
+    This means NodaDump and the build scripts can be simplified too.
+    
+    In a later commit I'll probably remove the tzdb data directory, as it no longer serves much purpose.
+    
+    This change requires TzdbCompiler to target .NET 4.5, to avoid conflicts with LinqBridge in SharpCompress.
+
+commit ed145b3b7de6790ed50da07bc2438b68744750eb
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sat Jul 25 22:46:08 2015 +0100
+
+    Allow the directory containing the Windows Zones file to be passed to the tzdb compiler.
+    
+    The code will find the right file to use based on the tzdb version.
+
+commit 279792d898155caa908c8c70d60ae7cdfba79c53
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sat Jul 25 17:29:14 2015 +0100
+
+    Update the format so that the "Initially:" line offset lines up with others.
+
+commit 1d144c41ea7ba2a90ee0d401a1a2bd4be44c5aaa
+Author: Jon Skeet <skeet@pobox.com>
+Date:   Sat Jul 25 13:58:33 2015 +0100
+
+    Add a -z option to NodaTime.TzValidate.NodaDump.
+
 commit 2b03c8fd4750e5f5abbc7228175c5daed537fad6
 Author: Jon Skeet <skeet@pobox.com>
 Date:   Fri Jul 24 20:42:10 2015 +0100

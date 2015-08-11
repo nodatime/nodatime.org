@@ -137,21 +137,19 @@ This may be used for automation.</p>
 <h2>Building a NodaZoneData file</h2>
 
 <ol>
-<li>Download the <a href="http://www.iana.org/time-zones">latest tzdb release</a></li>
-<li>Unpack the tar.gz file - you may need to download extra tools for this; <a href="http://www.7-zip.org/">7-Zip</a> can cope with .tar.gz
-files for example, and I&#39;d expect other zip tools to do so too. You should end up with a directory containing files such
-as &quot;america&quot;, &quot;africa&quot;, &quot;etcetera&quot;.</li>
-<li>Ideally, rename the directory to match the version number, e.g. &quot;2013h&quot;. The directory name will be used in the version ID
-reported by the time zone provider later.</li>
-<li>Find the Windows mapping file you want to use. Currently, I&#39;d recommend using the version supplied with the Noda Time source
-in the <code>data\cldr</code> directory in a file beginning &quot;windowsZones&quot;. This file comes from <a href="http://cldr.unicode.org">CLDR</a>.</li>
+<li>Find the link to the <a href="http://www.iana.org/time-zones">latest tzdb release</a>, e.g.
+http://www.iana.org/time-zones/repository/releases/tzdata2015e.tar.gz</li>
+<li>Determine the Windows mapping file you want to use, or let NodaTime.TzdbCompiler do it for you
+with the versions supplied with the Noda Time source in the <code>data\cldr</code> directory. If these are
+out of date, you can download a new file from <a href="http://cldr.unicode.org">CLDR</a>.</li>
 <li>Run NodaTime.TzdbCompiler. I&#39;d suggest leaving it in its build directory and running it like this:</li>
 </ol>
-<div class="highlight"><pre><code class="language-bat" data-lang="bat">path\to\NodaTime.TzdbCompiler.exe -s path\to\tzdb-files -w path\to\windowsMapping-file.xml -o path\to\output.nzd
+<div class="highlight"><pre><code class="language-bat" data-lang="bat">path\to\NodaTime.TzdbCompiler.exe -s tzdb-url -w windows-file-or-directory -o path\to\output.nzd
 </code></pre></div>
-<p>For example, rebuilding the 2013h data from Noda Time itself, starting in the project&#39;s root directory:</p>
-<div class="highlight"><pre><code class="language-bat" data-lang="bat">src\NodaTime.TzdbCompiler\bin\Release\NodaTime.TzdbCompiler -s data\tzdb\<span class="m">2013</span>h -w data\cldr\windowsZones<span class="m">-24</span>.xml -o tzdb<span class="m">-2013</span>h.nzd
-</code></pre></div>
+<p>The <code>-s</code> argument can be an unpacked archive directory, a local archive, or a remote archive. The <code>-w</code>
+argument can be a path to a single file, or a directory containing multiple Windows Zones XML files, in which
+case the most appropriate one will be selected automatically.</p>
+
 <h2>Using a NodaZoneData file</h2>
 
 <p>Typically you&#39;ll want to use the newly-created resource file as the default time zone provider, across your whole application.
