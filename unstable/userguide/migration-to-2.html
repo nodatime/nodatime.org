@@ -233,6 +233,27 @@ Coptic/Julian calendars, the ID in formatted text, and also serialized values.</
 
 <h1>Text handling</h1>
 
+<h2>Year specifiers</h2>
+
+<p>In version 1.x, the <code>y</code> format specifier meant &quot;absolute year&quot; (which may be negative) and the <code>Y</code> format specifier meant &quot;year of era&quot;. Unfortunatly, this is not compatible with the BCL, where <code>y</code> really means year of era. Under most calendars this is irrelevant in the BCL, as most only support a single era - but in Noda Time, the default calendar system (Gregorian) supports dates before 1CE.</p>
+
+<p>In version 2.0, <code>y</code> means &quot;year of era&quot;, and <code>u</code> means &quot;absolute year&quot;. This use of <code>u</code> is in line with
+<a href="http://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns">Unicode TR-35</a> although
+there are other aspects of format specifiers which aren&#39;t - 2.0 is not embracing TR-35 universally, preferring BCL-compatibility, but as the BCL doesn&#39;t have any &quot;absolute year&quot; specifier.</p>
+
+<p>For most users this change will be invisible, as it is anticipated that most users only use values where
+absolute year and year of era are the same value. However, anyone using <code>Y</code> in their format patterns will
+see an exception thrown, and anyone using <code>y</code> but formatting a value where the year is <em>not</em> the same as
+the year of era will see different results.</p>
+
+<p>One unfortunate side-effect of this is that the normal BCL handling - using the patterns specified by the BCL - gives ambiguous values. For example, <code>new LocalDate(-50, 1, 1).ToString()</code> will return something like &quot;01 January 0051&quot; instead of the previous &quot;01 January -0050&quot;. Users whose applications are likely to encounter
+dates before 1CE should consider using custom format patterns with the <code>u</code> specifier instead of <code>y</code>.</p>
+
+<p>Noda Time&#39;s ISO-8601 pattern handling will provide the same text values as before, as the patterns have been
+updated to use <code>u</code>. This includes the patterns used in <code>NodaTime.Serialization.JsonNet</code>.</p>
+
+<h2>Other changes</h2>
+
 <p>The numeric standard patterns for <code>Instant</code> and <code>Offset</code> have been removed, with no direct equivalent.
 These were not known to be useful, felt &quot;alien&quot; in various ways, and cause issues within the 
 implementation. If you need these features - possibly in a specialized way - please contact the
