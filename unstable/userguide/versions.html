@@ -141,6 +141,11 @@ practice); formatting and parsing for these has been removed.</li>
 <li>Factory methods for the Julian, Coptic and Persian calendars have been converted into properties.</li>
 <li><code>y</code> and <code>yyy</code> are no longer supported in date format specifiers; use <code>yy</code> or <code>yyyy</code> instead.</li>
 <li>The date format specifiers <code>yy</code> and <code>yyyy</code> now refer to the year of era instead of the absolute year; <code>u</code> is used for absolute year.</li>
+<li>Some parameters have been renamed for consistency, affecting code which uses named arguments.</li>
+<li>Factory methods for converting from units since the Unix epoch to <code>Instant</code> have been renamed to <code>FromUnixTimeXyz()</code></li>
+<li>The <code>Instant.Ticks</code> property has been converted to a method, <code>Instant.ToUnixTimeTicks()</code>. (This reflects
+the fact that it would no longer reflect the complete state of the object, and aims to obscure the fact
+that the Unix epoch is the internal epoch in Noda Time.)</li>
 </ul>
 
 <p>Bug fixes:</p>
@@ -845,7 +850,7 @@ auto-advance option (issues <a href="https://github.com/nodatime/nodatime/issues
 					<ul class="side-nav">
 						
                             
-							<li><a href="../../unstable/userguide/index.html" >Overview</a></li>
+							<li><a href="../../unstable/userguide/" >Overview</a></li>
 						
                             
 							<li><a href="../../unstable/userguide/rationale.html" >Why does Noda Time exist?</a></li>

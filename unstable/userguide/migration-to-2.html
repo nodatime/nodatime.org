@@ -100,6 +100,12 @@
 1.x and are considering upgrading to 2.0, please read the following migration guide carefully.
 In particular, there are some changes which are changes to execution-time behaviour, and won&#39;t show up as compile-time errors.</p>
 
+<h1>Parameter names</h1>
+
+<p>Some parameters have been renamed for consistency. This should not affect code that uses positional
+argument passing; code which uses named arguments will need to specify the new parameter name where
+there are changes. This does not affect binary compatibility.</p>
+
 <h1>Obsolete members</h1>
 
 <p>A few members in 1.x were already marked as obsolete, and they have now been removed. Code using 
@@ -155,6 +161,17 @@ but having it in the names was a bit obnoxious, particularly in code which used 
 <p>Factory methods in <code>CalendarSystem</code> which either didn&#39;t take any parameters (<code>GetPersianCalendar</code>) or which
 no longer support those parameters (<code>GetCopticCalendar</code>, <code>GetJulianCalendar</code>) have been converted into properties.
 So for example, the equivalent of <code>CalendarSystem.GetJulianCalendar(4)</code> is now just <code>CalendarSystem.Julian</code>.</p>
+
+<p>Methods and properties on <code>Instant</code> to do with the Unix epoch have been renamed to be consistent with
+methods introduced in <code>DateTimeOffset</code> in .NET 4.6:</p>
+
+<ul>
+<li><code>FromSecondsSinceUnixEpoch()</code> is now <code>FromUnixTimeSeconds()</code></li>
+<li><code>FromMillisecondsSinceUnixEpoch()</code> is now <code>FromUnixTimeMilliseconds()</code></li>
+<li><code>FromTicksSinceUnixEpoch()</code> is now <code>FromUnixTimeTicks()</code></li>
+<li>The <code>Ticks</code> property is now <code>ToUnixTimeTicks()</code></li>
+<li>There are two new methods, <code>ToUnixTimeSeconds()</code> and <code>ToUnixTimeMilliseconds()</code></li>
+</ul>
 
 <h1>Period</h1>
 
@@ -439,7 +456,7 @@ compatibility changes, as we have found that the new behavior aligns more closel
 					<ul class="side-nav">
 						
                             
-							<li><a href="../../unstable/userguide/index.html" >Overview</a></li>
+							<li><a href="../../unstable/userguide/" >Overview</a></li>
 						
                             
 							<li><a href="../../unstable/userguide/rationale.html" >Why does Noda Time exist?</a></li>
