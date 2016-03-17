@@ -269,6 +269,14 @@ dates before 1CE should consider using custom format patterns with the <code>u</
 <p>Noda Time&#39;s ISO-8601 pattern handling will provide the same text values as before, as the patterns have been
 updated to use <code>u</code>. This includes the patterns used in <code>NodaTime.Serialization.JsonNet</code>.</p>
 
+<h2>Formatting changes</h2>
+
+<ul>
+<li>Text formatting and parsing always uses <code>+</code> and <code>-</code> now for the positive and negative signs,
+instead of asking the <code>NumberFormatInfo</code> from the culture. (These are the characters used by
+all standard cultures, so this will only change behavior when using a custom culture.)</li>
+</ul>
+
 <h2>Other changes</h2>
 
 <p>The numeric standard patterns for <code>Instant</code> and <code>Offset</code> have been removed, with no direct equivalent.
