@@ -43,7 +43,7 @@
 			    <ul class="right">
 			      <li class="divider"></li>
 			      <li class="has-dropdown">
-			      	<a href="#" class="active">User Guide</a>
+			      	<a href="#" >User Guide</a>
 			      	<ul class="dropdown">
 			      		<li><label>Versions</label></li>
 			      		<li><a href="../../1.0.x/userguide">1.0.x</a></li>
@@ -116,6 +116,13 @@ another calendar system, please contact <a href="https://groups.google.com/group
 the access to most calendars was simplified in 2.0 to use properties instead of methods. The API access listed
 is from 2.0.0 onwards; please refer to the relevant copy of this user guide if you are using an older version.</p>
 
+<p>As of Noda Time 2.0.0, calendar systems themselves only deal with
+concepts of eras, years, months and days - not the alternative
+mapping of a date to a &quot;week year, week of week year, day of week&quot;.
+That is now represented by
+<a href="../api/html/T_NodaTime_Calendars_IWeekYearRule.htm"><code>IWeekYearRule</code></a>.
+Details are in the <a href="weekyears.html">week year page</a>.</p>
+
 <h1>ISO</h1>
 
 <p>First supported in v1.0.0<br>
@@ -125,14 +132,11 @@ API access: <a href="../api/html/P_NodaTime_CalendarSystem_Iso.htm"><code>Calend
 It is designed to correspond to the calendar described in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a>,
 and is equivalent to the Gregorian calendar in all respects other than the century and year-of-century values.</p>
 
-<p>As of Noda Time 2.0, century and year-of-century properties have been removed as they almost certainly didn&#39;t
-behave how everyone would have expected, at which point the ISO calendar system and the Gregorian calendar system
-(with a &quot;minimum number of days in the first week&quot; of 4) are equivalent. The separation between them in Noda Time
-is maintained for simplicity, compatibility and consistency.</p>
-
-<p>The ISO calendar system always has at least 4 days in the first week of the week-year, where a week always
-runs Monday to Sunday. The first week of the week-year is therefore always the one containing the first Thursday
-in the year.</p>
+<p>As of Noda Time 2.0, century and year-of-century properties have
+been removed, at which point the ISO calendar system and the
+Gregorian calendar system are equivalent. The separation between
+them in Noda Time is maintained for simplicity, compatibility and
+consistency.</p>
 
 <h1>Gregorian</h1>
 
@@ -154,9 +158,6 @@ at different times. Noda Time&#39;s implementation is <em>proleptic</em>, in tha
 no support for a &quot;cutover&quot; calendar system which observes the Julian calendar until some point, at which point it
 cuts over to the Gregorian calendar system. Although such a calendar system would more accurately represent
 the calendar observed in many countries over time, it causes all sorts of API difficulties.</p>
-
-<p>The parameter to <code>GetGregorianCalendar()</code> indicates the minimum number of days in the first week of the week-year;
-the <code>Gregorian</code> properties returns the same calendar as <code>GetGregorianCalendar(4)</code>.</p>
 
 <h1>Julian</h1>
 
@@ -252,27 +253,10 @@ primarily used in Saudi Arabia, is similar to the Islamic Hijri calendar, except
 tabular data. Each month has 29 or 30 days, and each year has 354 or 355 days, but the month lengths cannot be determined
 algorithmically.</p>
 
-<p>The Noda Time implementation uses the BCL
+<p>The Noda Time implementation uses data from the BCL
 <a href="http://msdn.microsoft.com/en-us/library/system.globalization.umalquracalendar.aspx"><code>UmAlQuraCalendar</code></a> to obtain the required
-information, which means it can only work on platforms where that class is available. It isn&#39;t available on all PCL-supporting runtimes,
-and the Mono implementation is <a href="https://bugzilla.xamarin.com/show_bug.cgi?id=21930">known to have serious flaws</a>. Where a sensible
-implementation is not available, requesting this calendar will throw a <code>NotSupportedException</code>.</p>
-
-<p><strong>Supported platforms:</strong></p>
-
-<ul>
-<li>Windows Phone 8.1 Silverlight</li>
-<li>Desktop Silverlight</li>
-<li>Desktop .NET</li>
-</ul>
-
-<p><strong>Unsupported platforms:</strong></p>
-
-<ul>
-<li>Mono (Xamarin.iOS, Xamarin.Android, and desktop) - tested up to v3.6.0</li>
-<li>Windows Phone 8.1 store apps (despite MSDN claiming otherwise)</li>
-<li>Windows 8.1 store apps</li>
-</ul>
+information, but the data is baked into Noda Time so it is available
+on all platforms.</p>
 
 <h1>Hebrew</h1>
 
@@ -413,7 +397,11 @@ and retrieving them (such as with <code>LocalDate.Month</code>).</p>
 			
 		
 			
-			<li><a href="../../unstable/userguide/threading.html"><strong>Next</strong>: Threading</a></li>
+			<li><a href="../../unstable/userguide/weekyears.html"><strong>Next</strong>: Week years</a></li>
+			
+			
+			
+		
 			
 			
 			
@@ -552,6 +540,9 @@ and retrieving them (such as with <code>LocalDate.Month</code>).</p>
 						
                             
 							<li><a href="../../unstable/userguide/calendars.html" class="active">Calendars</a></li>
+						
+                            
+							<li><a href="../../unstable/userguide/weekyears.html" >Week years</a></li>
 						
                             
 							<li><a href="../../unstable/userguide/threading.html" >Threading</a></li>
