@@ -1336,6 +1336,30 @@
             <returns>A sequence of zone intervals covering the given interval.</returns>
             <seealso cref="M:NodaTime.DateTimeZone.GetZoneInterval(NodaTime.Instant)"/>
         </member>
+        <member name="M:NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval,NodaTime.TimeZones.ZoneEqualityComparer.Options)">
+            <summary>
+            Returns the zone intervals within the given interval, potentially coalescing some of the
+            original intervals according to options.
+            </summary>
+            <remarks>
+            <para>
+            This is equivalent to <see cref="M:NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval)"/>, but may coalesce some intervals.
+            For example, if the <see cref="F:NodaTime.TimeZones.ZoneEqualityComparer.Options.OnlyMatchWallOffset"/> is specified,
+            and two consecutive zone intervals have the same offset but different names, a single zone interval
+            will be returned instead of two separate ones. When zone intervals are coalesced, all aspects of
+            the first zone interval are used except its end instant, which is taken from the second zone interval.
+            </para>
+            <para>
+            As the options are only used to determine which intervals to coalesce, the
+            <see cref="F:NodaTime.TimeZones.ZoneEqualityComparer.Options.MatchStartAndEndTransitions"/> option does not affect
+            the intervals returned.
+            </para>
+            </remarks>
+            <param name="interval">Interval to find zone intervals for. This is allowed to be unbounded (i.e.
+            infinite in both directions).</param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
         <member name="T:NodaTime.DateTimeZoneProviders">
             <summary>
             Static access to date/time zone providers built into Noda Time and for global configuration where this is unavoidable.
@@ -1539,11 +1563,15 @@
             </summary>
             <value>The subsecond component of the duration, in nanoseconds.</value>
         </member>
-        <member name="P:NodaTime.Duration.Ticks">
+        <member name="P:NodaTime.Duration.BclCompatibleTicks">
             <summary>
-            Gets the total number of ticks in the duration.
+            Gets the total number of ticks in the duration as a 64-bit integer, truncating towards zero where necessary.
             </summary>
             <remarks>
+            <para>
+            Within the constraints specified below, this property is intended to be equivalent to
+            <see cref="P:System.TimeSpan.Ticks"/>.
+            </para>
             <para>
             If the number of nanoseconds in a duration is not a whole number of ticks, it is truncated towards zero.
             For example, durations in the range [-99ns, 99ns] would all count as 0 ticks.
@@ -1553,6 +1581,7 @@
             </remarks>
             <exception cref="T:System.OverflowException">The number of ticks cannot be represented a signed 64-bit integer.</exception>
             <value>The total number of ticks in the duration.</value>
+            <seealso cref="P:NodaTime.Duration.TotalTicks"/>
         </member>
         <member name="P:NodaTime.Duration.TotalDays">
             <summary>
@@ -1581,23 +1610,63 @@
             <summary>
             Gets the total number of minutes in this duration, as a <see cref="T:System.Double"/>.
             </summary>
-            <remarks>This property is the <c>Duration</c> equivalent of <see cref="P:System.TimeSpan.TotalMinutes"/>.</remarks>
+            <remarks>This property is the <c>Duration</c> equivalent of <see cref="P:System.TimeSpan.TotalMinutes"/>.
             Unlike <see cref="P:NodaTime.Duration.Minutes"/>, it represents the complete duration in minutes rather than
             the whole number of minutes within the hour. So for a duration
             of 2 hours, 30 minutes and 45 seconds, the <c>Minutes</c> property will return 30, but <c>TotalMinutes</c>
             will return 150.75.
+            </remarks>
             <value>The total number of minutes in this duration.</value>
         </member>
         <member name="P:NodaTime.Duration.TotalSeconds">
             <summary>
             Gets the total number of seconds in this duration, as a <see cref="T:System.Double"/>.
             </summary>
-            <remarks>This property is the <c>Duration</c> equivalent of <see cref="P:System.TimeSpan.TotalSeconds"/>.</remarks>
+            <remarks>
+            This property is the <c>Duration</c> equivalent of <see cref="P:System.TimeSpan.TotalSeconds"/>.
             Unlike <see cref="P:NodaTime.Duration.Seconds"/>, it represents the complete duration in seconds rather than
             the whole number of seconds within the minute. So for a duration
             of 10 minutes, 20 seconds and 250 milliseconds, the <c>Seconds</c> property will return 20, but <c>TotalSeconds</c>
             will return 620.25.
-            <value>The total number of minutes in this duration.</value>
+            </remarks>
+            <value>The total number of seconds in this duration.</value>
+        </member>
+        <member name="P:NodaTime.Duration.TotalMilliseconds">
+            <summary>
+            Gets the total number of milliseconds in this duration, as a <see cref="T:System.Double"/>.
+            </summary>
+            <remarks>This property is the <c>Duration</c> equivalent of <see cref="P:System.TimeSpan.TotalMilliseconds"/>.
+            Unlike <see cref="P:NodaTime.Duration.Milliseconds"/>, it represents the complete duration in seconds rather than
+            the whole number of seconds within the minute. So for a duration
+            of 10 minutes, 20 seconds and 250 milliseconds, the <c>Seconds</c> property will return 20, but <c>TotalSeconds</c>
+            will return 620.25.
+            </remarks>
+            <value>The total number of milliseconds in this duration.</value>
+        </member>
+        <member name="P:NodaTime.Duration.TotalTicks">
+            <summary>
+            Gets the total number of ticks in this duration, as a <see cref="T:System.Double"/>.
+            </summary>
+            <remarks>This property is the <c>Duration</c> equivalent of <see cref="P:System.TimeSpan.Ticks"/>,
+            except represented as double-precision floating point number instead of a 64-bit integer. This
+            is because <see cref="T:NodaTime.Duration"/> has a precision of nanoseconds, and also because the range
+            of 64-bit integers doesn't cover the number of possible ticks in a <see cref="T:NodaTime.Duration"/>. (The
+            latter is only an issue in durations outside the range of <see cref="T:System.TimeSpan"/> - in other words,
+            with magnitudes of over 29,000 years.)
+            </remarks>
+            <value>The total number of ticks in this duration.</value>
+            <seealso cref="P:NodaTime.Duration.BclCompatibleTicks"/>
+        </member>
+        <member name="P:NodaTime.Duration.TotalNanoseconds">
+            <summary>
+            Gets the total number of nanoseconds in this duration, as a <see cref="T:System.Double"/>.
+            </summary>
+            <remarks>The result is always an integer, but may not be precise due to the limitations
+            of the <c>Double</c> type. In other works, <c>Duration.FromNanoseconds(duration.TotalNanoseconds)</c>
+            is not guaranteed to round-trip. To guarantee precision and round-tripping,
+            use <see cref="M:NodaTime.Duration.ToBigIntegerNanoseconds" /> and <see cref="M:NodaTime.Duration.FromNanoseconds(System.Numerics.BigInteger)"/>.
+            </remarks>
+            <returns>This duration as a number of nanoseconds, represented as a <c>Double</c>.</returns>
         </member>
         <member name="M:NodaTime.Duration.PlusSmallNanoseconds(System.Int64)">
             <summary>
@@ -2083,13 +2152,6 @@
             type which can always represent values in the range we need.
             </summary>
             <returns>This duration as a number of nanoseconds, represented as a <c>BigInteger</c>.</returns>
-        </member>
-        <member name="M:NodaTime.Duration.ToDoubleNanoseconds">
-            <summary>
-            Conversion to a <see cref="T:System.Double"/> number of nanoseconds. The result is always an integer,
-            but may not be precise due to the limitations of the <c>Double</c> type.
-            </summary>
-            <returns>This duration as a number of nanoseconds, represented as a <c>Double</c>.</returns>
         </member>
         <member name="T:NodaTime.IClock">
             <summary>
@@ -8574,7 +8636,7 @@
             Extension methods for <see cref="T:System.DateTimeOffset"/>.
             </summary>
         </member>
-        <member name="M:NodaTime.Extensions.DateTimeOffsetExtensions.ToOffsetDateTime(System.DateTime)">
+        <member name="M:NodaTime.Extensions.DateTimeOffsetExtensions.ToOffsetDateTime(System.DateTimeOffset)">
             <summary>
             Converts a <see cref="T:System.DateTimeOffset"/> to <see cref="T:NodaTime.OffsetDateTime"/>.
             </summary>
@@ -8582,13 +8644,14 @@
             <param name="dateTimeOffset">The <c>DateTimeOffset</c> to convert.</param>
             <returns>A new <see cref="T:NodaTime.OffsetDateTime"/> with the same values as <paramref name="dateTimeOffset"/>.</returns>
         </member>
-        <member name="M:NodaTime.Extensions.DateTimeOffsetExtensions.ToZonedDateTime(System.DateTime)">
+        <member name="M:NodaTime.Extensions.DateTimeOffsetExtensions.ToZonedDateTime(System.DateTimeOffset)">
             <summary>
-            Converts a <see cref="T:System.DateTimeOffset"/> to <see cref="T:NodaTime.OffsetDateTime"/>.
+            Converts a <see cref="T:System.DateTimeOffset"/> to <see cref="T:NodaTime.ZonedDateTime"/>.
             </summary>
             <remarks>This is a convenience method which calls <see cref="M:NodaTime.ZonedDateTime.FromDateTimeOffset(System.DateTimeOffset)"/>.</remarks>        
             <param name="dateTimeOffset">The <c>DateTimeOffset</c> to convert.</param>
-            <returns>A new <see cref="T:NodaTime.ZonedDateTime"/> with the same values as <paramref name="dateTimeOffset"/>.</returns>
+            <returns>A new <see cref="T:NodaTime.ZonedDateTime"/> with the same values as <paramref name="dateTimeOffset"/>,
+            using a fixed-offset time zone.</returns>
         </member>
         <member name="M:NodaTime.Extensions.DateTimeOffsetExtensions.ToInstant(System.DateTimeOffset)">
             <summary>
@@ -13844,6 +13907,18 @@
             Writes this mapping to a writer.
             </summary>
             <param name="writer"></param>
+        </member>
+        <member name="M:NodaTime.TimeZones.Cldr.MapZone.Equals(NodaTime.TimeZones.Cldr.MapZone)">
+            <inheritdoc />
+        </member>
+        <member name="M:NodaTime.TimeZones.Cldr.MapZone.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:NodaTime.TimeZones.Cldr.MapZone.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:NodaTime.TimeZones.Cldr.MapZone.ToString">
+            <inheritdoc />
         </member>
         <member name="T:NodaTime.TimeZones.Cldr.NamespaceDoc">
             <summary>

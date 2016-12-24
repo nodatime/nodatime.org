@@ -1,0 +1,48 @@
+﻿@model IList<ReleaseDownload>
+
+@{
+    ViewBag.Title = "Downloads";
+}
+
+<div class="row">
+    <div class="large-9 columns">
+        <h1>Downloads</h1>
+        <p>
+            Most developers will use <a href="http://www.nuget.org">NuGet</a> to
+            use Noda Time, but this page contains source and binary zip files for all
+            releases.
+        </p>
+
+        <p>
+            You can also download NZD (Noda Zone Data) files built from various
+            versions of TZDB, allowing you to update the time zone data without
+            updating the Noda Time DLL (as long as your application supports loading
+            that data from a file).  These files are available <a href="/tzdb/">separately</a>.
+        </p>
+
+        <table>
+            @* TODO: Group by release *@
+            <tr>
+                <th>File</th>
+                <th>SHA-256</th>
+            </tr>
+            @foreach (var release in Model.GroupBy(r => r.Release).OrderByDescending(g => g.Key))
+            {
+                bool first = true;
+                @foreach (var file in release)
+                {
+                    @* First row of each release... *@
+                    <tr>
+                        @if (first)
+                        {
+                            <td rowspan="@release.Count()">@release.Key</td>
+                            first = false;
+                        }
+                        <td><a href="@file.DownloadUrl">@file.File</a></td>
+                        <td>@file.Sha256Hash</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>

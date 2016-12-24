@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "6263df4999e928bc36199e465892deb610f435b9"
+    "signature": "e40735b681d1b5cb9e98d5b429bad4f507794c2f"
   },
   "compilationOptions": {
     "defines": [
@@ -16,6 +16,7 @@
     ".NETCoreApp,Version=v1.0": {
       "NodaTime.Web/1.0.0": {
         "dependencies": {
+          "Google.Cloud.Storage.V1": "1.0.0-beta06",
           "Microsoft.NETCore.App": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics": "1.0.0",
           "Microsoft.AspNetCore.Mvc": "1.0.0",
@@ -28,6 +29,8 @@
           "Microsoft.Extensions.Logging.Console": "1.0.0",
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "3.13.8",
+          "Microsoft.Azure.KeyVault": "2.0.6",
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "NodaTime": "2.0.0",
           "NodaTime.TzValidate.NodaDump": "1.0.0"
@@ -37,6 +40,136 @@
         },
         "compile": {
           "NodaTime.Web.dll": {}
+        }
+      },
+      "Google.Api.Gax/1.0.0-beta06": {
+        "dependencies": {
+          "Google.Apis.Auth": "1.20.0",
+          "System.Interactive.Async": "3.1.1",
+          "System.Threading.Thread": "4.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Api.Gax.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Api.Gax.dll": {}
+        }
+      },
+      "Google.Api.Gax.Rest/1.0.0-beta06": {
+        "dependencies": {
+          "Google.Api.Gax": "1.0.0-beta06",
+          "Google.Apis": "1.20.0",
+          "Google.Apis.Auth": "1.20.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Api.Gax.Rest.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Api.Gax.Rest.dll": {}
+        }
+      },
+      "Google.Apis/1.20.0": {
+        "dependencies": {
+          "Google.Apis.Core": "1.20.0",
+          "System.Collections": "4.0.11",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.IO": "4.1.0",
+          "System.IO.Compression": "4.1.0",
+          "System.Linq": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.TypeExtensions": "4.1.0",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Text.Encoding": "4.0.11",
+          "System.Threading": "4.0.11",
+          "System.Threading.Tasks": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Apis.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Apis.dll": {}
+        }
+      },
+      "Google.Apis.Auth/1.20.0": {
+        "dependencies": {
+          "Google.Apis.Core": "1.20.0",
+          "Newtonsoft.Json": "9.0.1",
+          "System.Collections": "4.0.11",
+          "System.Console": "4.0.0",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.IO": "4.1.0",
+          "System.IO.FileSystem": "4.0.1",
+          "System.IO.FileSystem.Primitives": "4.0.1",
+          "System.Linq": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.Net.Requests": "4.0.11",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Text.Encoding": "4.0.11",
+          "System.Threading": "4.0.11",
+          "System.Threading.Tasks": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Apis.Auth.PlatformServices.dll": {},
+          "lib/netstandard1.3/Google.Apis.Auth.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Apis.Auth.PlatformServices.dll": {},
+          "lib/netstandard1.3/Google.Apis.Auth.dll": {}
+        }
+      },
+      "Google.Apis.Core/1.20.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "System.Collections": "4.0.11",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Globalization": "4.0.11",
+          "System.IO": "4.1.0",
+          "System.Linq": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Reflection.TypeExtensions": "4.1.0",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Threading.Tasks": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Apis.Core.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Apis.Core.dll": {}
+        }
+      },
+      "Google.Apis.Storage.v1/1.18.0.658": {
+        "dependencies": {
+          "Google.Apis": "1.20.0",
+          "Google.Apis.Auth": "1.20.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Apis.Storage.v1.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Apis.Storage.v1.dll": {}
+        }
+      },
+      "Google.Cloud.Storage.V1/1.0.0-beta06": {
+        "dependencies": {
+          "Google.Api.Gax.Rest": "1.0.0-beta06",
+          "Google.Apis.Storage.v1": "1.18.0.658"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Cloud.Storage.V1.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Cloud.Storage.V1.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/1.0.0": {
@@ -683,6 +816,36 @@
           "lib/netstandard1.3/Microsoft.AspNetCore.WebUtilities.dll": {}
         }
       },
+      "Microsoft.Azure.KeyVault/2.0.6": {
+        "dependencies": {
+          "Microsoft.Azure.KeyVault.WebKey": "2.0.4",
+          "Microsoft.Rest.ClientRuntime": "2.3.2",
+          "Microsoft.Rest.ClientRuntime.Azure": "3.3.1"
+        },
+        "runtime": {
+          "lib/netstandard1.5/Microsoft.Azure.KeyVault.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.5/Microsoft.Azure.KeyVault.dll": {}
+        }
+      },
+      "Microsoft.Azure.KeyVault.WebKey/2.0.4": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Newtonsoft.Json": "9.0.1",
+          "System.Collections": "4.0.11",
+          "System.Collections.Concurrent": "4.0.12",
+          "System.Linq": "4.1.0",
+          "System.Runtime": "4.1.0",
+          "System.Security.Cryptography.Algorithms": "4.2.0"
+        },
+        "runtime": {
+          "lib/netstandard1.5/Microsoft.Azure.KeyVault.WebKey.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.5/Microsoft.Azure.KeyVault.WebKey.dll": {}
+        }
+      },
       "Microsoft.DotNet.InternalAbstractions/1.0.0": {
         "dependencies": {
           "System.AppContext": "4.1.0",
@@ -1107,6 +1270,21 @@
           "lib/netstandard1.0/Microsoft.Extensions.WebEncoders.dll": {}
         }
       },
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/3.13.8": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "System.Runtime.Serialization.Json": "4.0.2",
+          "System.Runtime.Serialization.Primitives": "4.1.1"
+        },
+        "runtime": {
+          "lib/netstandard1.4/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll": {},
+          "lib/netstandard1.4/Microsoft.IdentityModel.Clients.ActiveDirectory.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.4/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll": {},
+          "lib/netstandard1.4/Microsoft.IdentityModel.Clients.ActiveDirectory.dll": {}
+        }
+      },
       "Microsoft.Net.Http.Headers/1.0.0": {
         "dependencies": {
           "System.Buffers": "4.0.0",
@@ -1123,6 +1301,61 @@
         },
         "compile": {
           "lib/netstandard1.1/Microsoft.Net.Http.Headers.dll": {}
+        }
+      },
+      "Microsoft.Rest.ClientRuntime/2.3.2": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Newtonsoft.Json": "9.0.1",
+          "System.Collections": "4.0.11",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Diagnostics.Tools": "4.0.1",
+          "System.Diagnostics.Tracing": "4.1.0",
+          "System.Globalization": "4.0.11",
+          "System.Linq": "4.1.0",
+          "System.Linq.Expressions": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.ObjectModel": "4.0.12",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Xml.ReaderWriter": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.5/Microsoft.Rest.ClientRuntime.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.5/Microsoft.Rest.ClientRuntime.dll": {}
+        }
+      },
+      "Microsoft.Rest.ClientRuntime.Azure/3.3.1": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.Rest.ClientRuntime": "2.3.2",
+          "System.Collections": "4.0.11",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Diagnostics.Tools": "4.0.1",
+          "System.Diagnostics.Tracing": "4.1.0",
+          "System.Globalization": "4.0.11",
+          "System.Linq": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.ObjectModel": "4.0.12",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Xml.ReaderWriter": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.5/Microsoft.Rest.ClientRuntime.Azure.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.5/Microsoft.Rest.ClientRuntime.Azure.dll": {}
         }
       },
       "Microsoft.VisualStudio.Web.BrowserLink.Loader/14.0.0": {
@@ -1176,12 +1409,23 @@
           "lib/netstandard1.0/Newtonsoft.Json.dll": {}
         }
       },
-      "SharpCompress/0.11.6": {
+      "SharpCompress/0.14.1": {
+        "dependencies": {
+          "System.Collections": "4.0.11",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.IO": "4.1.0",
+          "System.IO.FileSystem": "4.0.1",
+          "System.Linq": "4.1.0",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Security.Cryptography.Algorithms": "4.2.0",
+          "System.Text.Encoding.Extensions": "4.0.11"
+        },
         "runtime": {
-          "lib/portable-net4+sl5+wp8+win8/SharpCompress.dll": {}
+          "lib/netstandard1.3/SharpCompress.dll": {}
         },
         "compile": {
-          "lib/portable-net4+sl5+wp8+win8/SharpCompress.dll": {}
+          "lib/netstandard1.3/SharpCompress.dll": {}
         }
       },
       "System.Collections.NonGeneric/4.0.1": {
@@ -1263,6 +1507,17 @@
           "ref/netstandard1.0/System.Diagnostics.Contracts.dll": {}
         }
       },
+      "System.Interactive.Async/3.1.1": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Interactive.Async.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/System.Interactive.Async.dll": {}
+        }
+      },
       "System.Net.WebSockets/4.0.0": {
         "dependencies": {
           "Microsoft.Win32.Primitives": "4.0.1",
@@ -1306,6 +1561,19 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Private.DataContractSerialization.dll": {}
+        }
+      },
+      "System.Runtime.Serialization.Json/4.0.2": {
+        "dependencies": {
+          "System.IO": "4.1.0",
+          "System.Private.DataContractSerialization": "4.1.1",
+          "System.Runtime": "4.1.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Runtime.Serialization.Json.dll": {}
+        },
+        "compile": {
+          "ref/netstandard1.0/System.Runtime.Serialization.Json.dll": {}
         }
       },
       "System.Runtime.Serialization.Primitives/4.1.1": {
@@ -1403,7 +1671,7 @@
         "dependencies": {
           "Microsoft.NETCore.App": "1.0.0",
           "NodaTime": "2.0.0",
-          "SharpCompress": "0.11.6",
+          "SharpCompress": "0.14.1",
           "System.Net.Http": "4.1.0"
         },
         "runtime": {
@@ -3058,6 +3326,41 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Google.Api.Gax/1.0.0-beta06": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oRHENyrNz4uP9hCWT759/A/LFjk03bWaC7krCq4kiiTUqtSXyA71/e7y1c2FNBpBz08dMU3JUrv/0Me1v0Reag=="
+    },
+    "Google.Api.Gax.Rest/1.0.0-beta06": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NlbZOu4dHeReUZgI7SCouQaB5y1SVSs6uocC9phUt7i3cGiveTrPdE8s074tdPAbZcrp3GWjA5CRdvqaFLbleA=="
+    },
+    "Google.Apis/1.20.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zoJM6/lIsnhtpTV7six6S67zQ2BNEKZlzP/bZLC0eOHygatNWzDRxRPW4xONG5a8yEh7pr/3Mj1GDUoDIX5VHw=="
+    },
+    "Google.Apis.Auth/1.20.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-u2f9JwyZYqOI2KxtUUQFoIMweRtz9qfL8Lue/A0Bi187k1OOwx22zdHcYwjjIWphfJgkywqyV/2tAbPl6TzN3A=="
+    },
+    "Google.Apis.Core/1.20.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Xgo/3ghFvPzMXeqku4RQD+sZIzOOUFSucgWaJaKtTsM6YFmU80kTfmDNkGykbTYpfpqElixUQ/pN3oF3Rq2SjA=="
+    },
+    "Google.Apis.Storage.v1/1.18.0.658": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xQRaFnfyib6gV/+viapX5lsCmSiCApZPUV9LB+H8pZQJz6bYFKOSyDHXXcA9/B2uiNicuwqeJ2/WA2/qkRQycA=="
+    },
+    "Google.Cloud.Storage.V1/1.0.0-beta06": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YdkxExl/Yc+AHWSfEkeyC19MzxMXmxm/c7SsNkCqJGfwwCvyj3pvDO/chTMQeshB/rnw79pzoLxANBJAEHeMQQ=="
+    },
     "Microsoft.AspNetCore.Antiforgery/1.0.0": {
       "type": "package",
       "serviceable": true,
@@ -3253,6 +3556,16 @@
       "serviceable": true,
       "sha512": "sha512-D0licSnS1JgqQ/gYlN41wXbeYG3dFIdjY781YzMHZ5gBB7kczacshW+H6plZkXRr/cCnAJWGa31o1R8c5GEy/A=="
     },
+    "Microsoft.Azure.KeyVault/2.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PRIzjk3EQip6cavf9Y0m1qR2vxkEk3zMy8AaxeK972nng0rHoyMNdcQWe8iZ+Gm9V6TLr8EmevGBAGw7P4fmjQ=="
+    },
+    "Microsoft.Azure.KeyVault.WebKey/2.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jS2raDO6vCDOpxTZNhiL1PynvczkMMEqpdsv+46vmLkUjSH4UaXGn1p+R31VAF40pSLfBHU0b2yiXTDnl1YJPw=="
+    },
     "Microsoft.DotNet.InternalAbstractions/1.0.0": {
       "type": "package",
       "serviceable": true,
@@ -3398,10 +3711,25 @@
       "serviceable": true,
       "sha512": "sha512-NSSIBREmHHiyoAFXV2LMA+a6RMZtTHxgUbHJGHRtnjmTKnRyticx5HAzNpy8VG9+HCCHenL9QD7zSA8jjgAi5A=="
     },
+    "Microsoft.IdentityModel.Clients.ActiveDirectory/3.13.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RAYmpEVVnl8qWdPmm62k9wm6MUB9H4Gk3l7uBADDCCQJDOkpTAINzgWHTBF8hkaTHFLaGIfgOeeLcKT+K1PG7A=="
+    },
     "Microsoft.Net.Http.Headers/1.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-1lr92itF1fKR2oEQ6gk1IUsuCgp7UMlf/b1sjlAyuDeUnttj39ra59GQHYpomglJX1UVNpi1/cSBbEsXoNeIhw=="
+    },
+    "Microsoft.Rest.ClientRuntime/2.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qrPBemfdOfD7/LcSa7Hqi01KqLwCZbJ+/GSLN9BnL058/gMU9lvU+Ww19oZbjXh9jr2WzNXPhMJ/YkX9bwQCfw=="
+    },
+    "Microsoft.Rest.ClientRuntime.Azure/3.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+12LAysycsR2iQTdc41p+d8Z9axBse3+ljVGU6bJLtouDBGYYdOyFNahnZ+YUQ9k7wcTKUhwDwL/L+Hh5T77Fg=="
     },
     "Microsoft.VisualStudio.Web.BrowserLink.Loader/14.0.0": {
       "type": "package",
@@ -3413,10 +3741,10 @@
       "serviceable": true,
       "sha512": "sha512-U82mHQSKaIk+lpSVCbWYKNavmNH1i5xrExDEquU1i6I5pV6UMOqRnJRSlKO3cMPfcpp0RgDY+8jUXHdQ4IfXvw=="
     },
-    "SharpCompress/0.11.6": {
+    "SharpCompress/0.14.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zi6HCE6i7gUARnjOu+tVt1E3oq0uRrV+jqXkpskLYsq+ee67UpliIhafHMA6elduJfbTmFi2UjiLIRqPWjilew=="
+      "sha512": "sha512-APj5WSr/Mw0BqhMeX/SvuaqjpwMd9LvKnRstJIEkT/NMWua6TAALG6nPSHxioWB/dOZ8zdBTp8tjSKmSCLhznQ=="
     },
     "System.Collections.NonGeneric/4.0.1": {
       "type": "package",
@@ -3443,6 +3771,11 @@
       "serviceable": true,
       "sha512": "sha512-HvQQjy712vnlpPxaloZYkuE78Gn353L0SJLJVeLcNASeg9c4qla2a1Xq8I7B3jZoDzKPtHTkyVO7AZ5tpeQGuA=="
     },
+    "System.Interactive.Async/3.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hZccYiIE5RS1/J9Tb/BNtosAGVggdlsJm4Ojdu+gDV0p4AIi+LUfUogMKkRacljQEJd2AG6vYzvcjhQFkqoZmw=="
+    },
     "System.Net.WebSockets/4.0.0": {
       "type": "package",
       "serviceable": true,
@@ -3452,6 +3785,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-lcqFBUaCZxPiUkA4dlSOoPZGtZsAuuElH2XHgLwGLxd7ZozWetV5yiz0qGAV2AUYOqw97MtZBjbLMN16Xz4vXA=="
+    },
+    "System.Runtime.Serialization.Json/4.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+7DIJhnKYgCzUgcLbVTtRQb2l1M0FP549XFlFkQM5lmNiUBl44AfNbx4bz61xA8PzLtlYwfmif4JJJW7MPPnjg=="
     },
     "System.Runtime.Serialization.Primitives/4.1.1": {
       "type": "package",
