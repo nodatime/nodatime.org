@@ -1030,9 +1030,12 @@
             Note that <c>BclDateTimeZone</c> is not available on the PCL build of Noda Time, so this fallback strategy can
             only be used with the desktop version.
             </para>
-            <para>Note that Noda Time does not require that <see cref="T:NodaTime.DateTimeZone"/> instances be singletons.
-            As far as reasonably possible, implementations should implement <see cref="T:System.IEquatable`1"/> in such a way
-            that equivalent time zones compare as equal.</para>
+            <para>
+            Note that Noda Time does not require that <see cref="T:NodaTime.DateTimeZone"/> instances be singletons.
+            Comparing two time zones for equality is not straightforward: if you care about whether two
+            zones act the same way within a particular portion of time, use <see cref="T:NodaTime.TimeZones.ZoneEqualityComparer"/>.
+            Additional guarantees are provided by <see cref="T:NodaTime.IDateTimeZoneProvider"/> and <see cref="M:NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)"/>.
+            </para>
             </remarks>
             <threadsafety>
             All time zone implementations within Noda Time are immutable and thread-safe.
@@ -1259,50 +1262,6 @@
             Creates a fixed time zone for offsets -12 to +15 at every half hour,
             fixing the 0 offset as DateTimeZone.Utc.
             </summary>
-        </member>
-        <member name="M:NodaTime.DateTimeZone.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
-            </summary>
-            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
-            <returns>
-            <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance;
-            otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:NodaTime.DateTimeZone.Equals(NodaTime.DateTimeZone)">
-            <summary>
-            Determines whether the specified <see cref="T:NodaTime.DateTimeZone"/> is equal to this instance.
-            </summary>
-            <remarks>
-            This implementation performs initial checks which would be common to all child implementations,
-            and then delegates to <see cref="M:NodaTime.DateTimeZone.EqualsImpl(NodaTime.DateTimeZone)"/>.
-            </remarks>
-            <param name="obj">The <see cref="T:NodaTime.DateTimeZone"/> to compare with this instance.</param>
-            <returns>
-            <c>true</c> if the specified <see cref="T:NodaTime.DateTimeZone"/> is equal to this instance;
-            otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:NodaTime.DateTimeZone.EqualsImpl(NodaTime.DateTimeZone)">
-            <summary>
-            Implements equality in derived classes.
-            </summary>
-            <param name="zone">The zone to compare with this one. This is guaranteed (when called by <see cref="M:NodaTime.DateTimeZone.Equals(NodaTime.DateTimeZone)"/>) to
-            be a non-null reference of the same type as this instance.</param>
-            <returns>
-            <c>true</c> if the specified <see cref="T:NodaTime.DateTimeZone"/> is equal to this instance;
-            otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:NodaTime.DateTimeZone.GetHashCode">
-            <summary>
-            Returns a hash code for this instance.
-            </summary>
-            <returns>
-            A hash code for this instance, suitable for use in hashing algorithms and data
-            structures like a hash table. 
-            </returns>
         </member>
         <member name="M:NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Instant,NodaTime.Instant)">
             <summary>
@@ -2183,8 +2142,8 @@
             </summary>
             <remarks>
             <para>Consumers should be able to treat an <see cref="T:NodaTime.IDateTimeZoneProvider"/> like a cache: 
-            lookups should be quick (after at most one lookup of a given ID), and the data for a given ID should always be
-            the same (even if the specific instance returned is not).
+            lookups should be quick (after at most one lookup of a given ID), and multiple calls for a given ID must
+            always return references to equal instances, even if they are not references to a single instance.
             Consumers should not feel the need to cache data accessed through this interface.</para>
             <para>Implementations designed to work with any <see cref="T:NodaTime.TimeZones.IDateTimeZoneSource"/> implementation (such as
             <see cref="T:NodaTime.TimeZones.DateTimeZoneCache"/>) should not attempt to handle exceptions thrown by the source. A source-specific
@@ -12234,6 +12193,26 @@
             <param name="reader">The reader.</param>
             <param name="id">The id.</param>
             <returns>The fixed time zone.</returns>
+        </member>
+        <member name="M:NodaTime.TimeZones.FixedDateTimeZone.Equals(System.Object)">
+            <summary>
+            Indicates whether this instance and a specified object are equal.
+            </summary>
+            <returns>
+            true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.
+            </returns>
+            <param name="obj">Another object to compare to.</param> 
+            <filterpriority>2</filterpriority>
+            <returns>True if the specified value is a <see cref="T:NodaTime.TimeZones.FixedDateTimeZone"/> with the same name, ID and offset; otherwise, false.</returns>
+        </member>
+        <member name="M:NodaTime.TimeZones.FixedDateTimeZone.GetHashCode">
+            <summary>
+            Computes the hash code for this instance.
+            </summary>
+            <returns>
+            A 32-bit signed integer that is the hash code for this instance.
+            </returns>
+            <filterpriority>2</filterpriority>
         </member>
         <member name="M:NodaTime.TimeZones.FixedDateTimeZone.ToString">
             <summary>
