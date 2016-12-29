@@ -416,25 +416,6 @@
             </summary>
             <value>The name of this calendar system.</value>
         </member>
-        <member name="P:NodaTime.CalendarSystem.UsesIsoDayOfWeek">
-            <summary>
-            Returns whether the day-of-week field refers to ISO days.
-            </summary>
-            <remarks>
-            <para>
-            If true, types such as <see cref="T:NodaTime.LocalDateTime" />
-            can use the <see cref="T:NodaTime.IsoDayOfWeek" /> property to avoid using magic numbers.
-            This defaults to true, but can be overridden by specific calendars.
-            </para>
-            <para>
-            Currently all calendar systems supported by Noda Time are deemed to use ISO
-            days, so every week is seven days long, and this property always returns true.
-            In the future, however, calendar systems with different - possibly even variable
-            - week lengths may be supported.
-            </para>
-            </remarks>
-            <value>true if the calendar system refers to ISO days; false otherwise.</value>
-        </member>
         <member name="P:NodaTime.CalendarSystem.MinYear">
             <summary>
             Gets the minimum valid year (inclusive) within this calendar.
@@ -520,10 +501,9 @@
             Returns the number of days since the Unix epoch (1970-01-01 ISO) for the given date.
             </summary>
         </member>
-        <member name="M:NodaTime.CalendarSystem.GetIsoDayOfWeek(NodaTime.YearMonthDay)">
+        <member name="M:NodaTime.CalendarSystem.GetDayOfWeek(NodaTime.YearMonthDay)">
             <summary>
-            Returns the IsoDayOfWeek corresponding to the day of week for the given local instant
-            if this calendar uses ISO days of the week, or throws an InvalidOperationException otherwise.
+            Returns the IsoDayOfWeek corresponding to the day of week for the given year, month and day.
             </summary>
             <param name="yearMonthDay">The year, month and day to use to find the day of the week</param>
             <returns>The day of the week as an IsoDayOfWeek</returns>
@@ -3094,24 +3074,11 @@
             <summary>Gets the number of days since the Unix epoch for this date.</summary>
             <value>The number of days since the Unix epoch for this date.</value>
         </member>
-        <member name="P:NodaTime.LocalDate.IsoDayOfWeek">
-            <summary>
-            Gets the week day of this local date expressed as an <see cref="T:NodaTime.IsoDayOfWeek"/> value,
-            for calendars which use ISO days of the week.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">The underlying calendar doesn't use ISO days of the week.</exception>
-            <seealso cref="P:NodaTime.LocalDate.DayOfWeek"/>
-            <value>The week day of this local date expressed as an <c>IsoDayOfWeek</c>.</value>
-        </member>
         <member name="P:NodaTime.LocalDate.DayOfWeek">
             <summary>
-            Gets the week day of this local date as a number.
+            Gets the week day of this local date expressed as an <see cref="T:NodaTime.IsoDayOfWeek"/> value.
             </summary>
-            <remarks>
-            For calendars using ISO week days, this gives 1 for Monday to 7 for Sunday.
-            </remarks>
-            <seealso cref="P:NodaTime.LocalDate.IsoDayOfWeek"/>
-            <value>The week day of this local date as a number.</value>
+            <value>The week day of this local date expressed as an <c>IsoDayOfWeek</c>.</value>
         </member>
         <member name="P:NodaTime.LocalDate.YearOfEra">
             <summary>Gets the year of this local date within the era.</summary>
@@ -3487,7 +3454,7 @@
         </member>
         <member name="M:NodaTime.LocalDate.Next(NodaTime.IsoDayOfWeek)">
             <summary>
-            Returns the next <see cref="T:NodaTime.LocalDate" /> falling on the specified <see cref="P:NodaTime.LocalDate.IsoDayOfWeek"/>.
+            Returns the next <see cref="T:NodaTime.LocalDate" /> falling on the specified <see cref="T:NodaTime.IsoDayOfWeek"/>.
             This is a strict "next" - if this date on already falls on the target
             day of the week, the returned value will be a week later.
             </summary>
@@ -3499,7 +3466,7 @@
         </member>
         <member name="M:NodaTime.LocalDate.Previous(NodaTime.IsoDayOfWeek)">
             <summary>
-            Returns the previous <see cref="T:NodaTime.LocalDate" /> falling on the specified <see cref="P:NodaTime.LocalDate.IsoDayOfWeek"/>.
+            Returns the previous <see cref="T:NodaTime.LocalDate" /> falling on the specified <see cref="T:NodaTime.IsoDayOfWeek"/>.
             This is a strict "previous" - if this date on already falls on the target
             day of the week, the returned value will be a week earlier.
             </summary>
@@ -3748,24 +3715,11 @@
             </summary>
             <value>The day of this local date and time within the month.</value>
         </member>
-        <member name="P:NodaTime.LocalDateTime.IsoDayOfWeek">
-            <summary>
-            Gets the week day of this local date and time expressed as an <see cref="T:NodaTime.IsoDayOfWeek"/> value,
-            for calendars which use ISO days of the week.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">The underlying calendar doesn't use ISO days of the week.</exception>
-            <seealso cref="P:NodaTime.LocalDateTime.DayOfWeek"/>
-            <value>The week day of this local date and time expressed as an <c>IsoDayOfWeek</c>.</value>
-        </member>
         <member name="P:NodaTime.LocalDateTime.DayOfWeek">
             <summary>
-            Gets the week day of this local date and time as a number.
+            Gets the week day of this local date and time expressed as an <see cref="T:NodaTime.IsoDayOfWeek"/> value.
             </summary>
-            <remarks>
-            For calendars using ISO week days, this gives 1 for Monday to 7 for Sunday.
-            </remarks>
-            <seealso cref="P:NodaTime.LocalDateTime.IsoDayOfWeek"/>
-            <value>The week day of this local date and time as a number.</value>
+            <value>The week day of this local date and time expressed as an <c>IsoDayOfWeek</c>.</value>
         </member>
         <member name="P:NodaTime.LocalDateTime.Hour">
             <summary>
@@ -4206,7 +4160,7 @@
         </member>
         <member name="M:NodaTime.LocalDateTime.Next(NodaTime.IsoDayOfWeek)">
             <summary>
-            Returns the next <see cref="T:NodaTime.LocalDateTime" /> falling on the specified <see cref="P:NodaTime.LocalDateTime.IsoDayOfWeek"/>,
+            Returns the next <see cref="T:NodaTime.LocalDateTime" /> falling on the specified <see cref="T:NodaTime.IsoDayOfWeek"/>,
             at the same time of day as this value.
             This is a strict "next" - if this value on already falls on the target
             day of the week, the returned value will be a week later.
@@ -4219,7 +4173,7 @@
         </member>
         <member name="M:NodaTime.LocalDateTime.Previous(NodaTime.IsoDayOfWeek)">
             <summary>
-            Returns the previous <see cref="T:NodaTime.LocalDateTime" /> falling on the specified <see cref="P:NodaTime.LocalDateTime.IsoDayOfWeek"/>,
+            Returns the previous <see cref="T:NodaTime.LocalDateTime" /> falling on the specified <see cref="T:NodaTime.IsoDayOfWeek"/>,
             at the same time of day as this value.
             This is a strict "previous" - if this value on already falls on the target
             day of the week, the returned value will be a week earlier.
@@ -5612,24 +5566,11 @@
             <summary>Gets the day of this offset date and time within the month.</summary>
             <value>The day of this offset date and time within the month.</value>
         </member>
-        <member name="P:NodaTime.OffsetDateTime.IsoDayOfWeek">
-            <summary>
-            Gets the week day of this offset date and time expressed as an <see cref="T:NodaTime.IsoDayOfWeek"/> value,
-            for calendars which use ISO days of the week.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">The underlying calendar doesn't use ISO days of the week.</exception>
-            <seealso cref="P:NodaTime.OffsetDateTime.DayOfWeek"/>
-            <value>The week day of this offset date and time expressed as an <c>IsoDayOfWeek</c>.</value>
-        </member>
         <member name="P:NodaTime.OffsetDateTime.DayOfWeek">
             <summary>
-            Gets the week day of this offset date and time as a number.
+            Gets the week day of this offset date and time expressed as an <see cref="T:NodaTime.IsoDayOfWeek"/> value.
             </summary>
-            <remarks>
-            For calendars using ISO week days, this gives 1 for Monday to 7 for Sunday.
-            </remarks>
-            <seealso cref="P:NodaTime.OffsetDateTime.IsoDayOfWeek"/>
-            <value>The week day of this offset date and time as a number.</value>
+            <value>The week day of this offset date and time expressed as an <c>IsoDayOfWeek</c>.</value>
         </member>
         <member name="P:NodaTime.OffsetDateTime.YearOfEra">
             <summary>Gets the year of this offset date and time within the era.</summary>
@@ -6573,7 +6514,7 @@
         </member>
         <member name="M:NodaTime.Period.ToString">
             <summary>
-            Returns this string formatted according to the <see cref="P:NodaTime.Text.PeriodPattern.RoundtripPattern"/>.
+            Returns this string formatted according to the <see cref="P:NodaTime.Text.PeriodPattern.Roundtrip"/>.
             </summary>
             <returns>A formatted representation of this period.</returns>
         </member>
@@ -7159,24 +7100,11 @@
             </summary>
             <value>The day of this zoned date and time within the month.</value>
         </member>
-        <member name="P:NodaTime.ZonedDateTime.IsoDayOfWeek">
-            <summary>
-            Gets the week day of this zoned date and time expressed as an <see cref="T:NodaTime.IsoDayOfWeek"/> value,
-            for calendars which use ISO days of the week.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">The underlying calendar doesn't use ISO days of the week.</exception>
-            <seealso cref="P:NodaTime.ZonedDateTime.DayOfWeek"/>
-            <value>The week day of this zoned date and time expressed as an <c>IsoDayOfWeek</c> value.</value>
-        </member>
         <member name="P:NodaTime.ZonedDateTime.DayOfWeek">
             <summary>
-            Gets the week day of this zoned date and time as a number.
+            Gets the week day of this zoned date and time expressed as an <see cref="T:NodaTime.IsoDayOfWeek"/> value.
             </summary>
-            <remarks>
-            For calendars using ISO week days, this gives 1 for Monday to 7 for Sunday.
-            </remarks>
-            <value>The week day of this zoned date and time as a number.</value>
-            <seealso cref="P:NodaTime.ZonedDateTime.IsoDayOfWeek"/>
+            <value>The week day of this zoned date and time expressed as an <c>IsoDayOfWeek</c> value.</value>
         </member>
         <member name="P:NodaTime.ZonedDateTime.Hour">
             <summary>
@@ -9484,7 +9412,7 @@
             not currently enforced.
             </threadsafety>
         </member>
-        <member name="P:NodaTime.Text.DurationPattern.RoundtripPattern">
+        <member name="P:NodaTime.Text.DurationPattern.Roundtrip">
             <summary>
             Gets the general pattern for durations using the invariant culture, with a format string of "-D:hh:mm:ss.FFFFFFFFF".
             This pattern round-trips.
@@ -9717,14 +9645,14 @@
             not currently enforced.
             </threadsafety>
         </member>
-        <member name="P:NodaTime.Text.InstantPattern.GeneralPattern">
+        <member name="P:NodaTime.Text.InstantPattern.General">
             <summary>
             Gets the general pattern, which always uses an invariant culture. The general pattern represents
             an instant as a UTC date/time in ISO-8601 style "uuuu-MM-ddTHH:mm:ss'Z'".
             </summary>
             <value>The general pattern, which always uses an invariant culture.</value>
         </member>
-        <member name="P:NodaTime.Text.InstantPattern.ExtendedIsoPattern">
+        <member name="P:NodaTime.Text.InstantPattern.ExtendedIso">
             <summary>
             Gets an invariant instant pattern which is ISO-8601 compatible, providing up to 9 decimal places
             of sub-second accuracy. (These digits are omitted when unnecessary.)
@@ -9941,7 +9869,7 @@
             not currently enforced.
             </threadsafety>
         </member>
-        <member name="P:NodaTime.Text.LocalDatePattern.IsoPattern">
+        <member name="P:NodaTime.Text.LocalDatePattern.Iso">
             <summary>
             Gets an invariant local date pattern which is ISO-8601 compatible.
             This corresponds to the text pattern "uuuu'-'MM'-'dd".
@@ -10160,7 +10088,7 @@
             not currently enforced.
             </threadsafety>
         </member>
-        <member name="P:NodaTime.Text.LocalDateTimePattern.GeneralIsoPattern">
+        <member name="P:NodaTime.Text.LocalDateTimePattern.GeneralIso">
             <summary>
             Gets an invariant local date/time pattern which is ISO-8601 compatible, down to the second.
             This corresponds to the text pattern "uuuu'-'MM'-'dd'T'HH':'mm':'ss", and is also used as the "sortable"
@@ -10168,7 +10096,7 @@
             </summary>
             <value>An invariant local date/time pattern which is ISO-8601 compatible, down to the second.</value>
         </member>
-        <member name="P:NodaTime.Text.LocalDateTimePattern.ExtendedIsoPattern">
+        <member name="P:NodaTime.Text.LocalDateTimePattern.ExtendedIso">
             <summary>
             Gets an invariant local date/time pattern which is ISO-8601 compatible, providing up to 9 decimal places
             of sub-second accuracy. (These digits are omitted when unnecessary.)
@@ -10177,7 +10105,7 @@
             <value>An invariant local date/time pattern which is ISO-8601 compatible, providing up to 9 decimal places
             of sub-second accuracy.</value>
         </member>
-        <member name="P:NodaTime.Text.LocalDateTimePattern.BclRoundtripPattern">
+        <member name="P:NodaTime.Text.LocalDateTimePattern.BclRoundtrip">
             <summary>
             Gets an invariant local date/time pattern which is ISO-8601 compatible, providing up to 7 decimal places
             of sub-second accuracy which are always present (including trailing zeroes). This is compatible with the
@@ -10188,7 +10116,7 @@
             <value>An invariant local date/time pattern which is ISO-8601 compatible, providing up to 7 decimal places
             of sub-second accuracy which are always present (including trailing zeroes).</value>
         </member>
-        <member name="P:NodaTime.Text.LocalDateTimePattern.FullRoundtripPattern">
+        <member name="P:NodaTime.Text.LocalDateTimePattern.FullRoundtrip">
             <summary>
             Gets an invariant local date/time pattern which round trips values including the calendar system.
             This corresponds to the text pattern "uuuu'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffff '('c')'".
@@ -10377,7 +10305,7 @@
             not currently enforced.
             </threadsafety>
         </member>
-        <member name="P:NodaTime.Text.LocalTimePattern.ExtendedIsoPattern">
+        <member name="P:NodaTime.Text.LocalTimePattern.ExtendedIso">
             <summary>
             Gets an invariant local time pattern which is ISO-8601 compatible, providing up to 7 decimal places.
             (These digits are omitted when unnecessary.)
@@ -10593,7 +10521,7 @@
             not currently enforced.
             </threadsafety>
         </member>
-        <member name="P:NodaTime.Text.OffsetDateTimePattern.GeneralIsoPattern">
+        <member name="P:NodaTime.Text.OffsetDateTimePattern.GeneralIso">
             <summary>
             Gets an invariant offset date/time pattern based on ISO-8601 (down to the second), including offset from UTC.
             </summary>
@@ -10604,7 +10532,7 @@
             </remarks>
             <value>An invariant offset date/time pattern based on ISO-8601 (down to the second), including offset from UTC.</value>
         </member>
-        <member name="P:NodaTime.Text.OffsetDateTimePattern.ExtendedIsoPattern">
+        <member name="P:NodaTime.Text.OffsetDateTimePattern.ExtendedIso">
             <summary>
             Gets an invariant offset date/time pattern based on ISO-8601 (down to the nanosecond), including offset from UTC.
             </summary>
@@ -10615,7 +10543,7 @@
             </remarks>
             <value>An invariant offset date/time pattern based on ISO-8601 (down to the nanosecond), including offset from UTC.</value>
         </member>
-        <member name="P:NodaTime.Text.OffsetDateTimePattern.Rfc3339Pattern">
+        <member name="P:NodaTime.Text.OffsetDateTimePattern.Rfc3339">
             <summary>
             Gets an invariant offset date/time pattern based on RFC 3339 (down to the nanosecond), including offset from UTC
             as hours and minutes only.
@@ -10631,7 +10559,7 @@
             <value>An invariant offset date/time pattern based on RFC 3339 (down to the nanosecond), including offset from UTC
             as hours and minutes only.</value>
         </member>
-        <member name="P:NodaTime.Text.OffsetDateTimePattern.FullRoundtripPattern">
+        <member name="P:NodaTime.Text.OffsetDateTimePattern.FullRoundtrip">
             <summary>
             Gets an invariant offset date/time pattern based on ISO-8601 (down to the nanosecond)
             including offset from UTC and calendar ID.
@@ -10803,12 +10731,12 @@
             not currently enforced.
             </threadsafety>
         </member>
-        <member name="P:NodaTime.Text.OffsetPattern.GeneralInvariantPattern">
+        <member name="P:NodaTime.Text.OffsetPattern.GeneralInvariant">
             <summary>
             The "general" offset pattern (e.g. +HH, +HH:mm, +HH:mm:ss, +HH:mm:ss.fff) for the invariant culture.
             </summary>
         </member>
-        <member name="P:NodaTime.Text.OffsetPattern.GeneralInvariantPatternWithZ">
+        <member name="P:NodaTime.Text.OffsetPattern.GeneralInvariantWithZ">
             <summary>
             The "general" offset pattern (e.g. +HH, +HH:mm, +HH:mm:ss, +HH:mm:ss.fff) for the invariant culture,
             but producing (and allowing) Z as a value for a zero offset.
@@ -11065,7 +10993,7 @@
             </summary>
             <threadsafety>This type is immutable reference type. See the thread safety section of the user guide for more information.</threadsafety>
         </member>
-        <member name="P:NodaTime.Text.PeriodPattern.RoundtripPattern">
+        <member name="P:NodaTime.Text.PeriodPattern.Roundtrip">
             <summary>
             Pattern which uses the normal ISO format for all the supported ISO
             fields, but extends the time part with "s" for milliseconds, "t" for ticks and "n" for nanoseconds.
@@ -11074,7 +11002,7 @@
             values: a parse/format cycle will produce an identical period, including units.
             </summary>
         </member>
-        <member name="P:NodaTime.Text.PeriodPattern.NormalizingIsoPattern">
+        <member name="P:NodaTime.Text.PeriodPattern.NormalizingIso">
             <summary>
             A "normalizing" pattern which abides by the ISO-8601 duration format as far as possible.
             Weeks are added to the number of days (after multiplying by 7). Time units are normalized
@@ -11328,7 +11256,7 @@
             not currently enforced.
             </threadsafety>
         </member>
-        <member name="P:NodaTime.Text.ZonedDateTimePattern.GeneralFormatOnlyIsoPattern">
+        <member name="P:NodaTime.Text.ZonedDateTimePattern.GeneralFormatOnlyIso">
             <summary>
             Gets an zoned local date/time pattern based on ISO-8601 (down to the second) including offset from UTC and zone ID.
             It corresponds to a custom pattern of "uuuu'-'MM'-'dd'T'HH':'mm':'ss z '('o&lt;g&gt;')'" and is available
@@ -11341,7 +11269,7 @@
             </remarks>
             <value>An zoned local date/time pattern based on ISO-8601 (down to the second) including offset from UTC and zone ID.</value>
         </member>
-        <member name="P:NodaTime.Text.ZonedDateTimePattern.ExtendedFormatOnlyIsoPattern">
+        <member name="P:NodaTime.Text.ZonedDateTimePattern.ExtendedFormatOnlyIso">
             <summary>
             Returns an invariant zoned date/time pattern based on ISO-8601 (down to the nanosecond) including offset from UTC and zone ID.
             It corresponds to a custom pattern of "uuuu'-'MM'-'dd'T'HH':'mm':'ss;FFFFFFFFF z '('o&lt;g&gt;')'" and is available
@@ -12309,14 +12237,13 @@
             <returns>The <see cref="T:NodaTime.DateTimeZone"/> for the given ID.</returns>
             <exception cref="T:System.ArgumentException"><paramref name="id"/> is not supported by this source.</exception>
         </member>
-        <member name="M:NodaTime.TimeZones.IDateTimeZoneSource.MapTimeZoneId(System.TimeZoneInfo)">
+        <member name="M:NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId">
             <summary>
-            Returns this source's corresponding ID for the given BCL time zone.
+            Returns this source's ID for the system default time zone.
             </summary>
-            <param name="timeZone">The BCL time zone, which must be a known system time zone.</param>
             <returns>
-            The ID for the given system time zone for this source, or null if the system time
-            zone has no mapping in this source.
+            The ID for the system default time zone for this source,
+            or null if the system default time zone has no mapping in this source.
             </returns>
         </member>
         <member name="T:NodaTime.TimeZones.InvalidDateTimeZoneSourceException">
@@ -12825,23 +12752,21 @@
         <member name="M:NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds">
             <inheritdoc />
         </member>
-        <member name="M:NodaTime.TimeZones.TzdbDateTimeZoneSource.MapTimeZoneId(System.TimeZoneInfo)">
+        <member name="M:NodaTime.TimeZones.TzdbDateTimeZoneSource.GetSystemDefaultId">
             <inheritdoc />
-            <param name="timeZone">The BCL time zone, which must be a known system time zone.</param>
         </member>
         <member name="M:NodaTime.TimeZones.TzdbDateTimeZoneSource.GuessZoneIdByTransitionsUncached(System.TimeZoneInfo)">
             <summary>
-            In cases where we can't get a zone mapping, either because we haven't kept
-            up to date with the standard names or because the system language isn't English,
-            try to work out the TZDB mapping by the transitions within the next few years.
-            We only do this for the PCL, where we can't ask a TimeZoneInfo for its ID. Unfortunately
-            this means we may sometimes return a mapping for zones which shouldn't be mapped at all, but that's
-            probably okay and we return null if we don't get a 70% hit rate anyway. We look at all
-            transitions in all primary mappings for the next year.
+            In cases where we can't get a zone mapping directly, we try to work out a good fit
+            by checking the transitions within the next few years.
+            This can happen if the Windows data isn't up-to-date, or if we're on a system where
+            TimeZoneInfo.Local.Id just returns "local", or if TimeZoneInfo.Local is a custom time
+            zone for some reason. We return null if we don't get a 70% hit rate.
+            We look at all transitions in all canonical IDs for the next 5 years.
             Heuristically, this seems to be good enough to get the right results in most cases.
+            This method used to only be called in the PCL build, but it seems reasonable enough to
+            call it if we can't get an exact match anyway.
             </summary>
-            <remarks>This method is not PCL-only as we would like to test it frequently. It will
-            never actually be called in the non-PCL release though.</remarks>
             <param name="zone">Zone to resolve in a best-effort fashion.</param>
         </member>
         <member name="P:NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion">
@@ -14410,12 +14335,6 @@
             <summary>
             Returns the "zone 1970" locations for the source, or null if no such location data is available.
             This needn't be a read-only collection; it won't be exposed directly.
-            </summary>
-        </member>
-        <member name="P:NodaTime.TimeZones.IO.TzdbStreamData.WindowsAdditionalStandardNameToIdMapping">
-            <summary>
-            Additional mappings from Windows standard name to TZDB ID. Primarily used in
-            the PCL build, where we can't get at the system ID. This never returns null.
             </summary>
         </member>
         <member name="M:NodaTime.TimeZones.IO.TzdbStreamData.CreateZone(System.String,System.String)">

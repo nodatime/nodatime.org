@@ -173,6 +173,14 @@ methods introduced in <code>DateTimeOffset</code> in .NET 4.6:</p>
 <li>There are two new methods, <code>ToUnixTimeSeconds()</code> and <code>ToUnixTimeMilliseconds()</code></li>
 </ul>
 
+<p>Static properties on the pattern classes have been renamed to remove the <code>Pattern</code> suffix. For example,
+<code>LocalDateTimePattern.ExtendedIsoPattern</code> is now just <code>LocalDateTimePattern.ExtendedIso</code>.</p>
+
+<p>The <code>IsoDayOfWeek</code> properties in <code>LocalDate</code>, <code>LocalDateTime</code>, <code>OffsetDateTime</code>
+and <code>ZonedDateTime</code> are now just called <code>DayOfWeek</code>. The previous numeric <code>DayOfWeek</code> properties
+have been removed, but in all cases if you were actually calling them, you can just cast the <code>IsoDayOfWeek</code>
+to <code>int</code> and always get the same result, as all calendar systems use ISO days of the week.</p>
+
 <h1>Period</h1>
 
 <p>The <code>Years</code>, <code>Months</code>, <code>Weeks</code> and <code>Days</code> properties of <code>Period</code> (and <code>PeriodBuilder</code>) are

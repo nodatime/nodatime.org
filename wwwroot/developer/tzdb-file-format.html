@@ -368,7 +368,7 @@ representation is a single <code>dictionary</code>.</p>
 
 <p>This field must occur exactly once, and it uses the string pool.</p>
 
-<h2>Field 5: Additional information for Windows mapping</h2>
+<h2>Field 5: Additional information for Windows mapping (obsolete)</h2>
 
 <p>This field is only present for the sake of the PCL version, but is loaded in both builds anyway.
 It contains a mapping from Windows <code>TimeZoneInfo</code> standard name (in the en-US
@@ -377,6 +377,8 @@ where the two differ. (There are only a few.) This is required as the PCL doesn&
 <code>TimeZoneInfo.Id</code> property.</p>
 
 <p>The field data is a single <code>dictionary</code>. It must occur exactly once, and it uses the string pool.</p>
+
+<p>This field is not read in Noda Time 2.x, which uses <code>TimeZoneInfo.Id</code> (present in netstandard1.3).</p>
 
 <h2>Field 6: Zone location information</h2>
 
@@ -392,6 +394,27 @@ in English.</p>
 <li>A <code>signed count</code> for the longitude of the sample location, as an integer number of seconds.</li>
 <li>A <code>string</code> for the name of the country.</li>
 <li>A <code>string</code> for the ISO-3166 two-letter country code.</li>
+<li>A (possibly empty) <code>string</code> for the comment associated with the location (usually used to disambiguate between
+locations in the same country).</li>
+</ul>
+
+<h2>Field 7: &quot;Zone1970&quot; locations</h2>
+
+<p>This field provides the information in the <code>iso3166.tab</code> and <code>zone1970.tab</code> files within TZDB.</p>
+
+<p>The field data consists of a <code>count</code> of elements, then the elements themselves. Each element consists of:</p>
+
+<ul>
+<li>A <code>signed count</code> for the latitude of the sample location, as an integer number of seconds.</li>
+<li>A <code>signed count</code> for the longitude of the sample location, as an integer number of seconds.</li>
+<li>A <code>signed count</code> for the number of countries.</li>
+<li>For each country:
+
+<ul>
+<li>A <code>string</code> for the name of the country.</li>
+<li>A <code>string</code> for the ISO-3166 two-letter country code.</li>
+</ul></li>
+<li>A <code>string</code> for the zone ID.</li>
 <li>A (possibly empty) <code>string</code> for the comment associated with the location (usually used to disambiguate between
 locations in the same country).</li>
 </ul>
