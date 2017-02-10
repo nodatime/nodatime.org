@@ -1,0 +1,782 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DateInterval
+   | Noda Time </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DateInterval
+   | Noda Time ">
+    <meta name="generator" content="docfx 2.11.2.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content">
+              
+              
+              <h1 id="NodaTime_DateInterval" data-uid="NodaTime.DateInterval">Class DateInterval
+              </h1>
+              <div class="markdown level0 summary"><p>An interval between two dates.</p>
+</div>
+              <div class="markdown level0 conceptual"></div>
+              <div class="inheritance">
+                <h5>Inheritance</h5>
+                  <div class="level0"><span class="xref">System.Object</span></div>
+                  <div class="level1"><span class="xref">DateInterval</span></div>
+              </div>
+              <div class="inheritedMembers">
+                <h5>Inherited Members</h5>
+                <div>
+                  <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+                </div>
+                <div>
+                  <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+                </div>
+                <div>
+                  <span class="xref">System.Object.GetType()</span>
+                </div>
+                <div>
+                  <span class="xref">System.Object.MemberwiseClone()</span>
+                </div>
+              </div>
+              <h6><strong>Namespace</strong>:NodaTime</h6>
+              <h6><strong>Assembly</strong>:NodaTime.dll</h6>
+              <h5 id="NodaTime_DateInterval_syntax">Syntax</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public sealed class DateInterval : IEquatable&lt;DateInterval&gt;</code></pre>
+              </div>
+              <h5 id="NodaTime_DateInterval_remarks"><strong>Remarks</strong></h5>
+              <div class="markdown level0 remarks"><p>
+The two dates must be in the same calendar, and the end date must not be earlier than the start date.
+</p>
+<p>
+By default, the end date is deemed to be part of the range, as this matches many real life uses of
+date ranges. For example, if someone says &quot;I&#39;m going to be on holiday from Monday to Friday,&quot; they
+usually mean that Friday is part of their holiday. This can be configured via a constructor parameter,
+as occasionally an exclusive end date can be useful. For example, to create an interval covering a
+whole month, you can simply provide the first day of the month as the start and the first day of the
+next month as the exclusive end.
+</p>
+<p>
+Values can be compared for equality, but note that inclusive intervals and exclusive intervals are always
+considered to differ, even if they cover the same range of dates.
+</p>
+</div>
+              <h3 id="constructors">Constructors
+              </h3>
+              <a id="NodaTime_DateInterval__ctor_" data-uid="NodaTime.DateInterval.#ctor*"></a>
+              <h4 id="NodaTime_DateInterval__ctor_NodaTime_LocalDate_NodaTime_LocalDate_" data-uid="NodaTime.DateInterval.#ctor(NodaTime.LocalDate,NodaTime.LocalDate)">DateInterval(LocalDate, LocalDate)</h4>
+              <div class="markdown level1 summary"><p>Constructs a date interval from a start date and an inclusive end date.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public DateInterval(LocalDate start, LocalDate end)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
+                    <td><span class="parametername">start</span></td>
+                    <td><p>Start date of the interval</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
+                    <td><span class="parametername">end</span></td>
+                    <td><p>End date of the interval, inclusive</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentException</span></td>
+                    <td><p><span class="paramref">end</span> is earlier than <span class="paramref">start</span>
+    or the two dates are in different calendars.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_DateInterval__ctor_" data-uid="NodaTime.DateInterval.#ctor*"></a>
+              <h4 id="NodaTime_DateInterval__ctor_NodaTime_LocalDate_NodaTime_LocalDate_System_Boolean_" data-uid="NodaTime.DateInterval.#ctor(NodaTime.LocalDate,NodaTime.LocalDate,System.Boolean)">DateInterval(LocalDate, LocalDate, Boolean)</h4>
+              <div class="markdown level1 summary"><p>Constructs a date interval from a start date and an end date, and an indication
+of whether the end date should be included in the interval.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public DateInterval(LocalDate start, LocalDate end, bool inclusive)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
+                    <td><span class="parametername">start</span></td>
+                    <td><p>Start date of the interval</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
+                    <td><span class="parametername">end</span></td>
+                    <td><p>End date of the interval</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><span class="parametername">inclusive</span></td>
+                    <td><p><code>true</code> to include the end date in the interval;
+<code>false</code> to exclude it.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentException</span></td>
+                    <td><p><span class="paramref">end</span> is earlier than <span class="paramref">start</span>
+    or the two dates are in different calendars.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3 id="properties">Properties
+              </h3>
+              <a id="NodaTime_DateInterval_ContainedDatesEqualityComparer_" data-uid="NodaTime.DateInterval.ContainedDatesEqualityComparer*"></a>
+              <h4 id="NodaTime_DateInterval_ContainedDatesEqualityComparer" data-uid="NodaTime.DateInterval.ContainedDatesEqualityComparer">ContainedDatesEqualityComparer</h4>
+              <div class="markdown level1 summary"><p>Returns an equality comparer which compares intervals by comparing the set of dates contained within them.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static IEqualityComparer&lt;DateInterval&gt; ContainedDatesEqualityComparer { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Collections.Generic.IEqualityComparer</span>&lt;<a class="xref" href="NodaTime.DateInterval.html">DateInterval</a>&gt;</td>
+                    <td><p>An equality comparer which compares intervals by comparing the set of dates contained within
+them.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_DateInterval_ContainedDatesEqualityComparer_remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p>
+This comparer considers date intervals to be equal if they would contain the same dates.  Alternatively:
+this comparer is identical to the built-in equality for <code>DateInterval</code>, except that it also considers
+an exclusive date interval of [2001-01-01, 2001-02-01) as equal to an inclusive date interval of
+[2001-01-01, 2001-01-31] and considers all empty intervals — e.g. [2001-01-01, 2001-01-01) or [1900-01-01,
+1900-01-01) — to be equal to each other (as every empty interval contains the same set of dates).
+</p>
+<p>
+Note that intervals containing dates from different calendars are still considered unequal by this comparer.
+</p>
+</div>
+              <h5 id="NodaTime_DateInterval_ContainedDatesEqualityComparer_seealso">See Also</h5>
+              <div class="seealso">
+                  <div><a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_NormalizingEqualityComparer">NormalizingEqualityComparer</a></div>
+              </div>
+              <a id="NodaTime_DateInterval_End_" data-uid="NodaTime.DateInterval.End*"></a>
+              <h4 id="NodaTime_DateInterval_End" data-uid="NodaTime.DateInterval.End">End</h4>
+              <div class="markdown level1 summary"><p>Gets the end date of the interval.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public LocalDate End { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
+                    <td><p>The end date of the interval.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_DateInterval_End_remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p>Use the <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_Inclusive">Inclusive</a> property to determine whether or not the end
+date is considered part of the interval.</p>
+</div>
+              <a id="NodaTime_DateInterval_Inclusive_" data-uid="NodaTime.DateInterval.Inclusive*"></a>
+              <h4 id="NodaTime_DateInterval_Inclusive" data-uid="NodaTime.DateInterval.Inclusive">Inclusive</h4>
+              <div class="markdown level1 summary"><p>Indicates whether or not this interval includes its end date.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool Inclusive { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><p>Whether or not this interval includes its end date.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_DateInterval_Length_" data-uid="NodaTime.DateInterval.Length*"></a>
+              <h4 id="NodaTime_DateInterval_Length" data-uid="NodaTime.DateInterval.Length">Length</h4>
+              <div class="markdown level1 summary"><p>Gets the length of this date interval in days.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int Length { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><p>The length of this date interval in days.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_DateInterval_Length_remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p>The end date is included or excluded according to the <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_Inclusive">Inclusive</a>
+property. For example, an inclusive interval where the start and end date are the
+same has a length of 1, whereas an exclusive interval for the same dates has a
+length of 0.</p>
+</div>
+              <a id="NodaTime_DateInterval_NormalizingEqualityComparer_" data-uid="NodaTime.DateInterval.NormalizingEqualityComparer*"></a>
+              <h4 id="NodaTime_DateInterval_NormalizingEqualityComparer" data-uid="NodaTime.DateInterval.NormalizingEqualityComparer">NormalizingEqualityComparer</h4>
+              <div class="markdown level1 summary"><p>Returns an equality comparer which compares intervals by first normalizing them to exclusive intervals.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static IEqualityComparer&lt;DateInterval&gt; NormalizingEqualityComparer { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Collections.Generic.IEqualityComparer</span>&lt;<a class="xref" href="NodaTime.DateInterval.html">DateInterval</a>&gt;</td>
+                    <td><p>An equality comparer which compares intervals by first normalizing them to exclusive
+intervals.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_DateInterval_NormalizingEqualityComparer_remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p>
+This comparer considers date intervals to be equal if they have the same start and end dates when considered
+as exclusive intervals.  Alternatively: this comparer is identical to the built-in equality for
+<code>DateInterval</code>, except that it also considers an exclusive date interval of [2001-01-01, 2001-02-01) as
+equal to an inclusive date interval of [2001-01-01, 2001-01-31].
+</p>
+<p>
+Note that intervals with different start dates are still considered unequal by this comparer (even empty
+intervals that contain no dates), as are intervals containing dates from different calendars.
+</p>
+</div>
+              <h5 id="NodaTime_DateInterval_NormalizingEqualityComparer_seealso">See Also</h5>
+              <div class="seealso">
+                  <div><a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_ContainedDatesEqualityComparer">ContainedDatesEqualityComparer</a></div>
+              </div>
+              <a id="NodaTime_DateInterval_Start_" data-uid="NodaTime.DateInterval.Start*"></a>
+              <h4 id="NodaTime_DateInterval_Start" data-uid="NodaTime.DateInterval.Start">Start</h4>
+              <div class="markdown level1 summary"><p>Gets the start date of the interval, which is always included in the interval.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public LocalDate Start { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
+                    <td><p>The start date of the interval.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3 id="methods">Methods
+              </h3>
+              <a id="NodaTime_DateInterval_Contains_" data-uid="NodaTime.DateInterval.Contains*"></a>
+              <h4 id="NodaTime_DateInterval_Contains_NodaTime_LocalDate_" data-uid="NodaTime.DateInterval.Contains(NodaTime.LocalDate)">Contains(LocalDate)</h4>
+              <div class="markdown level1 summary"><p>Checks whether the given date is within this date interval. This requires
+that the date is not earlier than the start date, and not later than the end
+date. If the given date is exactly equal to the end date, it is considered
+to be within the interval if and only if the interval is <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_Inclusive">Inclusive</a>.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool Contains(LocalDate date)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
+                    <td><span class="parametername">date</span></td>
+                    <td><p>The date to check for containment within this interval.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><p><code>true</code> if <span class="paramref">date</span> is within this interval; <code>false</code> otherwise.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentException</span></td>
+                    <td><p><span class="paramref">date</span> is not in the same
+    calendar as the start and end date of this interval.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_DateInterval_Equals_" data-uid="NodaTime.DateInterval.Equals*"></a>
+              <h4 id="NodaTime_DateInterval_Equals_NodaTime_DateInterval_" data-uid="NodaTime.DateInterval.Equals(NodaTime.DateInterval)">Equals(DateInterval)</h4>
+              <div class="markdown level1 summary"><p>Compares the given date interval for equality with this one.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool Equals(DateInterval other)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.DateInterval.html">DateInterval</a></td>
+                    <td><span class="parametername">other</span></td>
+                    <td><p>The date interval to compare this one with.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><p>True if this date interval has the same properties as the one specified.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><span class="xref">System.IEquatable&lt;T&gt;.Equals(T)</span></div>
+              <h5 id="NodaTime_DateInterval_Equals_NodaTime_DateInterval__remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p>Date intervals are equal if they have the same start and end dates and are both inclusive or both exclusive:
+an exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the inclusive date interval of
+[2001-01-01, 2001-01-31], even though both contain the same range of dates.</p>
+</div>
+              <a id="NodaTime_DateInterval_Equals_" data-uid="NodaTime.DateInterval.Equals*"></a>
+              <h4 id="NodaTime_DateInterval_Equals_System_Object_" data-uid="NodaTime.DateInterval.Equals(System.Object)">Equals(Object)</h4>
+              <div class="markdown level1 summary"><p>Compares the given object for equality with this one, as per <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_Equals_NodaTime_DateInterval_">Equals(DateInterval)</a>.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Object</span></td>
+                    <td><span class="parametername">obj</span></td>
+                    <td><p>The value to compare this one with.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><p>true if the other object is a date interval equal to this one, consistent with <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_Equals_NodaTime_DateInterval_">Equals(DateInterval)</a>.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="overrides">Overrides</h5>
+              <div><span class="xref">System.Object.Equals(System.Object)</span></div>
+              <a id="NodaTime_DateInterval_GetHashCode_" data-uid="NodaTime.DateInterval.GetHashCode*"></a>
+              <h4 id="NodaTime_DateInterval_GetHashCode" data-uid="NodaTime.DateInterval.GetHashCode">GetHashCode()</h4>
+              <div class="markdown level1 summary"><p>Returns the hash code for this interval, consistent with <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_Equals_NodaTime_DateInterval_">Equals(DateInterval)</a>.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><p>The hash code for this interval.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="overrides">Overrides</h5>
+              <div><span class="xref">System.Object.GetHashCode()</span></div>
+              <a id="NodaTime_DateInterval_ToString_" data-uid="NodaTime.DateInterval.ToString*"></a>
+              <h4 id="NodaTime_DateInterval_ToString" data-uid="NodaTime.DateInterval.ToString">ToString()</h4>
+              <div class="markdown level1 summary"><p>Returns a string representation of this interval.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><p>A string representation of this interval, as [start, end] for inclusive intervals, or [start, end) for
+exclusive intervals, where &quot;start&quot; and &quot;end&quot; are the dates formatted using an ISO-8601 compatible pattern.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="overrides">Overrides</h5>
+              <div><span class="xref">System.Object.ToString()</span></div>
+              <h3 id="operators">Operators
+              </h3>
+              <a id="NodaTime_DateInterval_op_Equality_" data-uid="NodaTime.DateInterval.op_Equality*"></a>
+              <h4 id="NodaTime_DateInterval_op_Equality_NodaTime_DateInterval_NodaTime_DateInterval_" data-uid="NodaTime.DateInterval.op_Equality(NodaTime.DateInterval,NodaTime.DateInterval)">Equality(DateInterval, DateInterval)</h4>
+              <div class="markdown level1 summary"><p>Compares two <a class="xref" href="NodaTime.DateInterval.html">DateInterval</a> values for equality.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static bool operator ==(DateInterval lhs, DateInterval rhs)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.DateInterval.html">DateInterval</a></td>
+                    <td><span class="parametername">lhs</span></td>
+                    <td><p>The first value to compare</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.DateInterval.html">DateInterval</a></td>
+                    <td><span class="parametername">rhs</span></td>
+                    <td><p>The second value to compare</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><p>True if the two date intervals have the same properties; false otherwise.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_DateInterval_op_Equality_NodaTime_DateInterval_NodaTime_DateInterval__remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p>Date intervals are equal if they have the same start and end dates and are both inclusive or both exclusive:
+an exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the inclusive date interval of
+[2001-01-01, 2001-01-31], even though both contain the same range of dates.</p>
+</div>
+              <a id="NodaTime_DateInterval_op_Inequality_" data-uid="NodaTime.DateInterval.op_Inequality*"></a>
+              <h4 id="NodaTime_DateInterval_op_Inequality_NodaTime_DateInterval_NodaTime_DateInterval_" data-uid="NodaTime.DateInterval.op_Inequality(NodaTime.DateInterval,NodaTime.DateInterval)">Inequality(DateInterval, DateInterval)</h4>
+              <div class="markdown level1 summary"><p>Compares two <a class="xref" href="NodaTime.DateInterval.html">DateInterval</a> values for inequality.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static bool operator !=(DateInterval lhs, DateInterval rhs)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.DateInterval.html">DateInterval</a></td>
+                    <td><span class="parametername">lhs</span></td>
+                    <td><p>The first value to compare</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.DateInterval.html">DateInterval</a></td>
+                    <td><span class="parametername">rhs</span></td>
+                    <td><p>The second value to compare</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><p>False if the two date intervals have the same properties; true otherwise.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_DateInterval_op_Inequality_NodaTime_DateInterval_NodaTime_DateInterval__remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p>Date intervals are equal if they have the same start and end dates and are both inclusive or both exclusive:
+an exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the inclusive date interval of
+[2001-01-01, 2001-01-31], even though both contain the same range of dates.</p>
+</div>
+                        </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+             
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

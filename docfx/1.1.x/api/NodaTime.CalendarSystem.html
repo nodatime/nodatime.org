@@ -1,0 +1,1136 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CalendarSystem
+   | Noda Time </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CalendarSystem
+   | Noda Time ">
+    <meta name="generator" content="docfx 2.11.2.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content">
+              
+              
+              <h1 id="NodaTime_CalendarSystem" data-uid="NodaTime.CalendarSystem">Class CalendarSystem
+              </h1>
+              <div class="markdown level0 summary"><p>A calendar system maps the non-calendar-specific &quot;local time line&quot; to human concepts
+such as years, months and days.</p>
+</div>
+              <div class="markdown level0 conceptual"></div>
+              <div class="inheritance">
+                <h5>Inheritance</h5>
+                  <div class="level0"><span class="xref">System.Object</span></div>
+                  <div class="level1"><span class="xref">CalendarSystem</span></div>
+              </div>
+              <div class="inheritedMembers">
+                <h5>Inherited Members</h5>
+                <div>
+                  <span class="xref">System.Object.Equals(System.Object)</span>
+                </div>
+                <div>
+                  <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+                </div>
+                <div>
+                  <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+                </div>
+                <div>
+                  <span class="xref">System.Object.GetHashCode()</span>
+                </div>
+                <div>
+                  <span class="xref">System.Object.GetType()</span>
+                </div>
+                <div>
+                  <span class="xref">System.Object.MemberwiseClone()</span>
+                </div>
+              </div>
+              <h6><strong>Namespace</strong>:NodaTime</h6>
+              <h6><strong>Assembly</strong>:NodaTime.dll</h6>
+              <h5 id="NodaTime_CalendarSystem_syntax">Syntax</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public abstract class CalendarSystem</code></pre>
+              </div>
+              <h5 id="NodaTime_CalendarSystem_remarks"><strong>Remarks</strong></h5>
+              <div class="markdown level0 remarks"><p>
+Many developers will never need to touch this class, other than to potentially ask a calendar
+how many days are in a particular year/month and the like. Noda Time defaults to using the ISO-8601
+calendar anywhere that a calendar system is required but hasn&#39;t been explicitly specified.
+</p>
+<p>
+If you need to obtain a <a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a> instance, use one of the static properties or methods in this
+class, such as the <a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_Iso">Iso</a> property or the <a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetGregorianCalendar_System_Int32_">GetGregorianCalendar(Int32)</a> method.
+</p>
+<p>Although this class is abstract, other assemblies cannot introduce types which derive from it, as the
+constructor is internal, and makes use of internal types. This ensures that all calendar types are genuinely
+immutable and thread-safe, aside from anything else. If you require a calendar system which is not
+currently supported, please file a feature request and we&#39;ll see what we can do.
+</p>
+</div>
+              <h3 id="properties">Properties
+              </h3>
+              <a id="NodaTime_CalendarSystem_Eras_" data-uid="NodaTime.CalendarSystem.Eras*"></a>
+              <h4 id="NodaTime_CalendarSystem_Eras" data-uid="NodaTime.CalendarSystem.Eras">Eras</h4>
+              <div class="markdown level1 summary"><p>Returns a read-only list of eras used in this calendar system.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public IList&lt;Era&gt; Eras { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Collections.Generic.IList</span>&lt;<a class="xref" href="NodaTime.Calendars.Era.html">Era</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_CalendarSystem_Id_" data-uid="NodaTime.CalendarSystem.Id*"></a>
+              <h4 id="NodaTime_CalendarSystem_Id" data-uid="NodaTime.CalendarSystem.Id">Id</h4>
+              <div class="markdown level1 summary"><p>Returns the unique identifier for this calendar system. This is provides full round-trip capability
+using <a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_ForId_System_String_">ForId(String)</a> to retrieve the calendar system from the identifier.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public string Id { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_CalendarSystem_Id_remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p><p>
+A unique ID for a calendar is required when serializing types which include a <a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a>.
+As of 2 Nov 2012 (ISO calendar) there are no ISO or RFC standards for naming a calendar system. As such,
+the identifiers provided here are specific to Noda Time, and are not guaranteed to interoperate with any other
+date and time API.
+</p></p>
+<table><thead><tr><th>Calendar ID</th><th>Equivalent factory method</th></tr></thead><tbody><tr><td>ISO</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_Iso">Iso</a></td></tr><tr><td>Gregorian 1</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetGregorianCalendar_System_Int32_">GetGregorianCalendar(Int32)</a>(1)</td></tr><tr><td>Gregorian 2</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetGregorianCalendar_System_Int32_">GetGregorianCalendar(Int32)</a>(2)</td></tr><tr><td>Gregorian 3</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetGregorianCalendar_System_Int32_">GetGregorianCalendar(Int32)</a>(3)</td></tr><tr><td>Gregorian 3</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetGregorianCalendar_System_Int32_">GetGregorianCalendar(Int32)</a>(4)</td></tr><tr><td>Gregorian 5</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetGregorianCalendar_System_Int32_">GetGregorianCalendar(Int32)</a>(5)</td></tr><tr><td>Gregorian 6</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetGregorianCalendar_System_Int32_">GetGregorianCalendar(Int32)</a>(6)</td></tr><tr><td>Gregorian 7</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetGregorianCalendar_System_Int32_">GetGregorianCalendar(Int32)</a>(7)</td></tr><tr><td>Coptic 1</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetCopticCalendar_System_Int32_">GetCopticCalendar(Int32)</a>(1)</td></tr><tr><td>Coptic 2</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetCopticCalendar_System_Int32_">GetCopticCalendar(Int32)</a>(2)</td></tr><tr><td>Coptic 3</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetCopticCalendar_System_Int32_">GetCopticCalendar(Int32)</a>(3)</td></tr><tr><td>Coptic 4</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetCopticCalendar_System_Int32_">GetCopticCalendar(Int32)</a>(4)</td></tr><tr><td>Coptic 5</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetCopticCalendar_System_Int32_">GetCopticCalendar(Int32)</a>(5)</td></tr><tr><td>Coptic 6</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetCopticCalendar_System_Int32_">GetCopticCalendar(Int32)</a>(6)</td></tr><tr><td>Coptic 7</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetCopticCalendar_System_Int32_">GetCopticCalendar(Int32)</a>(7)</td></tr><tr><td>Julian 1</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetJulianCalendar_System_Int32_">GetJulianCalendar(Int32)</a>(1)</td></tr><tr><td>Julian 2</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetJulianCalendar_System_Int32_">GetJulianCalendar(Int32)</a>(2)</td></tr><tr><td>Julian 3</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetJulianCalendar_System_Int32_">GetJulianCalendar(Int32)</a>(3)</td></tr><tr><td>Julian 4</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetJulianCalendar_System_Int32_">GetJulianCalendar(Int32)</a>(4)</td></tr><tr><td>Julian 5</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetJulianCalendar_System_Int32_">GetJulianCalendar(Int32)</a>(5)</td></tr><tr><td>Julian 6</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetJulianCalendar_System_Int32_">GetJulianCalendar(Int32)</a>(6)</td></tr><tr><td>Julian 7</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetJulianCalendar_System_Int32_">GetJulianCalendar(Int32)</a>(7)</td></tr><tr><td>Hijri Civil-Indian</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetIslamicCalendar_NodaTime_Calendars_IslamicLeapYearPattern_NodaTime_Calendars_IslamicEpoch_">GetIslamicCalendar(IslamicLeapYearPattern, IslamicEpoch)</a>(IslamicLeapYearPattern.Indian, IslamicEpoch.Civil)</td></tr><tr><td>Hijri Civil-Base15</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetIslamicCalendar_NodaTime_Calendars_IslamicLeapYearPattern_NodaTime_Calendars_IslamicEpoch_">GetIslamicCalendar(IslamicLeapYearPattern, IslamicEpoch)</a>(IslamicLeapYearPattern.Base15, IslamicEpoch.Civil)</td></tr><tr><td>Hijri Civil-Base16</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetIslamicCalendar_NodaTime_Calendars_IslamicLeapYearPattern_NodaTime_Calendars_IslamicEpoch_">GetIslamicCalendar(IslamicLeapYearPattern, IslamicEpoch)</a>(IslamicLeapYearPattern.Base16, IslamicEpoch.Civil)</td></tr><tr><td>Hijri Civil-HabashAlHasib</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetIslamicCalendar_NodaTime_Calendars_IslamicLeapYearPattern_NodaTime_Calendars_IslamicEpoch_">GetIslamicCalendar(IslamicLeapYearPattern, IslamicEpoch)</a>(IslamicLeapYearPattern.HabashAlHasib, IslamicEpoch.Civil)</td></tr><tr><td>Hijri Astronomical-Indian</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetIslamicCalendar_NodaTime_Calendars_IslamicLeapYearPattern_NodaTime_Calendars_IslamicEpoch_">GetIslamicCalendar(IslamicLeapYearPattern, IslamicEpoch)</a>(IslamicLeapYearPattern.Indian, IslamicEpoch.Astronomical)</td></tr><tr><td>Hijri Astronomical-Base15</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetIslamicCalendar_NodaTime_Calendars_IslamicLeapYearPattern_NodaTime_Calendars_IslamicEpoch_">GetIslamicCalendar(IslamicLeapYearPattern, IslamicEpoch)</a>(IslamicLeapYearPattern.Base15, IslamicEpoch.Astronomical)</td></tr><tr><td>Hijri Astronomical-Base16</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetIslamicCalendar_NodaTime_Calendars_IslamicLeapYearPattern_NodaTime_Calendars_IslamicEpoch_">GetIslamicCalendar(IslamicLeapYearPattern, IslamicEpoch)</a>(IslamicLeapYearPattern.Base16, IslamicEpoch.Astronomical)</td></tr><tr><td>Hijri Astronomical-HabashAlHasib</td><td><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_GetIslamicCalendar_NodaTime_Calendars_IslamicLeapYearPattern_NodaTime_Calendars_IslamicEpoch_">GetIslamicCalendar(IslamicLeapYearPattern, IslamicEpoch)</a>(IslamicLeapYearPattern.HabashAlHasib, IslamicEpoch.Astronomical)</td></tr></tbody></table>
+</div>
+              <a id="NodaTime_CalendarSystem_Ids_" data-uid="NodaTime.CalendarSystem.Ids*"></a>
+              <h4 id="NodaTime_CalendarSystem_Ids" data-uid="NodaTime.CalendarSystem.Ids">Ids</h4>
+              <div class="markdown level1 summary"><p>Returns the IDs of all calendar systems available within Noda Time. The order of the keys is not guaranteed.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static IEnumerable&lt;string&gt; Ids { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_CalendarSystem_Iso_" data-uid="NodaTime.CalendarSystem.Iso*"></a>
+              <h4 id="NodaTime_CalendarSystem_Iso" data-uid="NodaTime.CalendarSystem.Iso">Iso</h4>
+              <div class="markdown level1 summary"><p>Returns a calendar system that follows the rules of the ISO-8601 standard,
+which is compatible with Gregorian for all modern dates.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static CalendarSystem Iso { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_CalendarSystem_Iso_remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p>
+When ISO does not define a field, but it can be determined (such as AM/PM) it is included.
+</p>
+<p>
+With the exception of century related fields, the ISO calendar is exactly the
+same as the Gregorian calendar system. In the ISO system, centuries and year
+of century are zero based. For all years, the century is determined by
+dropping the last two digits of the year, ignoring sign. The year of century
+is the value of the last two year digits.
+</p>
+</div>
+              <a id="NodaTime_CalendarSystem_MaxYear_" data-uid="NodaTime.CalendarSystem.MaxYear*"></a>
+              <h4 id="NodaTime_CalendarSystem_MaxYear" data-uid="NodaTime.CalendarSystem.MaxYear">MaxYear</h4>
+              <div class="markdown level1 summary"><p>The maximum valid year (inclusive) within this calendar.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int MaxYear { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_CalendarSystem_MinYear_" data-uid="NodaTime.CalendarSystem.MinYear*"></a>
+              <h4 id="NodaTime_CalendarSystem_MinYear" data-uid="NodaTime.CalendarSystem.MinYear">MinYear</h4>
+              <div class="markdown level1 summary"><p>The minimum valid year (inclusive) within this calendar.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int MinYear { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_CalendarSystem_Name_" data-uid="NodaTime.CalendarSystem.Name*"></a>
+              <h4 id="NodaTime_CalendarSystem_Name" data-uid="NodaTime.CalendarSystem.Name">Name</h4>
+              <div class="markdown level1 summary"><p>Returns the name of this calendar system. Each kind of calendar system has a unique name, but this
+does not usually provide enough information for round-tripping. (For example, the name of an
+Islamic calendar system does not indicate which kind of leap cycle it uses, and other calendars
+specify the minimum number of days in the first week of a year.)</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_CalendarSystem_UsesIsoDayOfWeek_" data-uid="NodaTime.CalendarSystem.UsesIsoDayOfWeek*"></a>
+              <h4 id="NodaTime_CalendarSystem_UsesIsoDayOfWeek" data-uid="NodaTime.CalendarSystem.UsesIsoDayOfWeek">UsesIsoDayOfWeek</h4>
+              <div class="markdown level1 summary"><p>Returns whether the day-of-week field refers to ISO days. If true, types such as <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a>
+can use the <a class="xref" href="NodaTime.IsoDayOfWeek.html">IsoDayOfWeek</a> property to avoid using magic numbers.
+This defaults to true, but can be overridden by specific calendars.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public virtual bool UsesIsoDayOfWeek { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3 id="methods">Methods
+              </h3>
+              <a id="NodaTime_CalendarSystem_ForId_" data-uid="NodaTime.CalendarSystem.ForId*"></a>
+              <h4 id="NodaTime_CalendarSystem_ForId_System_String_" data-uid="NodaTime.CalendarSystem.ForId(System.String)">ForId(String)</h4>
+              <div class="markdown level1 summary"><p>Fetches a calendar system by its unique identifier. This provides full round-tripping of a calendar
+system. It is not guaranteed that calling this method twice with the same identifier will return
+identical references, but the references objects will be equal.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static CalendarSystem ForId(string id)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><span class="parametername">id</span></td>
+                    <td><p>The ID of the calendar system. This is case-sensitive.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
+                    <td><p>The calendar system with the given ID.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
+                    <td><p>No calendar system for the specified ID can be found.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_CalendarSystem_ForId_System_String__seealso">See Also</h5>
+              <div class="seealso">
+                  <div><a class="xref" href="NodaTime.CalendarSystem.html#NodaTime_CalendarSystem_Id">Id</a></div>
+              </div>
+              <a id="NodaTime_CalendarSystem_GetAbsoluteYear_" data-uid="NodaTime.CalendarSystem.GetAbsoluteYear*"></a>
+              <h4 id="NodaTime_CalendarSystem_GetAbsoluteYear_System_Int32_NodaTime_Calendars_Era_" data-uid="NodaTime.CalendarSystem.GetAbsoluteYear(System.Int32,NodaTime.Calendars.Era)">GetAbsoluteYear(Int32, Era)</h4>
+              <div class="markdown level1 summary"><p>Returns the &quot;absolute year&quot; (the one used throughout most of the API, without respect to eras)
+from a year-of-era and an era.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int GetAbsoluteYear(int yearOfEra, Era era)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">yearOfEra</span></td>
+                    <td><p>The year within the era.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Calendars.Era.html">Era</a></td>
+                    <td><span class="parametername">era</span></td>
+                    <td><p>The era in which to consider the year</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><p>The absolute year represented by the specified year of era.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_CalendarSystem_GetAbsoluteYear_System_Int32_NodaTime_Calendars_Era__remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p>For example, in the Gregorian and Julian calendar systems, the BCE era starts at year 1, which is
+equivalent to an &quot;absolute year&quot; of 0 (then BCE year 2 has an absolute year of -1, and so on).  The absolute
+year is the year that is used throughout the API; year-of-era is typically used primarily when formatting
+and parsing date values to and from text.</p>
+</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><p><span class="paramref">era</span> is null</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+                    <td><p><span class="paramref">yearOfEra</span> is out of the range of years for the given era</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.ArgumentException</span></td>
+                    <td><p><span class="paramref">era</span> is not an era used in this calendar</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_CalendarSystem_GetCopticCalendar_" data-uid="NodaTime.CalendarSystem.GetCopticCalendar*"></a>
+              <h4 id="NodaTime_CalendarSystem_GetCopticCalendar_System_Int32_" data-uid="NodaTime.CalendarSystem.GetCopticCalendar(System.Int32)">GetCopticCalendar(Int32)</h4>
+              <div class="markdown level1 summary"><p>Returns a Coptic calendar system, which defines every fourth year as
+leap, much like the Julian calendar. The year is broken down into 12 months,
+each 30 days in length. An extra period at the end of the year is either 5
+or 6 days in length. In this implementation, it is considered a 13th month.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static CalendarSystem GetCopticCalendar(int minDaysInFirstWeek)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">minDaysInFirstWeek</span></td>
+                    <td><p>The minimum number of days in the first week of the year.
+When computing the WeekOfWeekYear and WeekYear properties of a particular date, this is
+used to decide at what point the week year changes.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
+                    <td><p>A suitable Coptic calendar reference; the same reference may be returned by several
+calls as the object is immutable and thread-safe.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_CalendarSystem_GetCopticCalendar_System_Int32__remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p>
+Year 1 in the Coptic calendar began on August 29, 284 CE (Julian), thus
+Coptic years do not begin at the same time as Julian years. This calendar
+is not proleptic, as it does not allow dates before the first Coptic year.
+</p>
+<p>
+This implementation defines a day as midnight to midnight exactly as per
+the ISO calendar. Some references indicate that a Coptic day starts at
+sunset on the previous ISO day, but this has not been confirmed and is not
+implemented.
+</p>
+</div>
+              <a id="NodaTime_CalendarSystem_GetDaysInMonth_" data-uid="NodaTime.CalendarSystem.GetDaysInMonth*"></a>
+              <h4 id="NodaTime_CalendarSystem_GetDaysInMonth_System_Int32_System_Int32_" data-uid="NodaTime.CalendarSystem.GetDaysInMonth(System.Int32,System.Int32)">GetDaysInMonth(Int32, Int32)</h4>
+              <div class="markdown level1 summary"><p>Returns the number of days in the given month within the given year.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public abstract int GetDaysInMonth(int year, int month)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">year</span></td>
+                    <td><p>The year in which to consider the month</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">month</span></td>
+                    <td><p>The month to determine the number of days in</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><p>The number of days in the given month and year.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+                    <td><p>The given year / month combination
+is invalid for this calendar.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_CalendarSystem_GetGregorianCalendar_" data-uid="NodaTime.CalendarSystem.GetGregorianCalendar*"></a>
+              <h4 id="NodaTime_CalendarSystem_GetGregorianCalendar_System_Int32_" data-uid="NodaTime.CalendarSystem.GetGregorianCalendar(System.Int32)">GetGregorianCalendar(Int32)</h4>
+              <div class="markdown level1 summary"><p>Returns a pure proleptic Gregorian calendar system, which defines every
+fourth year as leap, unless the year is divisible by 100 and not by 400.
+This improves upon the Julian calendar leap year rule.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static CalendarSystem GetGregorianCalendar(int minDaysInFirstWeek)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">minDaysInFirstWeek</span></td>
+                    <td><p>The minimum number of days in the first week of the year.
+When computing the WeekOfWeekYear and WeekYear properties of a particular date, this is
+used to decide at what point the week year changes.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
+                    <td><p>A suitable Gregorian calendar reference; the same reference may be returned by several
+calls as the object is immutable and thread-safe.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_CalendarSystem_GetGregorianCalendar_System_Int32__remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p>Although the Gregorian calendar did not exist before 1582 CE, this
+calendar system assumes it did, thus it is proleptic. This implementation also
+fixes the start of the year at January 1.</p>
+</div>
+              <a id="NodaTime_CalendarSystem_GetIslamicCalendar_" data-uid="NodaTime.CalendarSystem.GetIslamicCalendar*"></a>
+              <h4 id="NodaTime_CalendarSystem_GetIslamicCalendar_NodaTime_Calendars_IslamicLeapYearPattern_NodaTime_Calendars_IslamicEpoch_" data-uid="NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)">GetIslamicCalendar(IslamicLeapYearPattern, IslamicEpoch)</h4>
+              <div class="markdown level1 summary"><p>Returns an Islamic, or Hijri, calendar system.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static CalendarSystem GetIslamicCalendar(IslamicLeapYearPattern leapYearPattern, IslamicEpoch epoch)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Calendars.IslamicLeapYearPattern.html">IslamicLeapYearPattern</a></td>
+                    <td><span class="parametername">leapYearPattern</span></td>
+                    <td><p>The pattern of years in the 30-year cycle to consider as leap years</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Calendars.IslamicEpoch.html">IslamicEpoch</a></td>
+                    <td><span class="parametername">epoch</span></td>
+                    <td><p>The kind of epoch to use (astronomical or civil)</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
+                    <td><p>A suitable Islamic calendar reference; the same reference may be returned by several
+calls as the object is immutable and thread-safe.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_CalendarSystem_GetIslamicCalendar_NodaTime_Calendars_IslamicLeapYearPattern_NodaTime_Calendars_IslamicEpoch__remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p>
+This returns a tablular calendar, rather than one based on lunar observation. This calendar is a
+lunar calendar with 12 months, each of 29 or 30 days, resulting in a year of 354 days (or 355 on a leap
+year).
+</p>
+<p>
+Year 1 in the Islamic calendar began on July 15th or 16th, 622 CE (Julian), thus
+Islamic years do not begin at the same time as Julian years. This calendar
+is not proleptic, as it does not allow dates before the first Islamic year.
+</p>
+<p>
+There are two basic forms of the Islamic calendar, the tabular and the
+observed. The observed form cannot easily be used by computers as it
+relies on human observation of the new moon. The tabular calendar, implemented here, is an
+arithmetic approximation of the observed form that follows relatively simple rules.
+</p>
+<p>You should choose an epoch based on which external system you wish
+to be compatible with. The epoch beginning on July 16th is the more common
+one for the tabular calendar, so using <a class="xref" href="NodaTime.Calendars.IslamicEpoch.html#NodaTime_Calendars_IslamicEpoch_Civil">Civil</a>
+would usually be a logical choice. However, Windows uses July 15th, so
+if you need to be compatible with other Windows systems, you may wish to use
+<a class="xref" href="NodaTime.Calendars.IslamicEpoch.html#NodaTime_Calendars_IslamicEpoch_Astronomical">Astronomical</a>. The fact that the Islamic calendar
+traditionally starts at dusk, a Julian day traditionally starts at noon,
+and all calendar systems in Noda Time start their days at midnight adds
+somewhat inevitable confusion to the mix, unfortunately.</p>
+<p>
+The tabular form of the calendar defines 12 months of alternately
+30 and 29 days. The last month is extended to 30 days in a leap year.
+Leap years occur according to a 30 year cycle. There are four recognised
+patterns of leap years in the 30 year cycle:
+</p>
+<table><thead><tr><th>Origin</th><th>Leap years</th></tr></thead><tbody><tr><td>Kūshyār ibn Labbān</td><td>2, 5, 7, 10, 13, 15, 18, 21, 24, 26, 29</td></tr><tr><td>al-Fazārī</td><td>2, 5, 7, 10, 13, 16, 18, 21, 24, 26, 29</td></tr><tr><td>Fātimid (also known as Misri or Bohra)</td><td>2, 5, 8, 10, 13, 16, 19, 21, 24, 27, 29</td></tr><tr><td>Habash al-Hasib</td><td>2, 5, 8, 11, 13, 16, 19, 21, 24, 27, 30</td></tr></tbody></table>
+<p>
+The leap year pattern to use is determined from the first parameter to this factory method.
+The second parameter determines which epoch is used - the &quot;astronomical&quot; or &quot;Thursday&quot; epoch
+(July 15th 622CE) or the &quot;civil&quot; or &quot;Friday&quot; epoch (July 16th 622CE).
+</p>
+<p>
+This implementation defines a day as midnight to midnight exactly as per
+the ISO calendar. This correct start of day is at sunset on the previous
+day, however this cannot readily be modelled and has been ignored.
+</p>
+</div>
+              <a id="NodaTime_CalendarSystem_GetJulianCalendar_" data-uid="NodaTime.CalendarSystem.GetJulianCalendar*"></a>
+              <h4 id="NodaTime_CalendarSystem_GetJulianCalendar_System_Int32_" data-uid="NodaTime.CalendarSystem.GetJulianCalendar(System.Int32)">GetJulianCalendar(Int32)</h4>
+              <div class="markdown level1 summary"><p>Returns a pure proleptic Julian calendar system, which defines every
+fourth year as a leap year. This implementation follows the leap year rule
+strictly, even for dates before 8 CE, where leap years were actually
+irregular.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static CalendarSystem GetJulianCalendar(int minDaysInFirstWeek)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">minDaysInFirstWeek</span></td>
+                    <td><p>The minimum number of days in the first week of the year.
+When computing the WeekOfWeekYear and WeekYear properties of a particular date, this is
+used to decide at what point the week year changes.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
+                    <td><p>A suitable Julian calendar reference; the same reference may be returned by several
+calls as the object is immutable and thread-safe.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_CalendarSystem_GetJulianCalendar_System_Int32__remarks">Remarks</h5>
+              <div class="markdown level1 remarks"><p>Although the Julian calendar did not exist before 45 BCE, this calendar
+assumes it did, thus it is proleptic. This implementation also fixes the
+start of the year at January 1.</p>
+</div>
+              <a id="NodaTime_CalendarSystem_GetMaxMonth_" data-uid="NodaTime.CalendarSystem.GetMaxMonth*"></a>
+              <h4 id="NodaTime_CalendarSystem_GetMaxMonth_System_Int32_" data-uid="NodaTime.CalendarSystem.GetMaxMonth(System.Int32)">GetMaxMonth(Int32)</h4>
+              <div class="markdown level1 summary"><p>The maximum valid month (inclusive) within this calendar in the given year. It is assumed that
+all calendars start with month 1 and go up to this month number in any valid year.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public abstract int GetMaxMonth(int year)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">year</span></td>
+                    <td><p>The year to consider.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><p>The maximum month number within the given year.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+                    <td><p>The given year is invalid for this calendar.
+Note that some implementations may return a month rather than throw this exception (for example, if all
+years have the same number of months in this calendar system). Failure to throw an exception should not be
+treated as an indication that the year is valid.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_CalendarSystem_GetMaxYearOfEra_" data-uid="NodaTime.CalendarSystem.GetMaxYearOfEra*"></a>
+              <h4 id="NodaTime_CalendarSystem_GetMaxYearOfEra_NodaTime_Calendars_Era_" data-uid="NodaTime.CalendarSystem.GetMaxYearOfEra(NodaTime.Calendars.Era)">GetMaxYearOfEra(Era)</h4>
+              <div class="markdown level1 summary"><p>Returns the maximum valid year-of-era in the given era.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int GetMaxYearOfEra(Era era)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Calendars.Era.html">Era</a></td>
+                    <td><span class="parametername">era</span></td>
+                    <td><p>The era in which to find the greatest year</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><p>The maximum valid year in the given era.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><p><span class="paramref">era</span> is null</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.ArgumentException</span></td>
+                    <td><p><span class="paramref">era</span> is not an era used in this calendar</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_CalendarSystem_GetMinYearOfEra_" data-uid="NodaTime.CalendarSystem.GetMinYearOfEra*"></a>
+              <h4 id="NodaTime_CalendarSystem_GetMinYearOfEra_NodaTime_Calendars_Era_" data-uid="NodaTime.CalendarSystem.GetMinYearOfEra(NodaTime.Calendars.Era)">GetMinYearOfEra(Era)</h4>
+              <div class="markdown level1 summary"><p>Returns the minimum valid year-of-era in the given era.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int GetMinYearOfEra(Era era)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Calendars.Era.html">Era</a></td>
+                    <td><span class="parametername">era</span></td>
+                    <td><p>The era in which to find the greatest year</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><p>The minimum valid year in the given eraera.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><p><span class="paramref">era</span> is null</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.ArgumentException</span></td>
+                    <td><p><span class="paramref">era</span> is not an era used in this calendar</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_CalendarSystem_IsLeapYear_" data-uid="NodaTime.CalendarSystem.IsLeapYear*"></a>
+              <h4 id="NodaTime_CalendarSystem_IsLeapYear_System_Int32_" data-uid="NodaTime.CalendarSystem.IsLeapYear(System.Int32)">IsLeapYear(Int32)</h4>
+              <div class="markdown level1 summary"><p>Returns whether or not the given year is a leap year in this calendar.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public abstract bool IsLeapYear(int year)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">year</span></td>
+                    <td><p>The year to consider.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><p>True if the given year is a leap year; false otherwise.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+                    <td><p>The given year is invalid for this calendar.
+Note that some implementations may return a value rather than throw this exception. Failure to throw an
+exception should not be treated as an indication that the year is valid.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_CalendarSystem_ToString_" data-uid="NodaTime.CalendarSystem.ToString*"></a>
+              <h4 id="NodaTime_CalendarSystem_ToString" data-uid="NodaTime.CalendarSystem.ToString">ToString()</h4>
+              <div class="markdown level1 summary"><p>Converts this calendar system to text by simply returning its unique ID.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><p>The ID of this calendar system.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="overrides">Overrides</h5>
+              <div><span class="xref">System.Object.ToString()</span></div>
+                        </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+             
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
