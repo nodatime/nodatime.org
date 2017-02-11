@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
-    <meta property="docfx:navrel" content="">
+    <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
     
   </head>
@@ -71,7 +71,8 @@
               
               <h1 id="NodaTime_TimeZones_IDateTimeZoneSource" data-uid="NodaTime.TimeZones.IDateTimeZoneSource">Interface IDateTimeZoneSource
               </h1>
-              <div class="markdown level0 summary"><p>Provides the interface for objects that can retrieve time zone definitions given an ID.</p>
+              <div class="markdown level0 summary">
+Provides the interface for objects that can retrieve time zone definitions given an ID.
 </div>
               <div class="markdown level0 conceptual"></div>
               <h6><strong>Namespace</strong>:NodaTime.TimeZones</h6>
@@ -81,7 +82,8 @@
                 <pre><code class="lang-csharp hljs">public interface IDateTimeZoneSource</code></pre>
               </div>
               <h5 id="NodaTime_TimeZones_IDateTimeZoneSource_remarks"><strong>Remarks</strong></h5>
-              <div class="markdown level0 remarks"><p>
+              <div class="markdown level0 remarks">
+<p>
 The interface presumes that the available time zones are static; there is no mechanism for 
 updating the list of available time zones. Any time zone ID that is returned in <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetIds">GetIds()</a> 
 must be resolved by <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_ForId_System_String_">ForId(String)</a> for the life of the source.
@@ -96,11 +98,12 @@ consuming <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html">IDa
               </h3>
               <a id="NodaTime_TimeZones_IDateTimeZoneSource_VersionId_" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.VersionId*"></a>
               <h4 id="NodaTime_TimeZones_IDateTimeZoneSource_VersionId" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.VersionId">VersionId</h4>
-              <div class="markdown level1 summary"><p>Returns an appropriate version ID for diagnostic purposes, which must not be null.
-This doesn&#39;t have any specific format; it&#39;s solely for diagnostic purposes.
+              <div class="markdown level1 summary">
+Returns an appropriate version ID for diagnostic purposes, which must not be null.
+This doesn't have any specific format; it's solely for diagnostic purposes.
 For example, the default source returns a string such as
-&quot;TZDB: 2011n&quot; indicating where the information comes from and which version of that information
-it&#39;s loaded.</p>
+"TZDB: 2011n" indicating where the information comes from and which version of that information
+it's loaded.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -126,7 +129,8 @@ it&#39;s loaded.</p>
               </h3>
               <a id="NodaTime_TimeZones_IDateTimeZoneSource_ForId_" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.ForId*"></a>
               <h4 id="NodaTime_TimeZones_IDateTimeZoneSource_ForId_System_String_" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)">ForId(String)</h4>
-              <div class="markdown level1 summary"><p>Returns the time zone definition associated with the given id.</p>
+              <div class="markdown level1 summary">
+Returns the time zone definition associated with the given id.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -146,9 +150,8 @@ it&#39;s loaded.</p>
                   <tr>
                     <td><span class="xref">System.String</span></td>
                     <td><span class="parametername">id</span></td>
-                    <td><p>The ID of the time zone to return. This must be one of the IDs
-returned by <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetIds">GetIds()</a>.</p>
-</td>
+                    <td>The ID of the time zone to return. This must be one of the IDs
+returned by <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetIds">GetIds()</a>.</td>
                   </tr>
                 </tbody>
               </table>
@@ -163,13 +166,13 @@ returned by <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#No
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a></td>
-                    <td><p>The <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> for the given ID.</p>
-</td>
+                    <td>The <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> for the given ID.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_TimeZones_IDateTimeZoneSource_ForId_System_String__remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>
+              <div class="markdown level1 remarks">
+<p>
 The source should not attempt to cache time zones; caching is provided by <a class="xref" href="NodaTime.TimeZones.DateTimeZoneCache.html">DateTimeZoneCache</a>.
 </p>
 <p>
@@ -182,7 +185,7 @@ successive requests for the same ID; however, all instances returned for a given
 </p>
 <p>
 It is advised that sources should document their behaviour regarding any fixed-offset timezones
-(i.e. &quot;UTC&quot; and &quot;UTC+/-Offset&quot;) that are included in the list returned by <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetIds">GetIds()</a>.
+(i.e. "UTC" and "UTC+/-Offset") that are included in the list returned by <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetIds">GetIds()</a>.
 (These IDs will not be requested by <a class="xref" href="NodaTime.TimeZones.DateTimeZoneCache.html">DateTimeZoneCache</a> anyway, but any users calling
 into the source directly may care.)
 </p>
@@ -198,19 +201,18 @@ into the source directly may care.)
                 <tbody>
                   <tr>
                     <td><span class="xref">System.ArgumentNullException</span></td>
-                    <td><p><span class="paramref">id</span> is null.</p>
-</td>
+                    <td><span class="paramref">id</span> is null.</td>
                   </tr>
                   <tr>
                     <td><span class="xref">System.ArgumentException</span></td>
-                    <td><p><span class="paramref">id</span> is not supported by this source.</p>
-</td>
+                    <td><span class="paramref">id</span> is not supported by this source.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_TimeZones_IDateTimeZoneSource_GetIds_" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.GetIds*"></a>
               <h4 id="NodaTime_TimeZones_IDateTimeZoneSource_GetIds" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.GetIds">GetIds()</h4>
-              <div class="markdown level1 summary"><p>Returns an enumeration of the available ids from this source.</p>
+              <div class="markdown level1 summary">
+Returns an enumeration of the available ids from this source.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -228,24 +230,25 @@ into the source directly may care.)
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
-                    <td><p>The <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span> of ids. It may be empty, but must not be null, 
-and must not contain any elements which are null.</p>
-</td>
+                    <td>The <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span> of ids. It may be empty, but must not be null, 
+and must not contain any elements which are null.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_TimeZones_IDateTimeZoneSource_GetIds_remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>
+              <div class="markdown level1 remarks">
+<p>
 Every value in this enumeration must return a valid time zone from <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_ForId_System_String_">ForId(String)</a> for the life of the source.
 </p>
 <p>
-Note that this list may optionally contain any of the fixed-offset timezones (with IDs &quot;UTC&quot; and
-&quot;UTC+/-Offset&quot;), but there is no requirement they be included.
+Note that this list may optionally contain any of the fixed-offset timezones (with IDs "UTC" and
+"UTC+/-Offset"), but there is no requirement they be included.
 </p>
 </div>
               <a id="NodaTime_TimeZones_IDateTimeZoneSource_MapTimeZoneId_" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.MapTimeZoneId*"></a>
               <h4 id="NodaTime_TimeZones_IDateTimeZoneSource_MapTimeZoneId_System_TimeZoneInfo_" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.MapTimeZoneId(System.TimeZoneInfo)">MapTimeZoneId(TimeZoneInfo)</h4>
-              <div class="markdown level1 summary"><p>Returns this source&#39;s corresponding ID for the given BCL time zone.</p>
+              <div class="markdown level1 summary">
+Returns this source's corresponding ID for the given BCL time zone.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -280,8 +283,9 @@ Note that this list may optionally contain any of the fixed-offset timezones (wi
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td><p>The ID for the given system time zone for this source, or null if the system time
-zone has no mapping in this source.</p>
+                    <td>
+The ID for the given system time zone for this source, or null if the system time
+zone has no mapping in this source.
 </td>
                   </tr>
                 </tbody>

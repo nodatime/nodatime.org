@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
-    <meta property="docfx:navrel" content="">
+    <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
     
   </head>
@@ -71,7 +71,8 @@
               
               <h1 id="NodaTime_TimeZones_ZoneEqualityComparer_Options" data-uid="NodaTime.TimeZones.ZoneEqualityComparer.Options">Enum ZoneEqualityComparer.Options
               </h1>
-              <div class="markdown level0 summary"><p>Options to use when comparing time zones for equality. Each option makes the comparison more restrictive.</p>
+              <div class="markdown level0 summary">
+Options to use when comparing time zones for equality. Each option makes the comparison more restrictive.
 </div>
               <div class="markdown level0 conceptual"></div>
               <h6><strong>Namespace</strong>:NodaTime.TimeZones</h6>
@@ -82,16 +83,17 @@
 public enum Options</code></pre>
               </div>
               <h5 id="NodaTime_TimeZones_ZoneEqualityComparer_Options_remarks"><strong>Remarks</strong></h5>
-              <div class="markdown level0 remarks"><p>
+              <div class="markdown level0 remarks">
+<p>
 By default, the comparer only compares the wall offset (total of standard offset and any daylight saving offset)
 at every instant within the interval over which the comparer operates. In practice, this is done by comparing each
 <a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a> which includes an instant within the interval (using <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_">GetZoneIntervals(Interval)</a>).
-For most purposes, this is all that&#39;s required: from the simple perspective of a time zone being just a function from instants to local time,
+For most purposes, this is all that's required: from the simple perspective of a time zone being just a function from instants to local time,
 the default option of <a class="xref" href="NodaTime.TimeZones.ZoneEqualityComparer.Options.html#NodaTime_TimeZones_ZoneEqualityComparer_Options_OnlyMatchWallOffset">OnlyMatchWallOffset</a> effectively checks that the function gives the same result across the two time
 zones being compared, for any given instant within the interval.
 </p>
 <p>
-It&#39;s possible for a time zone to have a transition from one <code>ZoneInterval</code> to another which doesn&#39;t adjust the offset: it
+It's possible for a time zone to have a transition from one <code>ZoneInterval</code> to another which doesn't adjust the offset: it
 might just change the name, or the balance between standard offset to daylight saving offset. (As an example, at midnight local
 time on October 27th 1968, the Europe/London time zone went from a standard offset of 0 and a daylight saving offset of 1 hour
 to a standard offset of 1 and a daylight saving offset of 0... which left the clocks unchanged.) This transition is irrelevant
@@ -99,7 +101,7 @@ to the default options, so the two zone intervals involved are effectively coale
 </p>
 <p>
 The options available change what sort of comparison is performed - which can also change which zone intervals can be coalesced. For
-example, by specifying just the <a class="xref" href="NodaTime.TimeZones.ZoneEqualityComparer.Options.html#NodaTime_TimeZones_ZoneEqualityComparer_Options_MatchAllTransitions">MatchAllTransitions</a> option, you would indicate that even though you don&#39;t care about the name within a zone
+example, by specifying just the <a class="xref" href="NodaTime.TimeZones.ZoneEqualityComparer.Options.html#NodaTime_TimeZones_ZoneEqualityComparer_Options_MatchAllTransitions">MatchAllTransitions</a> option, you would indicate that even though you don't care about the name within a zone
 interval or how the wall offset is calculated, you do care about the fact that there was a transition at all, and when it occurred.
 With that option enabled, zone intervals are never coalesced and the transition points within the operating interval are checked.
 </p>
@@ -123,40 +125,46 @@ the difference occur outside the operating interval.
                 <tbody>
                   <tr>
                     <td id="NodaTime_TimeZones_ZoneEqualityComparer_Options_MatchAllTransitions">MatchAllTransitions</td>
-                    <td><p>This option prevents adjacent zone intervals from being coalesced, even if they are otherwise considered
-equivalent according to other options.</p>
+                    <td>
+This option prevents adjacent zone intervals from being coalesced, even if they are otherwise considered
+equivalent according to other options.
 </td>
                   </tr>
                   <tr>
                     <td id="NodaTime_TimeZones_ZoneEqualityComparer_Options_MatchNames">MatchNames</td>
-                    <td><p>Compare the names of zone intervals as well as offsets.</p>
+                    <td>
+Compare the names of zone intervals as well as offsets.
 </td>
                   </tr>
                   <tr>
                     <td id="NodaTime_TimeZones_ZoneEqualityComparer_Options_MatchOffsetComponents">MatchOffsetComponents</td>
-                    <td><p>Instead of only comparing wall offsets, the standard/savings split is also considered. So when this
+                    <td>
+Instead of only comparing wall offsets, the standard/savings split is also considered. So when this
 option is used, two zones which both have a wall offset of +2 at one instant would be considered
 unequal if one of those offsets was +1 standard, +1 savings and the other was +2 standard with no daylight
-saving.</p>
+saving.
 </td>
                   </tr>
                   <tr>
                     <td id="NodaTime_TimeZones_ZoneEqualityComparer_Options_MatchStartAndEndTransitions">MatchStartAndEndTransitions</td>
-                    <td><p>Includes the transitions into the first zone interval and out of the
+                    <td>
+Includes the transitions into the first zone interval and out of the
 last zone interval as part of the comparison, even if they do not affect
-the offset or name for any instant within the operating interval.</p>
+the offset or name for any instant within the operating interval.
 </td>
                   </tr>
                   <tr>
                     <td id="NodaTime_TimeZones_ZoneEqualityComparer_Options_OnlyMatchWallOffset">OnlyMatchWallOffset</td>
-                    <td><p>The default comparison, which only cares about the wall offset at any particular
+                    <td>
+The default comparison, which only cares about the wall offset at any particular
 instant, within the interval of the comparer. In other words, if <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetUtcOffset_NodaTime_Instant_">GetUtcOffset(Instant)</a>
-returns the same value for all instants in the interval, the comparer will consider the zones to be equal.</p>
+returns the same value for all instants in the interval, the comparer will consider the zones to be equal.
 </td>
                   </tr>
                   <tr>
                     <td id="NodaTime_TimeZones_ZoneEqualityComparer_Options_StrictestMatch">StrictestMatch</td>
-                    <td><p>The combination of all available match options.</p>
+                    <td>
+The combination of all available match options.
 </td>
                   </tr>
                 </tbody>

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
-    <meta property="docfx:navrel" content="">
+    <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
     
   </head>
@@ -71,8 +71,9 @@
               
               <h1 id="NodaTime_AmbiguousTimeException" data-uid="NodaTime.AmbiguousTimeException">Class AmbiguousTimeException
               </h1>
-              <div class="markdown level0 summary"><p>Exception thrown to indicate that the specified local date/time occurs twice
-in a particular time zone due to daylight saving time changes.</p>
+              <div class="markdown level0 summary">
+Exception thrown to indicate that the specified local date/time occurs twice
+in a particular time zone due to daylight saving time changes.
 </div>
               <div class="markdown level0 conceptual"></div>
               <div class="inheritance">
@@ -152,19 +153,20 @@ in a particular time zone due to daylight saving time changes.</p>
 public sealed class AmbiguousTimeException : ArgumentOutOfRangeException, _Exception, ISerializable</code></pre>
               </div>
               <h5 id="NodaTime_AmbiguousTimeException_remarks"><strong>Remarks</strong></h5>
-              <div class="markdown level0 remarks"><p>
+              <div class="markdown level0 remarks">
+<p>
 This occurs for transitions where the clock goes backward (usually by
 an hour). For example, suppose the time zone goes backward
 at 2am, so the second after 01:59:59 becomes 01:00:00. In that case,
 times such as 01:30:00 occur twice.
 </p>
 <p>
-This exception is used to indicate such problems, as they&#39;re usually
+This exception is used to indicate such problems, as they're usually
 not the same as other <span class="xref">System.ArgumentOutOfRangeException</span> causes,
-such as entering &quot;15&quot; for a month number.
+such as entering "15" for a month number.
 </p>
 <p>
-In theory this isn&#39;t calendar-specific; the local value will be ambiguous in
+In theory this isn't calendar-specific; the local value will be ambiguous in
 this time zone regardless of the calendar used. However, this exception is
 always created in conjunction with a specific calendar, which leads to a more
 natural way of examining its information and constructing an error message.
@@ -174,7 +176,8 @@ natural way of examining its information and constructing an error message.
               </h3>
               <a id="NodaTime_AmbiguousTimeException__ctor_" data-uid="NodaTime.AmbiguousTimeException.#ctor*"></a>
               <h4 id="NodaTime_AmbiguousTimeException__ctor_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_" data-uid="NodaTime.AmbiguousTimeException.#ctor(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)">AmbiguousTimeException(ZonedDateTime, ZonedDateTime)</h4>
-              <div class="markdown level1 summary"><p>Constructs an instance from the given information.</p>
+              <div class="markdown level1 summary">
+Constructs an instance from the given information.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -194,19 +197,18 @@ natural way of examining its information and constructing an error message.
                   <tr>
                     <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
                     <td><span class="parametername">earlierMapping</span></td>
-                    <td><p>The earlier possible mapping</p>
-</td>
+                    <td>The earlier possible mapping</td>
                   </tr>
                   <tr>
                     <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
                     <td><span class="parametername">laterMapping</span></td>
-                    <td><p>The later possible mapping</p>
-</td>
+                    <td>The later possible mapping</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_AmbiguousTimeException__ctor_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime__remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>
+              <div class="markdown level1 remarks">
+<p>
 User code is unlikely to need to deliberately call this constructor except
 possibly for testing.
 </p>
@@ -218,7 +220,8 @@ The two mappings must have the same local time and time zone.
               </h3>
               <a id="NodaTime_AmbiguousTimeException_EarlierMapping_" data-uid="NodaTime.AmbiguousTimeException.EarlierMapping*"></a>
               <h4 id="NodaTime_AmbiguousTimeException_EarlierMapping" data-uid="NodaTime.AmbiguousTimeException.EarlierMapping">EarlierMapping</h4>
-              <div class="markdown level1 summary"><p>The earlier of the two occurrences of the local date and time within the time zone.</p>
+              <div class="markdown level1 summary">
+The earlier of the two occurrences of the local date and time within the time zone.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -242,7 +245,8 @@ The two mappings must have the same local time and time zone.
               </table>
               <a id="NodaTime_AmbiguousTimeException_LaterMapping_" data-uid="NodaTime.AmbiguousTimeException.LaterMapping*"></a>
               <h4 id="NodaTime_AmbiguousTimeException_LaterMapping" data-uid="NodaTime.AmbiguousTimeException.LaterMapping">LaterMapping</h4>
-              <div class="markdown level1 summary"><p>The later of the two occurrences of the local date and time within the time zone.</p>
+              <div class="markdown level1 summary">
+The later of the two occurrences of the local date and time within the time zone.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -266,7 +270,8 @@ The two mappings must have the same local time and time zone.
               </table>
               <a id="NodaTime_AmbiguousTimeException_Zone_" data-uid="NodaTime.AmbiguousTimeException.Zone*"></a>
               <h4 id="NodaTime_AmbiguousTimeException_Zone" data-uid="NodaTime.AmbiguousTimeException.Zone">Zone</h4>
-              <div class="markdown level1 summary"><p>The time zone in which the local date and time is ambiguous.</p>
+              <div class="markdown level1 summary">
+The time zone in which the local date and time is ambiguous.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>

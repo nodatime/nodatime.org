@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
-    <meta property="docfx:navrel" content="">
+    <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
     
   </head>
@@ -71,10 +71,9 @@
               
               <h1 id="NodaTime_DateTimeZone" data-uid="NodaTime.DateTimeZone">Class DateTimeZone
               </h1>
-              <div class="markdown level0 summary"><p>Represents a time zone - a mapping between UTC and local time. A time zone maps UTC instants to local times</p>
-<ul>
-<li>or, equivalently, to the offset from UTC at any particular instant.</li>
-</ul>
+              <div class="markdown level0 summary">
+Represents a time zone - a mapping between UTC and local time. A time zone maps UTC instants to local times
+- or, equivalently, to the offset from UTC at any particular instant.
 </div>
               <div class="markdown level0 conceptual"></div>
               <div class="inheritance">
@@ -113,8 +112,9 @@
                 <pre><code class="lang-csharp hljs">public abstract class DateTimeZone : IZoneIntervalMapWithMinMax, IZoneIntervalMap</code></pre>
               </div>
               <h5 id="NodaTime_DateTimeZone_remarks"><strong>Remarks</strong></h5>
-              <div class="markdown level0 remarks"><p>
-The mapping is unambiguous in the &quot;UTC to local&quot; direction, but
+              <div class="markdown level0 remarks">
+<p>
+The mapping is unambiguous in the "UTC to local" direction, but
 the reverse is not true: when the offset changes, usually due to a Daylight Saving transition,
 the change either creates a gap (a period of local time which never occurs in the time zone)
 or an ambiguity (a period of local time which occurs twice in the time zone). Mapping back from
@@ -124,7 +124,7 @@ local time to an instant requires consideration of how these problematic times w
 Noda Time provides various options when mapping local time to a specific instant:
 <ul><li><a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtStrictly_NodaTime_LocalDateTime_">AtStrictly(LocalDateTime)</a> will throw an exception if the mapping from local time is either ambiguous
     or impossible, i.e. if there is anything other than one instant which maps to the given local time.</li><li><a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtLeniently_NodaTime_LocalDateTime_">AtLeniently(LocalDateTime)</a> will never throw an exception due to ambiguous or skipped times,
-    resolving to the earlier option of ambiguous matches, or to a value that&#39;s forward-shifted by the duration
+    resolving to the earlier option of ambiguous matches, or to a value that's forward-shifted by the duration
     of the gap for skipped times.</li><li><a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ResolveLocal_NodaTime_LocalDateTime_NodaTime_TimeZones_ZoneLocalMappingResolver_">ResolveLocal(LocalDateTime, ZoneLocalMappingResolver)</a> will apply a <a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html">ZoneLocalMappingResolver</a> to the result of
     a mapping.</li><li><a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_MapLocal_NodaTime_LocalDateTime_">MapLocal(LocalDateTime)</a> will return a <a class="xref" href="NodaTime.TimeZones.ZoneLocalMapping.html">ZoneLocalMapping</a>
     with complete information about whether the given local time occurs zero times, once or twice. This is the most
@@ -133,7 +133,7 @@ Noda Time provides various options when mapping local time to a specific instant
 <p>
 Noda Time has two built-in sources of time zone data available: a copy of the
 <a href="http://www.iana.org/time-zones">tz database</a> (also known as the IANA Time Zone database, or zoneinfo
-or Olson database), and the ability to convert .NET&#39;s own <span class="xref">System.TimeZoneInfo</span> format into a &quot;native&quot; Noda
+or Olson database), and the ability to convert .NET's own <span class="xref">System.TimeZoneInfo</span> format into a "native" Noda
 Time zone. Which of these is most appropriate for you to use will very much depend on your exact needs. The
 zoneinfo database is widely used outside Windows, and has more historical data than the Windows-provided
 information, but if you need to interoperate with other Windows systems by specifying time zone IDs, you may
@@ -166,7 +166,8 @@ Additional guarantees are provided by <a class="xref" href="NodaTime.IDateTimeZo
               </h3>
               <a id="NodaTime_DateTimeZone__ctor_" data-uid="NodaTime.DateTimeZone.#ctor*"></a>
               <h4 id="NodaTime_DateTimeZone__ctor_System_String_System_Boolean_NodaTime_Offset_NodaTime_Offset_" data-uid="NodaTime.DateTimeZone.#ctor(System.String,System.Boolean,NodaTime.Offset,NodaTime.Offset)">DateTimeZone(String, Boolean, Offset, Offset)</h4>
-              <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> class.</p>
+              <div class="markdown level1 summary">
+Initializes a new instance of the <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> class.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -186,26 +187,22 @@ Additional guarantees are provided by <a class="xref" href="NodaTime.IDateTimeZo
                   <tr>
                     <td><span class="xref">System.String</span></td>
                     <td><span class="parametername">id</span></td>
-                    <td><p>The unique id of this time zone.</p>
-</td>
+                    <td>The unique id of this time zone.</td>
                   </tr>
                   <tr>
                     <td><span class="xref">System.Boolean</span></td>
                     <td><span class="parametername">isFixed</span></td>
-                    <td><p>Set to <code>true</code> if this time zone has no transitions.</p>
-</td>
+                    <td>Set to <code>true</code> if this time zone has no transitions.</td>
                   </tr>
                   <tr>
                     <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
                     <td><span class="parametername">minOffset</span></td>
-                    <td><p>Minimum offset applied within this zone</p>
-</td>
+                    <td>Minimum offset applied within this zone</td>
                   </tr>
                   <tr>
                     <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
                     <td><span class="parametername">maxOffset</span></td>
-                    <td><p>Maximum offset applied within this zone</p>
-</td>
+                    <td>Maximum offset applied within this zone</td>
                   </tr>
                 </tbody>
               </table>
@@ -213,7 +210,8 @@ Additional guarantees are provided by <a class="xref" href="NodaTime.IDateTimeZo
               </h3>
               <a id="NodaTime_DateTimeZone_Id_" data-uid="NodaTime.DateTimeZone.Id*"></a>
               <h4 id="NodaTime_DateTimeZone_Id" data-uid="NodaTime.DateTimeZone.Id">Id</h4>
-              <div class="markdown level1 summary"><p>Get the provider&#39;s ID for the time zone.</p>
+              <div class="markdown level1 summary">
+Get the provider's ID for the time zone.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -231,20 +229,21 @@ Additional guarantees are provided by <a class="xref" href="NodaTime.IDateTimeZo
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td><p>The provider&#39;s ID for the time zone.</p>
-</td>
+                    <td>The provider's ID for the time zone.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_DateTimeZone_Id_remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>
+              <div class="markdown level1 remarks">
+<p>
 This identifies the time zone within the current time zone provider; a different provider may
 provide a different time zone with the same ID, or may not provide a time zone with that ID at all.
 </p>
 </div>
               <a id="NodaTime_DateTimeZone_MaxOffset_" data-uid="NodaTime.DateTimeZone.MaxOffset*"></a>
               <h4 id="NodaTime_DateTimeZone_MaxOffset" data-uid="NodaTime.DateTimeZone.MaxOffset">MaxOffset</h4>
-              <div class="markdown level1 summary"><p>Gets the greatest (most positive) offset within this time zone, over all time.</p>
+              <div class="markdown level1 summary">
+Gets the greatest (most positive) offset within this time zone, over all time.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -262,14 +261,14 @@ provide a different time zone with the same ID, or may not provide a time zone w
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
-                    <td><p>The greatest (most positive) offset within this time zone, over all time.</p>
-</td>
+                    <td>The greatest (most positive) offset within this time zone, over all time.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_DateTimeZone_MinOffset_" data-uid="NodaTime.DateTimeZone.MinOffset*"></a>
               <h4 id="NodaTime_DateTimeZone_MinOffset" data-uid="NodaTime.DateTimeZone.MinOffset">MinOffset</h4>
-              <div class="markdown level1 summary"><p>Gets the least (most negative) offset within this time zone, over all time.</p>
+              <div class="markdown level1 summary">
+Gets the least (most negative) offset within this time zone, over all time.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -287,14 +286,14 @@ provide a different time zone with the same ID, or may not provide a time zone w
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
-                    <td><p>The least (most negative) offset within this time zone, over all time.</p>
-</td>
+                    <td>The least (most negative) offset within this time zone, over all time.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_DateTimeZone_Utc_" data-uid="NodaTime.DateTimeZone.Utc*"></a>
               <h4 id="NodaTime_DateTimeZone_Utc" data-uid="NodaTime.DateTimeZone.Utc">Utc</h4>
-              <div class="markdown level1 summary"><p>Gets the UTC (Coordinated Universal Time) time zone.</p>
+              <div class="markdown level1 summary">
+Gets the UTC (Coordinated Universal Time) time zone.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -312,23 +311,24 @@ provide a different time zone with the same ID, or may not provide a time zone w
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a></td>
-                    <td><p>A UTC <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a>.</p>
-</td>
+                    <td>A UTC <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a>.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_DateTimeZone_Utc_remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>This is a single instance which is not provider-specific; it is guaranteed to have the ID &quot;UTC&quot;, and to
+              <div class="markdown level1 remarks">
+This is a single instance which is not provider-specific; it is guaranteed to have the ID "UTC", and to
 compare equal to an instance returned by calling <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ForOffset_NodaTime_Offset_">ForOffset(Offset)</a> with an offset of zero, but it may
-or may not compare equal to an instance returned by e.g. <code>DateTimeZoneProviders.Tzdb[&quot;UTC&quot;]</code>.</p>
+or may not compare equal to an instance returned by e.g. <code>DateTimeZoneProviders.Tzdb["UTC"]</code>.
 </div>
               <h3 id="methods">Methods
               </h3>
               <a id="NodaTime_DateTimeZone_AtLeniently_" data-uid="NodaTime.DateTimeZone.AtLeniently*"></a>
               <h4 id="NodaTime_DateTimeZone_AtLeniently_NodaTime_LocalDateTime_" data-uid="NodaTime.DateTimeZone.AtLeniently(NodaTime.LocalDateTime)">AtLeniently(LocalDateTime)</h4>
-              <div class="markdown level1 summary"><p>Maps the given <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> to the corresponding <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> in a lenient
-manner: ambiguous values map to the earlier of the alternatives, and &quot;skipped&quot; values are shifted forward
-by the duration of the &quot;gap&quot;.</p>
+              <div class="markdown level1 summary">
+Maps the given <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> to the corresponding <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> in a lenient
+manner: ambiguous values map to the earlier of the alternatives, and "skipped" values are shifted forward
+by the duration of the "gap".
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -348,8 +348,7 @@ by the duration of the &quot;gap&quot;.</p>
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
                     <td><span class="parametername">localDateTime</span></td>
-                    <td><p>The local date/time to map.</p>
-</td>
+                    <td>The local date/time to map.</td>
                   </tr>
                 </tbody>
               </table>
@@ -364,15 +363,15 @@ by the duration of the &quot;gap&quot;.</p>
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
-                    <td><p>The unambiguous mapping if there is one, the earlier result if the mapping is ambiguous,
-or the forward-shifted value if the given local date/time is skipped.</p>
-</td>
+                    <td>The unambiguous mapping if there is one, the earlier result if the mapping is ambiguous,
+or the forward-shifted value if the given local date/time is skipped.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_DateTimeZone_AtLeniently_NodaTime_LocalDateTime__remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>See <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtStrictly_NodaTime_LocalDateTime_">AtStrictly(LocalDateTime)</a> and <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ResolveLocal_NodaTime_LocalDateTime_NodaTime_TimeZones_ZoneLocalMappingResolver_">ResolveLocal(LocalDateTime, ZoneLocalMappingResolver)</a> for alternative ways to map a local time to a
-specific instant.</p>
+              <div class="markdown level1 remarks">
+See <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtStrictly_NodaTime_LocalDateTime_">AtStrictly(LocalDateTime)</a> and <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ResolveLocal_NodaTime_LocalDateTime_NodaTime_TimeZones_ZoneLocalMappingResolver_">ResolveLocal(LocalDateTime, ZoneLocalMappingResolver)</a> for alternative ways to map a local time to a
+specific instant.
 <p>Note: The behavior of this method was changed in version 2.0 to fit the most commonly seen real-world
 usage pattern.  Previous versions returned the later instance of ambiguous values, and returned the start of
 the zone interval after the gap for skipped value.  The previous functionality can still be used if desired,
@@ -381,7 +380,8 @@ by using <span class="xref">NodaTime.DateTimeZone.ResolveLocal(NodaTime.LocalDat
 </div>
               <a id="NodaTime_DateTimeZone_AtStartOfDay_" data-uid="NodaTime.DateTimeZone.AtStartOfDay*"></a>
               <h4 id="NodaTime_DateTimeZone_AtStartOfDay_NodaTime_LocalDate_" data-uid="NodaTime.DateTimeZone.AtStartOfDay(NodaTime.LocalDate)">AtStartOfDay(LocalDate)</h4>
-              <div class="markdown level1 summary"><p>Returns the earliest valid <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> with the given local date.</p>
+              <div class="markdown level1 summary">
+Returns the earliest valid <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> with the given local date.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -401,8 +401,7 @@ by using <span class="xref">NodaTime.DateTimeZone.ResolveLocal(NodaTime.LocalDat
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
                     <td><span class="parametername">date</span></td>
-                    <td><p>The local date to map in this time zone.</p>
-</td>
+                    <td>The local date to map in this time zone.</td>
                   </tr>
                 </tbody>
               </table>
@@ -417,17 +416,17 @@ by using <span class="xref">NodaTime.DateTimeZone.ResolveLocal(NodaTime.LocalDat
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
-                    <td><p>The <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> representing the earliest time in the given date, in this time zone.</p>
-</td>
+                    <td>The <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> representing the earliest time in the given date, in this time zone.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_DateTimeZone_AtStartOfDay_NodaTime_LocalDate__remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>If midnight exists unambiguously on the given date, it is returned.
+              <div class="markdown level1 remarks">
+If midnight exists unambiguously on the given date, it is returned.
 If the given date has an ambiguous start time (e.g. the clocks go back from 1am to midnight)
 then the earlier ZonedDateTime is returned. If the given date has no midnight (e.g. the clocks
 go forward from midnight to 1am) then the earliest valid value is returned; this will be the instant
-of the transition.</p>
+of the transition.
 </div>
               <h5 class="exceptions">Exceptions</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -440,18 +439,18 @@ of the transition.</p>
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.SkippedTimeException.html">SkippedTimeException</a></td>
-                    <td><p>The entire day was skipped due to a very large time zone transition.
-(This is extremely rare.)</p>
-</td>
+                    <td>The entire day was skipped due to a very large time zone transition.
+(This is extremely rare.)</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_DateTimeZone_AtStrictly_" data-uid="NodaTime.DateTimeZone.AtStrictly*"></a>
               <h4 id="NodaTime_DateTimeZone_AtStrictly_NodaTime_LocalDateTime_" data-uid="NodaTime.DateTimeZone.AtStrictly(NodaTime.LocalDateTime)">AtStrictly(LocalDateTime)</h4>
-              <div class="markdown level1 summary"><p>Maps the given <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> to the corresponding <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a>, if and only if
+              <div class="markdown level1 summary">
+Maps the given <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> to the corresponding <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a>, if and only if
 that mapping is unambiguous in this time zone.  Otherwise, <a class="xref" href="NodaTime.SkippedTimeException.html">SkippedTimeException</a> or
 <a class="xref" href="NodaTime.AmbiguousTimeException.html">AmbiguousTimeException</a> is thrown, depending on whether the mapping is ambiguous or the local
-date/time is skipped entirely.</p>
+date/time is skipped entirely.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -471,8 +470,7 @@ date/time is skipped entirely.</p>
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
                     <td><span class="parametername">localDateTime</span></td>
-                    <td><p>The local date and time to map into this time zone.</p>
-</td>
+                    <td>The local date and time to map into this time zone.</td>
                   </tr>
                 </tbody>
               </table>
@@ -487,14 +485,14 @@ date/time is skipped entirely.</p>
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
-                    <td><p>The unambiguous matching <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> if it exists.</p>
-</td>
+                    <td>The unambiguous matching <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> if it exists.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_DateTimeZone_AtStrictly_NodaTime_LocalDateTime__remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>See <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtLeniently_NodaTime_LocalDateTime_">AtLeniently(LocalDateTime)</a> and <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ResolveLocal_NodaTime_LocalDateTime_NodaTime_TimeZones_ZoneLocalMappingResolver_">ResolveLocal(LocalDateTime, ZoneLocalMappingResolver)</a> for alternative ways to map a local time to a
-specific instant.</p>
+              <div class="markdown level1 remarks">
+See <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtLeniently_NodaTime_LocalDateTime_">AtLeniently(LocalDateTime)</a> and <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ResolveLocal_NodaTime_LocalDateTime_NodaTime_TimeZones_ZoneLocalMappingResolver_">ResolveLocal(LocalDateTime, ZoneLocalMappingResolver)</a> for alternative ways to map a local time to a
+specific instant.
 </div>
               <h5 class="exceptions">Exceptions</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -507,19 +505,18 @@ specific instant.</p>
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.SkippedTimeException.html">SkippedTimeException</a></td>
-                    <td><p>The given local date/time is skipped in this time zone.</p>
-</td>
+                    <td>The given local date/time is skipped in this time zone.</td>
                   </tr>
                   <tr>
                     <td><a class="xref" href="NodaTime.AmbiguousTimeException.html">AmbiguousTimeException</a></td>
-                    <td><p>The given local date/time is ambiguous in this time zone.</p>
-</td>
+                    <td>The given local date/time is ambiguous in this time zone.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_DateTimeZone_ForOffset_" data-uid="NodaTime.DateTimeZone.ForOffset*"></a>
               <h4 id="NodaTime_DateTimeZone_ForOffset_NodaTime_Offset_" data-uid="NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)">ForOffset(Offset)</h4>
-              <div class="markdown level1 summary"><p>Returns a fixed time zone with the given offset.</p>
+              <div class="markdown level1 summary">
+Returns a fixed time zone with the given offset.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -539,8 +536,7 @@ specific instant.</p>
                   <tr>
                     <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
                     <td><span class="parametername">offset</span></td>
-                    <td><p>The offset for the returned time zone</p>
-</td>
+                    <td>The offset for the returned time zone</td>
                   </tr>
                 </tbody>
               </table>
@@ -555,14 +551,14 @@ specific instant.</p>
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a></td>
-                    <td><p>A fixed time zone with the given offset.</p>
-</td>
+                    <td>A fixed time zone with the given offset.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_DateTimeZone_ForOffset_NodaTime_Offset__remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>
-The returned time zone will have an ID of &quot;UTC&quot; if the offset is zero, or &quot;UTC+/-Offset&quot;
+              <div class="markdown level1 remarks">
+<p>
+The returned time zone will have an ID of "UTC" if the offset is zero, or "UTC+/-Offset"
 otherwise. In the former case, the returned instance will be equal to <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_Utc">Utc</a>.
 </p>
 <p>
@@ -573,8 +569,9 @@ as equal.
 </div>
               <a id="NodaTime_DateTimeZone_GetUtcOffset_" data-uid="NodaTime.DateTimeZone.GetUtcOffset*"></a>
               <h4 id="NodaTime_DateTimeZone_GetUtcOffset_NodaTime_Instant_" data-uid="NodaTime.DateTimeZone.GetUtcOffset(NodaTime.Instant)">GetUtcOffset(Instant)</h4>
-              <div class="markdown level1 summary"><p>Returns the offset from UTC, where a positive duration indicates that local time is
-later than UTC. In other words, local time = UTC + offset.</p>
+              <div class="markdown level1 summary">
+Returns the offset from UTC, where a positive duration indicates that local time is
+later than UTC. In other words, local time = UTC + offset.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -594,8 +591,7 @@ later than UTC. In other words, local time = UTC + offset.</p>
                   <tr>
                     <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
                     <td><span class="parametername">instant</span></td>
-                    <td><p>The instant for which to calculate the offset.</p>
-</td>
+                    <td>The instant for which to calculate the offset.</td>
                   </tr>
                 </tbody>
               </table>
@@ -610,19 +606,22 @@ later than UTC. In other words, local time = UTC + offset.</p>
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
-                    <td><p>The offset from UTC at the specified instant.</p>
+                    <td>
+The offset from UTC at the specified instant.
 </td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_DateTimeZone_GetUtcOffset_NodaTime_Instant__remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>This is mostly a convenience method for calling <code>GetZoneInterval(instant).WallOffset</code>,
-although it can also be overridden for more efficiency.</p>
+              <div class="markdown level1 remarks">
+This is mostly a convenience method for calling <code>GetZoneInterval(instant).WallOffset</code>,
+although it can also be overridden for more efficiency.
 </div>
               <a id="NodaTime_DateTimeZone_GetZoneInterval_" data-uid="NodaTime.DateTimeZone.GetZoneInterval*"></a>
               <h4 id="NodaTime_DateTimeZone_GetZoneInterval_NodaTime_Instant_" data-uid="NodaTime.DateTimeZone.GetZoneInterval(NodaTime.Instant)">GetZoneInterval(Instant)</h4>
-              <div class="markdown level1 summary"><p>Gets the zone interval for the given instant; the range of time around the instant in which the same Offset
-applies (with the same split between standard time and daylight saving time, and with the same offset).</p>
+              <div class="markdown level1 summary">
+Gets the zone interval for the given instant; the range of time around the instant in which the same Offset
+applies (with the same split between standard time and daylight saving time, and with the same offset).
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -642,8 +641,7 @@ applies (with the same split between standard time and daylight saving time, and
                   <tr>
                     <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
                     <td><span class="parametername">instant</span></td>
-                    <td><p>The <a class="xref" href="NodaTime.Instant.html">Instant</a> to query.</p>
-</td>
+                    <td>The <a class="xref" href="NodaTime.Instant.html">Instant</a> to query.</td>
                   </tr>
                 </tbody>
               </table>
@@ -658,13 +656,13 @@ applies (with the same split between standard time and daylight saving time, and
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a></td>
-                    <td><p>The defined <a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a>.</p>
-</td>
+                    <td>The defined <a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a>.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_DateTimeZone_GetZoneInterval_NodaTime_Instant__remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>This will always return a valid zone interval, as time zones cover the whole of time.</p>
+              <div class="markdown level1 remarks">
+This will always return a valid zone interval, as time zones cover the whole of time.
 </div>
               <h5 id="NodaTime_DateTimeZone_GetZoneInterval_NodaTime_Instant__seealso">See Also</h5>
               <div class="seealso">
@@ -672,7 +670,8 @@ applies (with the same split between standard time and daylight saving time, and
               </div>
               <a id="NodaTime_DateTimeZone_GetZoneIntervals_" data-uid="NodaTime.DateTimeZone.GetZoneIntervals*"></a>
               <h4 id="NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Instant_NodaTime_Instant_" data-uid="NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Instant,NodaTime.Instant)">GetZoneIntervals(Instant, Instant)</h4>
-              <div class="markdown level1 summary"><p>Returns all the zone intervals which occur for any instant in the interval [<span class="paramref">start</span>, <span class="paramref">end</span>).</p>
+              <div class="markdown level1 summary">
+Returns all the zone intervals which occur for any instant in the interval [<span class="paramref">start</span>, <span class="paramref">end</span>).
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -692,14 +691,12 @@ applies (with the same split between standard time and daylight saving time, and
                   <tr>
                     <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
                     <td><span class="parametername">start</span></td>
-                    <td><p>Inclusive start point of the interval for which to retrieve zone intervals.</p>
-</td>
+                    <td>Inclusive start point of the interval for which to retrieve zone intervals.</td>
                   </tr>
                   <tr>
                     <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
                     <td><span class="parametername">end</span></td>
-                    <td><p>Exclusive end point of the interval for which to retrieve zone intervals.</p>
-</td>
+                    <td>Exclusive end point of the interval for which to retrieve zone intervals.</td>
                   </tr>
                 </tbody>
               </table>
@@ -714,13 +711,13 @@ applies (with the same split between standard time and daylight saving time, and
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a>&gt;</td>
-                    <td><p>A sequence of zone intervals covering the given interval.</p>
-</td>
+                    <td>A sequence of zone intervals covering the given interval.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Instant_NodaTime_Instant__remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>This method is simply a convenience method for calling <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_">GetZoneIntervals(Interval)</a> without
+              <div class="markdown level1 remarks">
+<p>This method is simply a convenience method for calling <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_">GetZoneIntervals(Interval)</a> without
 explicitly constructing the interval beforehand.
 </p>
 </div>
@@ -735,8 +732,7 @@ explicitly constructing the interval beforehand.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-                    <td><p><span class="paramref">end</span> is earlier than <span class="paramref">start</span>.</p>
-</td>
+                    <td><span class="paramref">end</span> is earlier than <span class="paramref">start</span>.</td>
                   </tr>
                 </tbody>
               </table>
@@ -746,7 +742,8 @@ explicitly constructing the interval beforehand.
               </div>
               <a id="NodaTime_DateTimeZone_GetZoneIntervals_" data-uid="NodaTime.DateTimeZone.GetZoneIntervals*"></a>
               <h4 id="NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_" data-uid="NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval)">GetZoneIntervals(Interval)</h4>
-              <div class="markdown level1 summary"><p>Returns all the zone intervals which occur for any instant in the given interval.</p>
+              <div class="markdown level1 summary">
+Returns all the zone intervals which occur for any instant in the given interval.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -766,9 +763,8 @@ explicitly constructing the interval beforehand.
                   <tr>
                     <td><a class="xref" href="NodaTime.Interval.html">Interval</a></td>
                     <td><span class="parametername">interval</span></td>
-                    <td><p>Interval to find zone intervals for. This is allowed to be unbounded (i.e.
-infinite in both directions).</p>
-</td>
+                    <td>Interval to find zone intervals for. This is allowed to be unbounded (i.e.
+infinite in both directions).</td>
                   </tr>
                 </tbody>
               </table>
@@ -783,13 +779,13 @@ infinite in both directions).</p>
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a>&gt;</td>
-                    <td><p>A sequence of zone intervals covering the given interval.</p>
-</td>
+                    <td>A sequence of zone intervals covering the given interval.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval__remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>The zone intervals are returned in chronological order.
+              <div class="markdown level1 remarks">
+<p>The zone intervals are returned in chronological order.
 This method is equivalent to calling <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneInterval_NodaTime_Instant_">GetZoneInterval(Instant)</a> for every
 instant in the interval and then collapsing to a set of distinct zone intervals.
 The first and last zone intervals are likely to also cover instants outside the given interval;
@@ -802,8 +798,9 @@ the zone intervals returned are not truncated to match the start and end points.
               </div>
               <a id="NodaTime_DateTimeZone_GetZoneIntervals_" data-uid="NodaTime.DateTimeZone.GetZoneIntervals*"></a>
               <h4 id="NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_NodaTime_TimeZones_ZoneEqualityComparer_Options_" data-uid="NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval,NodaTime.TimeZones.ZoneEqualityComparer.Options)">GetZoneIntervals(Interval, ZoneEqualityComparer.Options)</h4>
-              <div class="markdown level1 summary"><p>Returns the zone intervals within the given interval, potentially coalescing some of the
-original intervals according to options.</p>
+              <div class="markdown level1 summary">
+Returns the zone intervals within the given interval, potentially coalescing some of the
+original intervals according to options.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -823,9 +820,8 @@ original intervals according to options.</p>
                   <tr>
                     <td><a class="xref" href="NodaTime.Interval.html">Interval</a></td>
                     <td><span class="parametername">interval</span></td>
-                    <td><p>Interval to find zone intervals for. This is allowed to be unbounded (i.e.
-infinite in both directions).</p>
-</td>
+                    <td>Interval to find zone intervals for. This is allowed to be unbounded (i.e.
+infinite in both directions).</td>
                   </tr>
                   <tr>
                     <td><a class="xref" href="NodaTime.TimeZones.ZoneEqualityComparer.Options.html">ZoneEqualityComparer.Options</a></td>
@@ -850,7 +846,8 @@ infinite in both directions).</p>
                 </tbody>
               </table>
               <h5 id="NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_NodaTime_TimeZones_ZoneEqualityComparer_Options__remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>
+              <div class="markdown level1 remarks">
+<p>
 This is equivalent to <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_">GetZoneIntervals(Interval)</a>, but may coalesce some intervals.
 For example, if the <a class="xref" href="NodaTime.TimeZones.ZoneEqualityComparer.Options.html#NodaTime_TimeZones_ZoneEqualityComparer_Options_OnlyMatchWallOffset">OnlyMatchWallOffset</a> is specified,
 and two consecutive zone intervals have the same offset but different names, a single zone interval
@@ -865,7 +862,8 @@ the intervals returned.
 </div>
               <a id="NodaTime_DateTimeZone_MapLocal_" data-uid="NodaTime.DateTimeZone.MapLocal*"></a>
               <h4 id="NodaTime_DateTimeZone_MapLocal_NodaTime_LocalDateTime_" data-uid="NodaTime.DateTimeZone.MapLocal(NodaTime.LocalDateTime)">MapLocal(LocalDateTime)</h4>
-              <div class="markdown level1 summary"><p>Returns complete information about how the given <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> is mapped in this time zone.</p>
+              <div class="markdown level1 summary">
+Returns complete information about how the given <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> is mapped in this time zone.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -885,8 +883,7 @@ the intervals returned.
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
                     <td><span class="parametername">localDateTime</span></td>
-                    <td><p>The local date and time to map in this time zone.</p>
-</td>
+                    <td>The local date and time to map in this time zone.</td>
                   </tr>
                 </tbody>
               </table>
@@ -901,13 +898,13 @@ the intervals returned.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.TimeZones.ZoneLocalMapping.html">ZoneLocalMapping</a></td>
-                    <td><p>A mapping of the given local date and time to zero, one or two zoned date/time values.</p>
-</td>
+                    <td>A mapping of the given local date and time to zero, one or two zoned date/time values.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_DateTimeZone_MapLocal_NodaTime_LocalDateTime__remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>
+              <div class="markdown level1 remarks">
+<p>
 Mapping a local date/time to a time zone can give an unambiguous, ambiguous or impossible result, depending on
 time zone transitions. Use the return value of this method to handle these cases in an appropriate way for
 your use case.
@@ -919,8 +916,9 @@ convert the <a class="xref" href="NodaTime.TimeZones.ZoneLocalMapping.html">Zone
 </div>
               <a id="NodaTime_DateTimeZone_ResolveLocal_" data-uid="NodaTime.DateTimeZone.ResolveLocal*"></a>
               <h4 id="NodaTime_DateTimeZone_ResolveLocal_NodaTime_LocalDateTime_NodaTime_TimeZones_ZoneLocalMappingResolver_" data-uid="NodaTime.DateTimeZone.ResolveLocal(NodaTime.LocalDateTime,NodaTime.TimeZones.ZoneLocalMappingResolver)">ResolveLocal(LocalDateTime, ZoneLocalMappingResolver)</h4>
-              <div class="markdown level1 summary"><p>Maps the given <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> to the corresponding <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a>, following
-the given <a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html">ZoneLocalMappingResolver</a> to handle ambiguity and skipped times.</p>
+              <div class="markdown level1 summary">
+Maps the given <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> to the corresponding <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a>, following
+the given <a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html">ZoneLocalMappingResolver</a> to handle ambiguity and skipped times.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -940,14 +938,12 @@ the given <a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
                     <td><span class="parametername">localDateTime</span></td>
-                    <td><p>The local date and time to map in this time zone.</p>
-</td>
+                    <td>The local date and time to map in this time zone.</td>
                   </tr>
                   <tr>
                     <td><a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html">ZoneLocalMappingResolver</a></td>
                     <td><span class="parametername">resolver</span></td>
-                    <td><p>The resolver to apply to the mapping.</p>
-</td>
+                    <td>The resolver to apply to the mapping.</td>
                   </tr>
                 </tbody>
               </table>
@@ -962,13 +958,13 @@ the given <a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
-                    <td><p>The result of resolving the mapping.</p>
-</td>
+                    <td>The result of resolving the mapping.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_DateTimeZone_ResolveLocal_NodaTime_LocalDateTime_NodaTime_TimeZones_ZoneLocalMappingResolver__remarks">Remarks</h5>
-              <div class="markdown level1 remarks"><p>
+              <div class="markdown level1 remarks">
+<p>
 This is a convenience method for calling <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_MapLocal_NodaTime_LocalDateTime_">MapLocal(LocalDateTime)</a> and passing the result to the resolver.
 Common options for resolvers are provided in the static <a class="xref" href="NodaTime.TimeZones.Resolvers.html">Resolvers</a> class.
 </p>
@@ -979,7 +975,8 @@ specific instant.
 </div>
               <a id="NodaTime_DateTimeZone_ToString_" data-uid="NodaTime.DateTimeZone.ToString*"></a>
               <h4 id="NodaTime_DateTimeZone_ToString" data-uid="NodaTime.DateTimeZone.ToString">ToString()</h4>
-              <div class="markdown level1 summary"><p>Returns the ID of this time zone.</p>
+              <div class="markdown level1 summary">
+Returns the ID of this time zone.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -997,7 +994,8 @@ specific instant.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td><p>The ID of this time zone.</p>
+                    <td>
+The ID of this time zone.
 </td>
                   </tr>
                 </tbody>
