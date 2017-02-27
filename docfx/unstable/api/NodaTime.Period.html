@@ -1546,11 +1546,12 @@ changed to the same representation.
               <div class="markdown level1 remarks">
 Months and years are unchanged
 (as they can vary in length), but weeks are multiplied by 7 and added to the
-Days property, and all time properties are normalized to their natural range
-(where ticks are "within a millisecond"), adding to the larger property where
-necessary. So for example, a period of 25 hours becomes a period of 1 day
-and 1 hour. Aside from months and years, either all the properties
-end up positive, or they all end up negative.
+Days property, and all time properties are normalized to their natural range.
+Subsecond values are normalized to millisecond and "nanosecond within millisecond" values.
+So for example, a period of 25 hours becomes a period of 1 day
+and 1 hour. A period of 1,500,750,000 nanoseconds becomes 1 second, 500 milliseconds and
+750,000 nanoseconds. Aside from months and years, either all the properties
+end up positive, or they all end up negative. "Week" and "tick" units in the returned period are always 0.
 </div>
               <h5 class="exceptions">Exceptions</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -1564,11 +1565,10 @@ end up positive, or they all end up negative.
                   <tr>
                     <td><span class="xref">System.OverflowException</span></td>
                     <td>The period doesn't have years or months, but it contains more than
-<span class="xref">System.Int64.MaxValue</span> ticks when the combined weeks/days/time portions are considered. Such a period
-could never be useful anyway, however.
+<span class="xref">System.Int64.MaxValue</span> nanoseconds when the combined weeks/days/time portions are considered. This is
+over 292 years, so unlikely to be a problem in normal usage.
 In some cases this may occur even though the theoretical result would be valid due to balancing positive and
-negative values, but for simplicity there is no attempt to work around this - in realistic periods, it
-shouldn't be a problem.</td>
+negative values, but for simplicity there is no attempt to work around this.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1783,7 +1783,6 @@ become zero (so "2 weeks, 1 days" minus "2 weeks" is "zero weeks, 1 days", not "
               <h4 id="NodaTime_Period_System_Runtime_Serialization_ISerializable_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_" data-uid="NodaTime.Period.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">ISerializable.GetObjectData(SerializationInfo, StreamingContext)</h4>
               <div class="markdown level1 summary">
 Implementation of <span class="xref">System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)</span>.
-TODO(2.0): Revisit this for 2.0.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>

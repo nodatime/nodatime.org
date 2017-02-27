@@ -1429,8 +1429,9 @@
             </para>
             <para>
             The range of valid values of a <c>Duration</c> is greater than the span of time supported by Noda Time - so for
-            example, subtracting one <see cref="T:NodaTime.Instant"/> from another will always give a valid <c>Duration</c>. See the user guide
-            for more details of the exact range, but it is not expected that this will ever be exceeded in normal code.
+            example, subtracting one <see cref="T:NodaTime.Instant"/> from another will always give a valid <c>Duration</c>. The range
+            is also greater than that of <see cref="T:System.TimeSpan"/> (<see cref="F:System.Int64.MinValue" /> ticks to <see cref="F:System.Int64.MaxValue"/> ticks).
+            See the user guide for more details of the exact range, but it is not expected that this will ever be exceeded in normal code.
             </para>
             <para>
             Various operations accept or return a <see cref="T:System.Double"/>, in-keeping with durations often being natural lengths
@@ -3645,7 +3646,6 @@
             a value in a different calendar system. However, ordering comparisons (either via the <see cref="M:NodaTime.LocalDateTime.CompareTo(NodaTime.LocalDateTime)"/> method
             or via operators) fail with <see cref="T:System.ArgumentException"/>; attempting to compare values in different calendars
             almost always indicates a bug in the calling code.
-            TODO(2.0): Calendar-neutral comparer.
             </para>
             </remarks>
             <threadsafety>This type is an immutable value type. See the thread safety section of the user guide for more information.</threadsafety>
@@ -5190,6 +5190,11 @@
             The number of ticks in a BCL DateTime at the Unix epoch.
             </summary>
         </member>
+        <member name="F:NodaTime.NodaConstants.BclDaysAtUnixEpoch">
+            <summary>
+            The number of days in a BCL DateTime at the Unix epoch.
+            </summary>
+        </member>
         <member name="T:NodaTime.Offset">
             <summary>
             An offset from UTC in seconds. A positive value means that the local time is
@@ -6598,18 +6603,18 @@
             <remarks>
             Months and years are unchanged
             (as they can vary in length), but weeks are multiplied by 7 and added to the
-            Days property, and all time properties are normalized to their natural range
-            (where ticks are "within a millisecond"), adding to the larger property where
-            necessary. So for example, a period of 25 hours becomes a period of 1 day
-            and 1 hour. Aside from months and years, either all the properties
-            end up positive, or they all end up negative.
+            Days property, and all time properties are normalized to their natural range.
+            Subsecond values are normalized to millisecond and "nanosecond within millisecond" values.
+            So for example, a period of 25 hours becomes a period of 1 day
+            and 1 hour. A period of 1,500,750,000 nanoseconds becomes 1 second, 500 milliseconds and
+            750,000 nanoseconds. Aside from months and years, either all the properties
+            end up positive, or they all end up negative. "Week" and "tick" units in the returned period are always 0.
             </remarks>
             <exception cref="T:System.OverflowException">The period doesn't have years or months, but it contains more than
-            <see cref="F:System.Int64.MaxValue"/> ticks when the combined weeks/days/time portions are considered. Such a period
-            could never be useful anyway, however.
+            <see cref="F:System.Int64.MaxValue"/> nanoseconds when the combined weeks/days/time portions are considered. This is
+            over 292 years, so unlikely to be a problem in normal usage.
             In some cases this may occur even though the theoretical result would be valid due to balancing positive and
-            negative values, but for simplicity there is no attempt to work around this - in realistic periods, it
-            shouldn't be a problem.</exception>
+            negative values, but for simplicity there is no attempt to work around this.</exception>
             <returns>The normalized period.</returns>
             <seealso cref="P:NodaTime.Period.NormalizingEqualityComparer"/>
         </member>
@@ -10260,8 +10265,20 @@
             Gets an invariant local date/time pattern which is ISO-8601 compatible, providing up to 7 decimal places
             of sub-second accuracy which are always present (including trailing zeroes). This is compatible with the
             BCL round-trip formatting of <see cref="T:System.DateTime"/> values with a kind of "unspecified".
-            This corresponds to the text pattern "uuuu'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffff".
-            FIXME(2.0): What should we do with this? Maintain BCL compatibility, or go to nanos?
+            This corresponds to the text pattern "uuuu'-'MM'-'dd'T'HH':'mm':'ss'.'fffffff". It does not necessarily
+            round-trip all <c>LocalDateTime</c> values as it will lose sub-tick information. Use
+            <see cref="P:NodaTime.Text.LocalDateTimePattern.FullRoundtripWithoutCalendar"/>
+            </summary>
+            <value>An invariant local date/time pattern which is ISO-8601 compatible, providing up to 7 decimal places
+            of sub-second accuracy which are always present (including trailing zeroes).</value>
+        </member>
+        <member name="P:NodaTime.Text.LocalDateTimePattern.FullRoundtripWithoutCalendar">
+            <summary>
+            Gets an invariant local date/time pattern which round trips values, but doesn't include the calendar system.
+            It provides up to 9 decimal places of sub-second accuracy which are always present (including trailing zeroes).
+            This corresponds to the text pattern "uuuu'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffff". It will
+            round-trip all <see cref="T:NodaTime.LocalDateTime"/> values if the calendar system of the template value is the same
+            as the calendar system of the original value.
             </summary>
             <value>An invariant local date/time pattern which is ISO-8601 compatible, providing up to 7 decimal places
             of sub-second accuracy which are always present (including trailing zeroes).</value>
@@ -13317,7 +13334,7 @@
             contributions.
             </summary>
             <remarks>
-            This is effectively <c>Offset - Savings</c>.
+            This is effectively <c>WallOffset - Savings</c>.
             </remarks>
             <value>The base Offset.</value>
         </member>
@@ -14769,6 +14786,38 @@
         <member name="T:NodaTime.Utility.TickArithmetic">
             <summary>
             Common operations on ticks.
+            </summary>
+        </member>
+        <member name="M:NodaTime.Utility.TickArithmetic.TicksToDaysAndTickOfDay(System.Int64,System.Int64@)">
+            <summary>
+            Cautiously converts a number of ticks (which can have any value) into a number of 
+            days and a tick within that day.
+            </summary>
+            <remarks>
+            Used by <see cref="M:NodaTime.Duration.FromTicks(System.Int64)"/>.
+            </remarks>
+        </member>
+        <member name="M:NodaTime.Utility.TickArithmetic.NonNegativeTicksToDaysAndTickOfDay(System.Int64,System.Int64@)">
+            <summary>
+            Similar to <see cref="M:NodaTime.Utility.TickArithmetic.TicksToDaysAndTickOfDay(System.Int64,System.Int64@)"/> but
+            trusting that the input is non-negative, which can be proved in certain cases.
+            </summary>
+            <remarks>
+            Used by <see cref="M:NodaTime.LocalDateTime.FromDateTime(System.DateTime)"/> and 
+            <see cref="M:NodaTime.LocalDateTime.FromDateTime(System.DateTime,NodaTime.CalendarSystem)"/>.
+            </remarks>
+        </member>
+        <member name="M:NodaTime.Utility.TickArithmetic.DaysAndTickOfDayToTicks(System.Int32,System.Int64)">
+            <summary>
+            Cautiously computes a number of ticks from day/tick-of-day value. This may overflow,
+            but will only do so if it has to.
+            </summary>
+        </member>
+        <member name="M:NodaTime.Utility.TickArithmetic.BoundedDaysAndTickOfDayToTicks(System.Int32,System.Int64)">
+            <summary>
+            Computes a number of ticks from a day/tick-of-day value which is trusted not to overflow,
+            even when computed in the simplest way. Only call this method from places where there
+            are suitable constraints on the input.
             </summary>
         </member>
         <member name="T:JetBrains.Annotations.CanBeNullAttribute">
