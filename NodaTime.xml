@@ -6966,10 +6966,11 @@
             </summary>
             <remarks>
             <para>
-            The day is represented in bits 0-5. The month is represented in bits 6-9. The
-            year is represented in bits 10-24. This type is naive: comparisons are performed
-            assuming that a larger month number always comes after a smaller month number,
-            etc. This is suitable for most, but not all, calendar systems.
+            See <see cref="T:NodaTime.YearMonthDayCalendar"/> for the number of bits per component,
+            but this doesn't have the calendar component, so bit 0 is part of the day value.
+            This type is naive: comparisons are performed assuming that a larger month number
+            always comes after a smaller month number, etc.
+            This is suitable for most, but not all, calendar systems.
             </para>
             <para>
             The internal representation actually uses 0 for 1 (etc) for each component.
@@ -6983,15 +6984,21 @@
             Constructs a new value for the given year, month and day. No validation is performed.
             </summary>
         </member>
+        <member name="P:NodaTime.YearMonthDay.RawValue">
+            <summary>
+            The underlying value, which can be used for serialization and hash codes,
+            but should not otherwise be exposed publicly.
+            </summary>
+        </member>
         <member name="T:NodaTime.YearMonthDayCalendar">
             <summary>
             A compact representation of a year, month and day and calendar ordinal (integer ID) in a single 32-bit integer. 
             </summary>
             <remarks>
             <para>
-            The calendar is represented in bits 0-6.
-            The day is represented in bits 7-12.
-            The month is represented in bits 13-16.
+            The calendar is represented in bits 0-5.
+            The day is represented in bits 6-11.
+            The month is represented in bits 12-16.
             The year is represented in bits 17-31. (It's convenient to put this at the top as it can be negative.)
             
             This type does not implement IComparable[YearMonthDayCalendar] as it turns out it doesn't need to:
@@ -7011,6 +7018,12 @@
         <member name="M:NodaTime.YearMonthDayCalendar.#ctor(System.Int32,System.Int32,System.Int32,NodaTime.CalendarOrdinal)">
             <summary>
             Constructs a new value for the given year, month, day and calendar. No validation is performed.
+            </summary>
+        </member>
+        <member name="P:NodaTime.YearMonthDayCalendar.RawValue">
+            <summary>
+            The underlying value, which can be used for serialization and hash codes,
+            but should not otherwise be exposed publicly.
             </summary>
         </member>
         <member name="T:NodaTime.ZonedClock">
