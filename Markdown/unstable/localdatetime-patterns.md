@@ -39,7 +39,7 @@ Custom Patterns
 The custom format patterns for local date and time values are provided by combining the [custom patterns for `LocalDate`](localdate-patterns.html) with
 the [custom patterns for `LocalTime`](localtime-patterns.html). The result is simply the combination of the date and the time.
 
-There are two exceptions to this:
+There are two few exceptions to this:
 
 - When parsing a `LocalDateTime`, an 24-hour (`HH`) specifier is allowed to have the value 24, instead of being 
   limited to the range 00-23. This is only permitted if the resulting time of day is midnight, and it indicates
@@ -48,3 +48,8 @@ There are two exceptions to this:
   formatting.
 - The character 'T' is allowed to be unquoted, and acts as a single-character literal. This is to simplify the very
   common case where 'T' is used to separate the date and time parts of a value.
+
+Additionally, a specifier of `lt<...>` is used to embed a `LocalTime` pattern (which may be a standard pattern)
+in a custom pattern, and likewise a specifier of `ld<...>` is used to embed a `LocalDate` pattern. For example, a custom
+pattern of `'Date: ' ld<d>'; Time: ' lt<T>` will use the standard short format date pattern, and the standard long format
+time pattern for the appropriate culture for the date and time parts.

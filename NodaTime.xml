@@ -266,9 +266,7 @@
         </member>
         <member name="M:NodaTime.CalendarSystem.ForOrdinal(NodaTime.CalendarOrdinal)">
             <summary>
-            Fetches a calendar system by its ordinal value. This currently assumes that the relevant <see cref="T:NodaTime.CalendarSystem" /> will have been
-            initialized beforehand (as construction populates the array). In other words, this should not be called with an arbitrary ordinal;
-            this is fine as it's usually called for an existing local date, which must have been initialized using a known calendar system.
+            Fetches a calendar system by its ordinal value, constructing it if necessary.
             </summary>
         </member>
         <member name="P:NodaTime.CalendarSystem.Ids">
@@ -811,7 +809,7 @@
             next month as the exclusive end.
             </para>
             <para>
-            Values can be compared for equality, but note that inclusive intervals and exclusive intervals are always
+            Values can be compared for equality, but note that end-inclusive intervals and end-exclusive intervals are always
             considered to differ, even if they cover the same range of dates.
             </para>
             </remarks>
@@ -826,7 +824,7 @@
             This comparer considers date intervals to be equal if they have the same start and end dates when considered
             as exclusive intervals.  Alternatively: this comparer is identical to the built-in equality for
             <c>DateInterval</c>, except that it also considers an exclusive date interval of [2001-01-01, 2001-02-01) as
-            equal to an inclusive date interval of [2001-01-01, 2001-01-31].
+            equal to an end-inclusive date interval of [2001-01-01, 2001-01-31].
             </para>
             <para>
             Note that intervals with different start dates are still considered unequal by this comparer (even empty
@@ -845,7 +843,7 @@
             <para>
             This comparer considers date intervals to be equal if they would contain the same dates.  Alternatively:
             this comparer is identical to the built-in equality for <c>DateInterval</c>, except that it also considers
-            an exclusive date interval of [2001-01-01, 2001-02-01) as equal to an inclusive date interval of
+            an exclusive date interval of [2001-01-01, 2001-02-01) as equal to an end-inclusive date interval of
             [2001-01-01, 2001-01-31] and considers all empty intervals — e.g. [2001-01-01, 2001-01-01) or [1900-01-01,
             1900-01-01) — to be equal to each other (as every empty interval contains the same set of dates).
             </para>
@@ -868,12 +866,12 @@
             Gets the end date of the interval.
             </summary>
             <remarks>
-            Use the <see cref="P:NodaTime.DateInterval.Inclusive"/> property to determine whether or not the end
+            Use the <see cref="P:NodaTime.DateInterval.EndInclusive"/> property to determine whether or not the end
             date is considered part of the interval.
             </remarks>
             <value>The end date of the interval.</value>
         </member>
-        <member name="P:NodaTime.DateInterval.Inclusive">
+        <member name="P:NodaTime.DateInterval.EndInclusive">
             <summary>
             Indicates whether or not this interval includes its end date.
             </summary>
@@ -886,7 +884,7 @@
             </summary>
             <param name="start">Start date of the interval</param>
             <param name="end">End date of the interval</param>
-            <param name="inclusive"><c>true</c> to include the end date in the interval;
+            <param name="endInclusive"><c>true</c> to include the end date in the interval;
             <c>false</c> to exclude it.
             </param>
             <exception cref="T:System.ArgumentException"><paramref name="end"/> is earlier than <paramref name="start"/>
@@ -903,7 +901,7 @@
             <exception cref="T:System.ArgumentException"><paramref name="end"/> is earlier than <paramref name="start"/>
             or the two dates are in different calendars.
             </exception>
-            <returns>An inclusive date interval between the specified dates.</returns>
+            <returns>An end-inclusive date interval between the specified dates.</returns>
         </member>
         <member name="M:NodaTime.DateInterval.GetHashCode">
             <summary>
@@ -916,8 +914,8 @@
             Compares two <see cref="T:NodaTime.DateInterval" /> values for equality.
             </summary>
             <remarks>
-            Date intervals are equal if they have the same start and end dates and are both inclusive or both exclusive:
-            an exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the inclusive date interval of
+            Date intervals are equal if they have the same start and end dates and are both end-inclusive or both end-exclusive:
+            an end-exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the end-inclusive date interval of
             [2001-01-01, 2001-01-31], even though both contain the same range of dates.
             </remarks>
             <param name="lhs">The first value to compare</param>
@@ -929,8 +927,8 @@
             Compares two <see cref="T:NodaTime.DateInterval" /> values for inequality.
             </summary>
             <remarks>
-            Date intervals are equal if they have the same start and end dates and are both inclusive or both exclusive:
-            an exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the inclusive date interval of
+            Date intervals are equal if they have the same start and end dates and are both end-inclusive or both exclusive:
+            an end-exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the end-inclusive date interval of
             [2001-01-01, 2001-01-31], even though both contain the same range of dates.
             </remarks>
             <param name="lhs">The first value to compare</param>
@@ -942,8 +940,8 @@
             Compares the given date interval for equality with this one.
             </summary>
             <remarks>
-            Date intervals are equal if they have the same start and end dates and are both inclusive or both exclusive:
-            an exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the inclusive date interval of
+            Date intervals are equal if they have the same start and end dates and are both end-inclusive or both end-exclusive:
+            an end-exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the end-inclusive date interval of
             [2001-01-01, 2001-01-31], even though both contain the same range of dates.
             </remarks>
             <param name="other">The date interval to compare this one with.</param>
@@ -961,7 +959,7 @@
             Checks whether the given date is within this date interval. This requires
             that the date is not earlier than the start date, and not later than the end
             date. If the given date is exactly equal to the end date, it is considered
-            to be within the interval if and only if the interval is <see cref="P:NodaTime.DateInterval.Inclusive"/>.
+            to be within the interval if and only if the interval is <see cref="P:NodaTime.DateInterval.EndInclusive"/>.
             </summary>
             <param name="date">The date to check for containment within this interval.</param>
             <exception cref="T:System.ArgumentException"><paramref name="date"/> is not in the same
@@ -973,8 +971,8 @@
             Gets the length of this date interval in days.
             </summary>
             <remarks>
-            The end date is included or excluded according to the <see cref="P:NodaTime.DateInterval.Inclusive"/>
-            property. For example, an inclusive interval where the start and end date are the
+            The end date is included or excluded according to the <see cref="P:NodaTime.DateInterval.EndInclusive"/>
+            property. For example, an end-inclusive interval where the start and end date are the
             same has a length of 1, whereas an exclusive interval for the same dates has a
             length of 0.
             </remarks>
@@ -985,7 +983,7 @@
             Returns a string representation of this interval.
             </summary>
             <returns>
-            A string representation of this interval, as [start, end] for inclusive intervals, or [start, end) for
+            A string representation of this interval, as <c>[start, end]</c> for end-inclusive intervals, or <c>[start, end)</c> for
             exclusive intervals, where "start" and "end" are the dates formatted using an ISO-8601 compatible pattern.
             </returns>
         </member>
@@ -1008,7 +1006,7 @@
             10000-01-01), which cannot be represented as a DateInterval.
             </para>
             <para>
-            Instead, this method maps all non-empty intervals to inclusive intervals, and retains all empty
+            Instead, this method maps all non-empty intervals to end-inclusive intervals, and retains all empty
             intervals as empty intervals (which are exclusive by definition, and unequal to any non-empty interval).
             </para>
             </remarks>
@@ -1021,7 +1019,7 @@
         </member>
         <member name="M:NodaTime.DateInterval.ContainedDatesDateIntervalEqualityComparer.Normalize(NodaTime.DateInterval)">
             <summary>
-            Returns a normalized version of this interval, by converting non-empty exclusive intervals to inclusive
+            Returns a normalized version of this interval, by converting non-empty exclusive intervals to end-inclusive
             ones, and canonicalizing empty intervals to the same start date.
             </summary>
             <returns>The normalized interval.</returns>
@@ -3084,7 +3082,6 @@
             a value in a different calendar system. However, ordering comparisons (either via the <see cref="M:NodaTime.LocalDate.CompareTo(NodaTime.LocalDate)"/> method
             or via operators) fail with <see cref="T:System.ArgumentException"/>; attempting to compare values in different calendars
             almost always indicates a bug in the calling code.
-            TODO(2.0): Calendar-neutral comparer.
             </para>
             </remarks>
             <threadsafety>This type is an immutable value type. See the thread safety section of the user guide for more information.</threadsafety>

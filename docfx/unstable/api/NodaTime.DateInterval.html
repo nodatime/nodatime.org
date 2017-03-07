@@ -115,7 +115,7 @@ whole month, you can simply provide the first day of the month as the start and 
 next month as the exclusive end.
 </p>
 <p>
-Values can be compared for equality, but note that inclusive intervals and exclusive intervals are always
+Values can be compared for equality, but note that end-inclusive intervals and end-exclusive intervals are always
 considered to differ, even if they cover the same range of dates.
 </p>
 </div>
@@ -179,7 +179,7 @@ of whether the end date should be included in the interval.
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public DateInterval(LocalDate start, LocalDate end, bool inclusive)</code></pre>
+                <pre><code class="lang-csharp hljs">public DateInterval(LocalDate start, LocalDate end, bool endInclusive)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -203,7 +203,7 @@ of whether the end date should be included in the interval.
                   </tr>
                   <tr>
                     <td><span class="xref">System.Boolean</span></td>
-                    <td><span class="parametername">inclusive</span></td>
+                    <td><span class="parametername">endInclusive</span></td>
                     <td><code>true</code> to include the end date in the interval;
 <code>false</code> to exclude it.
 </td>
@@ -260,7 +260,7 @@ them.</td>
 <p>
 This comparer considers date intervals to be equal if they would contain the same dates.  Alternatively:
 this comparer is identical to the built-in equality for <code>DateInterval</code>, except that it also considers
-an exclusive date interval of [2001-01-01, 2001-02-01) as equal to an inclusive date interval of
+an exclusive date interval of [2001-01-01, 2001-02-01) as equal to an end-inclusive date interval of
 [2001-01-01, 2001-01-31] and considers all empty intervals — e.g. [2001-01-01, 2001-01-01) or [1900-01-01,
 1900-01-01) — to be equal to each other (as every empty interval contains the same set of dates).
 </p>
@@ -299,18 +299,18 @@ Gets the end date of the interval.
               </table>
               <h5 id="NodaTime_DateInterval_End_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-Use the <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_Inclusive">Inclusive</a> property to determine whether or not the end
+Use the <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_EndInclusive">EndInclusive</a> property to determine whether or not the end
 date is considered part of the interval.
 </div>
-              <a id="NodaTime_DateInterval_Inclusive_" data-uid="NodaTime.DateInterval.Inclusive*"></a>
-              <h4 id="NodaTime_DateInterval_Inclusive" data-uid="NodaTime.DateInterval.Inclusive">Inclusive</h4>
+              <a id="NodaTime_DateInterval_EndInclusive_" data-uid="NodaTime.DateInterval.EndInclusive*"></a>
+              <h4 id="NodaTime_DateInterval_EndInclusive" data-uid="NodaTime.DateInterval.EndInclusive">EndInclusive</h4>
               <div class="markdown level1 summary">
 Indicates whether or not this interval includes its end date.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public bool Inclusive { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">public bool EndInclusive { get; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -354,8 +354,8 @@ Gets the length of this date interval in days.
               </table>
               <h5 id="NodaTime_DateInterval_Length_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-The end date is included or excluded according to the <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_Inclusive">Inclusive</a>
-property. For example, an inclusive interval where the start and end date are the
+The end date is included or excluded according to the <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_EndInclusive">EndInclusive</a>
+property. For example, an end-inclusive interval where the start and end date are the
 same has a length of 1, whereas an exclusive interval for the same dates has a
 length of 0.
 </div>
@@ -391,7 +391,7 @@ intervals.</td>
 This comparer considers date intervals to be equal if they have the same start and end dates when considered
 as exclusive intervals.  Alternatively: this comparer is identical to the built-in equality for
 <code>DateInterval</code>, except that it also considers an exclusive date interval of [2001-01-01, 2001-02-01) as
-equal to an inclusive date interval of [2001-01-01, 2001-01-31].
+equal to an end-inclusive date interval of [2001-01-01, 2001-01-31].
 </p>
 <p>
 Note that intervals with different start dates are still considered unequal by this comparer (even empty
@@ -435,7 +435,7 @@ Gets the start date of the interval, which is always included in the interval.
 Checks whether the given date is within this date interval. This requires
 that the date is not earlier than the start date, and not later than the end
 date. If the given date is exactly equal to the end date, it is considered
-to be within the interval if and only if the interval is <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_Inclusive">Inclusive</a>.
+to be within the interval if and only if the interval is <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_EndInclusive">EndInclusive</a>.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -536,8 +536,8 @@ Compares the given date interval for equality with this one.
                   <div><span class="xref">System.IEquatable&lt;T&gt;.Equals(T)</span></div>
               <h5 id="NodaTime_DateInterval_Equals_NodaTime_DateInterval__remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-Date intervals are equal if they have the same start and end dates and are both inclusive or both exclusive:
-an exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the inclusive date interval of
+Date intervals are equal if they have the same start and end dates and are both end-inclusive or both end-exclusive:
+an end-exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the end-inclusive date interval of
 [2001-01-01, 2001-01-31], even though both contain the same range of dates.
 </div>
               <a id="NodaTime_DateInterval_Equals_" data-uid="NodaTime.DateInterval.Equals*"></a>
@@ -633,7 +633,7 @@ Returns a string representation of this interval.
                   <tr>
                     <td><span class="xref">System.String</span></td>
                     <td>
-A string representation of this interval, as [start, end] for inclusive intervals, or [start, end) for
+A string representation of this interval, as <code>[start, end]</code> for end-inclusive intervals, or <code>[start, end)</code> for
 exclusive intervals, where "start" and "end" are the dates formatted using an ISO-8601 compatible pattern.
 </td>
                   </tr>
@@ -692,8 +692,8 @@ Compares two <a class="xref" href="NodaTime.DateInterval.html">DateInterval</a> 
               </table>
               <h5 id="NodaTime_DateInterval_op_Equality_NodaTime_DateInterval_NodaTime_DateInterval__remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-Date intervals are equal if they have the same start and end dates and are both inclusive or both exclusive:
-an exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the inclusive date interval of
+Date intervals are equal if they have the same start and end dates and are both end-inclusive or both end-exclusive:
+an end-exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the end-inclusive date interval of
 [2001-01-01, 2001-01-31], even though both contain the same range of dates.
 </div>
               <a id="NodaTime_DateInterval_op_Inequality_" data-uid="NodaTime.DateInterval.op_Inequality*"></a>
@@ -745,8 +745,8 @@ Compares two <a class="xref" href="NodaTime.DateInterval.html">DateInterval</a> 
               </table>
               <h5 id="NodaTime_DateInterval_op_Inequality_NodaTime_DateInterval_NodaTime_DateInterval__remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-Date intervals are equal if they have the same start and end dates and are both inclusive or both exclusive:
-an exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the inclusive date interval of
+Date intervals are equal if they have the same start and end dates and are both end-inclusive or both exclusive:
+an end-exclusive date interval of [2001-01-01, 2001-02-01) is not equal to the end-inclusive date interval of
 [2001-01-01, 2001-01-31], even though both contain the same range of dates.
 </div>
                         </article>
