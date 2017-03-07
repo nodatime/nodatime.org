@@ -39,7 +39,7 @@ Custom Patterns
 The custom format patterns for local date and time values are provided by combining the [custom patterns for `LocalDate`](localdate-patterns.html) with
 the [custom patterns for `LocalTime`](localtime-patterns.html). The result is simply the combination of the date and the time.
 
-There are two few exceptions to this:
+There are two exceptions to this:
 
 - When parsing a `LocalDateTime`, an 24-hour (`HH`) specifier is allowed to have the value 24, instead of being 
   limited to the range 00-23. This is only permitted if the resulting time of day is midnight, and it indicates
