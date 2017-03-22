@@ -107,16 +107,9 @@ An interval between two dates.
 The two dates must be in the same calendar, and the end date must not be earlier than the start date.
 </p>
 <p>
-By default, the end date is deemed to be part of the range, as this matches many real life uses of
+The end date is deemed to be part of the range, as this matches many real life uses of
 date ranges. For example, if someone says "I'm going to be on holiday from Monday to Friday," they
-usually mean that Friday is part of their holiday. This can be configured via a constructor parameter,
-as occasionally an exclusive end date can be useful. For example, to create an interval covering a
-whole month, you can simply provide the first day of the month as the start and the first day of the
-next month as the exclusive end.
-</p>
-<p>
-Values can be compared for equality, but note that end-inclusive intervals and end-exclusive intervals are always
-considered to differ, even if they cover the same range of dates.
+usually mean that Friday is part of their holiday.
 </p>
 </div>
               <h3 id="constructors">Constructors
@@ -124,7 +117,8 @@ considered to differ, even if they cover the same range of dates.
               <a id="NodaTime_DateInterval__ctor_" data-uid="NodaTime.DateInterval.#ctor*"></a>
               <h4 id="NodaTime_DateInterval__ctor_NodaTime_LocalDate_NodaTime_LocalDate_" data-uid="NodaTime.DateInterval.#ctor(NodaTime.LocalDate,NodaTime.LocalDate)">DateInterval(LocalDate, LocalDate)</h4>
               <div class="markdown level1 summary">
-Constructs a date interval from a start date and an inclusive end date.
+Constructs a date interval from a start date and an end date, both of which are included
+in the interval.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -149,64 +143,7 @@ Constructs a date interval from a start date and an inclusive end date.
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
                     <td><span class="parametername">end</span></td>
-                    <td>End date of the interval, inclusive</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="exceptions">Exceptions</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Condition</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.ArgumentException</span></td>
-                    <td><span class="paramref">end</span> is earlier than <span class="paramref">start</span>
-    or the two dates are in different calendars.
-</td>
-                  </tr>
-                </tbody>
-              </table>
-              <a id="NodaTime_DateInterval__ctor_" data-uid="NodaTime.DateInterval.#ctor*"></a>
-              <h4 id="NodaTime_DateInterval__ctor_NodaTime_LocalDate_NodaTime_LocalDate_System_Boolean_" data-uid="NodaTime.DateInterval.#ctor(NodaTime.LocalDate,NodaTime.LocalDate,System.Boolean)">DateInterval(LocalDate, LocalDate, Boolean)</h4>
-              <div class="markdown level1 summary">
-Constructs a date interval from a start date and an end date, and an indication
-of whether the end date should be included in the interval.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public DateInterval(LocalDate start, LocalDate end, bool endInclusive)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
-                    <td><span class="parametername">start</span></td>
-                    <td>Start date of the interval</td>
-                  </tr>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
-                    <td><span class="parametername">end</span></td>
                     <td>End date of the interval</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Boolean</span></td>
-                    <td><span class="parametername">endInclusive</span></td>
-                    <td><code>true</code> to include the end date in the interval;
-<code>false</code> to exclude it.
-</td>
                   </tr>
                 </tbody>
               </table>
@@ -229,49 +166,6 @@ of whether the end date should be included in the interval.
               </table>
               <h3 id="properties">Properties
               </h3>
-              <a id="NodaTime_DateInterval_ContainedDatesEqualityComparer_" data-uid="NodaTime.DateInterval.ContainedDatesEqualityComparer*"></a>
-              <h4 id="NodaTime_DateInterval_ContainedDatesEqualityComparer" data-uid="NodaTime.DateInterval.ContainedDatesEqualityComparer">ContainedDatesEqualityComparer</h4>
-              <div class="markdown level1 summary">
-Returns an equality comparer which compares intervals by comparing the set of dates contained within them.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static IEqualityComparer&lt;DateInterval&gt; ContainedDatesEqualityComparer { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Collections.Generic.IEqualityComparer</span>&lt;<a class="xref" href="NodaTime.DateInterval.html">DateInterval</a>&gt;</td>
-                    <td>An equality comparer which compares intervals by comparing the set of dates contained within
-them.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_DateInterval_ContainedDatesEqualityComparer_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-<p>
-This comparer considers date intervals to be equal if they would contain the same dates.  Alternatively:
-this comparer is identical to the built-in equality for <code>DateInterval</code>, except that it also considers
-an exclusive date interval of [2001-01-01, 2001-02-01) as equal to an end-inclusive date interval of
-[2001-01-01, 2001-01-31] and considers all empty intervals — e.g. [2001-01-01, 2001-01-01) or [1900-01-01,
-1900-01-01) — to be equal to each other (as every empty interval contains the same set of dates).
-</p>
-<p>
-Note that intervals containing dates from different calendars are still considered unequal by this comparer.
-</p>
-</div>
-              <h5 id="NodaTime_DateInterval_ContainedDatesEqualityComparer_seealso">See Also</h5>
-              <div class="seealso">
-                  <div><a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_NormalizingEqualityComparer">NormalizingEqualityComparer</a></div>
-              </div>
               <a id="NodaTime_DateInterval_End_" data-uid="NodaTime.DateInterval.End*"></a>
               <h4 id="NodaTime_DateInterval_End" data-uid="NodaTime.DateInterval.End">End</h4>
               <div class="markdown level1 summary">
@@ -297,40 +191,10 @@ Gets the end date of the interval.
                   </tr>
                 </tbody>
               </table>
-              <h5 id="NodaTime_DateInterval_End_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-Use the <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_EndInclusive">EndInclusive</a> property to determine whether or not the end
-date is considered part of the interval.
-</div>
-              <a id="NodaTime_DateInterval_EndInclusive_" data-uid="NodaTime.DateInterval.EndInclusive*"></a>
-              <h4 id="NodaTime_DateInterval_EndInclusive" data-uid="NodaTime.DateInterval.EndInclusive">EndInclusive</h4>
-              <div class="markdown level1 summary">
-Indicates whether or not this interval includes its end date.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public bool EndInclusive { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Boolean</span></td>
-                    <td>Whether or not this interval includes its end date.</td>
-                  </tr>
-                </tbody>
-              </table>
               <a id="NodaTime_DateInterval_Length_" data-uid="NodaTime.DateInterval.Length*"></a>
               <h4 id="NodaTime_DateInterval_Length" data-uid="NodaTime.DateInterval.Length">Length</h4>
               <div class="markdown level1 summary">
-Gets the length of this date interval in days.
+Gets the length of this date interval in days. This will always be at least 1.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -352,60 +216,10 @@ Gets the length of this date interval in days.
                   </tr>
                 </tbody>
               </table>
-              <h5 id="NodaTime_DateInterval_Length_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-The end date is included or excluded according to the <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_EndInclusive">EndInclusive</a>
-property. For example, an end-inclusive interval where the start and end date are the
-same has a length of 1, whereas an exclusive interval for the same dates has a
-length of 0.
-</div>
-              <a id="NodaTime_DateInterval_NormalizingEqualityComparer_" data-uid="NodaTime.DateInterval.NormalizingEqualityComparer*"></a>
-              <h4 id="NodaTime_DateInterval_NormalizingEqualityComparer" data-uid="NodaTime.DateInterval.NormalizingEqualityComparer">NormalizingEqualityComparer</h4>
-              <div class="markdown level1 summary">
-Returns an equality comparer which compares intervals by first normalizing them to exclusive intervals.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static IEqualityComparer&lt;DateInterval&gt; NormalizingEqualityComparer { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Collections.Generic.IEqualityComparer</span>&lt;<a class="xref" href="NodaTime.DateInterval.html">DateInterval</a>&gt;</td>
-                    <td>An equality comparer which compares intervals by first normalizing them to exclusive
-intervals.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_DateInterval_NormalizingEqualityComparer_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-<p>
-This comparer considers date intervals to be equal if they have the same start and end dates when considered
-as exclusive intervals.  Alternatively: this comparer is identical to the built-in equality for
-<code>DateInterval</code>, except that it also considers an exclusive date interval of [2001-01-01, 2001-02-01) as
-equal to an end-inclusive date interval of [2001-01-01, 2001-01-31].
-</p>
-<p>
-Note that intervals with different start dates are still considered unequal by this comparer (even empty
-intervals that contain no dates), as are intervals containing dates from different calendars.
-</p>
-</div>
-              <h5 id="NodaTime_DateInterval_NormalizingEqualityComparer_seealso">See Also</h5>
-              <div class="seealso">
-                  <div><a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_ContainedDatesEqualityComparer">ContainedDatesEqualityComparer</a></div>
-              </div>
               <a id="NodaTime_DateInterval_Start_" data-uid="NodaTime.DateInterval.Start*"></a>
               <h4 id="NodaTime_DateInterval_Start" data-uid="NodaTime.DateInterval.Start">Start</h4>
               <div class="markdown level1 summary">
-Gets the start date of the interval, which is always included in the interval.
+Gets the start date of the interval.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -434,8 +248,7 @@ Gets the start date of the interval, which is always included in the interval.
               <div class="markdown level1 summary">
 Checks whether the given date is within this date interval. This requires
 that the date is not earlier than the start date, and not later than the end
-date. If the given date is exactly equal to the end date, it is considered
-to be within the interval if and only if the interval is <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_EndInclusive">EndInclusive</a>.
+date.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -633,8 +446,8 @@ Returns a string representation of this interval.
                   <tr>
                     <td><span class="xref">System.String</span></td>
                     <td>
-A string representation of this interval, as <code>[start, end]</code> for end-inclusive intervals, or <code>[start, end)</code> for
-exclusive intervals, where "start" and "end" are the dates formatted using an ISO-8601 compatible pattern.
+A string representation of this interval, as <code>[start, end]</code>,
+where "start" and "end" are the dates formatted using an ISO-8601 compatible pattern.
 </td>
                   </tr>
                 </tbody>
