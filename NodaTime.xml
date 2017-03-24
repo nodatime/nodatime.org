@@ -8660,6 +8660,11 @@
             (and therefore usually shorter) pattern can be used first.
             </remarks>
             <typeparam name="T">The type of value to be parsed or formatted by the resulting pattern.</typeparam>
+            <threadsafety>
+            This type is mutable, and should not be used between multiple threads. The patterns created
+            by the <see cref="M:NodaTime.Text.CompositePatternBuilder`1.Build"/> method are immutable and can be used between multiple threads, assuming
+            that each component (both pattern and predicate) is also immutable.
+            </threadsafety>
         </member>
         <member name="M:NodaTime.Text.CompositePatternBuilder`1.Add(NodaTime.Text.IPattern{`0},System.Func{`0,System.Boolean})">
             <summary>
