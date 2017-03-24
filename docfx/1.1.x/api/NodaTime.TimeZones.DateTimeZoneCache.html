@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class DateTimeZoneCache
    | Noda Time ">
-    <meta name="generator" content="docfx 2.11.2.0">
+    <meta name="generator" content="docfx 2.14.1.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../../styles/main.css">
     <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
+    
     
   </head>
   <body data-spy="scroll" data-target="#affix">
@@ -171,7 +172,9 @@ advertised by the source.
               </h3>
               <a id="NodaTime_TimeZones_DateTimeZoneCache_Ids_" data-uid="NodaTime.TimeZones.DateTimeZoneCache.Ids*"></a>
               <h4 id="NodaTime_TimeZones_DateTimeZoneCache_Ids" data-uid="NodaTime.TimeZones.DateTimeZoneCache.Ids">Ids</h4>
-              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 summary">
+Gets the list of valid time zone ids advertised by this provider.
+</div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
@@ -188,15 +191,29 @@ advertised by the source.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Collections.ObjectModel.ReadOnlyCollection</span>&lt;<span class="xref">System.String</span>&gt;</td>
-                    <td></td>
+                    <td>The <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span> of string ids.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
                   <div><a class="xref" href="NodaTime.IDateTimeZoneProvider.html#NodaTime_IDateTimeZoneProvider_Ids">IDateTimeZoneProvider.Ids</a></div>
+              <h5 id="NodaTime_TimeZones_DateTimeZoneCache_Ids_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+<p>
+This list will be sorted in ordinal lexicographic order. It cannot be modified by callers, and
+must not be modified by the provider either: client code can safely treat it as thread-safe
+and deeply immutable.
+</p>
+<p>
+In addition to the list returned here, providers always support the fixed-offset timezones with IDs "UTC"
+and "UTC+/-Offset". These may or may not be included explicitly in this list.
+</p>
+</div>
               <a id="NodaTime_TimeZones_DateTimeZoneCache_Item_" data-uid="NodaTime.TimeZones.DateTimeZoneCache.Item*"></a>
               <h4 id="NodaTime_TimeZones_DateTimeZoneCache_Item_System_String_" data-uid="NodaTime.TimeZones.DateTimeZoneCache.Item(System.String)">Item[String]</h4>
-              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 summary">
+Returns the time zone for the given ID.
+</div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
@@ -215,7 +232,7 @@ advertised by the source.
                   <tr>
                     <td><span class="xref">System.String</span></td>
                     <td><span class="parametername">id</span></td>
-                    <td></td>
+                    <td>The time zone id to find.</td>
                   </tr>
                 </tbody>
               </table>
@@ -230,15 +247,56 @@ advertised by the source.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a></td>
-                    <td></td>
+                    <td>The <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> for the given ID.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
                   <div><a class="xref" href="NodaTime.IDateTimeZoneProvider.html#NodaTime_IDateTimeZoneProvider_Item_System_String_">IDateTimeZoneProvider.Item[String]</a></div>
+              <h5 id="NodaTime_TimeZones_DateTimeZoneCache_Item_System_String__remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+<p>
+Unlike <a class="xref" href="NodaTime.IDateTimeZoneProvider.html#NodaTime_IDateTimeZoneProvider_GetZoneOrNull_System_String_">GetZoneOrNull(String)</a>, this indexer will never return a null reference. If the ID is not
+supported by this provider, it will throw <a class="xref" href="NodaTime.TimeZones.DateTimeZoneNotFoundException.html">DateTimeZoneNotFoundException</a>.
+</p>
+<p>
+Note that this may return a <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> that has a different ID to that requested, if the ID
+provided is an alias.
+</p>
+<p>
+Note also that this method is not required to return the same <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> instance for
+successive requests for the same ID; however, all instances returned for a given ID must compare
+as equal.
+</p>
+<p>
+The fixed-offset timezones with IDs "UTC" and "UTC+/-Offset" are always available. These must
+return instances that are equal to those returned by <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ForOffset_NodaTime_Offset_">ForOffset(Offset)</a>.
+</p>
+</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.TimeZones.DateTimeZoneNotFoundException.html">DateTimeZoneNotFoundException</a></td>
+                    <td>This provider does not support the given ID.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">id</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_TimeZones_DateTimeZoneCache_VersionId_" data-uid="NodaTime.TimeZones.DateTimeZoneCache.VersionId*"></a>
               <h4 id="NodaTime_TimeZones_DateTimeZoneCache_VersionId" data-uid="NodaTime.TimeZones.DateTimeZoneCache.VersionId">VersionId</h4>
-              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 summary">
+The version ID of this provider.
+</div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
@@ -265,7 +323,10 @@ advertised by the source.
               </h3>
               <a id="NodaTime_TimeZones_DateTimeZoneCache_GetSystemDefault_" data-uid="NodaTime.TimeZones.DateTimeZoneCache.GetSystemDefault*"></a>
               <h4 id="NodaTime_TimeZones_DateTimeZoneCache_GetSystemDefault" data-uid="NodaTime.TimeZones.DateTimeZoneCache.GetSystemDefault">GetSystemDefault()</h4>
-              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 summary">
+Gets the time zone from this provider that matches the system default time zone, if a matching time zone is
+available.
+</div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
@@ -282,15 +343,46 @@ advertised by the source.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a></td>
-                    <td></td>
+                    <td>
+The provider-specific representation of the system default time zone.
+</td>
                   </tr>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
                   <div><a class="xref" href="NodaTime.IDateTimeZoneProvider.html#NodaTime_IDateTimeZoneProvider_GetSystemDefault">IDateTimeZoneProvider.GetSystemDefault()</a></div>
+              <h5 id="NodaTime_TimeZones_DateTimeZoneCache_GetSystemDefault_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+Callers should be aware that this method will throw <a class="xref" href="NodaTime.TimeZones.DateTimeZoneNotFoundException.html">DateTimeZoneNotFoundException</a> if no matching
+time zone is found. For the built-in Noda Time providers, this is unlikely to occur in practice (assuming
+the system is using a standard Windows time zone), but can occur even then, if no mapping is found.
+If it is necessary to handle this case, callers can construct a
+<a class="xref" href="NodaTime.TimeZones.BclDateTimeZone.html">BclDateTimeZone</a> via <a class="xref" href="NodaTime.TimeZones.BclDateTimeZone.html#NodaTime_TimeZones_BclDateTimeZone_ForSystemDefault">ForSystemDefault()</a>, which returns a
+<a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> that wraps the system local <span class="xref">System.TimeZoneInfo</span>, and which always
+succeeds. Note that <code>BclDateTimeZone</code> is not available on the PCL build of Noda Time, so
+this fallback strategy can only be used with the desktop version.
+</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.TimeZones.DateTimeZoneNotFoundException.html">DateTimeZoneNotFoundException</a></td>
+                    <td>The system default time zone is not mapped by
+this provider.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_TimeZones_DateTimeZoneCache_GetZoneOrNull_" data-uid="NodaTime.TimeZones.DateTimeZoneCache.GetZoneOrNull*"></a>
               <h4 id="NodaTime_TimeZones_DateTimeZoneCache_GetZoneOrNull_System_String_" data-uid="NodaTime.TimeZones.DateTimeZoneCache.GetZoneOrNull(System.String)">GetZoneOrNull(String)</h4>
-              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 summary">
+Returns the time zone for the given ID, if it's available.
+</div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
@@ -309,7 +401,7 @@ advertised by the source.
                   <tr>
                     <td><span class="xref">System.String</span></td>
                     <td><span class="parametername">id</span></td>
-                    <td></td>
+                    <td>The time zone ID to find.</td>
                   </tr>
                 </tbody>
               </table>
@@ -324,12 +416,44 @@ advertised by the source.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a></td>
-                    <td></td>
+                    <td>The <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> for the given ID or null if the provider does not support
+the given ID.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
                   <div><a class="xref" href="NodaTime.IDateTimeZoneProvider.html#NodaTime_IDateTimeZoneProvider_GetZoneOrNull_System_String_">IDateTimeZoneProvider.GetZoneOrNull(String)</a></div>
+              <h5 id="NodaTime_TimeZones_DateTimeZoneCache_GetZoneOrNull_System_String__remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+<p>
+Note that this may return a <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> that has a different ID to that requested, if the ID
+provided is an alias.
+</p>
+<p>
+Note also that this method is not required to return the same <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> instance for
+successive requests for the same ID; however, all instances returned for a given ID must compare
+as equal.
+</p>
+<p>
+The fixed-offset timezones with IDs "UTC" and "UTC+/-Offset" are always available. These must
+return instances that are equal to those returned by <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ForOffset_NodaTime_Offset_">ForOffset(Offset)</a>.
+</p>
+</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">id</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
                         </article>
           </div>
           
