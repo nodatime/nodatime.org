@@ -111,18 +111,19 @@ Represents a pattern for parsing and formatting <a class="xref" href="NodaTime.O
               <div class="codewrapper">
                 <pre><code class="lang-csharp hljs">public sealed class OffsetPattern : IPattern&lt;Offset&gt;</code></pre>
               </div>
-              <h3 id="fields">Fields
+              <h3 id="properties">Properties
               </h3>
-              <h4 id="NodaTime_Text_OffsetPattern_GeneralInvariantPattern" data-uid="NodaTime.Text.OffsetPattern.GeneralInvariantPattern">GeneralInvariantPattern</h4>
+              <a id="NodaTime_Text_OffsetPattern_GeneralInvariant_" data-uid="NodaTime.Text.OffsetPattern.GeneralInvariant*"></a>
+              <h4 id="NodaTime_Text_OffsetPattern_GeneralInvariant" data-uid="NodaTime.Text.OffsetPattern.GeneralInvariant">GeneralInvariant</h4>
               <div class="markdown level1 summary">
 The "general" offset pattern (e.g. +HH, +HH:mm, +HH:mm:ss, +HH:mm:ss.fff) for the invariant culture.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly OffsetPattern GeneralInvariantPattern</code></pre>
+                <pre><code class="lang-csharp hljs">public static OffsetPattern GeneralInvariant { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -137,7 +138,8 @@ The "general" offset pattern (e.g. +HH, +HH:mm, +HH:mm:ss, +HH:mm:ss.fff) for th
                   </tr>
                 </tbody>
               </table>
-              <h4 id="NodaTime_Text_OffsetPattern_GeneralInvariantPatternWithZ" data-uid="NodaTime.Text.OffsetPattern.GeneralInvariantPatternWithZ">GeneralInvariantPatternWithZ</h4>
+              <a id="NodaTime_Text_OffsetPattern_GeneralInvariantWithZ_" data-uid="NodaTime.Text.OffsetPattern.GeneralInvariantWithZ*"></a>
+              <h4 id="NodaTime_Text_OffsetPattern_GeneralInvariantWithZ" data-uid="NodaTime.Text.OffsetPattern.GeneralInvariantWithZ">GeneralInvariantWithZ</h4>
               <div class="markdown level1 summary">
 The "general" offset pattern (e.g. +HH, +HH:mm, +HH:mm:ss, +HH:mm:ss.fff) for the invariant culture,
 but producing (and allowing) Z as a value for a zero offset.
@@ -145,9 +147,9 @@ but producing (and allowing) Z as a value for a zero offset.
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly OffsetPattern GeneralInvariantPatternWithZ</code></pre>
+                <pre><code class="lang-csharp hljs">public static OffsetPattern GeneralInvariantWithZ { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -162,12 +164,10 @@ but producing (and allowing) Z as a value for a zero offset.
                   </tr>
                 </tbody>
               </table>
-              <h3 id="properties">Properties
-              </h3>
               <a id="NodaTime_Text_OffsetPattern_PatternText_" data-uid="NodaTime.Text.OffsetPattern.PatternText*"></a>
               <h4 id="NodaTime_Text_OffsetPattern_PatternText" data-uid="NodaTime.Text.OffsetPattern.PatternText">PatternText</h4>
               <div class="markdown level1 summary">
-Returns the pattern text for this pattern, as supplied on creation.
+Gets the pattern text for this pattern, as supplied on creation.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -185,12 +185,62 @@ Returns the pattern text for this pattern, as supplied on creation.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td></td>
+                    <td>The pattern text for this pattern, as supplied on creation.</td>
                   </tr>
                 </tbody>
               </table>
               <h3 id="methods">Methods
               </h3>
+              <a id="NodaTime_Text_OffsetPattern_AppendFormat_" data-uid="NodaTime.Text.OffsetPattern.AppendFormat*"></a>
+              <h4 id="NodaTime_Text_OffsetPattern_AppendFormat_NodaTime_Offset_System_Text_StringBuilder_" data-uid="NodaTime.Text.OffsetPattern.AppendFormat(NodaTime.Offset,System.Text.StringBuilder)">AppendFormat(Offset, StringBuilder)</h4>
+              <div class="markdown level1 summary">
+Formats the given value as text according to the rules of this pattern,
+appending to the given <span class="xref">System.Text.StringBuilder</span>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public StringBuilder AppendFormat(Offset value, StringBuilder builder)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
+                    <td><span class="parametername">value</span></td>
+                    <td>The value to format.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Text.StringBuilder</span></td>
+                    <td><span class="parametername">builder</span></td>
+                    <td>The <code>StringBuilder</code> to append to.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Text.StringBuilder</span></td>
+                    <td>The builder passed in as <span class="paramref">builder</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_">IPattern&lt;T&gt;.AppendFormat(T, StringBuilder)</a></div>
               <a id="NodaTime_Text_OffsetPattern_Create_" data-uid="NodaTime.Text.OffsetPattern.Create*"></a>
               <h4 id="NodaTime_Text_OffsetPattern_Create_System_String_System_Globalization_CultureInfo_" data-uid="NodaTime.Text.OffsetPattern.Create(System.String,System.Globalization.CultureInfo)">Create(String, CultureInfo)</h4>
               <div class="markdown level1 summary">

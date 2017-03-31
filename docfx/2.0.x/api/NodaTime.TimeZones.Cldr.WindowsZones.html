@@ -140,7 +140,8 @@ TZDB time zones.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Collections.Generic.IList</span>&lt;<a class="xref" href="NodaTime.TimeZones.Cldr.MapZone.html">MapZone</a>&gt;</td>
-                    <td></td>
+                    <td>An immutable collection of mappings from Windows system time zones to
+TZDB time zones.</td>
                   </tr>
                 </tbody>
               </table>
@@ -164,9 +165,6 @@ this collection has a "primary" entry with a territory code of "001" (which is t
 and it appearing in CLDR, ready to be used by Noda Time. (There's also bound to be a delay between it appearing
 in CLDR and being used in your production system.) In practice however, you're unlikely to wish to use a time zone
 which isn't covered here.</p>
-<p>
-If the data is loaded from the legacy resource format, this will only include the primary mappings.
-</p>
 </div>
               <a id="NodaTime_TimeZones_Cldr_WindowsZones_PrimaryMapping_" data-uid="NodaTime.TimeZones.Cldr.WindowsZones.PrimaryMapping*"></a>
               <h4 id="NodaTime_TimeZones_Cldr_WindowsZones_PrimaryMapping" data-uid="NodaTime.TimeZones.Cldr.WindowsZones.PrimaryMapping">PrimaryMapping</h4>
@@ -191,10 +189,20 @@ within the mapping file.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Collections.Generic.IDictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
-                    <td></td>
+                    <td>An immutable dictionary of primary mappings, from Windows system time zone ID
+to TZDB zone ID.</td>
                   </tr>
                 </tbody>
               </table>
+              <h5 id="NodaTime_TimeZones_Cldr_WindowsZones_PrimaryMapping_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+<p>
+Each value in the dictionary is a canonical ID in CLDR, but it may not be canonical
+in TZDB. For example, the ID corresponding to "India Standard Time" is "Asia/Calcutta", which
+is canonical in CLDR but is an alias in TZDB for "Asia/Kolkata". To obtain a canonical TZDB
+ID, use <a class="xref" href="NodaTime.TimeZones.TzdbDateTimeZoneSource.html#NodaTime_TimeZones_TzdbDateTimeZoneSource_CanonicalIdMap">CanonicalIdMap</a>.
+</p>
+</div>
               <a id="NodaTime_TimeZones_Cldr_WindowsZones_TzdbVersion_" data-uid="NodaTime.TimeZones.Cldr.WindowsZones.TzdbVersion*"></a>
               <h4 id="NodaTime_TimeZones_Cldr_WindowsZones_TzdbVersion" data-uid="NodaTime.TimeZones.Cldr.WindowsZones.TzdbVersion">TzdbVersion</h4>
               <div class="markdown level1 summary">
@@ -216,22 +224,16 @@ Gets the TZDB version this Windows zone mapping data was created from.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td></td>
+                    <td>The TZDB version this Windows zone mapping data was created from.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_TimeZones_Cldr_WindowsZones_TzdbVersion_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-<p>
 The CLDR mapping file usually lags behind the TZDB file somewhat - partly because the
 mappings themselves don't always change when the time zone data does. For example, it's entirely
 reasonable for a <a class="xref" href="NodaTime.TimeZones.TzdbDateTimeZoneSource.html">TzdbDateTimeZoneSource</a> with a <a class="xref" href="NodaTime.TimeZones.TzdbDateTimeZoneSource.html#NodaTime_TimeZones_TzdbDateTimeZoneSource_TzdbVersion">TzdbVersion</a> of
 "2013b" to be supply a <code>WindowsZones</code> object with a <code>TzdbVersion</code> of "2012f".
-</p>
-<p>
-This property will never return a null value, but will be "Unknown" if the data
-is loaded from the legacy resource format.
-</p>
 </div>
               <a id="NodaTime_TimeZones_Cldr_WindowsZones_Version_" data-uid="NodaTime.TimeZones.Cldr.WindowsZones.Version*"></a>
               <h4 id="NodaTime_TimeZones_Cldr_WindowsZones_Version" data-uid="NodaTime.TimeZones.Cldr.WindowsZones.Version">Version</h4>
@@ -254,21 +256,16 @@ Gets the version of the Windows zones mapping data read from the original file.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td></td>
+                    <td>The version of the Windows zones mapping data read from the original file.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_TimeZones_Cldr_WindowsZones_Version_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-<p>
 As with other IDs, this should largely be treated as an opaque string, but the current method for
 generating this from the mapping file extracts a number from an element such as <code>&lt;version number="$Revision: 7825 $"/&gt;</code>.
 This is a Subversion revision number, but that association should only be used for diagnostic curiosity, and never
 assumed in code.
-</p>
-<p>
-This property will never return a null value.
-</p>
 </div>
               <a id="NodaTime_TimeZones_Cldr_WindowsZones_WindowsVersion_" data-uid="NodaTime.TimeZones.Cldr.WindowsZones.WindowsVersion*"></a>
               <h4 id="NodaTime_TimeZones_Cldr_WindowsZones_WindowsVersion" data-uid="NodaTime.TimeZones.Cldr.WindowsZones.WindowsVersion">WindowsVersion</h4>
@@ -291,21 +288,15 @@ Gets the Windows time zone database version this Windows zone mapping data was c
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td></td>
+                    <td>The Windows time zone database version this Windows zone mapping data was created from.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_TimeZones_Cldr_WindowsZones_WindowsVersion_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-<p>
 At the time of this writing, this is populated (by CLDR) from the registry key
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones\TzVersion,
 so "7dc0101" for example.
-</p>
-<p>
-This property will never return a null value, but will be "Unknown" if the data
-is loaded from the legacy resource format.
-</p>
 </div>
                         </article>
           </div>

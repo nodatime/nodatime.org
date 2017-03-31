@@ -109,21 +109,19 @@ Base class for <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime<
               <h6><strong>Assembly</strong>:NodaTime.dll</h6>
               <h5 id="NodaTime_ZonedDateTime_Comparer_syntax">Syntax</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public abstract class Comparer : IComparer&lt;ZonedDateTime&gt;</code></pre>
+                <pre><code class="lang-csharp hljs">public abstract class Comparer : IComparer&lt;ZonedDateTime&gt;, IEqualityComparer&lt;ZonedDateTime&gt;</code></pre>
               </div>
               <h5 id="NodaTime_ZonedDateTime_Comparer_remarks"><strong>Remarks</strong></h5>
               <div class="markdown level0 remarks">
-<p>Use the static properties of this class to obtain instances.</p>
-<p>For the curious: this class only exists so that in the future, it can expose more functionality - probably
-implementing <span class="xref">System.Collections.Generic.IEqualityComparer&lt;T&gt;</span>. If we simply provided properties on ZonedDateTime of type
-<span class="xref">System.Collections.Generic.IComparer&lt;T&gt;</span> we'd have no backward-compatible way of adding to the set of implemented interfaces.</p>
+Use the static properties of this class to obtain instances. This type is exposed so that the
+same value can be used for both equality and ordering comparisons.
 </div>
               <h3 id="properties">Properties
               </h3>
               <a id="NodaTime_ZonedDateTime_Comparer_Instant_" data-uid="NodaTime.ZonedDateTime.Comparer.Instant*"></a>
               <h4 id="NodaTime_ZonedDateTime_Comparer_Instant" data-uid="NodaTime.ZonedDateTime.Comparer.Instant">Instant</h4>
               <div class="markdown level1 summary">
-Returns a comparer which compares <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> values by the instants obtained by applying the offset to
+Gets a comparer which compares <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> values by the instants obtained by applying the offset to
 the local date/time, ignoring the calendar system.
 </div>
               <div class="markdown level1 conceptual"></div>
@@ -142,7 +140,8 @@ the local date/time, ignoring the calendar system.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.ZonedDateTime.Comparer.html">ZonedDateTime.Comparer</a></td>
-                    <td></td>
+                    <td>A comparer which compares values by the instants obtained by applying the offset to
+the local date/time, ignoring the calendar system.</td>
                   </tr>
                 </tbody>
               </table>
@@ -151,14 +150,13 @@ the local date/time, ignoring the calendar system.
 <p>For example, this comparer considers 2013-03-04T20:21:00 (Europe/London) to be earlier than
 2013-03-04T19:21:00 (America/Los_Angeles) even though the second value has a local time which is earlier; the time zones
 mean that the first value occurred earlier in the universal time line.</p>
-<p>This comparer behaves the same way as the <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_CompareTo_NodaTime_ZonedDateTime_">CompareTo(ZonedDateTime)</a> method; it is provided for symmetry with <a class="xref" href="NodaTime.ZonedDateTime.Comparer.html#NodaTime_ZonedDateTime_Comparer_Local">Local</a>.</p>
 <p>This property will return a reference to the same instance every time it is called.</p>
 </div>
               <a id="NodaTime_ZonedDateTime_Comparer_Local_" data-uid="NodaTime.ZonedDateTime.Comparer.Local*"></a>
               <h4 id="NodaTime_ZonedDateTime_Comparer_Local" data-uid="NodaTime.ZonedDateTime.Comparer.Local">Local</h4>
               <div class="markdown level1 summary">
-Returns a comparer which compares <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> values by their local date/time, without reference to
-the time zone, offset or the calendar system.
+Gets a comparer which compares <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> values by their local date/time, without reference to
+the time zone or offset. Comparisons between two values of different calendar systems will fail with <span class="xref">System.ArgumentException</span>.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -176,7 +174,7 @@ the time zone, offset or the calendar system.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.ZonedDateTime.Comparer.html">ZonedDateTime.Comparer</a></td>
-                    <td></td>
+                    <td>A comparer which compares values by their local date/time.</td>
                   </tr>
                 </tbody>
               </table>
@@ -239,6 +237,99 @@ Compares two <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a
               </table>
               <h5 class="implements">Implements</h5>
                   <div><span class="xref">System.Collections.Generic.IComparer&lt;T&gt;.Compare(T, T)</span></div>
+              <a id="NodaTime_ZonedDateTime_Comparer_Equals_" data-uid="NodaTime.ZonedDateTime.Comparer.Equals*"></a>
+              <h4 id="NodaTime_ZonedDateTime_Comparer_Equals_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.Comparer.Equals(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)">Equals(ZonedDateTime, ZonedDateTime)</h4>
+              <div class="markdown level1 summary">
+Determines whether the specified <code>ZonedDateTime</code> values are equal.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public abstract bool Equals(ZonedDateTime x, ZonedDateTime y)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td><span class="parametername">x</span></td>
+                    <td>The first <code>ZonedDateTime</code> to compare.</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td><span class="parametername">y</span></td>
+                    <td>The second <code>ZonedDateTime</code> to compare.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><code>true</code> if the specified objects are equal; otherwise, <code>false</code>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><span class="xref">System.Collections.Generic.IEqualityComparer&lt;T&gt;.Equals(T, T)</span></div>
+              <a id="NodaTime_ZonedDateTime_Comparer_GetHashCode_" data-uid="NodaTime.ZonedDateTime.Comparer.GetHashCode*"></a>
+              <h4 id="NodaTime_ZonedDateTime_Comparer_GetHashCode_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.Comparer.GetHashCode(NodaTime.ZonedDateTime)">GetHashCode(ZonedDateTime)</h4>
+              <div class="markdown level1 summary">
+Returns a hash code for the specified <code>ZonedDateTime</code>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public abstract int GetHashCode(ZonedDateTime obj)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td><span class="parametername">obj</span></td>
+                    <td>The <code>ZonedDateTime</code> for which a hash code is to be returned.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>A hash code for the specified value.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><span class="xref">System.Collections.Generic.IEqualityComparer&lt;T&gt;.GetHashCode(T)</span></div>
                         </article>
           </div>
           

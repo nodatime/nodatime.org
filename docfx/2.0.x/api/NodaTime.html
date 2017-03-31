@@ -86,6 +86,15 @@ in a particular time zone due to daylight saving time changes.
 A calendar system maps the non-calendar-specific "local time line" to human concepts
 such as years, months and days.
 </section>
+                  <h4><a class="xref" href="NodaTime.DateAdjusters.html">DateAdjusters</a></h4>
+                  <section>
+Factory class for date adjusters: functions from <a class="xref" href="NodaTime.LocalDate.html">LocalDate</a> to <code>LocalDate</code>,
+which can be applied to <a class="xref" href="NodaTime.LocalDate.html">LocalDate</a>, <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a>, and <a class="xref" href="NodaTime.OffsetDateTime.html">OffsetDateTime</a>.
+</section>
+                  <h4><a class="xref" href="NodaTime.DateInterval.html">DateInterval</a></h4>
+                  <section>
+An interval between two dates.
+</section>
                   <h4><a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a></h4>
                   <section>
 Represents a time zone - a mapping between UTC and local time. A time zone maps UTC instants to local times
@@ -127,12 +136,27 @@ It is recommended that for anything other than throwaway code, this is only refe
 in a single place in your code: where you provide a value to inject into the rest of
 your application, which should only depend on the interface.
 </section>
+                  <h4><a class="xref" href="NodaTime.TimeAdjusters.html">TimeAdjusters</a></h4>
+                  <section>
+Factory class for time adjusters: functions from <a class="xref" href="NodaTime.LocalTime.html">LocalTime</a> to <code>LocalTime</code>,
+which can be applied to <a class="xref" href="NodaTime.LocalTime.html">LocalTime</a>, <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a>, and <a class="xref" href="NodaTime.OffsetDateTime.html">OffsetDateTime</a>.
+</section>
+                  <h4><a class="xref" href="NodaTime.ZonedClock.html">ZonedClock</a></h4>
+                  <section>
+A clock with an associated time zone and calendar. This is effectively a convenience
+class decorating an <a class="xref" href="NodaTime.IClock.html">IClock</a>.
+</section>
                   <h4><a class="xref" href="NodaTime.ZonedDateTime.Comparer.html">ZonedDateTime.Comparer</a></h4>
                   <section>
 Base class for <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> comparers.
 </section>
                 <h3 id="structs">Structs
               </h3>
+                  <h4><a class="xref" href="NodaTime.AnnualDate.html">AnnualDate</a></h4>
+                  <section>
+Represents an annual date (month and day) in the ISO calendar but without a specific year,
+typically for recurrent events such as birthdays, anniversaries, and deadlines.
+</section>
                   <h4><a class="xref" href="NodaTime.Duration.html">Duration</a></h4>
                   <section>
 Represents a fixed (and calendar-independent) length of time.
@@ -153,7 +177,7 @@ with no reference to a particular time zone or time of day.
                   <h4><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></h4>
                   <section>
 A date and time in a particular calendar system. A LocalDateTime value does not represent an
-instant on the time line, because it has no associated time zone: "November 12th 2009 7pm, ISO calendar"
+instant on the global time line, because it has no associated time zone: "November 12th 2009 7pm, ISO calendar"
 occurred at different instants for different people around the world.
 </section>
                   <h4><a class="xref" href="NodaTime.LocalTime.html">LocalTime</a></h4>
@@ -163,7 +187,7 @@ to a particular calendar, time zone or date.
 </section>
                   <h4><a class="xref" href="NodaTime.Offset.html">Offset</a></h4>
                   <section>
-An offset from UTC in milliseconds. A positive value means that the local time is
+An offset from UTC in seconds. A positive value means that the local time is
 ahead of UTC (e.g. for Europe); a negative value means that the local time is behind
 UTC (e.g. for America).
 </section>

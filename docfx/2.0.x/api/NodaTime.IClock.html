@@ -85,25 +85,25 @@ Represents a clock which can return the current time as an <a class="xref" href=
               <h5 id="NodaTime_IClock_remarks"><strong>Remarks</strong></h5>
               <div class="markdown level0 remarks">
 <a class="xref" href="NodaTime.IClock.html">IClock</a> is intended for use anywhere you need to have access to the current time.
-Although it's not strictly incorrect to call <code>SystemClock.Instance.Now</code> directly,
+Although it's not strictly incorrect to call <code>SystemClock.Instance.GetCurrentInstant()</code> directly,
 in the same way as you might call <span class="xref">System.DateTime.UtcNow</span>, it's strongly discouraged
 as a matter of style for production code. We recommend providing an instance of <a class="xref" href="NodaTime.IClock.html">IClock</a>
 to anything that needs it, which allows you to write tests using the fake clock in the NodaTime.Testing
 assembly (or your own implementation).
 </div>
-              <h3 id="properties">Properties
+              <h3 id="methods">Methods
               </h3>
-              <a id="NodaTime_IClock_Now_" data-uid="NodaTime.IClock.Now*"></a>
-              <h4 id="NodaTime_IClock_Now" data-uid="NodaTime.IClock.Now">Now</h4>
+              <a id="NodaTime_IClock_GetCurrentInstant_" data-uid="NodaTime.IClock.GetCurrentInstant*"></a>
+              <h4 id="NodaTime_IClock_GetCurrentInstant" data-uid="NodaTime.IClock.GetCurrentInstant">GetCurrentInstant()</h4>
               <div class="markdown level1 summary">
 Gets the current <a class="xref" href="NodaTime.Instant.html">Instant</a> on the time line according to this clock.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">Instant Now { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">Instant GetCurrentInstant()</code></pre>
               </div>
-              <h5 class="propertyValue">Property Value</h5>
+              <h5 class="returns">Returns</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -114,10 +114,26 @@ Gets the current <a class="xref" href="NodaTime.Instant.html">Instant</a> on the
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
-                    <td></td>
+                    <td>The current instant on the time line according to this clock.</td>
                   </tr>
                 </tbody>
               </table>
+              <h3 id="extensionmethods">Extension Methods</h3>
+              <div>
+                  <a class="xref" href="NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_">ClockExtensions.InZone(IClock, DateTimeZone)</a>
+              </div>
+              <div>
+                  <a class="xref" href="NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_NodaTime_CalendarSystem_">ClockExtensions.InZone(IClock, DateTimeZone, CalendarSystem)</a>
+              </div>
+              <div>
+                  <a class="xref" href="NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InUtc_NodaTime_IClock_">ClockExtensions.InUtc(IClock)</a>
+              </div>
+              <div>
+                  <a class="xref" href="NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InTzdbSystemDefaultZone_NodaTime_IClock_">ClockExtensions.InTzdbSystemDefaultZone(IClock)</a>
+              </div>
+              <div>
+                  <a class="xref" href="NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InBclSystemDefaultZone_NodaTime_IClock_">ClockExtensions.InBclSystemDefaultZone(IClock)</a>
+              </div>
               <h3 id="seealso">See Also</h3>
               <div class="seealso">
                   <div><a class="xref" href="NodaTime.SystemClock.html">SystemClock</a></div>

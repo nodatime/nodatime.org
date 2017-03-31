@@ -164,7 +164,7 @@ Gets or sets the number of days within the period.
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public long Days { get; set; }</code></pre>
+                <pre><code class="lang-csharp hljs">public int Days { get; set; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -176,8 +176,8 @@ Gets or sets the number of days within the period.
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The number of days within the period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -202,7 +202,7 @@ Gets or sets the number of hours within the period.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The number of hours within the period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -248,6 +248,18 @@ Gets or sets the value of a single unit.
                   </tr>
                 </tbody>
               </table>
+              <h5 id="NodaTime_PeriodBuilder_Item_NodaTime_PeriodUnits__remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+<p>
+The type of this indexer is <span class="xref">System.Int64</span> for uniformity, but any date unit (year, month, week, day) will only ever have a value
+in the range of <span class="xref">System.Int32</span>.
+</p>
+<p>
+For the <a class="xref" href="NodaTime.PeriodUnits.html#NodaTime_PeriodUnits_Nanoseconds">Nanoseconds</a> unit, the value is converted to <code>Int64</code> when reading from the indexer, causing it to
+fail if the value is out of range (around 250 years). To access the values of very large numbers of nanoseconds, use the <a class="xref" href="NodaTime.PeriodBuilder.html#NodaTime_PeriodBuilder_Nanoseconds">Nanoseconds</a>
+property directly.
+</p>
+</div>
               <h5 class="exceptions">Exceptions</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
@@ -259,7 +271,7 @@ Gets or sets the value of a single unit.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-                    <td><span class="paramref">unit</span> is not a single unit.</td>
+                    <td><span class="paramref">unit</span> is not a single unit, or a value is provided for a date unit which is outside the range of <span class="xref">System.Int32</span>.</td>
                   </tr>
                 </tbody>
               </table>
@@ -284,7 +296,7 @@ Gets or sets the number of milliseconds within the period.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The number of milliseconds within the period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -309,7 +321,7 @@ Gets or sets the number of minutes within the period.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The number of minutes within the period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -321,7 +333,32 @@ Gets or sets the number of months within the period.
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public long Months { get; set; }</code></pre>
+                <pre><code class="lang-csharp hljs">public int Months { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The number of months within the period.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_PeriodBuilder_Nanoseconds_" data-uid="NodaTime.PeriodBuilder.Nanoseconds*"></a>
+              <h4 id="NodaTime_PeriodBuilder_Nanoseconds" data-uid="NodaTime.PeriodBuilder.Nanoseconds">Nanoseconds</h4>
+              <div class="markdown level1 summary">
+Gets or sets the number of nanoseconds within the period.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public long Nanoseconds { get; set; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -334,7 +371,7 @@ Gets or sets the number of months within the period.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The number of nanoseconds within the period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -359,7 +396,7 @@ Gets or sets the number of seconds within the period.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The number of seconds within the period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -384,7 +421,7 @@ Gets or sets the number of ticks within the period.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The number of ticks within the period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -396,7 +433,7 @@ Gets or sets the number of weeks within the period.
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public long Weeks { get; set; }</code></pre>
+                <pre><code class="lang-csharp hljs">public int Weeks { get; set; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -408,8 +445,8 @@ Gets or sets the number of weeks within the period.
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The number of weeks within the period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -421,7 +458,7 @@ Gets or sets the number of years within the period.
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public long Years { get; set; }</code></pre>
+                <pre><code class="lang-csharp hljs">public int Years { get; set; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -433,8 +470,8 @@ Gets or sets the number of years within the period.
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The number of years within the period.</td>
                   </tr>
                 </tbody>
               </table>

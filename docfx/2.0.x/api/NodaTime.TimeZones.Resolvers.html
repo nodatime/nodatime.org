@@ -121,8 +121,9 @@ This class contains predefined implementations of <a class="xref" href="NodaTime
 other two.
 </p>
 </div>
-              <h3 id="fields">Fields
+              <h3 id="properties">Properties
               </h3>
+              <a id="NodaTime_TimeZones_Resolvers_LenientResolver_" data-uid="NodaTime.TimeZones.Resolvers.LenientResolver*"></a>
               <h4 id="NodaTime_TimeZones_Resolvers_LenientResolver" data-uid="NodaTime.TimeZones.Resolvers.LenientResolver">LenientResolver</h4>
               <div class="markdown level1 summary">
 A <a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html">ZoneLocalMappingResolver</a> which never throws an exception due to ambiguity or skipped time.
@@ -130,9 +131,9 @@ A <a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html">ZoneLo
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly ZoneLocalMappingResolver LenientResolver</code></pre>
+                <pre><code class="lang-csharp hljs">public static ZoneLocalMappingResolver LenientResolver { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -149,13 +150,17 @@ A <a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html">ZoneLo
               </table>
               <h5 id="NodaTime_TimeZones_Resolvers_LenientResolver_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-Ambiguity is handled by returning the later occurrence, and skipped times are mapped to the start of the zone interval
-after the gap. This resolver combines <a class="xref" href="NodaTime.TimeZones.Resolvers.html#NodaTime_TimeZones_Resolvers_ReturnLater">ReturnLater</a> and <a class="xref" href="NodaTime.TimeZones.Resolvers.html#NodaTime_TimeZones_Resolvers_ReturnStartOfIntervalAfter">ReturnStartOfIntervalAfter</a>.
+Ambiguity is handled by returning the earlier occurrence, and skipped times are shifted forward by the duration
+of the gap. This resolver combines <a class="xref" href="NodaTime.TimeZones.Resolvers.html#NodaTime_TimeZones_Resolvers_ReturnEarlier">ReturnEarlier</a> and <a class="xref" href="NodaTime.TimeZones.Resolvers.html#NodaTime_TimeZones_Resolvers_ReturnForwardShifted">ReturnForwardShifted</a>.
+<p>Note: The behavior of this resolver was changed in version 2.0 to fit the most commonly seen real-world
+usage pattern.  Previous versions combined the <a class="xref" href="NodaTime.TimeZones.Resolvers.html#NodaTime_TimeZones_Resolvers_ReturnLater">ReturnLater</a> and <a class="xref" href="NodaTime.TimeZones.Resolvers.html#NodaTime_TimeZones_Resolvers_ReturnStartOfIntervalAfter">ReturnStartOfIntervalAfter</a>
+resolvers, which can still be used separately if desired.</p>
 </div>
               <h5 id="NodaTime_TimeZones_Resolvers_LenientResolver_seealso">See Also</h5>
               <div class="seealso">
                   <div><a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtLeniently_NodaTime_LocalDateTime_">AtLeniently</a>(<a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a>)</div>
               </div>
+              <a id="NodaTime_TimeZones_Resolvers_ReturnEarlier_" data-uid="NodaTime.TimeZones.Resolvers.ReturnEarlier*"></a>
               <h4 id="NodaTime_TimeZones_Resolvers_ReturnEarlier" data-uid="NodaTime.TimeZones.Resolvers.ReturnEarlier">ReturnEarlier</h4>
               <div class="markdown level1 summary">
 An <a class="xref" href="NodaTime.TimeZones.AmbiguousTimeResolver.html">AmbiguousTimeResolver</a> which returns the earlier of the two matching times.
@@ -163,9 +168,9 @@ An <a class="xref" href="NodaTime.TimeZones.AmbiguousTimeResolver.html">Ambiguou
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly AmbiguousTimeResolver ReturnEarlier</code></pre>
+                <pre><code class="lang-csharp hljs">public static AmbiguousTimeResolver ReturnEarlier { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -180,6 +185,7 @@ An <a class="xref" href="NodaTime.TimeZones.AmbiguousTimeResolver.html">Ambiguou
                   </tr>
                 </tbody>
               </table>
+              <a id="NodaTime_TimeZones_Resolvers_ReturnEndOfIntervalBefore_" data-uid="NodaTime.TimeZones.Resolvers.ReturnEndOfIntervalBefore*"></a>
               <h4 id="NodaTime_TimeZones_Resolvers_ReturnEndOfIntervalBefore" data-uid="NodaTime.TimeZones.Resolvers.ReturnEndOfIntervalBefore">ReturnEndOfIntervalBefore</h4>
               <div class="markdown level1 summary">
 A <a class="xref" href="NodaTime.TimeZones.SkippedTimeResolver.html">SkippedTimeResolver</a> which returns the final tick of the time zone interval
@@ -188,9 +194,9 @@ before the "gap".
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly SkippedTimeResolver ReturnEndOfIntervalBefore</code></pre>
+                <pre><code class="lang-csharp hljs">public static SkippedTimeResolver ReturnEndOfIntervalBefore { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -205,6 +211,34 @@ before the "gap".
                   </tr>
                 </tbody>
               </table>
+              <a id="NodaTime_TimeZones_Resolvers_ReturnForwardShifted_" data-uid="NodaTime.TimeZones.Resolvers.ReturnForwardShifted*"></a>
+              <h4 id="NodaTime_TimeZones_Resolvers_ReturnForwardShifted" data-uid="NodaTime.TimeZones.Resolvers.ReturnForwardShifted">ReturnForwardShifted</h4>
+              <div class="markdown level1 summary">
+A <a class="xref" href="NodaTime.TimeZones.SkippedTimeResolver.html">SkippedTimeResolver</a> which shifts values in the "gap" forward by the duration
+of the gap (which is usually 1 hour).  This corresponds to the instant that would have occured,
+had there not been a transition.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static SkippedTimeResolver ReturnForwardShifted { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.TimeZones.SkippedTimeResolver.html">SkippedTimeResolver</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_TimeZones_Resolvers_ReturnLater_" data-uid="NodaTime.TimeZones.Resolvers.ReturnLater*"></a>
               <h4 id="NodaTime_TimeZones_Resolvers_ReturnLater" data-uid="NodaTime.TimeZones.Resolvers.ReturnLater">ReturnLater</h4>
               <div class="markdown level1 summary">
 An <a class="xref" href="NodaTime.TimeZones.AmbiguousTimeResolver.html">AmbiguousTimeResolver</a> which returns the later of the two matching times.
@@ -212,9 +246,9 @@ An <a class="xref" href="NodaTime.TimeZones.AmbiguousTimeResolver.html">Ambiguou
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly AmbiguousTimeResolver ReturnLater</code></pre>
+                <pre><code class="lang-csharp hljs">public static AmbiguousTimeResolver ReturnLater { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -229,6 +263,7 @@ An <a class="xref" href="NodaTime.TimeZones.AmbiguousTimeResolver.html">Ambiguou
                   </tr>
                 </tbody>
               </table>
+              <a id="NodaTime_TimeZones_Resolvers_ReturnStartOfIntervalAfter_" data-uid="NodaTime.TimeZones.Resolvers.ReturnStartOfIntervalAfter*"></a>
               <h4 id="NodaTime_TimeZones_Resolvers_ReturnStartOfIntervalAfter" data-uid="NodaTime.TimeZones.Resolvers.ReturnStartOfIntervalAfter">ReturnStartOfIntervalAfter</h4>
               <div class="markdown level1 summary">
 A <a class="xref" href="NodaTime.TimeZones.SkippedTimeResolver.html">SkippedTimeResolver</a> which returns the first tick of the time zone interval
@@ -237,9 +272,9 @@ after the "gap".
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly SkippedTimeResolver ReturnStartOfIntervalAfter</code></pre>
+                <pre><code class="lang-csharp hljs">public static SkippedTimeResolver ReturnStartOfIntervalAfter { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -254,6 +289,7 @@ after the "gap".
                   </tr>
                 </tbody>
               </table>
+              <a id="NodaTime_TimeZones_Resolvers_StrictResolver_" data-uid="NodaTime.TimeZones.Resolvers.StrictResolver*"></a>
               <h4 id="NodaTime_TimeZones_Resolvers_StrictResolver" data-uid="NodaTime.TimeZones.Resolvers.StrictResolver">StrictResolver</h4>
               <div class="markdown level1 summary">
 A <a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html">ZoneLocalMappingResolver</a> which only ever succeeds in the (usual) case where the result
@@ -262,9 +298,9 @@ of the mapping is unambiguous.
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly ZoneLocalMappingResolver StrictResolver</code></pre>
+                <pre><code class="lang-csharp hljs">public static ZoneLocalMappingResolver StrictResolver { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -289,6 +325,7 @@ If the mapping is ambiguous or skipped, this throws <a class="xref" href="NodaTi
               <div class="seealso">
                   <div><a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtStrictly_NodaTime_LocalDateTime_">AtStrictly</a>(<a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a>)</div>
               </div>
+              <a id="NodaTime_TimeZones_Resolvers_ThrowWhenAmbiguous_" data-uid="NodaTime.TimeZones.Resolvers.ThrowWhenAmbiguous*"></a>
               <h4 id="NodaTime_TimeZones_Resolvers_ThrowWhenAmbiguous" data-uid="NodaTime.TimeZones.Resolvers.ThrowWhenAmbiguous">ThrowWhenAmbiguous</h4>
               <div class="markdown level1 summary">
 An <a class="xref" href="NodaTime.TimeZones.AmbiguousTimeResolver.html">AmbiguousTimeResolver</a> which simply throws an <a class="xref" href="NodaTime.AmbiguousTimeException.html">AmbiguousTimeException</a>.
@@ -296,9 +333,9 @@ An <a class="xref" href="NodaTime.TimeZones.AmbiguousTimeResolver.html">Ambiguou
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly AmbiguousTimeResolver ThrowWhenAmbiguous</code></pre>
+                <pre><code class="lang-csharp hljs">public static AmbiguousTimeResolver ThrowWhenAmbiguous { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -313,6 +350,7 @@ An <a class="xref" href="NodaTime.TimeZones.AmbiguousTimeResolver.html">Ambiguou
                   </tr>
                 </tbody>
               </table>
+              <a id="NodaTime_TimeZones_Resolvers_ThrowWhenSkipped_" data-uid="NodaTime.TimeZones.Resolvers.ThrowWhenSkipped*"></a>
               <h4 id="NodaTime_TimeZones_Resolvers_ThrowWhenSkipped" data-uid="NodaTime.TimeZones.Resolvers.ThrowWhenSkipped">ThrowWhenSkipped</h4>
               <div class="markdown level1 summary">
 A <a class="xref" href="NodaTime.TimeZones.SkippedTimeResolver.html">SkippedTimeResolver</a> which simply throws a <a class="xref" href="NodaTime.SkippedTimeException.html">SkippedTimeException</a>.
@@ -320,9 +358,9 @@ A <a class="xref" href="NodaTime.TimeZones.SkippedTimeResolver.html">SkippedTime
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly SkippedTimeResolver ThrowWhenSkipped</code></pre>
+                <pre><code class="lang-csharp hljs">public static SkippedTimeResolver ThrowWhenSkipped { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>

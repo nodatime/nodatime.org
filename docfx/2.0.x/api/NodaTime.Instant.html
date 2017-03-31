@@ -107,46 +107,9 @@ An <a class="xref" href="NodaTime.Instant.html">Instant</a> has no concept of a 
 time that can be globally agreed-upon.
 </p>
 </div>
-              <h3 id="constructors">Constructors
+              <h3 id="properties">Properties
               </h3>
-              <a id="NodaTime_Instant__ctor_" data-uid="NodaTime.Instant.#ctor*"></a>
-              <h4 id="NodaTime_Instant__ctor_System_Int64_" data-uid="NodaTime.Instant.#ctor(System.Int64)">Instant(Int64)</h4>
-              <div class="markdown level1 summary">
-Initializes a new instance of the <a class="xref" href="NodaTime.Instant.html">Instant</a> struct.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Instant(long ticks)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int64</span></td>
-                    <td><span class="parametername">ticks</span></td>
-                    <td>The number of ticks since the Unix epoch. Negative values represent instants before the
-Unix epoch.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_Instant__ctor_System_Int64__remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-Note that while the Noda Time <a class="xref" href="NodaTime.Instant.html">Instant</a> type and BCL <span class="xref">System.DateTime</span> and
-<span class="xref">System.DateTimeOffset</span> types are all defined in terms of a number of ticks, they use different
-origins: the Noda Time types count ticks from the Unix epoch (the start of 1970 AD), while the BCL types
-count from the start of 1 AD. This constructor requires the former; to convert from a number-of-ticks since
-the BCL epoch, construct a <span class="xref">System.DateTime</span> first, then use <a class="xref" href="NodaTime.Instant.html#NodaTime_Instant_FromDateTimeUtc_System_DateTime_">FromDateTimeUtc(DateTime)</a>.
-</div>
-              <h3 id="fields">Fields
-              </h3>
+              <a id="NodaTime_Instant_MaxValue_" data-uid="NodaTime.Instant.MaxValue*"></a>
               <h4 id="NodaTime_Instant_MaxValue" data-uid="NodaTime.Instant.MaxValue">MaxValue</h4>
               <div class="markdown level1 summary">
 Represents the largest possible <a class="xref" href="NodaTime.Instant.html">Instant</a>.
@@ -154,9 +117,9 @@ Represents the largest possible <a class="xref" href="NodaTime.Instant.html">Ins
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly Instant MaxValue</code></pre>
+                <pre><code class="lang-csharp hljs">public static Instant MaxValue { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -172,9 +135,8 @@ Represents the largest possible <a class="xref" href="NodaTime.Instant.html">Ins
                 </tbody>
               </table>
               <h5 id="NodaTime_Instant_MaxValue_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-Within Noda Time, this is also used to represent 'the end of time'.
-</div>
+              <div class="markdown level1 remarks">This value is equivalent to 9999-12-31T23:59:59.999999999Z</div>
+              <a id="NodaTime_Instant_MinValue_" data-uid="NodaTime.Instant.MinValue*"></a>
               <h4 id="NodaTime_Instant_MinValue" data-uid="NodaTime.Instant.MinValue">MinValue</h4>
               <div class="markdown level1 summary">
 Represents the smallest possible <a class="xref" href="NodaTime.Instant.html">Instant</a>.
@@ -182,9 +144,9 @@ Represents the smallest possible <a class="xref" href="NodaTime.Instant.html">In
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly Instant MinValue</code></pre>
+                <pre><code class="lang-csharp hljs">public static Instant MinValue { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -200,40 +162,7 @@ Represents the smallest possible <a class="xref" href="NodaTime.Instant.html">In
                 </tbody>
               </table>
               <h5 id="NodaTime_Instant_MinValue_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-Within Noda Time, this is also used to represent 'the beginning of time'.
-</div>
-              <h3 id="properties">Properties
-              </h3>
-              <a id="NodaTime_Instant_Ticks_" data-uid="NodaTime.Instant.Ticks*"></a>
-              <h4 id="NodaTime_Instant_Ticks" data-uid="NodaTime.Instant.Ticks">Ticks</h4>
-              <div class="markdown level1 summary">
-The number of ticks since the Unix epoch. Negative values represent instants before the Unix epoch.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public long Ticks { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int64</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_Instant_Ticks_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-A tick is equal to 100 nanoseconds. There are 10,000 ticks in a millisecond.
-</div>
+              <div class="markdown level1 remarks">This value is equivalent to -9998-01-01T00:00:00Z</div>
               <h3 id="methods">Methods
               </h3>
               <a id="NodaTime_Instant_Add_" data-uid="NodaTime.Instant.Add*"></a>
@@ -526,8 +455,52 @@ Converts a <span class="xref">System.DateTime</span> into a new Instant represen
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_Instant_FromMillisecondsSinceUnixEpoch_" data-uid="NodaTime.Instant.FromMillisecondsSinceUnixEpoch*"></a>
-              <h4 id="NodaTime_Instant_FromMillisecondsSinceUnixEpoch_System_Int64_" data-uid="NodaTime.Instant.FromMillisecondsSinceUnixEpoch(System.Int64)">FromMillisecondsSinceUnixEpoch(Int64)</h4>
+              <a id="NodaTime_Instant_FromJulianDate_" data-uid="NodaTime.Instant.FromJulianDate*"></a>
+              <h4 id="NodaTime_Instant_FromJulianDate_System_Double_" data-uid="NodaTime.Instant.FromJulianDate(System.Double)">FromJulianDate(Double)</h4>
+              <div class="markdown level1 summary">
+Converts a Julian Date representing the given number of days
+since <a class="xref" href="NodaTime.NodaConstants.html#NodaTime_NodaConstants_JulianEpoch">JulianEpoch</a> (noon on January 1st, 4713 BCE in the Julian calendar)
+into an <a class="xref" href="NodaTime.Instant.html">Instant</a>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Instant FromJulianDate(double julianDate)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td><span class="parametername">julianDate</span></td>
+                    <td>The number of days since the Julian Epoch to convert into an <a class="xref" href="NodaTime.Instant.html">Instant</a>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
+                    <td>An <a class="xref" href="NodaTime.Instant.html">Instant</a> value which is <span class="paramref">julianDate</span> days after the Julian Epoch.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Instant_FromUnixTimeMilliseconds_" data-uid="NodaTime.Instant.FromUnixTimeMilliseconds*"></a>
+              <h4 id="NodaTime_Instant_FromUnixTimeMilliseconds_System_Int64_" data-uid="NodaTime.Instant.FromUnixTimeMilliseconds(System.Int64)">FromUnixTimeMilliseconds(Int64)</h4>
               <div class="markdown level1 summary">
 Initializes a new instance of the <a class="xref" href="NodaTime.Instant.html">Instant</a> struct based
 on a number of milliseconds since the Unix epoch of (ISO) January 1st 1970, midnight, UTC.
@@ -535,7 +508,7 @@ on a number of milliseconds since the Unix epoch of (ISO) January 1st 1970, midn
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static Instant FromMillisecondsSinceUnixEpoch(long milliseconds)</code></pre>
+                <pre><code class="lang-csharp hljs">public static Instant FromUnixTimeMilliseconds(long milliseconds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -584,8 +557,8 @@ on a number of milliseconds since the Unix epoch of (ISO) January 1st 1970, midn
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_Instant_FromSecondsSinceUnixEpoch_" data-uid="NodaTime.Instant.FromSecondsSinceUnixEpoch*"></a>
-              <h4 id="NodaTime_Instant_FromSecondsSinceUnixEpoch_System_Int64_" data-uid="NodaTime.Instant.FromSecondsSinceUnixEpoch(System.Int64)">FromSecondsSinceUnixEpoch(Int64)</h4>
+              <a id="NodaTime_Instant_FromUnixTimeSeconds_" data-uid="NodaTime.Instant.FromUnixTimeSeconds*"></a>
+              <h4 id="NodaTime_Instant_FromUnixTimeSeconds_System_Int64_" data-uid="NodaTime.Instant.FromUnixTimeSeconds(System.Int64)">FromUnixTimeSeconds(Int64)</h4>
               <div class="markdown level1 summary">
 Initializes a new instance of the <a class="xref" href="NodaTime.Instant.html">Instant</a> struct based
 on a number of seconds since the Unix epoch of (ISO) January 1st 1970, midnight, UTC.
@@ -593,7 +566,7 @@ on a number of seconds since the Unix epoch of (ISO) January 1st 1970, midnight,
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static Instant FromSecondsSinceUnixEpoch(long seconds)</code></pre>
+                <pre><code class="lang-csharp hljs">public static Instant FromUnixTimeSeconds(long seconds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -642,8 +615,8 @@ on a number of seconds since the Unix epoch of (ISO) January 1st 1970, midnight,
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_Instant_FromTicksSinceUnixEpoch_" data-uid="NodaTime.Instant.FromTicksSinceUnixEpoch*"></a>
-              <h4 id="NodaTime_Instant_FromTicksSinceUnixEpoch_System_Int64_" data-uid="NodaTime.Instant.FromTicksSinceUnixEpoch(System.Int64)">FromTicksSinceUnixEpoch(Int64)</h4>
+              <a id="NodaTime_Instant_FromUnixTimeTicks_" data-uid="NodaTime.Instant.FromUnixTimeTicks*"></a>
+              <h4 id="NodaTime_Instant_FromUnixTimeTicks_System_Int64_" data-uid="NodaTime.Instant.FromUnixTimeTicks(System.Int64)">FromUnixTimeTicks(Int64)</h4>
               <div class="markdown level1 summary">
 Initializes a new instance of the <a class="xref" href="NodaTime.Instant.html">Instant</a> struct based
 on a number of ticks since the Unix epoch of (ISO) January 1st 1970, midnight, UTC.
@@ -651,7 +624,7 @@ on a number of ticks since the Unix epoch of (ISO) January 1st 1970, midnight, U
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static Instant FromTicksSinceUnixEpoch(long ticks)</code></pre>
+                <pre><code class="lang-csharp hljs">public static Instant FromUnixTimeTicks(long ticks)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -685,7 +658,7 @@ on a number of ticks since the Unix epoch of (ISO) January 1st 1970, midnight, U
                   </tr>
                 </tbody>
               </table>
-              <h5 id="NodaTime_Instant_FromTicksSinceUnixEpoch_System_Int64__remarks">Remarks</h5>
+              <h5 id="NodaTime_Instant_FromUnixTimeTicks_System_Int64__remarks">Remarks</h5>
               <div class="markdown level1 remarks">This is equivalent to calling the constructor directly, but indicates
 intent more explicitly.</div>
               <a id="NodaTime_Instant_FromUtc_" data-uid="NodaTime.Instant.FromUtc*"></a>
@@ -1197,15 +1170,15 @@ Returns the result of adding a duration to this instant, for a fluent alternativ
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_Instant_PlusTicks_" data-uid="NodaTime.Instant.PlusTicks*"></a>
-              <h4 id="NodaTime_Instant_PlusTicks_System_Int64_" data-uid="NodaTime.Instant.PlusTicks(System.Int64)">PlusTicks(Int64)</h4>
+              <a id="NodaTime_Instant_PlusNanoseconds_" data-uid="NodaTime.Instant.PlusNanoseconds*"></a>
+              <h4 id="NodaTime_Instant_PlusNanoseconds_System_Int64_" data-uid="NodaTime.Instant.PlusNanoseconds(System.Int64)">PlusNanoseconds(Int64)</h4>
               <div class="markdown level1 summary">
-Returns a new value of this instant with the given number of ticks added to it.
+Returns a new value of this instant with the given number of nanoseconds added to it.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Instant PlusTicks(long ticksToAdd)</code></pre>
+                <pre><code class="lang-csharp hljs">public Instant PlusNanoseconds(long nanoseconds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -1219,7 +1192,49 @@ Returns a new value of this instant with the given number of ticks added to it.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td><span class="parametername">ticksToAdd</span></td>
+                    <td><span class="parametername">nanoseconds</span></td>
+                    <td>The nanoseconds to add to this instant to create the return value.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
+                    <td>The result of adding the given number of ticks to this instant.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Instant_PlusTicks_" data-uid="NodaTime.Instant.PlusTicks*"></a>
+              <h4 id="NodaTime_Instant_PlusTicks_System_Int64_" data-uid="NodaTime.Instant.PlusTicks(System.Int64)">PlusTicks(Int64)</h4>
+              <div class="markdown level1 summary">
+Returns a new value of this instant with the given number of ticks added to it.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Instant PlusTicks(long ticks)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="parametername">ticks</span></td>
                     <td>The ticks to add to this instant to create the return value.</td>
                   </tr>
                 </tbody>
@@ -1358,6 +1373,28 @@ Constructs a <span class="xref">System.DateTimeOffset</span> from this Instant w
                   </tr>
                 </tbody>
               </table>
+              <h5 id="NodaTime_Instant_ToDateTimeOffset_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+<p>
+If the date and time is not on a tick boundary (the unit of granularity of DateTime) the value will be truncated
+towards the start of time.
+</p>
+</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td>The final date/time is outside the range of <code>DateTimeOffset</code>.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_Instant_ToDateTimeUtc_" data-uid="NodaTime.Instant.ToDateTimeUtc*"></a>
               <h4 id="NodaTime_Instant_ToDateTimeUtc" data-uid="NodaTime.Instant.ToDateTimeUtc">ToDateTimeUtc()</h4>
               <div class="markdown level1 summary">
@@ -1381,6 +1418,54 @@ of <span class="xref">System.DateTimeKind.Utc</span> and represents the same ins
                   <tr>
                     <td><span class="xref">System.DateTime</span></td>
                     <td>A <span class="xref">System.DateTime</span> representing the same instant in time as this value, with a kind of "universal".</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Instant_ToDateTimeUtc_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+<p>
+If the date and time is not on a tick boundary (the unit of granularity of DateTime) the value will be truncated
+towards the start of time.
+</p>
+</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td>The final date/time is outside the range of <code>DateTime</code>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Instant_ToJulianDate_" data-uid="NodaTime.Instant.ToJulianDate*"></a>
+              <h4 id="NodaTime_Instant_ToJulianDate" data-uid="NodaTime.Instant.ToJulianDate">ToJulianDate()</h4>
+              <div class="markdown level1 summary">
+Returns the Julian Date of this instance - the number of days since
+<a class="xref" href="NodaTime.NodaConstants.html#NodaTime_NodaConstants_JulianEpoch">JulianEpoch</a> (noon on January 1st, 4713 BCE in the Julian calendar).
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public double ToJulianDate()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td>The number of days (including fractional days) since the Julian Epoch.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1469,6 +1554,94 @@ A <span class="xref">System.String</span> containing the value of the current in
               </table>
               <h5 class="implements">Implements</h5>
                   <div><span class="xref">System.IFormattable.ToString(System.String, System.IFormatProvider)</span></div>
+              <a id="NodaTime_Instant_ToUnixTimeMilliseconds_" data-uid="NodaTime.Instant.ToUnixTimeMilliseconds*"></a>
+              <h4 id="NodaTime_Instant_ToUnixTimeMilliseconds" data-uid="NodaTime.Instant.ToUnixTimeMilliseconds">ToUnixTimeMilliseconds()</h4>
+              <div class="markdown level1 summary">
+Gets the number of milliseconds since the Unix epoch. Negative values represent instants before the Unix epoch.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public long ToUnixTimeMilliseconds()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td>The number of milliseconds since the Unix epoch.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Instant_ToUnixTimeMilliseconds_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+If the number of nanoseconds in this instant is not an exact number of milliseconds, the value is truncated towards the start of time.
+</div>
+              <a id="NodaTime_Instant_ToUnixTimeSeconds_" data-uid="NodaTime.Instant.ToUnixTimeSeconds*"></a>
+              <h4 id="NodaTime_Instant_ToUnixTimeSeconds" data-uid="NodaTime.Instant.ToUnixTimeSeconds">ToUnixTimeSeconds()</h4>
+              <div class="markdown level1 summary">
+Gets the number of seconds since the Unix epoch. Negative values represent instants before the Unix epoch.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public long ToUnixTimeSeconds()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td>The number of seconds since the Unix epoch.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Instant_ToUnixTimeSeconds_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+If the number of nanoseconds in this instant is not an exact number of seconds, the value is truncated towards the start of time.
+</div>
+              <a id="NodaTime_Instant_ToUnixTimeTicks_" data-uid="NodaTime.Instant.ToUnixTimeTicks*"></a>
+              <h4 id="NodaTime_Instant_ToUnixTimeTicks" data-uid="NodaTime.Instant.ToUnixTimeTicks">ToUnixTimeTicks()</h4>
+              <div class="markdown level1 summary">
+Gets the number of ticks since the Unix epoch. Negative values represent instants before the Unix epoch.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public long ToUnixTimeTicks()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td>The number of ticks since the Unix epoch.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Instant_ToUnixTimeTicks_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+A tick is equal to 100 nanoseconds. There are 10,000 ticks in a millisecond. If the number of nanoseconds
+in this instant is not an exact number of ticks, the value is truncated towards the start of time.
+</div>
               <a id="NodaTime_Instant_WithOffset_" data-uid="NodaTime.Instant.WithOffset*"></a>
               <h4 id="NodaTime_Instant_WithOffset_NodaTime_Offset_" data-uid="NodaTime.Instant.WithOffset(NodaTime.Offset)">WithOffset(Offset)</h4>
               <div class="markdown level1 summary">
@@ -1983,7 +2156,7 @@ Implements the operator - (subtraction) for <a class="xref" href="NodaTime.Insta
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
-                    <td>A new <a class="xref" href="NodaTime.Instant.html">Instant</a> representing the difference of the given values.</td>
+                    <td>A new <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the difference of the given values.</td>
                   </tr>
                 </tbody>
               </table>

@@ -111,9 +111,10 @@ Represents a pattern for parsing and formatting <a class="xref" href="NodaTime.P
               <div class="codewrapper">
                 <pre><code class="lang-csharp hljs">public sealed class PeriodPattern : IPattern&lt;Period&gt;</code></pre>
               </div>
-              <h3 id="fields">Fields
+              <h3 id="properties">Properties
               </h3>
-              <h4 id="NodaTime_Text_PeriodPattern_NormalizingIsoPattern" data-uid="NodaTime.Text.PeriodPattern.NormalizingIsoPattern">NormalizingIsoPattern</h4>
+              <a id="NodaTime_Text_PeriodPattern_NormalizingIso_" data-uid="NodaTime.Text.PeriodPattern.NormalizingIso*"></a>
+              <h4 id="NodaTime_Text_PeriodPattern_NormalizingIso" data-uid="NodaTime.Text.PeriodPattern.NormalizingIso">NormalizingIso</h4>
               <div class="markdown level1 summary">
 A "normalizing" pattern which abides by the ISO-8601 duration format as far as possible.
 Weeks are added to the number of days (after multiplying by 7). Time units are normalized
@@ -123,9 +124,9 @@ seconds part. Unlike ISO-8601, which pattern allows for negative values within a
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly PeriodPattern NormalizingIsoPattern</code></pre>
+                <pre><code class="lang-csharp hljs">public static PeriodPattern NormalizingIso { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -140,17 +141,18 @@ seconds part. Unlike ISO-8601, which pattern allows for negative values within a
                   </tr>
                 </tbody>
               </table>
-              <h5 id="NodaTime_Text_PeriodPattern_NormalizingIsoPattern_remarks">Remarks</h5>
+              <h5 id="NodaTime_Text_PeriodPattern_NormalizingIso_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
 Note that normalizing the period when formatting will cause an <span class="xref">System.OverflowException</span>
 if the period contains more than <span class="xref">System.Int64.MaxValue</span> ticks when the
 combined weeks/days/time portions are considered. Such a period could never
 be useful anyway, however.
 </div>
-              <h4 id="NodaTime_Text_PeriodPattern_RoundtripPattern" data-uid="NodaTime.Text.PeriodPattern.RoundtripPattern">RoundtripPattern</h4>
+              <a id="NodaTime_Text_PeriodPattern_Roundtrip_" data-uid="NodaTime.Text.PeriodPattern.Roundtrip*"></a>
+              <h4 id="NodaTime_Text_PeriodPattern_Roundtrip" data-uid="NodaTime.Text.PeriodPattern.Roundtrip">Roundtrip</h4>
               <div class="markdown level1 summary">
 Pattern which uses the normal ISO format for all the supported ISO
-fields, but extends the time part with "s" for milliseconds and "t" for ticks.
+fields, but extends the time part with "s" for milliseconds, "t" for ticks and "n" for nanoseconds.
 No normalization is carried out, and a period may contain weeks as well as years, months and days.
 Each element may also be negative, independently of other elements. This pattern round-trips its
 values: a parse/format cycle will produce an identical period, including units.
@@ -158,9 +160,9 @@ values: a parse/format cycle will produce an identical period, including units.
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly PeriodPattern RoundtripPattern</code></pre>
+                <pre><code class="lang-csharp hljs">public static PeriodPattern Roundtrip { get; }</code></pre>
               </div>
-              <h5 class="fieldValue">Field Value</h5>
+              <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
@@ -177,6 +179,56 @@ values: a parse/format cycle will produce an identical period, including units.
               </table>
               <h3 id="methods">Methods
               </h3>
+              <a id="NodaTime_Text_PeriodPattern_AppendFormat_" data-uid="NodaTime.Text.PeriodPattern.AppendFormat*"></a>
+              <h4 id="NodaTime_Text_PeriodPattern_AppendFormat_NodaTime_Period_System_Text_StringBuilder_" data-uid="NodaTime.Text.PeriodPattern.AppendFormat(NodaTime.Period,System.Text.StringBuilder)">AppendFormat(Period, StringBuilder)</h4>
+              <div class="markdown level1 summary">
+Formats the given value as text according to the rules of this pattern,
+appending to the given <span class="xref">System.Text.StringBuilder</span>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public StringBuilder AppendFormat(Period value, StringBuilder builder)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Period.html">Period</a></td>
+                    <td><span class="parametername">value</span></td>
+                    <td>The value to format.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Text.StringBuilder</span></td>
+                    <td><span class="parametername">builder</span></td>
+                    <td>The <code>StringBuilder</code> to append to.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Text.StringBuilder</span></td>
+                    <td>The builder passed in as <span class="paramref">builder</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_">IPattern&lt;T&gt;.AppendFormat(T, StringBuilder)</a></div>
               <a id="NodaTime_Text_PeriodPattern_Format_" data-uid="NodaTime.Text.PeriodPattern.Format*"></a>
               <h4 id="NodaTime_Text_PeriodPattern_Format_NodaTime_Period_" data-uid="NodaTime.Text.PeriodPattern.Format(NodaTime.Period)">Format(Period)</h4>
               <div class="markdown level1 summary">

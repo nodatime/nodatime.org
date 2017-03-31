@@ -113,17 +113,17 @@ Represents a pattern for parsing and formatting <a class="xref" href="NodaTime.L
               </div>
               <h3 id="properties">Properties
               </h3>
-              <a id="NodaTime_Text_LocalTimePattern_ExtendedIsoPattern_" data-uid="NodaTime.Text.LocalTimePattern.ExtendedIsoPattern*"></a>
-              <h4 id="NodaTime_Text_LocalTimePattern_ExtendedIsoPattern" data-uid="NodaTime.Text.LocalTimePattern.ExtendedIsoPattern">ExtendedIsoPattern</h4>
+              <a id="NodaTime_Text_LocalTimePattern_ExtendedIso_" data-uid="NodaTime.Text.LocalTimePattern.ExtendedIso*"></a>
+              <h4 id="NodaTime_Text_LocalTimePattern_ExtendedIso" data-uid="NodaTime.Text.LocalTimePattern.ExtendedIso">ExtendedIso</h4>
               <div class="markdown level1 summary">
-Returns an invariant local time pattern which is ISO-8601 compatible, providing up to 7 decimal places.
+Gets an invariant local time pattern which is ISO-8601 compatible, providing up to 7 decimal places.
 (These digits are omitted when unnecessary.)
 This corresponds to the text pattern "HH':'mm':'ss;FFFFFFF".
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static LocalTimePattern ExtendedIsoPattern { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">public static LocalTimePattern ExtendedIso { get; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -136,14 +136,14 @@ This corresponds to the text pattern "HH':'mm':'ss;FFFFFFF".
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.LocalTimePattern.html">LocalTimePattern</a></td>
-                    <td></td>
+                    <td>An invariant local time pattern which is ISO-8601 compatible, providing up to 7 decimal places.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_Text_LocalTimePattern_PatternText_" data-uid="NodaTime.Text.LocalTimePattern.PatternText*"></a>
               <h4 id="NodaTime_Text_LocalTimePattern_PatternText" data-uid="NodaTime.Text.LocalTimePattern.PatternText">PatternText</h4>
               <div class="markdown level1 summary">
-Returns the pattern text for this pattern, as supplied on creation.
+Gets the pattern text for this pattern, as supplied on creation.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -161,14 +161,14 @@ Returns the pattern text for this pattern, as supplied on creation.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td></td>
+                    <td>The pattern text for this pattern, as supplied on creation.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_Text_LocalTimePattern_TemplateValue_" data-uid="NodaTime.Text.LocalTimePattern.TemplateValue*"></a>
               <h4 id="NodaTime_Text_LocalTimePattern_TemplateValue" data-uid="NodaTime.Text.LocalTimePattern.TemplateValue">TemplateValue</h4>
               <div class="markdown level1 summary">
-Returns the value used as a template for parsing: any field values unspecified
+Gets the value used as a template for parsing: any field values unspecified
 in the pattern are taken from the template.
 </div>
               <div class="markdown level1 conceptual"></div>
@@ -187,12 +187,62 @@ in the pattern are taken from the template.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalTime.html">LocalTime</a></td>
-                    <td></td>
+                    <td>The value used as a template for parsing.</td>
                   </tr>
                 </tbody>
               </table>
               <h3 id="methods">Methods
               </h3>
+              <a id="NodaTime_Text_LocalTimePattern_AppendFormat_" data-uid="NodaTime.Text.LocalTimePattern.AppendFormat*"></a>
+              <h4 id="NodaTime_Text_LocalTimePattern_AppendFormat_NodaTime_LocalTime_System_Text_StringBuilder_" data-uid="NodaTime.Text.LocalTimePattern.AppendFormat(NodaTime.LocalTime,System.Text.StringBuilder)">AppendFormat(LocalTime, StringBuilder)</h4>
+              <div class="markdown level1 summary">
+Formats the given value as text according to the rules of this pattern,
+appending to the given <span class="xref">System.Text.StringBuilder</span>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public StringBuilder AppendFormat(LocalTime value, StringBuilder builder)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalTime.html">LocalTime</a></td>
+                    <td><span class="parametername">value</span></td>
+                    <td>The value to format.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Text.StringBuilder</span></td>
+                    <td><span class="parametername">builder</span></td>
+                    <td>The <code>StringBuilder</code> to append to.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Text.StringBuilder</span></td>
+                    <td>The builder passed in as <span class="paramref">builder</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_">IPattern&lt;T&gt;.AppendFormat(T, StringBuilder)</a></div>
               <a id="NodaTime_Text_LocalTimePattern_Create_" data-uid="NodaTime.Text.LocalTimePattern.Create*"></a>
               <h4 id="NodaTime_Text_LocalTimePattern_Create_System_String_System_Globalization_CultureInfo_" data-uid="NodaTime.Text.LocalTimePattern.Create(System.String,System.Globalization.CultureInfo)">Create(String, CultureInfo)</h4>
               <div class="markdown level1 summary">

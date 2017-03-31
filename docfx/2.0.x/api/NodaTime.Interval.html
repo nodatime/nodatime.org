@@ -98,9 +98,9 @@ public struct Interval : IEquatable&lt;Interval&gt;, IXmlSerializable, ISerializ
               <h5 id="NodaTime_Interval_remarks"><strong>Remarks</strong></h5>
               <div class="markdown level0 remarks">
 <p>
-The interval includes the start instant and excludes the end instant, unless the end instant
-is <a class="xref" href="NodaTime.Instant.html#NodaTime_Instant_MaxValue">MaxValue</a> in which case it's deemed to be inclusive.
-(An interval stretching to infinity includes the end of time.)
+The interval includes the start instant and excludes the end instant. However, an interval
+may be missing its start or end, in which case the interval is deemed to be infinite in that
+direction.
 </p>
 <p>
 The end may equal the start (resulting in an empty interval), but will not be before the start.
@@ -157,6 +157,60 @@ The interval includes the <span class="paramref">start</span> instant and exclud
                   </tr>
                 </tbody>
               </table>
+              <a id="NodaTime_Interval__ctor_" data-uid="NodaTime.Interval.#ctor*"></a>
+              <h4 id="NodaTime_Interval__ctor_System_Nullable_NodaTime_Instant__System_Nullable_NodaTime_Instant__" data-uid="NodaTime.Interval.#ctor(System.Nullable{NodaTime.Instant},System.Nullable{NodaTime.Instant})">Interval(Nullable&lt;Instant&gt;, Nullable&lt;Instant&gt;)</h4>
+              <div class="markdown level1 summary">
+Initializes a new instance of the <a class="xref" href="NodaTime.Interval.html">Interval</a> struct from two nullable <a class="xref" href="NodaTime.Instant.html">Instant</a>
+values.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Interval(Instant? start, Instant? end)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Nullable</span>&lt;<a class="xref" href="NodaTime.Instant.html">Instant</a>&gt;</td>
+                    <td><span class="parametername">start</span></td>
+                    <td>The start <a class="xref" href="NodaTime.Instant.html">Instant</a> or null.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Nullable</span>&lt;<a class="xref" href="NodaTime.Instant.html">Instant</a>&gt;</td>
+                    <td><span class="parametername">end</span></td>
+                    <td>The end <a class="xref" href="NodaTime.Instant.html">Instant</a> or null.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Interval__ctor_System_Nullable_NodaTime_Instant__System_Nullable_NodaTime_Instant___remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+If the start is null, the interval is deemed to stretch to the start of time. If the end is null,
+the interval is deemed to stretch to the end of time.
+</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+                    <td><span class="paramref">end</span> is earlier than <span class="paramref">start</span>,
+    if they are both non-null.</td>
+                  </tr>
+                </tbody>
+              </table>
               <h3 id="properties">Properties
               </h3>
               <a id="NodaTime_Interval_Duration_" data-uid="NodaTime.Interval.Duration*"></a>
@@ -188,6 +242,21 @@ Returns the duration of the interval.
               <div class="markdown level1 remarks">
 This will always be a non-negative duration, though it may be zero.
 </div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td>The interval extends to the start or end of time.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_Interval_End_" data-uid="NodaTime.Interval.End*"></a>
               <h4 id="NodaTime_Interval_End" data-uid="NodaTime.Interval.End">End</h4>
               <div class="markdown level1 summary">
@@ -213,12 +282,79 @@ Gets the end instant - the exclusive upper bound of the interval.
                   </tr>
                 </tbody>
               </table>
-              <h5 id="NodaTime_Interval_End_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-This will never be earlier than <a class="xref" href="NodaTime.Interval.html#NodaTime_Interval_Start">Start</a>, though it may be equal to it.
-If this value is <a class="xref" href="NodaTime.Instant.html#NodaTime_Instant_MaxValue">MaxValue</a>, it is treated as an inclusive
-upper bound: an interval stretching to infinity includes the end of time.
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td>The interval extends to the end of time.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Interval_End_seealso">See Also</h5>
+              <div class="seealso">
+                  <div><a class="xref" href="NodaTime.Interval.html#NodaTime_Interval_HasEnd">HasEnd</a></div>
+              </div>
+              <a id="NodaTime_Interval_HasEnd_" data-uid="NodaTime.Interval.HasEnd*"></a>
+              <h4 id="NodaTime_Interval_HasEnd" data-uid="NodaTime.Interval.HasEnd">HasEnd</h4>
+              <div class="markdown level1 summary">
+Returns <code>true</code> if this interval has a fixed end point, or <code>false</code> if it
+extends to the end of time.
 </div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool HasEnd { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><code>true</code> if this interval has a fixed end point, or <code>false</code> if it
+    extends to the end of time.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Interval_HasStart_" data-uid="NodaTime.Interval.HasStart*"></a>
+              <h4 id="NodaTime_Interval_HasStart" data-uid="NodaTime.Interval.HasStart">HasStart</h4>
+              <div class="markdown level1 summary">
+Returns <code>true</code> if this interval has a fixed start point, or <code>false</code> if it
+extends to the start of time.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool HasStart { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><code>true</code> if this interval has a fixed start point, or <code>false</code> if it
+    extends to the start of time.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_Interval_Start_" data-uid="NodaTime.Interval.Start*"></a>
               <h4 id="NodaTime_Interval_Start" data-uid="NodaTime.Interval.Start">Start</h4>
               <div class="markdown level1 summary">
@@ -248,6 +384,25 @@ Gets the start instant - the inclusive lower bound of the interval.
               <div class="markdown level1 remarks">
 This will never be later than <a class="xref" href="NodaTime.Interval.html#NodaTime_Interval_End">End</a>, though it may be equal to it.
 </div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td>The interval extends to the start of time.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Interval_Start_seealso">See Also</h5>
+              <div class="seealso">
+                  <div><a class="xref" href="NodaTime.Interval.html#NodaTime_Interval_HasStart">HasStart</a></div>
+              </div>
               <h3 id="methods">Methods
               </h3>
               <a id="NodaTime_Interval_Contains_" data-uid="NodaTime.Interval.Contains*"></a>
@@ -292,12 +447,6 @@ Returns whether or not this interval contains the given instant.
                   </tr>
                 </tbody>
               </table>
-              <h5 id="NodaTime_Interval_Contains_NodaTime_Instant__remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-The interval is considered to include the <a class="xref" href="NodaTime.Interval.html#NodaTime_Interval_Start">Start</a> instant but
-not the <a class="xref" href="NodaTime.Interval.html#NodaTime_Interval_End">End</a> instant - unless the end is <a class="xref" href="NodaTime.Instant.html#NodaTime_Instant_MaxValue">MaxValue</a>, in
-which case it's considered to be infinite from the start point onwards.
-</div>
               <a id="NodaTime_Interval_Equals_" data-uid="NodaTime.Interval.Equals*"></a>
               <h4 id="NodaTime_Interval_Equals_NodaTime_Interval_" data-uid="NodaTime.Interval.Equals(NodaTime.Interval)">Equals(Interval)</h4>
               <div class="markdown level1 summary">
@@ -425,7 +574,9 @@ A 32-bit signed integer that is the hash code for this instance.
               <h4 id="NodaTime_Interval_ToString" data-uid="NodaTime.Interval.ToString">ToString()</h4>
               <div class="markdown level1 summary">
 Returns a string representation of this interval, in extended ISO-8601 format: the format
-is "start/end" where each instant uses a format of "yyyy'-'MM'-'dd'T'HH':'mm':'ss;FFFFFFF'Z'".
+is "start/end" where each instant uses a format of "uuuu'-'MM'-'dd'T'HH':'mm':'ss;FFFFFFFFF'Z'".
+If the start or end is infinite, the relevant part uses "StartOfTime" or "EndOfTime" to
+represent this.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>

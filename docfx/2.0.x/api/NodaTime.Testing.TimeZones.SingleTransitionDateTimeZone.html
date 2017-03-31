@@ -103,10 +103,10 @@ Time zone with a single transition between two offsets. This provides a simple w
                   <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetUtcOffset_NodaTime_Instant_">DateTimeZone.GetUtcOffset(Instant)</a>
                 </div>
                 <div>
-                  <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtStartOfDay_NodaTime_LocalDate_">DateTimeZone.AtStartOfDay(LocalDate)</a>
+                  <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_MapLocal_NodaTime_LocalDateTime_">DateTimeZone.MapLocal(LocalDateTime)</a>
                 </div>
                 <div>
-                  <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_MapLocal_NodaTime_LocalDateTime_">DateTimeZone.MapLocal(LocalDateTime)</a>
+                  <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtStartOfDay_NodaTime_LocalDate_">DateTimeZone.AtStartOfDay(LocalDate)</a>
                 </div>
                 <div>
                   <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ResolveLocal_NodaTime_LocalDateTime_NodaTime_TimeZones_ZoneLocalMappingResolver_">DateTimeZone.ResolveLocal(LocalDateTime, ZoneLocalMappingResolver)</a>
@@ -121,22 +121,25 @@ Time zone with a single transition between two offsets. This provides a simple w
                   <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ToString">DateTimeZone.ToString()</a>
                 </div>
                 <div>
-                  <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_Equals_System_Object_">DateTimeZone.Equals(Object)</a>
-                </div>
-                <div>
-                  <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_Equals_NodaTime_DateTimeZone_">DateTimeZone.Equals(DateTimeZone)</a>
-                </div>
-                <div>
                   <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Instant_NodaTime_Instant_">DateTimeZone.GetZoneIntervals(Instant, Instant)</a>
                 </div>
                 <div>
                   <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_">DateTimeZone.GetZoneIntervals(Interval)</a>
                 </div>
                 <div>
+                  <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_NodaTime_TimeZones_ZoneEqualityComparer_Options_">DateTimeZone.GetZoneIntervals(Interval, ZoneEqualityComparer.Options)</a>
+                </div>
+                <div>
+                  <span class="xref">System.Object.Equals(System.Object)</span>
+                </div>
+                <div>
                   <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
                 </div>
                 <div>
                   <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+                </div>
+                <div>
+                  <span class="xref">System.Object.GetHashCode()</span>
                 </div>
                 <div>
                   <span class="xref">System.Object.GetType()</span>
@@ -149,7 +152,7 @@ Time zone with a single transition between two offsets. This provides a simple w
               <h6><strong>Assembly</strong>:NodaTime.Testing.dll</h6>
               <h5 id="NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone_syntax">Syntax</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public sealed class SingleTransitionDateTimeZone : DateTimeZone, IEquatable&lt;DateTimeZone&gt;, IZoneIntervalMap</code></pre>
+                <pre><code class="lang-csharp hljs">public sealed class SingleTransitionDateTimeZone : DateTimeZone, IZoneIntervalMapWithMinMax, IZoneIntervalMap</code></pre>
               </div>
               <h3 id="constructors">Constructors
               </h3>
@@ -274,7 +277,7 @@ Creates a zone with a single transition between two offsets.
               <a id="NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone_EarlyInterval_" data-uid="NodaTime.Testing.TimeZones.SingleTransitionDateTimeZone.EarlyInterval*"></a>
               <h4 id="NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone_EarlyInterval" data-uid="NodaTime.Testing.TimeZones.SingleTransitionDateTimeZone.EarlyInterval">EarlyInterval</h4>
               <div class="markdown level1 summary">
-The <a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a> for the period before the transition, starting at the beginning of time.
+Gets the <a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a> for the period before the transition, starting at the beginning of time.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -292,14 +295,14 @@ The <a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a>
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a></td>
-                    <td></td>
+                    <td>The zone interval for the period before the transition, starting at the beginning of time.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone_LateInterval_" data-uid="NodaTime.Testing.TimeZones.SingleTransitionDateTimeZone.LateInterval*"></a>
               <h4 id="NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone_LateInterval" data-uid="NodaTime.Testing.TimeZones.SingleTransitionDateTimeZone.LateInterval">LateInterval</h4>
               <div class="markdown level1 summary">
-The <a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a> for the period after the transition, ending at the end of time.
+Gets the <a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a> for the period after the transition, ending at the end of time.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -317,14 +320,14 @@ The <a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a>
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a></td>
-                    <td></td>
+                    <td>The zone interval for the period after the transition, ending at the end of time.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone_Transition_" data-uid="NodaTime.Testing.TimeZones.SingleTransitionDateTimeZone.Transition*"></a>
               <h4 id="NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone_Transition" data-uid="NodaTime.Testing.TimeZones.SingleTransitionDateTimeZone.Transition">Transition</h4>
               <div class="markdown level1 summary">
-The transition instant of the zone.
+Gets the transition instant of the zone.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -342,90 +345,12 @@ The transition instant of the zone.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
-                    <td></td>
+                    <td>The transition instant of the zone.</td>
                   </tr>
                 </tbody>
               </table>
               <h3 id="methods">Methods
               </h3>
-              <a id="NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone_EqualsImpl_" data-uid="NodaTime.Testing.TimeZones.SingleTransitionDateTimeZone.EqualsImpl*"></a>
-              <h4 id="NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone_EqualsImpl_NodaTime_DateTimeZone_" data-uid="NodaTime.Testing.TimeZones.SingleTransitionDateTimeZone.EqualsImpl(NodaTime.DateTimeZone)">EqualsImpl(DateTimeZone)</h4>
-              <div class="markdown level1 summary">
-Implements equality in derived classes.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">protected override bool EqualsImpl(DateTimeZone zone)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a></td>
-                    <td><span class="parametername">zone</span></td>
-                    <td>The zone to compare with this one. This is guaranteed (when called by <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_Equals_NodaTime_DateTimeZone_">Equals(DateTimeZone)</a>) to
-be a non-null reference of the same type as this instance.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Boolean</span></td>
-                    <td>
-<code>true</code> if the specified <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> is equal to this instance;
-otherwise, <code>false</code>.
-</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="overrides">Overrides</h5>
-              <div><a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_EqualsImpl_NodaTime_DateTimeZone_">DateTimeZone.EqualsImpl(DateTimeZone)</a></div>
-              <a id="NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone_GetHashCode_" data-uid="NodaTime.Testing.TimeZones.SingleTransitionDateTimeZone.GetHashCode*"></a>
-              <h4 id="NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone_GetHashCode" data-uid="NodaTime.Testing.TimeZones.SingleTransitionDateTimeZone.GetHashCode">GetHashCode()</h4>
-              <div class="markdown level1 summary">
-Returns a hash code for this instance.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
-              </div>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td>
-A hash code for this instance, suitable for use in hashing algorithms and data
-structures like a hash table. 
-</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="overrides">Overrides</h5>
-              <div><a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetHashCode">DateTimeZone.GetHashCode()</a></div>
               <a id="NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone_GetZoneInterval_" data-uid="NodaTime.Testing.TimeZones.SingleTransitionDateTimeZone.GetZoneInterval*"></a>
               <h4 id="NodaTime_Testing_TimeZones_SingleTransitionDateTimeZone_GetZoneInterval_NodaTime_Instant_" data-uid="NodaTime.Testing.TimeZones.SingleTransitionDateTimeZone.GetZoneInterval(NodaTime.Instant)">GetZoneInterval(Instant)</h4>
               <div class="markdown level1 summary">

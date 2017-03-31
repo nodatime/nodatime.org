@@ -128,9 +128,6 @@ This class is not available in the PCL version.
               <h4 id="NodaTime_TimeZones_BclDateTimeZoneSource_VersionId" data-uid="NodaTime.TimeZones.BclDateTimeZoneSource.VersionId">VersionId</h4>
               <div class="markdown level1 summary">
 Returns an appropriate version ID for diagnostic purposes, which must not be null.
-This doesn't have any specific format; it's solely for diagnostic purposes.
-The included sources return strings of the format "source identifier: source version" indicating where the
-information comes from and which version of the source information has been loaded.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -148,7 +145,7 @@ information comes from and which version of the source information has been load
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td></td>
+                    <td>An appropriate version ID for diagnostic purposes, which must not be null.</td>
                   </tr>
                 </tbody>
               </table>
@@ -246,33 +243,16 @@ Returns the IDs of all system time zones.
               </table>
               <h5 class="implements">Implements</h5>
                   <div><a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetIds">IDateTimeZoneSource.GetIds()</a></div>
-              <a id="NodaTime_TimeZones_BclDateTimeZoneSource_MapTimeZoneId_" data-uid="NodaTime.TimeZones.BclDateTimeZoneSource.MapTimeZoneId*"></a>
-              <h4 id="NodaTime_TimeZones_BclDateTimeZoneSource_MapTimeZoneId_System_TimeZoneInfo_" data-uid="NodaTime.TimeZones.BclDateTimeZoneSource.MapTimeZoneId(System.TimeZoneInfo)">MapTimeZoneId(TimeZoneInfo)</h4>
+              <a id="NodaTime_TimeZones_BclDateTimeZoneSource_GetSystemDefaultId_" data-uid="NodaTime.TimeZones.BclDateTimeZoneSource.GetSystemDefaultId*"></a>
+              <h4 id="NodaTime_TimeZones_BclDateTimeZoneSource_GetSystemDefaultId" data-uid="NodaTime.TimeZones.BclDateTimeZoneSource.GetSystemDefaultId">GetSystemDefaultId()</h4>
               <div class="markdown level1 summary">
-Maps the BCL ID to "our" ID as an identity projection.
+Returns this source's ID for the system default time zone.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public string MapTimeZoneId(TimeZoneInfo timeZone)</code></pre>
+                <pre><code class="lang-csharp hljs">public string GetSystemDefaultId()</code></pre>
               </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.TimeZoneInfo</span></td>
-                    <td><span class="parametername">timeZone</span></td>
-                    <td>The BCL time zone, which must be a known system time zone.</td>
-                  </tr>
-                </tbody>
-              </table>
               <h5 class="returns">Returns</h5>
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
@@ -285,14 +265,14 @@ Maps the BCL ID to "our" ID as an identity projection.
                   <tr>
                     <td><span class="xref">System.String</span></td>
                     <td>
-The ID for the given BCL time zone for this source; that is, the value of the <code>Id</code> property of the
-passed-in <span class="xref">System.TimeZoneInfo</span>.
+The ID for the system default time zone for this source,
+or null if the system default time zone has no mapping in this source.
 </td>
                   </tr>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_MapTimeZoneId_System_TimeZoneInfo_">IDateTimeZoneSource.MapTimeZoneId(TimeZoneInfo)</a></div>
+                  <div><a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetSystemDefaultId">IDateTimeZoneSource.GetSystemDefaultId()</a></div>
               <h3 id="eii">Explicit Interface Implementations
               </h3>
               <a id="NodaTime_TimeZones_BclDateTimeZoneSource_NodaTime_TimeZones_IDateTimeZoneSource_ForId_" data-uid="NodaTime.TimeZones.BclDateTimeZoneSource.NodaTime#TimeZones#IDateTimeZoneSource#ForId*"></a>

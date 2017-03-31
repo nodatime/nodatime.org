@@ -74,7 +74,7 @@
               </h1>
               <div class="markdown level0 summary">
 A date and time in a particular calendar system. A LocalDateTime value does not represent an
-instant on the time line, because it has no associated time zone: "November 12th 2009 7pm, ISO calendar"
+instant on the global time line, because it has no associated time zone: "November 12th 2009 7pm, ISO calendar"
 occurred at different instants for different people around the world.
 </div>
               <div class="markdown level0 conceptual"></div>
@@ -100,21 +100,14 @@ public struct LocalDateTime : IEquatable&lt;LocalDateTime&gt;, IComparable&lt;Lo
               <h5 id="NodaTime_LocalDateTime_remarks"><strong>Remarks</strong></h5>
               <div class="markdown level0 remarks">
 <p>
-This type defaults to using the IsoCalendarSystem unless a different calendar system is
+This type defaults to using the ISO calendar system unless a different calendar system is
 specified.
 </p>
-<p>Comparisons of values can be handled in a way which is either calendar-sensitive or calendar-insensitive.
-Noda Time implements all the operators (and the <a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_Equals_NodaTime_LocalDateTime_">Equals(LocalDateTime)</a> method) such that all operators other than <a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_op_Inequality_NodaTime_LocalDateTime_NodaTime_LocalDateTime_">Inequality(LocalDateTime, LocalDateTime)</a>
-will return false if asked to compare two values in different calendar systems.
-</p>
 <p>
-However, the <a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_CompareTo_NodaTime_LocalDateTime_">CompareTo(LocalDateTime)</a> method (implementing <span class="xref">System.IComparable&lt;T&gt;</span>) is calendar-insensitive; it compares the two
-values historically in terms of when they actually occurred, as if they're both converted to some "neutral" calendar system first.
-</p>
-<p>
-It's unclear at the time of this writing whether this is the most appropriate approach, and it may change in future versions. In general,
-it would be a good idea for users to avoid comparing dates in different calendar systems, and indeed most users are unlikely to ever explicitly
-consider which calendar system they're working in anyway.
+Values can freely be compared for equality: a value in a different calendar system is not equal to
+a value in a different calendar system. However, ordering comparisons (either via the <a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_CompareTo_NodaTime_LocalDateTime_">CompareTo(LocalDateTime)</a> method
+or via operators) fail with <span class="xref">System.ArgumentException</span>; attempting to compare values in different calendars
+almost always indicates a bug in the calling code.
 </p>
 </div>
               <h3 id="constructors">Constructors
@@ -542,167 +535,6 @@ the ISO calendar, a value of 0 means 1 BC, for example.</td>
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_LocalDateTime__ctor_" data-uid="NodaTime.LocalDateTime.#ctor*"></a>
-              <h4 id="NodaTime_LocalDateTime__ctor_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="NodaTime.LocalDateTime.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">LocalDateTime(Int32, Int32, Int32, Int32, Int32, Int32, Int32, Int32)</h4>
-              <div class="markdown level1 summary">
-Initializes a new instance of the <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> struct.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public LocalDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond, int tickWithinMillisecond)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">year</span></td>
-                    <td>The year. This is the "absolute year",
-so a value of 0 means 1 BC, for example.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">month</span></td>
-                    <td>The month of year.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">day</span></td>
-                    <td>The day of month.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">hour</span></td>
-                    <td>The hour.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">minute</span></td>
-                    <td>The minute.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">second</span></td>
-                    <td>The second.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">millisecond</span></td>
-                    <td>The millisecond.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">tickWithinMillisecond</span></td>
-                    <td>The tick within millisecond.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="exceptions">Exceptions</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Condition</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-                    <td>The parameters do not form a valid date/time.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <a id="NodaTime_LocalDateTime__ctor_" data-uid="NodaTime.LocalDateTime.#ctor*"></a>
-              <h4 id="NodaTime_LocalDateTime__ctor_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_NodaTime_CalendarSystem_" data-uid="NodaTime.LocalDateTime.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,NodaTime.CalendarSystem)">LocalDateTime(Int32, Int32, Int32, Int32, Int32, Int32, Int32, Int32, CalendarSystem)</h4>
-              <div class="markdown level1 summary">
-Initializes a new instance of the <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> struct.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public LocalDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond, int tickWithinMillisecond, CalendarSystem calendar)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">year</span></td>
-                    <td>The year. This is the "absolute year", so, for
-the ISO calendar, a value of 0 means 1 BC, for example.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">month</span></td>
-                    <td>The month of year.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">day</span></td>
-                    <td>The day of month.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">hour</span></td>
-                    <td>The hour.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">minute</span></td>
-                    <td>The minute.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">second</span></td>
-                    <td>The second.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">millisecond</span></td>
-                    <td>The millisecond.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">tickWithinMillisecond</span></td>
-                    <td>The tick within millisecond.</td>
-                  </tr>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
-                    <td><span class="parametername">calendar</span></td>
-                    <td>The calendar.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="exceptions">Exceptions</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Condition</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-                    <td>The parameters do not form a valid date/time.</td>
-                  </tr>
-                </tbody>
-              </table>
               <h3 id="properties">Properties
               </h3>
               <a id="NodaTime_LocalDateTime_Calendar_" data-uid="NodaTime.LocalDateTime.Calendar*"></a>
@@ -724,30 +556,7 @@ the ISO calendar, a value of 0 means 1 BC, for example.</td>
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <a id="NodaTime_LocalDateTime_CenturyOfEra_" data-uid="NodaTime.LocalDateTime.CenturyOfEra*"></a>
-              <h4 id="NodaTime_LocalDateTime_CenturyOfEra" data-uid="NodaTime.LocalDateTime.CenturyOfEra">CenturyOfEra</h4>
-              <div class="markdown level1 summary">Gets the century within the era of this local date and time.</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public int CenturyOfEra { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The calendar system associated with this local date and time.</td>
                   </tr>
                 </tbody>
               </table>
@@ -772,7 +581,7 @@ Gets the hour of the half-day of this local date and time, in the range 1 to 12 
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The hour of the half-day of this local date and time, in the range 1 to 12 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
@@ -797,7 +606,7 @@ Gets the date portion of this local date and time as a <a class="xref" href="Nod
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
-                    <td></td>
+                    <td>The date portion of this local date and time as a <code>LocalDate</code> in the same calendar system as this value.</td>
                   </tr>
                 </tbody>
               </table>
@@ -822,19 +631,19 @@ Gets the day of this local date and time within the month.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The day of this local date and time within the month.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_LocalDateTime_DayOfWeek_" data-uid="NodaTime.LocalDateTime.DayOfWeek*"></a>
               <h4 id="NodaTime_LocalDateTime_DayOfWeek" data-uid="NodaTime.LocalDateTime.DayOfWeek">DayOfWeek</h4>
               <div class="markdown level1 summary">
-Gets the week day of this local date and time as a number.
+Gets the week day of this local date and time expressed as an <a class="xref" href="NodaTime.IsoDayOfWeek.html">IsoDayOfWeek</a> value.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public int DayOfWeek { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">public IsoDayOfWeek DayOfWeek { get; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -846,19 +655,11 @@ Gets the week day of this local date and time as a number.
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td><a class="xref" href="NodaTime.IsoDayOfWeek.html">IsoDayOfWeek</a></td>
+                    <td>The week day of this local date and time expressed as an <code>IsoDayOfWeek</code>.</td>
                   </tr>
                 </tbody>
               </table>
-              <h5 id="NodaTime_LocalDateTime_DayOfWeek_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-For calendars using ISO week days, this gives 1 for Monday to 7 for Sunday.
-</div>
-              <h5 id="NodaTime_LocalDateTime_DayOfWeek_seealso">See Also</h5>
-              <div class="seealso">
-                  <div><a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_IsoDayOfWeek">IsoDayOfWeek</a></div>
-              </div>
               <a id="NodaTime_LocalDateTime_DayOfYear_" data-uid="NodaTime.LocalDateTime.DayOfYear*"></a>
               <h4 id="NodaTime_LocalDateTime_DayOfYear" data-uid="NodaTime.LocalDateTime.DayOfYear">DayOfYear</h4>
               <div class="markdown level1 summary">
@@ -880,7 +681,7 @@ Gets the day of this local date and time within the year.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The day of this local date and time within the year.</td>
                   </tr>
                 </tbody>
               </table>
@@ -903,7 +704,7 @@ Gets the day of this local date and time within the year.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Calendars.Era.html">Era</a></td>
-                    <td></td>
+                    <td>The era of this local date and time.</td>
                   </tr>
                 </tbody>
               </table>
@@ -928,55 +729,10 @@ Gets the hour of day of this local date and time, in the range 0 to 23 inclusive
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The hour of day of this local date and time, in the range 0 to 23 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_LocalDateTime_IsoDayOfWeek_" data-uid="NodaTime.LocalDateTime.IsoDayOfWeek*"></a>
-              <h4 id="NodaTime_LocalDateTime_IsoDayOfWeek" data-uid="NodaTime.LocalDateTime.IsoDayOfWeek">IsoDayOfWeek</h4>
-              <div class="markdown level1 summary">
-Gets the week day of this local date and time expressed as an <a class="xref" href="NodaTime.IsoDayOfWeek.html">IsoDayOfWeek</a> value,
-for calendars which use ISO days of the week.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public IsoDayOfWeek IsoDayOfWeek { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.IsoDayOfWeek.html">IsoDayOfWeek</a></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="exceptions">Exceptions</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Condition</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.InvalidOperationException</span></td>
-                    <td>The underlying calendar doesn't use ISO days of the week.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_LocalDateTime_IsoDayOfWeek_seealso">See Also</h5>
-              <div class="seealso">
-                  <div><a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_DayOfWeek">DayOfWeek</a></div>
-              </div>
               <a id="NodaTime_LocalDateTime_Millisecond_" data-uid="NodaTime.LocalDateTime.Millisecond*"></a>
               <h4 id="NodaTime_LocalDateTime_Millisecond" data-uid="NodaTime.LocalDateTime.Millisecond">Millisecond</h4>
               <div class="markdown level1 summary">
@@ -998,7 +754,7 @@ Gets the millisecond of this local date and time within the second, in the range
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The millisecond of this local date and time within the second, in the range 0 to 999 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1023,7 +779,7 @@ Gets the minute of this local date and time, in the range 0 to 59 inclusive.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The minute of this local date and time, in the range 0 to 59 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1048,7 +804,57 @@ Gets the month of this local date and time within the year.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The month of this local date and time within the year.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_LocalDateTime_NanosecondOfDay_" data-uid="NodaTime.LocalDateTime.NanosecondOfDay*"></a>
+              <h4 id="NodaTime_LocalDateTime_NanosecondOfDay" data-uid="NodaTime.LocalDateTime.NanosecondOfDay">NanosecondOfDay</h4>
+              <div class="markdown level1 summary">
+Gets the nanosecond of this local date and time within the day, in the range 0 to 86,399,999,999,999 inclusive.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public long NanosecondOfDay { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td>The nanosecond of this local date and time within the day, in the range 0 to 86,399,999,999,999 inclusive.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_LocalDateTime_NanosecondOfSecond_" data-uid="NodaTime.LocalDateTime.NanosecondOfSecond*"></a>
+              <h4 id="NodaTime_LocalDateTime_NanosecondOfSecond" data-uid="NodaTime.LocalDateTime.NanosecondOfSecond">NanosecondOfSecond</h4>
+              <div class="markdown level1 summary">
+Gets the nanosecond of this local time within the second, in the range 0 to 999,999,999 inclusive.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int NanosecondOfSecond { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The nanosecond of this local time within the second, in the range 0 to 999,999,999 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1073,7 +879,7 @@ Gets the second of this local date and time within the minute, in the range 0 to
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The second of this local date and time within the minute, in the range 0 to 59 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1098,7 +904,7 @@ Gets the tick of this local date and time within the day, in the range 0 to 863,
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The tick of this local date and time within the day, in the range 0 to 863,999,999,999 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1123,7 +929,7 @@ Gets the tick of this local time within the second, in the range 0 to 9,999,999 
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The tick of this local time within the second, in the range 0 to 9,999,999 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1148,76 +954,10 @@ Gets the time portion of this local date and time as a <a class="xref" href="Nod
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalTime.html">LocalTime</a></td>
-                    <td></td>
+                    <td>The time portion of this local date and time as a <code>LocalTime</code>.</td>
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_LocalDateTime_WeekOfWeekYear_" data-uid="NodaTime.LocalDateTime.WeekOfWeekYear*"></a>
-              <h4 id="NodaTime_LocalDateTime_WeekOfWeekYear" data-uid="NodaTime.LocalDateTime.WeekOfWeekYear">WeekOfWeekYear</h4>
-              <div class="markdown level1 summary">
-Gets the week within the WeekYear. See <a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_WeekYear">WeekYear</a> for more details.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public int WeekOfWeekYear { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <a id="NodaTime_LocalDateTime_WeekYear_" data-uid="NodaTime.LocalDateTime.WeekYear*"></a>
-              <h4 id="NodaTime_LocalDateTime_WeekYear" data-uid="NodaTime.LocalDateTime.WeekYear">WeekYear</h4>
-              <div class="markdown level1 summary">
-Gets the "week year" of this local date and time.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public int WeekYear { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_LocalDateTime_WeekYear_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-<p>
-The WeekYear is the year that matches with the <a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_WeekOfWeekYear">WeekOfWeekYear</a> field.
-In the standard ISO8601 week algorithm, the first week of the year
-is that in which at least 4 days are in the year. As a result of this
-definition, day 1 of the first week may be in the previous year.
-The WeekYear allows you to query the effective year for that day.
-</p>
-<p>
-For example, January 1st 2011 was a Saturday, so only two days of that week
-(Saturday and Sunday) were in 2011. Therefore January 1st is part of
-week 52 of WeekYear 2010. Conversely, December 31st 2012 is a Monday,
-so is part of week 1 of WeekYear 2013.
-</p>
-</div>
               <a id="NodaTime_LocalDateTime_Year_" data-uid="NodaTime.LocalDateTime.Year*"></a>
               <h4 id="NodaTime_LocalDateTime_Year" data-uid="NodaTime.LocalDateTime.Year">Year</h4>
               <div class="markdown level1 summary">Gets the year of this local date and time.</div>
@@ -1237,38 +977,13 @@ so is part of week 1 of WeekYear 2013.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The year of this local date and time.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_LocalDateTime_Year_remarks">Remarks</h5>
               <div class="markdown level1 remarks">This returns the "absolute year", so, for the ISO calendar,
 a value of 0 means 1 BC, for example.</div>
-              <a id="NodaTime_LocalDateTime_YearOfCentury_" data-uid="NodaTime.LocalDateTime.YearOfCentury*"></a>
-              <h4 id="NodaTime_LocalDateTime_YearOfCentury" data-uid="NodaTime.LocalDateTime.YearOfCentury">YearOfCentury</h4>
-              <div class="markdown level1 summary">Gets the year of this local date and time within its century.</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public int YearOfCentury { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_LocalDateTime_YearOfCentury_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">This always returns a value in the range 0 to 99 inclusive.</div>
               <a id="NodaTime_LocalDateTime_YearOfEra_" data-uid="NodaTime.LocalDateTime.YearOfEra*"></a>
               <h4 id="NodaTime_LocalDateTime_YearOfEra" data-uid="NodaTime.LocalDateTime.YearOfEra">YearOfEra</h4>
               <div class="markdown level1 summary">Gets the year of this local date and time within its era.</div>
@@ -1288,7 +1003,7 @@ a value of 0 means 1 BC, for example.</div>
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The year of this local date and time within its era.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1389,12 +1104,26 @@ later than <span class="paramref">other</span>.</td>
                   <div><span class="xref">System.IComparable&lt;T&gt;.CompareTo(T)</span></div>
               <h5 id="NodaTime_LocalDateTime_CompareTo_NodaTime_LocalDateTime__remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-The comparison is performed in terms of a calendar-independent notion of dates and times;
-the calendar systems of both <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> values are ignored. When both values use the same calendar,
-this is absolutely natural. However, when comparing a value in one calendar with a value in another,
-this can lead to surprising results. For example, 1945 in the ISO calendar corresponds to around 1364
-in the Islamic calendar, so an Islamic date in year 1400 is "after" a date in 1945 in the ISO calendar.
+Only date/time values within the same calendar systems can be compared with this method. Attempting to compare
+values within different calendars will fail with an <span class="xref">System.ArgumentException</span>. Ideally, comparisons
+is almost always preferable to continuing.
 </div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentException</span></td>
+                    <td>The calendar system of <span class="paramref">other</span> is not the
+same as the calendar system of this value.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDateTime_Equals_" data-uid="NodaTime.LocalDateTime.Equals*"></a>
               <h4 id="NodaTime_LocalDateTime_Equals_NodaTime_LocalDateTime_" data-uid="NodaTime.LocalDateTime.Equals(NodaTime.LocalDateTime)">Equals(LocalDateTime)</h4>
               <div class="markdown level1 summary">
@@ -1532,6 +1261,55 @@ will still have the same day/hour/minute etc - it won't be converted into the lo
                   </tr>
                 </tbody>
               </table>
+              <a id="NodaTime_LocalDateTime_FromDateTime_" data-uid="NodaTime.LocalDateTime.FromDateTime*"></a>
+              <h4 id="NodaTime_LocalDateTime_FromDateTime_System_DateTime_NodaTime_CalendarSystem_" data-uid="NodaTime.LocalDateTime.FromDateTime(System.DateTime,NodaTime.CalendarSystem)">FromDateTime(DateTime, CalendarSystem)</h4>
+              <div class="markdown level1 summary">
+Converts a <span class="xref">System.DateTime</span> of any kind to a LocalDateTime in the specified calendar. This does not perform
+any time zone conversions, so a DateTime with a <span class="xref">System.DateTime.Kind</span> of <span class="xref">System.DateTimeKind.Utc</span>
+will still have the same day/hour/minute etc - it won't be converted into the local system time.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static LocalDateTime FromDateTime(DateTime dateTime, CalendarSystem calendar)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.DateTime</span></td>
+                    <td><span class="parametername">dateTime</span></td>
+                    <td>Value to convert into a Noda Time local date and time</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
+                    <td><span class="parametername">calendar</span></td>
+                    <td>The calendar system to convert into</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
+                    <td>A new <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> with the same values as the specified <code>DateTime</code>.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDateTime_GetHashCode_" data-uid="NodaTime.LocalDateTime.GetHashCode*"></a>
               <h4 id="NodaTime_LocalDateTime_GetHashCode" data-uid="NodaTime.LocalDateTime.GetHashCode">GetHashCode()</h4>
               <div class="markdown level1 summary">
@@ -1647,9 +1425,8 @@ This is a convenience method for calling <a class="xref" href="NodaTime.DateTime
               <h4 id="NodaTime_LocalDateTime_InZoneLeniently_NodaTime_DateTimeZone_" data-uid="NodaTime.LocalDateTime.InZoneLeniently(NodaTime.DateTimeZone)">InZoneLeniently(DateTimeZone)</h4>
               <div class="markdown level1 summary">
 Returns the mapping of this local date/time within the given <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a>,
-with "lenient" rules applied such that ambiguous values map to the
-later of the alternatives, and "skipped" values map to the start of the zone interval
-after the "gap".
+with "lenient" rules applied such that ambiguous values map to the earlier of the alternatives, and
+"skipped" values are shifted forward by the duration of the "gap".
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -1693,6 +1470,11 @@ after the "gap".
 See <a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_InZoneStrictly_NodaTime_DateTimeZone_">InZoneStrictly(DateTimeZone)</a> and <a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_InZone_NodaTime_DateTimeZone_NodaTime_TimeZones_ZoneLocalMappingResolver_">InZone(DateTimeZone, ZoneLocalMappingResolver)</a> for alternative ways to map a local time to a
 specific instant.
 This is solely a convenience method for calling <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtLeniently_NodaTime_LocalDateTime_">AtLeniently(LocalDateTime)</a>.
+<p>Note: The behavior of this method was changed in version 2.0 to fit the most commonly seen real-world
+usage pattern.  Previous versions returned the later instance of ambiguous values, and returned the start of
+the zone interval after the gap for skipped value.  The previous functionality can still be used if desired,
+by using <a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_InZone_NodaTime_DateTimeZone_NodaTime_TimeZones_ZoneLocalMappingResolver_">InZone(DateTimeZone, ZoneLocalMappingResolver)</a> and passing a resolver that combines the
+<a class="xref" href="NodaTime.TimeZones.Resolvers.html#NodaTime_TimeZones_Resolvers_ReturnLater">ReturnLater</a> and <a class="xref" href="NodaTime.TimeZones.Resolvers.html#NodaTime_TimeZones_Resolvers_ReturnStartOfIntervalAfter">ReturnStartOfIntervalAfter</a> resolvers.</p>
 </div>
               <a id="NodaTime_LocalDateTime_InZoneStrictly_" data-uid="NodaTime.LocalDateTime.InZoneStrictly*"></a>
               <h4 id="NodaTime_LocalDateTime_InZoneStrictly_NodaTime_DateTimeZone_" data-uid="NodaTime.LocalDateTime.InZoneStrictly(NodaTime.DateTimeZone)">InZoneStrictly(DateTimeZone)</h4>
@@ -1764,10 +1546,54 @@ This is solely a convenience method for calling <a class="xref" href="NodaTime.D
                 </tbody>
               </table>
               <a id="NodaTime_LocalDateTime_Minus_" data-uid="NodaTime.LocalDateTime.Minus*"></a>
+              <h4 id="NodaTime_LocalDateTime_Minus_NodaTime_LocalDateTime_" data-uid="NodaTime.LocalDateTime.Minus(NodaTime.LocalDateTime)">Minus(LocalDateTime)</h4>
+              <div class="markdown level1 summary">
+Subtracts the specified date/time from this date/time, returning the result as a <a class="xref" href="NodaTime.Period.html">Period</a>.
+Fluent alternative to <code>operator-()</code>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Period Minus(LocalDateTime localDateTime)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
+                    <td><span class="parametername">localDateTime</span></td>
+                    <td>The date/time to subtract from this</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Period.html">Period</a></td>
+                    <td>The difference between the specified date/time and this one</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_LocalDateTime_Minus_NodaTime_LocalDateTime__remarks">Remarks</h5>
+              <div class="markdown level1 remarks">The specified date/time must be in the same calendar system as this.</div>
+              <a id="NodaTime_LocalDateTime_Minus_" data-uid="NodaTime.LocalDateTime.Minus*"></a>
               <h4 id="NodaTime_LocalDateTime_Minus_NodaTime_Period_" data-uid="NodaTime.LocalDateTime.Minus(NodaTime.Period)">Minus(Period)</h4>
               <div class="markdown level1 summary">
 Subtracts a period from a local date/time. Fields are subtracted in the order provided by the period.
-This is a convenience operator over the <a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_Minus_NodaTime_Period_">Minus(Period)</a> method.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -1809,7 +1635,7 @@ This is a convenience operator over the <a class="xref" href="NodaTime.LocalDate
               <a id="NodaTime_LocalDateTime_Next_" data-uid="NodaTime.LocalDateTime.Next*"></a>
               <h4 id="NodaTime_LocalDateTime_Next_NodaTime_IsoDayOfWeek_" data-uid="NodaTime.LocalDateTime.Next(NodaTime.IsoDayOfWeek)">Next(IsoDayOfWeek)</h4>
               <div class="markdown level1 summary">
-Returns the next <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> falling on the specified <a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_IsoDayOfWeek">IsoDayOfWeek</a>,
+Returns the next <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> falling on the specified <a class="xref" href="NodaTime.IsoDayOfWeek.html">IsoDayOfWeek</a>,
 at the same time of day as this value.
 This is a strict "next" - if this value on already falls on the target
 day of the week, the returned value will be a week later.
@@ -2142,6 +1968,48 @@ For example, adding one month to January 30th 2011 will return February 28th 201
 March 30th 2011 will return February 28th 2011.
 </p>
 </div>
+              <a id="NodaTime_LocalDateTime_PlusNanoseconds_" data-uid="NodaTime.LocalDateTime.PlusNanoseconds*"></a>
+              <h4 id="NodaTime_LocalDateTime_PlusNanoseconds_System_Int64_" data-uid="NodaTime.LocalDateTime.PlusNanoseconds(System.Int64)">PlusNanoseconds(Int64)</h4>
+              <div class="markdown level1 summary">
+Returns a new LocalDateTime representing the current value with the given number of nanoseconds added.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public LocalDateTime PlusNanoseconds(long nanoseconds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="parametername">nanoseconds</span></td>
+                    <td>The number of nanoseconds to add</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
+                    <td>The current value plus the given number of nanoseconds.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDateTime_PlusSeconds_" data-uid="NodaTime.LocalDateTime.PlusSeconds*"></a>
               <h4 id="NodaTime_LocalDateTime_PlusSeconds_System_Int64_" data-uid="NodaTime.LocalDateTime.PlusSeconds(System.Int64)">PlusSeconds(Int64)</h4>
               <div class="markdown level1 summary">
@@ -2319,7 +2187,7 @@ February 29th 2012 will return February 28th 2011.
               <a id="NodaTime_LocalDateTime_Previous_" data-uid="NodaTime.LocalDateTime.Previous*"></a>
               <h4 id="NodaTime_LocalDateTime_Previous_NodaTime_IsoDayOfWeek_" data-uid="NodaTime.LocalDateTime.Previous(NodaTime.IsoDayOfWeek)">Previous(IsoDayOfWeek)</h4>
               <div class="markdown level1 summary">
-Returns the previous <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> falling on the specified <a class="xref" href="NodaTime.LocalDateTime.html#NodaTime_LocalDateTime_IsoDayOfWeek">IsoDayOfWeek</a>,
+Returns the previous <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> falling on the specified <a class="xref" href="NodaTime.IsoDayOfWeek.html">IsoDayOfWeek</a>,
 at the same time of day as this value.
 This is a strict "previous" - if this value on already falls on the target
 day of the week, the returned value will be a week earlier.
@@ -2381,6 +2249,58 @@ day of the week, the returned value will be a week earlier.
                   </tr>
                 </tbody>
               </table>
+              <a id="NodaTime_LocalDateTime_Subtract_" data-uid="NodaTime.LocalDateTime.Subtract*"></a>
+              <h4 id="NodaTime_LocalDateTime_Subtract_NodaTime_LocalDateTime_NodaTime_LocalDateTime_" data-uid="NodaTime.LocalDateTime.Subtract(NodaTime.LocalDateTime,NodaTime.LocalDateTime)">Subtract(LocalDateTime, LocalDateTime)</h4>
+              <div class="markdown level1 summary">
+Subtracts one date/time from another, returning the result as a <a class="xref" href="NodaTime.Period.html">Period</a>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Period Subtract(LocalDateTime lhs, LocalDateTime rhs)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
+                    <td><span class="parametername">lhs</span></td>
+                    <td>The date/time to subtract from</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
+                    <td><span class="parametername">rhs</span></td>
+                    <td>The date/time to subtract</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Period.html">Period</a></td>
+                    <td>The result of subtracting one date/time from another.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_LocalDateTime_Subtract_NodaTime_LocalDateTime_NodaTime_LocalDateTime__remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+This is simply a convenience method for calling <a class="xref" href="NodaTime.Period.html#NodaTime_Period_Between_NodaTime_LocalDateTime_NodaTime_LocalDateTime_">Between(LocalDateTime, LocalDateTime)</a>.
+The calendar systems of the two date/times must be the same.
+</div>
               <a id="NodaTime_LocalDateTime_Subtract_" data-uid="NodaTime.LocalDateTime.Subtract*"></a>
               <h4 id="NodaTime_LocalDateTime_Subtract_NodaTime_LocalDateTime_NodaTime_Period_" data-uid="NodaTime.LocalDateTime.Subtract(NodaTime.LocalDateTime,NodaTime.Period)">Subtract(LocalDateTime, Period)</h4>
               <div class="markdown level1 summary">
@@ -2456,11 +2376,32 @@ of <span class="xref">System.DateTimeKind.Unspecified</span>.
               </table>
               <h5 id="NodaTime_LocalDateTime_ToDateTimeUnspecified_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
+<p>
 <span class="xref">System.DateTimeKind.Unspecified</span> is slightly odd - it can be treated as UTC if you use <span class="xref">System.DateTime.ToLocalTime</span>
 or as system local time if you use <span class="xref">System.DateTime.ToUniversalTime</span>, but it's the only kind which allows
 you to construct a <span class="xref">System.DateTimeOffset</span> with an arbitrary offset, which makes it as close to
 the Noda Time non-system-specific "local" concept as exists in .NET.
+</p>
+<p>
+If the date and time is not on a tick boundary (the unit of granularity of DateTime) the value will be truncated
+towards the start of time.
+</p>
 </div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td>The date/time is outside the range of <code>DateTime</code>.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDateTime_ToString_" data-uid="NodaTime.LocalDateTime.ToString*"></a>
               <h4 id="NodaTime_LocalDateTime_ToString" data-uid="NodaTime.LocalDateTime.ToString">ToString()</h4>
               <div class="markdown level1 summary">
@@ -2546,6 +2487,101 @@ A <span class="xref">System.String</span> containing the value of the current in
               </table>
               <h5 class="implements">Implements</h5>
                   <div><span class="xref">System.IFormattable.ToString(System.String, System.IFormatProvider)</span></div>
+              <a id="NodaTime_LocalDateTime_With_" data-uid="NodaTime.LocalDateTime.With*"></a>
+              <h4 id="NodaTime_LocalDateTime_With_System_Func_NodaTime_LocalDate_NodaTime_LocalDate__" data-uid="NodaTime.LocalDateTime.With(System.Func{NodaTime.LocalDate,NodaTime.LocalDate})">With(Func&lt;LocalDate, LocalDate&gt;)</h4>
+              <div class="markdown level1 summary">
+Returns this date/time, with the given date adjuster applied to it, maintaing the existing time of day.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public LocalDateTime With(Func&lt;LocalDate, LocalDate&gt; adjuster)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Func</span>&lt;<a class="xref" href="NodaTime.LocalDate.html">LocalDate</a>, <a class="xref" href="NodaTime.LocalDate.html">LocalDate</a>&gt;</td>
+                    <td><span class="parametername">adjuster</span></td>
+                    <td>The adjuster to apply.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
+                    <td>The adjusted date/time.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_LocalDateTime_With_System_Func_NodaTime_LocalDate_NodaTime_LocalDate___remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+If the adjuster attempts to construct an
+invalid date (such as by trying to set a day-of-month of 30 in February), any exception thrown by
+that construction attempt will be propagated through this method.
+</div>
+              <a id="NodaTime_LocalDateTime_With_" data-uid="NodaTime.LocalDateTime.With*"></a>
+              <h4 id="NodaTime_LocalDateTime_With_System_Func_NodaTime_LocalTime_NodaTime_LocalTime__" data-uid="NodaTime.LocalDateTime.With(System.Func{NodaTime.LocalTime,NodaTime.LocalTime})">With(Func&lt;LocalTime, LocalTime&gt;)</h4>
+              <div class="markdown level1 summary">
+Returns this date/time, with the given time adjuster applied to it, maintaining the existing date.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public LocalDateTime With(Func&lt;LocalTime, LocalTime&gt; adjuster)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Func</span>&lt;<a class="xref" href="NodaTime.LocalTime.html">LocalTime</a>, <a class="xref" href="NodaTime.LocalTime.html">LocalTime</a>&gt;</td>
+                    <td><span class="parametername">adjuster</span></td>
+                    <td>The adjuster to apply.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
+                    <td>The adjusted date/time.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_LocalDateTime_With_System_Func_NodaTime_LocalTime_NodaTime_LocalTime___remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+If the adjuster attempts to construct an invalid time, any exception thrown by
+that construction attempt will be propagated through this method.
+</div>
               <a id="NodaTime_LocalDateTime_WithCalendar_" data-uid="NodaTime.LocalDateTime.WithCalendar*"></a>
               <h4 id="NodaTime_LocalDateTime_WithCalendar_NodaTime_CalendarSystem_" data-uid="NodaTime.LocalDateTime.WithCalendar(NodaTime.CalendarSystem)">WithCalendar(CalendarSystem)</h4>
               <div class="markdown level1 summary">
@@ -2556,7 +2592,7 @@ For example, January 1st 1970 in the Gregorian calendar was December 19th 1969 i
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public LocalDateTime WithCalendar(CalendarSystem calendarSystem)</code></pre>
+                <pre><code class="lang-csharp hljs">public LocalDateTime WithCalendar(CalendarSystem calendar)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -2570,7 +2606,7 @@ For example, January 1st 1970 in the Gregorian calendar was December 19th 1969 i
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
-                    <td><span class="parametername">calendarSystem</span></td>
+                    <td><span class="parametername">calendar</span></td>
                     <td>The calendar system to convert this local date to.</td>
                   </tr>
                 </tbody>
@@ -2781,9 +2817,25 @@ one.
               </table>
               <h5 id="NodaTime_LocalDateTime_op_GreaterThan_NodaTime_LocalDateTime_NodaTime_LocalDateTime__remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-This operator always returns false if the two operands have different calendars. See the top-level type
+Only values with the same calendar system can be compared. See the top-level type
 documentation for more information about comparisons.
 </div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentException</span></td>
+                    <td>The calendar system of <span class="paramref">rhs</span> is not the same
+as the calendar of <span class="paramref">lhs</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDateTime_op_GreaterThanOrEqual_" data-uid="NodaTime.LocalDateTime.op_GreaterThanOrEqual*"></a>
               <h4 id="NodaTime_LocalDateTime_op_GreaterThanOrEqual_NodaTime_LocalDateTime_NodaTime_LocalDateTime_" data-uid="NodaTime.LocalDateTime.op_GreaterThanOrEqual(NodaTime.LocalDateTime,NodaTime.LocalDateTime)">GreaterThanOrEqual(LocalDateTime, LocalDateTime)</h4>
               <div class="markdown level1 summary">
@@ -2834,9 +2886,25 @@ one.
               </table>
               <h5 id="NodaTime_LocalDateTime_op_GreaterThanOrEqual_NodaTime_LocalDateTime_NodaTime_LocalDateTime__remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-This operator always returns false if the two operands have different calendars. See the top-level type
+Only values with the same calendar system can be compared. See the top-level type
 documentation for more information about comparisons.
 </div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentException</span></td>
+                    <td>The calendar system of <span class="paramref">rhs</span> is not the same
+as the calendar of <span class="paramref">lhs</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDateTime_op_Inequality_" data-uid="NodaTime.LocalDateTime.op_Inequality*"></a>
               <h4 id="NodaTime_LocalDateTime_op_Inequality_NodaTime_LocalDateTime_NodaTime_LocalDateTime_" data-uid="NodaTime.LocalDateTime.op_Inequality(NodaTime.LocalDateTime,NodaTime.LocalDateTime)">Inequality(LocalDateTime, LocalDateTime)</h4>
               <div class="markdown level1 summary">
@@ -2934,9 +3002,25 @@ one.
               </table>
               <h5 id="NodaTime_LocalDateTime_op_LessThan_NodaTime_LocalDateTime_NodaTime_LocalDateTime__remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-This operator always returns false if the two operands have different calendars. See the top-level type
+Only values with the same calendar system can be compared. See the top-level type
 documentation for more information about comparisons.
 </div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentException</span></td>
+                    <td>The calendar system of <span class="paramref">rhs</span> is not the same
+as the calendar of <span class="paramref">lhs</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDateTime_op_LessThanOrEqual_" data-uid="NodaTime.LocalDateTime.op_LessThanOrEqual*"></a>
               <h4 id="NodaTime_LocalDateTime_op_LessThanOrEqual_NodaTime_LocalDateTime_NodaTime_LocalDateTime_" data-uid="NodaTime.LocalDateTime.op_LessThanOrEqual(NodaTime.LocalDateTime,NodaTime.LocalDateTime)">LessThanOrEqual(LocalDateTime, LocalDateTime)</h4>
               <div class="markdown level1 summary">
@@ -2987,8 +3071,76 @@ one.
               </table>
               <h5 id="NodaTime_LocalDateTime_op_LessThanOrEqual_NodaTime_LocalDateTime_NodaTime_LocalDateTime__remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-This operator always returns false if the two operands have different calendars. See the top-level type
+Only values with the same calendar system can be compared. See the top-level type
 documentation for more information about comparisons.
+</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentException</span></td>
+                    <td>The calendar system of <span class="paramref">rhs</span> is not the same
+as the calendar of <span class="paramref">lhs</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_LocalDateTime_op_Subtraction_" data-uid="NodaTime.LocalDateTime.op_Subtraction*"></a>
+              <h4 id="NodaTime_LocalDateTime_op_Subtraction_NodaTime_LocalDateTime_NodaTime_LocalDateTime_" data-uid="NodaTime.LocalDateTime.op_Subtraction(NodaTime.LocalDateTime,NodaTime.LocalDateTime)">Subtraction(LocalDateTime, LocalDateTime)</h4>
+              <div class="markdown level1 summary">
+Subtracts one date/time from another, returning the result as a <a class="xref" href="NodaTime.Period.html">Period</a>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Period operator -(LocalDateTime lhs, LocalDateTime rhs)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
+                    <td><span class="parametername">lhs</span></td>
+                    <td>The date/time to subtract from</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
+                    <td><span class="parametername">rhs</span></td>
+                    <td>The date/time to subtract</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Period.html">Period</a></td>
+                    <td>The result of subtracting one date/time from another.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_LocalDateTime_op_Subtraction_NodaTime_LocalDateTime_NodaTime_LocalDateTime__remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+This is simply a convenience operator for calling <a class="xref" href="NodaTime.Period.html#NodaTime_Period_Between_NodaTime_LocalDateTime_NodaTime_LocalDateTime_">Between(LocalDateTime, LocalDateTime)</a>.
+The calendar systems of the two date/times must be the same.
 </div>
               <a id="NodaTime_LocalDateTime_op_Subtraction_" data-uid="NodaTime.LocalDateTime.op_Subtraction*"></a>
               <h4 id="NodaTime_LocalDateTime_op_Subtraction_NodaTime_LocalDateTime_NodaTime_Period_" data-uid="NodaTime.LocalDateTime.op_Subtraction(NodaTime.LocalDateTime,NodaTime.Period)">Subtraction(LocalDateTime, Period)</h4>
@@ -3101,7 +3253,8 @@ This uses explicit interface implementation to avoid it being called accidentall
                 <tbody>
                   <tr>
                     <td><span class="xref">System.ArgumentException</span></td>
-                    <td><span class="paramref">obj</span> is non-null but does not refer to an instance of <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a>.</td>
+                    <td><span class="paramref">obj</span> is non-null but does not refer to an instance of <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a>,
+    or refers to a adate/time in a different calendar system.</td>
                   </tr>
                 </tbody>
               </table>

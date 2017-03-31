@@ -105,14 +105,14 @@ Represents a range of time for which a particular Offset applies.
               <h3 id="constructors">Constructors
               </h3>
               <a id="NodaTime_TimeZones_ZoneInterval__ctor_" data-uid="NodaTime.TimeZones.ZoneInterval.#ctor*"></a>
-              <h4 id="NodaTime_TimeZones_ZoneInterval__ctor_System_String_NodaTime_Instant_NodaTime_Instant_NodaTime_Offset_NodaTime_Offset_" data-uid="NodaTime.TimeZones.ZoneInterval.#ctor(System.String,NodaTime.Instant,NodaTime.Instant,NodaTime.Offset,NodaTime.Offset)">ZoneInterval(String, Instant, Instant, Offset, Offset)</h4>
+              <h4 id="NodaTime_TimeZones_ZoneInterval__ctor_System_String_System_Nullable_NodaTime_Instant__System_Nullable_NodaTime_Instant__NodaTime_Offset_NodaTime_Offset_" data-uid="NodaTime.TimeZones.ZoneInterval.#ctor(System.String,System.Nullable{NodaTime.Instant},System.Nullable{NodaTime.Instant},NodaTime.Offset,NodaTime.Offset)">ZoneInterval(String, Nullable&lt;Instant&gt;, Nullable&lt;Instant&gt;, Offset, Offset)</h4>
               <div class="markdown level1 summary">
 Initializes a new instance of the <a class="xref" href="NodaTime.TimeZones.ZoneInterval.html">ZoneInterval</a> class.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public ZoneInterval(string name, Instant start, Instant end, Offset wallOffset, Offset savings)</code></pre>
+                <pre><code class="lang-csharp hljs">public ZoneInterval(string name, Instant? start, Instant? end, Offset wallOffset, Offset savings)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -130,14 +130,16 @@ Initializes a new instance of the <a class="xref" href="NodaTime.TimeZones.ZoneI
                     <td>The name of this offset period (e.g. PST or PDT).</td>
                   </tr>
                   <tr>
-                    <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
+                    <td><span class="xref">System.Nullable</span>&lt;<a class="xref" href="NodaTime.Instant.html">Instant</a>&gt;</td>
                     <td><span class="parametername">start</span></td>
-                    <td>The first <a class="xref" href="NodaTime.Instant.html">Instant</a> that the <span class="paramref">wallOffset</span> applies.</td>
+                    <td>The first <a class="xref" href="NodaTime.Instant.html">Instant</a> that the <span class="paramref">wallOffset</span> applies,
+or <code>null</code> to make the zone interval extend to the start of time.</td>
                   </tr>
                   <tr>
-                    <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
+                    <td><span class="xref">System.Nullable</span>&lt;<a class="xref" href="NodaTime.Instant.html">Instant</a>&gt;</td>
                     <td><span class="parametername">end</span></td>
-                    <td>The last <a class="xref" href="NodaTime.Instant.html">Instant</a> (exclusive) that the <span class="paramref">wallOffset</span> applies.</td>
+                    <td>The last <a class="xref" href="NodaTime.Instant.html">Instant</a> (exclusive) that the <span class="paramref">wallOffset</span> applies,
+or <code>null</code> to make the zone interval extend to the end of time.</td>
                   </tr>
                   <tr>
                     <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
@@ -171,7 +173,7 @@ Initializes a new instance of the <a class="xref" href="NodaTime.TimeZones.ZoneI
               <a id="NodaTime_TimeZones_ZoneInterval_Duration_" data-uid="NodaTime.TimeZones.ZoneInterval.Duration*"></a>
               <h4 id="NodaTime_TimeZones_ZoneInterval_Duration" data-uid="NodaTime.TimeZones.ZoneInterval.Duration">Duration</h4>
               <div class="markdown level1 summary">
-Gets the duration of this period.
+Gets the duration of this zone interval.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -189,7 +191,7 @@ Gets the duration of this period.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
-                    <td>The Duration of this period.</td>
+                    <td>The Duration of this zone interval.</td>
                   </tr>
                 </tbody>
               </table>
@@ -197,6 +199,21 @@ Gets the duration of this period.
               <div class="markdown level1 remarks">
 This is effectively <code>End - Start</code>.
 </div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td>This zone extends to the start or end of time.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_TimeZones_ZoneInterval_End_" data-uid="NodaTime.TimeZones.ZoneInterval.End*"></a>
               <h4 id="NodaTime_TimeZones_ZoneInterval_End" data-uid="NodaTime.TimeZones.ZoneInterval.End">End</h4>
               <div class="markdown level1 summary">
@@ -222,11 +239,80 @@ Gets the last Instant (exclusive) that the Offset applies.
                   </tr>
                 </tbody>
               </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td>The zone interval extends to the end of time</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_TimeZones_ZoneInterval_HasEnd_" data-uid="NodaTime.TimeZones.ZoneInterval.HasEnd*"></a>
+              <h4 id="NodaTime_TimeZones_ZoneInterval_HasEnd" data-uid="NodaTime.TimeZones.ZoneInterval.HasEnd">HasEnd</h4>
+              <div class="markdown level1 summary">
+Returns <code>true</code> if this zone interval has a fixed end point, or <code>false</code> if it
+extends to the end of time.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool HasEnd { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><code>true</code> if this interval has a fixed end point, or <code>false</code> if it
+    extends to the end of time.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_TimeZones_ZoneInterval_HasStart_" data-uid="NodaTime.TimeZones.ZoneInterval.HasStart*"></a>
+              <h4 id="NodaTime_TimeZones_ZoneInterval_HasStart" data-uid="NodaTime.TimeZones.ZoneInterval.HasStart">HasStart</h4>
+              <div class="markdown level1 summary">
+Returns <code>true</code> if this zone interval has a fixed start point, or <code>false</code> if it
+extends to the beginning of time.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool HasStart { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><code>true</code> if this interval has a fixed start point, or <code>false</code> if it
+    extends to the beginning of time.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_TimeZones_ZoneInterval_IsoLocalEnd_" data-uid="NodaTime.TimeZones.ZoneInterval.IsoLocalEnd*"></a>
               <h4 id="NodaTime_TimeZones_ZoneInterval_IsoLocalEnd" data-uid="NodaTime.TimeZones.ZoneInterval.IsoLocalEnd">IsoLocalEnd</h4>
               <div class="markdown level1 summary">
-Returns the local start time of the interval, as LocalDateTime
-in the ISO calendar. This does not include any daylight saving 
+Gets the local end time of the interval, as a <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a>
+in the ISO calendar.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -244,14 +330,36 @@ in the ISO calendar. This does not include any daylight saving
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
-                    <td></td>
+                    <td>The local end time of the interval in the ISO calendar, with the offset
+of this zone interval. As the end time is exclusive, by the time this local time
+is reached, the next interval will be in effect and the local time will usually
+have changed (e.g. by adding or subtracting an hour).</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.OverflowException</span></td>
+                    <td>The interval ends too late to represent as a `LocalDateTime`.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td>The interval extends to the end of time.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_TimeZones_ZoneInterval_IsoLocalStart_" data-uid="NodaTime.TimeZones.ZoneInterval.IsoLocalStart*"></a>
               <h4 id="NodaTime_TimeZones_ZoneInterval_IsoLocalStart" data-uid="NodaTime.TimeZones.ZoneInterval.IsoLocalStart">IsoLocalStart</h4>
               <div class="markdown level1 summary">
-Returns the local start time of the interval, as LocalDateTime
+Gets the local start time of the interval, as a <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a>
 in the ISO calendar.
 </div>
               <div class="markdown level1 conceptual"></div>
@@ -270,7 +378,27 @@ in the ISO calendar.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
-                    <td></td>
+                    <td>The local start time of the interval in the ISO calendar, with the offset of
+this zone interval.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.OverflowException</span></td>
+                    <td>The interval starts too early to represent as a `LocalDateTime`.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td>The interval extends to the start of time.</td>
                   </tr>
                 </tbody>
               </table>
@@ -352,7 +480,7 @@ contributions.
               </table>
               <h5 id="NodaTime_TimeZones_ZoneInterval_StandardOffset_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-This is effectively <code>Offset - Savings</code>.
+This is effectively <code>WallOffset - Savings</code>.
 </div>
               <a id="NodaTime_TimeZones_ZoneInterval_Start_" data-uid="NodaTime.TimeZones.ZoneInterval.Start*"></a>
               <h4 id="NodaTime_TimeZones_ZoneInterval_Start" data-uid="NodaTime.TimeZones.ZoneInterval.Start">Start</h4>

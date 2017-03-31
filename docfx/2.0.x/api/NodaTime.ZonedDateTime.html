@@ -95,7 +95,7 @@ between otherwise-ambiguous instants. A <a class="xref" href="NodaTime.ZonedDate
               <h5 id="NodaTime_ZonedDateTime_syntax">Syntax</h5>
               <div class="codewrapper">
                 <pre><code class="lang-csharp hljs">[Serializable]
-public struct ZonedDateTime : IEquatable&lt;ZonedDateTime&gt;, IComparable&lt;ZonedDateTime&gt;, IComparable, IFormattable, IXmlSerializable, ISerializable</code></pre>
+public struct ZonedDateTime : IEquatable&lt;ZonedDateTime&gt;, IFormattable, IXmlSerializable, ISerializable</code></pre>
               </div>
               <h5 id="NodaTime_ZonedDateTime_remarks"><strong>Remarks</strong></h5>
               <div class="markdown level0 remarks">
@@ -104,18 +104,11 @@ duration-based - and not calendar-based - arithmetic. This avoids ambiguities
 and skipped date/time values becoming a problem within a series of calculations; instead,
 these can be considered just once, at the point of conversion to a <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a>.
 </p>
-<p>Comparisons of values can be handled in a way which is either calendar and zone sensitive or insensitive.
-Noda Time implements all the operators (and the <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Equals_NodaTime_ZonedDateTime_">Equals(ZonedDateTime)</a> method) such that all operators other than <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Inequality_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_">Inequality(ZonedDateTime, ZonedDateTime)</a>
-will return false if asked to compare two values in different calendar systems or time zones.
-</p>
 <p>
-However, the <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_CompareTo_NodaTime_ZonedDateTime_">CompareTo(ZonedDateTime)</a> method (implementing <span class="xref">System.IComparable&lt;T&gt;</span>) is calendar and zone insensitive; it compares the two
-global instants in terms of when they actually occurred.
-</p>
-<p>
-It's unclear at the time of this writing whether this is the most appropriate approach, and it may change in future versions. In general,
-it would be a good idea for users to avoid comparing dates in different calendar systems, and indeed most users are unlikely to ever explicitly
-consider which calendar system they're working in anyway.
+<code>ZonedDateTime</code> does not implement ordered comparison operators, as there is no obvious natural ordering that works in all cases. 
+Equality is supported however, requiring equality of zone, calendar and date/time. If you want to sort <code>ZonedDateTime</code>
+values, you should explicitly choose one of the orderings provided via the static properties in the
+<a class="xref" href="NodaTime.ZonedDateTime.Comparer.html">ZonedDateTime.Comparer</a> nested class (or implement your own comparison).
 </p>
 </div>
               <h3 id="constructors">Constructors
@@ -267,30 +260,7 @@ where the local time is ambiguous, usually due to daylight saving transitions.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <a id="NodaTime_ZonedDateTime_CenturyOfEra_" data-uid="NodaTime.ZonedDateTime.CenturyOfEra*"></a>
-              <h4 id="NodaTime_ZonedDateTime_CenturyOfEra" data-uid="NodaTime.ZonedDateTime.CenturyOfEra">CenturyOfEra</h4>
-              <div class="markdown level1 summary">Gets the century within the era of this zoned date and time.</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public int CenturyOfEra { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The calendar system associated with this zoned date and time.</td>
                   </tr>
                 </tbody>
               </table>
@@ -315,16 +285,14 @@ Gets the hour of the half-day of this zoned date and time, in the range 1 to 12 
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The hour of the half-day of this zoned date and time, in the range 1 to 12 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_ZonedDateTime_Date_" data-uid="NodaTime.ZonedDateTime.Date*"></a>
               <h4 id="NodaTime_ZonedDateTime_Date" data-uid="NodaTime.ZonedDateTime.Date">Date</h4>
               <div class="markdown level1 summary">
-Gets the local date represented by this zoned date and time. The returned <a class="xref" href="NodaTime.LocalDate.html">LocalDate</a>
-will have the same calendar system and return the same values for each of the date-based calendar
-properties (Year, MonthOfYear and so on), but will not be associated with any particular time zone.
+Gets the local date represented by this zoned date and time.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -342,10 +310,16 @@ properties (Year, MonthOfYear and so on), but will not be associated with any pa
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
-                    <td></td>
+                    <td>The local date represented by this zoned date and time.</td>
                   </tr>
                 </tbody>
               </table>
+              <h5 id="NodaTime_ZonedDateTime_Date_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+The returned <a class="xref" href="NodaTime.LocalDate.html">LocalDate</a>
+will have the same calendar system and return the same values for each of the date-based calendar
+properties (Year, MonthOfYear and so on), but will not be associated with any particular time zone.
+</div>
               <a id="NodaTime_ZonedDateTime_Day_" data-uid="NodaTime.ZonedDateTime.Day*"></a>
               <h4 id="NodaTime_ZonedDateTime_Day" data-uid="NodaTime.ZonedDateTime.Day">Day</h4>
               <div class="markdown level1 summary">
@@ -367,19 +341,19 @@ Gets the day of this zoned date and time within the month.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The day of this zoned date and time within the month.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_ZonedDateTime_DayOfWeek_" data-uid="NodaTime.ZonedDateTime.DayOfWeek*"></a>
               <h4 id="NodaTime_ZonedDateTime_DayOfWeek" data-uid="NodaTime.ZonedDateTime.DayOfWeek">DayOfWeek</h4>
               <div class="markdown level1 summary">
-Gets the week day of this zoned date and time as a number.
+Gets the week day of this zoned date and time expressed as an <a class="xref" href="NodaTime.IsoDayOfWeek.html">IsoDayOfWeek</a> value.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public int DayOfWeek { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">public IsoDayOfWeek DayOfWeek { get; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -391,19 +365,11 @@ Gets the week day of this zoned date and time as a number.
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td><a class="xref" href="NodaTime.IsoDayOfWeek.html">IsoDayOfWeek</a></td>
+                    <td>The week day of this zoned date and time expressed as an <code>IsoDayOfWeek</code> value.</td>
                   </tr>
                 </tbody>
               </table>
-              <h5 id="NodaTime_ZonedDateTime_DayOfWeek_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-For calendars using ISO week days, this gives 1 for Monday to 7 for Sunday.
-</div>
-              <h5 id="NodaTime_ZonedDateTime_DayOfWeek_seealso">See Also</h5>
-              <div class="seealso">
-                  <div><a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_IsoDayOfWeek">IsoDayOfWeek</a></div>
-              </div>
               <a id="NodaTime_ZonedDateTime_DayOfYear_" data-uid="NodaTime.ZonedDateTime.DayOfYear*"></a>
               <h4 id="NodaTime_ZonedDateTime_DayOfYear" data-uid="NodaTime.ZonedDateTime.DayOfYear">DayOfYear</h4>
               <div class="markdown level1 summary">Gets the day of this zoned date and time within the year.</div>
@@ -423,7 +389,7 @@ For calendars using ISO week days, this gives 1 for Monday to 7 for Sunday.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The day of this zoned date and time within the year.</td>
                   </tr>
                 </tbody>
               </table>
@@ -446,7 +412,7 @@ For calendars using ISO week days, this gives 1 for Monday to 7 for Sunday.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Calendars.Era.html">Era</a></td>
-                    <td></td>
+                    <td>The era for this zoned date and time.</td>
                   </tr>
                 </tbody>
               </table>
@@ -471,62 +437,14 @@ Gets the hour of day of this zoned date and time, in the range 0 to 23 inclusive
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The hour of day of this zoned date and time, in the range 0 to 23 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_ZonedDateTime_IsoDayOfWeek_" data-uid="NodaTime.ZonedDateTime.IsoDayOfWeek*"></a>
-              <h4 id="NodaTime_ZonedDateTime_IsoDayOfWeek" data-uid="NodaTime.ZonedDateTime.IsoDayOfWeek">IsoDayOfWeek</h4>
-              <div class="markdown level1 summary">
-Gets the week day of this zoned date and time expressed as an <a class="xref" href="NodaTime.IsoDayOfWeek.html">IsoDayOfWeek</a> value,
-for calendars which use ISO days of the week.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public IsoDayOfWeek IsoDayOfWeek { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.IsoDayOfWeek.html">IsoDayOfWeek</a></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="exceptions">Exceptions</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Condition</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.InvalidOperationException</span></td>
-                    <td>The underlying calendar doesn't use ISO days of the week.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_ZonedDateTime_IsoDayOfWeek_seealso">See Also</h5>
-              <div class="seealso">
-                  <div><a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_DayOfWeek">DayOfWeek</a></div>
-              </div>
               <a id="NodaTime_ZonedDateTime_LocalDateTime_" data-uid="NodaTime.ZonedDateTime.LocalDateTime*"></a>
               <h4 id="NodaTime_ZonedDateTime_LocalDateTime" data-uid="NodaTime.ZonedDateTime.LocalDateTime">LocalDateTime</h4>
               <div class="markdown level1 summary">
-Gets the local date and time represented by this zoned date and time. The returned
-<a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> will have the same calendar system and return the same values for
-each of the calendar properties (Year, MonthOfYear and so on), but will not be associated with any
-particular time zone.
+Gets the local date and time represented by this zoned date and time.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -544,10 +462,17 @@ particular time zone.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a></td>
-                    <td></td>
+                    <td>The local date and time represented by this zoned date and time.</td>
                   </tr>
                 </tbody>
               </table>
+              <h5 id="NodaTime_ZonedDateTime_LocalDateTime_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+The returned
+<a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> will have the same calendar system and return the same values for
+each of the calendar properties (Year, MonthOfYear and so on), but will not be associated with any
+particular time zone.
+</div>
               <a id="NodaTime_ZonedDateTime_Millisecond_" data-uid="NodaTime.ZonedDateTime.Millisecond*"></a>
               <h4 id="NodaTime_ZonedDateTime_Millisecond" data-uid="NodaTime.ZonedDateTime.Millisecond">Millisecond</h4>
               <div class="markdown level1 summary">
@@ -569,7 +494,7 @@ Gets the millisecond of this zoned date and time within the second, in the range
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The millisecond of this zoned date and time within the second, in the range 0 to 999 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
@@ -594,7 +519,7 @@ Gets the minute of this zoned date and time, in the range 0 to 59 inclusive.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The minute of this zoned date and time, in the range 0 to 59 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
@@ -617,7 +542,57 @@ Gets the minute of this zoned date and time, in the range 0 to 59 inclusive.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The month of this zoned date and time within the year.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_ZonedDateTime_NanosecondOfDay_" data-uid="NodaTime.ZonedDateTime.NanosecondOfDay*"></a>
+              <h4 id="NodaTime_ZonedDateTime_NanosecondOfDay" data-uid="NodaTime.ZonedDateTime.NanosecondOfDay">NanosecondOfDay</h4>
+              <div class="markdown level1 summary">
+Gets the nanosecond of this zoned date and time within the day, in the range 0 to 86,399,999,999,999 inclusive.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public long NanosecondOfDay { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td>The nanosecond of this zoned date and time within the day, in the range 0 to 86,399,999,999,999 inclusive.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_ZonedDateTime_NanosecondOfSecond_" data-uid="NodaTime.ZonedDateTime.NanosecondOfSecond*"></a>
+              <h4 id="NodaTime_ZonedDateTime_NanosecondOfSecond" data-uid="NodaTime.ZonedDateTime.NanosecondOfSecond">NanosecondOfSecond</h4>
+              <div class="markdown level1 summary">
+Gets the nanosecond of this zoned date and time within the second, in the range 0 to 999,999,999 inclusive.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int NanosecondOfSecond { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The nanosecond of this zoned date and time within the second, in the range 0 to 999,999,999 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
@@ -640,7 +615,7 @@ Gets the minute of this zoned date and time, in the range 0 to 59 inclusive.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
-                    <td></td>
+                    <td>The offset of the local representation of this value from UTC.</td>
                   </tr>
                 </tbody>
               </table>
@@ -665,7 +640,7 @@ Gets the second of this zoned date and time within the minute, in the range 0 to
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The second of this zoned date and time within the minute, in the range 0 to 59 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
@@ -690,7 +665,7 @@ Gets the tick of this zoned date and time within the day, in the range 0 to 863,
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The tick of this zoned date and time within the day, in the range 0 to 863,999,999,999 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
@@ -715,16 +690,14 @@ Gets the tick of this zoned date and time within the second, in the range 0 to 9
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The tick of this zoned date and time within the second, in the range 0 to 9,999,999 inclusive.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_ZonedDateTime_TimeOfDay_" data-uid="NodaTime.ZonedDateTime.TimeOfDay*"></a>
               <h4 id="NodaTime_ZonedDateTime_TimeOfDay" data-uid="NodaTime.ZonedDateTime.TimeOfDay">TimeOfDay</h4>
               <div class="markdown level1 summary">
-Gets the time portion of this zoned date and time. The returned <a class="xref" href="NodaTime.LocalTime.html">LocalTime</a> will
-return the same values for each of the time-based properties (Hour, Minute and so on), but
-will not be associated with any particular time zone.
+Gets the time portion of this zoned date and time.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -742,73 +715,15 @@ will not be associated with any particular time zone.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalTime.html">LocalTime</a></td>
-                    <td></td>
+                    <td>The time portion of this zoned date and time.</td>
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_ZonedDateTime_WeekOfWeekYear_" data-uid="NodaTime.ZonedDateTime.WeekOfWeekYear*"></a>
-              <h4 id="NodaTime_ZonedDateTime_WeekOfWeekYear" data-uid="NodaTime.ZonedDateTime.WeekOfWeekYear">WeekOfWeekYear</h4>
-              <div class="markdown level1 summary">Gets the week within the WeekYear. See <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_WeekYear">WeekYear</a> for more details.</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public int WeekOfWeekYear { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <a id="NodaTime_ZonedDateTime_WeekYear_" data-uid="NodaTime.ZonedDateTime.WeekYear*"></a>
-              <h4 id="NodaTime_ZonedDateTime_WeekYear" data-uid="NodaTime.ZonedDateTime.WeekYear">WeekYear</h4>
-              <div class="markdown level1 summary">
-Gets the "week year" of this date and time.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public int WeekYear { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_ZonedDateTime_WeekYear_remarks">Remarks</h5>
+              <h5 id="NodaTime_ZonedDateTime_TimeOfDay_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-<p>
-The WeekYear is the year that matches with the <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_WeekOfWeekYear">WeekOfWeekYear</a> field.
-In the standard ISO-8601 week algorithm, the first week of the year
-is that in which at least 4 days are in the year. As a result of this
-definition, day 1 of the first week may be in the previous year.
-The WeekYear allows you to query the effective year for that day.
-</p>
-<p>
-For example, January 1st 2011 was a Saturday, so only two days of that week
-(Saturday and Sunday) were in 2011. Therefore January 1st is part of
-week 52 of WeekYear 2010. Conversely, December 31st 2012 is a Monday,
-so is part of week 1 of WeekYear 2013.
-</p>
+The returned <a class="xref" href="NodaTime.LocalTime.html">LocalTime</a> will
+return the same values for each of the time-based properties (Hour, Minute and so on), but
+will not be associated with any particular time zone.
 </div>
               <a id="NodaTime_ZonedDateTime_Year_" data-uid="NodaTime.ZonedDateTime.Year*"></a>
               <h4 id="NodaTime_ZonedDateTime_Year" data-uid="NodaTime.ZonedDateTime.Year">Year</h4>
@@ -829,38 +744,13 @@ so is part of week 1 of WeekYear 2013.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The year of this zoned date and time.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_ZonedDateTime_Year_remarks">Remarks</h5>
               <div class="markdown level1 remarks">This returns the "absolute year", so, for the ISO calendar,
 a value of 0 means 1 BC, for example.</div>
-              <a id="NodaTime_ZonedDateTime_YearOfCentury_" data-uid="NodaTime.ZonedDateTime.YearOfCentury*"></a>
-              <h4 id="NodaTime_ZonedDateTime_YearOfCentury" data-uid="NodaTime.ZonedDateTime.YearOfCentury">YearOfCentury</h4>
-              <div class="markdown level1 summary">Gets the year of this zoned date and time within its century.</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public int YearOfCentury { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_ZonedDateTime_YearOfCentury_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">This always returns a value in the range 0 to 99 inclusive.</div>
               <a id="NodaTime_ZonedDateTime_YearOfEra_" data-uid="NodaTime.ZonedDateTime.YearOfEra*"></a>
               <h4 id="NodaTime_ZonedDateTime_YearOfEra" data-uid="NodaTime.ZonedDateTime.YearOfEra">YearOfEra</h4>
               <div class="markdown level1 summary">Gets the year of this zoned date and time within its era.</div>
@@ -880,7 +770,7 @@ a value of 0 means 1 BC, for example.</div>
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The year of this zoned date and time within its era.</td>
                   </tr>
                 </tbody>
               </table>
@@ -903,7 +793,7 @@ a value of 0 means 1 BC, for example.</div>
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a></td>
-                    <td></td>
+                    <td>The time zone associated with this value.</td>
                   </tr>
                 </tbody>
               </table>
@@ -912,7 +802,7 @@ a value of 0 means 1 BC, for example.</div>
               <a id="NodaTime_ZonedDateTime_Add_" data-uid="NodaTime.ZonedDateTime.Add*"></a>
               <h4 id="NodaTime_ZonedDateTime_Add_NodaTime_ZonedDateTime_NodaTime_Duration_" data-uid="NodaTime.ZonedDateTime.Add(NodaTime.ZonedDateTime,NodaTime.Duration)">Add(ZonedDateTime, Duration)</h4>
               <div class="markdown level1 summary">
-Adds a duration to a zoned date and time. Friendly alternative to <code>operator+()</code>.
+Adds a duration to a zoned date and time.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -956,55 +846,9 @@ Adds a duration to a zoned date and time. Friendly alternative to <code>operator
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_ZonedDateTime_CompareTo_" data-uid="NodaTime.ZonedDateTime.CompareTo*"></a>
-              <h4 id="NodaTime_ZonedDateTime_CompareTo_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.CompareTo(NodaTime.ZonedDateTime)">CompareTo(ZonedDateTime)</h4>
-              <div class="markdown level1 summary">
-Indicates whether this date/time is earlier, later or the same as another one.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public int CompareTo(ZonedDateTime other)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
-                    <td><span class="parametername">other</span></td>
-                    <td>The other zoned date/time to compare this one with</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td>A value less than zero if the instant represented by this zoned date/time is earlier than the one in
-<span class="paramref">other</span>; zero if the instant is the same as the one in <span class="paramref">other</span>;
-a value greater than zero if the instant is later than the one in <span class="paramref">other</span>.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="implements">Implements</h5>
-                  <div><span class="xref">System.IComparable&lt;T&gt;.CompareTo(T)</span></div>
-              <h5 id="NodaTime_ZonedDateTime_CompareTo_NodaTime_ZonedDateTime__remarks">Remarks</h5>
+              <h5 id="NodaTime_ZonedDateTime_Add_NodaTime_ZonedDateTime_NodaTime_Duration__remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-This is purely done in terms of the instant represented; the calendar system and time zone are ignored.
+This is an alternative way of calling <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Addition_NodaTime_ZonedDateTime_NodaTime_Duration_">Addition(ZonedDateTime, Duration)</a>.
 </div>
               <a id="NodaTime_ZonedDateTime_Equals_" data-uid="NodaTime.ZonedDateTime.Equals*"></a>
               <h4 id="NodaTime_ZonedDateTime_Equals_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.Equals(NodaTime.ZonedDateTime)">Equals(ZonedDateTime)</h4>
@@ -1238,7 +1082,8 @@ of the zone interval containing this value.
               <a id="NodaTime_ZonedDateTime_Minus_" data-uid="NodaTime.ZonedDateTime.Minus*"></a>
               <h4 id="NodaTime_ZonedDateTime_Minus_NodaTime_Duration_" data-uid="NodaTime.ZonedDateTime.Minus(NodaTime.Duration)">Minus(Duration)</h4>
               <div class="markdown level1 summary">
-Returns the result of subtracting a duration from this zoned date and time, for a fluent alternative to <code>operator-()</code>.
+Returns the result of subtracting a duration from this zoned date and time, for a fluent alternative to
+<a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_Duration_">Subtraction(ZonedDateTime, Duration)</a>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -1277,10 +1122,57 @@ Returns the result of subtracting a duration from this zoned date and time, for 
                   </tr>
                 </tbody>
               </table>
+              <a id="NodaTime_ZonedDateTime_Minus_" data-uid="NodaTime.ZonedDateTime.Minus*"></a>
+              <h4 id="NodaTime_ZonedDateTime_Minus_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.Minus(NodaTime.ZonedDateTime)">Minus(ZonedDateTime)</h4>
+              <div class="markdown level1 summary">
+Returns the result of subtracting another zoned date and time from this one, resulting in the elapsed duration
+between the two instants represented in the values.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Duration Minus(ZonedDateTime other)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td><span class="parametername">other</span></td>
+                    <td>The zoned date and time to subtract from this one.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>The elapsed duration from <span class="paramref">other</span> to this value.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_ZonedDateTime_Minus_NodaTime_ZonedDateTime__remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+This is an alternative way of calling <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_">Subtraction(ZonedDateTime, ZonedDateTime)</a>.
+</div>
               <a id="NodaTime_ZonedDateTime_Plus_" data-uid="NodaTime.ZonedDateTime.Plus*"></a>
               <h4 id="NodaTime_ZonedDateTime_Plus_NodaTime_Duration_" data-uid="NodaTime.ZonedDateTime.Plus(NodaTime.Duration)">Plus(Duration)</h4>
               <div class="markdown level1 summary">
-Returns the result of adding a duration to this zoned date and time, for a fluent alternative to <code>operator+()</code>.
+Returns the result of adding a duration to this zoned date and time.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -1319,10 +1211,266 @@ Returns the result of adding a duration to this zoned date and time, for a fluen
                   </tr>
                 </tbody>
               </table>
+              <h5 id="NodaTime_ZonedDateTime_Plus_NodaTime_Duration__remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+This is an alternative way of calling <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Addition_NodaTime_ZonedDateTime_NodaTime_Duration_">Addition(ZonedDateTime, Duration)</a>.
+</div>
+              <a id="NodaTime_ZonedDateTime_PlusHours_" data-uid="NodaTime.ZonedDateTime.PlusHours*"></a>
+              <h4 id="NodaTime_ZonedDateTime_PlusHours_System_Int32_" data-uid="NodaTime.ZonedDateTime.PlusHours(System.Int32)">PlusHours(Int32)</h4>
+              <div class="markdown level1 summary">
+Returns the result of adding a increment of hours to this zoned date and time
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public ZonedDateTime PlusHours(int hours)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">hours</span></td>
+                    <td>The number of hours to add</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td>A new <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> representing the result of the addition.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_ZonedDateTime_PlusMilliseconds_" data-uid="NodaTime.ZonedDateTime.PlusMilliseconds*"></a>
+              <h4 id="NodaTime_ZonedDateTime_PlusMilliseconds_System_Int64_" data-uid="NodaTime.ZonedDateTime.PlusMilliseconds(System.Int64)">PlusMilliseconds(Int64)</h4>
+              <div class="markdown level1 summary">
+Returns the result of adding an increment of milliseconds to this zoned date and time
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public ZonedDateTime PlusMilliseconds(long milliseconds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="parametername">milliseconds</span></td>
+                    <td>The number of milliseconds to add</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td>A new <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> representing the result of the addition.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_ZonedDateTime_PlusMinutes_" data-uid="NodaTime.ZonedDateTime.PlusMinutes*"></a>
+              <h4 id="NodaTime_ZonedDateTime_PlusMinutes_System_Int32_" data-uid="NodaTime.ZonedDateTime.PlusMinutes(System.Int32)">PlusMinutes(Int32)</h4>
+              <div class="markdown level1 summary">
+Returns the result of adding an increment of minutes to this zoned date and time
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public ZonedDateTime PlusMinutes(int minutes)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">minutes</span></td>
+                    <td>The number of minutes to add</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td>A new <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> representing the result of the addition.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_ZonedDateTime_PlusNanoseconds_" data-uid="NodaTime.ZonedDateTime.PlusNanoseconds*"></a>
+              <h4 id="NodaTime_ZonedDateTime_PlusNanoseconds_System_Int64_" data-uid="NodaTime.ZonedDateTime.PlusNanoseconds(System.Int64)">PlusNanoseconds(Int64)</h4>
+              <div class="markdown level1 summary">
+Returns the result of adding an increment of nanoseconds to this zoned date and time
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public ZonedDateTime PlusNanoseconds(long nanoseconds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="parametername">nanoseconds</span></td>
+                    <td>The number of nanoseconds to add</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td>A new <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> representing the result of the addition.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_ZonedDateTime_PlusSeconds_" data-uid="NodaTime.ZonedDateTime.PlusSeconds*"></a>
+              <h4 id="NodaTime_ZonedDateTime_PlusSeconds_System_Int64_" data-uid="NodaTime.ZonedDateTime.PlusSeconds(System.Int64)">PlusSeconds(Int64)</h4>
+              <div class="markdown level1 summary">
+Returns the result of adding an increment of seconds to this zoned date and time
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public ZonedDateTime PlusSeconds(long seconds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="parametername">seconds</span></td>
+                    <td>The number of seconds to add</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td>A new <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> representing the result of the addition.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_ZonedDateTime_PlusTicks_" data-uid="NodaTime.ZonedDateTime.PlusTicks*"></a>
+              <h4 id="NodaTime_ZonedDateTime_PlusTicks_System_Int64_" data-uid="NodaTime.ZonedDateTime.PlusTicks(System.Int64)">PlusTicks(Int64)</h4>
+              <div class="markdown level1 summary">
+Returns the result of adding an increment of ticks to this zoned date and time
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public ZonedDateTime PlusTicks(long ticks)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="parametername">ticks</span></td>
+                    <td>The number of ticks to add</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td>A new <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> representing the result of the addition.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_ZonedDateTime_Subtract_" data-uid="NodaTime.ZonedDateTime.Subtract*"></a>
               <h4 id="NodaTime_ZonedDateTime_Subtract_NodaTime_ZonedDateTime_NodaTime_Duration_" data-uid="NodaTime.ZonedDateTime.Subtract(NodaTime.ZonedDateTime,NodaTime.Duration)">Subtract(ZonedDateTime, Duration)</h4>
               <div class="markdown level1 summary">
-Subtracts a duration from a zoned date and time. Friendly alternative to <code>operator-()</code>.
+Subtracts a duration from a zoned date and time.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -1366,6 +1514,62 @@ Subtracts a duration from a zoned date and time. Friendly alternative to <code>o
                   </tr>
                 </tbody>
               </table>
+              <h5 id="NodaTime_ZonedDateTime_Subtract_NodaTime_ZonedDateTime_NodaTime_Duration__remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+This is an alternative way of calling <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_Duration_">Subtraction(ZonedDateTime, Duration)</a>.
+</div>
+              <a id="NodaTime_ZonedDateTime_Subtract_" data-uid="NodaTime.ZonedDateTime.Subtract*"></a>
+              <h4 id="NodaTime_ZonedDateTime_Subtract_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.Subtract(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)">Subtract(ZonedDateTime, ZonedDateTime)</h4>
+              <div class="markdown level1 summary">
+Subtracts one zoned date and time from another, returning an elapsed duration.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration Subtract(ZonedDateTime end, ZonedDateTime start)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td><span class="parametername">end</span></td>
+                    <td>The zoned date and time value to subtract from; if this is later than <span class="paramref">start</span>
+then the result will be positive.</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td><span class="parametername">start</span></td>
+                    <td>The zoned date and time to subtract from <span class="paramref">end</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>The elapsed duration from <span class="paramref">start</span> to <span class="paramref">end</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_ZonedDateTime_Subtract_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime__remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+This is an alternative way of calling <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_">Subtraction(ZonedDateTime, ZonedDateTime)</a>.
+</div>
               <a id="NodaTime_ZonedDateTime_ToDateTimeOffset_" data-uid="NodaTime.ZonedDateTime.ToDateTimeOffset*"></a>
               <h4 id="NodaTime_ZonedDateTime_ToDateTimeOffset" data-uid="NodaTime.ZonedDateTime.ToDateTimeOffset">ToDateTimeOffset()</h4>
               <div class="markdown level1 summary">
@@ -1388,16 +1592,43 @@ UTC as this value.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.DateTimeOffset</span></td>
-                    <td>A <span class="xref">System.DateTimeOffset</span> representation of this value.</td>
+                    <td>A <code>DateTimeOffset</code> with the same local date/time and offset as this. The <span class="xref">System.DateTime</span> part of
+the result always has a "kind" of Unspecified.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_ZonedDateTime_ToDateTimeOffset_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
+<p>
 An offset does not convey as much information as a time zone; a <span class="xref">System.DateTimeOffset</span>
 represents an instant in time along with an associated local time, but it doesn't allow you
 to find out what the local time would be for another instant.
+</p>
+<p>
+If the date and time is not on a tick boundary (the unit of granularity of DateTime) the value will be truncated
+towards the start of time.
+</p>
+<p>
+If the offset has a non-zero second component, this is truncated as <code>DateTimeOffset</code> has an offset
+granularity of minutes.
+</p>
 </div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td>The date/time is outside the range of <code>DateTimeOffset</code>,
+or the offset is outside the range of +/-14 hours (the range supported by <code>DateTimeOffset</code>).</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_ZonedDateTime_ToDateTimeUnspecified_" data-uid="NodaTime.ZonedDateTime.ToDateTimeUnspecified*"></a>
               <h4 id="NodaTime_ZonedDateTime_ToDateTimeUnspecified" data-uid="NodaTime.ZonedDateTime.ToDateTimeUnspecified">ToDateTimeUnspecified()</h4>
               <div class="markdown level1 summary">
@@ -1428,10 +1659,31 @@ local date and time as this value.</td>
               </table>
               <h5 id="NodaTime_ZonedDateTime_ToDateTimeUnspecified_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
+<p>
 <span class="xref">System.DateTimeKind.Unspecified</span> is slightly odd - it can be treated as UTC if you use <span class="xref">System.DateTime.ToLocalTime</span>
 or as system local time if you use <span class="xref">System.DateTime.ToUniversalTime</span>, but it's the only kind which allows
 you to construct a <span class="xref">System.DateTimeOffset</span> with an arbitrary offset.
+</p>
+<p>
+If the date and time is not on a tick boundary (the unit of granularity of DateTime) the value will be truncated
+towards the start of time.
+</p>
 </div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td>The date/time is outside the range of <code>DateTime</code>.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_ZonedDateTime_ToDateTimeUtc_" data-uid="NodaTime.ZonedDateTime.ToDateTimeUtc*"></a>
               <h4 id="NodaTime_ZonedDateTime_ToDateTimeUtc" data-uid="NodaTime.ZonedDateTime.ToDateTimeUtc">ToDateTimeUtc()</h4>
               <div class="markdown level1 summary">
@@ -1457,6 +1709,28 @@ this value rather than the same local time.
                     <td><span class="xref">System.DateTime</span></td>
                     <td>A <span class="xref">System.DateTime</span> representation of this value with a "universal" kind, with the same
 instant of time as this value.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_ZonedDateTime_ToDateTimeUtc_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+<p>
+If the date and time is not on a tick boundary (the unit of granularity of DateTime) the value will be truncated
+towards the start of time.
+</p>
+</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td>The final date/time is outside the range of <code>DateTime</code>.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1603,6 +1877,50 @@ A <span class="xref">System.String</span> containing the value of the current in
               </table>
               <h5 class="implements">Implements</h5>
                   <div><span class="xref">System.IFormattable.ToString(System.String, System.IFormatProvider)</span></div>
+              <a id="NodaTime_ZonedDateTime_WithCalendar_" data-uid="NodaTime.ZonedDateTime.WithCalendar*"></a>
+              <h4 id="NodaTime_ZonedDateTime_WithCalendar_NodaTime_CalendarSystem_" data-uid="NodaTime.ZonedDateTime.WithCalendar(NodaTime.CalendarSystem)">WithCalendar(CalendarSystem)</h4>
+              <div class="markdown level1 summary">
+Creates a new ZonedDateTime representing the same physical date, time and offset, but in a different calendar.
+The returned ZonedDateTime is likely to have different date field values to this one.
+For example, January 1st 1970 in the Gregorian calendar was December 19th 1969 in the Julian calendar.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public ZonedDateTime WithCalendar(CalendarSystem calendar)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
+                    <td><span class="parametername">calendar</span></td>
+                    <td>The calendar system to convert this zoned date and time to.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td>The converted ZonedDateTime.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_ZonedDateTime_WithZone_" data-uid="NodaTime.ZonedDateTime.WithZone*"></a>
               <h4 id="NodaTime_ZonedDateTime_WithZone_NodaTime_DateTimeZone_" data-uid="NodaTime.ZonedDateTime.WithZone(NodaTime.DateTimeZone)">WithZone(DateTimeZone)</h4>
               <div class="markdown level1 summary">
@@ -1698,7 +2016,7 @@ due to daylight saving time changes this may not advance the local time by the s
               </table>
               <h5 id="NodaTime_ZonedDateTime_op_Addition_NodaTime_ZonedDateTime_NodaTime_Duration__remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-The returned value retains the calendar system and time zone of the <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a>.
+The returned value retains the calendar system and time zone of <span class="paramref">zonedDateTime</span>.
 </div>
               <a id="NodaTime_ZonedDateTime_op_Equality_" data-uid="NodaTime.ZonedDateTime.op_Equality*"></a>
               <h4 id="NodaTime_ZonedDateTime_op_Equality_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.op_Equality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)">Equality(ZonedDateTime, ZonedDateTime)</h4>
@@ -1747,112 +2065,6 @@ Implements the operator ==.
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_ZonedDateTime_op_GreaterThan_" data-uid="NodaTime.ZonedDateTime.op_GreaterThan*"></a>
-              <h4 id="NodaTime_ZonedDateTime_op_GreaterThan_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.op_GreaterThan(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)">GreaterThan(ZonedDateTime, ZonedDateTime)</h4>
-              <div class="markdown level1 summary">
-Compares two <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> values to see if the left one is strictly later than the right
-one.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static bool operator&gt;(ZonedDateTime lhs, ZonedDateTime rhs)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
-                    <td><span class="parametername">lhs</span></td>
-                    <td>First operand of the comparison</td>
-                  </tr>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
-                    <td><span class="parametername">rhs</span></td>
-                    <td>Second operand of the comparison</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Boolean</span></td>
-                    <td>true if the <span class="paramref">lhs</span> is strictly later than <span class="paramref">rhs</span>, false otherwise.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_ZonedDateTime_op_GreaterThan_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime__remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-This operator always returns false if the two operands have different calendars or time zones.
-See the top-level type documentation for more information about comparisons.
-</div>
-              <a id="NodaTime_ZonedDateTime_op_GreaterThanOrEqual_" data-uid="NodaTime.ZonedDateTime.op_GreaterThanOrEqual*"></a>
-              <h4 id="NodaTime_ZonedDateTime_op_GreaterThanOrEqual_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.op_GreaterThanOrEqual(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)">GreaterThanOrEqual(ZonedDateTime, ZonedDateTime)</h4>
-              <div class="markdown level1 summary">
-Compares two <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> values to see if the left one is later than or equal to the right
-one.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static bool operator &gt;=(ZonedDateTime lhs, ZonedDateTime rhs)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
-                    <td><span class="parametername">lhs</span></td>
-                    <td>First operand of the comparison</td>
-                  </tr>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
-                    <td><span class="parametername">rhs</span></td>
-                    <td>Second operand of the comparison</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Boolean</span></td>
-                    <td>true if the <span class="paramref">lhs</span> is later than or equal to <span class="paramref">rhs</span>, false otherwise.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_ZonedDateTime_op_GreaterThanOrEqual_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime__remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-This operator always returns false if the two operands have different calendars or time zones.
-See the top-level type documentation for more information about comparisons.
-</div>
               <a id="NodaTime_ZonedDateTime_op_Inequality_" data-uid="NodaTime.ZonedDateTime.op_Inequality*"></a>
               <h4 id="NodaTime_ZonedDateTime_op_Inequality_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.op_Inequality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)">Inequality(ZonedDateTime, ZonedDateTime)</h4>
               <div class="markdown level1 summary">
@@ -1900,116 +2112,10 @@ Implements the operator !=.
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_ZonedDateTime_op_LessThan_" data-uid="NodaTime.ZonedDateTime.op_LessThan*"></a>
-              <h4 id="NodaTime_ZonedDateTime_op_LessThan_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.op_LessThan(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)">LessThan(ZonedDateTime, ZonedDateTime)</h4>
-              <div class="markdown level1 summary">
-Compares two <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> values to see if the left one is strictly earlier than the right
-one.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static bool operator &lt;(ZonedDateTime lhs, ZonedDateTime rhs)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
-                    <td><span class="parametername">lhs</span></td>
-                    <td>First operand of the comparison</td>
-                  </tr>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
-                    <td><span class="parametername">rhs</span></td>
-                    <td>Second operand of the comparison</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Boolean</span></td>
-                    <td>true if the <span class="paramref">lhs</span> is strictly earlier than <span class="paramref">rhs</span>, false otherwise.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_ZonedDateTime_op_LessThan_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime__remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-This operator always returns false if the two operands have different calendars or time zones.
-See the top-level type documentation for more information about comparisons.
-</div>
-              <a id="NodaTime_ZonedDateTime_op_LessThanOrEqual_" data-uid="NodaTime.ZonedDateTime.op_LessThanOrEqual*"></a>
-              <h4 id="NodaTime_ZonedDateTime_op_LessThanOrEqual_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.op_LessThanOrEqual(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)">LessThanOrEqual(ZonedDateTime, ZonedDateTime)</h4>
-              <div class="markdown level1 summary">
-Compares two <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> values to see if the left one is earlier than or equal to the right
-one.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static bool operator &lt;=(ZonedDateTime lhs, ZonedDateTime rhs)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
-                    <td><span class="parametername">lhs</span></td>
-                    <td>First operand of the comparison</td>
-                  </tr>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
-                    <td><span class="parametername">rhs</span></td>
-                    <td>Second operand of the comparison</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Boolean</span></td>
-                    <td>true if the <span class="paramref">lhs</span> is earlier than or equal to <span class="paramref">rhs</span>, false otherwise.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_ZonedDateTime_op_LessThanOrEqual_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime__remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-This operator always returns false if the two operands have different calendars or time zones.
-See the top-level type documentation for more information about comparisons.
-</div>
               <a id="NodaTime_ZonedDateTime_op_Subtraction_" data-uid="NodaTime.ZonedDateTime.op_Subtraction*"></a>
               <h4 id="NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_Duration_" data-uid="NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.Duration)">Subtraction(ZonedDateTime, Duration)</h4>
               <div class="markdown level1 summary">
-Returns a new ZonedDateTime with the duration subtracted. Note that
+Returns a new <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> with the duration subtracted. Note that
 due to daylight saving time changes this may not change the local time by the same amount.
 </div>
               <div class="markdown level1 conceptual"></div>
@@ -2056,19 +2162,18 @@ due to daylight saving time changes this may not change the local time by the sa
               </table>
               <h5 id="NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_Duration__remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-The returned value retains the calendar system and time zone of the <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a>.
+The returned value retains the calendar system and time zone of <span class="paramref">zonedDateTime</span>.
 </div>
-              <h3 id="eii">Explicit Interface Implementations
-              </h3>
-              <a id="NodaTime_ZonedDateTime_System_IComparable_CompareTo_" data-uid="NodaTime.ZonedDateTime.System#IComparable#CompareTo*"></a>
-              <h4 id="NodaTime_ZonedDateTime_System_IComparable_CompareTo_System_Object_" data-uid="NodaTime.ZonedDateTime.System#IComparable#CompareTo(System.Object)">IComparable.CompareTo(Object)</h4>
+              <a id="NodaTime_ZonedDateTime_op_Subtraction_" data-uid="NodaTime.ZonedDateTime.op_Subtraction*"></a>
+              <h4 id="NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)">Subtraction(ZonedDateTime, ZonedDateTime)</h4>
               <div class="markdown level1 summary">
-Implementation of <span class="xref">System.IComparable.CompareTo(System.Object)</span> to compare two ZonedDateTimes.
+Subtracts one <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> from another, resulting in the elapsed time between
+the two values.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">int IComparable.CompareTo(object obj)</code></pre>
+                <pre><code class="lang-csharp hljs">public static Duration operator -(ZonedDateTime end, ZonedDateTime start)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -2081,9 +2186,15 @@ Implementation of <span class="xref">System.IComparable.CompareTo(System.Object)
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Object</span></td>
-                    <td><span class="parametername">obj</span></td>
-                    <td>The object to compare this value with.</td>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td><span class="parametername">end</span></td>
+                    <td>The zoned date and time value to subtract from; if this is later than <span class="paramref">start</span>
+then the result will be positive.</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a></td>
+                    <td><span class="parametername">start</span></td>
+                    <td>The zoned date and time to subtract from <span class="paramref">end</span>.</td>
                   </tr>
                 </tbody>
               </table>
@@ -2097,34 +2208,18 @@ Implementation of <span class="xref">System.IComparable.CompareTo(System.Object)
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td>The result of comparing this ZonedDateTime with another one; see <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_CompareTo_NodaTime_ZonedDateTime_">CompareTo(ZonedDateTime)</a> for general details.
-If <span class="paramref">obj</span> is null, this method returns a value greater than 0.
-</td>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>The elapsed duration from <span class="paramref">start</span> to <span class="paramref">end</span>.</td>
                   </tr>
                 </tbody>
               </table>
-              <h5 class="implements">Implements</h5>
-                  <div><span class="xref">System.IComparable.CompareTo(System.Object)</span></div>
-              <h5 id="NodaTime_ZonedDateTime_System_IComparable_CompareTo_System_Object__remarks">Remarks</h5>
+              <h5 id="NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime__remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-This uses explicit interface implementation to avoid it being called accidentally. The generic implementation should usually be preferred.
+This is equivalent to <code>end.ToInstant() - start.ToInstant()</code>; in particular:
+<ul><li>The two values can use different calendar systems</li><li>The two values can be in different time zones</li><li>The two values can have different UTC offsets</li></ul>
 </div>
-              <h5 class="exceptions">Exceptions</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Condition</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.ArgumentException</span></td>
-                    <td><span class="paramref">obj</span> is non-null but does not refer to an instance of <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a>.</td>
-                  </tr>
-                </tbody>
-              </table>
+              <h3 id="eii">Explicit Interface Implementations
+              </h3>
               <a id="NodaTime_ZonedDateTime_System_Runtime_Serialization_ISerializable_GetObjectData_" data-uid="NodaTime.ZonedDateTime.System#Runtime#Serialization#ISerializable#GetObjectData*"></a>
               <h4 id="NodaTime_ZonedDateTime_System_Runtime_Serialization_ISerializable_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_" data-uid="NodaTime.ZonedDateTime.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">ISerializable.GetObjectData(SerializationInfo, StreamingContext)</h4>
               <div class="markdown level1 summary">

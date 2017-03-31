@@ -128,32 +128,6 @@ on the time line. (Note that although <a class="xref" href="NodaTime.ZonedDateTi
 duration-based arithmetic.)
 </p>
 </div>
-              <h3 id="fields">Fields
-              </h3>
-              <h4 id="NodaTime_Period_Zero" data-uid="NodaTime.Period.Zero">Zero</h4>
-              <div class="markdown level1 summary">
-A period containing only zero-valued properties.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly Period Zero</code></pre>
-              </div>
-              <h5 class="fieldValue">Field Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.Period.html">Period</a></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
               <h3 id="properties">Properties
               </h3>
               <a id="NodaTime_Period_Days_" data-uid="NodaTime.Period.Days*"></a>
@@ -164,7 +138,7 @@ Gets the number of days within this period.
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public long Days { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">public int Days { get; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -176,8 +150,8 @@ Gets the number of days within this period.
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The number of days within this period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -207,7 +181,7 @@ Returns whether or not this period contains any non-zero date-based properties (
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Boolean</span></td>
-                    <td></td>
+                    <td>true if this period contains any non-zero date-based properties (days or higher); false otherwise.</td>
                   </tr>
                 </tbody>
               </table>
@@ -232,7 +206,7 @@ Returns whether or not this period contains any non-zero-valued time-based prope
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Boolean</span></td>
-                    <td></td>
+                    <td>true if the period contains any non-zero-valued time-based properties (hours or lower); false otherwise.</td>
                   </tr>
                 </tbody>
               </table>
@@ -257,7 +231,7 @@ Gets the number of hours within this period.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The number of hours within this period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -287,7 +261,7 @@ Gets the number of milliseconds within this period.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The number of milliseconds within this period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -317,7 +291,7 @@ Gets the number of minutes within this period.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The number of minutes within this period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -334,7 +308,37 @@ Gets the number of months within this period.
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public long Months { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">public int Months { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The number of months within this period.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Period_Months_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+This property returns zero both when the property has been explicitly set to zero and when the period does not
+contain this property.
+</div>
+              <a id="NodaTime_Period_Nanoseconds_" data-uid="NodaTime.Period.Nanoseconds*"></a>
+              <h4 id="NodaTime_Period_Nanoseconds" data-uid="NodaTime.Period.Nanoseconds">Nanoseconds</h4>
+              <div class="markdown level1 summary">
+Gets the number of nanoseconds within this period.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public long Nanoseconds { get; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -347,11 +351,11 @@ Gets the number of months within this period.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The number of nanoseconds within this period.</td>
                   </tr>
                 </tbody>
               </table>
-              <h5 id="NodaTime_Period_Months_remarks">Remarks</h5>
+              <h5 id="NodaTime_Period_Nanoseconds_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
 This property returns zero both when the property has been explicitly set to zero and when the period does not
 contain this property.
@@ -379,7 +383,7 @@ equal 1 year.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Collections.Generic.IEqualityComparer</span>&lt;<a class="xref" href="NodaTime.Period.html">Period</a>&gt;</td>
-                    <td></td>
+                    <td>An equality comparer which compares periods by first normalizing them.</td>
                   </tr>
                 </tbody>
               </table>
@@ -404,7 +408,7 @@ Gets the number of seconds within this period.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The number of seconds within this period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -434,7 +438,7 @@ Gets the number of ticks within this period.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td>The number of ticks within this period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -451,7 +455,7 @@ Gets the number of weeks within this period.
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public long Weeks { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">public int Weeks { get; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -463,8 +467,8 @@ Gets the number of weeks within this period.
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The number of weeks within this period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -481,7 +485,7 @@ Gets the number of years within this period.
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public long Years { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">public int Years { get; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -493,8 +497,8 @@ Gets the number of years within this period.
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
-                    <td></td>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The number of years within this period.</td>
                   </tr>
                 </tbody>
               </table>
@@ -503,6 +507,31 @@ Gets the number of years within this period.
 This property returns zero both when the property has been explicitly set to zero and when the period does not
 contain this property.
 </div>
+              <a id="NodaTime_Period_Zero_" data-uid="NodaTime.Period.Zero*"></a>
+              <h4 id="NodaTime_Period_Zero" data-uid="NodaTime.Period.Zero">Zero</h4>
+              <div class="markdown level1 summary">
+A period containing only zero-valued properties.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Period Zero { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Period.html">Period</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
               <h3 id="methods">Methods
               </h3>
               <a id="NodaTime_Period_Between_" data-uid="NodaTime.Period.Between*"></a>
@@ -1042,14 +1071,14 @@ Compares the given object for equality with this one, as per <a class="xref" hre
               <h5 class="overrides">Overrides</h5>
               <div><span class="xref">System.Object.Equals(System.Object)</span></div>
               <a id="NodaTime_Period_FromDays_" data-uid="NodaTime.Period.FromDays*"></a>
-              <h4 id="NodaTime_Period_FromDays_System_Int64_" data-uid="NodaTime.Period.FromDays(System.Int64)">FromDays(Int64)</h4>
+              <h4 id="NodaTime_Period_FromDays_System_Int32_" data-uid="NodaTime.Period.FromDays(System.Int32)">FromDays(Int32)</h4>
               <div class="markdown level1 summary">
 Creates a period representing the specified number of days.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static Period FromDays(long days)</code></pre>
+                <pre><code class="lang-csharp hljs">public static Period FromDays(int days)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -1062,7 +1091,7 @@ Creates a period representing the specified number of days.
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="xref">System.Int32</span></td>
                     <td><span class="parametername">days</span></td>
                     <td>The number of days in the new period</td>
                   </tr>
@@ -1167,51 +1196,6 @@ Creates a period representing the specified number of milliseconds.
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_Period_FromMillseconds_" data-uid="NodaTime.Period.FromMillseconds*"></a>
-              <h4 id="NodaTime_Period_FromMillseconds_System_Int64_" data-uid="NodaTime.Period.FromMillseconds(System.Int64)">FromMillseconds(Int64)</h4>
-              <div class="markdown level1 summary">
-Creates a period representing the specified number of milliseconds.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">[Obsolete(&quot;Use FromMilliseconds instead. This method's name was a typo, and it will be removed in a future release.&quot;)]
-public static Period FromMillseconds(long milliseconds)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int64</span></td>
-                    <td><span class="parametername">milliseconds</span></td>
-                    <td>The number of milliseconds in the new period</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.Period.html">Period</a></td>
-                    <td>A period consisting of the given number of milliseconds.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 id="NodaTime_Period_FromMillseconds_System_Int64__remarks">Remarks</h5>
-              <div class="markdown level1 remarks">This method is not available in the PCL version, as it was made obsolete in Noda Time 1.1.</div>
               <a id="NodaTime_Period_FromMinutes_" data-uid="NodaTime.Period.FromMinutes*"></a>
               <h4 id="NodaTime_Period_FromMinutes_System_Int64_" data-uid="NodaTime.Period.FromMinutes(System.Int64)">FromMinutes(Int64)</h4>
               <div class="markdown level1 summary">
@@ -1255,14 +1239,14 @@ Creates a period representing the specified number of minutes.
                 </tbody>
               </table>
               <a id="NodaTime_Period_FromMonths_" data-uid="NodaTime.Period.FromMonths*"></a>
-              <h4 id="NodaTime_Period_FromMonths_System_Int64_" data-uid="NodaTime.Period.FromMonths(System.Int64)">FromMonths(Int64)</h4>
+              <h4 id="NodaTime_Period_FromMonths_System_Int32_" data-uid="NodaTime.Period.FromMonths(System.Int32)">FromMonths(Int32)</h4>
               <div class="markdown level1 summary">
 Creates a period representing the specified number of months.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static Period FromMonths(long months)</code></pre>
+                <pre><code class="lang-csharp hljs">public static Period FromMonths(int months)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -1275,7 +1259,7 @@ Creates a period representing the specified number of months.
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="xref">System.Int32</span></td>
                     <td><span class="parametername">months</span></td>
                     <td>The number of months in the new period</td>
                   </tr>
@@ -1293,6 +1277,48 @@ Creates a period representing the specified number of months.
                   <tr>
                     <td><a class="xref" href="NodaTime.Period.html">Period</a></td>
                     <td>A period consisting of the given number of months.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Period_FromNanoseconds_" data-uid="NodaTime.Period.FromNanoseconds*"></a>
+              <h4 id="NodaTime_Period_FromNanoseconds_System_Int64_" data-uid="NodaTime.Period.FromNanoseconds(System.Int64)">FromNanoseconds(Int64)</h4>
+              <div class="markdown level1 summary">
+Creates a period representing the specified number of nanooseconds.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Period FromNanoseconds(long nanoseconds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="parametername">nanoseconds</span></td>
+                    <td>The number of nanoseconds in the new period</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Period.html">Period</a></td>
+                    <td>A period consisting of the given number of nanoseconds.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1381,14 +1407,14 @@ Creates a period representing the specified number of ticks.
                 </tbody>
               </table>
               <a id="NodaTime_Period_FromWeeks_" data-uid="NodaTime.Period.FromWeeks*"></a>
-              <h4 id="NodaTime_Period_FromWeeks_System_Int64_" data-uid="NodaTime.Period.FromWeeks(System.Int64)">FromWeeks(Int64)</h4>
+              <h4 id="NodaTime_Period_FromWeeks_System_Int32_" data-uid="NodaTime.Period.FromWeeks(System.Int32)">FromWeeks(Int32)</h4>
               <div class="markdown level1 summary">
 Creates a period representing the specified number of weeks.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static Period FromWeeks(long weeks)</code></pre>
+                <pre><code class="lang-csharp hljs">public static Period FromWeeks(int weeks)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -1401,7 +1427,7 @@ Creates a period representing the specified number of weeks.
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="xref">System.Int32</span></td>
                     <td><span class="parametername">weeks</span></td>
                     <td>The number of weeks in the new period</td>
                   </tr>
@@ -1423,14 +1449,14 @@ Creates a period representing the specified number of weeks.
                 </tbody>
               </table>
               <a id="NodaTime_Period_FromYears_" data-uid="NodaTime.Period.FromYears*"></a>
-              <h4 id="NodaTime_Period_FromYears_System_Int64_" data-uid="NodaTime.Period.FromYears(System.Int64)">FromYears(Int64)</h4>
+              <h4 id="NodaTime_Period_FromYears_System_Int32_" data-uid="NodaTime.Period.FromYears(System.Int32)">FromYears(Int32)</h4>
               <div class="markdown level1 summary">
 Creates a period representing the specified number of years.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static Period FromYears(long years)</code></pre>
+                <pre><code class="lang-csharp hljs">public static Period FromYears(int years)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -1443,7 +1469,7 @@ Creates a period representing the specified number of years.
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="xref">System.Int32</span></td>
                     <td><span class="parametername">years</span></td>
                     <td>The number of years in the new period</td>
                   </tr>
@@ -1521,11 +1547,12 @@ changed to the same representation.
               <div class="markdown level1 remarks">
 Months and years are unchanged
 (as they can vary in length), but weeks are multiplied by 7 and added to the
-Days property, and all time properties are normalized to their natural range
-(where ticks are "within a millisecond"), adding to the larger property where
-necessary. So for example, a period of 25 hours becomes a period of 1 day
-and 1 hour. Aside from months and years, either all the properties
-end up positive, or they all end up negative.
+Days property, and all time properties are normalized to their natural range.
+Subsecond values are normalized to millisecond and "nanosecond within millisecond" values.
+So for example, a period of 25 hours becomes a period of 1 day
+and 1 hour. A period of 1,500,750,000 nanoseconds becomes 1 second, 500 milliseconds and
+750,000 nanoseconds. Aside from months and years, either all the properties
+end up positive, or they all end up negative. "Week" and "tick" units in the returned period are always 0.
 </div>
               <h5 class="exceptions">Exceptions</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -1539,11 +1566,10 @@ end up positive, or they all end up negative.
                   <tr>
                     <td><span class="xref">System.OverflowException</span></td>
                     <td>The period doesn't have years or months, but it contains more than
-<span class="xref">System.Int64.MaxValue</span> ticks when the combined weeks/days/time portions are considered. Such a period
-could never be useful anyway, however.
+<span class="xref">System.Int64.MaxValue</span> nanoseconds when the combined weeks/days/time portions are considered. This is
+over 292 years, so unlikely to be a problem in normal usage.
 In some cases this may occur even though the theoretical result would be valid due to balancing positive and
-negative values, but for simplicity there is no attempt to work around this - in realistic periods, it
-shouldn't be a problem.</td>
+negative values, but for simplicity there is no attempt to work around this.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1629,7 +1655,7 @@ no attempt to work around this - in realistic periods, it shouldn't be a problem
               <a id="NodaTime_Period_ToString_" data-uid="NodaTime.Period.ToString*"></a>
               <h4 id="NodaTime_Period_ToString" data-uid="NodaTime.Period.ToString">ToString()</h4>
               <div class="markdown level1 summary">
-Returns this string formatted according to the <a class="xref" href="NodaTime.Text.PeriodPattern.html#NodaTime_Text_PeriodPattern_RoundtripPattern">RoundtripPattern</a>.
+Returns this string formatted according to the <a class="xref" href="NodaTime.Text.PeriodPattern.html#NodaTime_Text_PeriodPattern_Roundtrip">Roundtrip</a>.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>

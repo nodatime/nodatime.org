@@ -113,17 +113,17 @@ Represents a pattern for parsing and formatting <a class="xref" href="NodaTime.I
               </div>
               <h3 id="properties">Properties
               </h3>
-              <a id="NodaTime_Text_InstantPattern_ExtendedIsoPattern_" data-uid="NodaTime.Text.InstantPattern.ExtendedIsoPattern*"></a>
-              <h4 id="NodaTime_Text_InstantPattern_ExtendedIsoPattern" data-uid="NodaTime.Text.InstantPattern.ExtendedIsoPattern">ExtendedIsoPattern</h4>
+              <a id="NodaTime_Text_InstantPattern_ExtendedIso_" data-uid="NodaTime.Text.InstantPattern.ExtendedIso*"></a>
+              <h4 id="NodaTime_Text_InstantPattern_ExtendedIso" data-uid="NodaTime.Text.InstantPattern.ExtendedIso">ExtendedIso</h4>
               <div class="markdown level1 summary">
-Returns an invariant instant pattern which is ISO-8601 compatible, providing up to 7 decimal places
+Gets an invariant instant pattern which is ISO-8601 compatible, providing up to 9 decimal places
 of sub-second accuracy. (These digits are omitted when unnecessary.)
-This corresponds to the text pattern "yyyy'-'MM'-'dd'T'HH':'mm':'ss;FFFFFFF'Z'".
+This corresponds to the text pattern "uuuu'-'MM'-'dd'T'HH':'mm':'ss;FFFFFFFFF'Z'".
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static InstantPattern ExtendedIsoPattern { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">public static InstantPattern ExtendedIso { get; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -136,20 +136,21 @@ This corresponds to the text pattern "yyyy'-'MM'-'dd'T'HH':'mm':'ss;FFFFFFF'Z'".
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.InstantPattern.html">InstantPattern</a></td>
-                    <td></td>
+                    <td>An invariant instant pattern which is ISO-8601 compatible, providing up to 9 decimal places
+of sub-second accuracy.</td>
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_Text_InstantPattern_GeneralPattern_" data-uid="NodaTime.Text.InstantPattern.GeneralPattern*"></a>
-              <h4 id="NodaTime_Text_InstantPattern_GeneralPattern" data-uid="NodaTime.Text.InstantPattern.GeneralPattern">GeneralPattern</h4>
+              <a id="NodaTime_Text_InstantPattern_General_" data-uid="NodaTime.Text.InstantPattern.General*"></a>
+              <h4 id="NodaTime_Text_InstantPattern_General" data-uid="NodaTime.Text.InstantPattern.General">General</h4>
               <div class="markdown level1 summary">
-Returns the general pattern, which always uses an invariant culture. The general pattern represents
-an instant as a UTC date/time in ISO-8601 style "yyyy-MM-ddTHH:mm:ss'Z'".
+Gets the general pattern, which always uses an invariant culture. The general pattern represents
+an instant as a UTC date/time in ISO-8601 style "uuuu-MM-ddTHH:mm:ss'Z'".
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static InstantPattern GeneralPattern { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">public static InstantPattern General { get; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -162,14 +163,14 @@ an instant as a UTC date/time in ISO-8601 style "yyyy-MM-ddTHH:mm:ss'Z'".
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.InstantPattern.html">InstantPattern</a></td>
-                    <td></td>
+                    <td>The general pattern, which always uses an invariant culture.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_Text_InstantPattern_PatternText_" data-uid="NodaTime.Text.InstantPattern.PatternText*"></a>
               <h4 id="NodaTime_Text_InstantPattern_PatternText" data-uid="NodaTime.Text.InstantPattern.PatternText">PatternText</h4>
               <div class="markdown level1 summary">
-Returns the pattern text for this pattern, as supplied on creation.
+Gets the pattern text for this pattern, as supplied on creation.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -187,12 +188,62 @@ Returns the pattern text for this pattern, as supplied on creation.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td></td>
+                    <td>The pattern text for this pattern, as supplied on creation.</td>
                   </tr>
                 </tbody>
               </table>
               <h3 id="methods">Methods
               </h3>
+              <a id="NodaTime_Text_InstantPattern_AppendFormat_" data-uid="NodaTime.Text.InstantPattern.AppendFormat*"></a>
+              <h4 id="NodaTime_Text_InstantPattern_AppendFormat_NodaTime_Instant_System_Text_StringBuilder_" data-uid="NodaTime.Text.InstantPattern.AppendFormat(NodaTime.Instant,System.Text.StringBuilder)">AppendFormat(Instant, StringBuilder)</h4>
+              <div class="markdown level1 summary">
+Formats the given value as text according to the rules of this pattern,
+appending to the given <span class="xref">System.Text.StringBuilder</span>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public StringBuilder AppendFormat(Instant value, StringBuilder builder)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
+                    <td><span class="parametername">value</span></td>
+                    <td>The value to format.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Text.StringBuilder</span></td>
+                    <td><span class="parametername">builder</span></td>
+                    <td>The <code>StringBuilder</code> to append to.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Text.StringBuilder</span></td>
+                    <td>The builder passed in as <span class="paramref">builder</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_">IPattern&lt;T&gt;.AppendFormat(T, StringBuilder)</a></div>
               <a id="NodaTime_Text_InstantPattern_Create_" data-uid="NodaTime.Text.InstantPattern.Create*"></a>
               <h4 id="NodaTime_Text_InstantPattern_Create_System_String_System_Globalization_CultureInfo_" data-uid="NodaTime.Text.InstantPattern.Create(System.String,System.Globalization.CultureInfo)">Create(String, CultureInfo)</h4>
               <div class="markdown level1 summary">
@@ -256,54 +307,6 @@ See the user guide for the available pattern text options.
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.InvalidPatternException.html">InvalidPatternException</a></td>
                     <td>The pattern text was invalid.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <a id="NodaTime_Text_InstantPattern_CreateNumericPattern_" data-uid="NodaTime.Text.InstantPattern.CreateNumericPattern*"></a>
-              <h4 id="NodaTime_Text_InstantPattern_CreateNumericPattern_System_Globalization_CultureInfo_System_Boolean_" data-uid="NodaTime.Text.InstantPattern.CreateNumericPattern(System.Globalization.CultureInfo,System.Boolean)">CreateNumericPattern(CultureInfo, Boolean)</h4>
-              <div class="markdown level1 summary">
-Creates a "numeric" pattern for the given culture. The numeric format gives the
-number of ticks in decimal format, with or without thousands separators.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static InstantPattern CreateNumericPattern(CultureInfo cultureInfo, bool includeThousandsSeparators)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Globalization.CultureInfo</span></td>
-                    <td><span class="parametername">cultureInfo</span></td>
-                    <td>The culture to use in the pattern</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Boolean</span></td>
-                    <td><span class="parametername">includeThousandsSeparators</span></td>
-                    <td>True to include thousands separators when parsing or formatting; false to omit them.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.Text.InstantPattern.html">InstantPattern</a></td>
-                    <td>A numeric pattern for the configuration</td>
                   </tr>
                 </tbody>
               </table>
@@ -373,8 +376,7 @@ or formatting values.
               <a id="NodaTime_Text_InstantPattern_CreateWithInvariantCulture_" data-uid="NodaTime.Text.InstantPattern.CreateWithInvariantCulture*"></a>
               <h4 id="NodaTime_Text_InstantPattern_CreateWithInvariantCulture_System_String_" data-uid="NodaTime.Text.InstantPattern.CreateWithInvariantCulture(System.String)">CreateWithInvariantCulture(String)</h4>
               <div class="markdown level1 summary">
-Creates a pattern for the given pattern text in the invariant culture, using the default
-min/max labels.
+Creates a pattern for the given pattern text in the invariant culture.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -565,69 +567,6 @@ culture.
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.InstantPattern.html">InstantPattern</a></td>
                     <td>A new pattern with the given culture.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <a id="NodaTime_Text_InstantPattern_WithMinMaxLabels_" data-uid="NodaTime.Text.InstantPattern.WithMinMaxLabels*"></a>
-              <h4 id="NodaTime_Text_InstantPattern_WithMinMaxLabels_System_String_System_String_" data-uid="NodaTime.Text.InstantPattern.WithMinMaxLabels(System.String,System.String)">WithMinMaxLabels(String, String)</h4>
-              <div class="markdown level1 summary">
-Creates a new pattern for the same original pattern text and culture as this pattern, but
-with the given min/max labels.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public InstantPattern WithMinMaxLabels(string minLabel, string maxLabel)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.String</span></td>
-                    <td><span class="parametername">minLabel</span></td>
-                    <td>Text to use for <a class="xref" href="NodaTime.Instant.html#NodaTime_Instant_MinValue">MinValue</a>. Must be non-empty, and not the same as <span class="paramref">maxLabel</span>.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.String</span></td>
-                    <td><span class="parametername">maxLabel</span></td>
-                    <td>Text to use for <a class="xref" href="NodaTime.Instant.html#NodaTime_Instant_MaxValue">MaxValue</a>. Must be non-empty, and not the same as <span class="paramref">minLabel</span></td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.Text.InstantPattern.html">InstantPattern</a></td>
-                    <td>A new pattern with the given min/max labels.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="exceptions">Exceptions</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Condition</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.ArgumentException</span></td>
-                    <td></td>
                   </tr>
                 </tbody>
               </table>

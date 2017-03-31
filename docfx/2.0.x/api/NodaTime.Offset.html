@@ -73,7 +73,7 @@
               <h1 id="NodaTime_Offset" data-uid="NodaTime.Offset">Struct Offset
               </h1>
               <div class="markdown level0 summary">
-An offset from UTC in milliseconds. A positive value means that the local time is
+An offset from UTC in seconds. A positive value means that the local time is
 ahead of UTC (e.g. for Europe); a negative value means that the local time is behind
 UTC (e.g. for America).
 </div>
@@ -99,13 +99,22 @@ public struct Offset : IEquatable&lt;Offset&gt;, IComparable&lt;Offset&gt;, IFor
               </div>
               <h5 id="NodaTime_Offset_remarks"><strong>Remarks</strong></h5>
               <div class="markdown level0 remarks">
-Offsets are always strictly less than 24 hours (as either a positive or negative offset).
+<p>
+Offsets are always in the range of [-18, +18] hours. (Note that the ends are inclusive,
+so an offset of 18 hours can be represented, but an offset of 18 hours and one second cannot.)
+This allows all offsets within TZDB to be represented. The BCL <span class="xref">System.DateTimeOffset</span> type
+only allows offsets up to 14 hours, which means some historical data within TZDB could not be
+represented.
+</p>
+<p>Offsets are represented with a granularity of one second. This allows all offsets within TZDB
+to be represented. It is possible that it could present issues to some other time zone data sources,
+but only in very rare historical cases (or fictional ones).</p>
 </div>
               <h3 id="fields">Fields
               </h3>
               <h4 id="NodaTime_Offset_MaxValue" data-uid="NodaTime.Offset.MaxValue">MaxValue</h4>
               <div class="markdown level1 summary">
-The maximum permitted offset; one millisecond less than a standard day after UTC.
+The maximum permitted offset; 18 hours after UTC.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -129,7 +138,7 @@ The maximum permitted offset; one millisecond less than a standard day after UTC
               </table>
               <h4 id="NodaTime_Offset_MinValue" data-uid="NodaTime.Offset.MinValue">MinValue</h4>
               <div class="markdown level1 summary">
-The minimum permitted offset; one millisecond less than a standard day before UTC.
+The minimum permitted offset; 18 hours before UTC.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -153,7 +162,7 @@ The minimum permitted offset; one millisecond less than a standard day before UT
               </table>
               <h4 id="NodaTime_Offset_Zero" data-uid="NodaTime.Offset.Zero">Zero</h4>
               <div class="markdown level1 summary">
-An offset of zero ticks - effectively the permanent offset for UTC.
+An offset of zero seconds - effectively the permanent offset for UTC.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -180,7 +189,7 @@ An offset of zero ticks - effectively the permanent offset for UTC.
               <a id="NodaTime_Offset_Milliseconds_" data-uid="NodaTime.Offset.Milliseconds*"></a>
               <h4 id="NodaTime_Offset_Milliseconds" data-uid="NodaTime.Offset.Milliseconds">Milliseconds</h4>
               <div class="markdown level1 summary">
-Gets the total number of milliseconds in the offset, which may be negative.
+Gets the number of milliseconds represented by this offset, which may be negative.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -198,14 +207,74 @@ Gets the total number of milliseconds in the offset, which may be negative.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int32</span></td>
-                    <td></td>
+                    <td>The number of milliseconds represented by this offset, which may be negative.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Offset_Milliseconds_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+Offsets are only accurate to second precision; the number of seconds is simply multiplied
+by 1,000 to give the number of milliseconds.
+</div>
+              <a id="NodaTime_Offset_Nanoseconds_" data-uid="NodaTime.Offset.Nanoseconds*"></a>
+              <h4 id="NodaTime_Offset_Nanoseconds" data-uid="NodaTime.Offset.Nanoseconds">Nanoseconds</h4>
+              <div class="markdown level1 summary">
+Gets the number of nanoseconds represented by this offset, which may be negative.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public long Nanoseconds { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td>The number of nanoseconds.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Offset_Nanoseconds_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+Offsets are only accurate to second precision; the number of seconds is simply multiplied
+by 1,000,000,000 to give the number of nanoseconds.
+</div>
+              <a id="NodaTime_Offset_Seconds_" data-uid="NodaTime.Offset.Seconds*"></a>
+              <h4 id="NodaTime_Offset_Seconds" data-uid="NodaTime.Offset.Seconds">Seconds</h4>
+              <div class="markdown level1 summary">
+Gets the number of seconds represented by this offset, which may be negative.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int Seconds { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The number of seconds represented by this offset, which may be negative.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_Offset_Ticks_" data-uid="NodaTime.Offset.Ticks*"></a>
               <h4 id="NodaTime_Offset_Ticks" data-uid="NodaTime.Offset.Ticks">Ticks</h4>
               <div class="markdown level1 summary">
-Returns the number of ticks represented by this offset, which may be negative.
+Gets the number of ticks represented by this offset, which may be negative.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -229,8 +298,8 @@ Returns the number of ticks represented by this offset, which may be negative.
               </table>
               <h5 id="NodaTime_Offset_Ticks_remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-Offsets are only accurate to millisecond precision; the number of milliseconds is simply multiplied
-by 10,000 to give the number of ticks.
+Offsets are only accurate to second precision; the number of seconds is simply multiplied
+by 10,000,000 to give the number of ticks.
 </div>
               <h3 id="methods">Methods
               </h3>
@@ -445,7 +514,7 @@ otherwise, <code>false</code>.
               <a id="NodaTime_Offset_FromHours_" data-uid="NodaTime.Offset.FromHours*"></a>
               <h4 id="NodaTime_Offset_FromHours_System_Int32_" data-uid="NodaTime.Offset.FromHours(System.Int32)">FromHours(Int32)</h4>
               <div class="markdown level1 summary">
-Creates an offset with the specified number of hours, which may be negative.
+Returns an offset for the specified number of hours, which may be negative.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -480,9 +549,7 @@ Creates an offset with the specified number of hours, which may be negative.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
-                    <td>
-A new <a class="xref" href="NodaTime.Offset.html">Offset</a> representing the given value.
-</td>
+                    <td>An offset representing the given value.</td>
                   </tr>
                 </tbody>
               </table>
@@ -497,14 +564,15 @@ A new <a class="xref" href="NodaTime.Offset.html">Offset</a> representing the gi
                 <tbody>
                   <tr>
                     <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-                    <td>The result of the operation is outside the range of Offset.</td>
+                    <td>The specified number of hours is outside the range of
+[-18, +18].</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_Offset_FromHoursAndMinutes_" data-uid="NodaTime.Offset.FromHoursAndMinutes*"></a>
               <h4 id="NodaTime_Offset_FromHoursAndMinutes_System_Int32_System_Int32_" data-uid="NodaTime.Offset.FromHoursAndMinutes(System.Int32,System.Int32)">FromHoursAndMinutes(Int32, Int32)</h4>
               <div class="markdown level1 summary">
-Creates an offset with the specified number of hours and minutes.
+Returns an offset for the specified number of hours and minutes.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -544,9 +612,7 @@ Creates an offset with the specified number of hours and minutes.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
-                    <td>
-A new <a class="xref" href="NodaTime.Offset.html">Offset</a> representing the given value.
-</td>
+                    <td>An offset representing the given value.</td>
                   </tr>
                 </tbody>
               </table>
@@ -575,7 +641,7 @@ negative. For example, to obtain "three hours and ten minutes behind UTC" you mi
               <a id="NodaTime_Offset_FromMilliseconds_" data-uid="NodaTime.Offset.FromMilliseconds*"></a>
               <h4 id="NodaTime_Offset_FromMilliseconds_System_Int32_" data-uid="NodaTime.Offset.FromMilliseconds(System.Int32)">FromMilliseconds(Int32)</h4>
               <div class="markdown level1 summary">
-Returns the offset for the given milliseconds value, which may be negative.
+Returns an offset for the given milliseconds value, which may be negative.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -610,7 +676,133 @@ Returns the offset for the given milliseconds value, which may be negative.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
-                    <td>The <a class="xref" href="NodaTime.Offset.html">Offset</a> for the given milliseconds value</td>
+                    <td>An offset representing the given number of milliseconds, to the (truncated) second.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Offset_FromMilliseconds_System_Int32__remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+Offsets are only accurate to second precision; the given number of milliseconds is simply divided
+by 1,000 to give the number of seconds - any remainder is truncated.
+</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+                    <td>The specified number of milliseconds is outside the range of
+[-18, +18] hours.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Offset_FromNanoseconds_" data-uid="NodaTime.Offset.FromNanoseconds*"></a>
+              <h4 id="NodaTime_Offset_FromNanoseconds_System_Int64_" data-uid="NodaTime.Offset.FromNanoseconds(System.Int64)">FromNanoseconds(Int64)</h4>
+              <div class="markdown level1 summary">
+Returns an offset for the given number of nanoseconds, which may be negative.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Offset FromNanoseconds(long nanoseconds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="parametername">nanoseconds</span></td>
+                    <td>The number of nanoseconds specifying the length of the new offset.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
+                    <td>An offset representing the given number of nanoseconds, to the (truncated) second.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Offset_FromNanoseconds_System_Int64__remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+Offsets are only accurate to second precision; the given number of nanoseconds is simply divided
+by 1,000,000,000 to give the number of seconds - any remainder is truncated towards zero.
+</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+                    <td>The specified number of nanoseconds is outside the range of
+[-18, +18] hours.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Offset_FromSeconds_" data-uid="NodaTime.Offset.FromSeconds*"></a>
+              <h4 id="NodaTime_Offset_FromSeconds_System_Int32_" data-uid="NodaTime.Offset.FromSeconds(System.Int32)">FromSeconds(Int32)</h4>
+              <div class="markdown level1 summary">
+Returns an offset for the given seconds value, which may be negative.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Offset FromSeconds(int seconds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">seconds</span></td>
+                    <td>The int seconds value.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
+                    <td>An offset representing the given number of seconds.</td>
                   </tr>
                 </tbody>
               </table>
@@ -625,14 +817,15 @@ Returns the offset for the given milliseconds value, which may be negative.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-                    <td>The result of the operation is outside the range of Offset.</td>
+                    <td>The specified number of seconds is outside the range of
+[-18, +18] hours.</td>
                   </tr>
                 </tbody>
               </table>
               <a id="NodaTime_Offset_FromTicks_" data-uid="NodaTime.Offset.FromTicks*"></a>
               <h4 id="NodaTime_Offset_FromTicks_System_Int64_" data-uid="NodaTime.Offset.FromTicks(System.Int64)">FromTicks(Int64)</h4>
               <div class="markdown level1 summary">
-Creates a new offset from the given number of ticks, which may be negative.
+Returns an offset for the given number of ticks, which may be negative.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -667,14 +860,14 @@ Creates a new offset from the given number of ticks, which may be negative.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
-                    <td>An offset representing the given number of ticks, to the (truncated) millisecond.</td>
+                    <td>An offset representing the given number of ticks, to the (truncated) second.</td>
                   </tr>
                 </tbody>
               </table>
               <h5 id="NodaTime_Offset_FromTicks_System_Int64__remarks">Remarks</h5>
               <div class="markdown level1 remarks">
-Offsets are only accurate to millisecond precision; the given number of ticks is simply divided
-by 10,000 to give the number of milliseconds - any remainder is truncated.
+Offsets are only accurate to second precision; the given number of ticks is simply divided
+by 10,000,000 to give the number of seconds - any remainder is truncated.
 </div>
               <h5 class="exceptions">Exceptions</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -687,7 +880,65 @@ by 10,000 to give the number of milliseconds - any remainder is truncated.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-                    <td>The result of the operation is outside the range of Offset.</td>
+                    <td>The specified number of ticks is outside the range of
+[-18, +18] hours.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Offset_FromTimeSpan_" data-uid="NodaTime.Offset.FromTimeSpan*"></a>
+              <h4 id="NodaTime_Offset_FromTimeSpan_System_TimeSpan_" data-uid="NodaTime.Offset.FromTimeSpan(System.TimeSpan)">FromTimeSpan(TimeSpan)</h4>
+              <div class="markdown level1 summary">
+Converts the given <span class="xref">System.TimeSpan</span> to an offset, with fractional seconds truncated.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Offset FromTimeSpan(TimeSpan timeSpan)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.TimeSpan</span></td>
+                    <td><span class="parametername">timeSpan</span></td>
+                    <td>The timespan to convert</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Offset.html">Offset</a></td>
+                    <td>An offset for the same time as the given time span.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+                    <td>The given time span falls outside the range of +/- 18 hours.</td>
                   </tr>
                 </tbody>
               </table>

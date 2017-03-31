@@ -98,85 +98,45 @@ public struct Duration : IEquatable&lt;Duration&gt;, IComparable&lt;Duration&gt;
               <h5 id="NodaTime_Duration_remarks"><strong>Remarks</strong></h5>
               <div class="markdown level0 remarks">
 <p>
-A duration is a length of time defined by an integral number of 'ticks', where a tick is equal to 100
-nanoseconds. There are 10,000 ticks in a millisecond.
-Although durations are usually used with a positive number of ticks, negative durations are valid, and may occur
+A duration is a length of time defined by an integral number of nanoseconds.
+Although durations are usually used with a positive number of nanoseconds, negative durations are valid, and may occur
 naturally when e.g. subtracting an earlier <a class="xref" href="NodaTime.Instant.html">Instant</a> from a later one.
 </p>
 <p>
 A duration represents a fixed length of elapsed time along the time line that occupies the same amount of
-time regardless of when it is applied.  In contrast, <a class="xref" href="NodaTime.Period.html">Period</a> represents a period of time in
-calendrical terms (hours, days, and so on) that may vary in elapsed time when applied.
+time regardless of when it is applied. In contrast, <a class="xref" href="NodaTime.Period.html">Period</a> represents a period of time in
+calendrical terms (years, months, days, and so on) that may vary in elapsed time when applied.
 </p>
 <p>
 In general, use <a class="xref" href="NodaTime.Duration.html">Duration</a> to represent durations applied to global types like <a class="xref" href="NodaTime.Instant.html">Instant</a>
 and <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a>; use <code>Period</code> to represent a period applied to local types like
 <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a>.
 </p>
+<p>
+The range of valid values of a <code>Duration</code> is greater than the span of time supported by Noda Time - so for
+example, subtracting one <a class="xref" href="NodaTime.Instant.html">Instant</a> from another will always give a valid <code>Duration</code>. The range
+is also greater than that of <span class="xref">System.TimeSpan</span> (<span class="xref">System.Int64.MinValue</span> ticks to <span class="xref">System.Int64.MaxValue</span> ticks).
+See the user guide for more details of the exact range, but it is not expected that this will ever be exceeded in normal code.
+</p>
+<p>
+Various operations accept or return a <span class="xref">System.Double</span>, in-keeping with durations often being natural lengths
+of time which are imprecisely measured anyway. The implementation of these operations should never result in a not-a-number
+or infinite value, nor do any operations accept not-a-number or infinite values. Additionally, operations involving
+<code>Double</code> have initially been implemented fairly na�vely; it's possible that future releases will improve the accuracy
+or performance (or both) of various operations.
+</p>
 </div>
-              <h3 id="fields">Fields
-              </h3>
-              <h4 id="NodaTime_Duration_Epsilon" data-uid="NodaTime.Duration.Epsilon">Epsilon</h4>
-              <div class="markdown level1 summary">
-Represents the <a class="xref" href="NodaTime.Duration.html">Duration</a> value equals to 1 tick; the smallest amount by which an instant can vary.
-This field is read-only.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly Duration Epsilon</code></pre>
-              </div>
-              <h5 class="fieldValue">Field Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <h4 id="NodaTime_Duration_Zero" data-uid="NodaTime.Duration.Zero">Zero</h4>
-              <div class="markdown level1 summary">
-Represents the zero <a class="xref" href="NodaTime.Duration.html">Duration</a> value. 
-This field is read-only.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static readonly Duration Zero</code></pre>
-              </div>
-              <h5 class="fieldValue">Field Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
               <h3 id="properties">Properties
               </h3>
-              <a id="NodaTime_Duration_Ticks_" data-uid="NodaTime.Duration.Ticks*"></a>
-              <h4 id="NodaTime_Duration_Ticks" data-uid="NodaTime.Duration.Ticks">Ticks</h4>
+              <a id="NodaTime_Duration_BclCompatibleTicks_" data-uid="NodaTime.Duration.BclCompatibleTicks*"></a>
+              <h4 id="NodaTime_Duration_BclCompatibleTicks" data-uid="NodaTime.Duration.BclCompatibleTicks">BclCompatibleTicks</h4>
               <div class="markdown level1 summary">
-The total number of ticks in the duration.
+Gets the total number of ticks in the duration as a 64-bit integer, truncating towards zero where necessary.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public long Ticks { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">public long BclCompatibleTicks { get; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -189,15 +149,572 @@ The total number of ticks in the duration.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Int64</span></td>
+                    <td>The total number of ticks in the duration.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Duration_BclCompatibleTicks_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+<p>
+Within the constraints specified below, this property is intended to be equivalent to
+<span class="xref">System.TimeSpan.Ticks</span>.
+</p>
+<p>
+If the number of nanoseconds in a duration is not a whole number of ticks, it is truncated towards zero.
+For example, durations in the range [-99ns, 99ns] would all count as 0 ticks.
+</p>
+<p>Although this method can overflow, it will only do so in very exceptional cases, with durations
+with a magnitude of more than 29000 Gregorian years or so.</p>
+</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.OverflowException</span></td>
+                    <td>The number of ticks cannot be represented a signed 64-bit integer.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Duration_BclCompatibleTicks_seealso">See Also</h5>
+              <div class="seealso">
+                  <div><a class="xref" href="NodaTime.Duration.html#NodaTime_Duration_TotalTicks">TotalTicks</a></div>
+              </div>
+              <a id="NodaTime_Duration_Days_" data-uid="NodaTime.Duration.Days*"></a>
+              <h4 id="NodaTime_Duration_Days" data-uid="NodaTime.Duration.Days">Days</h4>
+              <div class="markdown level1 summary">
+Gets the whole number of standard (24 hour) days within this duration. This is truncated towards zero;
+for example, "-1.75 days" and "1.75 days" would have results of -1 and 1 respectively.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int Days { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The whole number of days in the duration</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_Epsilon_" data-uid="NodaTime.Duration.Epsilon*"></a>
+              <h4 id="NodaTime_Duration_Epsilon" data-uid="NodaTime.Duration.Epsilon">Epsilon</h4>
+              <div class="markdown level1 summary">
+Gets a <a class="xref" href="NodaTime.Duration.html">Duration</a> value equal to 1 nanosecond; the smallest amount by which an instant can vary.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration Epsilon { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A duration representing 1 nanosecond.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_Hours_" data-uid="NodaTime.Duration.Hours*"></a>
+              <h4 id="NodaTime_Duration_Hours" data-uid="NodaTime.Duration.Hours">Hours</h4>
+              <div class="markdown level1 summary">
+The hour component of this duration, in the range [-23, 23], truncated towards zero.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int Hours { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The hour component of the duration, within the day.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_MaxValue_" data-uid="NodaTime.Duration.MaxValue*"></a>
+              <h4 id="NodaTime_Duration_MaxValue" data-uid="NodaTime.Duration.MaxValue">MaxValue</h4>
+              <div class="markdown level1 summary">
+Gets the maximum value supported by <a class="xref" href="NodaTime.Duration.html">Duration</a>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration MaxValue { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
                     <td></td>
                   </tr>
                 </tbody>
               </table>
-              <h5 id="NodaTime_Duration_Ticks_remarks">Remarks</h5>
-              <div class="markdown level1 remarks">
-This property effectively represents all of the information within a Duration value; a duration
-is simply a number of ticks.
+              <a id="NodaTime_Duration_Milliseconds_" data-uid="NodaTime.Duration.Milliseconds*"></a>
+              <h4 id="NodaTime_Duration_Milliseconds" data-uid="NodaTime.Duration.Milliseconds">Milliseconds</h4>
+              <div class="markdown level1 summary">
+Gets the subsecond component of this duration, expressed in milliseconds, in the range [-999, 999] and truncated towards zero.
 </div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int Milliseconds { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The subsecond component of the duration, in milliseconds.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_Minutes_" data-uid="NodaTime.Duration.Minutes*"></a>
+              <h4 id="NodaTime_Duration_Minutes" data-uid="NodaTime.Duration.Minutes">Minutes</h4>
+              <div class="markdown level1 summary">
+The minute component of this duration, in the range [-59, 59], truncated towards zero.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int Minutes { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The minute component of the duration, within the hour.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_MinValue_" data-uid="NodaTime.Duration.MinValue*"></a>
+              <h4 id="NodaTime_Duration_MinValue" data-uid="NodaTime.Duration.MinValue">MinValue</h4>
+              <div class="markdown level1 summary">
+Gets the minimum (largest negative) value supported by <a class="xref" href="NodaTime.Duration.html">Duration</a>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration MinValue { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_NanosecondOfDay_" data-uid="NodaTime.Duration.NanosecondOfDay*"></a>
+              <h4 id="NodaTime_Duration_NanosecondOfDay" data-uid="NodaTime.Duration.NanosecondOfDay">NanosecondOfDay</h4>
+              <div class="markdown level1 summary">
+Gets the number of nanoseconds within the day of this duration. For negative durations, this
+will be negative (or zero).
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public long NanosecondOfDay { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td>The number of nanoseconds within the day of this duration.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_Seconds_" data-uid="NodaTime.Duration.Seconds*"></a>
+              <h4 id="NodaTime_Duration_Seconds" data-uid="NodaTime.Duration.Seconds">Seconds</h4>
+              <div class="markdown level1 summary">
+Gets the second component of this duration, in the range [-59, 59], truncated towards zero.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int Seconds { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The second component of the duration, within the minute.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_SubsecondNanoseconds_" data-uid="NodaTime.Duration.SubsecondNanoseconds*"></a>
+              <h4 id="NodaTime_Duration_SubsecondNanoseconds" data-uid="NodaTime.Duration.SubsecondNanoseconds">SubsecondNanoseconds</h4>
+              <div class="markdown level1 summary">
+Gets the subsecond component of this duration, expressed in nanoseconds, in the range [-999999999, 999999999].
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int SubsecondNanoseconds { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The subsecond component of the duration, in nanoseconds.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_SubsecondTicks_" data-uid="NodaTime.Duration.SubsecondTicks*"></a>
+              <h4 id="NodaTime_Duration_SubsecondTicks" data-uid="NodaTime.Duration.SubsecondTicks">SubsecondTicks</h4>
+              <div class="markdown level1 summary">
+Gets the subsecond component of this duration, expressed in ticks, in the range [-9999999, 9999999] and truncated towards zero.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int SubsecondTicks { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td>The subsecond component of the duration, in ticks.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_TotalDays_" data-uid="NodaTime.Duration.TotalDays*"></a>
+              <h4 id="NodaTime_Duration_TotalDays" data-uid="NodaTime.Duration.TotalDays">TotalDays</h4>
+              <div class="markdown level1 summary">
+Gets the total number of days in this duration, as a <span class="xref">System.Double</span>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public double TotalDays { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td>The total number of days in this duration.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Duration_TotalDays_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">This property is the <code>Duration</code> equivalent of <span class="xref">System.TimeSpan.TotalDays</span>.
+It represents the complete duration in days, rather than only the whole number of
+days. For example, for a duration of 36 hours, this property would return 1.5.
+</div>
+              <a id="NodaTime_Duration_TotalHours_" data-uid="NodaTime.Duration.TotalHours*"></a>
+              <h4 id="NodaTime_Duration_TotalHours" data-uid="NodaTime.Duration.TotalHours">TotalHours</h4>
+              <div class="markdown level1 summary">
+Gets the total number of hours in this duration, as a <span class="xref">System.Double</span>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public double TotalHours { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td>The total number of hours in this duration.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Duration_TotalHours_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+This property is the <code>Duration</code> equivalent of <span class="xref">System.TimeSpan.TotalHours</span>.
+Unlike <a class="xref" href="NodaTime.Duration.html#NodaTime_Duration_Hours">Hours</a>, it represents the complete duration in hours rather than the
+whole number of hours as part of the day. So for a duration
+of 1 day, 2 hours and 30 minutes, the <code>Hours</code> property will return 2, but <code>TotalHours</code>
+will return 26.5.
+</div>
+              <a id="NodaTime_Duration_TotalMilliseconds_" data-uid="NodaTime.Duration.TotalMilliseconds*"></a>
+              <h4 id="NodaTime_Duration_TotalMilliseconds" data-uid="NodaTime.Duration.TotalMilliseconds">TotalMilliseconds</h4>
+              <div class="markdown level1 summary">
+Gets the total number of milliseconds in this duration, as a <span class="xref">System.Double</span>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public double TotalMilliseconds { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td>The total number of milliseconds in this duration.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Duration_TotalMilliseconds_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">This property is the <code>Duration</code> equivalent of <span class="xref">System.TimeSpan.TotalMilliseconds</span>.
+Unlike <a class="xref" href="NodaTime.Duration.html#NodaTime_Duration_Milliseconds">Milliseconds</a>, it represents the complete duration in seconds rather than
+the whole number of seconds within the minute. So for a duration
+of 10 minutes, 20 seconds and 250 milliseconds, the <code>Seconds</code> property will return 20, but <code>TotalSeconds</code>
+will return 620.25.
+</div>
+              <a id="NodaTime_Duration_TotalMinutes_" data-uid="NodaTime.Duration.TotalMinutes*"></a>
+              <h4 id="NodaTime_Duration_TotalMinutes" data-uid="NodaTime.Duration.TotalMinutes">TotalMinutes</h4>
+              <div class="markdown level1 summary">
+Gets the total number of minutes in this duration, as a <span class="xref">System.Double</span>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public double TotalMinutes { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td>The total number of minutes in this duration.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Duration_TotalMinutes_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">This property is the <code>Duration</code> equivalent of <span class="xref">System.TimeSpan.TotalMinutes</span>.
+Unlike <a class="xref" href="NodaTime.Duration.html#NodaTime_Duration_Minutes">Minutes</a>, it represents the complete duration in minutes rather than
+the whole number of minutes within the hour. So for a duration
+of 2 hours, 30 minutes and 45 seconds, the <code>Minutes</code> property will return 30, but <code>TotalMinutes</code>
+will return 150.75.
+</div>
+              <a id="NodaTime_Duration_TotalNanoseconds_" data-uid="NodaTime.Duration.TotalNanoseconds*"></a>
+              <h4 id="NodaTime_Duration_TotalNanoseconds" data-uid="NodaTime.Duration.TotalNanoseconds">TotalNanoseconds</h4>
+              <div class="markdown level1 summary">
+Gets the total number of nanoseconds in this duration, as a <span class="xref">System.Double</span>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public double TotalNanoseconds { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td>This duration as a number of nanoseconds, represented as a <code>Double</code>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Duration_TotalNanoseconds_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">The result is always an integer, but may not be precise due to the limitations
+of the <code>Double</code> type. In other works, <code>Duration.FromNanoseconds(duration.TotalNanoseconds)</code>
+is not guaranteed to round-trip. To guarantee precision and round-tripping,
+use <a class="xref" href="NodaTime.Duration.html#NodaTime_Duration_ToBigIntegerNanoseconds">ToBigIntegerNanoseconds()</a> and <a class="xref" href="NodaTime.Duration.html#NodaTime_Duration_FromNanoseconds_System_Numerics_BigInteger_">FromNanoseconds(BigInteger)</a>.
+</div>
+              <a id="NodaTime_Duration_TotalSeconds_" data-uid="NodaTime.Duration.TotalSeconds*"></a>
+              <h4 id="NodaTime_Duration_TotalSeconds" data-uid="NodaTime.Duration.TotalSeconds">TotalSeconds</h4>
+              <div class="markdown level1 summary">
+Gets the total number of seconds in this duration, as a <span class="xref">System.Double</span>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public double TotalSeconds { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td>The total number of seconds in this duration.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Duration_TotalSeconds_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+This property is the <code>Duration</code> equivalent of <span class="xref">System.TimeSpan.TotalSeconds</span>.
+Unlike <a class="xref" href="NodaTime.Duration.html#NodaTime_Duration_Seconds">Seconds</a>, it represents the complete duration in seconds rather than
+the whole number of seconds within the minute. So for a duration
+of 10 minutes, 20 seconds and 250 milliseconds, the <code>Seconds</code> property will return 20, but <code>TotalSeconds</code>
+will return 620.25.
+</div>
+              <a id="NodaTime_Duration_TotalTicks_" data-uid="NodaTime.Duration.TotalTicks*"></a>
+              <h4 id="NodaTime_Duration_TotalTicks" data-uid="NodaTime.Duration.TotalTicks">TotalTicks</h4>
+              <div class="markdown level1 summary">
+Gets the total number of ticks in this duration, as a <span class="xref">System.Double</span>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public double TotalTicks { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td>The total number of ticks in this duration.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Duration_TotalTicks_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">This property is the <code>Duration</code> equivalent of <span class="xref">System.TimeSpan.Ticks</span>,
+except represented as double-precision floating point number instead of a 64-bit integer. This
+is because <a class="xref" href="NodaTime.Duration.html">Duration</a> has a precision of nanoseconds, and also because the range
+of 64-bit integers doesn't cover the number of possible ticks in a <a class="xref" href="NodaTime.Duration.html">Duration</a>. (The
+latter is only an issue in durations outside the range of <span class="xref">System.TimeSpan</span> - in other words,
+with magnitudes of over 29,000 years.)
+</div>
+              <h5 id="NodaTime_Duration_TotalTicks_seealso">See Also</h5>
+              <div class="seealso">
+                  <div><a class="xref" href="NodaTime.Duration.html#NodaTime_Duration_BclCompatibleTicks">BclCompatibleTicks</a></div>
+              </div>
+              <a id="NodaTime_Duration_Zero_" data-uid="NodaTime.Duration.Zero*"></a>
+              <h4 id="NodaTime_Duration_Zero" data-uid="NodaTime.Duration.Zero">Zero</h4>
+              <div class="markdown level1 summary">
+Gets a zero <a class="xref" href="NodaTime.Duration.html">Duration</a> of 0 nanoseconds.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration Zero { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>The zero <a class="xref" href="NodaTime.Duration.html">Duration</a> value.</td>
+                  </tr>
+                </tbody>
+              </table>
               <h3 id="methods">Methods
               </h3>
               <a id="NodaTime_Duration_Add_" data-uid="NodaTime.Duration.Add*"></a>
@@ -296,9 +813,105 @@ The return value has the following meanings:
               <h5 class="implements">Implements</h5>
                   <div><span class="xref">System.IComparable&lt;T&gt;.CompareTo(T)</span></div>
               <a id="NodaTime_Duration_Divide_" data-uid="NodaTime.Duration.Divide*"></a>
+              <h4 id="NodaTime_Duration_Divide_NodaTime_Duration_NodaTime_Duration_" data-uid="NodaTime.Duration.Divide(NodaTime.Duration,NodaTime.Duration)">Divide(Duration, Duration)</h4>
+              <div class="markdown level1 summary">
+Divides one duration by another. Friendly alternative to <code>operator/()</code>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static double Divide(Duration left, Duration right)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td><span class="parametername">left</span></td>
+                    <td>The left hand side of the operator.</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td><span class="parametername">right</span></td>
+                    <td>The right hand side of the operator.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td>The <span class="xref">System.Double</span> representing the result of dividing <span class="paramref">left</span> by
+<span class="paramref">right</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_Divide_" data-uid="NodaTime.Duration.Divide*"></a>
+              <h4 id="NodaTime_Duration_Divide_NodaTime_Duration_System_Double_" data-uid="NodaTime.Duration.Divide(NodaTime.Duration,System.Double)">Divide(Duration, Double)</h4>
+              <div class="markdown level1 summary">
+Divides a duration by a <span class="xref">System.Double</span>. Friendly alternative to <code>operator/()</code>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration Divide(Duration left, double right)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td><span class="parametername">left</span></td>
+                    <td>The left hand side of the operator.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td><span class="parametername">right</span></td>
+                    <td>The right hand side of the operator.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A new <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the result of dividing <span class="paramref">left</span> by
+<span class="paramref">right</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_Divide_" data-uid="NodaTime.Duration.Divide*"></a>
               <h4 id="NodaTime_Duration_Divide_NodaTime_Duration_System_Int64_" data-uid="NodaTime.Duration.Divide(NodaTime.Duration,System.Int64)">Divide(Duration, Int64)</h4>
               <div class="markdown level1 summary">
-Divides a duration by a number. Friendly alternative to <code>operator/()</code>.
+Divides a duration by an <span class="xref">System.Int64</span>. Friendly alternative to <code>operator/()</code>.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -437,15 +1050,16 @@ otherwise, <code>false</code>.
               </table>
               <h5 class="overrides">Overrides</h5>
               <div><span class="xref">System.ValueType.Equals(System.Object)</span></div>
-              <a id="NodaTime_Duration_FromHours_" data-uid="NodaTime.Duration.FromHours*"></a>
-              <h4 id="NodaTime_Duration_FromHours_System_Int64_" data-uid="NodaTime.Duration.FromHours(System.Int64)">FromHours(Int64)</h4>
+              <a id="NodaTime_Duration_FromDays_" data-uid="NodaTime.Duration.FromDays*"></a>
+              <h4 id="NodaTime_Duration_FromDays_System_Double_" data-uid="NodaTime.Duration.FromDays(System.Double)">FromDays(Double)</h4>
               <div class="markdown level1 summary">
-Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that represents the given number of hours.
+Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that represents the given number of days, assuming a 'standard' 24-hour
+day.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static Duration FromHours(long hours)</code></pre>
+                <pre><code class="lang-csharp hljs">public static Duration FromDays(double days)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -458,7 +1072,92 @@ Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that repres
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="xref">System.Double</span></td>
+                    <td><span class="parametername">days</span></td>
+                    <td>The number of days.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the given number of days.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_FromDays_" data-uid="NodaTime.Duration.FromDays*"></a>
+              <h4 id="NodaTime_Duration_FromDays_System_Int32_" data-uid="NodaTime.Duration.FromDays(System.Int32)">FromDays(Int32)</h4>
+              <div class="markdown level1 summary">
+Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that represents the given number of days, assuming a 'standard' 24-hour
+day.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration FromDays(int days)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">days</span></td>
+                    <td>The number of days.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the given number of days.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_FromHours_" data-uid="NodaTime.Duration.FromHours*"></a>
+              <h4 id="NodaTime_Duration_FromHours_System_Double_" data-uid="NodaTime.Duration.FromHours(System.Double)">FromHours(Double)</h4>
+              <div class="markdown level1 summary">
+Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that represents the given number of hours.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration FromHours(double hours)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
                     <td><span class="parametername">hours</span></td>
                     <td>The number of hours.</td>
                   </tr>
@@ -476,6 +1175,90 @@ Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that repres
                   <tr>
                     <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
                     <td>A <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the given number of hours.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_FromHours_" data-uid="NodaTime.Duration.FromHours*"></a>
+              <h4 id="NodaTime_Duration_FromHours_System_Int32_" data-uid="NodaTime.Duration.FromHours(System.Int32)">FromHours(Int32)</h4>
+              <div class="markdown level1 summary">
+Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that represents the given number of hours.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration FromHours(int hours)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">hours</span></td>
+                    <td>The number of hours.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the given number of hours.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_FromMilliseconds_" data-uid="NodaTime.Duration.FromMilliseconds*"></a>
+              <h4 id="NodaTime_Duration_FromMilliseconds_System_Double_" data-uid="NodaTime.Duration.FromMilliseconds(System.Double)">FromMilliseconds(Double)</h4>
+              <div class="markdown level1 summary">
+Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that represents the given number of milliseconds.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration FromMilliseconds(double milliseconds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td><span class="parametername">milliseconds</span></td>
+                    <td>The number of milliseconds.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the given number of milliseconds.</td>
                   </tr>
                 </tbody>
               </table>
@@ -522,6 +1305,48 @@ Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that repres
                 </tbody>
               </table>
               <a id="NodaTime_Duration_FromMinutes_" data-uid="NodaTime.Duration.FromMinutes*"></a>
+              <h4 id="NodaTime_Duration_FromMinutes_System_Double_" data-uid="NodaTime.Duration.FromMinutes(System.Double)">FromMinutes(Double)</h4>
+              <div class="markdown level1 summary">
+Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that represents the given number of minutes.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration FromMinutes(double minutes)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td><span class="parametername">minutes</span></td>
+                    <td>The number of minutes.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the given number of minutes.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_FromMinutes_" data-uid="NodaTime.Duration.FromMinutes*"></a>
               <h4 id="NodaTime_Duration_FromMinutes_System_Int64_" data-uid="NodaTime.Duration.FromMinutes(System.Int64)">FromMinutes(Int64)</h4>
               <div class="markdown level1 summary">
 Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that represents the given number of minutes.
@@ -560,6 +1385,175 @@ Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that repres
                   <tr>
                     <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
                     <td>A <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the given number of minutes.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_FromNanoseconds_" data-uid="NodaTime.Duration.FromNanoseconds*"></a>
+              <h4 id="NodaTime_Duration_FromNanoseconds_System_Double_" data-uid="NodaTime.Duration.FromNanoseconds(System.Double)">FromNanoseconds(Double)</h4>
+              <div class="markdown level1 summary">
+Converts a number of nanoseconds expressed as a <span class="xref">System.Double</span> into a duration. Any fractional
+parts of the value are truncated towards zero.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration FromNanoseconds(double nanoseconds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td><span class="parametername">nanoseconds</span></td>
+                    <td>The number of nanoseconds to represent.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A duration with the given number of nanoseconds.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_FromNanoseconds_" data-uid="NodaTime.Duration.FromNanoseconds*"></a>
+              <h4 id="NodaTime_Duration_FromNanoseconds_System_Int64_" data-uid="NodaTime.Duration.FromNanoseconds(System.Int64)">FromNanoseconds(Int64)</h4>
+              <div class="markdown level1 summary">
+Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that represents the given number of nanoseconds.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration FromNanoseconds(long nanoseconds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="parametername">nanoseconds</span></td>
+                    <td>The number of nanoseconds.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the given number of nanoseconds.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_FromNanoseconds_" data-uid="NodaTime.Duration.FromNanoseconds*"></a>
+              <h4 id="NodaTime_Duration_FromNanoseconds_System_Numerics_BigInteger_" data-uid="NodaTime.Duration.FromNanoseconds(System.Numerics.BigInteger)">FromNanoseconds(BigInteger)</h4>
+              <div class="markdown level1 summary">
+Converts a number of nanoseconds expressed as a <span class="xref">System.Numerics.BigInteger</span> into a duration.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration FromNanoseconds(BigInteger nanoseconds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Numerics.BigInteger</span></td>
+                    <td><span class="parametername">nanoseconds</span></td>
+                    <td>The number of nanoseconds to represent.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A duration with the given number of nanoseconds.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_FromSeconds_" data-uid="NodaTime.Duration.FromSeconds*"></a>
+              <h4 id="NodaTime_Duration_FromSeconds_System_Double_" data-uid="NodaTime.Duration.FromSeconds(System.Double)">FromSeconds(Double)</h4>
+              <div class="markdown level1 summary">
+Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that represents the given number of seconds.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration FromSeconds(double seconds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td><span class="parametername">seconds</span></td>
+                    <td>The number of seconds.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the given number of seconds.</td>
                   </tr>
                 </tbody>
               </table>
@@ -605,16 +1599,15 @@ Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that repres
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_Duration_FromStandardDays_" data-uid="NodaTime.Duration.FromStandardDays*"></a>
-              <h4 id="NodaTime_Duration_FromStandardDays_System_Int64_" data-uid="NodaTime.Duration.FromStandardDays(System.Int64)">FromStandardDays(Int64)</h4>
+              <a id="NodaTime_Duration_FromTicks_" data-uid="NodaTime.Duration.FromTicks*"></a>
+              <h4 id="NodaTime_Duration_FromTicks_System_Double_" data-uid="NodaTime.Duration.FromTicks(System.Double)">FromTicks(Double)</h4>
               <div class="markdown level1 summary">
-Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that represents the given number of days, assuming a 'standard' 24-hour
-day.
+Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that represents the given number of ticks.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static Duration FromStandardDays(long days)</code></pre>
+                <pre><code class="lang-csharp hljs">public static Duration FromTicks(double ticks)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -627,9 +1620,9 @@ day.
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
-                    <td><span class="parametername">days</span></td>
-                    <td>The number of days.</td>
+                    <td><span class="xref">System.Double</span></td>
+                    <td><span class="parametername">ticks</span></td>
+                    <td>The number of ticks.</td>
                   </tr>
                 </tbody>
               </table>
@@ -644,50 +1637,7 @@ day.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
-                    <td>A <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the given number of days.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <a id="NodaTime_Duration_FromStandardWeeks_" data-uid="NodaTime.Duration.FromStandardWeeks*"></a>
-              <h4 id="NodaTime_Duration_FromStandardWeeks_System_Int64_" data-uid="NodaTime.Duration.FromStandardWeeks(System.Int64)">FromStandardWeeks(Int64)</h4>
-              <div class="markdown level1 summary">
-Returns a <a class="xref" href="NodaTime.Duration.html">Duration</a> that represents the given number of weeks, assuming a 'standard' week
-consisting of seven 24-hour days.
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static Duration FromStandardWeeks(long weeks)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int64</span></td>
-                    <td><span class="parametername">weeks</span></td>
-                    <td>The number of weeks.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
-                    <td>A <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the given number of weeks.</td>
+                    <td>A <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the given number of ticks.</td>
                   </tr>
                 </tbody>
               </table>
@@ -845,6 +1795,53 @@ Returns the result of subtracting another duration from this one, for a fluent a
                   <tr>
                     <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
                     <td>A new <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the result of the subtraction.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_Multiply_" data-uid="NodaTime.Duration.Multiply*"></a>
+              <h4 id="NodaTime_Duration_Multiply_NodaTime_Duration_System_Double_" data-uid="NodaTime.Duration.Multiply(NodaTime.Duration,System.Double)">Multiply(Duration, Double)</h4>
+              <div class="markdown level1 summary">
+Multiplies a duration by a number. Friendly alternative to <code>operator*()</code>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration Multiply(Duration left, double right)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td><span class="parametername">left</span></td>
+                    <td>The left hand side of the operator.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td><span class="parametername">right</span></td>
+                    <td>The right hand side of the operator.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A new <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the product of the given values.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1073,6 +2070,73 @@ Subtracts one duration from another. Friendly alternative to <code>operator-()</
                   </tr>
                 </tbody>
               </table>
+              <a id="NodaTime_Duration_ToBigIntegerNanoseconds_" data-uid="NodaTime.Duration.ToBigIntegerNanoseconds*"></a>
+              <h4 id="NodaTime_Duration_ToBigIntegerNanoseconds" data-uid="NodaTime.Duration.ToBigIntegerNanoseconds">ToBigIntegerNanoseconds()</h4>
+              <div class="markdown level1 summary">
+Conversion to a <span class="xref">System.Numerics.BigInteger</span> number of nanoseconds, as a convenient built-in numeric
+type which can always represent values in the range we need.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public BigInteger ToBigIntegerNanoseconds()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Numerics.BigInteger</span></td>
+                    <td>This duration as a number of nanoseconds, represented as a <code>BigInteger</code>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_ToInt64Nanoseconds_" data-uid="NodaTime.Duration.ToInt64Nanoseconds*"></a>
+              <h4 id="NodaTime_Duration_ToInt64Nanoseconds" data-uid="NodaTime.Duration.ToInt64Nanoseconds">ToInt64Nanoseconds()</h4>
+              <div class="markdown level1 summary">
+Conversion to an <span class="xref">System.Int64</span> number of nanoseconds. This will fail if the number of nanoseconds is
+out of the range of <code>Int64</code>, which is approximately 292 years (positive or negative).
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public long ToInt64Nanoseconds()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td>This duration as a number of nanoseconds, represented as an <code>Int64</code>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.OverflowException</span></td>
+                    <td>The number of nanoseconds is outside the representable range.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_Duration_ToString_" data-uid="NodaTime.Duration.ToString*"></a>
               <h4 id="NodaTime_Duration_ToString" data-uid="NodaTime.Duration.ToString">ToString()</h4>
               <div class="markdown level1 summary">
@@ -1184,6 +2248,26 @@ Returns a <span class="xref">System.TimeSpan</span> that represents the same num
                   </tr>
                 </tbody>
               </table>
+              <h5 id="NodaTime_Duration_ToTimeSpan_remarks">Remarks</h5>
+              <div class="markdown level1 remarks">
+If the number of nanoseconds in a duration is not a whole number of ticks, it is truncated towards zero.
+For example, durations in the range [-99ns, 99ns] would all count as 0 ticks.
+</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.OverflowException</span></td>
+                    <td>The number of ticks cannot be represented a signed 64-bit integer.</td>
+                  </tr>
+                </tbody>
+              </table>
               <h3 id="operators">Operators
               </h3>
               <a id="NodaTime_Duration_op_Addition_" data-uid="NodaTime.Duration.op_Addition*"></a>
@@ -1234,9 +2318,105 @@ Implements the operator + (addition).
                 </tbody>
               </table>
               <a id="NodaTime_Duration_op_Division_" data-uid="NodaTime.Duration.op_Division*"></a>
+              <h4 id="NodaTime_Duration_op_Division_NodaTime_Duration_NodaTime_Duration_" data-uid="NodaTime.Duration.op_Division(NodaTime.Duration,NodaTime.Duration)">Division(Duration, Duration)</h4>
+              <div class="markdown level1 summary">
+Implements the operator / (division) to divide one duration by another.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static double operator /(Duration left, Duration right)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td><span class="parametername">left</span></td>
+                    <td>The left hand side of the operator.</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td><span class="parametername">right</span></td>
+                    <td>The right hand side of the operator.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td>The <span class="xref">System.Double</span> representing the result of dividing <span class="paramref">left</span> by
+<span class="paramref">right</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_op_Division_" data-uid="NodaTime.Duration.op_Division*"></a>
+              <h4 id="NodaTime_Duration_op_Division_NodaTime_Duration_System_Double_" data-uid="NodaTime.Duration.op_Division(NodaTime.Duration,System.Double)">Division(Duration, Double)</h4>
+              <div class="markdown level1 summary">
+Implements the operator / (division) to divide a duration by a <span class="xref">System.Double</span>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration operator /(Duration left, double right)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td><span class="parametername">left</span></td>
+                    <td>The left hand side of the operator.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td><span class="parametername">right</span></td>
+                    <td>The right hand side of the operator.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A new <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the result of dividing <span class="paramref">left</span> by
+<span class="paramref">right</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_op_Division_" data-uid="NodaTime.Duration.op_Division*"></a>
               <h4 id="NodaTime_Duration_op_Division_NodaTime_Duration_System_Int64_" data-uid="NodaTime.Duration.op_Division(NodaTime.Duration,System.Int64)">Division(Duration, Int64)</h4>
               <div class="markdown level1 summary">
-Implements the operator / (division).
+Implements the operator / (division) to divide a duration by an <span class="xref">System.Int64</span>.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -1560,6 +2740,54 @@ Implements the operator &lt;= (less than or equal).
                   <tr>
                     <td><span class="xref">System.Boolean</span></td>
                     <td><code>true</code> if the left value is less than or equal to the right value, otherwise <code>false</code>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Duration_op_Multiply_" data-uid="NodaTime.Duration.op_Multiply*"></a>
+              <h4 id="NodaTime_Duration_op_Multiply_NodaTime_Duration_System_Double_" data-uid="NodaTime.Duration.op_Multiply(NodaTime.Duration,System.Double)">Multiply(Duration, Double)</h4>
+              <div class="markdown level1 summary">
+Implements the operator * (multiplication).
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static Duration operator *(Duration left, double right)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td><span class="parametername">left</span></td>
+                    <td>The left hand side of the operator.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Double</span></td>
+                    <td><span class="parametername">right</span></td>
+                    <td>The right hand side of the operator.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td>A new <a class="xref" href="NodaTime.Duration.html">Duration</a> representing the result of multiplying <span class="paramref">left</span> by
+<span class="paramref">right</span>.</td>
                   </tr>
                 </tbody>
               </table>

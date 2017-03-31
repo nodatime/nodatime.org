@@ -116,7 +116,7 @@ Represents a pattern for parsing and formatting <a class="xref" href="NodaTime.D
               <a id="NodaTime_Text_DurationPattern_PatternText_" data-uid="NodaTime.Text.DurationPattern.PatternText*"></a>
               <h4 id="NodaTime_Text_DurationPattern_PatternText" data-uid="NodaTime.Text.DurationPattern.PatternText">PatternText</h4>
               <div class="markdown level1 summary">
-Returns the pattern text for this pattern, as supplied on creation.
+Gets the pattern text for this pattern, as supplied on creation.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -134,20 +134,20 @@ Returns the pattern text for this pattern, as supplied on creation.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td></td>
+                    <td>The pattern text for this pattern, as supplied on creation.</td>
                   </tr>
                 </tbody>
               </table>
-              <a id="NodaTime_Text_DurationPattern_RoundtripPattern_" data-uid="NodaTime.Text.DurationPattern.RoundtripPattern*"></a>
-              <h4 id="NodaTime_Text_DurationPattern_RoundtripPattern" data-uid="NodaTime.Text.DurationPattern.RoundtripPattern">RoundtripPattern</h4>
+              <a id="NodaTime_Text_DurationPattern_Roundtrip_" data-uid="NodaTime.Text.DurationPattern.Roundtrip*"></a>
+              <h4 id="NodaTime_Text_DurationPattern_Roundtrip" data-uid="NodaTime.Text.DurationPattern.Roundtrip">Roundtrip</h4>
               <div class="markdown level1 summary">
-General pattern for durations using the invariant culture, with a format string of "-D:hh:mm:ss.FFFFFFF".
+Gets the general pattern for durations using the invariant culture, with a format string of "-D:hh:mm:ss.FFFFFFFFF".
 This pattern round-trips.
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public static DurationPattern RoundtripPattern { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">public static DurationPattern Roundtrip { get; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -160,12 +160,62 @@ This pattern round-trips.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.DurationPattern.html">DurationPattern</a></td>
-                    <td></td>
+                    <td>The general pattern for durations using the invariant culture.</td>
                   </tr>
                 </tbody>
               </table>
               <h3 id="methods">Methods
               </h3>
+              <a id="NodaTime_Text_DurationPattern_AppendFormat_" data-uid="NodaTime.Text.DurationPattern.AppendFormat*"></a>
+              <h4 id="NodaTime_Text_DurationPattern_AppendFormat_NodaTime_Duration_System_Text_StringBuilder_" data-uid="NodaTime.Text.DurationPattern.AppendFormat(NodaTime.Duration,System.Text.StringBuilder)">AppendFormat(Duration, StringBuilder)</h4>
+              <div class="markdown level1 summary">
+Formats the given value as text according to the rules of this pattern,
+appending to the given <span class="xref">System.Text.StringBuilder</span>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public StringBuilder AppendFormat(Duration value, StringBuilder builder)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+                    <td><span class="parametername">value</span></td>
+                    <td>The value to format.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Text.StringBuilder</span></td>
+                    <td><span class="parametername">builder</span></td>
+                    <td>The <code>StringBuilder</code> to append to.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Text.StringBuilder</span></td>
+                    <td>The builder passed in as <span class="paramref">builder</span>.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_">IPattern&lt;T&gt;.AppendFormat(T, StringBuilder)</a></div>
               <a id="NodaTime_Text_DurationPattern_Create_" data-uid="NodaTime.Text.DurationPattern.Create*"></a>
               <h4 id="NodaTime_Text_DurationPattern_Create_System_String_System_Globalization_CultureInfo_" data-uid="NodaTime.Text.DurationPattern.Create(System.String,System.Globalization.CultureInfo)">Create(String, CultureInfo)</h4>
               <div class="markdown level1 summary">
