@@ -67,9 +67,9 @@ properties, which would entirely defeat the point of the exercise.
 
 It's also worth noting that the XML serialization in .NET doesn't allow any user-defined types to be
 serialized via attributes. So while it would make perfect sense to be able to apply
-[`[XmlAttribute]`](http://msdn.microsoft.com/en-us/library/system.xml.serialization.xmlattributeattribute)
+[`[XmlAttribute]`](https://msdn.microsoft.com/en-us/library/system.xml.serialization.xmlattributeattribute)
 to a particular property and have it serialized as an attribute, in reality you need to use
-[`[XmlElement]`](http://msdn.microsoft.com/en-us/library/system.xml.serialization.xmlelementattribute.aspx)
+[`[XmlElement]`](https://msdn.microsoft.com/en-us/library/system.xml.serialization.xmlelementattribute.aspx)
 instead. There's nothing Noda Time can do here; it's just a [limitation of .NET XML serialization](http://connect.microsoft.com/VisualStudio/feedback/details/277641/xmlattribute-xmltext-cannot-be-used-to-encode-types-implementing-ixmlserializable).
 
 Finally, serialization of `ZonedDateTime` comes with the tricky question of which `IDateTimeZoneProvider` to use in order to convert a time zone ID specified in the XML into a `DateTimeZone`.
@@ -173,20 +173,20 @@ The serialized form is not documented here as it is not expected to be consumed 
 Third-party serialization
 -------------------------
 
-The Noda Time project itself has support for [Json.NET](http://json.net). Additionally, there is a separate project for [ServiceStack.Text](https://github.com/ServiceStack/ServiceStack.Text/) support. Details of both are given below.
+The Noda Time project itself has support for [Json.NET](http://json.net/). Additionally, there is a separate project for [ServiceStack.Text](https://github.com/ServiceStack/ServiceStack.Text/) support. Details of both are given below.
 
 Json.NET: NodaTime.Serialization.JsonNet
 ----------------------------------------
 
-[Json.NET](http://json.net) is supported within the `NodaTime.Serialization.JsonNet` assembly and the namespace
+[Json.NET](http://json.net/) is supported within the `NodaTime.Serialization.JsonNet` assembly and the namespace
 of the same name. This assembly is built against Json.NET 4.5.11, and is available in both portable and desktop flavours. It can be installed using NuGet, again with a package name of `NodaTime.Serialization.JsonNet`. See the
-[installation guide](installation.html) for more details.
+[installation guide](installation) for more details.
 
 An extension method of `ConfigureForNodaTime` is provided on both `JsonSerializer` and
 `JsonSerializerSettings`. Alternatively, the [`NodaConverters`](noda-type://NodaTime.Serialization.JsonNet.NodaConverters) type provides public static read-only fields
 for individual converters. (All converters are immutable.)
 
-Custom converters can be created easily from patterns using [`NodaPatternConverter`](noda-type://NodaTime.Serialization.JsonNet.NodaPatternConverter_1).
+Custom converters can be created easily from patterns using [`NodaPatternConverter`](noda-type://NodaTime.Serialization.JsonNet.NodaPatternConverter-1).
 
 ### Disabling automatic date parsing ###
 

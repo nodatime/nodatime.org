@@ -1,7 +1,7 @@
 @Title="Updating the time zone database"
 
 Noda Time comes with a version of the
-[tz database](http://www.iana.org/time-zones) (also known as the IANA Time Zone
+[tz database](https://www.iana.org/time-zones) (also known as the IANA Time Zone
 database, or zoneinfo or Olson database), which is now hosted by IANA. This
 database changes over time, as countries decide to change their time zone
 rules.  As new versions of Noda Time are released, the version of tzdb will be
@@ -20,7 +20,7 @@ the lack of full resource support in Portable Class Libraries. In 1.1, a new fil
 to read this format from any stream. Support for the resource
 format has been removed from Noda Time 2.0.
 
-For more details on the exact formats, please see the [documentation in the developer guide](http://nodatime.org/developer/tzdb-file-format.html).
+For more details on the exact formats, please see the [documentation in the developer guide](/developer/tzdb-file-format).
 
 Obtaining and using a "NodaZoneData" file
 =========================================
@@ -28,7 +28,7 @@ Obtaining and using a "NodaZoneData" file
 Fetching a NodaZoneData file from nodatime.org
 ----------------------------------------------
 
-NodaZoneData files are [available from nodatime.org](http://nodatime.org/tzdb/)
+NodaZoneData files are [available from nodatime.org](/tzdb/)
 and contain compiled versions of TZDB from 2013h onwards.
 
 These can be downloaded and used with any Noda
@@ -36,18 +36,18 @@ Time 1.1+ binary, so you don't need to update to the latest version
 of Noda Time in order to get the latest version of TZDB, and you
 don't have to build the file yourself either.
 
-The URL [http://nodatime.org/tzdb/latest.txt](http://nodatime.org/tzdb/latest.txt)
+The URL [http://nodatime.org/tzdb/latest.txt](/tzdb/latest.txt)
 returns a plaintext response containing the URL of the latest NZD file.
 This may be used for automation.
 
 Building a NodaZoneData file
 ----------------------------
 
-1. Find the link to the [latest tzdb release](http://www.iana.org/time-zones), e.g.
-   http://www.iana.org/time-zones/repository/releases/tzdata2015e.tar.gz
+1. Find the link to the [latest tzdb release](https://www.iana.org/time-zones), e.g.
+   https://www.iana.org/time-zones/repository/releases/tzdata2015e.tar.gz
 2. Determine the Windows mapping file you want to use, or let NodaTime.TzdbCompiler do it for you
    with the versions supplied with the Noda Time source in the `data\cldr` directory. If these are
-   out of date, you can download a new file from [CLDR](http://cldr.unicode.org).
+   out of date, you can download a new file from [CLDR](http://cldr.unicode.org/).
 3. Run NodaTime.TzdbCompiler. I'd suggest leaving it in its build directory and running it like this:
 
 ```bat

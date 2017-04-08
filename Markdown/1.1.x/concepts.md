@@ -1,7 +1,7 @@
 @Title="Core concepts"
 
 This is a companion page to the
-["core types quick reference"](core-types.html), and ["choosing between types"](type-choices.html)
+["core types quick reference"](core-types), and ["choosing between types"](type-choices)
 pages, describing the fundamental concepts in Noda Time.
 
 One of the benefits of Noda Time over the Base Class Library (BCL)
@@ -20,7 +20,7 @@ date and time data for your whole project.
 This document introduces the core concepts, but in order to avoid it
 being too overwhelming, we won't go into the fine details. See
 individual pages (particularly the ["choosing between
-types"](type-choices.html) page) and the [API documentation][api]
+types"](type-choices) page) and the [API documentation][api]
 for more information.
 
 "Local" and "global" (or "absolute") types
@@ -168,7 +168,7 @@ There are various different sources of time zone information available, and Noda
 handles two of them: it is able to map BCL `TimeZoneInfo` objects using `BclDateTimeZone`,
 and the [TZDB][TZDB] (aka Olson) database. A version of TZDB is embedded within the Noda Time
 distribution, and if you need a more recent one, there are [instructions on how to download and
-use new data](tzdb.html). We generally recommend that you isolate yourself from the provider you're
+use new data](tzdb). We generally recommend that you isolate yourself from the provider you're
 using by only depending on [`IDateTimeZoneProvider`][IDateTimeZoneProvider], and injecting the appropriate
 provider in the normal way. "Stock" providers are available via the [`DateTimeZoneProviders`][DateTimeZoneProviders]
 class.
@@ -194,23 +194,23 @@ year or not. Periods based on smaller units (hours, minutes and so on) will alwa
 but they're still available within periods. [`Period`][Period] is used for arithmetic on locally-based values (`LocalDateTime`,
 `LocalDate`, `LocalTime`).
 
-See the [arithmetic](arithmetic.html) page for more information.
+See the [arithmetic](arithmetic) page for more information.
 
-[api]: ../api/Index.html
-[2]: http://blogs.msdn.com/b/bclteam/archive/2007/06/18/a-brief-history-of-datetime-anthony-moore.aspx
+[api]: ../api/
+[2]: https://blogs.msdn.microsoft.com/bclteam/2007/06/18/a-brief-history-of-datetime-anthony-moore/
 [LocalTime]: noda-type://NodaTime.LocalTime
 [LocalDate]: noda-type://NodaTime.LocalDate
 [LocalDateTime]: noda-type://NodaTime.LocalDateTime
 [Instant]: noda-type://NodaTime.Instant
 [CalendarSystem]: noda-type://NodaTime.CalendarSystem
-[UTC]: http://en.wikipedia.org/wiki/Coordinated_Universal_Time
+[UTC]: https://en.wikipedia.org/wiki/Coordinated_Universal_Time
 [DateTimeZone]: noda-type://NodaTime.DateTimeZone
 [Offset]: noda-type://NodaTime.Offset
 [Period]: noda-type://NodaTime.Period
 [Duration]: noda-type://NodaTime.Duration
 [OffsetDateTime]: noda-type://NodaTime.OffsetDateTime
 [ZonedDateTime]: noda-type://NodaTime.ZonedDateTime
-[TZDB]: http://www.iana.org/time-zones
+[TZDB]: https://www.iana.org/time-zones
 [IDateTimeZoneProvider]: noda-type://NodaTime.IDateTimeZoneProvider
 [DateTimeZoneProviders]: noda-type://NodaTime.DateTimeZoneProviders
-[TimeSpan]: http://msdn.microsoft.com/en-us/library/system.timespan.aspx
+[TimeSpan]: https://msdn.microsoft.com/en-us/library/system.timespan.aspx

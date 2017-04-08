@@ -1,6 +1,6 @@
 @Title="Updating the time zone database"
 
-Noda Time comes with a version of the [tzdb](http://www.iana.org/time-zones) (aka zoneinfo) database, which is
+Noda Time comes with a version of the [tzdb](https://www.iana.org/time-zones) (aka zoneinfo) database, which is
 now hosted by IANA. This database changes over time, as countries decide to change their time zone rules.
 As new versions of Noda Time are released, the version of tzdb will be updated. However, you may wish to use
 a new version of tzdb *without* changing which version of Noda Time you're using. This documentation tells you how
@@ -22,14 +22,14 @@ number) and building the whole solution. You'll end up with binaries in ZoneInfo
 Steps
 =====
 
-1. Download the [latest tzdb release](http://www.iana.org/time-zones)
+1. Download the [latest tzdb release](https://www.iana.org/time-zones)
 2. Unpack the tar.gz file - you may need to download extra tools for this; [7-Zip](http://www.7-zip.org/) can cope with .tar.gz
    files for example, and I'd expect other zip tools to do so too. You should end up with a directory containing files such
    as "america", "africa", "etcetera".
 3. Ideally, rename the directory to match the version number, e.g. "2012c". The directory name will be used in the version ID
    reported by the time zone provider later.
 4. Find the Windows mapping file you want to use. Currently, I'd recommend using the version supplied with the Noda Time source
-   in ZoneInfoCompiler\Data\winmap in a file beginning "windowsZones". This file comes from [CLDR](http://cldr.unicode.org).
+   in ZoneInfoCompiler\Data\winmap in a file beginning "windowsZones". This file comes from [CLDR](http://cldr.unicode.org/).
 5. Run ZoneInfoCompiler. I'd suggest leaving it in its build directory and running it like this:
 
 ```bat
@@ -52,7 +52,7 @@ Typically you'll want to use the newly-created resource file as the default time
 While it's possible to have multiple time zone providers in play at a time, that's a very rare scenario. Using a resource
 file is relatively straightforward:
 
-- Create a [`ResourceSet`](http://msdn.microsoft.com/en-us/library/t15hy0dt.aspx) from the file
+- Create a [`ResourceSet`](https://msdn.microsoft.com/en-us/library/t15hy0dt.aspx) from the file
 - Create a [`TzdbDateTimeZoneSource`][TzdbDateTimeZoneSource] with the `ResourceSet`
 - Create [`DateTimeZoneCache`][DateTimeZoneCache] with the source 
 - Use that cache (usually by way of dependency injection as an `IDateTimeZoneProvider`) wherever you need time zone information

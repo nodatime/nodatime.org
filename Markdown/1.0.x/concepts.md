@@ -196,21 +196,21 @@ but they're still available within periods. [`Period`][Period] is used for arith
 
 See the [arithmetic](arithmetic) page for more information.
 
-[api]: ../api/NodaTime.html
-[2]: http://blogs.msdn.com/b/bclteam/archive/2007/06/18/a-brief-history-of-datetime-anthony-moore.aspx
+[api]: ../api/
+[2]: https://blogs.msdn.microsoft.com/bclteam/2007/06/18/a-brief-history-of-datetime-anthony-moore/
 [LocalTime]: noda-type://NodaTime.LocalTime
 [LocalDate]: noda-type://NodaTime.LocalDate
 [LocalDateTime]: noda-type://NodaTime.LocalDateTime
 [Instant]: noda-type://NodaTime.Instant
 [CalendarSystem]: noda-type://NodaTime.CalendarSystem
-[UTC]: http://en.wikipedia.org/wiki/Coordinated_Universal_Time
+[UTC]: https://en.wikipedia.org/wiki/Coordinated_Universal_Time
 [DateTimeZone]: noda-type://NodaTime.DateTimeZone
 [Offset]: noda-type://NodaTime.Offset
 [Period]: noda-type://NodaTime.Period
 [Duration]: noda-type://NodaTime.Duration
 [OffsetDateTime]: noda-type://NodaTime.OffsetDateTime
 [ZonedDateTime]: noda-type://NodaTime.ZonedDateTime
-[TZDB]: http://www.iana.org/time-zones
+[TZDB]: https://www.iana.org/time-zones
 [IDateTimeZoneProvider]: noda-type://NodaTime.IDateTimeZoneProvider
 [DateTimeZoneProviders]: noda-type://NodaTime.DateTimeZoneProviders
-[TimeSpan]: http://msdn.microsoft.com/en-us/library/system.timespan.aspx
+[TimeSpan]: https://msdn.microsoft.com/en-us/library/system.timespan.aspx

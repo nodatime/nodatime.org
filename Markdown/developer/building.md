@@ -9,8 +9,8 @@ platform packs, however.
 To fetch the source code from the main GitHub repository, you'll need a
 [git][] client. You may also want a Git GUI, such as [SourceTree][].
 
-[git]: http://git-scm.com/
-[SourceTree]: http://www.sourcetreeapp.com/
+[git]: https://git-scm.com/
+[SourceTree]: https://www.sourcetreeapp.com/
 
 To run the tests, you'll need [NUnit][] version 2.5.10 or higher.
 
@@ -112,7 +112,7 @@ Note that for Ubuntu specifically, you'll either need Ubuntu 11.10 (Oneiric) or
 later, or work out how to install an unofficial backport; earlier versions of
 Ubuntu [do not include a suitable version of Mono][MonoUbuntu].
 
-[MonoUbuntu]: http://www.mono-project.com/DistroPackages/Ubuntu
+[MonoUbuntu]: http://www.mono-project.com/DistroPackages/Ubuntu/
 
 To build Noda Time under OS X, [download][MonoDownload] the latest stable
 release of Mono. Be sure to choose the developer package, not the smaller
@@ -120,7 +120,7 @@ runtime-only package.  To use the provided `Makefile`, you'll either need to
 install [Xcode][xcode] or obtain `make` separately (for example, using
 [osx-gcc-installer][] to install just the open-source parts of Xcode).
 
-[MonoDownload]: http://www.mono-project.com/Download
+[MonoDownload]: http://www.mono-project.com/Download/
 [xcode]: https://developer.apple.com/xcode/
 [osx-gcc-installer]: https://github.com/kennethreitz/osx-gcc-installer#readme
 
@@ -145,7 +145,7 @@ can be most easily obtained via [NuGet](https://www.nuget.org/).
 
 To fetch NuGet.exe locally, download and run (using `mono`) the
 (auto-updating) [NuGet.exe command-line
-tool](http://nuget.codeplex.com/releases/view/58939).
+tool](https://github.com/NuGet/Home/releases).
 
 You can then fetch the NuGet packages locally (into `src/packages/`):
 
@@ -197,8 +197,8 @@ All the main source code is under the `src` directory. There are multiple projec
 
 - NodaTime: The main library to be distributed
 - NodaTime.Benchmarks: Benchmarks run regularly to check the performance
-- NodaTime.Demo: Demonstration code written as unit tests. Interesting [Stack Overflow](http://stackoverflow.com) questions can lead to code in this project, for example.
-- NodaTime.Serialization.JsonNet: Library to enable [Json.NET](http://json.net) serialization of NodaTime types.
+- NodaTime.Demo: Demonstration code written as unit tests. Interesting [Stack Overflow](https://stackoverflow.com/) questions can lead to code in this project, for example.
+- NodaTime.Serialization.JsonNet: Library to enable [Json.NET](http://json.net/) serialization of NodaTime types.
 - NodaTime.Serialization.Test: Tests for all serialization assemblies, under the assumption that at some point we'll support more than just Json.NET.
 - NodaTime.Test: Tests for the main library
 - NodaTime.Testing: Library to help users test code which depends on Noda Time. Also used within our own tests.

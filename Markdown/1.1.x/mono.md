@@ -1,6 +1,6 @@
 @Title="Mono support"
 
-[Mono](http://mono-project.com) is an open source implementation of
+[Mono](http://www.mono-project.com/) is an open source implementation of
 the Common Language Infrastructure which runs on various platforms,
 including Windows, Linux and OS X.
 
@@ -29,4 +29,4 @@ Noda Time runs on Mono, but with some limitations:
 The prebuilt binary packages can be used on Mono directly. To build from source,
 See the ["Building and testing"][building] section in the developer guide.
 
-[building]: http://nodatime.org/developer/building.html
+[building]: /developer/building

@@ -1,7 +1,7 @@
 @Title="Core types quick reference"
 
 This is a companion page to the
-["core concepts"](concepts.html), and ["choosing between types"](type-choices.html)
+["core concepts"](concepts), and ["choosing between types"](type-choices)
 pages, describing the fundamental types in Noda Time very briefly, primarily for reference.
 If you're not familiar with the core concepts, read that page first.
 
@@ -84,7 +84,7 @@ January.
 IClock
 ------
 
-An [`IClock`][IClock] implementation provides information about the current instant. It knows nothing about time zones or calendar systems. For [testability](testing.html), this is defined
+An [`IClock`][IClock] implementation provides information about the current instant. It knows nothing about time zones or calendar systems. For [testability](testing), this is defined
 as an interface; in a production deployment you're likely to use the [`SystemClock`][SystemClock] singleton implementation.
 
 Interval
@@ -93,7 +93,7 @@ Interval
 An [`Interval`][Interval] is simply two instants - a start and an end. The interval includes the start, and excludes the end, which means that if you have abutting intervals any instant will be in
 exactly one of those intervals.
 
-[DST]: http://en.wikipedia.org/wiki/Daylight_saving_time
+[DST]: https://en.wikipedia.org/wiki/Daylight_saving_time
 [Interval]: noda-type://NodaTime.Interval
 [LocalTime]: noda-type://NodaTime.LocalTime
 [LocalDate]: noda-type://NodaTime.LocalDate

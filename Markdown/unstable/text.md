@@ -34,10 +34,10 @@ information or other options.
 Each core Noda type has its own pattern type such as
 [`OffsetPattern`](noda-type://NodaTime.Text.OffsetPattern). All
 these patterns implement the
-[`IPattern<T>`](noda-type://NodaTime.Text.IPattern_1) interface,
+[`IPattern<T>`](noda-type://NodaTime.Text.IPattern-1) interface,
 which has simple `Format` and `Parse` methods taking just the value
 and text respectively. The result of `Parse` is a
-[`ParseResult<T>`](noda-type://NodaTime.Text.ParseResult_1) which
+[`ParseResult<T>`](noda-type://NodaTime.Text.ParseResult-1) which
 encapsulates both success and failure results.
 
 The BCL-based API
@@ -61,15 +61,15 @@ available patterns are as consistent as possible within reason, but
 documenting each separately avoids confusion with some field
 specifiers being available for some types but not others.
 
-- [Duration patterns](duration-patterns.html)
-- [Offset patterns](offset-patterns.html)
-- [Instant patterns](instant-patterns.html)
-- [LocalTime patterns](localtime-patterns.html)
-- [LocalDate patterns](localdate-patterns.html)
-- [LocalDateTime patterns](localdatetime-patterns.html)
-- [OffsetDateTime patterns](offsetdatetime-patterns.html)
-- [ZonedDateTime patterns](zoneddatetime-patterns.html)
-- [Period patterns](period-patterns.html)
+- [Duration patterns](duration-patterns)
+- [Offset patterns](offset-patterns)
+- [Instant patterns](instant-patterns)
+- [LocalTime patterns](localtime-patterns)
+- [LocalDate patterns](localdate-patterns)
+- [LocalDateTime patterns](localdatetime-patterns)
+- [OffsetDateTime patterns](offsetdatetime-patterns)
+- [ZonedDateTime patterns](zoneddatetime-patterns)
+- [Period patterns](period-patterns)
 
 <a name="custom-patterns"></a>Custom patterns
 ---------------
@@ -165,7 +165,7 @@ Often you don't have much choice about how to parse or format text: if you're in
   - Try to use a pattern which is ISO-friendly where possible; it'll make it easier to interoperate with other systems in the future.
   - Quote all non-field values other than spaces.
 
-  [2]: http://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.aspx
+  [2]: https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.aspx
   [3]: noda-ns://NodaTime.Text
   [4]: noda-type://NodaTime.LocalDateTime
   [5]: noda-type://NodaTime.Instant

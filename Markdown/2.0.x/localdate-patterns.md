@@ -8,18 +8,18 @@ Standard Patterns
 The following standard patterns are supported:
 
 - `d`: Short format pattern.  
-  This is the short date pattern as defined by the culture's [`DateTimeFormatInfo.ShortDatePattern`](http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shortdatepattern.aspx).
+  This is the short date pattern as defined by the culture's [`DateTimeFormatInfo.ShortDatePattern`](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shortdatepattern.aspx).
   For example, in the invariant culture this is "MM/dd/yyyy".
 
 - `D`: Long format pattern.  
-  This is the long date pattern as defined by the culture's [`DateTimeFormatInfo.LongDatePattern`](http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longdatepattern.aspx).
+  This is the long date pattern as defined by the culture's [`DateTimeFormatInfo.LongDatePattern`](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longdatepattern.aspx).
   For example, in the invariant culture this is "dddd, dd MMMM yyyy".
   This is the default format pattern.
 
 Custom Patterns
 ---------------
 
-The following custom format pattern characters are supported for local dates. See [custom pattern notes](text.html#custom-patterns)
+The following custom format pattern characters are supported for local dates. See [custom pattern notes](text#custom-patterns)
 for general notes on custom patterns, including characters used for escaping and text literals.
 
 For the meanings of "absolute" years and text handling, see later details.

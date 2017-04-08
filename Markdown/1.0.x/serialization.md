@@ -7,14 +7,14 @@ serialization are supported, they will be included within the main Noda Time ass
 Json.NET: NodaTime.Serialization.JsonNet
 ----------------------------------------
 
-[Json.NET](http://json.net) is supported within the `NodaTime.Serialization.JsonNet` assembly and the namespace
+[Json.NET](http://json.net/) is supported within the `NodaTime.Serialization.JsonNet` assembly and the namespace
 of the same name.
 
 An extension method of `ConfigureForNodaTime` is provided on both `JsonSerializer` and
-`JsonSerializerSettings`. Alternatively, the [`NodaConverters`](noda-type://NodaTime.Serialization.JsonNet.NodaConverters) type provides public static read-only fields
+`JsonSerializerSettings`. Alternatively, the `NodaConverters` type provides public static read-only fields
 for individual converters. (All converters are immutable.)
 
-Custom converters can be created easily from patterns using [`NodaPatternConverter`](noda-type://NodaTime.Serialization.JsonNet.NodaPatternConverter_1).
+Custom converters can be created easily from patterns using `NodaPatternConverter`.
 
 Supported types and default representations
 ===========================================

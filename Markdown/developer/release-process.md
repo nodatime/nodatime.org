@@ -13,12 +13,12 @@ a checklist by the person doing a release.
   assembly) and the nuget.org API key
 - Access to the (git) repository for the nodatime.org web site
 
-[Jekyll]: http://jekyllrb.com/docs/installation/
-[redcarpet]: http://rubygems.org/gems/redcarpet
+[Jekyll]: https://jekyllrb.com/docs/installation/
+[redcarpet]: https://rubygems.org/gems/redcarpet
 
 Note that we should not build releases on Mono at present, since the resulting
 IL triggers a bug in the .NET 4 64-bit CLR (see the
-[building and testing](building.html) section in the developer guide).
+[building and testing](building) section in the developer guide).
 
 ## When to release
 
@@ -29,7 +29,7 @@ Search the issue tracker for open issues with the right milestone (e.g.
 `is:open is:issue milestone:1.4.0`).
 
 Update to the candidate revision (probably HEAD) of the correct branch (e.g.
-`1.0.x`) and [build and run all the tests](building.html) as normal. The build
+`1.0.x`) and [build and run all the tests](building) as normal. The build
 and test steps should pass on Visual Studio 2015 and at least one supported
 OS/version combination for Mono (i.e. 'Mono 2.10.9 on Linux').
 
@@ -39,14 +39,14 @@ If necessary, update the version of tzdb on the branch to the latest current
 version, following the instructions in the
 ["Updating the time zone database"][tzdb] section in the user guide.
 
-[tzdb]: ../userguide/tzdb.html
+[tzdb]: /userguide/tzdb
 
 ## Pre-release branching
 
 Before building the first release with a given minor version number (i.e. 1.0.0,
 1.1.0, or more typically, a -beta or -rc version of the same), we'll need to
 branch. New user-visible functionality is introduced with a new minor version
-number (per the [Semantic versioning](http://semver.org) spec).
+number (per the [Semantic versioning](http://semver.org/) spec).
 
 The branching model used by Noda Time is the Subversion-style backport model.
 In brief:
@@ -87,7 +87,7 @@ Suppose we were building version 1.2.3-beta4, then:
   Overflow post][assemblyversion] for more information about how these are
   used.)
 
-[assemblyversion]: http://stackoverflow.com/a/65062
+[assemblyversion]: https://stackoverflow.com/a/65062
 
 Update the version number by building the tools solution and then running the `SetVersion` tool:
 

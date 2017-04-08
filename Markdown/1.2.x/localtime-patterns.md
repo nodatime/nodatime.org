@@ -8,11 +8,11 @@ Standard Patterns
 The following standard patterns are supported:
 
 - `t`: Short format pattern.  
-  This is the short time pattern as defined by the culture's [`DateTimeFormatInfo.ShortTimePattern`](http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shorttimepattern.aspx) 
+  This is the short time pattern as defined by the culture's [`DateTimeFormatInfo.ShortTimePattern`](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shorttimepattern.aspx) 
   For example, in the invariant culture this is "HH:mm".
 
 - `T`: Long format pattern.  
-  This is the long time pattern as defined by the culture's [`DateTimeFormatInfo.LongTimePattern`](http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longtimepattern.aspx) 
+  This is the long time pattern as defined by the culture's [`DateTimeFormatInfo.LongTimePattern`](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longtimepattern.aspx) 
   For example, in the invariant culture this is "HH:mm:ss".
 
 - `r`: Round-trip pattern.  
@@ -21,7 +21,7 @@ The following standard patterns are supported:
 Custom Patterns
 ---------------
 
-The following custom format pattern characters are supported for local times. See [custom pattern notes](text.html#custom-patterns)
+The following custom format pattern characters are supported for local times. See [custom pattern notes](text#custom-patterns)
 for general notes on custom patterns, including characters used for escaping and text literals.
 
 <table>
@@ -39,7 +39,7 @@ for general notes on custom patterns, including characters used for escaping and
         The hour of day in the 24-hour clock; a value 0-23.
         <p>Note that when parsing local date/time values, a value of <code>24</code>
         may be exceptionally permitted to allow
-        <a href="localdatetime-patterns.md">specification of a following day's
+        <a href="localdatetime-patterns">specification of a following day's
         midnight</a>.
       </td>
       <td>

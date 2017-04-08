@@ -1,7 +1,7 @@
 @Title="Updating the time zone database"
 
 Noda Time comes with a version of the
-[tz database](http://www.iana.org/time-zones) (also known as the IANA Time Zone
+[tz database](https://www.iana.org/time-zones) (also known as the IANA Time Zone
 database, or zoneinfo or Olson database), which is now hosted by IANA. This
 database changes over time, as countries decide to change their time zone
 rules.  As new versions of Noda Time are released, the version of tzdb will be
@@ -20,7 +20,7 @@ the lack of full resource support in Portable Class Libraries. In 1.1, a new fil
 to read this format from any stream. If you're not using 1.0, we strongly advise you to use the new format; support for the resource
 format will be removed in Noda Time 2.0.
 
-For more details on the exact formats, please see the [documentation in the developer guide](http://nodatime.org/developer/tzdb-file-format.html).
+For more details on the exact formats, please see the [documentation in the developer guide](/developer/tzdb-file-format).
 
 Obtaining and using a "NodaZoneData" file (1.1+ format)
 =======================================================
@@ -28,7 +28,7 @@ Obtaining and using a "NodaZoneData" file (1.1+ format)
 Fetching a NodaZoneData file from nodatime.org
 ----------------------------------------------
 
-NodaZoneData files are [available from nodatime.org](http://nodatime.org/tzdb/)
+NodaZoneData files are [available from nodatime.org](/tzdb/)
 and contain compiled versions of TZDB from 2013h onwards.
 
 These can be downloaded and used with any Noda
@@ -36,21 +36,21 @@ Time 1.1+ binary, so you don't need to update to the latest version
 of Noda Time in order to get the latest version of TZDB, and you
 don't have to build the file yourself either.
 
-The URL [http://nodatime.org/tzdb/latest.txt](http://nodatime.org/tzdb/latest.txt)
+The URL [http://nodatime.org/tzdb/latest.txt](/tzdb/latest.txt)
 returns a plaintext response containing the URL of the latest NZD file.
 This may be used for automation.
 
 Building a NodaZoneData file
 ----------------------------
 
-1. Download the [latest tzdb release](http://www.iana.org/time-zones)
+1. Download the [latest tzdb release](https://www.iana.org/time-zones)
 2. Unpack the tar.gz file - you may need to download extra tools for this; [7-Zip](http://www.7-zip.org/) can cope with .tar.gz
    files for example, and I'd expect other zip tools to do so too. You should end up with a directory containing files such
    as "america", "africa", "etcetera".
 3. Ideally, rename the directory to match the version number, e.g. "2013h". The directory name will be used in the version ID
    reported by the time zone provider later.
 4. Find the Windows mapping file you want to use. Currently, I'd recommend using the version supplied with the Noda Time source
-   in the `data\cldr` directory in a file beginning "windowsZones". This file comes from [CLDR](http://cldr.unicode.org).
+   in the `data\cldr` directory in a file beginning "windowsZones". This file comes from [CLDR](http://cldr.unicode.org/).
 5. Run NodaTime.TzdbCompiler. I'd suggest leaving it in its build directory and running it like this:
 
 ```bat
@@ -113,14 +113,14 @@ Creating and using a resource file (legacy format)
 Building the resource file
 --------------------------
 
-1. Download the [latest tzdb release](http://www.iana.org/time-zones)
+1. Download the [latest tzdb release](https://www.iana.org/time-zones)
 2. Unpack the tar.gz file - you may need to download extra tools for this; [7-Zip](http://www.7-zip.org/) can cope with .tar.gz
    files for example, and I'd expect other zip tools to do so too. You should end up with a directory containing files such
    as "america", "africa", "etcetera".
 3. Ideally, rename the directory to match the version number, e.g. "2013h". The directory name will be used in the version ID
    reported by the time zone provider later.
 4. Find the Windows mapping file you want to use. Currently, I'd recommend using the version supplied with the Noda Time source
-   in the `data\cldr` directory, in a file beginning "windowsZones". This file comes from [CLDR](http://cldr.unicode.org).
+   in the `data\cldr` directory, in a file beginning "windowsZones". This file comes from [CLDR](http://cldr.unicode.org/).
 5. Run NodaTime.TzdbCompiler. I'd suggest leaving it in its build directory and running it like this:
 
 ```bat
@@ -143,7 +143,7 @@ Typically you'll want to use the newly-created resource file as the default time
 While it's possible to have multiple time zone providers in play at a time, that's a very rare scenario. Using a resource
 file is relatively straightforward:
 
-- Create a [`ResourceSet`](http://msdn.microsoft.com/en-us/library/t15hy0dt.aspx) from the file
+- Create a [`ResourceSet`](https://msdn.microsoft.com/en-us/library/t15hy0dt.aspx) from the file
 - Create a [`TzdbDateTimeZoneSource`][TzdbDateTimeZoneSource] with the `ResourceSet`
 - Create [`DateTimeZoneCache`][DateTimeZoneCache] with the source 
 - Use that cache (usually by way of dependency injection as an `IDateTimeZoneProvider`) wherever you need time zone information

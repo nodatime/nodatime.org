@@ -14,23 +14,23 @@ The following standard patterns are supported:
 
 - `s`: The sortable pattern, which is always "yyyy'-'MM'-'dd'T'HH':'mm':'ss" using the invariant culture. (Note: this is only truly sortable for years within the range \[0-9999\].)
 
-- `f`: The culture's [long date pattern](http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longdatepattern.aspx) followed by a space,
-  followed by the [short time pattern](http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shorttimepattern.aspx).
+- `f`: The culture's [long date pattern](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longdatepattern.aspx) followed by a space,
+  followed by the [short time pattern](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shorttimepattern.aspx).
 
-- `F`: The full date and time pattern as defined by the culture's [`DateTimeFormatInfo.FullDateTimePattern`](http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.fulldatetimepattern.aspx) 
+- `F`: The full date and time pattern as defined by the culture's [`DateTimeFormatInfo.FullDateTimePattern`](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.fulldatetimepattern.aspx) 
   For example, in the invariant culture this is "dddd, dd MMMM yyyy HH:mm:ss".
 
-- `g`: The culture's [short date pattern](http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shortdatepattern.aspx) followed by a space,
-  followed by the [short time pattern](http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shorttimepattern.aspx).
+- `g`: The culture's [short date pattern](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shortdatepattern.aspx) followed by a space,
+  followed by the [short time pattern](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shorttimepattern.aspx).
 
-- `G`: The culture's [short date pattern](http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shortdatepattern.aspx) followed by a space,
-  followed by the [long time pattern](http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longtimepattern.aspx).
+- `G`: The culture's [short date pattern](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shortdatepattern.aspx) followed by a space,
+  followed by the [long time pattern](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longtimepattern.aspx).
 
 Custom Patterns
 ---------------
 
-The custom format patterns for local date and time values are provided by combining the [custom patterns for `LocalDate`](localdate-patterns.html) with
-the [custom patterns for `LocalTime`](localtime-patterns.html). The result is simply the combination of the date and the time.
+The custom format patterns for local date and time values are provided by combining the [custom patterns for `LocalDate`](localdate-patterns) with
+the [custom patterns for `LocalTime`](localtime-patterns). The result is simply the combination of the date and the time.
 
 There is one exception to this: when parsing a `LocalDateTime`, an 24-hour (`HH`) specifier is allowed to have the value 24,
 instead of being limited to the range 00-23. This is only permitted if the resulting time of day is midnight, and it indicates

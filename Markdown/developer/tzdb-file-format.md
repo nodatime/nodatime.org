@@ -2,7 +2,7 @@
 
 This document describes the Noda Time-specific binary file format that is
 produced by Noda Time's `NodaTime.TzdbCompiler` tool. This tool reads the
-text files from the [tz database](http://www.iana.org/time-zones) along with
+text files from the [tz database](https://www.iana.org/time-zones) along with
 some additional input from CLDR; it produces output in one of two different
 formats:
 
@@ -227,7 +227,7 @@ This field must occur exactly once, and it uses the string pool.
 
 ## Field 4: CLDR mapping between Windows system time zone IDs and TZDB IDs
 
-This field contains the data from the windowsZones.xml file in [CLDR](http://cldr.unicode.org). The format is:
+This field contains the data from the windowsZones.xml file in [CLDR](http://cldr.unicode.org/). The format is:
 
 - A `string` for the mapping version number (currently a string representation of the revision number)
 - A `string` for the TZDB version the mapping was generated against

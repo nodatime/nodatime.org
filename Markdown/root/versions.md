@@ -203,7 +203,7 @@ Other:
   match the given part of the pattern ([issue 288])
 - API documentation now indicates which versions of Noda Time support the given
   member ([issue 261])
-- Annotations added to support [ReSharper](http://jetbrains.com/resharper) users,
+- Annotations added to support [ReSharper](https://www.jetbrains.com/resharper/) users,
   by indicating pure members, parameters which must be non-null etc
   ([issue 207])
 
@@ -219,7 +219,7 @@ Major features:
 - Noda Time core types now support XML and (on the desktop build) binary
   serialization (issues [issue 24] and [issue 226])
 - New optional `NodaTime.Serialization.JsonNet` NuGet package enabling JSON
-  serialization for Noda Time types using [Json.NET](http://json.net)
+  serialization for Noda Time types using [Json.NET](http://json.net/)
 - New support for parsing and formatting `Duration`, `OffsetDateTime`, and
   `ZonedDateTime`, including new custom format patterns representing an
   embedded offset (`o`), time zone identifier (`z`), (format-only) time zone
@@ -341,7 +341,7 @@ API changes:
 Major features:
 
 - Noda Time assemblies are now also available in Portable Class Library
-  versions (see the [installation instructions](installation.html) for details)
+  versions (see the [installation instructions](/userguide/installation) for details)
 - Noda Time now uses a self-contained (and more compact) format for storing
   TZDB data that is not directly tied to .NET resources; the old format was
   not supportable in the PCL build
@@ -441,7 +441,7 @@ Bug fixes:
 Other:
 
 - Symbols for the release are now published to SymbolSource. See the
-  [installation guide](installation.html) for details of how to debug into Noda
+  [installation guide](/userguide/installation) for details of how to debug into Noda
   Time using this
 - The version of SHFB used to generate the documentation has changed, along
   with some settings around which members to generate documentation for.

@@ -6,7 +6,7 @@ aspects we'd like to improve; see the
 [issues list](https://github.com/nodatime/nodatime/issues) for
 others.
 
-We also have a [roadmap](roadmap.html) of intended releases. This is
+We also have a [roadmap](roadmap) of intended releases. This is
 always tentative, of course, but it helps to give some clarity to our
 decisions in terms of what to work on next.
 
@@ -33,7 +33,7 @@ Additionally, the PCL doesn't support .NET resource files as fully as the deskto
 framework; in particular, it doesn't allow you to retrieve non-string resources. This
 has provoked a change from the previous resource-based format used for TZDB, to a
 stream-based format, which is now the default. For most users this will be a no-op
-change, but it does affect how you [build and use a custom version of TZDB](tzdb.html).
+change, but it does affect how you [build and use a custom version of TZDB](tzdb).
 
 Fuller text support
 ===================
@@ -46,7 +46,7 @@ we may want to optimize further at some point too.
 
 Additionally, all our text localization resources (day and month names) come from the .NET
 framework itself. That has some significant limitations, and makes Noda Time more reliant
-on `CultureInfo` than is ideal. [CLDR](http://cldr.unicode.org) contains more information,
+on `CultureInfo` than is ideal. [CLDR](http://cldr.unicode.org/) contains more information,
 which should allow for features such as ordinal day numbers ("1st", "2nd", "3rd") and
 a broader set of supported calendar/culture combinations.
 
@@ -63,7 +63,7 @@ hot-fixes for cultures which we don't support as well as we might.
 More time zone information
 ==========================
 
-[CLDR](http://cldr.unicode.org) provides useful information about
+[CLDR](http://cldr.unicode.org/) provides useful information about
 time zones such as a canonical ID and user-friendly representations
 (countries and sample cities). We'd also like to make it clearer
 when one zoneinfo time zone is an alias for another.
@@ -77,7 +77,7 @@ highest priority is probably an adapter for the BCL calendars.
 Smarter arithmetic
 ==================
 
-As noted in the [arithmetic guide](arithmetic.html), arithmetic using
+As noted in the [arithmetic guide](arithmetic), arithmetic using
 [`Period`](noda-type://NodaTime.Period) is pretty simplistic. We may
 want something smarter, probably to go alongside the "dumb but
 predictable" existing logic. This will definitely be driven by real
