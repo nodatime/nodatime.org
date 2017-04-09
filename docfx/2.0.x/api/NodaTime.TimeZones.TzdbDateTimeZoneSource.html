@@ -193,7 +193,7 @@ would be associated with the value "Europe/London".
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Collections.Generic.IDictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
-                    <td>A map from time zone ID to the canonical ID.</td>
+                    <td>A map from time zone ID to the canonical ID. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -262,7 +262,7 @@ Gets just the TZDB version (e.g. "2013a") of the source data.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td>The TZDB version (e.g. "2013a") of the source data.</td>
+                    <td>The TZDB version (e.g. "2013a") of the source data. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -339,7 +339,7 @@ supplemental "windowsZones.xml" file.
                   <tr>
                     <td><a class="xref" href="NodaTime.TimeZones.Cldr.WindowsZones.html">WindowsZones</a></td>
                     <td>The Windows time zone mapping information provided in the CLDR
-supplemental "windowsZones.xml" file.</td>
+supplemental "windowsZones.xml" file. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -519,6 +519,10 @@ The source need not attempt to cache time zones; caching is typically provided b
                     <td><span class="xref">System.ArgumentException</span></td>
                     <td><span class="paramref">id</span> is not supported by this source.</td>
                   </tr>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">id</span> is null.</td>
+                  </tr>
                 </tbody>
               </table>
               <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_FromStream_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.FromStream*"></a>
@@ -601,6 +605,10 @@ be read by this version of Noda Time.</td>
                   <tr>
                     <td><span class="xref">System.InvalidOperationException</span></td>
                     <td>The supplied stream doesn't support reading.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">stream</span> is null.</td>
                   </tr>
                 </tbody>
               </table>

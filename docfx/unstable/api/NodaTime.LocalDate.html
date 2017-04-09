@@ -175,6 +175,10 @@ Constructs an instance for the given era, year of era, month and day in the ISO 
                     <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
                     <td>The parameters do not form a valid date.</td>
                   </tr>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">era</span> is null.</td>
+                  </tr>
                 </tbody>
               </table>
               <a id="NodaTime_LocalDate__ctor_" data-uid="NodaTime.LocalDate.#ctor*"></a>
@@ -242,6 +246,10 @@ Constructs an instance for the given era, year of era, month and day in the spec
                   <tr>
                     <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
                     <td>The parameters do not form a valid date.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">era</span> or <span class="paramref">calendar</span> is null</td>
                   </tr>
                 </tbody>
               </table>
@@ -365,6 +373,10 @@ the ISO calendar, a value of 0 means 1 BC, for example.</td>
                     <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
                     <td>The parameters do not form a valid date.</td>
                   </tr>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">calendar</span> is null.</td>
+                  </tr>
                 </tbody>
               </table>
               <h3 id="properties">Properties
@@ -394,7 +406,7 @@ the ISO calendar, a value of 0 means 1 BC, for example.</td>
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
-                    <td>The calendar system associated with this local date.</td>
+                    <td>The calendar system associated with this local date. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -661,6 +673,21 @@ Adds the specified period to the date. Friendly alternative to <code>operator+()
                   </tr>
                 </tbody>
               </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">period</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDate_At_" data-uid="NodaTime.LocalDate.At*"></a>
               <h4 id="NodaTime_LocalDate_At_NodaTime_LocalTime_" data-uid="NodaTime.LocalDate.At(NodaTime.LocalTime)">At(LocalTime)</h4>
               <div class="markdown level1 summary">
@@ -809,6 +836,10 @@ This is a convenience method for calling <a class="xref" href="NodaTime.DateTime
                     <td><a class="xref" href="NodaTime.SkippedTimeException.html">SkippedTimeException</a></td>
                     <td>The entire day was skipped due to a very large time zone transition.
 (This is extremely rare.)</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">zone</span> is null.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1094,6 +1125,21 @@ This does not perform any time zone conversions, so a DateTime with a <span clas
                   </tr>
                 </tbody>
               </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">calendar</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDate_FromWeekYearWeekAndDay_" data-uid="NodaTime.LocalDate.FromWeekYearWeekAndDay*"></a>
               <h4 id="NodaTime_LocalDate_FromWeekYearWeekAndDay_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_" data-uid="NodaTime.LocalDate.FromWeekYearWeekAndDay(System.Int32,System.Int32,NodaTime.IsoDayOfWeek)">FromWeekYearWeekAndDay(Int32, Int32, IsoDayOfWeek)</h4>
               <div class="markdown level1 summary">
@@ -1358,6 +1404,21 @@ Subtracts the specified period from this date. Fluent alternative to <code>opera
                   </tr>
                 </tbody>
               </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">period</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDate_Next_" data-uid="NodaTime.LocalDate.Next*"></a>
               <h4 id="NodaTime_LocalDate_Next_NodaTime_IsoDayOfWeek_" data-uid="NodaTime.LocalDate.Next(NodaTime.IsoDayOfWeek)">Next(IsoDayOfWeek)</h4>
               <div class="markdown level1 summary">
@@ -1473,6 +1534,21 @@ Adds the specified period to this date. Fluent alternative to <code>operator+()<
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
                     <td>The sum of this date and the given period</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">period</span> is null.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1874,6 +1950,21 @@ Subtracts the specified period from the date. Friendly alternative to <code>oper
                   </tr>
                 </tbody>
               </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">period</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDate_ToDateTimeUnspecified_" data-uid="NodaTime.LocalDate.ToDateTimeUnspecified*"></a>
               <h4 id="NodaTime_LocalDate_ToDateTimeUnspecified" data-uid="NodaTime.LocalDate.ToDateTimeUnspecified">ToDateTimeUnspecified()</h4>
               <div class="markdown level1 summary">
@@ -2065,6 +2156,21 @@ If the adjuster attempts to construct an invalid date (such as by trying
 to set a day-of-month of 30 in February), any exception thrown by
 that construction attempt will be propagated through this method.
 </div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">adjuster</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDate_WithCalendar_" data-uid="NodaTime.LocalDate.WithCalendar*"></a>
               <h4 id="NodaTime_LocalDate_WithCalendar_NodaTime_CalendarSystem_" data-uid="NodaTime.LocalDate.WithCalendar(NodaTime.CalendarSystem)">WithCalendar(CalendarSystem)</h4>
               <div class="markdown level1 summary">
@@ -2112,6 +2218,21 @@ For example, January 1st 1970 in the Gregorian calendar was December 19th 1969 i
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
                     <td>The converted LocalDate</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">calendar</span> is null.</td>
                   </tr>
                 </tbody>
               </table>
@@ -2221,6 +2342,21 @@ Adds the specified period to the date.
                   <tr>
                     <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
                     <td>The sum of the given date and period</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">period</span> is null.</td>
                   </tr>
                 </tbody>
               </table>
@@ -2743,6 +2879,21 @@ This is a convenience operator over the <a class="xref" href="NodaTime.LocalDate
                   </tr>
                 </tbody>
               </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">period</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
               <h3 id="eii">Explicit Interface Implementations
               </h3>
               <a id="NodaTime_LocalDate_System_IComparable_CompareTo_" data-uid="NodaTime.LocalDate.System#IComparable#CompareTo*"></a>
@@ -2858,6 +3009,21 @@ void ISerializable.GetObjectData(SerializationInfo info, StreamingContext contex
               </table>
               <h5 class="implements">Implements</h5>
                   <div><span class="xref">System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)</span></div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">info</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDate_System_Xml_Serialization_IXmlSerializable_GetSchema_" data-uid="NodaTime.LocalDate.System#Xml#Serialization#IXmlSerializable#GetSchema*"></a>
               <h4 id="NodaTime_LocalDate_System_Xml_Serialization_IXmlSerializable_GetSchema" data-uid="NodaTime.LocalDate.System#Xml#Serialization#IXmlSerializable#GetSchema">IXmlSerializable.GetSchema()</h4>
               <div class="markdown level1 summary"></div>
@@ -2922,6 +3088,21 @@ void ISerializable.GetObjectData(SerializationInfo info, StreamingContext contex
               </table>
               <h5 class="implements">Implements</h5>
                   <div><span class="xref">System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)</span></div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">reader</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_LocalDate_System_Xml_Serialization_IXmlSerializable_WriteXml_" data-uid="NodaTime.LocalDate.System#Xml#Serialization#IXmlSerializable#WriteXml*"></a>
               <h4 id="NodaTime_LocalDate_System_Xml_Serialization_IXmlSerializable_WriteXml_System_Xml_XmlWriter_" data-uid="NodaTime.LocalDate.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)">IXmlSerializable.WriteXml(XmlWriter)</h4>
               <div class="markdown level1 summary"></div>
@@ -2955,6 +3136,21 @@ void ISerializable.GetObjectData(SerializationInfo info, StreamingContext contex
               </table>
               <h5 class="implements">Implements</h5>
                   <div><span class="xref">System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)</span></div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">writer</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
                         </article>
           </div>
           
