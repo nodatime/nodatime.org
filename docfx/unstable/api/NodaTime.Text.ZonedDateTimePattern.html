@@ -149,7 +149,7 @@ as the 'F' standard pattern.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.ZonedDateTimePattern.html">ZonedDateTimePattern</a></td>
-                    <td>An invariant zoned date/time pattern based on ISO-8601 (down to the nanosecond) including offset from UTC and zone ID.</td>
+                    <td>An invariant zoned date/time pattern based on ISO-8601 (down to the nanosecond) including offset from UTC and zone ID. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -188,7 +188,7 @@ as the 'G' standard pattern.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.ZonedDateTimePattern.html">ZonedDateTimePattern</a></td>
-                    <td>An zoned local date/time pattern based on ISO-8601 (down to the second) including offset from UTC and zone ID.</td>
+                    <td>An zoned local date/time pattern based on ISO-8601 (down to the second) including offset from UTC and zone ID. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -225,7 +225,7 @@ Gets the pattern text for this pattern, as supplied on creation.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td>The pattern text for this pattern, as supplied on creation.</td>
+                    <td>The pattern text for this pattern, as supplied on creation. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -234,6 +234,7 @@ Gets the pattern text for this pattern, as supplied on creation.
               <div class="markdown level1 summary">
 Gets the resolver which is used to map local date/times to zoned date/times,
 handling skipped and ambiguous times appropriately (where the offset isn't specified in the pattern).
+This may be null, in which case the pattern can only be used for formatting (not parsing).
 </div>
               <div class="markdown level1 conceptual"></div>
               <div>
@@ -379,7 +380,7 @@ appending to the given <span class="xref">System.Text.StringBuilder</span>.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Text.StringBuilder</span></td>
-                    <td>The builder passed in as <span class="paramref">builder</span>.</td>
+                    <td>The builder passed in as <span class="paramref">builder</span>. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -464,7 +465,7 @@ Creates a pattern for the given pattern text, culture, resolver, time zone provi
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.ZonedDateTimePattern.html">ZonedDateTimePattern</a></td>
-                    <td>A pattern for parsing and formatting zoned date/times.</td>
+                    <td>A pattern for parsing and formatting zoned date/times. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -489,7 +490,7 @@ but not parsing.
                   </tr>
                   <tr>
                     <td><span class="xref">System.ArgumentNullException</span></td>
-                    <td><span class="paramref">patternText</span>, <span class="paramref">cultureInfo</span> or <span class="paramref">resolver</span> is null</td>
+                    <td><span class="paramref">patternText</span> or <span class="paramref">cultureInfo</span> is null</td>
                   </tr>
                 </tbody>
               </table>
@@ -543,7 +544,7 @@ culture, and a default template value of midnight January 1st 2000 UTC.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.ZonedDateTimePattern.html">ZonedDateTimePattern</a></td>
-                    <td>A pattern for parsing and formatting zoned date/times.</td>
+                    <td>A pattern for parsing and formatting zoned date/times. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -619,7 +620,7 @@ culture, and a default template value of midnight January 1st 2000 UTC.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.ZonedDateTimePattern.html">ZonedDateTimePattern</a></td>
-                    <td>A pattern for parsing and formatting zoned date/times.</td>
+                    <td>A pattern for parsing and formatting zoned date/times. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -688,7 +689,7 @@ Formats the given zoned date/time as text according to the rules of this pattern
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td>The zoned date/time formatted according to this pattern.</td>
+                    <td>The zoned date/time formatted according to this pattern. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -738,7 +739,7 @@ Parses the given text value according to the rules of this pattern.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.ParseResult-1.html">ParseResult</a>&lt;<a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a>&gt;</td>
-                    <td>The result of parsing, which may be successful or unsuccessful.</td>
+                    <td>The result of parsing, which may be successful or unsuccessful. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -794,7 +795,7 @@ the specified calendar system.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.ZonedDateTimePattern.html">ZonedDateTimePattern</a></td>
-                    <td>A new pattern with a template value in the specified calendar system.</td>
+                    <td>A new pattern with a template value in the specified calendar system. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -868,7 +869,7 @@ culture.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.ZonedDateTimePattern.html">ZonedDateTimePattern</a></td>
-                    <td>A new pattern with the given culture.</td>
+                    <td>A new pattern with the given culture. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -932,7 +933,7 @@ pattern text.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.ZonedDateTimePattern.html">ZonedDateTimePattern</a></td>
-                    <td>A new pattern with the given pattern text.</td>
+                    <td>A new pattern with the given pattern text. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -996,22 +997,7 @@ resolver.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.ZonedDateTimePattern.html">ZonedDateTimePattern</a></td>
-                    <td>A new pattern with the given resolver.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="exceptions">Exceptions</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Condition</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.ArgumentNullException</span></td>
-                    <td><span class="paramref">resolver</span> is null.</td>
+                    <td>A new pattern with the given resolver. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -1059,7 +1045,7 @@ Creates a pattern like this one, but with the specified template value.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.ZonedDateTimePattern.html">ZonedDateTimePattern</a></td>
-                    <td>A new pattern with the given template value.</td>
+                    <td>A new pattern with the given template value. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -1108,7 +1094,7 @@ time zone provider.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.ZonedDateTimePattern.html">ZonedDateTimePattern</a></td>
-                    <td>A new pattern with the given time zone provider.</td>
+                    <td>A new pattern with the given time zone provider. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>

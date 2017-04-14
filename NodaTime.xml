@@ -113,6 +113,20 @@
             for details of why we're doing this at all.
             </remarks>
         </member>
+        <member name="T:NodaTime.Annotations.SpecialNullHandlingAttribute">
+            <summary>
+            Indicates that the parameter doesn't conform to simple NotNull/CanBeNull
+            behaviour, e.g. for IPattern{T}.Parse, where the parameter shouldn't be null,
+            but the result will be a failed ParseResult rather than an ArgumentNulLException.
+            </summary>
+        </member>
+        <member name="T:NodaTime.Annotations.TestExemptionAttribute">
+            <summary>
+            Attribute to effectively ignore a particular kind of test, because it's known
+            not to apply to this member. The optional message isn't stored, because we never
+            need it - it's for documentation purposes.
+            </summary>
+        </member>
         <member name="T:NodaTime.Annotations.TrustedAttribute">
             <summary>
             Indicates that a parameter is trusted to be valid, so callers must take care
@@ -783,31 +797,37 @@
             <summary>
             The "Common" era (CE), also known as Anno Domini (AD). This is used in the ISO, Gregorian and Julian calendars.
             </summary>
+            <value>The "Common" era (CE), also known as Anno Domini (AD).</value>
         </member>
         <member name="P:NodaTime.Calendars.Era.BeforeCommon">
             <summary>
             The "before common" era (BCE), also known as Before Christ (BC). This is used in the ISO, Gregorian and Julian calendars.
             </summary>
+            <value>The "before common" era (BCE), also known as Before Christ (BC).</value>
         </member>
         <member name="P:NodaTime.Calendars.Era.AnnoMartyrum">
             <summary>
             The "Anno Martyrum" or "Era of the Martyrs". This is the sole era used in the Coptic calendar.
             </summary>
+            <value>The "Anno Martyrum" or "Era of the Martyrs".</value>
         </member>
         <member name="P:NodaTime.Calendars.Era.AnnoHegirae">
             <summary>
             The "Anno Hegira" era. This is the sole era used in the Hijri (Islamic) calendar.
             </summary>
+            <value>The "Anno Hegira" era.</value>
         </member>
         <member name="P:NodaTime.Calendars.Era.AnnoMundi">
             <summary>
             The "Anno Mundi" era. This is the sole era used in the Hebrew calendar.
             </summary>
+            <value>The "Anno Mundi" era.</value>
         </member>
         <member name="P:NodaTime.Calendars.Era.AnnoPersico">
             <summary>
             The "Anno Persico" era. This is the sole era used in the Persian calendar.
             </summary>
+            <value>The "Anno Persico" era.</value>
         </member>
         <member name="P:NodaTime.Calendars.Era.Name">
             <summary>
@@ -1403,6 +1423,9 @@
             </remarks>
             <param name="calendarWeekRule">The BCL rule to emulate.</param>
             <param name="firstDayOfWeek">The first day of the week to use in the rule.</param>
+            <returns>A rule which behaves the same way as the BCL
+            <see cref="M:System.Globalization.Calendar.GetWeekOfYear(System.DateTime,System.Globalization.CalendarWeekRule,System.DayOfWeek)"/>
+            method.</returns>
         </member>
         <member name="T:NodaTime.Calendars.YearMonthDayCalculator">
             <summary>
@@ -3037,6 +3060,14 @@
             </summary>
         </member>
         <member name="M:NodaTime.Extensions.IsoDayOfWeekExtensions.ToIsoDayOfWeek(NodaTime.IsoDayOfWeek)">
+            <summary>
+            Converts a <see cref="T:NodaTime.IsoDayOfWeek"/> into the corresponding <see cref="T:System.DayOfWeek"/>.
+            </summary>
+            <remarks>This is a convenience method which calls <see cref="M:NodaTime.Utility.BclConversions.ToDayOfWeek(NodaTime.IsoDayOfWeek)"/>.</remarks>        
+            <param name="isoDayOfWeek">The <c>IsoDayOfWeek</c> to convert.</param>
+            <returns>The <c>DayOfWeek</c> equivalent to <paramref name="isoDayOfWeek"/></returns>
+        </member>
+        <member name="M:NodaTime.Extensions.IsoDayOfWeekExtensions.ToDayOfWeek(NodaTime.IsoDayOfWeek)">
             <summary>
             Converts a <see cref="T:NodaTime.IsoDayOfWeek"/> into the corresponding <see cref="T:System.DayOfWeek"/>.
             </summary>
@@ -7460,6 +7491,7 @@
             <summary>
             A period containing only zero-valued properties.
             </summary>
+            <value>A period containing only zero-valued properties.</value>
         </member>
         <member name="P:NodaTime.Period.NormalizingEqualityComparer">
             <summary>
@@ -7477,7 +7509,7 @@
             This property returns zero both when the property has been explicitly set to zero and when the period does not
             contain this property.
             </remarks>
-            /// <value>The number of nanoseconds within this period.</value>
+            <value>The number of nanoseconds within this period.</value>
         </member>
         <member name="P:NodaTime.Period.Ticks">
             <summary>
@@ -8665,6 +8697,12 @@
             by the <see cref="M:NodaTime.Text.CompositePatternBuilder`1.Build"/> method are immutable and can be used between multiple threads, assuming
             that each component (both pattern and predicate) is also immutable.
             </threadsafety>
+        </member>
+        <member name="M:NodaTime.Text.CompositePatternBuilder`1.#ctor">
+            <summary>
+            Constructs a new instance which initially has no component patterns. At least one component
+            pattern must be added before <see cref="M:NodaTime.Text.CompositePatternBuilder`1.Build"/> is called.
+            </summary>
         </member>
         <member name="M:NodaTime.Text.CompositePatternBuilder`1.Add(NodaTime.Text.IPattern{`0},System.Func{`0,System.Boolean})">
             <summary>
@@ -10033,12 +10071,14 @@
             <summary>
             The "general" offset pattern (e.g. +HH, +HH:mm, +HH:mm:ss, +HH:mm:ss.fff) for the invariant culture.
             </summary>
+            <value>The "general" offset pattern for the invariant culture.</value>
         </member>
         <member name="P:NodaTime.Text.OffsetPattern.GeneralInvariantWithZ">
             <summary>
             The "general" offset pattern (e.g. +HH, +HH:mm, +HH:mm:ss, +HH:mm:ss.fff) for the invariant culture,
             but producing (and allowing) Z as a value for a zero offset.
             </summary>
+            <value>The "general" offset pattern for the invariant culture but producing (and allowing) Z as a value for a zero offset.</value>
         </member>
         <member name="P:NodaTime.Text.OffsetPattern.PatternText">
             <summary>
@@ -10588,6 +10628,10 @@
             Each element may also be negative, independently of other elements. This pattern round-trips its
             values: a parse/format cycle will produce an identical period, including units.
             </summary>
+            <value>
+            Pattern which uses the normal ISO format for all the supported ISO
+            fields, but extends the time part with "s" for milliseconds, "t" for ticks and "n" for nanoseconds.
+            </value>
         </member>
         <member name="P:NodaTime.Text.PeriodPattern.NormalizingIso">
             <summary>
@@ -10602,6 +10646,7 @@
             combined weeks/days/time portions are considered. Such a period could never
             be useful anyway, however.
             </remarks>
+            <value>A "normalizing" pattern which abides by the ISO-8601 duration format as far as possible.</value>
         </member>
         <member name="M:NodaTime.Text.PeriodPattern.Parse(System.String)">
             <summary>
@@ -10897,6 +10942,7 @@
             <summary>
             Gets the resolver which is used to map local date/times to zoned date/times,
             handling skipped and ambiguous times appropriately (where the offset isn't specified in the pattern).
+            This may be null, in which case the pattern can only be used for formatting (not parsing).
             </summary>
             <value>The resolver which is used to map local date/times to zoned date/times.</value>
         </member>
@@ -11724,7 +11770,7 @@
             The included sources return strings of the format "source identifier: source version" indicating where the
             information comes from and which version of the source information has been loaded.
             </remarks>
-            <value>An appropriate version ID for diagnostic purposes, which must not be null.</value>
+            <value>An appropriate version ID for diagnostic purposes.</value>
         </member>
         <member name="M:NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)">
             <summary>
@@ -12430,40 +12476,54 @@
             <summary>
             An <see cref="T:NodaTime.TimeZones.AmbiguousTimeResolver"/> which returns the earlier of the two matching times.
             </summary>
+            <value>An <see cref="T:NodaTime.TimeZones.AmbiguousTimeResolver"/> which returns the earlier of the two matching times.</value>
         </member>
         <member name="P:NodaTime.TimeZones.Resolvers.ReturnLater">
             <summary>
             An <see cref="T:NodaTime.TimeZones.AmbiguousTimeResolver"/> which returns the later of the two matching times.
             </summary>
+            <value>An <see cref="T:NodaTime.TimeZones.AmbiguousTimeResolver"/> which returns the later of the two matching times.</value>
         </member>
         <member name="P:NodaTime.TimeZones.Resolvers.ThrowWhenAmbiguous">
             <summary>
             An <see cref="T:NodaTime.TimeZones.AmbiguousTimeResolver"/> which simply throws an <see cref="T:NodaTime.AmbiguousTimeException"/>.
             </summary>
+            <value>An <see cref="T:NodaTime.TimeZones.AmbiguousTimeResolver"/> which simply throws an <see cref="T:NodaTime.AmbiguousTimeException"/>.</value>
         </member>
         <member name="P:NodaTime.TimeZones.Resolvers.ReturnEndOfIntervalBefore">
             <summary>
             A <see cref="T:NodaTime.TimeZones.SkippedTimeResolver"/> which returns the final tick of the time zone interval
             before the "gap".
             </summary>
+            <value>A <see cref="T:NodaTime.TimeZones.SkippedTimeResolver"/> which returns the final tick of the time zone interval
+            before the "gap".</value>
         </member>
         <member name="P:NodaTime.TimeZones.Resolvers.ReturnStartOfIntervalAfter">
             <summary>
             A <see cref="T:NodaTime.TimeZones.SkippedTimeResolver"/> which returns the first tick of the time zone interval
             after the "gap".
             </summary>
+            <value>
+            A <see cref="T:NodaTime.TimeZones.SkippedTimeResolver"/> which returns the first tick of the time zone interval
+            after the "gap".
+            </value>
         </member>
         <member name="P:NodaTime.TimeZones.Resolvers.ReturnForwardShifted">
             <summary>
             A <see cref="T:NodaTime.TimeZones.SkippedTimeResolver"/> which shifts values in the "gap" forward by the duration
-            of the gap (which is usually 1 hour).  This corresponds to the instant that would have occured,
+            of the gap (which is usually 1 hour). This corresponds to the instant that would have occured,
             had there not been a transition.
             </summary>
+            <value>
+            A <see cref="T:NodaTime.TimeZones.SkippedTimeResolver"/> which shifts values in the "gap" forward by the duration
+            of the gap (which is usually 1 hour). 
+            </value>
         </member>
         <member name="P:NodaTime.TimeZones.Resolvers.ThrowWhenSkipped">
             <summary>
             A <see cref="T:NodaTime.TimeZones.SkippedTimeResolver"/> which simply throws a <see cref="T:NodaTime.SkippedTimeException"/>.
             </summary>
+            <value>A <see cref="T:NodaTime.TimeZones.SkippedTimeResolver"/> which simply throws a <see cref="T:NodaTime.SkippedTimeException"/>.</value>
         </member>
         <member name="P:NodaTime.TimeZones.Resolvers.StrictResolver">
             <summary>
@@ -12476,6 +12536,8 @@
             <see cref="P:NodaTime.TimeZones.Resolvers.ThrowWhenAmbiguous"/> and <see cref="P:NodaTime.TimeZones.Resolvers.ThrowWhenSkipped"/>.
             </remarks>
             <seealso cref="M:NodaTime.DateTimeZone.AtStrictly(NodaTime.LocalDateTime)"/>
+            <value>A <see cref="T:NodaTime.TimeZones.ZoneLocalMappingResolver"/> which only ever succeeds in the (usual) case where the result
+            of the mapping is unambiguous.</value>
         </member>
         <member name="P:NodaTime.TimeZones.Resolvers.LenientResolver">
             <summary>
@@ -12489,6 +12551,7 @@
             resolvers, which can still be used separately if desired.</para>
             </remarks>
             <seealso cref="M:NodaTime.DateTimeZone.AtLeniently(NodaTime.LocalDateTime)"/>
+            <value>A <see cref="T:NodaTime.TimeZones.ZoneLocalMappingResolver"/> which never throws an exception due to ambiguity or skipped time.</value>
         </member>
         <member name="M:NodaTime.TimeZones.Resolvers.CreateMappingResolver(NodaTime.TimeZones.AmbiguousTimeResolver,NodaTime.TimeZones.SkippedTimeResolver)">
             <summary>

@@ -129,6 +129,25 @@ All calls to <a class="xref" href="NodaTime.TimeZones.BclDateTimeZoneSource.html
 This class is not available in the PCL version.
 </p>
 </div>
+              <h3 id="constructors">Constructors
+              </h3>
+              <a id="NodaTime_TimeZones_BclDateTimeZoneSource__ctor_" data-uid="NodaTime.TimeZones.BclDateTimeZoneSource.#ctor*"></a>
+              <h4 id="NodaTime_TimeZones_BclDateTimeZoneSource__ctor" data-uid="NodaTime.TimeZones.BclDateTimeZoneSource.#ctor">BclDateTimeZoneSource()</h4>
+              <div class="markdown level1 summary">
+Constructs a new instance. This is rarely useful in application code, as this class has no state of its own.
+Most application code should use <a class="xref" href="NodaTime.DateTimeZoneProviders.html#NodaTime_DateTimeZoneProviders_Bcl">Bcl</a>.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <div>
+              <strong>Since</strong> unstable
+              </div>
+              <div>
+              <strong>Availability</strong> net45
+              </div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public BclDateTimeZoneSource()</code></pre>
+              </div>
               <h3 id="properties">Properties
               </h3>
               <a id="NodaTime_TimeZones_BclDateTimeZoneSource_VersionId_" data-uid="NodaTime.TimeZones.BclDateTimeZoneSource.VersionId*"></a>
@@ -158,7 +177,7 @@ Returns an appropriate version ID for diagnostic purposes, which must not be nul
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td>An appropriate version ID for diagnostic purposes, which must not be null.</td>
+                    <td>An appropriate version ID for diagnostic purposes. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -216,7 +235,7 @@ ID. The ID must be a known system time zone ID.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.TimeZones.BclDateTimeZone.html">BclDateTimeZone</a></td>
-                    <td>The Noda Time representation of the given BCL time zone</td>
+                    <td>The Noda Time representation of the given BCL time zone (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -232,6 +251,10 @@ ID. The ID must be a known system time zone ID.
                   <tr>
                     <td><span class="xref">System.ArgumentException</span></td>
                     <td>The given zone doesn't exist.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">id</span> is null.</td>
                   </tr>
                 </tbody>
               </table>
@@ -262,7 +285,7 @@ Returns the IDs of all system time zones.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
-                    <td>The IDs available from this source.</td>
+                    <td>The IDs available from this source. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -298,7 +321,7 @@ Returns this source's ID for the system default time zone.
                     <td>
 The ID for the system default time zone for this source,
 or null if the system default time zone has no mapping in this source.
-</td>
+ (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -364,6 +387,21 @@ This method explicitly implements <a class="xref" href="NodaTime.TimeZones.IDate
 zones returned by this implementation are instances of <a class="xref" href="NodaTime.TimeZones.BclDateTimeZone.html">BclDateTimeZone</a> (rather than the built-in
 fixed offset zones).
 </div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">id</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
                         </article>
           </div>
           

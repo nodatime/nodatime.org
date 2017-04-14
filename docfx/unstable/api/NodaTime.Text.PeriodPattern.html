@@ -150,7 +150,7 @@ seconds part. Unlike ISO-8601, which pattern allows for negative values within a
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.PeriodPattern.html">PeriodPattern</a></td>
-                    <td></td>
+                    <td>A "normalizing" pattern which abides by the ISO-8601 duration format as far as possible. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -192,7 +192,10 @@ values: a parse/format cycle will produce an identical period, including units.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.PeriodPattern.html">PeriodPattern</a></td>
-                    <td></td>
+                    <td>
+Pattern which uses the normal ISO format for all the supported ISO
+fields, but extends the time part with "s" for milliseconds, "t" for ticks and "n" for nanoseconds.
+ (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -248,7 +251,7 @@ appending to the given <span class="xref">System.Text.StringBuilder</span>.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Text.StringBuilder</span></td>
-                    <td>The builder passed in as <span class="paramref">builder</span>.</td>
+                    <td>The builder passed in as <span class="paramref">builder</span>. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
@@ -265,7 +268,7 @@ appending to the given <span class="xref">System.Text.StringBuilder</span>.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.ArgumentNullException</span></td>
-                    <td><span class="paramref">builder</span> is null.</td>
+                    <td><span class="paramref">value</span> or <span class="paramref">builder</span> is null</td>
                   </tr>
                 </tbody>
               </table>
@@ -313,12 +316,27 @@ Formats the given period as text according to the rules of this pattern.
                 <tbody>
                   <tr>
                     <td><span class="xref">System.String</span></td>
-                    <td>The period formatted according to this pattern.</td>
+                    <td>The period formatted according to this pattern. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
                   <div><a class="xref" href="NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_">IPattern&lt;T&gt;.Format(T)</a></div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">value</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
               <a id="NodaTime_Text_PeriodPattern_Parse_" data-uid="NodaTime.Text.PeriodPattern.Parse*"></a>
               <h4 id="NodaTime_Text_PeriodPattern_Parse_System_String_" data-uid="NodaTime.Text.PeriodPattern.Parse(System.String)">Parse(String)</h4>
               <div class="markdown level1 summary">
@@ -363,7 +381,7 @@ Parses the given text value according to the rules of this pattern.
                 <tbody>
                   <tr>
                     <td><a class="xref" href="NodaTime.Text.ParseResult-1.html">ParseResult</a>&lt;<a class="xref" href="NodaTime.Period.html">Period</a>&gt;</td>
-                    <td>The result of parsing, which may be successful or unsuccessful.</td>
+                    <td>The result of parsing, which may be successful or unsuccessful. (The value returned is never null.)</td>
                   </tr>
                 </tbody>
               </table>
