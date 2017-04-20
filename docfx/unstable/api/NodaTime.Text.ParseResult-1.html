@@ -257,6 +257,253 @@ already clear that it will throw if the parse failed.
 </div>
               <h3 id="methods">Methods
               </h3>
+              <a id="NodaTime_Text_ParseResult_1_Convert_" data-uid="NodaTime.Text.ParseResult`1.Convert*"></a>
+              <h4 id="NodaTime_Text_ParseResult_1_Convert__1_System_Func__0___0__" data-uid="NodaTime.Text.ParseResult`1.Convert``1(System.Func{`0,``0})">Convert&lt;TTarget&gt;(Func&lt;T, TTarget&gt;)</h4>
+              <div class="markdown level1 summary">
+Converts this result to a new target type, either by executing the given projection
+for a success result, or propagating the exception provider for failure.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <div>
+              <strong>Since</strong> unstable
+              </div>
+              <div>
+              <strong>Availability</strong> net45, netstandard1.3
+              </div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public ParseResult&lt;TTarget&gt; Convert&lt;TTarget&gt;(Func&lt;T, TTarget&gt; projection)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Func</span>&lt;T, TTarget&gt;</td>
+                    <td><span class="parametername">projection</span></td>
+                    <td>The projection to apply for the value of this result,
+if it's a success result.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Text.ParseResult-1.html">ParseResult</a>&lt;TTarget&gt;</td>
+                    <td>A ParseResult for the target type, either with a value obtained by applying the specified
+projection to the value in this result, or with the same error as this result. (The value returned is never null.)</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="typeParameters">Type Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="parametername">TTarget</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">projection</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Text_ParseResult_1_ConvertError_" data-uid="NodaTime.Text.ParseResult`1.ConvertError*"></a>
+              <h4 id="NodaTime_Text_ParseResult_1_ConvertError__1" data-uid="NodaTime.Text.ParseResult`1.ConvertError``1">ConvertError&lt;TTarget&gt;()</h4>
+              <div class="markdown level1 summary">
+Converts this result to a new target type by propagating the exception provider.
+This parse result must already be an error result.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <div>
+              <strong>Since</strong> unstable
+              </div>
+              <div>
+              <strong>Availability</strong> net45, netstandard1.3
+              </div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public ParseResult&lt;TTarget&gt; ConvertError&lt;TTarget&gt;()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Text.ParseResult-1.html">ParseResult</a>&lt;TTarget&gt;</td>
+                    <td>A ParseResult for the target type, with the same error as this result. (The value returned is never null.)</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="typeParameters">Type Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="parametername">TTarget</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Text_ParseResult_1_ForException_" data-uid="NodaTime.Text.ParseResult`1.ForException*"></a>
+              <h4 id="NodaTime_Text_ParseResult_1_ForException_System_Func_System_Exception__" data-uid="NodaTime.Text.ParseResult`1.ForException(System.Func{System.Exception})">ForException(Func&lt;Exception&gt;)</h4>
+              <div class="markdown level1 summary">
+Produces a ParseResult which represents a failed parsing operation.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <div>
+              <strong>Since</strong> unstable
+              </div>
+              <div>
+              <strong>Availability</strong> net45, netstandard1.3
+              </div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static ParseResult&lt;T&gt; ForException(Func&lt;Exception&gt; exceptionProvider)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Func</span>&lt;<span class="xref">System.Exception</span>&gt;</td>
+                    <td><span class="parametername">exceptionProvider</span></td>
+                    <td>A delegate that produces the exception representing the error that
+caused the parse to fail.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Text.ParseResult-1.html">ParseResult</a>&lt;T&gt;</td>
+                    <td>A ParseResult representing a failed parsing operation. (The value returned is never null.)</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Text_ParseResult_1_ForException_System_Func_System_Exception___remarks">Remarks</h5>
+              <div class="markdown level1 remarks">This method accepts a delegate rather than the exception itself, as creating an
+exception can be relatively slow: if the client doesn't need the actual exception, just the information
+that the parse failed, there's no point in creating the exception.</div>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><span class="paramref">exceptionProvider</span> is null.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a id="NodaTime_Text_ParseResult_1_ForValue_" data-uid="NodaTime.Text.ParseResult`1.ForValue*"></a>
+              <h4 id="NodaTime_Text_ParseResult_1_ForValue__0_" data-uid="NodaTime.Text.ParseResult`1.ForValue(`0)">ForValue(T)</h4>
+              <div class="markdown level1 summary">
+Produces a ParseResult which represents a successful parse operation.
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <div>
+              <strong>Since</strong> unstable
+              </div>
+              <div>
+              <strong>Availability</strong> net45, netstandard1.3
+              </div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static ParseResult&lt;T&gt; ForValue(T value)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">T</span></td>
+                    <td><span class="parametername">value</span></td>
+                    <td>The successfully parsed value.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="NodaTime.Text.ParseResult-1.html">ParseResult</a>&lt;T&gt;</td>
+                    <td>A ParseResult representing a successful parsing operation. (The value returned is never null.)</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 id="NodaTime_Text_ParseResult_1_ForValue__0__remarks">Remarks</h5>
+              <div class="markdown level1 remarks">When T is a reference type, <span class="paramref">value</span> should not be null,
+but this isn't currently checked.</div>
               <a id="NodaTime_Text_ParseResult_1_GetValueOrThrow_" data-uid="NodaTime.Text.ParseResult`1.GetValueOrThrow*"></a>
               <h4 id="NodaTime_Text_ParseResult_1_GetValueOrThrow" data-uid="NodaTime.Text.ParseResult`1.GetValueOrThrow">GetValueOrThrow()</h4>
               <div class="markdown level1 summary">
