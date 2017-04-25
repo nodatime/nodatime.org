@@ -12,6 +12,7 @@
     <title>Noda Time | @ViewData["Title"]</title>
 
 <environment names="Development">
+    <link rel="stylesheet" href="/css/normalize.css" />
     <link rel="stylesheet" href="/css/foundation.css" />
     <link rel="stylesheet" href="/css/general_enclosed_foundicons.css">
     <link rel="stylesheet" href="/css/site.css">
@@ -19,7 +20,6 @@
     <link rel="stylesheet" href="/css/nuget-button.css">
 </environment>
 <environment names="Staging,Production">
-    <link rel="stylesheet" href="/css/foundation.min.css" />
     <link rel="stylesheet" href="/css/site.min.css" asp-append-version="true">
 </environment>
 
@@ -35,7 +35,7 @@
 <body>
 
     <div class="fixed">
-        <nav class="top-bar">
+        <nav class="top-bar" data-topbar role="navigation">
             <ul class="title-area">
                 <li class="name"><h1><a href="/">Noda Time</a></h1></li>
                 <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
@@ -56,11 +56,11 @@
                             <li><a href="/1.2.x/userguide/">1.2.x</a></li>
                             <li><a href="/1.3.x/userguide/">1.3.x</a></li>
                             <li><a href="/2.0.x/userguide/">2.0.x</a></li>
-                            <li class="divider hide-for-small"></li>
+                            <li class="divider hide-for-small-only"></li>
                             <li><a href="/unstable/userguide/">Unstable</a></li>
                         </ul>
                     </li>
-                    <li class="divider hide-for-small"></li>
+                    <li class="divider hide-for-small-only"></li>
                     <li class="has-dropdown">
                         <a href="#">API</a>
                         <ul class="dropdown">
@@ -70,7 +70,7 @@
                             <li><a href="/1.2.x/api/">1.2.x</a></li>
                             <li><a href="/1.3.x/api/">1.3.x</a></li>
                             <li><a href="/2.0.x/api/">2.0.x</a></li>
-                            <li class="divider hide-for-small"></li>
+                            <li class="divider hide-for-small-only"></li>
                             <li><a href="/unstable/api/">Unstable</a></li>
                         </ul>
                     </li>
@@ -84,8 +84,8 @@
                     </li>
                     <li class="divider"></li>
                     <li><a href="/#info">More Info</a></li>
-                    <li class="divider show-for-small"></li>
-                    <li class="has-form hide-for-small">
+                    <li class="divider show-for-small-only"></li>
+                    <li class="has-form hide-for-small-only">
                         <a class="button" href="/#install">Install</a>
                     </li>
                 </ul>
@@ -115,14 +115,11 @@
 
     @RenderSection("scripts", required: false)
 
-    <script>
-	document.write('<script src=' +
-	('__proto__' in {} ? '/js/vendor/zepto' : '/js/vendor/jquery') +
-	'.js><\/script>')
-    </script>
 <environment names="Development">
-    <script src="/js/vendor/custom.modernizr.js"></script>
+    <script src="/js/vendor/modernizr.js"></script>
+    <script src="/js/vendor/jquery.js"></script>
     <script src="/js/foundation/foundation.js"></script>
+    <script src="/js/foundation/foundation.accordion.js"></script>
     <script src="/js/foundation/foundation.topbar.js"></script>
     <script src="/js/highlight.pack.js"></script>
     <script src="/js/nuget-button.js"></script>
