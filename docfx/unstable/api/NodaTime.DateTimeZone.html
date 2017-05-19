@@ -569,7 +569,7 @@ specific instant.
               <h5 id="NodaTime_DateTimeZone_AtStrictly_NodaTime_LocalDateTime__snippet">Sample snippet</h5>
               <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
 using System;
-...
+
 DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
 ZonedDateTime dt = dublin.AtStrictly(new LocalDateTime(2010, 6, 9, 15, 15, 0));
 
@@ -723,7 +723,7 @@ although it can also be overridden for more efficiency.
               <h5 id="NodaTime_DateTimeZone_GetUtcOffset_NodaTime_Instant__snippet">Sample snippet</h5>
               <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
 using System;
-...
+
 // Yes, in 1900 Paris did (according to TZDB) have a UTC offset of 9 minutes, 21 seconds.
 DateTimeZone paris = DateTimeZoneProviders.Tzdb[&quot;Europe/Paris&quot;];
 Offset offset = paris.GetUtcOffset(Instant.FromUtc(1900, 1, 1, 0, 0));
@@ -790,7 +790,7 @@ This will always return a valid zone interval, as time zones cover the whole of 
               <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
 using NodaTime.TimeZones;
 using System;
-...
+
 DateTimeZone london = DateTimeZoneProviders.Tzdb[&quot;Europe/London&quot;];
 ZoneInterval interval = london.GetZoneInterval(Instant.FromUtc(2010, 6, 19, 0, 0));
 Console.WriteLine(interval.Name);
