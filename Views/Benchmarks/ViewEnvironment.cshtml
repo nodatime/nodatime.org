@@ -1,27 +1,25 @@
 ﻿@using NodaTime.Benchmarks;
-@model (BenchmarkEnvironment env, IList<BenchmarkRun> runs)
+@model BenchmarkEnvironment
 
 @{
     ViewBag.Title = "Benchmark environment";
-    var env = Model.env;
-    var runs = Model.runs;
 }
 
 <div class="row">
     <div>
-        <h1>Benchmark environment for @env.BenchmarkEnvironmentId.TruncateGuid()</h1>
+        <h1>Benchmark environment for @Model.BenchmarkEnvironmentId.TruncateGuid()</h1>
     </div>
     <div>
         <p>
-            Machine: @env.Machine<br />
-            Target framework: @env.TargetFramework<br />
-            Runtime version: @env.RuntimeVersion<br />
-            Operating system: @env.OperatingSystem<br />
-            Processor: @env.Processor<br />
-            Architecture: @env.Architecture<br />
-            Processor count: @env.ProcessorCount<br />
-            Has RyuJit? @env.HasRyuJit<br />
-            JIT modules: @env.JitModules<br />
+            Machine: @Model.Machine<br />
+            Target framework: @Model.TargetFramework<br />
+            Runtime version: @Model.RuntimeVersion<br />
+            Operating system: @Model.OperatingSystem<br />
+            Processor: @Model.Processor<br />
+            Architecture: @Model.Architecture<br />
+            Processor count: @Model.ProcessorCount<br />
+            Has RyuJit? @Model.HasRyuJit<br />
+            JIT modules: @Model.JitModules<br />
         </p>
     </div>
     <div>
@@ -35,7 +33,7 @@
                 <th>Start</th>
                 <th>End</th>
             </tr>
-            @foreach (var run in runs.OrderByDescending(e => e.Start.ToInstant()))
+            @foreach (var run in Model.Runs)
             {
                 <tr>
                     <td><a href="/benchmarks/runs/@run.BenchmarkRunId">View</a></td>
