@@ -85,7 +85,7 @@
             it's important to distinguish between the value of the variable (a reference) and the
             object it refers to. Value types are more complicated as in some cases the compiler
             will copy values before operating on them; however as all value types in Noda Time are
-            immutable (aside from explictily implemented serialization operations) this rarely causes
+            immutable (aside from explictly implemented serialization operations) this rarely causes
             an issue.
             </p>
             <p>
@@ -104,7 +104,7 @@
         </member>
         <member name="T:NodaTime.Annotations.ReadWriteForEfficiencyAttribute">
             <summary>
-            Indicates that a value-type field which would otherwise by <c>readonly</c>
+            Indicates that a value-type field which would otherwise be <c>readonly</c>
             is read/write so that invoking members on the field avoids taking a copy of
             the field value.
             </summary>
@@ -1462,7 +1462,8 @@
         </member>
         <member name="M:NodaTime.Calendars.YearMonthDayCalculator.MonthsBetween(NodaTime.YearMonthDay,NodaTime.YearMonthDay)">
             <summary>
-            Subtract subtrahendDate from minuendDate, in terms of months.
+            Find the months between <paramref name="start"/> and <paramref name="end"/>.
+            (If start is earlier than end, the result will be non-negative.)
             </summary>
         </member>
         <member name="M:NodaTime.Calendars.YearMonthDayCalculator.SetYear(NodaTime.YearMonthDay,System.Int32)">
@@ -3133,21 +3134,15 @@
             <param name="value">The value to add, in the units of the field</param>
             <returns>The updated local date</returns>
         </member>
-        <member name="M:NodaTime.Fields.IDatePeriodField.Subtract(NodaTime.LocalDate,NodaTime.LocalDate)">
+        <member name="M:NodaTime.Fields.IDatePeriodField.UnitsBetween(NodaTime.LocalDate,NodaTime.LocalDate)">
             <summary>
             Computes the difference between two local dates, as measured in the units
-            of this field. Any fractional units are dropped from the result. Calling
-            Subtract reverses the effect of calling Add, as far as possible.
+            of this field, rounding towards zero. This rounding means that
+            unit.Add(start, unit.UnitsBetween(start, end)) always ends up with a date
+            between start and end. (Ideally equal to end, but importantly, it never overshoots.)
             </summary>
-            <remarks>
-            The result is determined so as not to overshoot when added back: calling
-            <see cref="M:NodaTime.Fields.IDatePeriodField.Add(NodaTime.LocalDate,System.Int32)"/> using <paramref name="subtrahendDate"/> and
-            the result of this method will yield a value which is between <paramref name="subtrahendDate"/>
-            and <paramref name="minuendDate"/>. (In a simpler world, it would exactly equal
-            <paramref name="minuendDate"/>, but that's not always possible.)
-            </remarks>
-            <param name="minuendDate">The local date to subtract from</param>
-            <param name="subtrahendDate">The local date to subtract from minuendDate</param>
+            <param name="start">The start date</param>
+            <param name="end">The end date</param>
             <returns>The difference in the units of this field</returns>
         </member>
         <member name="T:NodaTime.Fields.MonthsPeriodField">
@@ -3173,6 +3168,16 @@
             finding the object etc. It turned out to make about 10% difference, at the cost of quite a bit
             of code elegance.
             </remarks>
+        </member>
+        <member name="M:NodaTime.Fields.TimePeriodField.GetUnitsInDuration(NodaTime.Duration)">
+            <summary>
+            Returns the number of units in the given duration, rounding towards zero.
+            </summary>
+        </member>
+        <member name="M:NodaTime.Fields.TimePeriodField.ToDuration(System.Int64)">
+            <summary>
+            Returns a <see cref="T:NodaTime.Duration"/> representing the given number of units.
+            </summary>
         </member>
         <member name="T:NodaTime.Fields.YearsPeriodField">
             <summary>
@@ -7736,6 +7741,33 @@
             <exception cref="T:System.ArgumentException"><paramref name="units"/> is empty or contained unknown values.</exception>
             <exception cref="T:System.ArgumentException"><paramref name="start"/> and <paramref name="end"/> use different calendars.</exception>
             <returns>The period between the given date/times, using the given units.</returns>
+        </member>
+        <member name="M:NodaTime.Period.DateComponentsBetween(NodaTime.LocalDate,NodaTime.LocalDate,NodaTime.PeriodUnits,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Common code to perform the date parts of the Between methods.
+            </summary>
+            <param name="start">Start date</param>
+            <param name="end">End date</param>
+            <param name="units">Units to compute</param>
+            <param name="years">(Out) Year component of result</param>
+            <param name="months">(Out) Months component of result</param>
+            <param name="weeks">(Out) Weeks component of result</param>
+            <param name="days">(Out) Days component of result</param>
+            <returns>The resulting date after adding the result components to <paramref name="start"/> (to
+            allow further computations to be made)</returns>
+        </member>
+        <member name="M:NodaTime.Period.TimeComponentsBetween(System.Int64,NodaTime.PeriodUnits,System.Int64@,System.Int64@,System.Int64@,System.Int64@,System.Int64@,System.Int64@)">
+            <summary>
+            Common code to perform the time parts of the Between methods for long-representable nanos.
+            </summary>
+            <param name="totalNanoseconds">Number of nanoseconds to compute the units of</param>
+            <param name="units">Units to compute</param>
+            <param name="hours">(Out) Hours component of result</param>
+            <param name="minutes">(Out) Minutes component of result</param>
+            <param name="seconds">(Out) Seconds component of result</param>
+            <param name="milliseconds">(Out) Milliseconds component of result</param>
+            <param name="ticks">(Out) Ticks component of result</param>
+            <param name="nanoseconds">(Out) Nanoseconds component of result</param>
         </member>
         <member name="M:NodaTime.Period.AddTo(NodaTime.LocalTime,System.Int32)">
             <summary>

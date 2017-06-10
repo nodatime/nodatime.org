@@ -1,0 +1,51 @@
+﻿@using NodaTime.Benchmarks;
+@model (BenchmarkEnvironment env, IList<BenchmarkRun> runs)
+
+@{
+    ViewBag.Title = "Benchmark environment";
+    var env = Model.env;
+    var runs = Model.runs;
+}
+
+<div class="row">
+    <div>
+        <h1>Benchmark environment for @env.BenchmarkEnvironmentId.TruncateGuid()</h1>
+    </div>
+    <div>
+        <p>
+            Machine: @env.Machine<br />
+            Target framework: @env.TargetFramework<br />
+            Runtime version: @env.RuntimeVersion<br />
+            Operating system: @env.OperatingSystem<br />
+            Processor: @env.Processor<br />
+            Architecture: @env.Architecture<br />
+            Processor count: @env.ProcessorCount<br />
+            Has RyuJit? @env.HasRyuJit<br />
+            JIT modules: @env.JitModules<br />
+        </p>
+    </div>
+    <div>
+        <h2>Runs</h2>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th></th>
+                <th>Commit</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+            @foreach (var run in runs.OrderByDescending(e => e.Start.ToInstant()))
+            {
+                <tr>
+                    <td><a href="/benchmarks/runs/@run.BenchmarkRunId">View</a></td>
+                    <td><a href="https://github.com/nodatime/nodatime/commit/@run.Commit">@run.Commit.TruncateCommit()</a></td>
+                    <td>@Html.RenderTimestamp(run.Start)</td>
+                    <td>@Html.RenderTimestamp(run.End)</td>
+                </tr>
+            }
+        </table>
+    </div>
+    @* Work out how to style the above to leave some padding instead... *@
+    <p />
+</div>

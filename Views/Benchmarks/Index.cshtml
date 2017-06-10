@@ -1,0 +1,29 @@
+﻿@using NodaTime.Benchmarks;
+@model IList<BenchmarkEnvironment>
+
+@{
+    ViewBag.Title = "Benchmark environments";
+}
+
+<div class="row">
+    <div>
+        <h1>Benchmark environments</h1>
+        <table>
+            <tr>
+                <th></th>
+                <th>Machine</th>
+                <th>Target framework</th>
+                <th>Operating system</th>
+            </tr>
+            @foreach (var env in Model.OrderBy(e => e.Machine).ThenBy(e => e.TargetFramework))
+            {
+            <tr>
+                <td><a href="/benchmarks/environments/@env.BenchmarkEnvironmentId">View</a></td>
+                <td>@env.Machine</td>
+                <td>@env.TargetFramework</td>
+                <td>@env.OperatingSystem</td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>
