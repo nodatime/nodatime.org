@@ -32,6 +32,8 @@
                 <th>Commit</th>
                 <th>Start</th>
                 <th>End</th>
+                <th>Types</th>
+                <th>Benchmarks</th>
             </tr>
             @foreach (var run in Model.Runs)
             {
@@ -40,6 +42,8 @@
                     <td><a href="https://github.com/nodatime/nodatime/commit/@run.Commit">@run.Commit.TruncateCommit()</a></td>
                     <td>@Html.RenderTimestamp(run.Start)</td>
                     <td>@Html.RenderTimestamp(run.End)</td>
+                    <td>@run.Types_.Count</td>
+                    <td>@run.Types_.Sum(t => t.Benchmarks.Count)</td>
                 </tr>
             }
         </table>

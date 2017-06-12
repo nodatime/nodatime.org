@@ -1,5 +1,5 @@
 ﻿@using NodaTime.Benchmarks;
-@model (BenchmarkEnvironment env, BenchmarkRun run, BenchmarkType type)
+@model (BenchmarkEnvironment env, BenchmarkRun run, BenchmarkType type, BenchmarkType previousRunType)
 
 @{
     ViewBag.Title = "Benchmark type";
@@ -7,6 +7,7 @@
     var run = Model.run;
     var type = Model.type;
     var benchmarks = type.Benchmarks;
+    var previousRunType = Model.previousRunType;
 }
 
 <div class="row">
@@ -17,7 +18,15 @@
         <p>
             Type: @type.FullTypeName<br />
             Environment: <a href="/benchmarks/environments/@env.BenchmarkEnvironmentId">@env.Machine, @env.TargetFramework</a><br />
-            Run: <a href="/benchmarks/runs/@run.BenchmarkRunId">@run.BenchmarkRunId.TruncateGuid()</a>
+            Run: <a href="/benchmarks/runs/@run.BenchmarkRunId">@run.BenchmarkRunId.TruncateGuid()</a><br />
+            @if (previousRunType != null)
+            {
+                <a href="/benchmarks/types/@type.BenchmarkTypeId/compare/@previousRunType.BenchmarkTypeId">Compare with previous run</a>
+            }
+            else
+            {            
+                @:(No previous run to compare this with.)
+            }
         </p>
     </div>
     <div>
