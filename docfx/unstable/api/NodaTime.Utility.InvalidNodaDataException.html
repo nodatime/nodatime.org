@@ -156,7 +156,9 @@ public sealed class InvalidNodaDataException : Exception, ISerializable, _Except
               </div>
               <h5 id="NodaTime_Utility_InvalidNodaDataException_remarks"><strong>Remarks</strong></h5>
               <div class="markdown level0 remarks">
-This type only exists as <code>InvalidDataException</code> doesn't exist in the Portable Class Library.
+This type only exists as <code>InvalidDataException</code> didn't exist in Portable Class Libraries.
+That does exist in netstandard1.3, but as we shipped 2.0 without realizing this, we're stuck with the
+new exception type.
 Unfortunately, <code>InvalidDataException</code> itself is sealed, so we can't derive from it for the sake
 of backward compatibility.
 </div>

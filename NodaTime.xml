@@ -489,8 +489,7 @@
             <summary>
             Returns the name of this calendar system. Each kind of calendar system has a unique name, but this
             does not usually provide enough information for round-tripping. (For example, the name of an
-            Islamic calendar system does not indicate which kind of leap cycle it uses, and other calendars
-            specify the minimum number of days in the first week of a year.)
+            Islamic calendar system does not indicate which kind of leap cycle it uses.)
             </summary>
             <value>The name of this calendar system.</value>
         </member>
@@ -640,7 +639,7 @@
         </member>
         <member name="P:NodaTime.CalendarSystem.Gregorian">
             <summary>
-            Returns a Gregorian calendar system with at least 4 days in the first week of a week-year.
+            Returns a Gregorian calendar system.
             </summary>
             <remarks>
             <para>
@@ -654,7 +653,7 @@
             fixes the start of the year at January 1.
             </para>
             </remarks>
-            <value>A Gregorian calendar system with at least 4 days in the first week of a week-year.</value>
+            <value>A Gregorian calendar system.</value>
         </member>
         <member name="P:NodaTime.CalendarSystem.Julian">
             <summary>
@@ -668,9 +667,6 @@
             assumes it did, thus it is proleptic. This implementation also fixes the
             start of the year at January 1.
             </remarks>
-            <para>
-            This calendar always has at least 4 days in the first week of the week-year.
-            </para>
             <value>A suitable Julian calendar reference; the same reference may be returned by several
             calls as the object is immutable and thread-safe.</value>
         </member>
@@ -692,9 +688,6 @@
             the ISO calendar. Some references indicate that a Coptic day starts at
             sunset on the previous ISO day, but this has not been confirmed and is not
             implemented.
-            </para>
-            <para>
-            This calendar always has at least 4 days in the first week of the week-year.
             </para>
             </remarks>
             <value>A suitable Coptic calendar reference; the same reference may be returned by several
@@ -1844,7 +1837,7 @@
             <see cref="T:NodaTime.DateTimeZone"/> that wraps the system local <see cref="T:System.TimeZoneInfo"/>. The latter will always
             succeed, but has access only to that information available via the .NET time zone; the former may contain more
             complete data, but may (in uncommon cases) fail to find a matching <see cref="T:NodaTime.DateTimeZone"/>.
-            Note that <c>BclDateTimeZone</c> is not available on the PCL build of Noda Time, so this fallback strategy can
+            Note that <c>BclDateTimeZone</c> is not available on the .NET Standard 1.3 build of Noda Time, so this fallback strategy can
             only be used with the desktop version.
             </para>
             <para>
@@ -3085,6 +3078,18 @@
             the whole namespace and ignore extension methods they are not interested in.
             </summary>
         </member>
+        <member name="T:NodaTime.Extensions.StopwatchExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Diagnostics.Stopwatch"/>.
+            </summary>
+        </member>
+        <member name="M:NodaTime.Extensions.StopwatchExtensions.ElapsedDuration(System.Diagnostics.Stopwatch)">
+            <summary>
+            Returns the elapsed time of <paramref name="stopwatch"/> as a <see cref="T:NodaTime.Duration"/>.
+            </summary>
+            <param name="stopwatch">The <c>Stopwatch</c> to obtain the elapsed time from.</param>
+            <returns>The elapsed time of <paramref name="stopwatch"/> as a <c>Duration</c>.</returns>
+        </member>
         <member name="T:NodaTime.Extensions.TimeSpanExtensions">
             <summary>
             Extension methods for <see cref="T:System.TimeSpan"/>.
@@ -4040,8 +4045,6 @@
             Initializes a new instance of the <see cref="T:NodaTime.Instant" /> struct based
             on a number of ticks since the Unix epoch of (ISO) January 1st 1970, midnight, UTC.
             </summary>
-            <remarks>This is equivalent to calling the constructor directly, but indicates
-            intent more explicitly.</remarks>
             <returns>An <see cref="T:NodaTime.Instant"/> at exactly the given number of ticks since the Unix epoch.</returns>
             <param name="ticks">Number of ticks since the Unix epoch. May be negative (for instants before the epoch).</param>
         </member>
@@ -11558,9 +11561,9 @@
             but the specified ID is invalid for that provider.
             </summary>
             <remarks>
-            This type only exists as <c>TimeZoneNotFoundException</c> doesn't exist in the Portable Class Library.
+            This type only exists as <c>TimeZoneNotFoundException</c> doesn't exist in netsatandard1.x.
             By creating an exception which derives from <c>TimeZoneNotFoundException</c> on the desktop version
-            and <c>Exception</c> on the PCL version, we achieve reasonable consistency while remaining
+            and <c>Exception</c> on the .NET Standard 1.3 version, we achieve reasonable consistency while remaining
             backwardly compatible with Noda Time v1 (which was desktop-only, and threw <c>TimeZoneNotFoundException</c>).
             </remarks>
             <threadsafety>Any public static members of this type are thread safe. Any instance members are not guaranteed to be thread safe.
@@ -12899,7 +12902,7 @@
             zone for some reason. We return null if we don't get a 70% hit rate.
             We look at all transitions in all canonical IDs for the next 5 years.
             Heuristically, this seems to be good enough to get the right results in most cases.
-            This method used to only be called in the PCL build, but it seems reasonable enough to
+            This method used to only be called in the PCL build in 1.x, but it seems reasonable enough to
             call it if we can't get an exact match anyway.
             </summary>
             <param name="zone">Zone to resolve in a best-effort fashion.</param>
@@ -13987,7 +13990,9 @@
             data which is truncated, i.e. we expect more data than we can read.
             </summary>
             <remarks>
-            This type only exists as <c>InvalidDataException</c> doesn't exist in the Portable Class Library.
+            This type only exists as <c>InvalidDataException</c> didn't exist in Portable Class Libraries.
+            That does exist in netstandard1.3, but as we shipped 2.0 without realizing this, we're stuck with the
+            new exception type.
             Unfortunately, <c>InvalidDataException</c> itself is sealed, so we can't derive from it for the sake
             of backward compatibility.
             </remarks>
