@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IWeekYearRule
+   | Noda Time </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IWeekYearRule
+   | Noda Time ">
+    <meta name="generator" content="docfx 2.18.5.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="NodaTime.Calendars.IWeekYearRule">
+  
+  
+  <h1 id="NodaTime_Calendars_IWeekYearRule" data-uid="NodaTime.Calendars.IWeekYearRule">Interface IWeekYearRule
+  </h1>
+  
+  <div class="markdown level0 summary">
+A rule determining how "week years" are arranged, including the weeks within the week year.
+Implementations provided by Noda Time itself can be obtained via the <a class="xref" href="NodaTime.Calendars.WeekYearRules.html">WeekYearRules</a>
+class.
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>:System.Dynamic.ExpandoObject</h6>
+  <h6><strong>Assembly</strong>:NodaTime.dll</h6>
+  <h5 id="NodaTime_Calendars_IWeekYearRule_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IWeekYearRule</code></pre>
+  </div>
+  <h5 id="NodaTime_Calendars_IWeekYearRule_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks">
+<p>
+Dates are usually identified within a calendar system by a calendar year, a month within that
+calendar year, and a day within that month. For example, the date of birth of Ada Lovelace can be identified
+within the Gregorian calendar system as the year 1815, the month December (12), and the day 10. However,
+dates can also be identified (again within a calendar system) by week-year, week and day-of-week. How
+that identification occurs depends on which rule you use - but again as an example, within the Gregorian
+calendar system, using the ISO-8601 week year rule, the date of Ada Lovelace's birth is week-year 1815,
+week 49, day-of-week Sunday.
+</p>
+<p>
+The calendar year of a date and the week-year of a date are the same in most rules for most dates, but aren't
+always. When they differ, it is usually because a day near the start of the calendar year is deemed to belong
+to the last week of the previous week-year - or conversely because a day near the end of the calendar year is
+deemed to belong to the first week of the following week-year. Some rules may be more radical -
+a UK tax year rule could number weeks from April 6th onwards, such that any date earlier than that in the calendar
+year would belong to the previous week-year.
+</p>
+<p>
+The mapping of dates into week-year, week and day-of-week is always relative to a specific calendar system.
+For example, years in the Hebrew calendar system vary very significantly in length due to leap months, and this
+is reflected in the number of weeks within the week-years - as low as 50, and as high as 55.
+</p>
+<p>
+This class allows conversions between the two schemes of identifying dates: <a class="xref" href="NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetWeekYear_NodaTime_LocalDate_">GetWeekYear(LocalDate)</a>
+and <a class="xref" href="NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetWeekOfWeekYear_NodaTime_LocalDate_">GetWeekOfWeekYear(LocalDate)</a> allow the week-year and week to be obtained for a date, and
+<a class="xref" href="NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetLocalDate_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_NodaTime_CalendarSystem_">GetLocalDate(Int32, Int32, IsoDayOfWeek, CalendarSystem)</a> allows the reverse mapping. Note that
+the calendar system does not need to be specified in the former methods as a <a class="xref" href="NodaTime.LocalDate.html">LocalDate</a> already
+contains calendar information, and there is no method to obtain the day-of-week as that is not affected by the
+week year rule being used.
+</p>
+<p>
+All implementations within Noda Time are immutable, and it is advised that any external implementations
+should be immutable too.
+</p>
+</div>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="NodaTime_Calendars_IWeekYearRule_GetLocalDate_" data-uid="NodaTime.Calendars.IWeekYearRule.GetLocalDate*"></a>
+  <h4 id="NodaTime_Calendars_IWeekYearRule_GetLocalDate_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_NodaTime_CalendarSystem_" data-uid="NodaTime.Calendars.IWeekYearRule.GetLocalDate(System.Int32,System.Int32,NodaTime.IsoDayOfWeek,NodaTime.CalendarSystem)">GetLocalDate(Int32, Int32, IsoDayOfWeek, CalendarSystem)</h4>
+  <div class="markdown level1 summary">
+Creates a <a class="xref" href="NodaTime.LocalDate.html">LocalDate</a> from a given week-year, week within that week-year,
+and day-of-week, for the specified calendar system.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">LocalDate GetLocalDate(int weekYear, int weekOfWeekYear, IsoDayOfWeek dayOfWeek, CalendarSystem calendar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">weekYear</span></td>
+        <td>The week-year of the new date. Implementations provided by Noda Time allow any
+year which is a valid calendar year, and sometimes one less than the minimum calendar year
+and/or one more than the maximum calendar year, to allow for dates near the start of a calendar
+year to fall in the previous week year, and similarly for dates near the end of a calendar year.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">weekOfWeekYear</span></td>
+        <td>The week of week-year of the new date. Valid values for this parameter
+may vary depending on <span class="paramref">weekYear</span>, as the length of a year in weeks varies.</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="NodaTime.IsoDayOfWeek.html">IsoDayOfWeek</a></td>
+        <td><span class="parametername">dayOfWeek</span></td>
+        <td>The day-of-week of the new date. Valid values for this parameter may vary
+depending on <span class="paramref">weekYear</span> and <span class="paramref">weekOfWeekYear</span>.</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
+        <td><span class="parametername">calendar</span></td>
+        <td>The calendar system for the date.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
+        <td>A <a class="xref" href="NodaTime.LocalDate.html">LocalDate</a> corresponding to the specified values.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NodaTime_Calendars_IWeekYearRule_GetLocalDate_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_NodaTime_CalendarSystem__remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+<p>
+Wherever reasonable, implementations should ensure that all valid dates
+can be constructed via this method. In other words, given a <a class="xref" href="NodaTime.LocalDate.html">LocalDate</a> <pre><code>date</code></pre>,
+<pre><code>rule.GetLocalDate(rule.GetWeekYear(date), rule.GetWeekOfWeekYear(date), date.IsoDayOfWeek, date.Calendar)</code></pre>
+should always return <pre><code>date</code></pre>. This is true for all rules within Noda Time, but third party
+implementations may choose to simplify their implementations by restricting them to appropriate portions
+of time.
+</p>
+<p>
+Implementations may restrict which calendar systems supplied here, but the implementations provided by
+Noda Time work with all available calendar systems.
+</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td>The parameters do not combine to form a valid date.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Calendars_IWeekYearRule_GetWeekOfWeekYear_" data-uid="NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear*"></a>
+  <h4 id="NodaTime_Calendars_IWeekYearRule_GetWeekOfWeekYear_NodaTime_LocalDate_" data-uid="NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear(NodaTime.LocalDate)">GetWeekOfWeekYear(LocalDate)</h4>
+  <div class="markdown level1 summary">
+Calculates the week of the week-year in which the given date occurs, according to this rule.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int GetWeekOfWeekYear(LocalDate date)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
+        <td><span class="parametername">date</span></td>
+        <td>The date to compute the week of.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td>The week of the week-year of <span class="paramref">date</span>, according to this rule.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Calendars_IWeekYearRule_GetWeeksInWeekYear_" data-uid="NodaTime.Calendars.IWeekYearRule.GetWeeksInWeekYear*"></a>
+  <h4 id="NodaTime_Calendars_IWeekYearRule_GetWeeksInWeekYear_System_Int32_NodaTime_CalendarSystem_" data-uid="NodaTime.Calendars.IWeekYearRule.GetWeeksInWeekYear(System.Int32,NodaTime.CalendarSystem)">GetWeeksInWeekYear(Int32, CalendarSystem)</h4>
+  <div class="markdown level1 summary">
+Returns the number of weeks in the given week-year, within the specified calendar system.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int GetWeeksInWeekYear(int weekYear, CalendarSystem calendar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">weekYear</span></td>
+        <td>The week-year to find the range of.</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="NodaTime.CalendarSystem.html">CalendarSystem</a></td>
+        <td><span class="parametername">calendar</span></td>
+        <td>The calendar system the calculation is relative to.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td>The number of weeks in the given week-year within the given calendar.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Calendars_IWeekYearRule_GetWeekYear_" data-uid="NodaTime.Calendars.IWeekYearRule.GetWeekYear*"></a>
+  <h4 id="NodaTime_Calendars_IWeekYearRule_GetWeekYear_NodaTime_LocalDate_" data-uid="NodaTime.Calendars.IWeekYearRule.GetWeekYear(NodaTime.LocalDate)">GetWeekYear(LocalDate)</h4>
+  <div class="markdown level1 summary">
+Calculates the week-year in which the given date occurs, according to this rule.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int GetWeekYear(LocalDate date)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.LocalDate.html">LocalDate</a></td>
+        <td><span class="parametername">date</span></td>
+        <td>The date to compute the week-year of.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td>The week-year of <span class="paramref">date</span>, according to this rule.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetLocalDate_NodaTime_Calendars_IWeekYearRule_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_">WeekYearRuleExtensions.GetLocalDate(IWeekYearRule, Int32, Int32, IsoDayOfWeek)</a>
+  </div>
+  <div>
+      <a class="xref" href="NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetWeeksInWeekYear_NodaTime_Calendars_IWeekYearRule_System_Int32_">WeekYearRuleExtensions.GetWeeksInWeekYear(IWeekYearRule, Int32)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+             
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-60886284-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
