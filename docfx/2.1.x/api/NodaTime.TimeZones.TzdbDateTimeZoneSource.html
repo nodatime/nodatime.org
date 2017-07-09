@@ -1,0 +1,695 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TzdbDateTimeZoneSource
+   | Noda Time </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TzdbDateTimeZoneSource
+   | Noda Time ">
+    <meta name="generator" content="docfx 2.18.5.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource">
+  
+  
+  <h1 id="NodaTime_TimeZones_TzdbDateTimeZoneSource" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource">Class TzdbDateTimeZoneSource
+  </h1>
+  
+  <div class="markdown level0 summary">
+Provides an implementation of <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html">IDateTimeZoneSource</a> that loads data originating from the
+<a href="http://www.iana.org/time-zones">tz database</a> (also known as the IANA Time Zone database, or zoneinfo
+or Olson database).
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+      <div class="level0"><span class="xref">System.Object</span></div>
+      <div class="level"><span class="xref"></span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>:System.Dynamic.ExpandoObject</h6>
+  <h6><strong>Assembly</strong>:NodaTime.dll</h6>
+  <h5 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class TzdbDateTimeZoneSource : IDateTimeZoneSource</code></pre>
+  </div>
+  <h5 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks">
+All calls to <a class="xref" href="NodaTime.TimeZones.TzdbDateTimeZoneSource.html#NodaTime_TimeZones_TzdbDateTimeZoneSource_ForId_System_String_">ForId(String)</a> for fixed-offset IDs advertised by the source (i.e. "UTC" and "UTC+/-Offset")
+will return zones equal to those returned by <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ForOffset_NodaTime_Offset_">ForOffset(Offset)</a>.
+</div>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_Aliases_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.Aliases*"></a>
+  <h4 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_Aliases" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.Aliases">Aliases</h4>
+  <div class="markdown level1 summary">
+Gets a lookup from canonical time zone ID (e.g. "Europe/London") to a group of aliases for that time zone
+(e.g. {"Europe/Belfast", "Europe/Guernsey", "Europe/Jersey", "Europe/Isle_of_Man", "GB", "GB-Eire"}).
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ILookup&lt;string, string&gt; Aliases { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.ILookup</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
+        <td>A lookup from canonical ID to the aliases of that ID. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_Aliases_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+The group of values for a key never contains the canonical ID, only aliases. Any time zone
+ID which is itself an alias or has no aliases linking to it will not be present in the lookup.
+The aliases within a group are returned in alphabetical (ordinal) order.
+</div>
+  <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_CanonicalIdMap_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.CanonicalIdMap*"></a>
+  <h4 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_CanonicalIdMap" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.CanonicalIdMap">CanonicalIdMap</h4>
+  <div class="markdown level1 summary">
+Returns a read-only map from time zone ID to the canonical ID. For example, the key "Europe/Jersey"
+would be associated with the value "Europe/London".
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IDictionary&lt;string, string&gt; CanonicalIdMap { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IDictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
+        <td>A map from time zone ID to the canonical ID. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_CanonicalIdMap_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+<p>This map contains an entry for every ID returned by <a class="xref" href="NodaTime.TimeZones.TzdbDateTimeZoneSource.html#NodaTime_TimeZones_TzdbDateTimeZoneSource_GetIds">GetIds()</a>, where
+canonical IDs map to themselves.</p>
+<p>The returned map is read-only; any attempts to call a mutating method will throw
+<span class="xref">System.NotSupportedException</span>.</p>
+</div>
+  <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_Default_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.Default*"></a>
+  <h4 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_Default" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.Default">Default</h4>
+  <div class="markdown level1 summary">
+Gets the <a class="xref" href="NodaTime.TimeZones.TzdbDateTimeZoneSource.html">TzdbDateTimeZoneSource</a> initialised from resources within the NodaTime assembly.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TzdbDateTimeZoneSource Default { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.TimeZones.TzdbDateTimeZoneSource.html">TzdbDateTimeZoneSource</a></td>
+        <td>The source initialised from resources within the NodaTime assembly. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_TzdbVersion_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion*"></a>
+  <h4 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_TzdbVersion" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion">TzdbVersion</h4>
+  <div class="markdown level1 summary">
+Gets just the TZDB version (e.g. "2013a") of the source data.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string TzdbVersion { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td>The TZDB version (e.g. "2013a") of the source data. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_VersionId_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.VersionId*"></a>
+  <h4 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_VersionId" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.VersionId">VersionId</h4>
+  <div class="markdown level1 summary">
+Returns an appropriate version ID for diagnostic purposes, which must not be null.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string VersionId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td>An appropriate version ID for diagnostic purposes. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_VersionId">IDateTimeZoneSource.VersionId</a></div>
+  <h5 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_VersionId_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+<p>
+This source returns a string such as "TZDB: 2013b (mapping: 8274)" corresponding to the versions of the tz
+database and the CLDR Windows zones mapping file.
+</p>
+<p>
+Note that there is no need to parse this string to extract any of the above information, as it is available
+directly from the <a class="xref" href="NodaTime.TimeZones.TzdbDateTimeZoneSource.html#NodaTime_TimeZones_TzdbDateTimeZoneSource_TzdbVersion">TzdbVersion</a> and <a class="xref" href="NodaTime.TimeZones.Cldr.WindowsZones.html#NodaTime_TimeZones_Cldr_WindowsZones_Version">Version</a> properties.
+</p>
+</div>
+  <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_WindowsMapping_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.WindowsMapping*"></a>
+  <h4 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_WindowsMapping" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.WindowsMapping">WindowsMapping</h4>
+  <div class="markdown level1 summary">
+Gets the Windows time zone mapping information provided in the CLDR
+supplemental "windowsZones.xml" file.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WindowsZones WindowsMapping { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.TimeZones.Cldr.WindowsZones.html">WindowsZones</a></td>
+        <td>The Windows time zone mapping information provided in the CLDR
+supplemental "windowsZones.xml" file. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_Zone1970Locations_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.Zone1970Locations*"></a>
+  <h4 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_Zone1970Locations" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.Zone1970Locations">Zone1970Locations</h4>
+  <div class="markdown level1 summary">
+Gets a read-only list of "zone 1970" locations known to this source, or null if the original source data
+does not include zone locations.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IList&lt;TzdbZone1970Location&gt; Zone1970Locations { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IList</span>&lt;<a class="xref" href="NodaTime.TimeZones.TzdbZone1970Location.html">TzdbZone1970Location</a>&gt;</td>
+        <td>A read-only list of zone locations known to this source.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_Zone1970Locations_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+<p>
+This location data differs from <a class="xref" href="NodaTime.TimeZones.TzdbDateTimeZoneSource.html#NodaTime_TimeZones_TzdbDateTimeZoneSource_ZoneLocations">ZoneLocations</a> in two important respects:
+<ul>
+<li>Where multiple similar zones exist but only differ in transitions before 1970,
+  this location data chooses one zone to be the canonical "post 1970" zone.
+</li>
+<li>
+  This location data can represent multiple ISO-3166 country codes in a single entry. For example,
+  the entry corresponding to "Europe/London" includes country codes GB, GG, JE and IM (Britain,
+  Guernsey, Jersey and the Isle of Man, respectively).
+</li>
+</ul>
+</p>
+<p>
+Every zone location's time zone ID is guaranteed to be valid within this source (assuming the source
+has been validated).
+</p>
+</div>
+  <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_ZoneLocations_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.ZoneLocations*"></a>
+  <h4 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_ZoneLocations" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.ZoneLocations">ZoneLocations</h4>
+  <div class="markdown level1 summary">
+Gets a read-only list of zone locations known to this source, or null if the original source data
+does not include zone locations.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IList&lt;TzdbZoneLocation&gt; ZoneLocations { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IList</span>&lt;<a class="xref" href="NodaTime.TimeZones.TzdbZoneLocation.html">TzdbZoneLocation</a>&gt;</td>
+        <td>A read-only list of zone locations known to this source.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_ZoneLocations_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+Every zone location's time zone ID is guaranteed to be valid within this source (assuming the source
+has been validated).
+</div>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_ForId_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.ForId*"></a>
+  <h4 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_ForId_System_String_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.ForId(System.String)">ForId(String)</h4>
+  <div class="markdown level1 summary">
+Returns the time zone definition associated with the given ID.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTimeZone ForId(string id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td>The ID of the time zone to return. This must be one of the IDs
+returned by <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetIds">GetIds()</a>.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a></td>
+        <td>The <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> for the given ID. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_ForId_System_String_">IDateTimeZoneSource.ForId(String)</a></div>
+  <h5 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_ForId_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+<p>
+Note that this is permitted to return a <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> that has a different ID to that
+requested, if the ID provided is an alias.
+</p>
+<p>
+Note also that this method is not required to return the same <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> instance for
+successive requests for the same ID; however, all instances returned for a given ID must compare as equal.
+</p>
+<p>
+It is advised that sources should document their behaviour regarding any fixed-offset timezones
+(i.e. "UTC" and "UTC+/-Offset") that are included in the list returned by <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetIds">GetIds()</a>.
+(These IDs will not be requested by <a class="xref" href="NodaTime.TimeZones.DateTimeZoneCache.html">DateTimeZoneCache</a>, but any users calling
+into the source directly may care.)
+</p>
+<p>
+The source need not attempt to cache time zones; caching is typically provided by
+<a class="xref" href="NodaTime.TimeZones.DateTimeZoneCache.html">DateTimeZoneCache</a>.
+</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><span class="paramref">id</span> is not supported by this source.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><span class="paramref">id</span> is null.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_FromStream_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.FromStream*"></a>
+  <h4 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_FromStream_System_IO_Stream_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.FromStream(System.IO.Stream)">FromStream(Stream)</h4>
+  <div class="markdown level1 summary">
+Creates an instance from a stream in the custom Noda Time format. The stream must be readable.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TzdbDateTimeZoneSource FromStream(Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IO.Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td>The stream containing time zone data</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.TimeZones.TzdbDateTimeZoneSource.html">TzdbDateTimeZoneSource</a></td>
+        <td>A <code>TzdbDateTimeZoneSource</code> providing information from the given stream. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_FromStream_System_IO_Stream__remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+<p>
+The stream is not closed by this method, but will be read from
+without rewinding. A successful call will read the stream to the end.
+</p>
+<p>
+See the user guide for instructions on how to generate an updated time zone database file from a copy of the
+(textual) tz database.
+</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.Utility.InvalidNodaDataException.html">InvalidNodaDataException</a></td>
+        <td>The stream contains invalid time zone data, or data which cannot
+be read by this version of Noda Time.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.IOException</span></td>
+        <td>Reading from the stream failed.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td>The supplied stream doesn't support reading.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><span class="paramref">stream</span> is null.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_GetIds_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds*"></a>
+  <h4 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_GetIds" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds">GetIds()</h4>
+  <div class="markdown level1 summary">
+Returns an unordered enumeration of the IDs available from this source.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;string&gt; GetIds()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td>The IDs available from this source. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetIds">IDateTimeZoneSource.GetIds()</a></div>
+  <h5 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_GetIds_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+<p>
+Every value in this enumeration must return a valid time zone from <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_ForId_System_String_">ForId(String)</a> for the life of the source.
+The enumeration may be empty, but must not be null, and must not contain any elements which are null.  It
+should not contain duplicates: this is not enforced, and while it may not have a significant impact on
+clients in some cases, it is generally unfriendly.  The built-in implementations never return duplicates.
+</p>
+<p>
+The source is not required to provide the IDs in any particular order, although they should be distinct.
+</p>
+<p>
+Note that this list may optionally contain any of the fixed-offset timezones (with IDs "UTC" and
+"UTC+/-Offset"), but there is no requirement they be included.
+</p>
+</div>
+  <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_GetSystemDefaultId_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.GetSystemDefaultId*"></a>
+  <h4 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_GetSystemDefaultId" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.GetSystemDefaultId">GetSystemDefaultId()</h4>
+  <div class="markdown level1 summary">
+Returns this source's ID for the system default time zone.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetSystemDefaultId()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td>
+The ID for the system default time zone for this source,
+or null if the system default time zone has no mapping in this source.
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetSystemDefaultId">IDateTimeZoneSource.GetSystemDefaultId()</a></div>
+  <a id="NodaTime_TimeZones_TzdbDateTimeZoneSource_Validate_" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.Validate*"></a>
+  <h4 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_Validate" data-uid="NodaTime.TimeZones.TzdbDateTimeZoneSource.Validate">Validate()</h4>
+  <div class="markdown level1 summary">
+Validates that the data within this source is consistent with itself.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Validate()</code></pre>
+  </div>
+  <h5 id="NodaTime_TimeZones_TzdbDateTimeZoneSource_Validate_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+Source data is not validated automatically when it's loaded, but any source
+loaded from data produced by <code>NodaTime.TzdbCompiler</code> (including the data shipped with Noda Time)
+will already have been validated via this method when it was originally produced. This method should
+only normally be called explicitly if you have data from a source you're unsure of.
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.Utility.InvalidNodaDataException.html">InvalidNodaDataException</a></td>
+        <td>The source data is invalid. The source may not function
+correctly.</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+             
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-60886284-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
