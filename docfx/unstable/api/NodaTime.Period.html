@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Period
    | Noda Time ">
-    <meta name="generator" content="docfx 2.18.5.0">
+    <meta name="generator" content="docfx 2.20.0.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -116,17 +116,17 @@ public sealed class Period : IEquatable&lt;Period&gt;, ISerializable</code></pre
 <p>
 A <a class="xref" href="NodaTime.Period.html">Period</a> contains a set of properties such as <a class="xref" href="NodaTime.Period.html#NodaTime_Period_Years">Years</a>, <a class="xref" href="NodaTime.Period.html#NodaTime_Period_Months">Months</a>, and so on
 that return the number of each unit contained within this period. Note that these properties are not normalized in
-any way by default, and so a <a class="xref" href="NodaTime.Period.html">Period</a> may contain values such as "2 hours and 90 minutes". The
+any way by default, and so a <a class="xref" href="NodaTime.Period.html">Period</a> may contain values such as &quot;2 hours and 90 minutes&quot;. The
 <a class="xref" href="NodaTime.Period.html#NodaTime_Period_Normalize">Normalize()</a> method will convert equivalent periods into a standard representation.
 </p>
 <p>
-Periods can contain negative units as well as positive units ("+2 hours, -43 minutes, +10 seconds"), but do not
-differentiate between properties that are zero and those that are absent (i.e. a period created as "10 years"
-and one created as "10 years, zero months" are equal periods; the <a class="xref" href="NodaTime.Period.html#NodaTime_Period_Months">Months</a> property returns zero in
+Periods can contain negative units as well as positive units (&quot;+2 hours, -43 minutes, +10 seconds&quot;), but do not
+differentiate between properties that are zero and those that are absent (i.e. a period created as &quot;10 years&quot;
+and one created as &quot;10 years, zero months&quot; are equal periods; the <a class="xref" href="NodaTime.Period.html#NodaTime_Period_Months">Months</a> property returns zero in
 both cases).
 </p>
 <p>
-<a class="xref" href="NodaTime.Period.html">Period</a> equality is implemented by comparing each property's values individually.
+<a class="xref" href="NodaTime.Period.html">Period</a> equality is implemented by comparing each property&apos;s values individually.
 </p>
 <p>
 Periods operate on calendar-related types such as
@@ -747,7 +747,7 @@ If <span class="paramref">end</span> is before <span class="paramref">start</spa
 will be negative. If the given set of units cannot exactly reach the end point (e.g. finding
 the difference between 12th February and 15th March in months) the result will be such that adding it to <span class="paramref">start</span>
 will give a value between <span class="paramref">start</span> and <span class="paramref">end</span>. In other words,
-any rounding is "towards start"; this is true whether the resulting period is negative or positive.
+any rounding is &quot;towards start&quot;; this is true whether the resulting period is negative or positive.
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -890,7 +890,7 @@ If <span class="paramref">end</span> is before <span class="paramref">start</spa
 will be negative. If the given set of units cannot exactly reach the end point (e.g. finding
 the difference between 1am and 3:15am in hours) the result will be such that adding it to <span class="paramref">start</span>
 will give a value between <span class="paramref">start</span> and <span class="paramref">end</span>. In other words,
-any rounding is "towards start"; this is true whether the resulting period is negative or positive.
+any rounding is &quot;towards start&quot;; this is true whether the resulting period is negative or positive.
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1033,7 +1033,7 @@ If <span class="paramref">end</span> is before <span class="paramref">start</spa
 will be negative. If the given set of units cannot exactly reach the end point (e.g. finding
 the difference between 3am and 4.30am in hours) the result will be such that adding it to <span class="paramref">start</span>
 will give a value between <span class="paramref">start</span> and <span class="paramref">end</span>. In other words,
-any rounding is "towards start"; this is true whether the resulting period is negative or positive.
+any rounding is &quot;towards start&quot;; this is true whether the resulting period is negative or positive.
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1057,7 +1057,7 @@ any rounding is "towards start"; this is true whether the resulting period is ne
   <a id="NodaTime_Period_CreateComparer_" data-uid="NodaTime.Period.CreateComparer*"></a>
   <h4 id="NodaTime_Period_CreateComparer_NodaTime_LocalDateTime_" data-uid="NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)">CreateComparer(LocalDateTime)</h4>
   <div class="markdown level1 summary">
-Creates an <span class="xref">System.Collections.Generic.IComparer&lt;T&gt;</span> for periods, using the given "base" local date/time.
+Creates an <span class="xref">System.Collections.Generic.IComparer&lt;T&gt;</span> for periods, using the given &quot;base&quot; local date/time.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
@@ -1104,10 +1104,10 @@ Creates an <span class="xref">System.Collections.Generic.IComparer&lt;T&gt;</spa
   </table>
   <h5 id="NodaTime_Period_CreateComparer_NodaTime_LocalDateTime__remarks">Remarks</h5>
   <div class="markdown level1 remarks">
-Certain periods can't naturally be compared without more context - how "one month" compares to
-"30 days" depends on where you start. In order to compare two periods, the returned comparer
-effectively adds both periods to the "base" specified by <span class="paramref">baseDateTime</span> and compares
-the results. In some cases this arithmetic isn't actually required - when two periods can be
+Certain periods can&apos;t naturally be compared without more context - how &quot;one month&quot; compares to
+&quot;30 days&quot; depends on where you start. In order to compare two periods, the returned comparer
+effectively adds both periods to the &quot;base&quot; specified by <span class="paramref">baseDateTime</span> and compares
+the results. In some cases this arithmetic isn&apos;t actually required - when two periods can be
 converted to durations, the comparer uses that conversion for efficiency.
 </div>
   <a id="NodaTime_Period_Equals_" data-uid="NodaTime.Period.Equals*"></a>
@@ -1163,7 +1163,7 @@ Compares the given period for equality with this one.
   <h5 id="NodaTime_Period_Equals_NodaTime_Period__remarks">Remarks</h5>
   <div class="markdown level1 remarks">
 Periods are equal if they contain the same values for the same properties.
-However, no normalization takes place, so "one hour" is not equal to "sixty minutes".
+However, no normalization takes place, so &quot;one hour&quot; is not equal to &quot;sixty minutes&quot;.
 </div>
   <a id="NodaTime_Period_Equals_" data-uid="NodaTime.Period.Equals*"></a>
   <h4 id="NodaTime_Period_Equals_System_Object_" data-uid="NodaTime.Period.Equals(System.Object)">Equals(Object)</h4>
@@ -1765,11 +1765,11 @@ changed to the same representation.
 Months and years are unchanged
 (as they can vary in length), but weeks are multiplied by 7 and added to the
 Days property, and all time properties are normalized to their natural range.
-Subsecond values are normalized to millisecond and "nanosecond within millisecond" values.
+Subsecond values are normalized to millisecond and &quot;nanosecond within millisecond&quot; values.
 So for example, a period of 25 hours becomes a period of 1 day
 and 1 hour. A period of 1,500,750,000 nanoseconds becomes 1 second, 500 milliseconds and
 750,000 nanoseconds. Aside from months and years, either all the properties
-end up positive, or they all end up negative. "Week" and "tick" units in the returned period are always 0.
+end up positive, or they all end up negative. &quot;Week&quot; and &quot;tick&quot; units in the returned period are always 0.
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1782,7 +1782,7 @@ end up positive, or they all end up negative. "Week" and "tick" units in the ret
     <tbody>
       <tr>
         <td><span class="xref">System.OverflowException</span></td>
-        <td>The period doesn't have years or months, but it contains more than
+        <td>The period doesn&apos;t have years or months, but it contains more than
 <span class="xref">System.Int64.MaxValue</span> nanoseconds when the combined weeks/days/time portions are considered. This is
 over 292 years, so unlikely to be a problem in normal usage.
 In some cases this may occur even though the theoretical result would be valid due to balancing positive and
@@ -1874,10 +1874,10 @@ assuming a standard 7-day week, 24-hour day, 60-minute hour etc.
       </tr>
       <tr>
         <td><span class="xref">System.OverflowException</span></td>
-        <td>The period doesn't have years or months, but the calculation
+        <td>The period doesn&apos;t have years or months, but the calculation
 overflows the bounds of <a class="xref" href="NodaTime.Duration.html">Duration</a>. In some cases this may occur even though the theoretical
 result would be valid due to balancing positive and negative values, but for simplicity there is
-no attempt to work around this - in realistic periods, it shouldn't be a problem.</td>
+no attempt to work around this - in realistic periods, it shouldn&apos;t be a problem.</td>
       </tr>
     </tbody>
   </table>
@@ -2036,7 +2036,7 @@ Subtracts one period from another, by simply subtracting each property value.
         <td><a class="xref" href="NodaTime.Period.html">Period</a></td>
         <td>The result of subtracting all the values in the second operand from the values in the first. The
 units of the result will be the union of both periods, even if the subtraction caused some properties to
-become zero (so "2 weeks, 1 days" minus "2 weeks" is "zero weeks, 1 days", not "1 days"). (The value returned is never null.)</td>
+become zero (so &quot;2 weeks, 1 days&quot; minus &quot;2 weeks&quot; is &quot;zero weeks, 1 days&quot;, not &quot;1 days&quot;). (The value returned is never null.)</td>
       </tr>
     </tbody>
   </table>

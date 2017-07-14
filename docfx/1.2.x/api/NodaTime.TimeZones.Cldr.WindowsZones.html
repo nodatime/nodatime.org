@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class WindowsZones
    | Noda Time ">
-    <meta name="generator" content="docfx 2.18.5.0">
+    <meta name="generator" content="docfx 2.20.0.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -74,7 +74,7 @@
   </h1>
   
   <div class="markdown level0 summary">
-Representation of the <code>&lt;windowsZones&gt;</code> element of CLDR supplemental data.
+Representation of the <code>&lt;windowsZones></code> element of CLDR supplemental data.
 </div>
   <div class="markdown level0 conceptual"></div>
   <div>
@@ -166,17 +166,17 @@ pair.
 </p>
 <p>
 Mappings for a single Windows system time zone can appear multiple times
-in this list, in different territories. For example, "Central Standard Time"
+in this list, in different territories. For example, &quot;Central Standard Time&quot;
 maps to different TZDB zones in different countries (the US, Canada, Mexico) and
 even within a single territory there can be multiple zones. Every Windows system time zone covered within
-this collection has a "primary" entry with a territory code of "001" (which is the value of
+this collection has a &quot;primary&quot; entry with a territory code of &quot;001&quot; (which is the value of
 <a class="xref" href="NodaTime.TimeZones.Cldr.MapZone.html#NodaTime_TimeZones_Cldr_MapZone_PrimaryTerritory">PrimaryTerritory</a>) and a single corresponding TZDB zone. 
 </p>
 <p>This collection is not guaranteed to cover every Windows time zone. Some zones may be unmappable
-(such as "Mid-Atlantic Standard Time") and there can be a delay between a new Windows time zone being introduced
-and it appearing in CLDR, ready to be used by Noda Time. (There's also bound to be a delay between it appearing
-in CLDR and being used in your production system.) In practice however, you're unlikely to wish to use a time zone
-which isn't covered here.</p>
+(such as &quot;Mid-Atlantic Standard Time&quot;) and there can be a delay between a new Windows time zone being introduced
+and it appearing in CLDR, ready to be used by Noda Time. (There&apos;s also bound to be a delay between it appearing
+in CLDR and being used in your production system.) In practice however, you&apos;re unlikely to wish to use a time zone
+which isn&apos;t covered here.</p>
 <p>
 If the data is loaded from the legacy resource format, this will only include the primary mappings.
 </p>
@@ -185,7 +185,7 @@ If the data is loaded from the legacy resource format, this will only include th
   <h4 id="NodaTime_TimeZones_Cldr_WindowsZones_PrimaryMapping" data-uid="NodaTime.TimeZones.Cldr.WindowsZones.PrimaryMapping">PrimaryMapping</h4>
   <div class="markdown level1 summary">
 Gets an immutable dictionary of primary mappings, from Windows system time zone ID
-to TZDB zone ID. This corresponds to the "001" territory which is present for every zone
+to TZDB zone ID. This corresponds to the &quot;001&quot; territory which is present for every zone
 within the mapping file.
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -249,12 +249,12 @@ Gets the TZDB version this Windows zone mapping data was created from.
   <div class="markdown level1 remarks">
 <p>
 The CLDR mapping file usually lags behind the TZDB file somewhat - partly because the
-mappings themselves don't always change when the time zone data does. For example, it's entirely
+mappings themselves don&apos;t always change when the time zone data does. For example, it&apos;s entirely
 reasonable for a <a class="xref" href="NodaTime.TimeZones.TzdbDateTimeZoneSource.html">TzdbDateTimeZoneSource</a> with a <a class="xref" href="NodaTime.TimeZones.TzdbDateTimeZoneSource.html#NodaTime_TimeZones_TzdbDateTimeZoneSource_TzdbVersion">TzdbVersion</a> of
-"2013b" to be supply a <code>WindowsZones</code> object with a <code>TzdbVersion</code> of "2012f".
+&quot;2013b&quot; to be supply a <code>WindowsZones</code> object with a <code>TzdbVersion</code> of &quot;2012f&quot;.
 </p>
 <p>
-This property will never return a null value, but will be "Unknown" if the data
+This property will never return a null value, but will be &quot;Unknown&quot; if the data
 is loaded from the legacy resource format.
 </p>
 </div>
@@ -293,7 +293,7 @@ Gets the version of the Windows zones mapping data read from the original file.
   <div class="markdown level1 remarks">
 <p>
 As with other IDs, this should largely be treated as an opaque string, but the current method for
-generating this from the mapping file extracts a number from an element such as <code>&lt;version number="$Revision: 7825 $"/&gt;</code>.
+generating this from the mapping file extracts a number from an element such as <code>&lt;version number=&quot;$Revision: 7825 $&quot;/></code>.
 This is a Subversion revision number, but that association should only be used for diagnostic curiosity, and never
 assumed in code.
 </p>
@@ -337,10 +337,10 @@ Gets the Windows time zone database version this Windows zone mapping data was c
 <p>
 At the time of this writing, this is populated (by CLDR) from the registry key
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones\TzVersion,
-so "7dc0101" for example.
+so &quot;7dc0101&quot; for example.
 </p>
 <p>
-This property will never return a null value, but will be "Unknown" if the data
+This property will never return a null value, but will be &quot;Unknown&quot; if the data
 is loaded from the legacy resource format.
 </p>
 </div>

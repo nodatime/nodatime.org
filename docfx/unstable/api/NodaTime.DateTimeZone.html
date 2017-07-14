@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class DateTimeZone
    | Noda Time ">
-    <meta name="generator" content="docfx 2.18.5.0">
+    <meta name="generator" content="docfx 2.20.0.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -122,7 +122,7 @@ Represents a time zone - a mapping between UTC and local time. A time zone maps 
   <h5 id="NodaTime_DateTimeZone_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks">
 <p>
-The mapping is unambiguous in the "UTC to local" direction, but
+The mapping is unambiguous in the &quot;UTC to local&quot; direction, but
 the reverse is not true: when the offset changes, usually due to a Daylight Saving transition,
 the change either creates a gap (a period of local time which never occurs in the time zone)
 or an ambiguity (a period of local time which occurs twice in the time zone). Mapping back from
@@ -132,7 +132,7 @@ local time to an instant requires consideration of how these problematic times w
 Noda Time provides various options when mapping local time to a specific instant:
 <ul><li><a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtStrictly_NodaTime_LocalDateTime_">AtStrictly(LocalDateTime)</a> will throw an exception if the mapping from local time is either ambiguous
     or impossible, i.e. if there is anything other than one instant which maps to the given local time.</li><li><a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtLeniently_NodaTime_LocalDateTime_">AtLeniently(LocalDateTime)</a> will never throw an exception due to ambiguous or skipped times,
-    resolving to the earlier option of ambiguous matches, or to a value that's forward-shifted by the duration
+    resolving to the earlier option of ambiguous matches, or to a value that&apos;s forward-shifted by the duration
     of the gap for skipped times.</li><li><a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ResolveLocal_NodaTime_LocalDateTime_NodaTime_TimeZones_ZoneLocalMappingResolver_">ResolveLocal(LocalDateTime, ZoneLocalMappingResolver)</a> will apply a <a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html">ZoneLocalMappingResolver</a> to the result of
     a mapping.</li><li><a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_MapLocal_NodaTime_LocalDateTime_">MapLocal(LocalDateTime)</a> will return a <a class="xref" href="NodaTime.TimeZones.ZoneLocalMapping.html">ZoneLocalMapping</a>
     with complete information about whether the given local time occurs zero times, once or twice. This is the most
@@ -141,7 +141,7 @@ Noda Time provides various options when mapping local time to a specific instant
 <p>
 Noda Time has two built-in sources of time zone data available: a copy of the
 <a href="http://www.iana.org/time-zones">tz database</a> (also known as the IANA Time Zone database, or zoneinfo
-or Olson database), and the ability to convert .NET's own <span class="xref">System.TimeZoneInfo</span> format into a "native" Noda
+or Olson database), and the ability to convert .NET&apos;s own <span class="xref">System.TimeZoneInfo</span> format into a &quot;native&quot; Noda
 Time zone. Which of these is most appropriate for you to use will very much depend on your exact needs. The
 zoneinfo database is widely used outside Windows, and has more historical data than the Windows-provided
 information, but if you need to interoperate with other Windows systems by specifying time zone IDs, you may
@@ -240,7 +240,7 @@ Initializes a new instance of the <a class="xref" href="NodaTime.DateTimeZone.ht
   <a id="NodaTime_DateTimeZone_Id_" data-uid="NodaTime.DateTimeZone.Id*"></a>
   <h4 id="NodaTime_DateTimeZone_Id" data-uid="NodaTime.DateTimeZone.Id">Id</h4>
   <div class="markdown level1 summary">
-Get the provider's ID for the time zone.
+Get the provider&apos;s ID for the time zone.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
@@ -264,7 +264,7 @@ Get the provider's ID for the time zone.
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td>The provider's ID for the time zone. (The value returned is never null.)</td>
+        <td>The provider&apos;s ID for the time zone. (The value returned is never null.)</td>
       </tr>
     </tbody>
   </table>
@@ -370,9 +370,9 @@ Gets the UTC (Coordinated Universal Time) time zone.
   </table>
   <h5 id="NodaTime_DateTimeZone_Utc_remarks">Remarks</h5>
   <div class="markdown level1 remarks">
-This is a single instance which is not provider-specific; it is guaranteed to have the ID "UTC", and to
+This is a single instance which is not provider-specific; it is guaranteed to have the ID &quot;UTC&quot;, and to
 compare equal to an instance returned by calling <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ForOffset_NodaTime_Offset_">ForOffset(Offset)</a> with an offset of zero, but it may
-or may not compare equal to an instance returned by e.g. <code>DateTimeZoneProviders.Tzdb["UTC"]</code>.
+or may not compare equal to an instance returned by e.g. <code>DateTimeZoneProviders.Tzdb[&quot;UTC&quot;]</code>.
 </div>
   <h3 id="methods">Methods
   </h3>
@@ -380,8 +380,8 @@ or may not compare equal to an instance returned by e.g. <code>DateTimeZoneProvi
   <h4 id="NodaTime_DateTimeZone_AtLeniently_NodaTime_LocalDateTime_" data-uid="NodaTime.DateTimeZone.AtLeniently(NodaTime.LocalDateTime)">AtLeniently(LocalDateTime)</h4>
   <div class="markdown level1 summary">
 Maps the given <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</a> to the corresponding <a class="xref" href="NodaTime.ZonedDateTime.html">ZonedDateTime</a> in a lenient
-manner: ambiguous values map to the earlier of the alternatives, and "skipped" values are shifted forward
-by the duration of the "gap".
+manner: ambiguous values map to the earlier of the alternatives, and &quot;skipped&quot; values are shifted forward
+by the duration of the &quot;gap&quot;.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
@@ -654,7 +654,7 @@ Returns a fixed time zone with the given offset.
   <h5 id="NodaTime_DateTimeZone_ForOffset_NodaTime_Offset__remarks">Remarks</h5>
   <div class="markdown level1 remarks">
 <p>
-The returned time zone will have an ID of "UTC" if the offset is zero, or "UTC+/-Offset"
+The returned time zone will have an ID of &quot;UTC&quot; if the offset is zero, or &quot;UTC+/-Offset&quot;
 otherwise. In the former case, the returned instance will be equal to <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_Utc">Utc</a>.
 </p>
 <p>
