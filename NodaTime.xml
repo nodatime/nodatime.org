@@ -2920,6 +2920,32 @@
             </summary>
             <returns>This duration as a number of nanoseconds, represented as a <c>BigInteger</c>.</returns>
         </member>
+        <member name="M:NodaTime.Duration.Max(NodaTime.Duration,NodaTime.Duration)">
+            <summary>
+            Returns the larger duration of the given two.
+            </summary>
+            <remarks>
+            A "larger" duration is one that advances time by more than a "smaller" one. This means
+            that a positive duration is always larger than a negative one, for example. (This is the same
+            comparison used by the binary comparison operators.)
+            </remarks>
+            <param name="x">The first duration to compare.</param>
+            <param name="y">The second duration to compare.</param>
+            <returns>The larger duration of <paramref name="x"/> or <paramref name="y"/>.</returns>
+        </member>
+        <member name="M:NodaTime.Duration.Min(NodaTime.Duration,NodaTime.Duration)">
+            <summary>
+            Returns the smaller duration of the given two.
+            </summary>
+            <remarks>
+            A "larger" duration is one that advances time by more than a "smaller" one. This means
+            that a positive duration is always larger than a negative one, for example. (This is the same
+            comparison used by the binary comparison operators.)
+            </remarks>
+            <param name="x">The first duration to compare.</param>
+            <param name="y">The second duration to compare.</param>
+            <returns>The smaller duration of <paramref name="x"/> or <paramref name="y"/>.</returns>
+        </member>
         <member name="T:NodaTime.Extensions.ClockExtensions">
             <summary>
             Extension methods for <see cref="T:NodaTime.IClock"/>.
@@ -4736,6 +4762,24 @@
             If <paramref name="obj"/> is null, this method returns a value greater than 0.
             </returns>
         </member>
+        <member name="M:NodaTime.LocalDate.Max(NodaTime.LocalDate,NodaTime.LocalDate)">
+            <summary>
+            Returns the later date of the given two.
+            </summary>
+            <param name="x">The first date to compare.</param>
+            <param name="y">The second date to compare.</param>
+            <exception cref="T:System.ArgumentException">The two dates have different calendar systems.</exception>
+            <returns>The later date of <paramref name="x"/> or <paramref name="y"/>.</returns>
+        </member>
+        <member name="M:NodaTime.LocalDate.Min(NodaTime.LocalDate,NodaTime.LocalDate)">
+            <summary>
+            Returns the earlier date of the given two.
+            </summary>
+            <param name="x">The first date to compare.</param>
+            <param name="y">The second date to compare.</param>
+            <exception cref="T:System.ArgumentException">The two dates have different calendar systems.</exception>
+            <returns>The earlier date of <paramref name="x"/> or <paramref name="y"/>.</returns>
+        </member>
         <member name="M:NodaTime.LocalDate.GetHashCode">
             <summary>
             Returns a hash code for this local date.
@@ -5599,6 +5643,24 @@
             <param name="resolver">The resolver to apply to the mapping.</param>
             <returns>The result of resolving the mapping.</returns>
         </member>
+        <member name="M:NodaTime.LocalDateTime.Max(NodaTime.LocalDateTime,NodaTime.LocalDateTime)">
+            <summary>
+            Returns the later date/time of the given two.
+            </summary>
+            <param name="x">The first date/time to compare.</param>
+            <param name="y">The second date/time to compare.</param>
+            <exception cref="T:System.ArgumentException">The two date/times have different calendar systems.</exception>
+            <returns>The later date/time of <paramref name="x"/> or <paramref name="y"/>.</returns>
+        </member>
+        <member name="M:NodaTime.LocalDateTime.Min(NodaTime.LocalDateTime,NodaTime.LocalDateTime)">
+            <summary>
+            Returns the earlier date/time of the given two.
+            </summary>
+            <param name="x">The first date/time to compare.</param>
+            <param name="y">The second date/time to compare.</param>
+            <exception cref="T:System.ArgumentException">The two date/times have different calendar systems.</exception>
+            <returns>The earlier date/time of <paramref name="x"/> or <paramref name="y"/>.</returns>
+        </member>
         <member name="M:NodaTime.LocalDateTime.ToString">
             <summary>
             Returns a <see cref="T:System.String" /> that represents this instance.
@@ -6241,6 +6303,22 @@
             </summary>
             <param name="date">The date to combine with this time</param>
             <returns>The <see cref="T:NodaTime.LocalDateTime"/> representation of the given time on this date</returns>
+        </member>
+        <member name="M:NodaTime.LocalTime.Max(NodaTime.LocalTime,NodaTime.LocalTime)">
+            <summary>
+            Returns the later time of the given two.
+            </summary>
+            <param name="x">The first time to compare.</param>
+            <param name="y">The second time to compare.</param>
+            <returns>The later instant of <paramref name="x"/> or <paramref name="y"/>.</returns>
+        </member>
+        <member name="M:NodaTime.LocalTime.Min(NodaTime.LocalTime,NodaTime.LocalTime)">
+            <summary>
+            Returns the earlier time of the given two.
+            </summary>
+            <param name="x">The first time to compare.</param>
+            <param name="y">The second time to compare.</param>
+            <returns>The earlier time of <paramref name="x"/> or <paramref name="y"/>.</returns>
         </member>
         <member name="M:NodaTime.LocalTime.ToString">
             <summary>
