@@ -7,26 +7,26 @@ Standard Patterns
 
 The following standard patterns are supported:
 
-- `f`: Full format, displaying all information including fractional seconds.  
+- `f`: Full format, displaying all information including fractional seconds.
   Typical pattern text: `+HH:mm:ss.fff`
-- `l`: Long format, displaying information down to the second.  
+- `l`: Long format, displaying information down to the second.
   Typical pattern text: `+HH:mm:ss`
-- `m`: Medium format, displaying information down to the minute.  
+- `m`: Medium format, displaying information down to the minute.
   Typical pattern text: `+HH:mm`
-- `s`: Short format, displaying information down to the hour.  
+- `s`: Short format, displaying information down to the hour.
   Typical pattern text: `+HH`
 - `g`: General pattern. Formatting depends on the value passed in:
   - If the offset has fractional seconds, the full format is used; otherwise
   - If the offset has seconds, the long format is used; otherwise
   - If the offset has minutes, the medium format is used; otherwise
   - The short format is used
-  When parsing, the other standard format patterns are tried one at a time.
+  When parsing, the other standard format patterns are tried one at a time. This is the default format pattern.
 - `G`: As `g`, but using `Z` for an offset of 0, as if it were Z-prefixed. (See below.)
 
 Custom Patterns
 ---------------
 
-The following custom offset pattern characters are supported for local times. See [custom pattern notes](text#custom-patterns)
+The following custom pattern characters are supported for offsets. See [custom pattern notes](text#custom-patterns)
 for general notes on custom patterns, including characters used for escaping and text literals.
 
 <table>
@@ -147,6 +147,7 @@ for general notes on custom patterns, including characters used for escaping and
 	    12 seconds, 500 milliseconds (en-US): <code>ss.FFF</code> => <code>12.5</code> <br />
 	    12 seconds, 500 milliseconds (fr-FR): <code>ss.FFF</code> => <code>12.5</code>
       </td>
+    </tr>
     <tr>
       <td><code>:</code></td>
       <td>
@@ -154,5 +155,5 @@ for general notes on custom patterns, including characters used for escaping and
       </td>
       <td><code>HH:mm</code> => <code>07:30</code></td>
     </tr>
-  </tbody>    
+  </tbody>
 </table>

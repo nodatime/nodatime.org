@@ -1,7 +1,7 @@
 @Title="Choosing (and converting) between types"
 
 This is a companion page to the
-["core concepts quick reference"](concepts), and ["core types"](core-types)
+["core concepts"](concepts), and ["core types quick reference"](core-types)
 pages, describing when it's appropriate to use which type, and how to convert between them.
 
 Ultimately, you should be thinking about what data you really have,
@@ -19,7 +19,7 @@ Broadly speaking, there are two major sources of date and time data:
 clocks, and the brains of users.
 
 I'm using "clock" here as anything which is used to represent the
-current time, in whatever form it does so. You may receive the 
+current time, in whatever form it does so. You may receive the
 value as part of a web service request, you may request it from an
 [`IClock`](noda-type://NodaTime.IClock), it may be the "last
 modified" part of a file-system entry, it may be a database

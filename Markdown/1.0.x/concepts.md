@@ -74,7 +74,7 @@ epoch. The value can be negative for dates and times before 1970 of
 course - the range of supported dates is from around 27000 BCE to
 around 31000 CE in the Gregorian calendar.
 
-An `Instant` has no concept of a particular time zone - it is 
+An `Instant` has no concept of a particular time zone - it is
 *just* the number of ticks which have occurred since
 the Unix epoch. The fact that the Unix epoch is defined in terms of
 UTC is irrelevant - it could have been defined in terms of a
@@ -130,7 +130,8 @@ by the [`Offset`][Offset] struct.
 
 An offset is positive if local time is later than (ahead of) UTC,
 and negative if local time is earlier than (behind) UTC. For
-example, the offset in France is +1 hour in the winter and +2 hours in
+example, the offset in France is +1 hour during winter in the
+Northern Hemisphere and +2 hours in
 the summer; the offset in California is -8 hours in the winter and
 -7 hours in the summer. So at noon UTC in winter, it's 4am in
 California and 1pm in France.
@@ -164,14 +165,16 @@ Noda Time makes it *reasonably* easy to handle these situations, but
 you need to work out what you want to happen. See the [`DateTimeZone`
 documentation][DateTimeZone] for more details and options.
 
-There are various different sources of time zone information available, and Noda Time
-handles two of them: it is able to map BCL `TimeZoneInfo` objects using `BclDateTimeZone`,
-and the [TZDB][TZDB] (aka Olson) database. A version of TZDB is embedded within the Noda Time
-distribution, and if you need a more recent one, there are [instructions on how to download and
-use new data](tzdb). We generally recommend that you isolate yourself from the provider you're
-using by only depending on [`IDateTimeZoneProvider`][IDateTimeZoneProvider], and injecting the appropriate
-provider in the normal way. "Stock" providers are available via the [`DateTimeZoneProviders`][DateTimeZoneProviders]
-class.
+There are various different sources of time zone information available, and
+Noda Time handles two of them: it is able to map BCL `TimeZoneInfo` objects
+using `BclDateTimeZone`, or it can use the [tz database][TZDB] (also known as
+the IANA Time Zone database, or zoneinfo or Olson database). A version of TZDB
+is embedded within the Noda Time distribution, and if you need a more recent
+one, there are [instructions on how to download and use new data](tzdb).
+We generally recommend that you isolate yourself from the provider you're using
+by only depending on [`IDateTimeZoneProvider`][IDateTimeZoneProvider], and
+injecting the appropriate provider in the normal way. "Stock" providers are
+available via the [`DateTimeZoneProviders`][DateTimeZoneProviders] class.
 
 Also note that in some cases, you may not have full time zone information,
 but have just a local time and an offset. For example, if you're parsing the string
@@ -182,17 +185,20 @@ time. In this situation, you should use [`OffsetDateTime`][OffsetDateTime].
 Periods and durations
 ---------------------
 
-There are two similar types in Noda Time used to represent "lengths of time". The simplest is [`Duration`][Duration]
-which is equivalent to [`TimeSpan`][TimeSpan] in the BCL. This is a fixed number of ticks - it's the same length of time
-wherever its applied. `Duration` is used for arithmetic on `Instant` and `DateTime` values.
+There are two similar types in Noda Time used to represent "lengths of time". The
+simplest is [`Duration`][Duration] which is equivalent to [`TimeSpan`][TimeSpan] in the BCL.
+This is a fixed number of ticks - it's the same length of time wherever it's
+applied. `Duration` is used for arithmetic on `Instant` and `ZonedDateTime` values.
 
-A more complex type is [`Period`][Period], which is a set of values associated with different calendar-based periods: years,
-months, weeks, days, hours, minutes and so on. Some of these periods represent different lengths of time depending on
-what they're applied to - if you add "one month" to January 1st, that's going to be 31 days long. Adding the
-same period to February 1st will give a shorter length of time - which then depends on whether the year is a leap
-year or not. Periods based on smaller units (hours, minutes and so on) will always represent the same length of time,
-but they're still available within periods. [`Period`][Period] is used for arithmetic on locally-based values (`LocalDateTime`,
-`LocalDate`, `LocalTime`).
+A more complex type is [`Period`][Period], which is a set of values associated with different
+calendar-based periods: years, months, weeks, days, hours, minutes and so on. Some of
+these periods represent different lengths of time depending on what they're applied
+to - if you add "one month" to January 1st, that's going to be 31 days long. Adding the
+same period to February 1st will give a shorter length of time - which then depends
+on whether the year is a leap year or not. Periods based on smaller units (hours, minutes
+and so on) will always represent the same length of time, but they're still
+available within periods. `Period` is used for arithmetic on locally-based values
+(`LocalDateTime`, `LocalDate`, `LocalTime`).
 
 See the [arithmetic](arithmetic) page for more information.
 
