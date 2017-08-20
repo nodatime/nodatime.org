@@ -12970,7 +12970,7 @@
         <member name="M:NodaTime.TimeZones.TzdbDateTimeZoneSource.GetSystemDefaultId">
             <inheritdoc />
         </member>
-        <member name="M:NodaTime.TimeZones.TzdbDateTimeZoneSource.GuessZoneIdByTransitionsUncached(System.TimeZoneInfo)">
+        <member name="M:NodaTime.TimeZones.TzdbDateTimeZoneSource.GuessZoneIdByTransitionsUncached(System.TimeZoneInfo,System.Collections.Generic.List{NodaTime.DateTimeZone})">
             <summary>
             In cases where we can't get a zone mapping directly, we try to work out a good fit
             by checking the transitions within the next few years.
@@ -12983,6 +12983,8 @@
             call it if we can't get an exact match anyway.
             </summary>
             <param name="zone">Zone to resolve in a best-effort fashion.</param>
+            <param name="candidates">All the Noda Time zones to consider - normally a list 
+            obtained from this source.</param>
         </member>
         <member name="P:NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion">
             <summary>
