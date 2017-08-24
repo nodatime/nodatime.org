@@ -2038,8 +2038,8 @@
             <para>Note: The behavior of this method was changed in version 2.0 to fit the most commonly seen real-world
             usage pattern.  Previous versions returned the later instance of ambiguous values, and returned the start of
             the zone interval after the gap for skipped value.  The previous functionality can still be used if desired,
-            by using <see cref="M:NodaTime.DateTimeZone.ResolveLocal(NodaTime.LocalDateTime,NodaTime.TimeZones.AmbiguousTimeResolver,NodaTime.TimeZones.SkippedTimeResolver)"/> and passing the
-            <see cref="P:NodaTime.TimeZones.Resolvers.ReturnLater"/> and <see cref="P:NodaTime.TimeZones.Resolvers.ReturnStartOfIntervalAfter"/> resolvers.</para>
+            by using <see cref="M:NodaTime.DateTimeZone.ResolveLocal(NodaTime.LocalDateTime,NodaTime.TimeZones.ZoneLocalMappingResolver)"/>, passing in a resolver
+            created from <see cref="P:NodaTime.TimeZones.Resolvers.ReturnLater"/> and <see cref="P:NodaTime.TimeZones.Resolvers.ReturnStartOfIntervalAfter"/>.</para>
             </remarks>
             <param name="localDateTime">The local date/time to map.</param>
             <returns>The unambiguous mapping if there is one, the earlier result if the mapping is ambiguous,
@@ -2226,46 +2226,6 @@
             </summary>
             <remarks>
             The value of this property is 86.4 trillion nanoseconds; that is, 86,400,000,000,000 nanoseconds.
-            </remarks>
-        </member>
-        <member name="P:NodaTime.Duration.OneHour">
-            <summary>
-            Represents the <see cref="T:NodaTime.Duration"/> value equal to the number of nanoseconds in 1 hour.
-            </summary>
-            <remarks>
-            The value of this property is 3.6 trillion nanoseconds; that is, 3,600,000,000,000 nanoseconds.
-            </remarks>
-        </member>
-        <member name="P:NodaTime.Duration.OneMinute">
-            <summary>
-            Represents the <see cref="T:NodaTime.Duration"/> value equal to the number of nanoseconds in 1 minute.
-            </summary>
-            <remarks>
-            The value of this property is 60 billion nanoseconds; that is, 60,000,000,000 nanoseconds.
-            </remarks>
-        </member>
-        <member name="P:NodaTime.Duration.OneSecond">
-            <summary>
-            Represents the <see cref="T:NodaTime.Duration"/> value equal to the number of nanoseconds in 1 second.
-            </summary>
-            <remarks>
-            The value of this property is 1 billion nanoseconds; that is, 1,000,000,000 nanoseconds.
-            </remarks>
-        </member>
-        <member name="P:NodaTime.Duration.OneMillisecond">
-            <summary>
-            Represents the <see cref="T:NodaTime.Duration"/> value equal to the number of nanoseconds in 1 millisecond.
-            </summary>
-            <remarks>
-            The value of this property is 1,000,000 nanoseconds.
-            </remarks>
-        </member>
-        <member name="P:NodaTime.Duration.OneTick">
-            <summary>
-            Represents the <see cref="T:NodaTime.Duration"/> value equal to the number of nanoseconds in 1 tick.
-            </summary>
-            <remarks>
-            The value of this property is 100 nanoseconds.
             </remarks>
         </member>
         <member name="P:NodaTime.Duration.FloorDays">
@@ -8265,36 +8225,6 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="P:NodaTime.Properties.Messages.Format_BadQuote">
-            <summary>
-              Looks up a localized string similar to Format string is missing a close quote: {0}.
-            </summary>
-        </member>
-        <member name="P:NodaTime.Properties.Messages.FormatDefaultExceptionMessage">
-            <summary>
-              Looks up a localized string similar to Format error..
-            </summary>
-        </member>
-        <member name="P:NodaTime.Properties.Messages.Noda_ArgumentNull">
-            <summary>
-              Looks up a localized string similar to Argument cannot be null..
-            </summary>
-        </member>
-        <member name="P:NodaTime.Properties.Messages.Noda_CannotChangeReadOnly">
-            <summary>
-              Looks up a localized string similar to Cannot change a read only object..
-            </summary>
-        </member>
-        <member name="P:NodaTime.Properties.Messages.Noda_StringEmpty">
-            <summary>
-              Looks up a localized string similar to The string cannot be empty..
-            </summary>
-        </member>
-        <member name="P:NodaTime.Properties.Messages.Noda_StringEmptyOrWhitespace">
-            <summary>
-              Looks up a localized string similar to The string cannot be empty or only contain white space..
-            </summary>
-        </member>
         <member name="P:NodaTime.Properties.Messages.Parse_AmbiguousLocalTime">
             <summary>
               Looks up a localized string similar to The local date/time is ambiguous in the target time zone..
@@ -8303,11 +8233,6 @@
         <member name="P:NodaTime.Properties.Messages.Parse_CalendarAndEra">
             <summary>
               Looks up a localized string similar to The era specifier cannot be specified in the same pattern as the calendar specifier..
-            </summary>
-        </member>
-        <member name="P:NodaTime.Properties.Messages.Parse_CannotParseValue">
-            <summary>
-              Looks up a localized string similar to The value &quot;{0}&quot; cannot be parsed into an instance of {1} using pattern &quot;{2}&quot;.
             </summary>
         </member>
         <member name="P:NodaTime.Properties.Messages.Parse_DateFieldAndEmbeddedDate">
@@ -8323,16 +8248,6 @@
         <member name="P:NodaTime.Properties.Messages.Parse_DayOfMonthOutOfRange">
             <summary>
               Looks up a localized string similar to The day {0} is out of range in month {1} of year {2}..
-            </summary>
-        </member>
-        <member name="P:NodaTime.Properties.Messages.Parse_DoubleAssignment">
-            <summary>
-              Looks up a localized string similar to The pattern flag &apos;{0}&apos; cannot appear twice and parse different values..
-            </summary>
-        </member>
-        <member name="P:NodaTime.Properties.Messages.Parse_EmptyFormatsArray">
-            <summary>
-              Looks up a localized string similar to The list of formats cannot be empty..
             </summary>
         </member>
         <member name="P:NodaTime.Properties.Messages.Parse_EmptyPeriod">
@@ -8378,16 +8293,6 @@
         <member name="P:NodaTime.Properties.Messages.Parse_FieldValueOutOfRange">
             <summary>
               Looks up a localized string similar to The value {0} is out of range for the field &apos;{1}&apos; in the {2} type..
-            </summary>
-        </member>
-        <member name="P:NodaTime.Properties.Messages.Parse_FormatElementInvalid">
-            <summary>
-              Looks up a localized string similar to The items of the format string array cannot be null or empty..
-            </summary>
-        </member>
-        <member name="P:NodaTime.Properties.Messages.Parse_FormatInvalid">
-            <summary>
-              Looks up a localized string similar to The format string is invalid: &quot;{0}&quot;.
             </summary>
         </member>
         <member name="P:NodaTime.Properties.Messages.Parse_FormatOnlyPattern">
@@ -8540,11 +8445,6 @@
               Looks up a localized string similar to A positive value sign is not valid at this point..
             </summary>
         </member>
-        <member name="P:NodaTime.Properties.Messages.Parse_PrecisionNotSupported">
-            <summary>
-              Looks up a localized string similar to The standard format &quot;{0}&quot; for type {1} does not support a precision..
-            </summary>
-        </member>
         <member name="P:NodaTime.Properties.Messages.Parse_QuotedStringMismatch">
             <summary>
               Looks up a localized string similar to The value string does not match a quoted string in the pattern..
@@ -8553,11 +8453,6 @@
         <member name="P:NodaTime.Properties.Messages.Parse_RepeatCountExceeded">
             <summary>
               Looks up a localized string similar to There were more consecutive copies of the pattern character &quot;{0}&quot; than the maximum allowed ({1}) in the format string..
-            </summary>
-        </member>
-        <member name="P:NodaTime.Properties.Messages.Parse_RepeatCountUnderMinimum">
-            <summary>
-              Looks up a localized string similar to There were fewer consecutive copies of the pattern character &quot;{0}&quot; than the minimum allowed ({1}) in the format string..
             </summary>
         </member>
         <member name="P:NodaTime.Properties.Messages.Parse_RepeatedFieldInPattern">
@@ -8585,19 +8480,9 @@
               Looks up a localized string similar to The value string does not match a time separator in the format string..
             </summary>
         </member>
-        <member name="P:NodaTime.Properties.Messages.Parse_UnexpectedEndOfString">
-            <summary>
-              Looks up a localized string similar to More characters were expected in the parsable string [{0}]..
-            </summary>
-        </member>
         <member name="P:NodaTime.Properties.Messages.Parse_UnexpectedNegative">
             <summary>
               Looks up a localized string similar to The value string includes a negative value where only a non-negative one is allowed..
-            </summary>
-        </member>
-        <member name="P:NodaTime.Properties.Messages.Parse_UnknownFailure">
-            <summary>
-              Looks up a localized string similar to Internal Error: The specified ParseFailureKind is unknown [{0}]..
             </summary>
         </member>
         <member name="P:NodaTime.Properties.Messages.Parse_UnknownStandardFormat">
@@ -8863,11 +8748,6 @@
             </summary>
             <value>The pattern text for this pattern, as supplied on creation.</value>
         </member>
-        <member name="P:NodaTime.Text.DurationPattern.FormatInfo">
-            <summary>
-            Gets the localization information used in this pattern.
-            </summary>
-        </member>
         <member name="M:NodaTime.Text.DurationPattern.Parse(System.String)">
             <summary>
             Parses the given text value according to the rules of this pattern.
@@ -9111,11 +8991,6 @@
             </summary>
             <value>The pattern text for this pattern, as supplied on creation.</value>
         </member>
-        <member name="P:NodaTime.Text.InstantPattern.FormatInfo">
-            <summary>
-            Returns the localization information used in this pattern.
-            </summary>
-        </member>
         <member name="M:NodaTime.Text.InstantPattern.Parse(System.String)">
             <summary>
             Parses the given text value according to the rules of this pattern.
@@ -9225,7 +9100,7 @@
         </member>
         <member name="M:NodaTime.Text.InvalidPatternException.#ctor">
             <summary>
-            Creates a new InvalidPatternException with no message.
+            Creates a new InvalidPatternException with the default FormatException message.
             </summary>
         </member>
         <member name="M:NodaTime.Text.InvalidPatternException.#ctor(System.String)">
@@ -10199,11 +10074,6 @@
             Gets the pattern text for this pattern, as supplied on creation.
             </summary>
             <value>The pattern text for this pattern, as supplied on creation.</value>
-        </member>
-        <member name="P:NodaTime.Text.OffsetPattern.FormatInfo">
-            <summary>
-            Returns the localization information used in this pattern.
-            </summary>
         </member>
         <member name="P:NodaTime.Text.OffsetPattern.UnderlyingPattern">
             <summary>
@@ -12106,7 +11976,7 @@
         </member>
         <member name="F:NodaTime.TimeZones.IO.DateTimeZoneWriter.ZoneIntervalConstants.MinValueForHoursSincePrevious">
             <summary>The minimum varint value that represents an number of hours-since-previous.</summary>
-            <remarks>Values below value are reserved for markers.</remarks>
+            <remarks>Values below this are reserved for markers.</remarks>
         </member>
         <member name="F:NodaTime.TimeZones.IO.DateTimeZoneWriter.ZoneIntervalConstants.MinValueForMinutesSinceEpoch">
             <summary>The minimum varint value that represents an number of minutes since an epoch.</summary>
@@ -12574,13 +12444,6 @@
             </summary>
             <param name="instant">The Instant to find.</param>
             <returns>The ZoneInterval including the given instant.</returns>
-        </member>
-        <member name="M:NodaTime.TimeZones.PrecalculatedDateTimeZone.IsCachable">
-            <summary>
-            Returns true if this time zone is worth caching. Small time zones or time zones with
-            lots of quick changes do not work well with <see cref="T:NodaTime.TimeZones.CachedDateTimeZone"/>.
-            </summary>
-            <returns><c>true</c> if this instance is cachable; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:NodaTime.TimeZones.PrecalculatedDateTimeZone.Write(NodaTime.TimeZones.IO.IDateTimeZoneWriter)">
             <summary>
