@@ -10872,7 +10872,7 @@
             <summary>
             Parses digits at the current point in the string as a fractional value.
             </summary>
-            <param name="maximumDigits">The maximum allowed digits.</param>
+            <param name="maximumDigits">The maximum allowed digits. Trusted to be less than or equal to scale.</param>
             <param name="scale">The scale of the fractional value.</param>
             <param name="result">The result value scaled by scale. The value of this is not guaranteed
             to be anything specific if the return value is false.</param>
@@ -11210,12 +11210,7 @@
             Helper methods for creating IZoneIntervalMaps which cache results.
             </summary>
         </member>
-        <member name="T:NodaTime.TimeZones.CachingZoneIntervalMap.CacheType">
-            <summary>
-            The type of cache to build.
-            </summary>
-        </member>
-        <member name="M:NodaTime.TimeZones.CachingZoneIntervalMap.CacheMap(NodaTime.TimeZones.IZoneIntervalMap,NodaTime.TimeZones.CachingZoneIntervalMap.CacheType)">
+        <member name="M:NodaTime.TimeZones.CachingZoneIntervalMap.CacheMap(NodaTime.TimeZones.IZoneIntervalMap)">
             <summary>
             Returns a caching map for the given input map.
             </summary>
@@ -13550,7 +13545,8 @@
             This represents a recurring transition from or to a daylight savings time. The name is the
             name of the time zone during this period (e.g. PST or PDT). The savings is usually 0 or the
             daylight offset. This is also used to support some of the tricky transitions that occurred
-            before that calendars were "standardized."
+            before the time zones were normalized (i.e. when they were still tightly longitude-based,
+            with multiple towns in the same country observing different times).
             </para>
             <para>
             Immutable, thread safe.
@@ -13667,13 +13663,6 @@
             <summary>
             Returns either "this" (if this zone recurrence already has a from year of int.MinValue)
             or a new zone recurrence which is identical but with a from year of int.MinValue.
-            </summary>
-        </member>
-        <member name="M:NodaTime.TimeZones.ZoneRecurrence.ToInfinity">
-            <summary>
-            Returns either "this" (if this zone recurrence is already infinite)
-            or a new zone recurrence which is identical but with a from year of int.MinValue
-            and an end year of int.MaxValue.
             </summary>
         </member>
         <member name="T:NodaTime.TimeZones.ZoneYearOffset">
