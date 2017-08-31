@@ -12619,6 +12619,25 @@
             </summary>
             <param name="writer">The writer to write to.</param>
         </member>
+        <member name="T:NodaTime.TimeZones.TimeZoneInfoInterceptor">
+            <summary>
+            Interception for TimeZoneInfo static methods. These are still represented as
+            static methods in this class, but they're implemented via a replacable shim, which
+            by default delegates to the static methods in TimeZoneInfo.
+            </summary>
+        </member>
+        <member name="P:NodaTime.TimeZones.TimeZoneInfoInterceptor.Shim">
+            <summary>
+            The shim to use for all the static methods. We don't care about thread safety here,
+            beyond "it must be correct when used in production" - it's only ever changed in tests,
+            which are single-threaded anyway.
+            </summary>
+        </member>
+        <member name="T:NodaTime.TimeZones.TimeZoneInfoInterceptor.BclShim">
+            <summary>
+            Implementation that just delegates in a simple manner.
+            </summary>
+        </member>
         <member name="T:NodaTime.TimeZones.Transition">
             <summary>
             A transition between two offsets, usually for daylight saving reasons. This type only knows about
