@@ -4608,11 +4608,14 @@
             </summary>
             <remarks>
             This is simply a convenience operator for calling <see cref="M:NodaTime.Period.Between(NodaTime.LocalDate,NodaTime.LocalDate)"/>.
-            The calendar systems of the two dates must be the same.
+            The calendar systems of the two dates must be the same; an exception will be thrown otherwise.
             </remarks>
             <param name="lhs">The date to subtract from</param>
             <param name="rhs">The date to subtract</param>
             <returns>The result of subtracting one date from another.</returns>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="lhs"/> and <paramref name="rhs"/> are not in the same calendar system.
+            </exception>
         </member>
         <member name="M:NodaTime.LocalDate.Subtract(NodaTime.LocalDate,NodaTime.LocalDate)">
             <summary>
@@ -7887,10 +7890,14 @@
             <remarks>
             If <paramref name="end"/> is before <paramref name="start" />, each property in the returned period
             will be negative.
+            The calendar systems of the two dates must be the same; an exception will be thrown otherwise.
             </remarks>
             <param name="start">Start date</param>
             <param name="end">End date</param>
             <returns>The period between the two dates, using year, month and day units.</returns>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="start"/> and <paramref name="end"/> are not in the same calendar system.
+            </exception>
         </member>
         <member name="M:NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime,NodaTime.PeriodUnits)">
             <summary>
