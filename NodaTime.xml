@@ -4882,6 +4882,14 @@
             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="targetDayOfWeek"/> is not a valid day of the
             week (Monday to Sunday).</exception>
         </member>
+        <member name="M:NodaTime.LocalDate.WithOffset(NodaTime.Offset)">
+            <summary>
+            Returns an <see cref="T:NodaTime.OffsetDate"/> for this local date with the given offset.
+            </summary>
+            <remarks>This method is purely a convenient alternative to calling the <see cref="T:NodaTime.OffsetDate"/> constructor directly.</remarks>
+            <param name="offset">The offset to apply.</param>
+            <returns>The result of this date offset by the given amount.</returns>
+        </member>
         <member name="M:NodaTime.LocalDate.At(NodaTime.LocalTime)">
             <summary>
             Combines this <see cref="T:NodaTime.LocalDate"/> with the given <see cref="T:NodaTime.LocalTime"/>
@@ -4902,6 +4910,23 @@
             </remarks>
             <param name="adjuster">The adjuster to apply.</param>
             <returns>The adjusted date.</returns>
+        </member>
+        <member name="M:NodaTime.LocalDate.Deconstruct(System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Deconstructs the current instance into its components.
+            </summary>
+            <param name="year">The year component of the date.</param>
+            <param name="month">The month component of the date.</param>
+            <param name="day">The day component of the date.</param>
+        </member>
+        <member name="M:NodaTime.LocalDate.Deconstruct(System.Int32@,System.Int32@,System.Int32@,NodaTime.CalendarSystem@)">
+            <summary>
+            Deconstructs the current instance into its components.
+            </summary>
+            <param name="year">The year component of the date.</param>
+            <param name="month">The month component of the date.</param>
+            <param name="day">The day component of the date.</param>
+            <param name="calendar">The <see cref="T:NodaTime.CalendarSystem"/> associated with the date.</param>
         </member>
         <member name="M:NodaTime.LocalDate.ToString">
             <summary>
@@ -6279,6 +6304,14 @@
             <param name="adjuster">The adjuster to apply.</param>
             <returns>The adjusted time.</returns>
         </member>
+        <member name="M:NodaTime.LocalTime.WithOffset(NodaTime.Offset)">
+            <summary>
+            Returns an <see cref="T:NodaTime.OffsetTime"/> for this time-of-day with the given offset.
+            </summary>
+            <remarks>This method is purely a convenient alternative to calling the <see cref="T:NodaTime.OffsetTime"/> constructor directly.</remarks>
+            <param name="offset">The offset to apply.</param>
+            <returns>The result of this time-of-day offset by the given amount.</returns>
+        </member>
         <member name="M:NodaTime.LocalTime.On(NodaTime.LocalDate)">
             <summary>
             Combines this <see cref="T:NodaTime.LocalTime"/> with the given <see cref="T:NodaTime.LocalDate"/>
@@ -6946,6 +6979,166 @@
         <member name="M:NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)">
             <inheritdoc />
         </member>
+        <member name="T:NodaTime.OffsetDate">
+            <summary>
+            A combination of a <see cref="T:NodaTime.LocalDate"/> and an <see cref="P:NodaTime.OffsetDate.Offset"/>, to represent
+            a date at a specific offset from UTC but without any time-of-day information.
+            </summary>
+            <threadsafety>This type is an immutable value type. See the thread safety section of the user guide for more information.</threadsafety>
+        </member>
+        <member name="M:NodaTime.OffsetDate.#ctor(NodaTime.LocalDate,NodaTime.Offset)">
+            <summary>
+            Constructs an instance of the specified date and offset.
+            </summary>
+            <param name="date">The date part of the value.</param>
+            <param name="offset">The offset part of the value.</param>
+        </member>
+        <member name="P:NodaTime.OffsetDate.Date">
+            <summary>
+            Gets the local date represented by this value.
+            </summary>
+            <value>The local date represented by this value.</value>
+        </member>
+        <member name="P:NodaTime.OffsetDate.Offset">
+            <summary>
+            Gets the offset from UTC of this value.
+            </summary>
+            <value>The offset from UTC of this value.</value>
+        </member>
+        <member name="P:NodaTime.OffsetDate.Calendar">
+            <summary>Gets the calendar system associated with this offset date.</summary>
+            <value>The calendar system associated with this offset date.</value>
+        </member>
+        <member name="P:NodaTime.OffsetDate.Year">
+            <summary>Gets the year of this offset date.</summary>
+            <remarks>This returns the "absolute year", so, for the ISO calendar,
+            a value of 0 means 1 BC, for example.</remarks>
+            <value>The year of this offset date.</value>
+        </member>
+        <member name="P:NodaTime.OffsetDate.Month">
+            <summary>Gets the month of this offset date within the year.</summary>
+            <value>The month of this offset date within the year.</value>
+        </member>
+        <member name="P:NodaTime.OffsetDate.Day">
+            <summary>Gets the day of this offset date within the month.</summary>
+            <value>The day of this offset date within the month.</value>
+        </member>
+        <member name="P:NodaTime.OffsetDate.DayOfWeek">
+            <summary>
+            Gets the week day of this offset date expressed as an <see cref="T:NodaTime.IsoDayOfWeek"/> value.
+            </summary>
+            <value>The week day of this offset date expressed as an <c>IsoDayOfWeek</c>.</value>
+        </member>
+        <member name="P:NodaTime.OffsetDate.YearOfEra">
+            <summary>Gets the year of this offset date within the era.</summary>
+            <value>The year of this offset date within the era.</value>
+        </member>
+        <member name="P:NodaTime.OffsetDate.Era">
+            <summary>Gets the era of this offset date.</summary>
+            <value>The era of this offset date.</value>
+        </member>
+        <member name="P:NodaTime.OffsetDate.DayOfYear">
+            <summary>Gets the day of this offset date within the year.</summary>
+            <value>The day of this offset date within the year.</value>
+        </member>
+        <member name="M:NodaTime.OffsetDate.WithOffset(NodaTime.Offset)">
+            <summary>
+            Creates a new <see cref="T:NodaTime.OffsetDate"/> for the same date, but with the specified UTC offset.
+            </summary>
+            <param name="offset">The new UTC offset.</param>
+            <returns>A new <c>OffsetDate</c> for the same date, but with the specified UTC offset.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetDate.With(System.Func{NodaTime.LocalDate,NodaTime.LocalDate})">
+            <summary>
+            Returns this offset date, with the given date adjuster applied to it, maintaining the existing offset.
+            </summary>
+            <remarks>
+            If the adjuster attempts to construct an
+            invalid date (such as by trying to set a day-of-month of 30 in February), any exception thrown by
+            that construction attempt will be propagated through this method.
+            </remarks>
+            <param name="adjuster">The adjuster to apply.</param>
+            <returns>The adjusted offset date.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetDate.WithCalendar(NodaTime.CalendarSystem)">
+            <summary>
+            Creates a new <see cref="T:NodaTime.OffsetDate"/> representing the same physical date and offset, but in a different calendar.
+            The returned value is likely to have different date field values to this one.
+            For example, January 1st 1970 in the Gregorian calendar was December 19th 1969 in the Julian calendar.
+            </summary>
+            <param name="calendar">The calendar system to convert this offset date to.</param>
+            <returns>The converted <c>OffsetDate</c>.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetDate.At(NodaTime.LocalTime)">
+            <summary>
+            Combines this <see cref="T:NodaTime.OffsetDate"/> with the given <see cref="T:NodaTime.LocalTime"/>
+            into an <see cref="T:NodaTime.OffsetDateTime"/>.
+            </summary>
+            <param name="time">The time to combine with this date.</param>
+            <returns>The <see cref="T:NodaTime.OffsetDateTime"/> representation of the given time on this date.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetDate.GetHashCode">
+            <summary>
+            Returns a hash code for this offset date.
+            </summary>
+            <returns>A hash code for this offset date.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetDate.Equals(System.Object)">
+            <summary>
+            Compares two <see cref="T:NodaTime.OffsetDate"/> values for equality. This requires
+            that the date values be the same (in the same calendar) and the offsets.
+            </summary>
+            <param name="obj">The object to compare this offset date with.</param>
+            <returns>True if the given value is another offset date equal to this one; false otherwise.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetDate.Equals(NodaTime.OffsetDate)">
+            <summary>
+            Compares two <see cref="T:NodaTime.OffsetDate"/> values for equality. This requires
+            that the date values be the same (in the same calendar) and the offsets.
+            </summary>
+            <param name="other">The value to compare this offset date with.</param>
+            <returns>True if the given value is another offset date equal to this one; false otherwise.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetDate.op_Equality(NodaTime.OffsetDate,NodaTime.OffsetDate)">
+            <summary>
+            Implements the operator == (equality).
+            </summary>
+            <param name="left">The left hand side of the operator.</param>
+            <param name="right">The right hand side of the operator.</param>
+            <returns><c>true</c> if values are equal to each other, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetDate.op_Inequality(NodaTime.OffsetDate,NodaTime.OffsetDate)">
+            <summary>
+            Implements the operator != (inequality).
+            </summary>
+            <param name="left">The left hand side of the operator.</param>
+            <param name="right">The right hand side of the operator.</param>
+            <returns><c>true</c> if values are not equal to each other, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetDate.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            The value of the current instance in the default format pattern ("G"), using the current thread's
+            culture to obtain a format provider.
+            </returns>
+        </member>
+        <member name="M:NodaTime.OffsetDate.ToString(System.String,System.IFormatProvider)">
+            <summary>
+            Formats the value of the current instance using the specified pattern.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> containing the value of the current instance in the specified format.
+            </returns>
+            <param name="patternText">The <see cref="T:System.String" /> specifying the pattern to use,
+            or null to use the default format pattern ("G").
+            </param>
+            <param name="formatProvider">The <see cref="T:System.IFormatProvider" /> to use when formatting the value,
+            or null to use the current thread's culture to obtain a format provider.
+            </param>
+            <filterpriority>2</filterpriority>
+        </member>
         <member name="T:NodaTime.OffsetDateTime">
             <summary>
             A local date and time in a particular calendar system, combined with an offset from UTC. This is
@@ -7215,6 +7408,20 @@
             </summary>
             <param name="offset">The new offset to use.</param>
             <returns>The converted OffsetDateTime.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetDateTime.ToOffsetDate">
+            <summary>
+            Constructs a new <see cref="T:NodaTime.OffsetDate"/> from the date and offset of this value,
+            but omitting the time-of-day.
+            </summary>
+            <returns>A value representing the date and offset aspects of this value.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetDateTime.ToOffsetTime">
+            <summary>
+            Constructs a new <see cref="T:NodaTime.OffsetTime"/> from the time and offset of this value,
+            but omitting the date.
+            </summary>
+            <returns>A value representing the time and offset aspects of this value.</returns>
         </member>
         <member name="M:NodaTime.OffsetDateTime.GetHashCode">
             <summary>
@@ -7540,6 +7747,183 @@
         </member>
         <member name="M:NodaTime.OffsetDateTime.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)">
             <inheritdoc />
+        </member>
+        <member name="T:NodaTime.OffsetTime">
+            <summary>
+            A combination of a <see cref="T:NodaTime.LocalTime"/> and an <see cref="P:NodaTime.OffsetTime.Offset"/>, to represent
+            a time-of-day at a specific offset from UTC but without any date information.
+            </summary>
+            <threadsafety>This type is an immutable value type. See the thread safety section of the user guide for more information.</threadsafety>
+        </member>
+        <member name="M:NodaTime.OffsetTime.#ctor(NodaTime.LocalTime,NodaTime.Offset)">
+            <summary>
+            Constructs an instance of the specified time and offset.
+            </summary>
+            <param name="time">The time part of the value.</param>
+            <param name="offset">The offset part of the value.</param>
+        </member>
+        <member name="P:NodaTime.OffsetTime.TimeOfDay">
+            <summary>
+            Gets the time-of-day represented by this value.
+            </summary>
+            <value>The time-of-day represented by this value.</value>
+        </member>
+        <member name="P:NodaTime.OffsetTime.Offset">
+            <summary>
+            Gets the offset from UTC of this value.
+            <value>The offset from UTC of this value.</value>
+            </summary>
+        </member>
+        <member name="P:NodaTime.OffsetTime.Hour">
+            <summary>
+            Gets the hour of day of this offset time, in the range 0 to 23 inclusive.
+            </summary>
+            <value>The hour of day of this offset time, in the range 0 to 23 inclusive.</value>
+        </member>
+        <member name="P:NodaTime.OffsetTime.ClockHourOfHalfDay">
+            <summary>
+            Gets the hour of the half-day of this offset time, in the range 1 to 12 inclusive.
+            </summary>
+            <value>The hour of the half-day of this offset time, in the range 1 to 12 inclusive.</value>
+        </member>
+        <member name="P:NodaTime.OffsetTime.HourOfHalfDay">
+            <summary>
+            Gets the hour of the half-day of this offset time, in the range 0 to 11 inclusive.
+            </summary>
+            <value>The hour of the half-day of this offset time, in the range 0 to 11 inclusive.</value>
+        </member>
+        <member name="P:NodaTime.OffsetTime.Minute">
+            <summary>
+            Gets the minute of this offset time, in the range 0 to 59 inclusive.
+            </summary>
+            <value>The minute of this offset time, in the range 0 to 59 inclusive.</value>
+        </member>
+        <member name="P:NodaTime.OffsetTime.Second">
+            <summary>
+            Gets the second of this offset time within the minute, in the range 0 to 59 inclusive.
+            </summary>
+            <value>The second of this offset time within the minute, in the range 0 to 59 inclusive.</value>
+        </member>
+        <member name="P:NodaTime.OffsetTime.Millisecond">
+            <summary>
+            Gets the millisecond of this offset time within the second, in the range 0 to 999 inclusive.
+            </summary>
+            <value>The millisecond of this offset time within the second, in the range 0 to 999 inclusive.</value>
+        </member>
+        <member name="P:NodaTime.OffsetTime.TickOfSecond">
+            <summary>
+            Gets the tick of this offset time within the second, in the range 0 to 9,999,999 inclusive.
+            </summary>
+            <value>The tick of this offset time within the second, in the range 0 to 9,999,999 inclusive.</value>
+        </member>
+        <member name="P:NodaTime.OffsetTime.TickOfDay">
+            <summary>
+            Gets the tick of this offset time within the day, in the range 0 to 863,999,999,999 inclusive.
+            </summary>
+            <remarks>
+            If the value does not fall on a tick boundary, it will be truncated towards zero.
+            </remarks>
+            <value>The tick of this offset time within the day, in the range 0 to 863,999,999,999 inclusive.</value>
+        </member>
+        <member name="P:NodaTime.OffsetTime.NanosecondOfSecond">
+            <summary>
+            Gets the nanosecond of this offset time within the second, in the range 0 to 999,999,999 inclusive.
+            </summary>
+            <value>The nanosecond of this offset time within the second, in the range 0 to 999,999,999 inclusive.</value>
+        </member>
+        <member name="P:NodaTime.OffsetTime.NanosecondOfDay">
+            <summary>
+            Gets the nanosecond of this offset time within the day, in the range 0 to 86,399,999,999,999 inclusive.
+            </summary>
+            <value>The nanosecond of this offset time within the day, in the range 0 to 86,399,999,999,999 inclusive.</value>
+        </member>
+        <member name="M:NodaTime.OffsetTime.WithOffset(NodaTime.Offset)">
+            <summary>
+            Creates a new <see cref="T:NodaTime.OffsetTime"/> for the same time-of-day, but with the specified UTC offset.
+            </summary>
+            <param name="offset">The new UTC offset.</param>
+            <returns>A new <c>OffsetTime</c> for the same date, but with the specified UTC offset.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetTime.With(System.Func{NodaTime.LocalTime,NodaTime.LocalTime})">
+            <summary>
+            Returns this offset time-of-day, with the given date adjuster applied to it, maintaining the existing offset.
+            </summary>
+            <remarks>
+            If the adjuster attempts to construct an invalid time-of-day, any exception thrown by
+            that construction attempt will be propagated through this method.
+            </remarks>
+            <param name="adjuster">The adjuster to apply.</param>
+            <returns>The adjusted offset date.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetTime.On(NodaTime.LocalDate)">
+            <summary>
+            Combines this <see cref="T:NodaTime.OffsetTime"/> with the given <see cref="T:NodaTime.LocalDate"/>
+            into an <see cref="T:NodaTime.OffsetDateTime"/>.
+            </summary>
+            <param name="date">The date to combine with this time-of-day.</param>
+            <returns>The <see cref="T:NodaTime.OffsetDateTime"/> representation of this time-of-day on the given date.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetTime.GetHashCode">
+            <summary>
+            Returns a hash code for this offset time.
+            </summary>
+            <returns>A hash code for this offset time.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetTime.Equals(System.Object)">
+            <summary>
+            Compares two <see cref="T:NodaTime.OffsetTime"/> values for equality. This requires
+            that the time-of-day values be the same and the offsets.
+            </summary>
+            <param name="obj">The object to compare this offset time with.</param>
+            <returns>True if the given value is another offset time equal to this one; false otherwise.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetTime.Equals(NodaTime.OffsetTime)">
+            <summary>
+            Compares two <see cref="T:NodaTime.OffsetTime"/> values for equality. This requires
+            that the date values be the same and the offsets.
+            </summary>
+            <param name="other">The value to compare this offset time with.</param>
+            <returns>True if the given value is another offset time equal to this one; false otherwise.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetTime.op_Equality(NodaTime.OffsetTime,NodaTime.OffsetTime)">
+            <summary>
+            Implements the operator == (equality).
+            </summary>
+            <param name="left">The left hand side of the operator.</param>
+            <param name="right">The right hand side of the operator.</param>
+            <returns><c>true</c> if values are equal to each other, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetTime.op_Inequality(NodaTime.OffsetTime,NodaTime.OffsetTime)">
+            <summary>
+            Implements the operator != (inequality).
+            </summary>
+            <param name="left">The left hand side of the operator.</param>
+            <param name="right">The right hand side of the operator.</param>
+            <returns><c>true</c> if values are not equal to each other, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:NodaTime.OffsetTime.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            The value of the current instance in the default format pattern ("G"), using the current thread's
+            culture to obtain a format provider.
+            </returns>
+        </member>
+        <member name="M:NodaTime.OffsetTime.ToString(System.String,System.IFormatProvider)">
+            <summary>
+            Formats the value of the current instance using the specified pattern.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> containing the value of the current instance in the specified format.
+            </returns>
+            <param name="patternText">The <see cref="T:System.String" /> specifying the pattern to use,
+            or null to use the default format pattern ("G").
+            </param>
+            <param name="formatProvider">The <see cref="T:System.IFormatProvider" /> to use when formatting the value,
+            or null to use the current thread's culture to obtain a format provider.
+            </param>
+            <filterpriority>2</filterpriority>
         </member>
         <member name="T:NodaTime.Period">
             <summary>
@@ -9276,11 +9660,11 @@
         </member>
         <member name="P:NodaTime.Text.LocalTimePattern.ExtendedIso">
             <summary>
-            Gets an invariant local time pattern which is ISO-8601 compatible, providing up to 7 decimal places.
+            Gets an invariant local time pattern which is ISO-8601 compatible, providing up to 9 decimal places.
             (These digits are omitted when unnecessary.)
-            This corresponds to the text pattern "HH':'mm':'ss;FFFFFFF".
+            This corresponds to the text pattern "HH':'mm':'ss;FFFFFFFFF".
             </summary>
-            <value>An invariant local time pattern which is ISO-8601 compatible, providing up to 7 decimal places.</value>
+            <value>An invariant local time pattern which is ISO-8601 compatible, providing up to 9 decimal places.</value>
         </member>
         <member name="T:NodaTime.Text.LocalTimePattern.Patterns">
             <summary>
@@ -9479,6 +9863,188 @@
             See the user guide for more information.
             </para>
             </summary>
+        </member>
+        <member name="T:NodaTime.Text.OffsetDatePattern">
+            <summary>
+            Represents a pattern for parsing and formatting <see cref="T:NodaTime.OffsetDate"/> values.
+            </summary>
+            <threadsafety>
+            When used with a read-only <see cref="T:System.Globalization.CultureInfo" />, this type is immutable and instances
+            may be shared freely between threads. We recommend only using read-only cultures for patterns, although this is
+            not currently enforced.
+            </threadsafety>
+        </member>
+        <member name="P:NodaTime.Text.OffsetDatePattern.GeneralIso">
+            <summary>
+            Gets an invariant offset date pattern based on ISO-8601, including offset from UTC.
+            </summary>
+            <remarks>
+            The calendar system is not parsed or formatted as part of this pattern. It corresponds to a custom pattern of
+            "uuuu'-'MM'-'ddo&lt;G&gt;". This pattern is available as the "G" standard pattern (even though it is invariant).
+            </remarks>
+            <value>An invariant offset date pattern based on ISO-8601 (down to the second), including offset from UTC.</value>
+        </member>
+        <member name="P:NodaTime.Text.OffsetDatePattern.FullRoundtrip">
+            <summary>
+            Gets an invariant offset date pattern based on ISO-8601
+            including offset from UTC and calendar ID.
+            </summary>
+            <remarks>
+            The returned pattern corresponds to a custom pattern of
+            "uuuu'-'MM'-'dd'o&lt;G&gt; '('c')'". This will round-trip any value in any calendar,
+            and is available as the "r" standard pattern.
+            </remarks>
+            <value>An invariant offset date pattern based on ISO-8601 (down to the nanosecond)
+            including offset from UTC and calendar ID.</value>
+        </member>
+        <member name="T:NodaTime.Text.OffsetDatePattern.Patterns">
+            <summary>
+            Class whose existence is solely to avoid type initialization order issues, most of which stem
+            from needing NodaFormatInfo.InvariantInfo...
+            </summary>
+        </member>
+        <member name="P:NodaTime.Text.OffsetDatePattern.PatternText">
+            <summary>
+            Gets the pattern text for this pattern, as supplied on creation.
+            </summary>
+            <value>The pattern text for this pattern, as supplied on creation.</value>
+        </member>
+        <member name="P:NodaTime.Text.OffsetDatePattern.FormatInfo">
+            <summary>
+            Gets the localization information used in this pattern.
+            </summary>
+        </member>
+        <member name="P:NodaTime.Text.OffsetDatePattern.TemplateValue">
+            <summary>
+            Gets the value used as a template for parsing: any field values unspecified
+            in the pattern are taken from the template.
+            </summary>
+            <value>The value used as a template for parsing.</value>
+        </member>
+        <member name="M:NodaTime.Text.OffsetDatePattern.Parse(System.String)">
+            <summary>
+            Parses the given text value according to the rules of this pattern.
+            </summary>
+            <remarks>
+            This method never throws an exception (barring a bug in Noda Time itself). Even errors such as
+            the argument being null are wrapped in a parse result.
+            </remarks>
+            <param name="text">The text value to parse.</param>
+            <returns>The result of parsing, which may be successful or unsuccessful.</returns>
+        </member>
+        <member name="M:NodaTime.Text.OffsetDatePattern.Format(NodaTime.OffsetDate)">
+            <summary>
+            Formats the given zoned date as text according to the rules of this pattern.
+            </summary>
+            <param name="value">The zoned date to format.</param>
+            <returns>The zoned date formatted according to this pattern.</returns>
+        </member>
+        <member name="M:NodaTime.Text.OffsetDatePattern.AppendFormat(NodaTime.OffsetDate,System.Text.StringBuilder)">
+            <summary>
+            Formats the given value as text according to the rules of this pattern,
+            appending to the given <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="value">The value to format.</param>
+            <param name="builder">The <c>StringBuilder</c> to append to.</param>
+            <returns>The builder passed in as <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:NodaTime.Text.OffsetDatePattern.Create(System.String,NodaTime.Globalization.NodaFormatInfo,NodaTime.OffsetDate)">
+            <summary>
+            Creates a pattern for the given pattern text, format info, and template value.
+            </summary>
+            <param name="patternText">Pattern text to create the pattern for</param>
+            <param name="formatInfo">The format info to use in the pattern</param>
+            <param name="templateValue">Template value to use for unspecified fields</param>
+            <returns>A pattern for parsing and formatting zoned dates.</returns>
+            <exception cref="T:NodaTime.Text.InvalidPatternException">The pattern text was invalid.</exception>
+        </member>
+        <member name="M:NodaTime.Text.OffsetDatePattern.Create(System.String,System.Globalization.CultureInfo,NodaTime.OffsetDate)">
+            <summary>
+            Creates a pattern for the given pattern text, culture, and template value.
+            </summary>
+            <remarks>
+            See the user guide for the available pattern text options.
+            </remarks>
+            <param name="patternText">Pattern text to create the pattern for</param>
+            <param name="cultureInfo">The culture to use in the pattern</param>
+            <param name="templateValue">Template value to use for unspecified fields</param>
+            <returns>A pattern for parsing and formatting local dates.</returns>
+            <exception cref="T:NodaTime.Text.InvalidPatternException">The pattern text was invalid.</exception>
+        </member>
+        <member name="M:NodaTime.Text.OffsetDatePattern.CreateWithInvariantCulture(System.String)">
+            <summary>
+            Creates a pattern for the given pattern text in the invariant culture, using the default
+            template value of midnight January 1st 2000 at an offset of 0.
+            </summary>
+            <remarks>
+            See the user guide for the available pattern text options.
+            </remarks>
+            <param name="patternText">Pattern text to create the pattern for</param>
+            <returns>A pattern for parsing and formatting local dates.</returns>
+            <exception cref="T:NodaTime.Text.InvalidPatternException">The pattern text was invalid.</exception>
+        </member>
+        <member name="M:NodaTime.Text.OffsetDatePattern.CreateWithCurrentCulture(System.String)">
+            <summary>
+            Creates a pattern for the given pattern text in the current culture, using the default
+            template value of midnight January 1st 2000 at an offset of 0.
+            </summary>
+            <remarks>
+            See the user guide for the available pattern text options. Note that the current culture
+            is captured at the time this method is called - it is not captured at the point of parsing
+            or formatting values.
+            </remarks>
+            <param name="patternText">Pattern text to create the pattern for</param>
+            <returns>A pattern for parsing and formatting local dates.</returns>
+            <exception cref="T:NodaTime.Text.InvalidPatternException">The pattern text was invalid.</exception>
+        </member>
+        <member name="M:NodaTime.Text.OffsetDatePattern.WithPatternText(System.String)">
+            <summary>
+            Creates a pattern for the same original localization information as this pattern, but with the specified
+            pattern text.
+            </summary>
+            <param name="patternText">The pattern text to use in the new pattern.</param>
+            <returns>A new pattern with the given pattern text.</returns>
+        </member>
+        <member name="M:NodaTime.Text.OffsetDatePattern.WithFormatInfo(NodaTime.Globalization.NodaFormatInfo)">
+            <summary>
+            Creates a pattern for the same original pattern text as this pattern, but with the specified
+            localization information.
+            </summary>
+            <param name="formatInfo">The localization information to use in the new pattern.</param>
+            <returns>A new pattern with the given localization information.</returns>
+        </member>
+        <member name="M:NodaTime.Text.OffsetDatePattern.WithCulture(System.Globalization.CultureInfo)">
+            <summary>
+            Creates a pattern for the same original pattern text as this pattern, but with the specified
+            culture.
+            </summary>
+            <param name="cultureInfo">The culture to use in the new pattern.</param>
+            <returns>A new pattern with the given culture.</returns>
+        </member>
+        <member name="M:NodaTime.Text.OffsetDatePattern.WithTemplateValue(NodaTime.OffsetDate)">
+            <summary>
+            Creates a pattern for the same original pattern text and culture as this pattern, but with
+            the specified template value.
+            </summary>
+            <param name="newTemplateValue">The template value to use in the new pattern.</param>
+            <returns>A new pattern with the given template value.</returns>
+        </member>
+        <member name="M:NodaTime.Text.OffsetDatePattern.WithCalendar(NodaTime.CalendarSystem)">
+            <summary>
+            Creates a pattern like this one, but with the template value modified to use
+            the specified calendar system.
+            </summary>
+            <remarks>
+            <para>
+            Care should be taken in two (relatively rare) scenarios. Although the default template value
+            is supported by all Noda Time calendar systems, if a pattern is created with a different
+            template value and then this method is called with a calendar system which doesn't support that
+            date, an exception will be thrown. Additionally, if the pattern only specifies some date fields,
+            it's possible that the new template value will not be suitable for all values.
+            </para>
+            </remarks>
+            <param name="calendar">The calendar system to convert the template value into.</param>
+            <returns>A new pattern with a template value in the specified calendar system.</returns>
         </member>
         <member name="T:NodaTime.Text.OffsetDateTimePattern">
             <summary>
@@ -9854,6 +10420,184 @@
             <summary>
             Calculates the value from the parsed pieces.
             </summary>
+        </member>
+        <member name="T:NodaTime.Text.OffsetTimePattern">
+            <summary>
+            Represents a pattern for parsing and formatting <see cref="T:NodaTime.OffsetTime"/> values.
+            </summary>
+            <threadsafety>
+            When used with a read-only <see cref="T:System.Globalization.CultureInfo" />, this type is immutable and instances
+            may be shared freely between threads. We recommend only using read-only cultures for patterns, although this is
+            not currently enforced.
+            </threadsafety>
+        </member>
+        <member name="P:NodaTime.Text.OffsetTimePattern.GeneralIso">
+            <summary>
+            Gets an invariant offset time pattern based on ISO-8601 (down to the second), including offset from UTC.
+            </summary>
+            <remarks>
+            This corresponds to a custom pattern of "HH':'mm':'sso&lt;G&gt;". It is available as the "G"
+            standard pattern (even though it is invariant).
+            </remarks>
+            <value>An invariant offset time pattern based on ISO-8601 (down to the second), including offset from UTC.</value>
+        </member>
+        <member name="P:NodaTime.Text.OffsetTimePattern.ExtendedIso">
+            <summary>
+            Gets an invariant offset time pattern based on ISO-8601 (down to the nanosecond), including offset from UTC.
+            </summary>
+            <remarks>
+            This corresponds to a custom pattern of "HH':'mm':'ss;FFFFFFFFFo&lt;G&gt;".
+            This will round-trip all values, and is available as the "o" standard pattern.
+            </remarks>
+            <value>An invariant offset time pattern based on ISO-8601 (down to the nanosecond), including offset from UTC.</value>
+        </member>
+        <member name="P:NodaTime.Text.OffsetTimePattern.Rfc3339">
+            <summary>
+            Gets an invariant offset time pattern based on RFC 3339 (down to the nanosecond), including offset from UTC
+            as hours and minutes only.
+            </summary>
+            <remarks>
+            The minutes part of the offset is always included, but any sub-minute component
+            of the offset is lost. An offset of zero is formatted as 'Z', but all of 'Z', '+00:00' and '-00:00' are parsed
+            the same way. The RFC 3339 meaning of '-00:00' is not supported by Noda Time.
+            Note that parsing is case-sensitive (so 'T' and 'Z' must be upper case).
+            This pattern corresponds to a custom pattern of
+            "HH':'mm':'ss;FFFFFFFFFo&lt;Z+HH:mm&gt;".
+            </remarks>
+            <value>An invariant offset time pattern based on RFC 3339 (down to the nanosecond), including offset from UTC
+            as hours and minutes only.</value>
+        </member>
+        <member name="T:NodaTime.Text.OffsetTimePattern.Patterns">
+            <summary>
+            Class whose existence is solely to avoid type initialization order issues, most of which stem
+            from needing NodaFormatInfo.InvariantInfo...
+            </summary>
+        </member>
+        <member name="P:NodaTime.Text.OffsetTimePattern.PatternText">
+            <summary>
+            Gets the pattern text for this pattern, as supplied on creation.
+            </summary>
+            <value>The pattern text for this pattern, as supplied on creation.</value>
+        </member>
+        <member name="P:NodaTime.Text.OffsetTimePattern.FormatInfo">
+            <summary>
+            Gets the localization information used in this pattern.
+            </summary>
+        </member>
+        <member name="P:NodaTime.Text.OffsetTimePattern.TemplateValue">
+            <summary>
+            Gets the value used as a template for parsing: any field values unspecified
+            in the pattern are taken from the template.
+            </summary>
+            <value>The value used as a template for parsing.</value>
+        </member>
+        <member name="M:NodaTime.Text.OffsetTimePattern.Parse(System.String)">
+            <summary>
+            Parses the given text value according to the rules of this pattern.
+            </summary>
+            <remarks>
+            This method never throws an exception (barring a bug in Noda Time itself). Even errors such as
+            the argument being null are wrapped in a parse result.
+            </remarks>
+            <param name="text">The text value to parse.</param>
+            <returns>The result of parsing, which may be successful or unsuccessful.</returns>
+        </member>
+        <member name="M:NodaTime.Text.OffsetTimePattern.Format(NodaTime.OffsetTime)">
+            <summary>
+            Formats the given zoned time as text according to the rules of this pattern.
+            </summary>
+            <param name="value">The zoned time to format.</param>
+            <returns>The zoned time formatted according to this pattern.</returns>
+        </member>
+        <member name="M:NodaTime.Text.OffsetTimePattern.AppendFormat(NodaTime.OffsetTime,System.Text.StringBuilder)">
+            <summary>
+            Formats the given value as text according to the rules of this pattern,
+            appending to the given <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="value">The value to format.</param>
+            <param name="builder">The <c>StringBuilder</c> to append to.</param>
+            <returns>The builder passed in as <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:NodaTime.Text.OffsetTimePattern.Create(System.String,NodaTime.Globalization.NodaFormatInfo,NodaTime.OffsetTime)">
+            <summary>
+            Creates a pattern for the given pattern text, format info, and template value.
+            </summary>
+            <param name="patternText">Pattern text to create the pattern for</param>
+            <param name="formatInfo">The format info to use in the pattern</param>
+            <param name="templateValue">Template value to use for unspecified fields</param>
+            <returns>A pattern for parsing and formatting zoned times.</returns>
+            <exception cref="T:NodaTime.Text.InvalidPatternException">The pattern text was invalid.</exception>
+        </member>
+        <member name="M:NodaTime.Text.OffsetTimePattern.Create(System.String,System.Globalization.CultureInfo,NodaTime.OffsetTime)">
+            <summary>
+            Creates a pattern for the given pattern text, culture, and template value.
+            </summary>
+            <remarks>
+            See the user guide for the available pattern text options.
+            </remarks>
+            <param name="patternText">Pattern text to create the pattern for</param>
+            <param name="cultureInfo">The culture to use in the pattern</param>
+            <param name="templateValue">Template value to use for unspecified fields</param>
+            <returns>A pattern for parsing and formatting local times.</returns>
+            <exception cref="T:NodaTime.Text.InvalidPatternException">The pattern text was invalid.</exception>
+        </member>
+        <member name="M:NodaTime.Text.OffsetTimePattern.CreateWithInvariantCulture(System.String)">
+            <summary>
+            Creates a pattern for the given pattern text in the invariant culture, using the default
+            template value of midnight January 1st 2000 at an offset of 0.
+            </summary>
+            <remarks>
+            See the user guide for the available pattern text options.
+            </remarks>
+            <param name="patternText">Pattern text to create the pattern for</param>
+            <returns>A pattern for parsing and formatting local times.</returns>
+            <exception cref="T:NodaTime.Text.InvalidPatternException">The pattern text was invalid.</exception>
+        </member>
+        <member name="M:NodaTime.Text.OffsetTimePattern.CreateWithCurrentCulture(System.String)">
+            <summary>
+            Creates a pattern for the given pattern text in the current culture, using the default
+            template value of midnight January 1st 2000 at an offset of 0.
+            </summary>
+            <remarks>
+            See the user guide for the available pattern text options. Note that the current culture
+            is captured at the time this method is called - it is not captured at the point of parsing
+            or formatting values.
+            </remarks>
+            <param name="patternText">Pattern text to create the pattern for</param>
+            <returns>A pattern for parsing and formatting local times.</returns>
+            <exception cref="T:NodaTime.Text.InvalidPatternException">The pattern text was invalid.</exception>
+        </member>
+        <member name="M:NodaTime.Text.OffsetTimePattern.WithPatternText(System.String)">
+            <summary>
+            Creates a pattern for the same original localization information as this pattern, but with the specified
+            pattern text.
+            </summary>
+            <param name="patternText">The pattern text to use in the new pattern.</param>
+            <returns>A new pattern with the given pattern text.</returns>
+        </member>
+        <member name="M:NodaTime.Text.OffsetTimePattern.WithFormatInfo(NodaTime.Globalization.NodaFormatInfo)">
+            <summary>
+            Creates a pattern for the same original pattern text as this pattern, but with the specified
+            localization information.
+            </summary>
+            <param name="formatInfo">The localization information to use in the new pattern.</param>
+            <returns>A new pattern with the given localization information.</returns>
+        </member>
+        <member name="M:NodaTime.Text.OffsetTimePattern.WithCulture(System.Globalization.CultureInfo)">
+            <summary>
+            Creates a pattern for the same original pattern text as this pattern, but with the specified
+            culture.
+            </summary>
+            <param name="cultureInfo">The culture to use in the new pattern.</param>
+            <returns>A new pattern with the given culture.</returns>
+        </member>
+        <member name="M:NodaTime.Text.OffsetTimePattern.WithTemplateValue(NodaTime.OffsetTime)">
+            <summary>
+            Creates a pattern for the same original pattern text and culture as this pattern, but with
+            the specified template value.
+            </summary>
+            <param name="newTemplateValue">The template value to use in the new pattern.</param>
+            <returns>A new pattern with the given template value.</returns>
         </member>
         <member name="T:NodaTime.Text.ParseBucket`1">
             <summary>

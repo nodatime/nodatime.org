@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class LocalTimePattern
+    <title>Class OffsetTimePattern
    | Noda Time </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class LocalTimePattern
+    <meta name="title" content="Class OffsetTimePattern
    | Noda Time ">
     <meta name="generator" content="docfx 2.25.2.0">
     
@@ -68,18 +68,18 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="NodaTime.Text.LocalTimePattern">
+            <article class="content wrap" id="_content" data-uid="NodaTime.Text.OffsetTimePattern">
   
   
-  <h1 id="NodaTime_Text_LocalTimePattern" data-uid="NodaTime.Text.LocalTimePattern">Class LocalTimePattern
+  <h1 id="NodaTime_Text_OffsetTimePattern" data-uid="NodaTime.Text.OffsetTimePattern">Class OffsetTimePattern
   </h1>
   
   <div class="markdown level0 summary">
-Represents a pattern for parsing and formatting <a class="xref" href="NodaTime.LocalTime.html">LocalTime</a> values.
+Represents a pattern for parsing and formatting <a class="xref" href="NodaTime.OffsetTime.html">OffsetTime</a> values.
 </div>
   <div class="markdown level0 conceptual"></div>
   <div>
-  <strong>Since</strong> 1.0.x
+  <strong>Since</strong> unstable
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
@@ -115,29 +115,27 @@ Represents a pattern for parsing and formatting <a class="xref" href="NodaTime.L
   </div>
   <h6><strong>Namespace</strong>:System.Dynamic.ExpandoObject</h6>
   <h6><strong>Assembly</strong>:NodaTime.dll</h6>
-  <h5 id="NodaTime_Text_LocalTimePattern_syntax">Syntax</h5>
+  <h5 id="NodaTime_Text_OffsetTimePattern_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class LocalTimePattern : IPattern&lt;LocalTime&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class OffsetTimePattern : IPattern&lt;OffsetTime&gt;</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
-  <a id="NodaTime_Text_LocalTimePattern_ExtendedIso_" data-uid="NodaTime.Text.LocalTimePattern.ExtendedIso*"></a>
-  <h4 id="NodaTime_Text_LocalTimePattern_ExtendedIso" data-uid="NodaTime.Text.LocalTimePattern.ExtendedIso">ExtendedIso</h4>
+  <a id="NodaTime_Text_OffsetTimePattern_ExtendedIso_" data-uid="NodaTime.Text.OffsetTimePattern.ExtendedIso*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_ExtendedIso" data-uid="NodaTime.Text.OffsetTimePattern.ExtendedIso">ExtendedIso</h4>
   <div class="markdown level1 summary">
-Gets an invariant local time pattern which is ISO-8601 compatible, providing up to 9 decimal places.
-(These digits are omitted when unnecessary.)
-This corresponds to the text pattern &quot;HH&apos;:&apos;mm&apos;:&apos;ss;FFFFFFFFF&quot;.
+Gets an invariant offset time pattern based on ISO-8601 (down to the nanosecond), including offset from UTC.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
-  <strong>Since</strong> 1.4.x
+  <strong>Since</strong> unstable
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static LocalTimePattern ExtendedIso { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static OffsetTimePattern ExtendedIso { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -149,19 +147,60 @@ This corresponds to the text pattern &quot;HH&apos;:&apos;mm&apos;:&apos;ss;FFFF
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.Text.LocalTimePattern.html">LocalTimePattern</a></td>
-        <td>An invariant local time pattern which is ISO-8601 compatible, providing up to 9 decimal places. (The value returned is never null.)</td>
+        <td><a class="xref" href="NodaTime.Text.OffsetTimePattern.html">OffsetTimePattern</a></td>
+        <td>An invariant offset time pattern based on ISO-8601 (down to the nanosecond), including offset from UTC. (The value returned is never null.)</td>
       </tr>
     </tbody>
   </table>
-  <a id="NodaTime_Text_LocalTimePattern_PatternText_" data-uid="NodaTime.Text.LocalTimePattern.PatternText*"></a>
-  <h4 id="NodaTime_Text_LocalTimePattern_PatternText" data-uid="NodaTime.Text.LocalTimePattern.PatternText">PatternText</h4>
+  <h5 id="NodaTime_Text_OffsetTimePattern_ExtendedIso_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+This corresponds to a custom pattern of &quot;HH&apos;:&apos;mm&apos;:&apos;ss;FFFFFFFFFo&lt;G>&quot;.
+This will round-trip all values, and is available as the &quot;o&quot; standard pattern.
+</div>
+  <a id="NodaTime_Text_OffsetTimePattern_GeneralIso_" data-uid="NodaTime.Text.OffsetTimePattern.GeneralIso*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_GeneralIso" data-uid="NodaTime.Text.OffsetTimePattern.GeneralIso">GeneralIso</h4>
+  <div class="markdown level1 summary">
+Gets an invariant offset time pattern based on ISO-8601 (down to the second), including offset from UTC.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> unstable
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static OffsetTimePattern GeneralIso { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.Text.OffsetTimePattern.html">OffsetTimePattern</a></td>
+        <td>An invariant offset time pattern based on ISO-8601 (down to the second), including offset from UTC. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NodaTime_Text_OffsetTimePattern_GeneralIso_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+This corresponds to a custom pattern of &quot;HH&apos;:&apos;mm&apos;:&apos;sso&lt;G>&quot;. It is available as the &quot;G&quot;
+standard pattern (even though it is invariant).
+</div>
+  <a id="NodaTime_Text_OffsetTimePattern_PatternText_" data-uid="NodaTime.Text.OffsetTimePattern.PatternText*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_PatternText" data-uid="NodaTime.Text.OffsetTimePattern.PatternText">PatternText</h4>
   <div class="markdown level1 summary">
 Gets the pattern text for this pattern, as supplied on creation.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
-  <strong>Since</strong> 1.0.x
+  <strong>Since</strong> unstable
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
@@ -185,22 +224,22 @@ Gets the pattern text for this pattern, as supplied on creation.
       </tr>
     </tbody>
   </table>
-  <a id="NodaTime_Text_LocalTimePattern_TemplateValue_" data-uid="NodaTime.Text.LocalTimePattern.TemplateValue*"></a>
-  <h4 id="NodaTime_Text_LocalTimePattern_TemplateValue" data-uid="NodaTime.Text.LocalTimePattern.TemplateValue">TemplateValue</h4>
+  <a id="NodaTime_Text_OffsetTimePattern_Rfc3339_" data-uid="NodaTime.Text.OffsetTimePattern.Rfc3339*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_Rfc3339" data-uid="NodaTime.Text.OffsetTimePattern.Rfc3339">Rfc3339</h4>
   <div class="markdown level1 summary">
-Gets the value used as a template for parsing: any field values unspecified
-in the pattern are taken from the template.
+Gets an invariant offset time pattern based on RFC 3339 (down to the nanosecond), including offset from UTC
+as hours and minutes only.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
-  <strong>Since</strong> 1.0.x
+  <strong>Since</strong> unstable
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LocalTime TemplateValue { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static OffsetTimePattern Rfc3339 { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -212,29 +251,71 @@ in the pattern are taken from the template.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.LocalTime.html">LocalTime</a></td>
-        <td>The value used as a template for parsing.</td>
+        <td><a class="xref" href="NodaTime.Text.OffsetTimePattern.html">OffsetTimePattern</a></td>
+        <td>An invariant offset time pattern based on RFC 3339 (down to the nanosecond), including offset from UTC
+as hours and minutes only. (The value returned is never null.)</td>
       </tr>
     </tbody>
   </table>
-  <h3 id="methods">Methods
-  </h3>
-  <a id="NodaTime_Text_LocalTimePattern_AppendFormat_" data-uid="NodaTime.Text.LocalTimePattern.AppendFormat*"></a>
-  <h4 id="NodaTime_Text_LocalTimePattern_AppendFormat_NodaTime_LocalTime_System_Text_StringBuilder_" data-uid="NodaTime.Text.LocalTimePattern.AppendFormat(NodaTime.LocalTime,System.Text.StringBuilder)">AppendFormat(LocalTime, StringBuilder)</h4>
+  <h5 id="NodaTime_Text_OffsetTimePattern_Rfc3339_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+The minutes part of the offset is always included, but any sub-minute component
+of the offset is lost. An offset of zero is formatted as &apos;Z&apos;, but all of &apos;Z&apos;, &apos;+00:00&apos; and &apos;-00:00&apos; are parsed
+the same way. The RFC 3339 meaning of &apos;-00:00&apos; is not supported by Noda Time.
+Note that parsing is case-sensitive (so &apos;T&apos; and &apos;Z&apos; must be upper case).
+This pattern corresponds to a custom pattern of
+&quot;HH&apos;:&apos;mm&apos;:&apos;ss;FFFFFFFFFo&lt;Z+HH:mm>&quot;.
+</div>
+  <a id="NodaTime_Text_OffsetTimePattern_TemplateValue_" data-uid="NodaTime.Text.OffsetTimePattern.TemplateValue*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_TemplateValue" data-uid="NodaTime.Text.OffsetTimePattern.TemplateValue">TemplateValue</h4>
   <div class="markdown level1 summary">
-Formats the given value as text according to the rules of this pattern,
-appending to the given <span class="xref">System.Text.StringBuilder</span>.
+Gets the value used as a template for parsing: any field values unspecified
+in the pattern are taken from the template.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
-  <strong>Since</strong> 2.0.x
+  <strong>Since</strong> unstable
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StringBuilder AppendFormat(LocalTime value, StringBuilder builder)</code></pre>
+    <pre><code class="lang-csharp hljs">public OffsetTime TemplateValue { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.OffsetTime.html">OffsetTime</a></td>
+        <td>The value used as a template for parsing.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="NodaTime_Text_OffsetTimePattern_AppendFormat_" data-uid="NodaTime.Text.OffsetTimePattern.AppendFormat*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_AppendFormat_NodaTime_OffsetTime_System_Text_StringBuilder_" data-uid="NodaTime.Text.OffsetTimePattern.AppendFormat(NodaTime.OffsetTime,System.Text.StringBuilder)">AppendFormat(OffsetTime, StringBuilder)</h4>
+  <div class="markdown level1 summary">
+Formats the given value as text according to the rules of this pattern,
+appending to the given <span class="xref">System.Text.StringBuilder</span>.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> unstable
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringBuilder AppendFormat(OffsetTime value, StringBuilder builder)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -247,7 +328,7 @@ appending to the given <span class="xref">System.Text.StringBuilder</span>.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.LocalTime.html">LocalTime</a></td>
+        <td><a class="xref" href="NodaTime.OffsetTime.html">OffsetTime</a></td>
         <td><span class="parametername">value</span></td>
         <td>The value to format.</td>
       </tr>
@@ -290,97 +371,21 @@ appending to the given <span class="xref">System.Text.StringBuilder</span>.
       </tr>
     </tbody>
   </table>
-  <a id="NodaTime_Text_LocalTimePattern_Create_" data-uid="NodaTime.Text.LocalTimePattern.Create*"></a>
-  <h4 id="NodaTime_Text_LocalTimePattern_Create_System_String_System_Globalization_CultureInfo_" data-uid="NodaTime.Text.LocalTimePattern.Create(System.String,System.Globalization.CultureInfo)">Create(String, CultureInfo)</h4>
-  <div class="markdown level1 summary">
-Creates a pattern for the given pattern text and culture, with a template value of midnight.
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <div>
-  <strong>Since</strong> 1.0.x
-  </div>
-  <div>
-  <strong>Availability</strong> net45, netstandard1.3
-  </div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static LocalTimePattern Create(string patternText, CultureInfo cultureInfo)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">patternText</span></td>
-        <td>Pattern text to create the pattern for</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Globalization.CultureInfo</span></td>
-        <td><span class="parametername">cultureInfo</span></td>
-        <td>The culture to use in the pattern</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="NodaTime.Text.LocalTimePattern.html">LocalTimePattern</a></td>
-        <td>A pattern for parsing and formatting local times. (The value returned is never null.)</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="NodaTime_Text_LocalTimePattern_Create_System_String_System_Globalization_CultureInfo__remarks">Remarks</h5>
-  <div class="markdown level1 remarks">
-See the user guide for the available pattern text options.
-</div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="NodaTime.Text.InvalidPatternException.html">InvalidPatternException</a></td>
-        <td>The pattern text was invalid.</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><span class="paramref">patternText</span> or <span class="paramref">cultureInfo</span> is null</td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="NodaTime_Text_LocalTimePattern_Create_" data-uid="NodaTime.Text.LocalTimePattern.Create*"></a>
-  <h4 id="NodaTime_Text_LocalTimePattern_Create_System_String_System_Globalization_CultureInfo_NodaTime_LocalTime_" data-uid="NodaTime.Text.LocalTimePattern.Create(System.String,System.Globalization.CultureInfo,NodaTime.LocalTime)">Create(String, CultureInfo, LocalTime)</h4>
+  <a id="NodaTime_Text_OffsetTimePattern_Create_" data-uid="NodaTime.Text.OffsetTimePattern.Create*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_Create_System_String_System_Globalization_CultureInfo_NodaTime_OffsetTime_" data-uid="NodaTime.Text.OffsetTimePattern.Create(System.String,System.Globalization.CultureInfo,NodaTime.OffsetTime)">Create(String, CultureInfo, OffsetTime)</h4>
   <div class="markdown level1 summary">
 Creates a pattern for the given pattern text, culture, and template value.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
-  <strong>Since</strong> 1.0.x
+  <strong>Since</strong> unstable
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static LocalTimePattern Create(string patternText, CultureInfo cultureInfo, LocalTime templateValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public static OffsetTimePattern Create(string patternText, CultureInfo cultureInfo, OffsetTime templateValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -403,7 +408,7 @@ Creates a pattern for the given pattern text, culture, and template value.
         <td>The culture to use in the pattern</td>
       </tr>
       <tr>
-        <td><a class="xref" href="NodaTime.LocalTime.html">LocalTime</a></td>
+        <td><a class="xref" href="NodaTime.OffsetTime.html">OffsetTime</a></td>
         <td><span class="parametername">templateValue</span></td>
         <td>Template value to use for unspecified fields</td>
       </tr>
@@ -419,12 +424,12 @@ Creates a pattern for the given pattern text, culture, and template value.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.Text.LocalTimePattern.html">LocalTimePattern</a></td>
+        <td><a class="xref" href="NodaTime.Text.OffsetTimePattern.html">OffsetTimePattern</a></td>
         <td>A pattern for parsing and formatting local times. (The value returned is never null.)</td>
       </tr>
     </tbody>
   </table>
-  <h5 id="NodaTime_Text_LocalTimePattern_Create_System_String_System_Globalization_CultureInfo_NodaTime_LocalTime__remarks">Remarks</h5>
+  <h5 id="NodaTime_Text_OffsetTimePattern_Create_System_String_System_Globalization_CultureInfo_NodaTime_OffsetTime__remarks">Remarks</h5>
   <div class="markdown level1 remarks">
 See the user guide for the available pattern text options.
 </div>
@@ -447,21 +452,22 @@ See the user guide for the available pattern text options.
       </tr>
     </tbody>
   </table>
-  <a id="NodaTime_Text_LocalTimePattern_CreateWithCurrentCulture_" data-uid="NodaTime.Text.LocalTimePattern.CreateWithCurrentCulture*"></a>
-  <h4 id="NodaTime_Text_LocalTimePattern_CreateWithCurrentCulture_System_String_" data-uid="NodaTime.Text.LocalTimePattern.CreateWithCurrentCulture(System.String)">CreateWithCurrentCulture(String)</h4>
+  <a id="NodaTime_Text_OffsetTimePattern_CreateWithCurrentCulture_" data-uid="NodaTime.Text.OffsetTimePattern.CreateWithCurrentCulture*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_CreateWithCurrentCulture_System_String_" data-uid="NodaTime.Text.OffsetTimePattern.CreateWithCurrentCulture(System.String)">CreateWithCurrentCulture(String)</h4>
   <div class="markdown level1 summary">
-Creates a pattern for the given pattern text in the current thread&apos;s current culture.
+Creates a pattern for the given pattern text in the current culture, using the default
+template value of midnight January 1st 2000 at an offset of 0.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
-  <strong>Since</strong> 1.0.x
+  <strong>Since</strong> unstable
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static LocalTimePattern CreateWithCurrentCulture(string patternText)</code></pre>
+    <pre><code class="lang-csharp hljs">public static OffsetTimePattern CreateWithCurrentCulture(string patternText)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -490,12 +496,12 @@ Creates a pattern for the given pattern text in the current thread&apos;s curren
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.Text.LocalTimePattern.html">LocalTimePattern</a></td>
+        <td><a class="xref" href="NodaTime.Text.OffsetTimePattern.html">OffsetTimePattern</a></td>
         <td>A pattern for parsing and formatting local times. (The value returned is never null.)</td>
       </tr>
     </tbody>
   </table>
-  <h5 id="NodaTime_Text_LocalTimePattern_CreateWithCurrentCulture_System_String__remarks">Remarks</h5>
+  <h5 id="NodaTime_Text_OffsetTimePattern_CreateWithCurrentCulture_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks">
 See the user guide for the available pattern text options. Note that the current culture
 is captured at the time this method is called - it is not captured at the point of parsing
@@ -520,21 +526,22 @@ or formatting values.
       </tr>
     </tbody>
   </table>
-  <a id="NodaTime_Text_LocalTimePattern_CreateWithInvariantCulture_" data-uid="NodaTime.Text.LocalTimePattern.CreateWithInvariantCulture*"></a>
-  <h4 id="NodaTime_Text_LocalTimePattern_CreateWithInvariantCulture_System_String_" data-uid="NodaTime.Text.LocalTimePattern.CreateWithInvariantCulture(System.String)">CreateWithInvariantCulture(String)</h4>
+  <a id="NodaTime_Text_OffsetTimePattern_CreateWithInvariantCulture_" data-uid="NodaTime.Text.OffsetTimePattern.CreateWithInvariantCulture*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_CreateWithInvariantCulture_System_String_" data-uid="NodaTime.Text.OffsetTimePattern.CreateWithInvariantCulture(System.String)">CreateWithInvariantCulture(String)</h4>
   <div class="markdown level1 summary">
-Creates a pattern for the given pattern text in the invariant culture.
+Creates a pattern for the given pattern text in the invariant culture, using the default
+template value of midnight January 1st 2000 at an offset of 0.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
-  <strong>Since</strong> 1.0.x
+  <strong>Since</strong> unstable
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static LocalTimePattern CreateWithInvariantCulture(string patternText)</code></pre>
+    <pre><code class="lang-csharp hljs">public static OffsetTimePattern CreateWithInvariantCulture(string patternText)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -563,16 +570,14 @@ Creates a pattern for the given pattern text in the invariant culture.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.Text.LocalTimePattern.html">LocalTimePattern</a></td>
+        <td><a class="xref" href="NodaTime.Text.OffsetTimePattern.html">OffsetTimePattern</a></td>
         <td>A pattern for parsing and formatting local times. (The value returned is never null.)</td>
       </tr>
     </tbody>
   </table>
-  <h5 id="NodaTime_Text_LocalTimePattern_CreateWithInvariantCulture_System_String__remarks">Remarks</h5>
+  <h5 id="NodaTime_Text_OffsetTimePattern_CreateWithInvariantCulture_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks">
-See the user guide for the available pattern text options. Note that the current culture
-is captured at the time this method is called - it is not captured at the point of parsing
-or formatting values.
+See the user guide for the available pattern text options.
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -593,21 +598,21 @@ or formatting values.
       </tr>
     </tbody>
   </table>
-  <a id="NodaTime_Text_LocalTimePattern_Format_" data-uid="NodaTime.Text.LocalTimePattern.Format*"></a>
-  <h4 id="NodaTime_Text_LocalTimePattern_Format_NodaTime_LocalTime_" data-uid="NodaTime.Text.LocalTimePattern.Format(NodaTime.LocalTime)">Format(LocalTime)</h4>
+  <a id="NodaTime_Text_OffsetTimePattern_Format_" data-uid="NodaTime.Text.OffsetTimePattern.Format*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_Format_NodaTime_OffsetTime_" data-uid="NodaTime.Text.OffsetTimePattern.Format(NodaTime.OffsetTime)">Format(OffsetTime)</h4>
   <div class="markdown level1 summary">
-Formats the given local time as text according to the rules of this pattern.
+Formats the given zoned time as text according to the rules of this pattern.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
-  <strong>Since</strong> 1.0.x
+  <strong>Since</strong> unstable
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Format(LocalTime value)</code></pre>
+    <pre><code class="lang-csharp hljs">public string Format(OffsetTime value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -620,9 +625,9 @@ Formats the given local time as text according to the rules of this pattern.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.LocalTime.html">LocalTime</a></td>
+        <td><a class="xref" href="NodaTime.OffsetTime.html">OffsetTime</a></td>
         <td><span class="parametername">value</span></td>
-        <td>The local time to format.</td>
+        <td>The zoned time to format.</td>
       </tr>
     </tbody>
   </table>
@@ -637,27 +642,27 @@ Formats the given local time as text according to the rules of this pattern.
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td>The local time formatted according to this pattern. (The value returned is never null.)</td>
+        <td>The zoned time formatted according to this pattern. (The value returned is never null.)</td>
       </tr>
     </tbody>
   </table>
   <h5 class="implements">Implements</h5>
       <div><a class="xref" href="NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_">IPattern&lt;T&gt;.Format(T)</a></div>
-  <a id="NodaTime_Text_LocalTimePattern_Parse_" data-uid="NodaTime.Text.LocalTimePattern.Parse*"></a>
-  <h4 id="NodaTime_Text_LocalTimePattern_Parse_System_String_" data-uid="NodaTime.Text.LocalTimePattern.Parse(System.String)">Parse(String)</h4>
+  <a id="NodaTime_Text_OffsetTimePattern_Parse_" data-uid="NodaTime.Text.OffsetTimePattern.Parse*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_Parse_System_String_" data-uid="NodaTime.Text.OffsetTimePattern.Parse(System.String)">Parse(String)</h4>
   <div class="markdown level1 summary">
 Parses the given text value according to the rules of this pattern.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
-  <strong>Since</strong> 1.0.x
+  <strong>Since</strong> unstable
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ParseResult&lt;LocalTime&gt; Parse(string text)</code></pre>
+    <pre><code class="lang-csharp hljs">public ParseResult&lt;OffsetTime&gt; Parse(string text)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -686,34 +691,34 @@ Parses the given text value according to the rules of this pattern.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.Text.ParseResult-1.html">ParseResult</a>&lt;<a class="xref" href="NodaTime.LocalTime.html">LocalTime</a>&gt;</td>
+        <td><a class="xref" href="NodaTime.Text.ParseResult-1.html">ParseResult</a>&lt;<a class="xref" href="NodaTime.OffsetTime.html">OffsetTime</a>&gt;</td>
         <td>The result of parsing, which may be successful or unsuccessful. (The value returned is never null.)</td>
       </tr>
     </tbody>
   </table>
   <h5 class="implements">Implements</h5>
       <div><a class="xref" href="NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_">IPattern&lt;T&gt;.Parse(String)</a></div>
-  <h5 id="NodaTime_Text_LocalTimePattern_Parse_System_String__remarks">Remarks</h5>
+  <h5 id="NodaTime_Text_OffsetTimePattern_Parse_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks">
 This method never throws an exception (barring a bug in Noda Time itself). Even errors such as
 the argument being null are wrapped in a parse result.
 </div>
-  <a id="NodaTime_Text_LocalTimePattern_WithCulture_" data-uid="NodaTime.Text.LocalTimePattern.WithCulture*"></a>
-  <h4 id="NodaTime_Text_LocalTimePattern_WithCulture_System_Globalization_CultureInfo_" data-uid="NodaTime.Text.LocalTimePattern.WithCulture(System.Globalization.CultureInfo)">WithCulture(CultureInfo)</h4>
+  <a id="NodaTime_Text_OffsetTimePattern_WithCulture_" data-uid="NodaTime.Text.OffsetTimePattern.WithCulture*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_WithCulture_System_Globalization_CultureInfo_" data-uid="NodaTime.Text.OffsetTimePattern.WithCulture(System.Globalization.CultureInfo)">WithCulture(CultureInfo)</h4>
   <div class="markdown level1 summary">
 Creates a pattern for the same original pattern text as this pattern, but with the specified
 culture.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
-  <strong>Since</strong> 1.0.x
+  <strong>Since</strong> unstable
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LocalTimePattern WithCulture(CultureInfo cultureInfo)</code></pre>
+    <pre><code class="lang-csharp hljs">public OffsetTimePattern WithCulture(CultureInfo cultureInfo)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -742,7 +747,7 @@ culture.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.Text.LocalTimePattern.html">LocalTimePattern</a></td>
+        <td><a class="xref" href="NodaTime.Text.OffsetTimePattern.html">OffsetTimePattern</a></td>
         <td>A new pattern with the given culture. (The value returned is never null.)</td>
       </tr>
     </tbody>
@@ -762,21 +767,22 @@ culture.
       </tr>
     </tbody>
   </table>
-  <a id="NodaTime_Text_LocalTimePattern_WithTemplateValue_" data-uid="NodaTime.Text.LocalTimePattern.WithTemplateValue*"></a>
-  <h4 id="NodaTime_Text_LocalTimePattern_WithTemplateValue_NodaTime_LocalTime_" data-uid="NodaTime.Text.LocalTimePattern.WithTemplateValue(NodaTime.LocalTime)">WithTemplateValue(LocalTime)</h4>
+  <a id="NodaTime_Text_OffsetTimePattern_WithPatternText_" data-uid="NodaTime.Text.OffsetTimePattern.WithPatternText*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_WithPatternText_System_String_" data-uid="NodaTime.Text.OffsetTimePattern.WithPatternText(System.String)">WithPatternText(String)</h4>
   <div class="markdown level1 summary">
-Creates a pattern like this one, but with the specified template value.
+Creates a pattern for the same original localization information as this pattern, but with the specified
+pattern text.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
-  <strong>Since</strong> 1.0.x
+  <strong>Since</strong> unstable
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LocalTimePattern WithTemplateValue(LocalTime newTemplateValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public OffsetTimePattern WithPatternText(string patternText)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -789,9 +795,9 @@ Creates a pattern like this one, but with the specified template value.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.LocalTime.html">LocalTime</a></td>
-        <td><span class="parametername">newTemplateValue</span></td>
-        <td>The template value for the new pattern, used to fill in unspecified fields.</td>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">patternText</span></td>
+        <td>The pattern text to use in the new pattern.</td>
       </tr>
     </tbody>
   </table>
@@ -805,7 +811,71 @@ Creates a pattern like this one, but with the specified template value.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.Text.LocalTimePattern.html">LocalTimePattern</a></td>
+        <td><a class="xref" href="NodaTime.Text.OffsetTimePattern.html">OffsetTimePattern</a></td>
+        <td>A new pattern with the given pattern text. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><span class="paramref">patternText</span> is null.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Text_OffsetTimePattern_WithTemplateValue_" data-uid="NodaTime.Text.OffsetTimePattern.WithTemplateValue*"></a>
+  <h4 id="NodaTime_Text_OffsetTimePattern_WithTemplateValue_NodaTime_OffsetTime_" data-uid="NodaTime.Text.OffsetTimePattern.WithTemplateValue(NodaTime.OffsetTime)">WithTemplateValue(OffsetTime)</h4>
+  <div class="markdown level1 summary">
+Creates a pattern for the same original pattern text and culture as this pattern, but with
+the specified template value.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> unstable
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OffsetTimePattern WithTemplateValue(OffsetTime newTemplateValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.OffsetTime.html">OffsetTime</a></td>
+        <td><span class="parametername">newTemplateValue</span></td>
+        <td>The template value to use in the new pattern.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.Text.OffsetTimePattern.html">OffsetTimePattern</a></td>
         <td>A new pattern with the given template value. (The value returned is never null.)</td>
       </tr>
     </tbody>
