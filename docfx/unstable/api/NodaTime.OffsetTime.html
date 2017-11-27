@@ -101,7 +101,8 @@ a time-of-day at a specific offset from UTC but without any date information.
   <h6><strong>Assembly</strong>:NodaTime.dll</h6>
   <h5 id="NodaTime_OffsetTime_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct OffsetTime : IEquatable&lt;OffsetTime&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct OffsetTime : IEquatable&lt;OffsetTime&gt;, IXmlSerializable, ISerializable</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -1035,6 +1036,191 @@ Implements the operator != (inequality).
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><code>true</code> if values are not equal to each other, otherwise <code>false</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <a id="NodaTime_OffsetTime_System_Runtime_Serialization_ISerializable_GetObjectData_" data-uid="NodaTime.OffsetTime.System#Runtime#Serialization#ISerializable#GetObjectData*"></a>
+  <h4 id="NodaTime_OffsetTime_System_Runtime_Serialization_ISerializable_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_" data-uid="NodaTime.OffsetTime.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">ISerializable.GetObjectData(SerializationInfo, StreamingContext)</h4>
+  <div class="markdown level1 summary">
+Implementation of <span class="xref">System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)</span>.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> unstable
+  </div>
+  <div>
+  <strong>Availability</strong> net45
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SecurityCritical]
+void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.SerializationInfo</span></td>
+        <td><span class="parametername">info</span></td>
+        <td>The <span class="xref">System.Runtime.Serialization.SerializationInfo</span> to populate with data.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.StreamingContext</span></td>
+        <td><span class="parametername">context</span></td>
+        <td>The destination for this serialization.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)</span></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><span class="paramref">info</span> is null.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_OffsetTime_System_Xml_Serialization_IXmlSerializable_GetSchema_" data-uid="NodaTime.OffsetTime.System#Xml#Serialization#IXmlSerializable#GetSchema*"></a>
+  <h4 id="NodaTime_OffsetTime_System_Xml_Serialization_IXmlSerializable_GetSchema" data-uid="NodaTime.OffsetTime.System#Xml#Serialization#IXmlSerializable#GetSchema">IXmlSerializable.GetSchema()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> unstable
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">XmlSchema IXmlSerializable.GetSchema()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Xml.Schema.XmlSchema</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.Xml.Serialization.IXmlSerializable.GetSchema()</span></div>
+  <a id="NodaTime_OffsetTime_System_Xml_Serialization_IXmlSerializable_ReadXml_" data-uid="NodaTime.OffsetTime.System#Xml#Serialization#IXmlSerializable#ReadXml*"></a>
+  <h4 id="NodaTime_OffsetTime_System_Xml_Serialization_IXmlSerializable_ReadXml_System_Xml_XmlReader_" data-uid="NodaTime.OffsetTime.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)">IXmlSerializable.ReadXml(XmlReader)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> unstable
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void IXmlSerializable.ReadXml(XmlReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Xml.XmlReader</span></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)</span></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><span class="paramref">reader</span> is null.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_OffsetTime_System_Xml_Serialization_IXmlSerializable_WriteXml_" data-uid="NodaTime.OffsetTime.System#Xml#Serialization#IXmlSerializable#WriteXml*"></a>
+  <h4 id="NodaTime_OffsetTime_System_Xml_Serialization_IXmlSerializable_WriteXml_System_Xml_XmlWriter_" data-uid="NodaTime.OffsetTime.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)">IXmlSerializable.WriteXml(XmlWriter)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> unstable
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void IXmlSerializable.WriteXml(XmlWriter writer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Xml.XmlWriter</span></td>
+        <td><span class="parametername">writer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)</span></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><span class="paramref">writer</span> is null.</td>
       </tr>
     </tbody>
   </table>
