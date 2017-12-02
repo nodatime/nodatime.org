@@ -1773,8 +1773,8 @@
             An interval contains another interval with same start and end dates, or itself.
             </remarks>
             <param name="interval">The interval to check for containment within this interval.</param>
-            <exception cref="T:System.ArgumentException">Start and end dates of <paramref name="interval"/> are not in the same
-            calendar as the start and end date of this interval.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="interval" /> uses a different
+            calendar to this date interval.</exception>
             <returns><c>true</c> if <paramref name="interval"/> is within this interval; <c>false</c> otherwise.</returns>
         </member>
         <member name="P:NodaTime.DateInterval.Length">
@@ -1785,10 +1785,9 @@
         </member>
         <member name="P:NodaTime.DateInterval.Calendar">
             <summary>
-            Gets the calendar system in which the dates of this interval are.
+            Gets the calendar system of the dates in this interval.
             </summary>
-            <value>Instance of <see cref="T:NodaTime.CalendarSystem"/>, corresponding to the calendar system
-            of the start date of this interval.</value>
+            <value>The calendar system of the dates in this interval.</value>
         </member>
         <member name="M:NodaTime.DateInterval.ToString">
             <summary>
@@ -1811,16 +1810,14 @@
             Returns the intersection between the given interval and this interval.
             </summary>
             <param name="interval">
-            The specified interval to which return the intersection with.
+            The specified interval to intersect with this one.
             </param>
             <returns>
             A <see cref="T:NodaTime.DateInterval"/> corresponding to the intersection between the given interval and the current
             instance. If there is no intersection, a null reference is returned.
             </returns>
-            <exception cref="T:System.ArgumentException">
-            The start and end dates of <paramref name="interval" /> are not in the same calendar
-            as the start and end date of this interval.
-            </exception>
+            <exception cref="T:System.ArgumentException"><paramref name="interval" /> uses a different
+            calendar to this date interval.</exception>
         </member>
         <member name="T:NodaTime.DateTimeZone">
             <summary>
