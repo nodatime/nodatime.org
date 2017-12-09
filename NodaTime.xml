@@ -392,6 +392,26 @@
             <param name="monthNumbering">The month numbering system to use</param>
             <returns>A Hebrew calendar system for the given month numbering.</returns>
         </member>
+        <member name="P:NodaTime.CalendarSystem.Wondrous">
+            <summary>
+            Returns the Wondrous (Badí') calendar, as described at https://en.wikipedia.org/wiki/Badi_calendar. 
+            This is a purely solar calendar with years starting at the vernal equinox.
+            </summary>
+            <remarks>
+            <para>The Wondrous calendar was developed and defined by the founders of the Bahá'í Faith in the mid to late
+            1800's A.D. The first year in the calendar coincides with 1844 A.D. Years are labeled "B.E." for Bahá'í Era.</para>
+            <para>A year consists of 19 months, each with 19 days. Each day starts at sunset. Years are grouped into sets
+            of 19 "Unities" (Váḥid) and 19 Unities make up 1 "All Things" (Kull-i-Shay’).</para>
+            <para>A period of days (usually 4 or 5, called Ayyám-i-Há) occurs between the 18th and 19th months. The length of this 
+            period of intercalary days is solely determined by the date of the following vernal equinox. The vernal equinox is 
+            a momentary point in time, so the "date" of the equinox is determined by the date (beginning 
+            at sunset) in effect in Tehran, Iran at the moment of the equinox.</para>
+            <para>In this Noda Time implementation, days start at midnight and lookup tables are used to determine vernal equinox dates.
+            Ayyám-i-Há is internally modelled as extra days added to the 18th month. As a result, a few functions will
+            not work as expected for Ayyám-i-Há, such as EndOfMonth.</para>
+            </remarks>
+            <returns>The Wondrous calendar system.</returns>
+        </member>
         <member name="M:NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)">
             <summary>
             Returns an Islamic, or Hijri, calendar system.
@@ -471,6 +491,7 @@
               <item><term>ISO</term><description><see cref="P:NodaTime.CalendarSystem.Iso"/></description></item>
               <item><term>Gregorian</term><description><see cref="P:NodaTime.CalendarSystem.Gregorian"/></description></item>
               <item><term>Coptic</term><description><see cref="P:NodaTime.CalendarSystem.Coptic"/></description></item>
+              <item><term>Wondrous</term><description><see cref="P:NodaTime.CalendarSystem.Wondrous"/></description></item>
               <item><term>Julian</term><description><see cref="P:NodaTime.CalendarSystem.Julian"/></description></item>
               <item><term>Hijri Civil-Indian</term><description><see cref="M:NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)"/>(IslamicLeapYearPattern.Indian, IslamicEpoch.Civil)</description></item>
               <item><term>Hijri Civil-Base15</term><description><see cref="M:NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)"/>(IslamicLeapYearPattern.Base15, IslamicEpoch.Civil)</description></item>
@@ -826,6 +847,12 @@
             The "Anno Persico" era. This is the sole era used in the Persian calendar.
             </summary>
             <value>The "Anno Persico" era.</value>
+        </member>
+        <member name="P:NodaTime.Calendars.Era.Bahai">
+            <summary>
+            The "Bahá'í" era. This is the sole era used in the Wondrous calendar.
+            </summary>
+            <value>The "Bahá'í" era.</value>
         </member>
         <member name="P:NodaTime.Calendars.Era.Name">
             <summary>
@@ -1425,6 +1452,26 @@
             <see cref="M:System.Globalization.Calendar.GetWeekOfYear(System.DateTime,System.Globalization.CalendarWeekRule,System.DayOfWeek)"/>
             method.</returns>
         </member>
+        <member name="T:NodaTime.Calendars.WondrousYearMonthDayCalculator">
+            <summary>
+            See <see cref="P:NodaTime.CalendarSystem.Wondrous" /> for details.
+            </summary>
+        </member>
+        <member name="F:NodaTime.Calendars.WondrousYearMonthDayCalculator.Month18">
+            <remarks>
+            There are 19 months in a year. Between the 18th and 19th month are the "days of Ha" (Ayyam-i-Ha).
+            In order to make everything else in Noda Time work appropriately, Ayyam-i-Ha are counted as
+            extra days at the end of month 18.
+            </remarks>
+        </member>
+        <member name="F:NodaTime.Calendars.WondrousYearMonthDayCalculator.YearInfoRaw">
+            <summary>
+            This is the base64 representation of information for years 172 to 1000.
+            NazRuzDate falls on March 19, 20, 21, or 22.
+            DaysInAyymiHa can be 4,5.
+            For each year, the value in the array is (NawRuzDate - 19) + 10 * (DaysInAyyamiHa - 4)
+            </summary>
+        </member>
         <member name="T:NodaTime.Calendars.YearMonthDayCalculator">
             <summary>
             The core of date calculations in Noda Time. This class *only* cares about absolute years, and only
@@ -1818,6 +1865,17 @@
             </returns>
             <exception cref="T:System.ArgumentException"><paramref name="interval" /> uses a different
             calendar to this date interval.</exception>
+        </member>
+        <member name="M:NodaTime.DateInterval.Union(NodaTime.DateInterval)">
+            <summary>
+            Returns the union between the given interval and this interval, as long as they're overlapping or contiguous.
+            </summary>
+            <param name="interval">The specified interval from which to generate the union interval.</param>
+            <returns>
+            A <see cref="T:NodaTime.DateInterval"/> corresponding to the union between the given interval and the current
+            instance, in the case the intervals overlap or are contiguous; a null reference otherwise.
+            </returns>
+            <exception cref="T:System.ArgumentException"><paramref name="interval" /> uses a different calendar to this date interval.</exception>
         </member>
         <member name="T:NodaTime.DateTimeZone">
             <summary>
@@ -8436,6 +8494,12 @@
             <param name="start">Start time</param>
             <param name="end">End time</param>
             <returns>The period between the two times, using the time period units.</returns>
+        </member>
+        <member name="M:NodaTime.Period.DaysBetween(NodaTime.LocalDate,NodaTime.LocalDate)">
+            <summary>
+            Returns the number of days between two dates. This allows optimizations in DateInterval,
+            and for date calculations which just use days - we don't need state or a virtual method invocation.
+            </summary>
         </member>
         <member name="P:NodaTime.Period.HasTimeComponent">
             <summary>
