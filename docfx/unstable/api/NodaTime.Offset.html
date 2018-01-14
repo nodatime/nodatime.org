@@ -633,6 +633,17 @@ Returns an offset for the specified number of hours, which may be negative.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Offset_FromHours_System_Int32__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Offset offset = Offset.FromHours(1);
+Console.WriteLine(offset.Seconds);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">3600
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -709,6 +720,17 @@ separately. As a result, a negative offset should usually be obtained by making 
 negative. For example, to obtain &quot;three hours and ten minutes behind UTC&quot; you might call
 <code>Offset.FromHoursAndMinutes(-3, -10)</code>.
 </div>
+  <div>
+  <h5 id="NodaTime_Offset_FromHoursAndMinutes_System_Int32_System_Int32__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Offset offset = Offset.FromHoursAndMinutes(1, 1);
+Console.WriteLine(offset.Seconds);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">3660
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -777,6 +799,19 @@ Returns an offset for the given milliseconds value, which may be negative.
 Offsets are only accurate to second precision; the given number of milliseconds is simply divided
 by 1,000 to give the number of seconds - any remainder is truncated.
 </div>
+  <div>
+  <h5 id="NodaTime_Offset_FromMilliseconds_System_Int32__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Offset offset = Offset.FromMilliseconds(1200);
+Console.WriteLine(offset.Seconds);
+Console.WriteLine(offset.Milliseconds);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">1
+1000
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -846,6 +881,19 @@ Returns an offset for the given number of nanoseconds, which may be negative.
 Offsets are only accurate to second precision; the given number of nanoseconds is simply divided
 by 1,000,000,000 to give the number of seconds - any remainder is truncated towards zero.
 </div>
+  <div>
+  <h5 id="NodaTime_Offset_FromNanoseconds_System_Int64__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Offset offset = Offset.FromNanoseconds(1_200_000_000);
+Console.WriteLine(offset.Seconds);
+Console.WriteLine(offset.Nanoseconds);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">1
+1000000000
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -910,6 +958,17 @@ Returns an offset for the given seconds value, which may be negative.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Offset_FromSeconds_System_Int32__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Offset offset = Offset.FromSeconds(450);
+Console.WriteLine(offset.Seconds);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">450
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -979,6 +1038,19 @@ Returns an offset for the given number of ticks, which may be negative.
 Offsets are only accurate to second precision; the given number of ticks is simply divided
 by 10,000,000 to give the number of seconds - any remainder is truncated.
 </div>
+  <div>
+  <h5 id="NodaTime_Offset_FromTicks_System_Int64__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Offset offset = Offset.FromTicks(15_000_000);
+Console.WriteLine(offset.Ticks);
+Console.WriteLine(offset.Seconds);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">10000000
+1
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1043,6 +1115,18 @@ Converts the given <span class="xref">System.TimeSpan</span> to an offset, with 
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Offset_FromTimeSpan_System_TimeSpan__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+var timespan = TimeSpan.FromHours(1.5);
+Offset offset = Offset.FromTimeSpan(timespan);
+Console.WriteLine(offset.Seconds);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">5400
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1250,6 +1334,22 @@ Returns the result of subtracting another Offset from this one, for a fluent alt
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Offset_Minus_NodaTime_Offset__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+var offset = Offset.FromSeconds(100);
+var offset2 = Offset.FromSeconds(120);
+var expected = Offset.FromSeconds(-20);
+
+var actual = offset.Minus(offset2);
+
+Console.WriteLine(actual);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">-00:00:20
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1361,6 +1461,22 @@ Returns the result of adding another Offset to this one, for a fluent alternativ
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Offset_Plus_NodaTime_Offset__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+var offset = Offset.FromSeconds(100);
+var offset2 = Offset.FromSeconds(150);
+var expected = Offset.FromSeconds(250);
+
+var actual = offset.Plus(offset2);
+
+Console.WriteLine(actual);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">+00:04:10
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1576,6 +1692,20 @@ Converts this offset to a .NET standard <span class="xref">System.TimeSpan</span
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Offset_ToTimeSpan_snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+var offset = Offset.FromSeconds(120);
+var actual = offset.ToTimeSpan();
+var expected = TimeSpan.FromSeconds(120);
+
+Console.WriteLine(actual);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">00:02:00
+</code></pre></div>
+  </div>
   <h3 id="operators">Operators
   </h3>
   <a id="NodaTime_Offset_op_Addition_" data-uid="NodaTime.Offset.op_Addition*"></a>
