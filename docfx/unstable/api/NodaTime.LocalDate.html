@@ -297,6 +297,24 @@ Constructs an instance for the given year, month and day in the ISO calendar.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_LocalDate__ctor_System_Int32_System_Int32_System_Int32__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+using System.Globalization;
+
+LocalDate date = new LocalDate(2010, 6, 16);
+Console.WriteLine(date.ToString(&quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture));
+Console.WriteLine(date.Year);
+Console.WriteLine(date.Month);
+Console.WriteLine(date.Day);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2010-06-16
+2010
+6
+16
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -361,6 +379,17 @@ the ISO calendar, a value of 0 means 1 BC, for example.</td>
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_LocalDate__ctor_System_Int32_System_Int32_System_Int32_NodaTime_CalendarSystem__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+LocalDate date = new LocalDate(2010, 6, 16, CalendarSystem.Iso);
+Console.WriteLine(date);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">Wednesday, 16 June 2010
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -801,6 +830,19 @@ Fluent alternative to <code>operator+()</code>.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_LocalDate_At_NodaTime_LocalTime__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+LocalDate date = new LocalDate(2010, 6, 16);
+LocalTime time = new LocalTime(16, 20);
+LocalDateTime dateTime = date.At(time);
+Console.WriteLine(dateTime);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">06/16/2010 16:20:00
+</code></pre></div>
+  </div>
   <a id="NodaTime_LocalDate_AtMidnight_" data-uid="NodaTime.LocalDate.AtMidnight*"></a>
   <h4 id="NodaTime_LocalDate_AtMidnight" data-uid="NodaTime.LocalDate.AtMidnight">AtMidnight()</h4>
   <div class="markdown level1 summary">
@@ -2632,6 +2674,19 @@ into a single <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_LocalDate_op_Addition_NodaTime_LocalDate_NodaTime_LocalTime__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+LocalDate date = new LocalDate(2010, 6, 16);
+LocalTime time = new LocalTime(16, 20);
+LocalDateTime dateTime = date + time;
+Console.WriteLine(dateTime);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">06/16/2010 16:20:00
+</code></pre></div>
+  </div>
   <a id="NodaTime_LocalDate_op_Addition_" data-uid="NodaTime.LocalDate.op_Addition*"></a>
   <h4 id="NodaTime_LocalDate_op_Addition_NodaTime_LocalDate_NodaTime_Period_" data-uid="NodaTime.LocalDate.op_Addition(NodaTime.LocalDate,NodaTime.Period)">Addition(LocalDate, Period)</h4>
   <div class="markdown level1 summary">

@@ -685,6 +685,26 @@ If <code data-dev-comment-type="paramref" class="paramref">end</code> is before 
 will be negative.
 The calendar systems of the two dates must be the same; an exception will be thrown otherwise.
 </div>
+  <div>
+  <h5 id="NodaTime_Period_Between_NodaTime_LocalDate_NodaTime_LocalDate__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.Between(
+    new LocalDate(1990, 6, 26),
+    new LocalDate(2017, 11, 15));
+
+Console.WriteLine(period.Years);
+Console.WriteLine(period.Months);
+Console.WriteLine(period.Days);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">27
+4
+20
+P27Y4M20D
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -768,6 +788,25 @@ the difference between 12th February and 15th March in months) the result will b
 will give a value between <code data-dev-comment-type="paramref" class="paramref">start</code> and <code data-dev-comment-type="paramref" class="paramref">end</code>. In other words,
 any rounding is &quot;towards start&quot;; this is true whether the resulting period is negative or positive.
 </div>
+  <div>
+  <h5 id="NodaTime_Period_Between_NodaTime_LocalDate_NodaTime_LocalDate_NodaTime_PeriodUnits__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.Between(
+    new LocalDate(2016, 11, 14),
+    new LocalDate(2017, 11, 21),
+    PeriodUnits.Years | PeriodUnits.Days);
+
+Console.WriteLine(period.Years);
+Console.WriteLine(period.Days);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">1
+7
+P1Y7D
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -845,6 +884,32 @@ Returns the exact difference between two date/times.
 If <code data-dev-comment-type="paramref" class="paramref">end</code> is before <code data-dev-comment-type="paramref" class="paramref">start</code>, each property in the returned period
 will be negative.
 </div>
+  <div>
+  <h5 id="NodaTime_Period_Between_NodaTime_LocalDateTime_NodaTime_LocalDateTime__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.Between(
+    new LocalDateTime(2015, 1, 23, 21, 30, 15),
+    new LocalDateTime(2017, 10, 15, 21, 02, 17));
+
+Console.WriteLine(period.Years);
+Console.WriteLine(period.Months);
+Console.WriteLine(period.Days);
+Console.WriteLine(period.Hours);
+Console.WriteLine(period.Minutes);
+Console.WriteLine(period.Seconds);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2
+8
+21
+23
+32
+2
+P2Y8M21DT23H32M2S
+</code></pre></div>
+  </div>
   <a id="NodaTime_Period_Between_" data-uid="NodaTime.Period.Between*"></a>
   <h4 id="NodaTime_Period_Between_NodaTime_LocalDateTime_NodaTime_LocalDateTime_NodaTime_PeriodUnits_" data-uid="NodaTime.Period.Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime,NodaTime.PeriodUnits)">Between(LocalDateTime, LocalDateTime, PeriodUnits)</h4>
   <div class="markdown level1 summary">
@@ -911,6 +976,27 @@ the difference between 1am and 3:15am in hours) the result will be such that add
 will give a value between <code data-dev-comment-type="paramref" class="paramref">start</code> and <code data-dev-comment-type="paramref" class="paramref">end</code>. In other words,
 any rounding is &quot;towards start&quot;; this is true whether the resulting period is negative or positive.
 </div>
+  <div>
+  <h5 id="NodaTime_Period_Between_NodaTime_LocalDateTime_NodaTime_LocalDateTime_NodaTime_PeriodUnits__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.Between(
+    new LocalDateTime(2015, 1, 23, 21, 30, 15),
+    new LocalDateTime(2017, 10, 15, 21, 02, 17),
+    PeriodUnits.Years | PeriodUnits.Days | PeriodUnits.Hours);
+
+Console.WriteLine(period.Years);
+Console.WriteLine(period.Days);
+Console.WriteLine(period.Hours);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2
+264
+23
+P2Y264DT23H
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -988,6 +1074,22 @@ Returns the exact difference between two times.
 If <code data-dev-comment-type="paramref" class="paramref">end</code> is before <code data-dev-comment-type="paramref" class="paramref">start</code>, each property in the returned period
 will be negative.
 </div>
+  <div>
+  <h5 id="NodaTime_Period_Between_NodaTime_LocalTime_NodaTime_LocalTime__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.Between(new LocalTime(10, 10), new LocalTime(13, 15));
+
+Console.WriteLine(period.Hours);
+Console.WriteLine(period.Minutes);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">3
+5
+PT3H5M
+</code></pre></div>
+  </div>
   <a id="NodaTime_Period_Between_" data-uid="NodaTime.Period.Between*"></a>
   <h4 id="NodaTime_Period_Between_NodaTime_LocalTime_NodaTime_LocalTime_NodaTime_PeriodUnits_" data-uid="NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime,NodaTime.PeriodUnits)">Between(LocalTime, LocalTime, PeriodUnits)</h4>
   <div class="markdown level1 summary">
@@ -1054,6 +1156,25 @@ the difference between 3am and 4.30am in hours) the result will be such that add
 will give a value between <code data-dev-comment-type="paramref" class="paramref">start</code> and <code data-dev-comment-type="paramref" class="paramref">end</code>. In other words,
 any rounding is &quot;towards start&quot;; this is true whether the resulting period is negative or positive.
 </div>
+  <div>
+  <h5 id="NodaTime_Period_Between_NodaTime_LocalTime_NodaTime_LocalTime_NodaTime_PeriodUnits__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.Between(
+    new LocalTime(10, 10, 2),
+    new LocalTime(13, 15, 49),
+    PeriodUnits.Hours | PeriodUnits.Seconds);
+
+Console.WriteLine(period.Hours);
+Console.WriteLine(period.Seconds);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">3
+347
+PT3H347S
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1282,6 +1403,19 @@ Creates a period representing the specified number of days.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Period_FromDays_System_Int32__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.FromDays(3);
+Console.WriteLine(period.Days);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">3
+P3D
+</code></pre></div>
+  </div>
   <a id="NodaTime_Period_FromHours_" data-uid="NodaTime.Period.FromHours*"></a>
   <h4 id="NodaTime_Period_FromHours_System_Int64_" data-uid="NodaTime.Period.FromHours(System.Int64)">FromHours(Int64)</h4>
   <div class="markdown level1 summary">
@@ -1330,6 +1464,19 @@ Creates a period representing the specified number of hours.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Period_FromHours_System_Int64__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.FromHours(5);
+Console.WriteLine(period.Hours);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">5
+PT5H
+</code></pre></div>
+  </div>
   <a id="NodaTime_Period_FromMilliseconds_" data-uid="NodaTime.Period.FromMilliseconds*"></a>
   <h4 id="NodaTime_Period_FromMilliseconds_System_Int64_" data-uid="NodaTime.Period.FromMilliseconds(System.Int64)">FromMilliseconds(Int64)</h4>
   <div class="markdown level1 summary">
@@ -1378,6 +1525,19 @@ Creates a period representing the specified number of milliseconds.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Period_FromMilliseconds_System_Int64__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.FromMilliseconds(1500);
+Console.WriteLine(period.Milliseconds);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">1500
+PT1500s
+</code></pre></div>
+  </div>
   <a id="NodaTime_Period_FromMinutes_" data-uid="NodaTime.Period.FromMinutes*"></a>
   <h4 id="NodaTime_Period_FromMinutes_System_Int64_" data-uid="NodaTime.Period.FromMinutes(System.Int64)">FromMinutes(Int64)</h4>
   <div class="markdown level1 summary">
@@ -1426,6 +1586,19 @@ Creates a period representing the specified number of minutes.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Period_FromMinutes_System_Int64__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.FromMinutes(15);
+Console.WriteLine(period.Minutes);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">15
+PT15M
+</code></pre></div>
+  </div>
   <a id="NodaTime_Period_FromMonths_" data-uid="NodaTime.Period.FromMonths*"></a>
   <h4 id="NodaTime_Period_FromMonths_System_Int32_" data-uid="NodaTime.Period.FromMonths(System.Int32)">FromMonths(Int32)</h4>
   <div class="markdown level1 summary">
@@ -1474,6 +1647,19 @@ Creates a period representing the specified number of months.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Period_FromMonths_System_Int32__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.FromMonths(10);
+Console.WriteLine(period.Months);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">10
+P10M
+</code></pre></div>
+  </div>
   <a id="NodaTime_Period_FromNanoseconds_" data-uid="NodaTime.Period.FromNanoseconds*"></a>
   <h4 id="NodaTime_Period_FromNanoseconds_System_Int64_" data-uid="NodaTime.Period.FromNanoseconds(System.Int64)">FromNanoseconds(Int64)</h4>
   <div class="markdown level1 summary">
@@ -1522,6 +1708,19 @@ Creates a period representing the specified number of nanooseconds.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Period_FromNanoseconds_System_Int64__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.FromNanoseconds(42);
+Console.WriteLine(period.Nanoseconds);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">42
+PT42n
+</code></pre></div>
+  </div>
   <a id="NodaTime_Period_FromSeconds_" data-uid="NodaTime.Period.FromSeconds*"></a>
   <h4 id="NodaTime_Period_FromSeconds_System_Int64_" data-uid="NodaTime.Period.FromSeconds(System.Int64)">FromSeconds(Int64)</h4>
   <div class="markdown level1 summary">
@@ -1570,6 +1769,19 @@ Creates a period representing the specified number of seconds.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Period_FromSeconds_System_Int64__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.FromSeconds(70);
+Console.WriteLine(period.Seconds);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">70
+PT70S
+</code></pre></div>
+  </div>
   <a id="NodaTime_Period_FromTicks_" data-uid="NodaTime.Period.FromTicks*"></a>
   <h4 id="NodaTime_Period_FromTicks_System_Int64_" data-uid="NodaTime.Period.FromTicks(System.Int64)">FromTicks(Int64)</h4>
   <div class="markdown level1 summary">
@@ -1618,6 +1830,19 @@ Creates a period representing the specified number of ticks.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Period_FromTicks_System_Int64__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.FromTicks(42);
+Console.WriteLine(period.Ticks);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">42
+PT42t
+</code></pre></div>
+  </div>
   <a id="NodaTime_Period_FromWeeks_" data-uid="NodaTime.Period.FromWeeks*"></a>
   <h4 id="NodaTime_Period_FromWeeks_System_Int32_" data-uid="NodaTime.Period.FromWeeks(System.Int32)">FromWeeks(Int32)</h4>
   <div class="markdown level1 summary">
@@ -1666,6 +1891,19 @@ Creates a period representing the specified number of weeks.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Period_FromWeeks_System_Int32__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.FromWeeks(1);
+Console.WriteLine(period.Weeks);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">1
+P1W
+</code></pre></div>
+  </div>
   <a id="NodaTime_Period_FromYears_" data-uid="NodaTime.Period.FromYears*"></a>
   <h4 id="NodaTime_Period_FromYears_System_Int32_" data-uid="NodaTime.Period.FromYears(System.Int32)">FromYears(Int32)</h4>
   <div class="markdown level1 summary">
@@ -1714,6 +1952,19 @@ Creates a period representing the specified number of years.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_Period_FromYears_System_Int32__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+Period period = Period.FromYears(27);
+Console.WriteLine(period.Years);
+Console.WriteLine(period.ToString());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">27
+P27Y
+</code></pre></div>
+  </div>
   <a id="NodaTime_Period_GetHashCode_" data-uid="NodaTime.Period.GetHashCode*"></a>
   <h4 id="NodaTime_Period_GetHashCode" data-uid="NodaTime.Period.GetHashCode">GetHashCode()</h4>
   <div class="markdown level1 summary">
