@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class DateTimeZone
    | Noda Time ">
-    <meta name="generator" content="docfx 2.25.2.0">
+    <meta name="generator" content="docfx 2.28.2.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -566,25 +566,6 @@ date/time is skipped entirely.
 See <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtLeniently_NodaTime_LocalDateTime_">AtLeniently(LocalDateTime)</a> and <a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ResolveLocal_NodaTime_LocalDateTime_NodaTime_TimeZones_ZoneLocalMappingResolver_">ResolveLocal(LocalDateTime, ZoneLocalMappingResolver)</a> for alternative ways to map a local time to a
 specific instant.
 </div>
-  <div>
-  <h5 id="NodaTime_DateTimeZone_AtStrictly_NodaTime_LocalDateTime__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
-ZonedDateTime dt = dublin.AtStrictly(new LocalDateTime(2010, 6, 9, 15, 15, 0));
-
-Console.WriteLine(dt.Hour);
-Console.WriteLine(dt.Year);
-
-Instant instant = Instant.FromUtc(2010, 6, 9, 14, 15, 0);
-Console.WriteLine(dt.ToInstant());
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">15
-2010
-2010-06-09T14:15:00Z
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -720,19 +701,6 @@ The offset from UTC at the specified instant.
 This is mostly a convenience method for calling <code>GetZoneInterval(instant).WallOffset</code>,
 although it can also be overridden for more efficiency.
 </div>
-  <div>
-  <h5 id="NodaTime_DateTimeZone_GetUtcOffset_NodaTime_Instant__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-// Yes, in 1900 Paris did (according to TZDB) have a UTC offset of 9 minutes, 21 seconds.
-DateTimeZone paris = DateTimeZoneProviders.Tzdb[&quot;Europe/Paris&quot;];
-Offset offset = paris.GetUtcOffset(Instant.FromUtc(1900, 1, 1, 0, 0));
-Console.WriteLine(offset.ToString());
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">+00:09:21
-</code></pre></div>
-  </div>
   <a id="NodaTime_DateTimeZone_GetZoneInterval_" data-uid="NodaTime.DateTimeZone.GetZoneInterval*"></a>
   <h4 id="NodaTime_DateTimeZone_GetZoneInterval_NodaTime_Instant_" data-uid="NodaTime.DateTimeZone.GetZoneInterval(NodaTime.Instant)">GetZoneInterval(Instant)</h4>
   <div class="markdown level1 summary">
@@ -786,27 +754,6 @@ applies (with the same split between standard time and daylight saving time, and
   <div class="markdown level1 remarks">
 This will always return a valid zone interval, as time zones cover the whole of time.
 </div>
-  <div>
-  <h5 id="NodaTime_DateTimeZone_GetZoneInterval_NodaTime_Instant__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using NodaTime.TimeZones;
-using System;
-
-DateTimeZone london = DateTimeZoneProviders.Tzdb[&quot;Europe/London&quot;];
-ZoneInterval interval = london.GetZoneInterval(Instant.FromUtc(2010, 6, 19, 0, 0));
-Console.WriteLine(interval.Name);
-Console.WriteLine(interval.Start);
-Console.WriteLine(interval.End);
-Console.WriteLine(interval.WallOffset);
-Console.WriteLine(interval.Savings);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">BST
-2010-03-28T01:00:00Z
-2010-10-31T01:00:00Z
-+01
-+01
-</code></pre></div>
-  </div>
   <h5 id="NodaTime_DateTimeZone_GetZoneInterval_NodaTime_Instant__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_">GetZoneIntervals(Interval)</a></div>
