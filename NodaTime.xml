@@ -392,13 +392,13 @@
             <param name="monthNumbering">The month numbering system to use</param>
             <returns>A Hebrew calendar system for the given month numbering.</returns>
         </member>
-        <member name="P:NodaTime.CalendarSystem.Wondrous">
+        <member name="P:NodaTime.CalendarSystem.Badi">
             <summary>
-            Returns the Wondrous (Badí') calendar, as described at https://en.wikipedia.org/wiki/Badi_calendar. 
+            Returns the Badíʿ (meaning "wondrous" or "unique") calendar, as described at https://en.wikipedia.org/wiki/Badi_calendar. 
             This is a purely solar calendar with years starting at the vernal equinox.
             </summary>
             <remarks>
-            <para>The Wondrous calendar was developed and defined by the founders of the Bahá'í Faith in the mid to late
+            <para>The Badíʿ calendar was developed and defined by the founders of the Bahá'í Faith in the mid to late
             1800's A.D. The first year in the calendar coincides with 1844 A.D. Years are labeled "B.E." for Bahá'í Era.</para>
             <para>A year consists of 19 months, each with 19 days. Each day starts at sunset. Years are grouped into sets
             of 19 "Unities" (Váḥid) and 19 Unities make up 1 "All Things" (Kull-i-Shay’).</para>
@@ -410,7 +410,7 @@
             Ayyám-i-Há is internally modelled as extra days added to the 18th month. As a result, a few functions will
             not work as expected for Ayyám-i-Há, such as EndOfMonth.</para>
             </remarks>
-            <returns>The Wondrous calendar system.</returns>
+            <returns>The Badíʿ calendar system.</returns>
         </member>
         <member name="M:NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)">
             <summary>
@@ -491,7 +491,7 @@
               <item><term>ISO</term><description><see cref="P:NodaTime.CalendarSystem.Iso"/></description></item>
               <item><term>Gregorian</term><description><see cref="P:NodaTime.CalendarSystem.Gregorian"/></description></item>
               <item><term>Coptic</term><description><see cref="P:NodaTime.CalendarSystem.Coptic"/></description></item>
-              <item><term>Wondrous</term><description><see cref="P:NodaTime.CalendarSystem.Wondrous"/></description></item>
+              <item><term>Badíʿ</term><description><see cref="P:NodaTime.CalendarSystem.Badi"/></description></item>
               <item><term>Julian</term><description><see cref="P:NodaTime.CalendarSystem.Julian"/></description></item>
               <item><term>Hijri Civil-Indian</term><description><see cref="M:NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)"/>(IslamicLeapYearPattern.Indian, IslamicEpoch.Civil)</description></item>
               <item><term>Hijri Civil-Base15</term><description><see cref="M:NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)"/>(IslamicLeapYearPattern.Base15, IslamicEpoch.Civil)</description></item>
@@ -803,6 +803,26 @@
             need Coptic, for example.
             </summary>
         </member>
+        <member name="T:NodaTime.Calendars.BadiYearMonthDayCalculator">
+            <summary>
+            See <see cref="P:NodaTime.CalendarSystem.Badi" /> for details about the Badíʿ calendar.
+            </summary>
+        </member>
+        <member name="F:NodaTime.Calendars.BadiYearMonthDayCalculator.Month18">
+            <remarks>
+            There are 19 months in a year. Between the 18th and 19th month are the "days of Ha" (Ayyam-i-Ha).
+            In order to make everything else in Noda Time work appropriately, Ayyam-i-Ha are counted as
+            extra days at the end of month 18.
+            </remarks>
+        </member>
+        <member name="F:NodaTime.Calendars.BadiYearMonthDayCalculator.YearInfoRaw">
+            <summary>
+            This is the base64 representation of information for years 172 to 1000.
+            NazRuzDate falls on March 19, 20, 21, or 22.
+            DaysInAyymiHa can be 4,5.
+            For each year, the value in the array is (NawRuzDate - 19) + 10 * (DaysInAyyamiHa - 4)
+            </summary>
+        </member>
         <member name="T:NodaTime.Calendars.Era">
             <summary>
             Represents an era used in a calendar.
@@ -850,7 +870,7 @@
         </member>
         <member name="P:NodaTime.Calendars.Era.Bahai">
             <summary>
-            The "Bahá'í" era. This is the sole era used in the Wondrous calendar.
+            The "Bahá'í" era. This is the sole era used in the Badi calendar.
             </summary>
             <value>The "Bahá'í" era.</value>
         </member>
@@ -1451,26 +1471,6 @@
             <returns>A rule which behaves the same way as the BCL
             <see cref="M:System.Globalization.Calendar.GetWeekOfYear(System.DateTime,System.Globalization.CalendarWeekRule,System.DayOfWeek)"/>
             method.</returns>
-        </member>
-        <member name="T:NodaTime.Calendars.WondrousYearMonthDayCalculator">
-            <summary>
-            See <see cref="P:NodaTime.CalendarSystem.Wondrous" /> for details.
-            </summary>
-        </member>
-        <member name="F:NodaTime.Calendars.WondrousYearMonthDayCalculator.Month18">
-            <remarks>
-            There are 19 months in a year. Between the 18th and 19th month are the "days of Ha" (Ayyam-i-Ha).
-            In order to make everything else in Noda Time work appropriately, Ayyam-i-Ha are counted as
-            extra days at the end of month 18.
-            </remarks>
-        </member>
-        <member name="F:NodaTime.Calendars.WondrousYearMonthDayCalculator.YearInfoRaw">
-            <summary>
-            This is the base64 representation of information for years 172 to 1000.
-            NazRuzDate falls on March 19, 20, 21, or 22.
-            DaysInAyymiHa can be 4,5.
-            For each year, the value in the array is (NawRuzDate - 19) + 10 * (DaysInAyyamiHa - 4)
-            </summary>
         </member>
         <member name="T:NodaTime.Calendars.YearMonthDayCalculator">
             <summary>
