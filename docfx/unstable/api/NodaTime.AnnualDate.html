@@ -101,7 +101,7 @@ typically for recurrent events such as birthdays, anniversaries, and deadlines.
   <h6><strong>Assembly</strong>:NodaTime.dll</h6>
   <h5 id="NodaTime_AnnualDate_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct AnnualDate : IEquatable&lt;AnnualDate&gt;, IComparable&lt;AnnualDate&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public struct AnnualDate : IEquatable&lt;AnnualDate&gt;, IComparable&lt;AnnualDate&gt;, IFormattable</code></pre>
   </div>
   <h5 id="NodaTime_AnnualDate_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks">In the future, this struct may be expanded to support other calendar systems,
@@ -552,13 +552,74 @@ Returns a <span class="xref">System.String</span> that represents this instance.
       <tr>
         <td><span class="xref">System.String</span></td>
         <td>
-The value of the current instance, in the form MM-dd.
+The value of the current instance in the default format pattern (&quot;G&quot;).
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><span class="xref">System.ValueType.ToString()</span></div>
+  <a id="NodaTime_AnnualDate_ToString_" data-uid="NodaTime.AnnualDate.ToString*"></a>
+  <h4 id="NodaTime_AnnualDate_ToString_System_String_System_IFormatProvider_" data-uid="NodaTime.AnnualDate.ToString(System.String,System.IFormatProvider)">ToString(String, IFormatProvider)</h4>
+  <div class="markdown level1 summary">
+Formats the value of the current instance using the specified pattern.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> unstable
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(string patternText, IFormatProvider formatProvider)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">patternText</span></td>
+        <td>The <span class="xref">System.String</span> specifying the pattern to use,
+or null to use the default format pattern (&quot;G&quot;).
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">formatProvider</span></td>
+        <td>The <span class="xref">System.IFormatProvider</span> to use when formatting the value,
+or null to use the current thread&apos;s culture to obtain a format provider.
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td>
+A <span class="xref">System.String</span> containing the value of the current instance in the specified format.
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.IFormattable.ToString(System.String, System.IFormatProvider)</span></div>
   <h3 id="operators">Operators
   </h3>
   <a id="NodaTime_AnnualDate_op_Equality_" data-uid="NodaTime.AnnualDate.op_Equality*"></a>

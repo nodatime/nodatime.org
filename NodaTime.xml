@@ -226,8 +226,23 @@
             Returns a <see cref="T:System.String" /> that represents this instance.
             </summary>
             <returns>
-            The value of the current instance, in the form MM-dd.
+            The value of the current instance in the default format pattern ("G").
             </returns>
+        </member>
+        <member name="M:NodaTime.AnnualDate.ToString(System.String,System.IFormatProvider)">
+            <summary>
+            Formats the value of the current instance using the specified pattern.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> containing the value of the current instance in the specified format.
+            </returns>
+            <param name="patternText">The <see cref="T:System.String" /> specifying the pattern to use,
+            or null to use the default format pattern ("G").
+            </param>
+            <param name="formatProvider">The <see cref="T:System.IFormatProvider" /> to use when formatting the value,
+            or null to use the current thread's culture to obtain a format provider.
+            </param>
+            <filterpriority>2</filterpriority>
         </member>
         <member name="M:NodaTime.AnnualDate.Equals(NodaTime.AnnualDate)">
             <summary>
@@ -8907,6 +8922,175 @@
             Gets the current time as an <see cref="T:NodaTime.Instant"/>.
             </summary>
             <returns>The current time in ticks as an <see cref="T:NodaTime.Instant"/>.</returns>
+        </member>
+        <member name="T:NodaTime.Text.AnnualDatePattern">
+            <summary>
+            Represents a pattern for parsing and formatting <see cref="T:NodaTime.AnnualDate"/> values.
+            </summary>
+            <threadsafety>
+            When used with a read-only <see cref="T:System.Globalization.CultureInfo" />, this type is immutable and instances
+            may be shared freely between threads. We recommend only using read-only cultures for patterns, although this is
+            not currently enforced.
+            </threadsafety>
+        </member>
+        <member name="P:NodaTime.Text.AnnualDatePattern.Iso">
+            <summary>
+            Gets an invariant annual date pattern which is compatible with the month/day part of ISO-8601.
+            This corresponds to the text pattern "MM'-'dd".
+            </summary>
+            <value>An invariant annual date pattern which is compatible with the month/day part of ISO-8601.</value>
+        </member>
+        <member name="T:NodaTime.Text.AnnualDatePattern.Patterns">
+            <summary>
+            Class whose existence is solely to avoid type initialization order issues, most of which stem
+            from needing NodaFormatInfo.InvariantInfo...
+            </summary>
+        </member>
+        <member name="P:NodaTime.Text.AnnualDatePattern.UnderlyingPattern">
+            <summary>
+            Returns the pattern that this object delegates to. Mostly useful to avoid this public class
+            implementing an internal interface.
+            </summary>
+        </member>
+        <member name="P:NodaTime.Text.AnnualDatePattern.PatternText">
+            <summary>
+            Gets the pattern text for this pattern, as supplied on creation.
+            </summary>
+            <value>The pattern text for this pattern, as supplied on creation.</value>
+        </member>
+        <member name="P:NodaTime.Text.AnnualDatePattern.FormatInfo">
+            <summary>
+            Returns the localization information used in this pattern.
+            </summary>
+        </member>
+        <member name="P:NodaTime.Text.AnnualDatePattern.TemplateValue">
+            <summary>
+            Gets the value used as a template for parsing: any field values unspecified
+            in the pattern are taken from the template.
+            </summary>
+            <value>The value used as a template for parsing.</value>
+        </member>
+        <member name="M:NodaTime.Text.AnnualDatePattern.Parse(System.String)">
+            <summary>
+            Parses the given text value according to the rules of this pattern.
+            </summary>
+            <remarks>
+            This method never throws an exception (barring a bug in Noda Time itself). Even errors such as
+            the argument being null are wrapped in a parse result.
+            </remarks>
+            <param name="text">The text value to parse.</param>
+            <returns>The result of parsing, which may be successful or unsuccessful.</returns>
+        </member>
+        <member name="M:NodaTime.Text.AnnualDatePattern.Format(NodaTime.AnnualDate)">
+            <summary>
+            Formats the given annual date as text according to the rules of this pattern.
+            </summary>
+            <param name="value">The annual date to format.</param>
+            <returns>The annual date formatted according to this pattern.</returns>
+        </member>
+        <member name="M:NodaTime.Text.AnnualDatePattern.AppendFormat(NodaTime.AnnualDate,System.Text.StringBuilder)">
+            <summary>
+            Formats the given value as text according to the rules of this pattern,
+            appending to the given <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="value">The value to format.</param>
+            <param name="builder">The <c>StringBuilder</c> to append to.</param>
+            <returns>The builder passed in as <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:NodaTime.Text.AnnualDatePattern.Create(System.String,NodaTime.Globalization.NodaFormatInfo,NodaTime.AnnualDate)">
+            <summary>
+            Creates a pattern for the given pattern text, format info, and template value.
+            </summary>
+            <param name="patternText">Pattern text to create the pattern for</param>
+            <param name="formatInfo">The format info to use in the pattern</param>
+            <param name="templateValue">Template value to use for unspecified fields</param>
+            <returns>A pattern for parsing and formatting annual dates.</returns>
+            <exception cref="T:NodaTime.Text.InvalidPatternException">The pattern text was invalid.</exception>
+        </member>
+        <member name="M:NodaTime.Text.AnnualDatePattern.Create(System.String,System.Globalization.CultureInfo,NodaTime.AnnualDate)">
+            <summary>
+            Creates a pattern for the given pattern text, culture, and template value.
+            </summary>
+            <remarks>
+            See the user guide for the available pattern text options.
+            </remarks>
+            <param name="patternText">Pattern text to create the pattern for</param>
+            <param name="cultureInfo">The culture to use in the pattern</param>
+            <param name="templateValue">Template value to use for unspecified fields</param>
+            <returns>A pattern for parsing and formatting annual dates.</returns>
+            <exception cref="T:NodaTime.Text.InvalidPatternException">The pattern text was invalid.</exception>
+        </member>
+        <member name="M:NodaTime.Text.AnnualDatePattern.Create(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Creates a pattern for the given pattern text and culture, with a template value of 2000-01-01.
+            </summary>
+            <remarks>
+            See the user guide for the available pattern text options.
+            </remarks>
+            <param name="patternText">Pattern text to create the pattern for</param>
+            <param name="cultureInfo">The culture to use in the pattern</param>
+            <returns>A pattern for parsing and formatting annual dates.</returns>
+            <exception cref="T:NodaTime.Text.InvalidPatternException">The pattern text was invalid.</exception>
+        </member>
+        <member name="M:NodaTime.Text.AnnualDatePattern.CreateWithCurrentCulture(System.String)">
+            <summary>
+            Creates a pattern for the given pattern text in the current thread's current culture.
+            </summary>
+            <remarks>
+            See the user guide for the available pattern text options. Note that the current culture
+            is captured at the time this method is called - it is not captured at the point of parsing
+            or formatting values.
+            </remarks>
+            <param name="patternText">Pattern text to create the pattern for</param>
+            <returns>A pattern for parsing and formatting annual dates.</returns>
+            <exception cref="T:NodaTime.Text.InvalidPatternException">The pattern text was invalid.</exception>
+        </member>
+        <member name="M:NodaTime.Text.AnnualDatePattern.CreateWithInvariantCulture(System.String)">
+            <summary>
+            Creates a pattern for the given pattern text in the invariant culture.
+            </summary>
+            <remarks>
+            See the user guide for the available pattern text options. Note that the current culture
+            is captured at the time this method is called - it is not captured at the point of parsing
+            or formatting values.
+            </remarks>
+            <param name="patternText">Pattern text to create the pattern for</param>
+            <returns>A pattern for parsing and formatting annual dates.</returns>
+            <exception cref="T:NodaTime.Text.InvalidPatternException">The pattern text was invalid.</exception>
+        </member>
+        <member name="M:NodaTime.Text.AnnualDatePattern.WithFormatInfo(NodaTime.Globalization.NodaFormatInfo)">
+            <summary>
+            Creates a pattern for the same original pattern text as this pattern, but with the specified
+            localization information.
+            </summary>
+            <param name="formatInfo">The localization information to use in the new pattern.</param>
+            <returns>A new pattern with the given localization information.</returns>
+        </member>
+        <member name="M:NodaTime.Text.AnnualDatePattern.WithCulture(System.Globalization.CultureInfo)">
+            <summary>
+            Creates a pattern for the same original pattern text as this pattern, but with the specified
+            culture.
+            </summary>
+            <param name="cultureInfo">The culture to use in the new pattern.</param>
+            <returns>A new pattern with the given culture.</returns>
+        </member>
+        <member name="M:NodaTime.Text.AnnualDatePattern.WithTemplateValue(NodaTime.AnnualDate)">
+            <summary>
+            Creates a pattern like this one, but with the specified template value.
+            </summary>
+            <param name="newTemplateValue">The template value for the new pattern, used to fill in unspecified fields.</param>
+            <returns>A new pattern with the given template value.</returns>
+        </member>
+        <member name="T:NodaTime.Text.AnnualDatePatternParser">
+            <summary>
+            Parser for patterns of <see cref="T:NodaTime.AnnualDate"/> values.
+            </summary>
+        </member>
+        <member name="T:NodaTime.Text.AnnualDatePatternParser.AnnualDateParseBucket">
+            <summary>
+            Bucket to put parsed values in, ready for later result calculation. This type is also used
+            by AnnualDateTimePattern to store and calculate values.
+            </summary>
         </member>
         <member name="T:NodaTime.Text.CompositePatternBuilder`1">
             <summary>
