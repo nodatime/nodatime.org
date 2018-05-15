@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class DateInterval
    | Noda Time ">
-    <meta name="generator" content="docfx 2.32.1.0">
+    <meta name="generator" content="docfx 2.35.4.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -22,7 +22,7 @@
     
     
   </head>
-  <body data-spy="scroll" data-target="#affix">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
         
@@ -71,9 +71,8 @@
             <article class="content wrap" id="_content" data-uid="NodaTime.DateInterval">
   
   
-  <h1 id="NodaTime_DateInterval" data-uid="NodaTime.DateInterval">Class DateInterval
+  <h1 id="NodaTime_DateInterval" data-uid="NodaTime.DateInterval" class="text-break">Class DateInterval
   </h1>
-  
   <div class="markdown level0 summary">
 An interval between two dates.
 </div>
@@ -86,8 +85,14 @@ An interval between two dates.
   </div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-      <div class="level0"><span class="xref">System.Object</span></div>
-      <div class="level"><span class="xref"></span></div>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">DateInterval</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="NodaTime.DateInterval.html">DateInterval</a>&gt;</div>
+    <div><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="NodaTime.LocalDate.html">LocalDate</a>&gt;</div>
+    <div><span class="xref">System.Collections.IEnumerable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -104,8 +109,8 @@ An interval between two dates.
       <span class="xref">System.Object.MemberwiseClone()</span>
     </div>
   </div>
-  <h6><strong>Namespace</strong>:System.Dynamic.ExpandoObject</h6>
-  <h6><strong>Assembly</strong>:NodaTime.dll</h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="NodaTime.html">NodaTime</a></h6>
+  <h6><strong>Assembly</strong>: NodaTime.dll</h6>
   <h5 id="NodaTime_DateInterval_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public sealed class DateInterval : IEquatable&lt;DateInterval&gt;, IEnumerable&lt;LocalDate&gt;, IEnumerable</code></pre>
@@ -162,30 +167,6 @@ in the interval.
       </tr>
     </tbody>
   </table>
-  <div>
-  <h5 id="NodaTime_DateInterval__ctor_NodaTime_LocalDate_NodaTime_LocalDate__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-var calendar = CalendarSystem.Gregorian;
-LocalDate start = new LocalDate(2017, 1, 1, calendar);
-LocalDate end = new LocalDate(2017, 12, 31, calendar);
-
-DateInterval interval = new DateInterval(start, end);
-
-Console.WriteLine(interval.Length);
-Console.WriteLine(interval.ToString());
-Console.WriteLine(interval.Start);
-Console.WriteLine(interval.End);
-Console.WriteLine(interval.Calendar);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">365
-[2017-01-01, 2017-12-31]
-Sunday, 01 January 2017
-Sunday, 31 December 2017
-Gregorian
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -385,25 +366,6 @@ later than the end date of this interval.
   <div class="markdown level1 remarks">
 An interval contains another interval with same start and end dates, or itself.
 </div>
-  <div>
-  <h5 id="NodaTime_DateInterval_Contains_NodaTime_DateInterval__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-LocalDate start = new LocalDate(2017, 1, 1);
-LocalDate end = new LocalDate(2017, 12, 31);
-
-DateInterval interval = new DateInterval(start, end);
-DateInterval june = new DateInterval(
-    new LocalDate(2017, 6, 1),
-    new LocalDate(2017, 6, 30));
-
-var result = interval.Contains(june);
-Console.WriteLine(result);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">True
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -474,22 +436,6 @@ date.
       </tr>
     </tbody>
   </table>
-  <div>
-  <h5 id="NodaTime_DateInterval_Contains_NodaTime_LocalDate__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-LocalDate start = new LocalDate(2017, 1, 1);
-LocalDate end = new LocalDate(2017, 12, 31);
-
-DateInterval interval = new DateInterval(start, end);
-
-var result = interval.Contains(new LocalDate(2017, 12, 5));
-Console.WriteLine(result);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">True
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -592,8 +538,6 @@ Compares the given date interval for equality with this one.
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.IEquatable&lt;T&gt;.Equals(T)</span></div>
   <h5 id="NodaTime_DateInterval_Equals_NodaTime_DateInterval__remarks">Remarks</h5>
   <div class="markdown level1 remarks">
 Date intervals are equal if they have the same start and end dates.
@@ -679,8 +623,6 @@ Returns an enumerator for the dates in the interval, including both <a class="xr
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;.GetEnumerator()</span></div>
   <a id="NodaTime_DateInterval_GetHashCode_" data-uid="NodaTime.DateInterval.GetHashCode*"></a>
   <h4 id="NodaTime_DateInterval_GetHashCode" data-uid="NodaTime.DateInterval.GetHashCode">GetHashCode()</h4>
   <div class="markdown level1 summary">
@@ -767,29 +709,6 @@ instance. If there is no intersection, a null reference is returned.
       </tr>
     </tbody>
   </table>
-  <div>
-  <h5 id="NodaTime_DateInterval_Intersection_NodaTime_DateInterval__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-DateInterval januaryToAugust = new DateInterval(
-    new LocalDate(2017, 1, 1),
-    new LocalDate(2017, 8, 31));
-
-DateInterval juneToNovember = new DateInterval(
-    new LocalDate(2017, 6, 1),
-    new LocalDate(2017, 11, 30));
-
-DateInterval juneToAugust = new DateInterval(
-    new LocalDate(2017, 6, 1),
-    new LocalDate(2017, 8, 31));
-
-var result = januaryToAugust.Intersection(juneToNovember);
-Console.WriteLine(result);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">[2017-06-01, 2017-08-31]
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1063,8 +982,16 @@ Date intervals are equal if they have the same start and end dates.
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.Collections.IEnumerable.GetEnumerator()</span></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IEquatable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IEnumerable</span>
+  </div>
 </article>
           </div>
           

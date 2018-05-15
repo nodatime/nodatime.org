@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Struct Offset
    | Noda Time ">
-    <meta name="generator" content="docfx 2.32.1.0">
+    <meta name="generator" content="docfx 2.35.4.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -22,7 +22,7 @@
     
     
   </head>
-  <body data-spy="scroll" data-target="#affix">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
         
@@ -71,9 +71,8 @@
             <article class="content wrap" id="_content" data-uid="NodaTime.Offset">
   
   
-  <h1 id="NodaTime_Offset" data-uid="NodaTime.Offset">Struct Offset
+  <h1 id="NodaTime_Offset" data-uid="NodaTime.Offset" class="text-break">Struct Offset
   </h1>
-  
   <div class="markdown level0 summary">
 An offset from UTC in seconds. A positive value means that the local time is
 ahead of UTC (e.g. for Europe); a negative value means that the local time is behind
@@ -85,6 +84,15 @@ UTC (e.g. for America).
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="NodaTime.Offset.html">Offset</a>&gt;</div>
+    <div><span class="xref">System.IComparable</span>&lt;<a class="xref" href="NodaTime.Offset.html">Offset</a>&gt;</div>
+    <div><span class="xref">System.IFormattable</span></div>
+    <div><span class="xref">System.IComparable</span></div>
+    <div><span class="xref">System.Xml.Serialization.IXmlSerializable</span></div>
+    <div><span class="xref">System.Runtime.Serialization.ISerializable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -98,8 +106,8 @@ UTC (e.g. for America).
       <span class="xref">System.Object.GetType()</span>
     </div>
   </div>
-  <h6><strong>Namespace</strong>:System.Dynamic.ExpandoObject</h6>
-  <h6><strong>Assembly</strong>:NodaTime.dll</h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="NodaTime.html">NodaTime</a></h6>
+  <h6><strong>Assembly</strong>: NodaTime.dll</h6>
   <h5 id="NodaTime_Offset_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Serializable]
@@ -477,8 +485,6 @@ The return value has the following meanings:
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.IComparable&lt;T&gt;.CompareTo(T)</span></div>
   <a id="NodaTime_Offset_Equals_" data-uid="NodaTime.Offset.Equals*"></a>
   <h4 id="NodaTime_Offset_Equals_NodaTime_Offset_" data-uid="NodaTime.Offset.Equals(NodaTime.Offset)">Equals(Offset)</h4>
   <div class="markdown level1 summary">
@@ -530,8 +536,6 @@ otherwise, false.
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.IEquatable&lt;T&gt;.Equals(T)</span></div>
   <a id="NodaTime_Offset_Equals_" data-uid="NodaTime.Offset.Equals*"></a>
   <h4 id="NodaTime_Offset_Equals_System_Object_" data-uid="NodaTime.Offset.Equals(System.Object)">Equals(Object)</h4>
   <div class="markdown level1 summary">
@@ -633,17 +637,6 @@ Returns an offset for the specified number of hours, which may be negative.
       </tr>
     </tbody>
   </table>
-  <div>
-  <h5 id="NodaTime_Offset_FromHours_System_Int32__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-Offset offset = Offset.FromHours(1);
-Console.WriteLine(offset.Seconds);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">3600
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -720,17 +713,6 @@ separately. As a result, a negative offset should usually be obtained by making 
 negative. For example, to obtain &quot;three hours and ten minutes behind UTC&quot; you might call
 <code>Offset.FromHoursAndMinutes(-3, -10)</code>.
 </div>
-  <div>
-  <h5 id="NodaTime_Offset_FromHoursAndMinutes_System_Int32_System_Int32__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-Offset offset = Offset.FromHoursAndMinutes(1, 1);
-Console.WriteLine(offset.Seconds);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">3660
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -799,19 +781,6 @@ Returns an offset for the given milliseconds value, which may be negative.
 Offsets are only accurate to second precision; the given number of milliseconds is simply divided
 by 1,000 to give the number of seconds - any remainder is truncated.
 </div>
-  <div>
-  <h5 id="NodaTime_Offset_FromMilliseconds_System_Int32__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-Offset offset = Offset.FromMilliseconds(1200);
-Console.WriteLine(offset.Seconds);
-Console.WriteLine(offset.Milliseconds);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">1
-1000
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -881,19 +850,6 @@ Returns an offset for the given number of nanoseconds, which may be negative.
 Offsets are only accurate to second precision; the given number of nanoseconds is simply divided
 by 1,000,000,000 to give the number of seconds - any remainder is truncated towards zero.
 </div>
-  <div>
-  <h5 id="NodaTime_Offset_FromNanoseconds_System_Int64__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-Offset offset = Offset.FromNanoseconds(1_200_000_000);
-Console.WriteLine(offset.Seconds);
-Console.WriteLine(offset.Nanoseconds);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">1
-1000000000
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -958,17 +914,6 @@ Returns an offset for the given seconds value, which may be negative.
       </tr>
     </tbody>
   </table>
-  <div>
-  <h5 id="NodaTime_Offset_FromSeconds_System_Int32__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-Offset offset = Offset.FromSeconds(450);
-Console.WriteLine(offset.Seconds);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">450
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1038,19 +983,6 @@ Returns an offset for the given number of ticks, which may be negative.
 Offsets are only accurate to second precision; the given number of ticks is simply divided
 by 10,000,000 to give the number of seconds - any remainder is truncated.
 </div>
-  <div>
-  <h5 id="NodaTime_Offset_FromTicks_System_Int64__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-Offset offset = Offset.FromTicks(15_000_000);
-Console.WriteLine(offset.Ticks);
-Console.WriteLine(offset.Seconds);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">10000000
-1
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1115,18 +1047,6 @@ Converts the given <span class="xref">System.TimeSpan</span> to an offset, with 
       </tr>
     </tbody>
   </table>
-  <div>
-  <h5 id="NodaTime_Offset_FromTimeSpan_System_TimeSpan__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-var timespan = TimeSpan.FromHours(1.5);
-Offset offset = Offset.FromTimeSpan(timespan);
-Console.WriteLine(offset.Seconds);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">5400
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1334,22 +1254,6 @@ Returns the result of subtracting another Offset from this one, for a fluent alt
       </tr>
     </tbody>
   </table>
-  <div>
-  <h5 id="NodaTime_Offset_Minus_NodaTime_Offset__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-var offset = Offset.FromSeconds(100);
-var offset2 = Offset.FromSeconds(120);
-var expected = Offset.FromSeconds(-20);
-
-var actual = offset.Minus(offset2);
-
-Console.WriteLine(actual);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">-00:00:20
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1461,22 +1365,6 @@ Returns the result of adding another Offset to this one, for a fluent alternativ
       </tr>
     </tbody>
   </table>
-  <div>
-  <h5 id="NodaTime_Offset_Plus_NodaTime_Offset__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-var offset = Offset.FromSeconds(100);
-var offset2 = Offset.FromSeconds(150);
-var expected = Offset.FromSeconds(250);
-
-var actual = offset.Plus(offset2);
-
-Console.WriteLine(actual);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">+00:04:10
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1659,8 +1547,6 @@ A <span class="xref">System.String</span> containing the value of the current in
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.IFormattable.ToString(System.String, System.IFormatProvider)</span></div>
   <a id="NodaTime_Offset_ToTimeSpan_" data-uid="NodaTime.Offset.ToTimeSpan*"></a>
   <h4 id="NodaTime_Offset_ToTimeSpan" data-uid="NodaTime.Offset.ToTimeSpan">ToTimeSpan()</h4>
   <div class="markdown level1 summary">
@@ -1692,20 +1578,6 @@ Converts this offset to a .NET standard <span class="xref">System.TimeSpan</span
       </tr>
     </tbody>
   </table>
-  <div>
-  <h5 id="NodaTime_Offset_ToTimeSpan_snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-var offset = Offset.FromSeconds(120);
-var actual = offset.ToTimeSpan();
-var expected = TimeSpan.FromSeconds(120);
-
-Console.WriteLine(actual);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">00:02:00
-</code></pre></div>
-  </div>
   <h3 id="operators">Operators
   </h3>
   <a id="NodaTime_Offset_op_Addition_" data-uid="NodaTime.Offset.op_Addition*"></a>
@@ -2321,8 +2193,6 @@ If <code data-dev-comment-type="paramref" class="paramref">obj</code> is null, t
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.IComparable.CompareTo(System.Object)</span></div>
   <h5 id="NodaTime_Offset_System_IComparable_CompareTo_System_Object__remarks">Remarks</h5>
   <div class="markdown level1 remarks">
 This uses explicit interface implementation to avoid it being called accidentally. The generic implementation should usually be preferred.
@@ -2381,8 +2251,6 @@ void ISerializable.GetObjectData(SerializationInfo info, StreamingContext contex
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)</span></div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -2427,8 +2295,6 @@ void ISerializable.GetObjectData(SerializationInfo info, StreamingContext contex
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.Xml.Serialization.IXmlSerializable.GetSchema()</span></div>
   <a id="NodaTime_Offset_System_Xml_Serialization_IXmlSerializable_ReadXml_" data-uid="NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#ReadXml*"></a>
   <h4 id="NodaTime_Offset_System_Xml_Serialization_IXmlSerializable_ReadXml_System_Xml_XmlReader_" data-uid="NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)">IXmlSerializable.ReadXml(XmlReader)</h4>
   <div class="markdown level1 summary"></div>
@@ -2460,8 +2326,6 @@ void ISerializable.GetObjectData(SerializationInfo info, StreamingContext contex
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)</span></div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -2508,8 +2372,6 @@ void ISerializable.GetObjectData(SerializationInfo info, StreamingContext contex
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)</span></div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -2525,6 +2387,25 @@ void ISerializable.GetObjectData(SerializationInfo info, StreamingContext contex
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IEquatable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.IComparable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.IFormattable</span>
+  </div>
+  <div>
+      <span class="xref">System.IComparable</span>
+  </div>
+  <div>
+      <span class="xref">System.Xml.Serialization.IXmlSerializable</span>
+  </div>
+  <div>
+      <span class="xref">System.Runtime.Serialization.ISerializable</span>
+  </div>
 </article>
           </div>
           

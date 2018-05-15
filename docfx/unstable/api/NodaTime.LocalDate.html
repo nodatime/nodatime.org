@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Struct LocalDate
    | Noda Time ">
-    <meta name="generator" content="docfx 2.32.1.0">
+    <meta name="generator" content="docfx 2.35.4.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -22,7 +22,7 @@
     
     
   </head>
-  <body data-spy="scroll" data-target="#affix">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
         
@@ -71,9 +71,8 @@
             <article class="content wrap" id="_content" data-uid="NodaTime.LocalDate">
   
   
-  <h1 id="NodaTime_LocalDate" data-uid="NodaTime.LocalDate">Struct LocalDate
+  <h1 id="NodaTime_LocalDate" data-uid="NodaTime.LocalDate" class="text-break">Struct LocalDate
   </h1>
-  
   <div class="markdown level0 summary">
 LocalDate is an immutable struct representing a date within the calendar,
 with no reference to a particular time zone or time of day.
@@ -84,6 +83,15 @@ with no reference to a particular time zone or time of day.
   </div>
   <div>
   <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="NodaTime.LocalDate.html">LocalDate</a>&gt;</div>
+    <div><span class="xref">System.IComparable</span>&lt;<a class="xref" href="NodaTime.LocalDate.html">LocalDate</a>&gt;</div>
+    <div><span class="xref">System.IComparable</span></div>
+    <div><span class="xref">System.IFormattable</span></div>
+    <div><span class="xref">System.Xml.Serialization.IXmlSerializable</span></div>
+    <div><span class="xref">System.Runtime.Serialization.ISerializable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -97,8 +105,8 @@ with no reference to a particular time zone or time of day.
       <span class="xref">System.Object.GetType()</span>
     </div>
   </div>
-  <h6><strong>Namespace</strong>:System.Dynamic.ExpandoObject</h6>
-  <h6><strong>Assembly</strong>:NodaTime.dll</h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="NodaTime.html">NodaTime</a></h6>
+  <h6><strong>Assembly</strong>: NodaTime.dll</h6>
   <h5 id="NodaTime_LocalDate_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Serializable]
@@ -297,24 +305,6 @@ Constructs an instance for the given year, month and day in the ISO calendar.
       </tr>
     </tbody>
   </table>
-  <div>
-  <h5 id="NodaTime_LocalDate__ctor_System_Int32_System_Int32_System_Int32__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-using System.Globalization;
-
-LocalDate date = new LocalDate(2010, 6, 16);
-Console.WriteLine(date.ToString(&quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture));
-Console.WriteLine(date.Year);
-Console.WriteLine(date.Month);
-Console.WriteLine(date.Day);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">2010-06-16
-2010
-6
-16
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -379,17 +369,6 @@ the ISO calendar, a value of 0 means 1 BC, for example.</td>
       </tr>
     </tbody>
   </table>
-  <div>
-  <h5 id="NodaTime_LocalDate__ctor_System_Int32_System_Int32_System_Int32_NodaTime_CalendarSystem__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-LocalDate date = new LocalDate(2010, 6, 16, CalendarSystem.Iso);
-Console.WriteLine(date);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">Wednesday, 16 June 2010
-</code></pre></div>
-  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -832,19 +811,6 @@ Fluent alternative to <code>operator+()</code>.
       </tr>
     </tbody>
   </table>
-  <div>
-  <h5 id="NodaTime_LocalDate_At_NodaTime_LocalTime__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-LocalDate date = new LocalDate(2010, 6, 16);
-LocalTime time = new LocalTime(16, 20);
-LocalDateTime dateTime = date.At(time);
-Console.WriteLine(dateTime);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">06/16/2010 16:20:00
-</code></pre></div>
-  </div>
   <a id="NodaTime_LocalDate_AtMidnight_" data-uid="NodaTime.LocalDate.AtMidnight*"></a>
   <h4 id="NodaTime_LocalDate_AtMidnight" data-uid="NodaTime.LocalDate.AtMidnight">AtMidnight()</h4>
   <div class="markdown level1 summary">
@@ -1000,8 +966,6 @@ later than <code data-dev-comment-type="paramref" class="paramref">other</code>.
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.IComparable&lt;T&gt;.CompareTo(T)</span></div>
   <h5 id="NodaTime_LocalDate_CompareTo_NodaTime_LocalDate__remarks">Remarks</h5>
   <div class="markdown level1 remarks">
 Only dates within the same calendar systems can be compared with this method. Attempting to compare
@@ -1165,8 +1129,6 @@ that the dates be the same, within the same calendar.
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.IEquatable&lt;T&gt;.Equals(T)</span></div>
   <a id="NodaTime_LocalDate_Equals_" data-uid="NodaTime.LocalDate.Equals*"></a>
   <h4 id="NodaTime_LocalDate_Equals_System_Object_" data-uid="NodaTime.LocalDate.Equals(System.Object)">Equals(Object)</h4>
   <div class="markdown level1 summary">
@@ -2440,8 +2402,6 @@ A <span class="xref">System.String</span> containing the value of the current in
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.IFormattable.ToString(System.String, System.IFormatProvider)</span></div>
   <a id="NodaTime_LocalDate_With_" data-uid="NodaTime.LocalDate.With*"></a>
   <h4 id="NodaTime_LocalDate_With_System_Func_NodaTime_LocalDate_NodaTime_LocalDate__" data-uid="NodaTime.LocalDate.With(System.Func{NodaTime.LocalDate,NodaTime.LocalDate})">With(Func&lt;LocalDate, LocalDate&gt;)</h4>
   <div class="markdown level1 summary">
@@ -2682,19 +2642,6 @@ into a single <a class="xref" href="NodaTime.LocalDateTime.html">LocalDateTime</
       </tr>
     </tbody>
   </table>
-  <div>
-  <h5 id="NodaTime_LocalDate_op_Addition_NodaTime_LocalDate_NodaTime_LocalTime__snippet">Sample snippet</h5>
-  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
-using System;
-
-LocalDate date = new LocalDate(2010, 6, 16);
-LocalTime time = new LocalTime(16, 20);
-LocalDateTime dateTime = date + time;
-Console.WriteLine(dateTime);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">06/16/2010 16:20:00
-</code></pre></div>
-  </div>
   <a id="NodaTime_LocalDate_op_Addition_" data-uid="NodaTime.LocalDate.op_Addition*"></a>
   <h4 id="NodaTime_LocalDate_op_Addition_NodaTime_LocalDate_NodaTime_Period_" data-uid="NodaTime.LocalDate.op_Addition(NodaTime.LocalDate,NodaTime.Period)">Addition(LocalDate, Period)</h4>
   <div class="markdown level1 summary">
@@ -3368,8 +3315,6 @@ If <code data-dev-comment-type="paramref" class="paramref">obj</code> is null, t
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.IComparable.CompareTo(System.Object)</span></div>
   <h5 id="NodaTime_LocalDate_System_IComparable_CompareTo_System_Object__remarks">Remarks</h5>
   <div class="markdown level1 remarks">
 This uses explicit interface implementation to avoid it being called accidentally. The generic implementation should usually be preferred.
@@ -3429,8 +3374,6 @@ void ISerializable.GetObjectData(SerializationInfo info, StreamingContext contex
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)</span></div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -3475,8 +3418,6 @@ void ISerializable.GetObjectData(SerializationInfo info, StreamingContext contex
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.Xml.Serialization.IXmlSerializable.GetSchema()</span></div>
   <a id="NodaTime_LocalDate_System_Xml_Serialization_IXmlSerializable_ReadXml_" data-uid="NodaTime.LocalDate.System#Xml#Serialization#IXmlSerializable#ReadXml*"></a>
   <h4 id="NodaTime_LocalDate_System_Xml_Serialization_IXmlSerializable_ReadXml_System_Xml_XmlReader_" data-uid="NodaTime.LocalDate.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)">IXmlSerializable.ReadXml(XmlReader)</h4>
   <div class="markdown level1 summary"></div>
@@ -3508,8 +3449,6 @@ void ISerializable.GetObjectData(SerializationInfo info, StreamingContext contex
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)</span></div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -3556,8 +3495,6 @@ void ISerializable.GetObjectData(SerializationInfo info, StreamingContext contex
       </tr>
     </tbody>
   </table>
-  <h5 class="implements">Implements</h5>
-      <div><span class="xref">System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)</span></div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -3573,6 +3510,25 @@ void ISerializable.GetObjectData(SerializationInfo info, StreamingContext contex
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IEquatable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.IComparable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.IComparable</span>
+  </div>
+  <div>
+      <span class="xref">System.IFormattable</span>
+  </div>
+  <div>
+      <span class="xref">System.Xml.Serialization.IXmlSerializable</span>
+  </div>
+  <div>
+      <span class="xref">System.Runtime.Serialization.ISerializable</span>
+  </div>
 </article>
           </div>
           
