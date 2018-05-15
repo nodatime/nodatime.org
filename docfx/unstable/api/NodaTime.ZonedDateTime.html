@@ -720,6 +720,28 @@ Gets the nanosecond of this zoned date and time within the day, in the range 0 t
 This is the NanosecondOfDay portion of the contained <a class="xref" href="NodaTime.OffsetDateTime.html">OffsetDateTime</a>.
 On daylight saving time transition dates, it may not be the same as the number of nanoseconds elapsed since the beginning of the day.
 </div>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_NanosecondOfDay_snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+// This is a 25-hour day at the end of daylight saving time
+var dt = new LocalDate(2017, 10, 29);
+var time = new LocalTime(23, 59, 59);
+var dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+
+var startOfDay = dublin.AtStartOfDay(dt);
+ZonedDateTime nearEndOfDay = dublin.AtStrictly(dt + time);
+
+Console.WriteLine(nearEndOfDay.NanosecondOfDay);
+
+Duration duration = nearEndOfDay - startOfDay;
+Console.WriteLine(duration);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">86399000000000
+1:00:59:59
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_NanosecondOfSecond_" data-uid="NodaTime.ZonedDateTime.NanosecondOfSecond*"></a>
   <h4 id="NodaTime_ZonedDateTime_NanosecondOfSecond" data-uid="NodaTime.ZonedDateTime.NanosecondOfSecond">NanosecondOfSecond</h4>
   <div class="markdown level1 summary">
@@ -847,6 +869,27 @@ Gets the tick of this zoned date and time within the day, in the range 0 to 863,
 This is the TickOfDay portion of the contained <a class="xref" href="NodaTime.OffsetDateTime.html">OffsetDateTime</a>.
 On daylight saving time transition dates, it may not be the same as the number of ticks elapsed since the beginning of the day.
 </div>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_TickOfDay_snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+// This is a 25-hour day at the end of daylight saving time
+var dt = new LocalDate(2017, 10, 29);
+var time = new LocalTime(23, 59, 59);
+var dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+
+var startOfDay = dublin.AtStartOfDay(dt);
+ZonedDateTime nearEndOfDay = dublin.AtStrictly(dt + time);
+Console.WriteLine(nearEndOfDay.TickOfDay);
+
+Duration duration = nearEndOfDay - startOfDay;
+Console.WriteLine(duration);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">863990000000
+1:00:59:59
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_TickOfSecond_" data-uid="NodaTime.ZonedDateTime.TickOfSecond*"></a>
   <h4 id="NodaTime_ZonedDateTime_TickOfSecond" data-uid="NodaTime.ZonedDateTime.TickOfSecond">TickOfSecond</h4>
   <div class="markdown level1 summary">
@@ -1064,6 +1107,35 @@ Adds a duration to a zoned date and time.
   <div class="markdown level1 remarks">
 This is an alternative way of calling <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Addition_NodaTime_ZonedDateTime_NodaTime_Duration_">Addition(ZonedDateTime, Duration)</a>.
 </div>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_Add_NodaTime_ZonedDateTime_NodaTime_Duration__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+// Europe/Dublin transitions from UTC+1 to UTC+0 at 2am (local) on 2017-10-29
+var dt = new LocalDateTime(2017, 10, 29, 1, 45, 0);
+DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+
+ZonedDateTime beforeTransition = new ZonedDateTime(dt, dublin, Offset.FromHours(1));
+
+var result = ZonedDateTime.Add(beforeTransition, Duration.FromHours(1));
+Console.WriteLine(result.Date);
+// Adding an hour of elapsed time takes us across the DST transition, so we have
+// the same local time (shown on a clock) but a different offset.
+Console.WriteLine(result);
+
+// The + operator and Plus instance method are equivalent to the Add static method.
+var result2 = beforeTransition + Duration.FromHours(1);
+var result3 = beforeTransition.Plus(Duration.FromHours(1));
+Console.WriteLine(result2);
+Console.WriteLine(result3);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">Sunday, 29 October 2017
+2017-10-29T01:45:00 Europe/Dublin (+00)
+2017-10-29T01:45:00 Europe/Dublin (+00)
+2017-10-29T01:45:00 Europe/Dublin (+00)
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_Deconstruct_" data-uid="NodaTime.ZonedDateTime.Deconstruct*"></a>
   <h4 id="NodaTime_ZonedDateTime_Deconstruct_NodaTime_LocalDateTime__NodaTime_DateTimeZone__NodaTime_Offset__" data-uid="NodaTime.ZonedDateTime.Deconstruct(NodaTime.LocalDateTime@,NodaTime.DateTimeZone@,NodaTime.Offset@)">Deconstruct(out LocalDateTime, out DateTimeZone, out Offset)</h4>
   <div class="markdown level1 summary">
@@ -1366,6 +1438,26 @@ of the zone interval containing this value.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_IsDaylightSavingTime_snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+// Europe/Dublin transitions from UTC+1 to UTC+0 at 2am (local) on 2017-10-29
+var dt = new LocalDateTime(2017, 10, 29, 1, 45, 0);
+DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+
+ZonedDateTime beforeTransition = new ZonedDateTime(dt, dublin, Offset.FromHours(1));
+Console.WriteLine(beforeTransition.IsDaylightSavingTime());
+
+// Same local time, different offset - so a different instant, after the transition.
+ZonedDateTime afterTransition = new ZonedDateTime(dt, dublin, Offset.FromHours(0));
+Console.WriteLine(afterTransition.IsDaylightSavingTime());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">False
+True
+</code></pre></div>
+  </div>
   <h5 id="NodaTime_ZonedDateTime_IsDaylightSavingTime_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_GetZoneInterval">GetZoneInterval()</a></div>
@@ -1419,6 +1511,35 @@ Returns the result of subtracting a duration from this zoned date and time, for 
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_Minus_NodaTime_Duration__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+// Europe/Dublin transitions from UTC+1 to UTC+0 at 2am (local) on 2017-10-29
+var dt = new LocalDateTime(2017, 10, 29, 1, 45, 0);
+DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+
+ZonedDateTime afterTransition = new ZonedDateTime(dt, dublin, Offset.FromHours(0));
+
+var result = ZonedDateTime.Subtract(afterTransition, Duration.FromHours(1));
+Console.WriteLine(result.Date);
+// Adding an hour of elapsed time takes us across the DST transition, so we have
+// the same local time (shown on a clock) but a different offset.
+Console.WriteLine(result);
+
+// The + operator and Plus instance method are equivalent to the Add static method.
+var result2 = afterTransition - Duration.FromHours(1);
+var result3 = afterTransition.Minus(Duration.FromHours(1));
+Console.WriteLine(result2);
+Console.WriteLine(result3);            
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">Sunday, 29 October 2017
+2017-10-29T01:45:00 Europe/Dublin (+01)
+2017-10-29T01:45:00 Europe/Dublin (+01)
+2017-10-29T01:45:00 Europe/Dublin (+01)
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_Minus_" data-uid="NodaTime.ZonedDateTime.Minus*"></a>
   <h4 id="NodaTime_ZonedDateTime_Minus_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.Minus(NodaTime.ZonedDateTime)">Minus(ZonedDateTime)</h4>
   <div class="markdown level1 summary">
@@ -1472,6 +1593,21 @@ between the two instants represented in the values.
   <div class="markdown level1 remarks">
 This is an alternative way of calling <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_">Subtraction(ZonedDateTime, ZonedDateTime)</a>.
 </div>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_Minus_NodaTime_ZonedDateTime__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+var zone = DateTimeZone.ForOffset(Offset.FromHours(-5));
+ZonedDateTime subject = new ZonedDateTime(Instant.FromUtc(2017, 7, 17, 7, 17), zone);
+ZonedDateTime other = new ZonedDateTime(Instant.FromUtc(2017, 7, 17, 9, 17), zone);
+
+var difference = other.Minus(subject);
+Console.WriteLine(difference);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">0:02:00:00
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_Plus_" data-uid="NodaTime.ZonedDateTime.Plus*"></a>
   <h4 id="NodaTime_ZonedDateTime_Plus_NodaTime_Duration_" data-uid="NodaTime.ZonedDateTime.Plus(NodaTime.Duration)">Plus(Duration)</h4>
   <div class="markdown level1 summary">
@@ -1524,6 +1660,35 @@ Returns the result of adding a duration to this zoned date and time.
   <div class="markdown level1 remarks">
 This is an alternative way of calling <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Addition_NodaTime_ZonedDateTime_NodaTime_Duration_">Addition(ZonedDateTime, Duration)</a>.
 </div>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_Plus_NodaTime_Duration__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+// Europe/Dublin transitions from UTC+1 to UTC+0 at 2am (local) on 2017-10-29
+var dt = new LocalDateTime(2017, 10, 29, 1, 45, 0);
+DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+
+ZonedDateTime beforeTransition = new ZonedDateTime(dt, dublin, Offset.FromHours(1));
+
+var result = ZonedDateTime.Add(beforeTransition, Duration.FromHours(1));
+Console.WriteLine(result.Date);
+// Adding an hour of elapsed time takes us across the DST transition, so we have
+// the same local time (shown on a clock) but a different offset.
+Console.WriteLine(result);
+
+// The + operator and Plus instance method are equivalent to the Add static method.
+var result2 = beforeTransition + Duration.FromHours(1);
+var result3 = beforeTransition.Plus(Duration.FromHours(1));
+Console.WriteLine(result2);
+Console.WriteLine(result3);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">Sunday, 29 October 2017
+2017-10-29T01:45:00 Europe/Dublin (+00)
+2017-10-29T01:45:00 Europe/Dublin (+00)
+2017-10-29T01:45:00 Europe/Dublin (+00)
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_PlusHours_" data-uid="NodaTime.ZonedDateTime.PlusHours*"></a>
   <h4 id="NodaTime_ZonedDateTime_PlusHours_System_Int32_" data-uid="NodaTime.ZonedDateTime.PlusHours(System.Int32)">PlusHours(Int32)</h4>
   <div class="markdown level1 summary">
@@ -1572,6 +1737,22 @@ Returns the result of adding a increment of hours to this zoned date and time
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_PlusHours_System_Int32__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using NodaTime.Text;
+using System;
+
+DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+var start = Instant.FromUtc(2017, 7, 20, 5, 30);
+// Dublin is at UTC+1 in July 2017, so this is 6:30am.
+ZonedDateTime zoned = new ZonedDateTime(start, dublin);
+var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
+Console.WriteLine(    pattern.Format(zoned.PlusHours(1)));
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2017-07-20T07:30:00 Europe/Dublin (+01)
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_PlusMilliseconds_" data-uid="NodaTime.ZonedDateTime.PlusMilliseconds*"></a>
   <h4 id="NodaTime_ZonedDateTime_PlusMilliseconds_System_Int64_" data-uid="NodaTime.ZonedDateTime.PlusMilliseconds(System.Int64)">PlusMilliseconds(Int64)</h4>
   <div class="markdown level1 summary">
@@ -1620,6 +1801,22 @@ Returns the result of adding an increment of milliseconds to this zoned date and
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_PlusMilliseconds_System_Int64__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using NodaTime.Text;
+using System;
+
+DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+var start = Instant.FromUtc(2017, 7, 20, 5, 30);
+// Dublin is at UTC+1 in July 2017, so this is 6:30am.
+ZonedDateTime zoned = new ZonedDateTime(start, dublin);
+var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
+Console.WriteLine(    pattern.Format(zoned.PlusMilliseconds(1)));
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2017-07-20T06:30:00.001 Europe/Dublin (+01)
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_PlusMinutes_" data-uid="NodaTime.ZonedDateTime.PlusMinutes*"></a>
   <h4 id="NodaTime_ZonedDateTime_PlusMinutes_System_Int32_" data-uid="NodaTime.ZonedDateTime.PlusMinutes(System.Int32)">PlusMinutes(Int32)</h4>
   <div class="markdown level1 summary">
@@ -1668,6 +1865,22 @@ Returns the result of adding an increment of minutes to this zoned date and time
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_PlusMinutes_System_Int32__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using NodaTime.Text;
+using System;
+
+DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+var start = Instant.FromUtc(2017, 7, 20, 5, 30);
+// Dublin is at UTC+1 in July 2017, so this is 6:30am.
+ZonedDateTime zoned = new ZonedDateTime(start, dublin);
+var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
+Console.WriteLine(    pattern.Format(zoned.PlusMinutes(1)));
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2017-07-20T06:31:00 Europe/Dublin (+01)
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_PlusNanoseconds_" data-uid="NodaTime.ZonedDateTime.PlusNanoseconds*"></a>
   <h4 id="NodaTime_ZonedDateTime_PlusNanoseconds_System_Int64_" data-uid="NodaTime.ZonedDateTime.PlusNanoseconds(System.Int64)">PlusNanoseconds(Int64)</h4>
   <div class="markdown level1 summary">
@@ -1716,6 +1929,22 @@ Returns the result of adding an increment of nanoseconds to this zoned date and 
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_PlusNanoseconds_System_Int64__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using NodaTime.Text;
+using System;
+
+DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+var start = Instant.FromUtc(2017, 7, 20, 5, 30);
+// Dublin is at UTC+1 in July 2017, so this is 6:30am.
+ZonedDateTime zoned = new ZonedDateTime(start, dublin);
+var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
+Console.WriteLine(    pattern.Format(zoned.PlusNanoseconds(1)));
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2017-07-20T06:30:00.000000001 Europe/Dublin (+01)
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_PlusSeconds_" data-uid="NodaTime.ZonedDateTime.PlusSeconds*"></a>
   <h4 id="NodaTime_ZonedDateTime_PlusSeconds_System_Int64_" data-uid="NodaTime.ZonedDateTime.PlusSeconds(System.Int64)">PlusSeconds(Int64)</h4>
   <div class="markdown level1 summary">
@@ -1764,6 +1993,22 @@ Returns the result of adding an increment of seconds to this zoned date and time
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_PlusSeconds_System_Int64__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using NodaTime.Text;
+using System;
+
+DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+var start = Instant.FromUtc(2017, 7, 20, 5, 30);
+// Dublin is at UTC+1 in July 2017, so this is 6:30am.
+ZonedDateTime zoned = new ZonedDateTime(start, dublin);
+var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
+Console.WriteLine(    pattern.Format(zoned.PlusSeconds(1)));
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2017-07-20T06:30:01 Europe/Dublin (+01)
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_PlusTicks_" data-uid="NodaTime.ZonedDateTime.PlusTicks*"></a>
   <h4 id="NodaTime_ZonedDateTime_PlusTicks_System_Int64_" data-uid="NodaTime.ZonedDateTime.PlusTicks(System.Int64)">PlusTicks(Int64)</h4>
   <div class="markdown level1 summary">
@@ -1812,6 +2057,22 @@ Returns the result of adding an increment of ticks to this zoned date and time
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_PlusTicks_System_Int64__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using NodaTime.Text;
+using System;
+
+DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+var start = Instant.FromUtc(2017, 7, 20, 5, 30);
+// Dublin is at UTC+1 in July 2017, so this is 6:30am.
+ZonedDateTime zoned = new ZonedDateTime(start, dublin);
+var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
+Console.WriteLine(    pattern.Format(zoned.PlusTicks(1)));
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2017-07-20T06:30:00.0000001 Europe/Dublin (+01)
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_Subtract_" data-uid="NodaTime.ZonedDateTime.Subtract*"></a>
   <h4 id="NodaTime_ZonedDateTime_Subtract_NodaTime_ZonedDateTime_NodaTime_Duration_" data-uid="NodaTime.ZonedDateTime.Subtract(NodaTime.ZonedDateTime,NodaTime.Duration)">Subtract(ZonedDateTime, Duration)</h4>
   <div class="markdown level1 summary">
@@ -1869,6 +2130,35 @@ Subtracts a duration from a zoned date and time.
   <div class="markdown level1 remarks">
 This is an alternative way of calling <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_Duration_">Subtraction(ZonedDateTime, Duration)</a>.
 </div>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_Subtract_NodaTime_ZonedDateTime_NodaTime_Duration__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+// Europe/Dublin transitions from UTC+1 to UTC+0 at 2am (local) on 2017-10-29
+var dt = new LocalDateTime(2017, 10, 29, 1, 45, 0);
+DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+
+ZonedDateTime afterTransition = new ZonedDateTime(dt, dublin, Offset.FromHours(0));
+
+var result = ZonedDateTime.Subtract(afterTransition, Duration.FromHours(1));
+Console.WriteLine(result.Date);
+// Adding an hour of elapsed time takes us across the DST transition, so we have
+// the same local time (shown on a clock) but a different offset.
+Console.WriteLine(result);
+
+// The + operator and Plus instance method are equivalent to the Add static method.
+var result2 = afterTransition - Duration.FromHours(1);
+var result3 = afterTransition.Minus(Duration.FromHours(1));
+Console.WriteLine(result2);
+Console.WriteLine(result3);            
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">Sunday, 29 October 2017
+2017-10-29T01:45:00 Europe/Dublin (+01)
+2017-10-29T01:45:00 Europe/Dublin (+01)
+2017-10-29T01:45:00 Europe/Dublin (+01)
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_Subtract_" data-uid="NodaTime.ZonedDateTime.Subtract*"></a>
   <h4 id="NodaTime_ZonedDateTime_Subtract_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.Subtract(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)">Subtract(ZonedDateTime, ZonedDateTime)</h4>
   <div class="markdown level1 summary">
@@ -1927,6 +2217,21 @@ then the result will be positive.</td>
   <div class="markdown level1 remarks">
 This is an alternative way of calling <a class="xref" href="NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_">Subtraction(ZonedDateTime, ZonedDateTime)</a>.
 </div>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_Subtract_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+var zone = DateTimeZone.ForOffset(Offset.FromHours(-5));
+ZonedDateTime subject = new ZonedDateTime(Instant.FromUtc(2017, 7, 17, 7, 17), zone);
+ZonedDateTime other = new ZonedDateTime(Instant.FromUtc(2017, 7, 17, 9, 17), zone);
+
+var difference = ZonedDateTime.Subtract(other, subject);
+Console.WriteLine(difference);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">0:02:00:00
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_ToDateTimeOffset_" data-uid="NodaTime.ZonedDateTime.ToDateTimeOffset*"></a>
   <h4 id="NodaTime_ZonedDateTime_ToDateTimeOffset" data-uid="NodaTime.ZonedDateTime.ToDateTimeOffset">ToDateTimeOffset()</h4>
   <div class="markdown level1 summary">
@@ -2463,6 +2768,35 @@ due to daylight saving time changes this may not advance the local time by the s
   <div class="markdown level1 remarks">
 The returned value retains the calendar system and time zone of <code data-dev-comment-type="paramref" class="paramref">zonedDateTime</code>.
 </div>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_op_Addition_NodaTime_ZonedDateTime_NodaTime_Duration__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+// Europe/Dublin transitions from UTC+1 to UTC+0 at 2am (local) on 2017-10-29
+var dt = new LocalDateTime(2017, 10, 29, 1, 45, 0);
+DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+
+ZonedDateTime beforeTransition = new ZonedDateTime(dt, dublin, Offset.FromHours(1));
+
+var result = ZonedDateTime.Add(beforeTransition, Duration.FromHours(1));
+Console.WriteLine(result.Date);
+// Adding an hour of elapsed time takes us across the DST transition, so we have
+// the same local time (shown on a clock) but a different offset.
+Console.WriteLine(result);
+
+// The + operator and Plus instance method are equivalent to the Add static method.
+var result2 = beforeTransition + Duration.FromHours(1);
+var result3 = beforeTransition.Plus(Duration.FromHours(1));
+Console.WriteLine(result2);
+Console.WriteLine(result3);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">Sunday, 29 October 2017
+2017-10-29T01:45:00 Europe/Dublin (+00)
+2017-10-29T01:45:00 Europe/Dublin (+00)
+2017-10-29T01:45:00 Europe/Dublin (+00)
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_op_Equality_" data-uid="NodaTime.ZonedDateTime.op_Equality*"></a>
   <h4 id="NodaTime_ZonedDateTime_op_Equality_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.op_Equality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)">Equality(ZonedDateTime, ZonedDateTime)</h4>
   <div class="markdown level1 summary">
@@ -2627,6 +2961,35 @@ due to daylight saving time changes this may not change the local time by the sa
   <div class="markdown level1 remarks">
 The returned value retains the calendar system and time zone of <code data-dev-comment-type="paramref" class="paramref">zonedDateTime</code>.
 </div>
+  <div>
+  <h5 id="NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_Duration__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+// Europe/Dublin transitions from UTC+1 to UTC+0 at 2am (local) on 2017-10-29
+var dt = new LocalDateTime(2017, 10, 29, 1, 45, 0);
+DateTimeZone dublin = DateTimeZoneProviders.Tzdb[&quot;Europe/Dublin&quot;];
+
+ZonedDateTime afterTransition = new ZonedDateTime(dt, dublin, Offset.FromHours(0));
+
+var result = ZonedDateTime.Subtract(afterTransition, Duration.FromHours(1));
+Console.WriteLine(result.Date);
+// Adding an hour of elapsed time takes us across the DST transition, so we have
+// the same local time (shown on a clock) but a different offset.
+Console.WriteLine(result);
+
+// The + operator and Plus instance method are equivalent to the Add static method.
+var result2 = afterTransition - Duration.FromHours(1);
+var result3 = afterTransition.Minus(Duration.FromHours(1));
+Console.WriteLine(result2);
+Console.WriteLine(result3);            
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">Sunday, 29 October 2017
+2017-10-29T01:45:00 Europe/Dublin (+01)
+2017-10-29T01:45:00 Europe/Dublin (+01)
+2017-10-29T01:45:00 Europe/Dublin (+01)
+</code></pre></div>
+  </div>
   <a id="NodaTime_ZonedDateTime_op_Subtraction_" data-uid="NodaTime.ZonedDateTime.op_Subtraction*"></a>
   <h4 id="NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_" data-uid="NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)">Subtraction(ZonedDateTime, ZonedDateTime)</h4>
   <div class="markdown level1 summary">

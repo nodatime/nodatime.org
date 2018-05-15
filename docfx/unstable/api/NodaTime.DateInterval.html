@@ -167,6 +167,30 @@ in the interval.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_DateInterval__ctor_NodaTime_LocalDate_NodaTime_LocalDate__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+var calendar = CalendarSystem.Gregorian;
+LocalDate start = new LocalDate(2017, 1, 1, calendar);
+LocalDate end = new LocalDate(2017, 12, 31, calendar);
+
+DateInterval interval = new DateInterval(start, end);
+
+Console.WriteLine(interval.Length);
+Console.WriteLine(interval.ToString());
+Console.WriteLine(interval.Start);
+Console.WriteLine(interval.End);
+Console.WriteLine(interval.Calendar);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">365
+[2017-01-01, 2017-12-31]
+Sunday, 01 January 2017
+Sunday, 31 December 2017
+Gregorian
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -366,6 +390,25 @@ later than the end date of this interval.
   <div class="markdown level1 remarks">
 An interval contains another interval with same start and end dates, or itself.
 </div>
+  <div>
+  <h5 id="NodaTime_DateInterval_Contains_NodaTime_DateInterval__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+LocalDate start = new LocalDate(2017, 1, 1);
+LocalDate end = new LocalDate(2017, 12, 31);
+
+DateInterval interval = new DateInterval(start, end);
+DateInterval june = new DateInterval(
+    new LocalDate(2017, 6, 1),
+    new LocalDate(2017, 6, 30));
+
+var result = interval.Contains(june);
+Console.WriteLine(result);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">True
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -436,6 +479,22 @@ date.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_DateInterval_Contains_NodaTime_LocalDate__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+LocalDate start = new LocalDate(2017, 1, 1);
+LocalDate end = new LocalDate(2017, 12, 31);
+
+DateInterval interval = new DateInterval(start, end);
+
+var result = interval.Contains(new LocalDate(2017, 12, 5));
+Console.WriteLine(result);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">True
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -709,6 +768,29 @@ instance. If there is no intersection, a null reference is returned.
       </tr>
     </tbody>
   </table>
+  <div>
+  <h5 id="NodaTime_DateInterval_Intersection_NodaTime_DateInterval__snippet">Sample snippet</h5>
+  <div class="markdown level1"><pre><code class="lang-csharp">using NodaTime;
+using System;
+
+DateInterval januaryToAugust = new DateInterval(
+    new LocalDate(2017, 1, 1),
+    new LocalDate(2017, 8, 31));
+
+DateInterval juneToNovember = new DateInterval(
+    new LocalDate(2017, 6, 1),
+    new LocalDate(2017, 11, 30));
+
+DateInterval juneToAugust = new DateInterval(
+    new LocalDate(2017, 6, 1),
+    new LocalDate(2017, 8, 31));
+
+var result = januaryToAugust.Intersection(juneToNovember);
+Console.WriteLine(result);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">[2017-06-01, 2017-08-31]
+</code></pre></div>
+  </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
