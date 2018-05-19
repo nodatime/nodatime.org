@@ -1,0 +1,364 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IDateTimeZoneSource
+   | Noda Time </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IDateTimeZoneSource
+   | Noda Time ">
+    <meta name="generator" content="docfx 2.35.4.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="NodaTime.TimeZones.IDateTimeZoneSource">
+  
+  
+  <h1 id="NodaTime_TimeZones_IDateTimeZoneSource" data-uid="NodaTime.TimeZones.IDateTimeZoneSource" class="text-break">Interface IDateTimeZoneSource
+  </h1>
+  <div class="markdown level0 summary">
+Provides the interface for objects that can retrieve time zone definitions given an ID.
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="NodaTime.TimeZones.html">NodaTime.TimeZones</a></h6>
+  <h6><strong>Assembly</strong>: NodaTime.dll</h6>
+  <h5 id="NodaTime_TimeZones_IDateTimeZoneSource_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IDateTimeZoneSource</code></pre>
+  </div>
+  <h5 id="NodaTime_TimeZones_IDateTimeZoneSource_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks">
+<p>
+The interface presumes that the available time zones are static; there is no mechanism for 
+updating the list of available time zones. Any time zone ID that is returned in <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetIds">GetIds()</a> 
+must be resolved by <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_ForId_System_String_">ForId(String)</a> for the life of the source.
+</p>
+<p>
+Implementations need not cache time zones or the available time zone IDs. 
+Caching is typically provided by <a class="xref" href="NodaTime.TimeZones.DateTimeZoneCache.html">DateTimeZoneCache</a>, which most consumers should use instead of
+consuming <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html">IDateTimeZoneSource</a> directly in order to get better performance.
+</p>
+<p>
+It is expected that any exceptions thrown are implementation-specific; nothing is explicitly
+specified in the interface. Typically this would be unusual to the point that callers would not
+try to catch them; any implementation which may break in ways that are sensible to catch should advertise
+this clearly, so that clients will know to handle the exceptions appropriately. No wrapper exception
+type is provided by Noda Time to handle this situation, and code in Noda Time does not try to catch
+such exceptions.
+</p>
+</div>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="NodaTime_TimeZones_IDateTimeZoneSource_VersionId_" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.VersionId*"></a>
+  <h4 id="NodaTime_TimeZones_IDateTimeZoneSource_VersionId" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.VersionId">VersionId</h4>
+  <div class="markdown level1 summary">
+Returns an appropriate version ID for diagnostic purposes, which must not be null.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string VersionId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td>An appropriate version ID for diagnostic purposes. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NodaTime_TimeZones_IDateTimeZoneSource_VersionId_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+This doesn&apos;t have any specific format; it&apos;s solely for diagnostic purposes.
+The included sources return strings of the format &quot;source identifier: source version&quot; indicating where the
+information comes from and which version of the source information has been loaded.
+</div>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="NodaTime_TimeZones_IDateTimeZoneSource_ForId_" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.ForId*"></a>
+  <h4 id="NodaTime_TimeZones_IDateTimeZoneSource_ForId_System_String_" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)">ForId(String)</h4>
+  <div class="markdown level1 summary">
+Returns the time zone definition associated with the given ID.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DateTimeZone ForId(string id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td>The ID of the time zone to return. This must be one of the IDs
+returned by <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetIds">GetIds()</a>.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a></td>
+        <td>The <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> for the given ID. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NodaTime_TimeZones_IDateTimeZoneSource_ForId_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+<p>
+Note that this is permitted to return a <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> that has a different ID to that
+requested, if the ID provided is an alias.
+</p>
+<p>
+Note also that this method is not required to return the same <a class="xref" href="NodaTime.DateTimeZone.html">DateTimeZone</a> instance for
+successive requests for the same ID; however, all instances returned for a given ID must compare as equal.
+</p>
+<p>
+It is advised that sources should document their behaviour regarding any fixed-offset timezones
+(i.e. &quot;UTC&quot; and &quot;UTC+/-Offset&quot;) that are included in the list returned by <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_GetIds">GetIds()</a>.
+(These IDs will not be requested by <a class="xref" href="NodaTime.TimeZones.DateTimeZoneCache.html">DateTimeZoneCache</a>, but any users calling
+into the source directly may care.)
+</p>
+<p>
+The source need not attempt to cache time zones; caching is typically provided by
+<a class="xref" href="NodaTime.TimeZones.DateTimeZoneCache.html">DateTimeZoneCache</a>.
+</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><code data-dev-comment-type="paramref" class="paramref">id</code> is not supported by this source.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><span class="paramref">id</span> is null.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_TimeZones_IDateTimeZoneSource_GetIds_" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.GetIds*"></a>
+  <h4 id="NodaTime_TimeZones_IDateTimeZoneSource_GetIds" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.GetIds">GetIds()</h4>
+  <div class="markdown level1 summary">
+Returns an unordered enumeration of the IDs available from this source.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;string&gt; GetIds()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td>The IDs available from this source. (The value returned is never null.)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NodaTime_TimeZones_IDateTimeZoneSource_GetIds_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+<p>
+Every value in this enumeration must return a valid time zone from <a class="xref" href="NodaTime.TimeZones.IDateTimeZoneSource.html#NodaTime_TimeZones_IDateTimeZoneSource_ForId_System_String_">ForId(String)</a> for the life of the source.
+The enumeration may be empty, but must not be null, and must not contain any elements which are null.  It
+should not contain duplicates: this is not enforced, and while it may not have a significant impact on
+clients in some cases, it is generally unfriendly.  The built-in implementations never return duplicates.
+</p>
+<p>
+The source is not required to provide the IDs in any particular order, although they should be distinct.
+</p>
+<p>
+Note that this list may optionally contain any of the fixed-offset timezones (with IDs &quot;UTC&quot; and
+&quot;UTC+/-Offset&quot;), but there is no requirement they be included.
+</p>
+</div>
+  <a id="NodaTime_TimeZones_IDateTimeZoneSource_GetSystemDefaultId_" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId*"></a>
+  <h4 id="NodaTime_TimeZones_IDateTimeZoneSource_GetSystemDefaultId" data-uid="NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId">GetSystemDefaultId()</h4>
+  <div class="markdown level1 summary">
+Returns this source&apos;s ID for the system default time zone.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 2.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string GetSystemDefaultId()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td>
+The ID for the system default time zone for this source,
+or null if the system default time zone has no mapping in this source.
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+             
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-60886284-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
