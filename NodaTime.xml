@@ -102,17 +102,6 @@
             allow state to be visibly changed.
             </summary>
         </member>
-        <member name="T:NodaTime.Annotations.ReadWriteForEfficiencyAttribute">
-            <summary>
-            Indicates that a value-type field which would otherwise be <c>readonly</c>
-            is read/write so that invoking members on the field avoids taking a copy of
-            the field value.
-            </summary>
-            <remarks>
-            See http://blog.nodatime.org/2014/07/micro-optimization-surprising.html
-            for details of why we're doing this at all.
-            </remarks>
-        </member>
         <member name="T:NodaTime.Annotations.SpecialNullHandlingAttribute">
             <summary>
             Indicates that the parameter doesn't conform to simple NotNull/CanBeNull
@@ -2268,6 +2257,16 @@
             </summary>
             <value>A time zone provider using a <c>TzdbDateTimeZoneSource</c>.</value>
         </member>
+        <member name="P:NodaTime.DateTimeZoneProviders.Bcl">
+            <summary>
+            Gets a time zone provider which uses a <see cref="T:NodaTime.TimeZones.BclDateTimeZoneSource"/>.
+            This property is not available on the .NET Standard 1.3 build of Noda Time.
+            </summary>
+            <remarks>
+            <para>See note on <see cref="T:NodaTime.TimeZones.BclDateTimeZone"/> for details of some incompatibilities with the BCL.</para>
+            </remarks>
+            <value>A time zone provider which uses a <c>BclDateTimeZoneSource</c>.</value>
+        </member>
         <member name="P:NodaTime.DateTimeZoneProviders.Serialization">
             <summary>
             Gets the <see cref="T:NodaTime.IDateTimeZoneProvider"/> to use to interpret a time zone ID read as part of
@@ -3092,6 +3091,17 @@
             TZDB.</exception>
             <seealso cref="P:NodaTime.DateTimeZoneProviders.Tzdb"/>
         </member>
+        <member name="M:NodaTime.Extensions.ClockExtensions.InBclSystemDefaultZone(NodaTime.IClock)">
+            <summary>
+            Constructs a <see cref="T:NodaTime.ZonedClock"/> from a clock (the target of the method), in the wrapper for the
+            BCL system default time zone time zone and the ISO calendar system.
+            </summary>
+            <remarks>The <c>DateTimeZone</c> used is a wrapper for <see cref="P:System.TimeZoneInfo.Local"/>.</remarks>
+            <param name="clock">Clock to use in the returned object.</param>
+            <returns>A <c>ZonedClock</c> in the system default time zone and the ISO calendar system,
+            using the system clock.</returns>
+            <seealso cref="P:NodaTime.DateTimeZoneProviders.Bcl"/>
+        </member>
         <member name="T:NodaTime.Extensions.DateTimeExtensions">
             <summary>
             Extension methods for <see cref="T:System.DateTime"/>.
@@ -3174,14 +3184,6 @@
             <summary>
             Extension methods 
             </summary>
-        </member>
-        <member name="M:NodaTime.Extensions.IsoDayOfWeekExtensions.ToIsoDayOfWeek(NodaTime.IsoDayOfWeek)">
-            <summary>
-            Converts a <see cref="T:NodaTime.IsoDayOfWeek"/> into the corresponding <see cref="T:System.DayOfWeek"/>.
-            </summary>
-            <remarks>This is a convenience method which calls <see cref="M:NodaTime.Utility.BclConversions.ToDayOfWeek(NodaTime.IsoDayOfWeek)"/>.</remarks>        
-            <param name="isoDayOfWeek">The <c>IsoDayOfWeek</c> to convert.</param>
-            <returns>The <c>DayOfWeek</c> equivalent to <paramref name="isoDayOfWeek"/></returns>
         </member>
         <member name="M:NodaTime.Extensions.IsoDayOfWeekExtensions.ToDayOfWeek(NodaTime.IsoDayOfWeek)">
             <summary>
@@ -3650,6 +3652,13 @@
             the system is using a standard Windows time zone), but can occur even then, if no mapping is found. The TZDB
             source contains mappings for almost all Windows system time zones, but a few (such as "Mid-Atlantic Standard Time")
             are unmappable.
+            </para>
+            <para>
+            If it is necessary to handle this case, callers can construct a
+            <see cref="T:NodaTime.TimeZones.BclDateTimeZone"/> via <see cref="M:NodaTime.TimeZones.BclDateTimeZone.ForSystemDefault"/>, which returns a
+            <see cref="T:NodaTime.DateTimeZone"/> that wraps the system local <see cref="T:System.TimeZoneInfo"/>, and which always
+            succeeds. Note that <c>BclDateTimeZone</c> is not available on the .NET Standard 1.3 build of Noda Time, so
+            this fallback strategy can only be used with the desktop version.
             </para>
             </remarks>
             <exception cref="T:NodaTime.TimeZones.DateTimeZoneNotFoundException">The system default time zone is not mapped by
@@ -11937,6 +11946,189 @@
             </summary>
             <value>A time adjuster to truncate the time to the hour, discarding fractional hours.</value>
         </member>
+        <member name="T:NodaTime.TimeZones.BclDateTimeZone">
+            <summary>
+            Representation of a time zone converted from a <see cref="T:System.TimeZoneInfo"/> from the Base Class Library.
+            </summary>
+            <remarks>
+            <para>
+            Two instances of this class are deemed equal if and only if they refer to the exact same
+            <see cref="T:System.TimeZoneInfo"/> object.
+            </para>
+            <para>
+            This implementation does not always give the same results as <c>TimeZoneInfo</c>, in that it doesn't replicate
+            the bugs in the BCL interpretation of the data. These bugs are described in
+            <a href="http://codeblog.jonskeet.uk/2014/09/30/the-mysteries-of-bcl-time-zone-data/">a blog post</a>, but we're
+            not expecting them to be fixed any time soon. Being bug-for-bug compatible would not only be tricky, but would be painful
+            if the BCL were ever to be fixed. As far as we are aware, there are only discrepancies around new year where the zone
+            changes from observing one rule to observing another.
+            </para>
+            </remarks>
+            <threadsafety>This type is immutable reference type. See the thread safety section of the user guide for more information.</threadsafety>
+        </member>
+        <member name="F:NodaTime.TimeZones.BclDateTimeZone.systemDefault">
+            <summary>
+            This is used to cache the last result of a call to <see cref="M:NodaTime.TimeZones.BclDateTimeZone.ForSystemDefault"/>, but it doesn't
+            matter if it's out of date - we'll just create another wrapper if necessary. It's not *that* expensive to make
+            a few more wrappers than we need.
+            </summary>
+        </member>
+        <member name="P:NodaTime.TimeZones.BclDateTimeZone.OriginalZone">
+            <summary>
+            Gets the original <see cref="T:System.TimeZoneInfo"/> from which this was created.
+            </summary>
+            <value>The original <see cref="T:System.TimeZoneInfo"/> from which this was created.</value>
+        </member>
+        <member name="P:NodaTime.TimeZones.BclDateTimeZone.DisplayName">
+            <summary>
+            Gets the display name associated with the time zone, as provided by the Base Class Library.
+            </summary>
+            <value>The display name associated with the time zone, as provided by the Base Class Library.</value>
+        </member>
+        <member name="M:NodaTime.TimeZones.BclDateTimeZone.GetZoneInterval(NodaTime.Instant)">
+            <inheritdoc />
+        </member>
+        <member name="M:NodaTime.TimeZones.BclDateTimeZone.FromTimeZoneInfo(System.TimeZoneInfo)">
+            <summary>
+            Creates a new <see cref="T:NodaTime.TimeZones.BclDateTimeZone" /> from a <see cref="T:System.TimeZoneInfo"/> from the Base Class Library.
+            </summary>
+            <param name="bclZone">The original time zone to take information from.</param>
+            <returns>A <see cref="T:NodaTime.TimeZones.BclDateTimeZone"/> wrapping the given <c>TimeZoneInfo</c>.</returns>
+        </member>
+        <member name="T:NodaTime.TimeZones.BclDateTimeZone.BclAdjustmentRule">
+            <summary>
+            Just a mapping of a TimeZoneInfo.AdjustmentRule into Noda Time types. Very little cleverness here.
+            </summary>
+        </member>
+        <member name="P:NodaTime.TimeZones.BclDateTimeZone.BclAdjustmentRule.Start">
+            <summary>
+            Instant on which this rule starts.
+            </summary>
+        </member>
+        <member name="P:NodaTime.TimeZones.BclDateTimeZone.BclAdjustmentRule.End">
+            <summary>
+            Instant on which this rule ends.
+            </summary>
+        </member>
+        <member name="P:NodaTime.TimeZones.BclDateTimeZone.BclAdjustmentRule.Savings">
+            <summary>
+            Daylight savings, when applicable within this rule.
+            </summary>
+        </member>
+        <member name="P:NodaTime.TimeZones.BclDateTimeZone.BclAdjustmentRule.StandardOffset">
+            <summary>
+            The standard offset for the duration of this rule.
+            </summary>
+        </member>
+        <member name="T:NodaTime.TimeZones.BclDateTimeZone.BclAdjustmentRule.DaylightFakingZoneIntervalMap">
+            <summary>
+            An implementation of IZoneIntervalMap that delegates to an original map, except for where the result of a
+            ZoneInterval lookup has the given daylight name. In that case, a new ZoneInterval is built with the same
+            wall offset (and start/end instants etc), but with a savings of 1 hour. This is only used to work around TimeZoneInfo
+            adjustment rules with a daylight saving of 0 which are really trying to fake a more comprehensive solution.
+            (This is currently only seen on Mono on Linux...)
+            This addresses https://github.com/nodatime/nodatime/issues/746.
+            If TimeZoneInfo had sufficient flexibility to use different names for different periods of time, we'd have
+            another problem, as some "daylight names" don't always mean daylight - e.g. "BST" = British Summer Time and British Standard Time.
+            In this case, the limited nature of TimeZoneInfo works in our favour.
+            </summary>
+        </member>
+        <member name="M:NodaTime.TimeZones.BclDateTimeZone.BclAdjustmentRule.IsStandardOffsetOnlyRule(System.TimeZoneInfo.AdjustmentRule)">
+            <summary>
+            The BCL represents "standard-only" rules using two fixed date January 1st transitions.
+            Currently the time-of-day used for the DST end transition is at one millisecond past midnight... we'll
+            be slightly more lenient, accepting anything up to 12:01...
+            </summary>
+        </member>
+        <member name="M:NodaTime.TimeZones.BclDateTimeZone.ForSystemDefault">
+            <summary>
+            Returns a time zone converted from the BCL representation of the system local time zone.
+            </summary>
+            <remarks>
+            <para>
+            This method is approximately equivalent to calling <see cref="M:NodaTime.IDateTimeZoneProvider.GetSystemDefault"/> with
+            an implementation that wraps <see cref="T:NodaTime.TimeZones.BclDateTimeZoneSource"/> (e.g.
+            <see cref="P:NodaTime.DateTimeZoneProviders.Bcl"/>), with the exception that it will succeed even if the current local
+            time zone was not one of the set of system time zones captured when the source was created (which, while
+            highly unlikely, might occur either because the local time zone is not a system time zone, or because the
+            system time zones have themselves changed).
+            </para>
+            <para>
+            This method will retain a reference to the returned <c>BclDateTimeZone</c>, and will attempt to return it if
+            called repeatedly (assuming that the local time zone has not changed) rather than creating a new instance,
+            though this behaviour is not guaranteed.
+            </para>
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">The system does not provide a time zone.</exception>
+            <returns>A <see cref="T:NodaTime.TimeZones.BclDateTimeZone"/> wrapping the "local" (system) time zone as returned by
+            <see cref="P:System.TimeZoneInfo.Local"/>.</returns>
+        </member>
+        <member name="T:NodaTime.TimeZones.BclDateTimeZoneSource">
+            <summary>
+            Provides an implementation of <see cref="T:NodaTime.TimeZones.IDateTimeZoneSource" /> that loads data from the BCL
+            <see cref="T:System.TimeZoneInfo"/> class.
+            </summary>
+            <remarks>
+            <para>
+            All calls to <see cref="M:NodaTime.TimeZones.BclDateTimeZoneSource.ForId(System.String)"/> return instances of <see cref="T:NodaTime.TimeZones.BclDateTimeZone"/>, including for fixed-offset IDs
+            (i.e. "UTC" and "UTC+/-Offset").
+            </para>
+            <para>
+            This class is not available in the .NET Standard 1.3 version.
+            </para>
+            </remarks>
+            <threadsafety>This type maintains no state, and all members are thread-safe. See the thread safety section of the user guide for more information.</threadsafety>
+        </member>
+        <member name="M:NodaTime.TimeZones.BclDateTimeZoneSource.#ctor">
+            <summary>
+            Constructs a new instance. This is rarely useful in application code, as this class has no state of its own.
+            Most application code should use <see cref="P:NodaTime.DateTimeZoneProviders.Bcl"/>.
+            </summary>
+        </member>
+        <member name="M:NodaTime.TimeZones.BclDateTimeZoneSource.GetIds">
+            <summary>
+            Returns the IDs of all system time zones.
+            </summary>
+            <returns>The IDs available from this source.</returns>
+        </member>
+        <member name="M:NodaTime.TimeZones.BclDateTimeZoneSource.GetTimeZoneInfoLocalIdOrEmpty">
+            <summary>
+            Returns an enumerable containing a singleton element of the Id of the local time zone
+            (<c>TimeZoneInfo.Local.Id</c>), unless the local time zone is not available, or not a system time zone, in
+            which case returns an empty enumerable.
+            </summary>
+        </member>
+        <member name="P:NodaTime.TimeZones.BclDateTimeZoneSource.VersionId">
+            <inheritdoc />
+            <remarks>
+            This source returns a string such as "TimeZoneInfo: 3.5.0.0" corresponding to the version of the assembly
+            containing <see cref="T:System.TimeZoneInfo"/>.
+            </remarks>
+        </member>
+        <member name="M:NodaTime.TimeZones.BclDateTimeZoneSource.NodaTime#TimeZones#IDateTimeZoneSource#ForId(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:NodaTime.TimeZones.BclDateTimeZone" /> from the <see cref="T:System.TimeZoneInfo"/> with the given
+            ID. The ID must be a known system time zone ID.
+            </summary>
+            <remarks>
+            This method explicitly implements <see cref="M:NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)"/> by delegating to the
+            <see cref="M:NodaTime.TimeZones.BclDateTimeZoneSource.ForId(System.String)"/> method which has a return type of <see cref="T:NodaTime.TimeZones.BclDateTimeZone"/>, ensuring that all
+            zones returned by this implementation are instances of <see cref="T:NodaTime.TimeZones.BclDateTimeZone"/> (rather than the built-in
+            fixed offset zones).
+            </remarks>        
+        </member>
+        <member name="M:NodaTime.TimeZones.BclDateTimeZoneSource.ForId(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:NodaTime.TimeZones.BclDateTimeZone" /> from the <see cref="T:System.TimeZoneInfo"/> with the given
+            ID. The ID must be a known system time zone ID.
+            </summary>
+            <param name="id">The ID of the system time zone to convert</param>
+            <exception cref="T:System.ArgumentException">The given zone doesn't exist.</exception>
+            <returns>The Noda Time representation of the given BCL time zone</returns>
+        </member>
+        <member name="M:NodaTime.TimeZones.BclDateTimeZoneSource.GetSystemDefaultId">
+            <inheritdoc />
+        </member>
         <member name="T:NodaTime.TimeZones.CachedDateTimeZone">
             <summary>
              Provides a <see cref="T:NodaTime.DateTimeZone"/> wrapper class that implements a simple cache to
@@ -12285,10 +12477,10 @@
             but the specified ID is invalid for that provider.
             </summary>
             <remarks>
-            This type only exists as <c>TimeZoneNotFoundException</c> doesn't exist in netstandard1.x.
-            By creating an exception which derives from <c>TimeZoneNotFoundException</c> on the desktop version
-            and <c>Exception</c> on the .NET Standard 1.3 version, we achieve reasonable consistency while remaining
-            backwardly compatible with Noda Time v1 (which was desktop-only, and threw <c>TimeZoneNotFoundException</c>).
+            This type originally existed as <c>TimeZoneNotFoundException</c> doesn't exist in framework versions
+            targeted by earlier versions of Noda Time. It is present now solely to avoid unnecessary
+            backward incompatibility. While it could be used to distinguish between exceptions thrown by
+            Noda Time and those thrown by <c>TimeZoneInfo</c>, we recommend that you don't use it that way.
             </remarks>
             <threadsafety>Any public static members of this type are thread safe. Any instance members are not guaranteed to be thread safe.
             See the thread safety section of the user guide for more information.

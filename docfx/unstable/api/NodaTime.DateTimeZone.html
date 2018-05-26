@@ -82,7 +82,7 @@ Represents a time zone - a mapping between UTC and local time. A time zone maps 
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -101,9 +101,6 @@ Represents a time zone - a mapping between UTC and local time. A time zone maps 
       <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
     </div>
     <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
       <span class="xref">System.Object.GetHashCode()</span>
     </div>
     <div>
@@ -111,6 +108,9 @@ Represents a time zone - a mapping between UTC and local time. A time zone maps 
     </div>
     <div>
       <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="NodaTime.html">NodaTime</a></h6>
@@ -182,7 +182,7 @@ Initializes a new instance of the <a class="xref" href="NodaTime.DateTimeZone.ht
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -247,7 +247,7 @@ Get the provider&apos;s ID for the time zone.
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -285,7 +285,7 @@ Gets the greatest (most positive) offset within this time zone, over all time.
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -316,7 +316,7 @@ Gets the least (most negative) offset within this time zone, over all time.
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -347,7 +347,7 @@ Gets the UTC (Coordinated Universal Time) time zone.
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -388,7 +388,7 @@ by the duration of the &quot;gap&quot;.
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -447,7 +447,7 @@ Returns the earliest valid <a class="xref" href="NodaTime.ZonedDateTime.html">Zo
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -522,7 +522,7 @@ date/time is skipped entirely.
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -578,10 +578,6 @@ Console.WriteLine(dt.Year);
 
 Instant instant = Instant.FromUtc(2010, 6, 9, 14, 15, 0);
 Console.WriteLine(dt.ToInstant());
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">15
-2010
-2010-06-09T14:15:00Z
 </code></pre></div>
   </div>
   <h5 class="exceptions">Exceptions</h5>
@@ -613,7 +609,7 @@ Returns a fixed time zone with the given offset.
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -674,7 +670,7 @@ later than UTC. In other words, local time = UTC + offset.
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -728,8 +724,6 @@ using System;
 DateTimeZone paris = DateTimeZoneProviders.Tzdb[&quot;Europe/Paris&quot;];
 Offset offset = paris.GetUtcOffset(Instant.FromUtc(1900, 1, 1, 0, 0));
 Console.WriteLine(offset.ToString());
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">+00:09:21
 </code></pre></div>
   </div>
   <a id="NodaTime_DateTimeZone_GetZoneInterval_" data-uid="NodaTime.DateTimeZone.GetZoneInterval*"></a>
@@ -743,7 +737,7 @@ applies (with the same split between standard time and daylight saving time, and
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -798,12 +792,6 @@ Console.WriteLine(interval.Start);
 Console.WriteLine(interval.End);
 Console.WriteLine(interval.WallOffset);
 Console.WriteLine(interval.Savings);
-</code></pre><p>Output:</p>
-<pre><code class="lang-text">BST
-2010-03-28T01:00:00Z
-2010-10-31T01:00:00Z
-+01
-+01
 </code></pre></div>
   </div>
   <h5 id="NodaTime_DateTimeZone_GetZoneInterval_NodaTime_Instant__seealso">See Also</h5>
@@ -820,7 +808,7 @@ Returns all the zone intervals which occur for any instant in the interval [<cod
   <strong>Since</strong> 1.1.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -898,7 +886,7 @@ Returns all the zone intervals which occur for any instant in the given interval
   <strong>Since</strong> 1.1.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -961,7 +949,7 @@ original intervals according to options.
   <strong>Since</strong> 2.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1030,7 +1018,7 @@ Returns complete information about how the given <a class="xref" href="NodaTime.
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1091,7 +1079,7 @@ the given <a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1170,7 +1158,7 @@ Returns the ID of this time zone.
   <strong>Since</strong> 1.0.x
   </div>
   <div>
-  <strong>Availability</strong> net45, netstandard1.3
+  <strong>Availability</strong> netstandard2.0
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
