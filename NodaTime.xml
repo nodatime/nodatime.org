@@ -11995,6 +11995,13 @@
             <param name="bclZone">The original time zone to take information from.</param>
             <returns>A <see cref="T:NodaTime.TimeZones.BclDateTimeZone"/> wrapping the given <c>TimeZoneInfo</c>.</returns>
         </member>
+        <member name="M:NodaTime.TimeZones.BclDateTimeZone.AreWindowsStyleRules(System.TimeZoneInfo.AdjustmentRule[])">
+            <summary>
+            .NET Core on Unix adjustment rules can't currently be treated like regular Windows ones.
+            Instead of dividing time into periods by year, the rules are read from TZIF files, so are like
+            our PrecalculatedDateTimeZone. This is only visible for testing purposes.
+            </summary>
+        </member>
         <member name="T:NodaTime.TimeZones.BclDateTimeZone.BclAdjustmentRule">
             <summary>
             Just a mapping of a TimeZoneInfo.AdjustmentRule into Noda Time types. Very little cleverness here.
