@@ -735,6 +735,9 @@ Console.WriteLine(nearEndOfDay.NanosecondOfDay);
 
 Duration duration = nearEndOfDay - startOfDay;
 Console.WriteLine(duration);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">86399000000000
+1:00:59:59
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_NanosecondOfSecond_" data-uid="NodaTime.ZonedDateTime.NanosecondOfSecond*"></a>
@@ -880,6 +883,9 @@ Console.WriteLine(nearEndOfDay.TickOfDay);
 
 Duration duration = nearEndOfDay - startOfDay;
 Console.WriteLine(duration);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">863990000000
+1:00:59:59
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_TickOfSecond_" data-uid="NodaTime.ZonedDateTime.TickOfSecond*"></a>
@@ -1121,6 +1127,11 @@ var result2 = beforeTransition + Duration.FromHours(1);
 var result3 = beforeTransition.Plus(Duration.FromHours(1));
 Console.WriteLine(result2);
 Console.WriteLine(result3);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">Sunday, 29 October 2017
+2017-10-29T01:45:00 Europe/Dublin (+00)
+2017-10-29T01:45:00 Europe/Dublin (+00)
+2017-10-29T01:45:00 Europe/Dublin (+00)
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_Deconstruct_" data-uid="NodaTime.ZonedDateTime.Deconstruct*"></a>
@@ -1440,6 +1451,9 @@ Console.WriteLine(beforeTransition.IsDaylightSavingTime());
 // Same local time, different offset - so a different instant, after the transition.
 ZonedDateTime afterTransition = new ZonedDateTime(dt, dublin, Offset.FromHours(0));
 Console.WriteLine(afterTransition.IsDaylightSavingTime());
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">False
+True
 </code></pre></div>
   </div>
   <h5 id="NodaTime_ZonedDateTime_IsDaylightSavingTime_seealso">See Also</h5>
@@ -1517,6 +1531,11 @@ var result2 = afterTransition - Duration.FromHours(1);
 var result3 = afterTransition.Minus(Duration.FromHours(1));
 Console.WriteLine(result2);
 Console.WriteLine(result3);            
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">Sunday, 29 October 2017
+2017-10-29T01:45:00 Europe/Dublin (+01)
+2017-10-29T01:45:00 Europe/Dublin (+01)
+2017-10-29T01:45:00 Europe/Dublin (+01)
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_Minus_" data-uid="NodaTime.ZonedDateTime.Minus*"></a>
@@ -1583,6 +1602,8 @@ ZonedDateTime other = new ZonedDateTime(Instant.FromUtc(2017, 7, 17, 9, 17), zon
 
 var difference = other.Minus(subject);
 Console.WriteLine(difference);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">0:02:00:00
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_Plus_" data-uid="NodaTime.ZonedDateTime.Plus*"></a>
@@ -1659,6 +1680,11 @@ var result2 = beforeTransition + Duration.FromHours(1);
 var result3 = beforeTransition.Plus(Duration.FromHours(1));
 Console.WriteLine(result2);
 Console.WriteLine(result3);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">Sunday, 29 October 2017
+2017-10-29T01:45:00 Europe/Dublin (+00)
+2017-10-29T01:45:00 Europe/Dublin (+00)
+2017-10-29T01:45:00 Europe/Dublin (+00)
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_PlusHours_" data-uid="NodaTime.ZonedDateTime.PlusHours*"></a>
@@ -1721,6 +1747,8 @@ var start = Instant.FromUtc(2017, 7, 20, 5, 30);
 ZonedDateTime zoned = new ZonedDateTime(start, dublin);
 var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
 Console.WriteLine(    pattern.Format(zoned.PlusHours(1)));
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2017-07-20T07:30:00 Europe/Dublin (+01)
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_PlusMilliseconds_" data-uid="NodaTime.ZonedDateTime.PlusMilliseconds*"></a>
@@ -1783,6 +1811,8 @@ var start = Instant.FromUtc(2017, 7, 20, 5, 30);
 ZonedDateTime zoned = new ZonedDateTime(start, dublin);
 var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
 Console.WriteLine(    pattern.Format(zoned.PlusMilliseconds(1)));
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2017-07-20T06:30:00.001 Europe/Dublin (+01)
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_PlusMinutes_" data-uid="NodaTime.ZonedDateTime.PlusMinutes*"></a>
@@ -1845,6 +1875,8 @@ var start = Instant.FromUtc(2017, 7, 20, 5, 30);
 ZonedDateTime zoned = new ZonedDateTime(start, dublin);
 var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
 Console.WriteLine(    pattern.Format(zoned.PlusMinutes(1)));
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2017-07-20T06:31:00 Europe/Dublin (+01)
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_PlusNanoseconds_" data-uid="NodaTime.ZonedDateTime.PlusNanoseconds*"></a>
@@ -1907,6 +1939,8 @@ var start = Instant.FromUtc(2017, 7, 20, 5, 30);
 ZonedDateTime zoned = new ZonedDateTime(start, dublin);
 var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
 Console.WriteLine(    pattern.Format(zoned.PlusNanoseconds(1)));
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2017-07-20T06:30:00.000000001 Europe/Dublin (+01)
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_PlusSeconds_" data-uid="NodaTime.ZonedDateTime.PlusSeconds*"></a>
@@ -1969,6 +2003,8 @@ var start = Instant.FromUtc(2017, 7, 20, 5, 30);
 ZonedDateTime zoned = new ZonedDateTime(start, dublin);
 var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
 Console.WriteLine(    pattern.Format(zoned.PlusSeconds(1)));
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2017-07-20T06:30:01 Europe/Dublin (+01)
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_PlusTicks_" data-uid="NodaTime.ZonedDateTime.PlusTicks*"></a>
@@ -2031,6 +2067,8 @@ var start = Instant.FromUtc(2017, 7, 20, 5, 30);
 ZonedDateTime zoned = new ZonedDateTime(start, dublin);
 var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
 Console.WriteLine(    pattern.Format(zoned.PlusTicks(1)));
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">2017-07-20T06:30:00.0000001 Europe/Dublin (+01)
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_Subtract_" data-uid="NodaTime.ZonedDateTime.Subtract*"></a>
@@ -2112,6 +2150,11 @@ var result2 = afterTransition - Duration.FromHours(1);
 var result3 = afterTransition.Minus(Duration.FromHours(1));
 Console.WriteLine(result2);
 Console.WriteLine(result3);            
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">Sunday, 29 October 2017
+2017-10-29T01:45:00 Europe/Dublin (+01)
+2017-10-29T01:45:00 Europe/Dublin (+01)
+2017-10-29T01:45:00 Europe/Dublin (+01)
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_Subtract_" data-uid="NodaTime.ZonedDateTime.Subtract*"></a>
@@ -2183,6 +2226,8 @@ ZonedDateTime other = new ZonedDateTime(Instant.FromUtc(2017, 7, 17, 9, 17), zon
 
 var difference = ZonedDateTime.Subtract(other, subject);
 Console.WriteLine(difference);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">0:02:00:00
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_ToDateTimeOffset_" data-uid="NodaTime.ZonedDateTime.ToDateTimeOffset*"></a>
@@ -2743,6 +2788,11 @@ var result2 = beforeTransition + Duration.FromHours(1);
 var result3 = beforeTransition.Plus(Duration.FromHours(1));
 Console.WriteLine(result2);
 Console.WriteLine(result3);
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">Sunday, 29 October 2017
+2017-10-29T01:45:00 Europe/Dublin (+00)
+2017-10-29T01:45:00 Europe/Dublin (+00)
+2017-10-29T01:45:00 Europe/Dublin (+00)
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_op_Equality_" data-uid="NodaTime.ZonedDateTime.op_Equality*"></a>
@@ -2931,6 +2981,11 @@ var result2 = afterTransition - Duration.FromHours(1);
 var result3 = afterTransition.Minus(Duration.FromHours(1));
 Console.WriteLine(result2);
 Console.WriteLine(result3);            
+</code></pre><p>Output:</p>
+<pre><code class="lang-text">Sunday, 29 October 2017
+2017-10-29T01:45:00 Europe/Dublin (+01)
+2017-10-29T01:45:00 Europe/Dublin (+01)
+2017-10-29T01:45:00 Europe/Dublin (+01)
 </code></pre></div>
   </div>
   <a id="NodaTime_ZonedDateTime_op_Subtraction_" data-uid="NodaTime.ZonedDateTime.op_Subtraction*"></a>
