@@ -1,0 +1,784 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class FakeClock
+   | Noda Time </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class FakeClock
+   | Noda Time ">
+    <meta name="generator" content="docfx 2.38.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="NodaTime.Testing.FakeClock">
+  
+  
+  <h1 id="NodaTime_Testing_FakeClock" data-uid="NodaTime.Testing.FakeClock" class="text-break">Class FakeClock
+  </h1>
+  <div class="markdown level0 summary">
+Clock which can be constructed with an initial instant, and then advanced programmatically (and optionally,
+automatically advanced on each read).
+This class is designed to be used when testing classes which take an <a class="xref" href="NodaTime.IClock.html">IClock</a> as a dependency.
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">FakeClock</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="NodaTime.IClock.html">IClock</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="NodaTime.Testing.html">NodaTime.Testing</a></h6>
+  <h6><strong>Assembly</strong>: NodaTime.Testing.dll</h6>
+  <h5 id="NodaTime_Testing_FakeClock_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class FakeClock : IClock</code></pre>
+  </div>
+  <h5 id="NodaTime_Testing_FakeClock_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks">
+This class is somewhere between a fake and a stub, depending on how it&apos;s used - if it&apos;s set to
+<a class="xref" href="NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AutoAdvance">AutoAdvance</a> then time will pass, but in a pretty odd way (i.e. dependent on how
+often it&apos;s consulted).
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="NodaTime_Testing_FakeClock__ctor_" data-uid="NodaTime.Testing.FakeClock.#ctor*"></a>
+  <h4 id="NodaTime_Testing_FakeClock__ctor_NodaTime_Instant_" data-uid="NodaTime.Testing.FakeClock.#ctor(NodaTime.Instant)">FakeClock(Instant)</h4>
+  <div class="markdown level1 summary">
+Creates a fake clock initially set to the given instant, with no auto-advance.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FakeClock(Instant initial)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
+        <td><span class="parametername">initial</span></td>
+        <td>The initial instant.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Testing_FakeClock__ctor_" data-uid="NodaTime.Testing.FakeClock.#ctor*"></a>
+  <h4 id="NodaTime_Testing_FakeClock__ctor_NodaTime_Instant_NodaTime_Duration_" data-uid="NodaTime.Testing.FakeClock.#ctor(NodaTime.Instant,NodaTime.Duration)">FakeClock(Instant, Duration)</h4>
+  <div class="markdown level1 summary">
+Creates a fake clock initially set to the given instant. The clock will advance by the given duration on
+each read.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FakeClock(Instant initial, Duration autoAdvance)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
+        <td><span class="parametername">initial</span></td>
+        <td>The initial instant.</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+        <td><span class="parametername">autoAdvance</span></td>
+        <td>The duration to advance the clock on each read.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NodaTime_Testing_FakeClock__ctor_NodaTime_Instant_NodaTime_Duration__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AutoAdvance">AutoAdvance</a></div>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="NodaTime_Testing_FakeClock_AutoAdvance_" data-uid="NodaTime.Testing.FakeClock.AutoAdvance*"></a>
+  <h4 id="NodaTime_Testing_FakeClock_AutoAdvance" data-uid="NodaTime.Testing.FakeClock.AutoAdvance">AutoAdvance</h4>
+  <div class="markdown level1 summary">
+Gets the amount of time to advance the clock by on each call to read the current time.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Duration AutoAdvance { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+        <td>The amount of time to advance the clock by on each call to read the current time.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NodaTime_Testing_FakeClock_AutoAdvance_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+<p>
+This defaults to zero, with the exception of the <a class="xref" href="NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock__ctor_NodaTime_Instant_NodaTime_Duration_">FakeClock(Instant, Duration)</a> constructor,
+which takes the initial value directly.  If this is zero, the current time as reported by this clock will
+not change other than by calls to <a class="xref" href="NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_Reset_NodaTime_Instant_">Reset(Instant)</a> or to one of the <a class="xref" href="NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_Advance_NodaTime_Duration_">Advance(Duration)</a> methods.
+</p>
+<p>
+The value could even be negative, to simulate particularly odd system clock effects.
+</p>
+</div>
+  <h5 id="NodaTime_Testing_FakeClock_AutoAdvance_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_GetCurrentInstant">GetCurrentInstant()</a></div>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="NodaTime_Testing_FakeClock_Advance_" data-uid="NodaTime.Testing.FakeClock.Advance*"></a>
+  <h4 id="NodaTime_Testing_FakeClock_Advance_NodaTime_Duration_" data-uid="NodaTime.Testing.FakeClock.Advance(NodaTime.Duration)">Advance(Duration)</h4>
+  <div class="markdown level1 summary">
+Advances the clock by the given duration.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Advance(Duration duration)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.Duration.html">Duration</a></td>
+        <td><span class="parametername">duration</span></td>
+        <td>The duration to advance the clock by (or if negative, the duration to move it back
+by).</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Testing_FakeClock_AdvanceDays_" data-uid="NodaTime.Testing.FakeClock.AdvanceDays*"></a>
+  <h4 id="NodaTime_Testing_FakeClock_AdvanceDays_System_Int32_" data-uid="NodaTime.Testing.FakeClock.AdvanceDays(System.Int32)">AdvanceDays(Int32)</h4>
+  <div class="markdown level1 summary">
+Advances the clock by the given number of standard (24-hour) days.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.4.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AdvanceDays(int days)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">days</span></td>
+        <td>The number of days to advance the clock by (or if negative, the number to move it
+back by).</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Testing_FakeClock_AdvanceHours_" data-uid="NodaTime.Testing.FakeClock.AdvanceHours*"></a>
+  <h4 id="NodaTime_Testing_FakeClock_AdvanceHours_System_Int32_" data-uid="NodaTime.Testing.FakeClock.AdvanceHours(System.Int32)">AdvanceHours(Int32)</h4>
+  <div class="markdown level1 summary">
+Advances the clock by the given number of hours.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.4.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AdvanceHours(int hours)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">hours</span></td>
+        <td>The number of hours to advance the clock by (or if negative, the number to move it
+back by).</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Testing_FakeClock_AdvanceMilliseconds_" data-uid="NodaTime.Testing.FakeClock.AdvanceMilliseconds*"></a>
+  <h4 id="NodaTime_Testing_FakeClock_AdvanceMilliseconds_System_Int64_" data-uid="NodaTime.Testing.FakeClock.AdvanceMilliseconds(System.Int64)">AdvanceMilliseconds(Int64)</h4>
+  <div class="markdown level1 summary">
+Advances the clock by the given number of milliseconds.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AdvanceMilliseconds(long milliseconds)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">milliseconds</span></td>
+        <td>The number of milliseconds to advance the clock by (or if negative, the number
+to move it back by).</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Testing_FakeClock_AdvanceMinutes_" data-uid="NodaTime.Testing.FakeClock.AdvanceMinutes*"></a>
+  <h4 id="NodaTime_Testing_FakeClock_AdvanceMinutes_System_Int64_" data-uid="NodaTime.Testing.FakeClock.AdvanceMinutes(System.Int64)">AdvanceMinutes(Int64)</h4>
+  <div class="markdown level1 summary">
+Advances the clock by the given number of minutes.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AdvanceMinutes(long minutes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">minutes</span></td>
+        <td>The number of minutes to advance the clock by (or if negative, the number to move it
+back by).</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Testing_FakeClock_AdvanceNanoseconds_" data-uid="NodaTime.Testing.FakeClock.AdvanceNanoseconds*"></a>
+  <h4 id="NodaTime_Testing_FakeClock_AdvanceNanoseconds_System_Int64_" data-uid="NodaTime.Testing.FakeClock.AdvanceNanoseconds(System.Int64)">AdvanceNanoseconds(Int64)</h4>
+  <div class="markdown level1 summary">
+Advances the clock by the given number of nanoseconds.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 2.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AdvanceNanoseconds(long nanoseconds)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">nanoseconds</span></td>
+        <td>The number of nanoseconds to advance the clock by (or if negative, the number to move it back
+by).</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Testing_FakeClock_AdvanceSeconds_" data-uid="NodaTime.Testing.FakeClock.AdvanceSeconds*"></a>
+  <h4 id="NodaTime_Testing_FakeClock_AdvanceSeconds_System_Int64_" data-uid="NodaTime.Testing.FakeClock.AdvanceSeconds(System.Int64)">AdvanceSeconds(Int64)</h4>
+  <div class="markdown level1 summary">
+Advances the clock by the given number of seconds.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AdvanceSeconds(long seconds)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">seconds</span></td>
+        <td>The number of seconds to advance the clock by (or if negative, the number to move it
+back by).</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Testing_FakeClock_AdvanceTicks_" data-uid="NodaTime.Testing.FakeClock.AdvanceTicks*"></a>
+  <h4 id="NodaTime_Testing_FakeClock_AdvanceTicks_System_Int64_" data-uid="NodaTime.Testing.FakeClock.AdvanceTicks(System.Int64)">AdvanceTicks(Int64)</h4>
+  <div class="markdown level1 summary">
+Advances the clock by the given number of ticks.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AdvanceTicks(long ticks)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">ticks</span></td>
+        <td>The number of ticks to advance the clock by (or if negative, the number to move it back
+by).</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Testing_FakeClock_FromUtc_" data-uid="NodaTime.Testing.FakeClock.FromUtc*"></a>
+  <h4 id="NodaTime_Testing_FakeClock_FromUtc_System_Int32_System_Int32_System_Int32_" data-uid="NodaTime.Testing.FakeClock.FromUtc(System.Int32,System.Int32,System.Int32)">FromUtc(Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary">
+Returns a fake clock initially set to midnight of the given year/month/day in UTC in the ISO calendar.
+The value of the <a class="xref" href="NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AutoAdvance">AutoAdvance</a> property will be initialised to zero.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FakeClock FromUtc(int year, int monthOfYear, int dayOfMonth)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">year</span></td>
+        <td>The year. This is the &quot;absolute year&quot;,
+so a value of 0 means 1 BC, for example.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">monthOfYear</span></td>
+        <td>The month of year.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">dayOfMonth</span></td>
+        <td>The day of month.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.Testing.FakeClock.html">FakeClock</a></td>
+        <td>A <a class="xref" href="NodaTime.Testing.FakeClock.html">FakeClock</a> initialised to the given instant, with no auto-advance.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Testing_FakeClock_FromUtc_" data-uid="NodaTime.Testing.FakeClock.FromUtc*"></a>
+  <h4 id="NodaTime_Testing_FakeClock_FromUtc_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="NodaTime.Testing.FakeClock.FromUtc(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">FromUtc(Int32, Int32, Int32, Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary">
+Returns a fake clock initially set to the given year/month/day/time in UTC in the ISO calendar.
+The value of the <a class="xref" href="NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AutoAdvance">AutoAdvance</a> property will be initialised to zero.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FakeClock FromUtc(int year, int monthOfYear, int dayOfMonth, int hourOfDay, int minuteOfHour, int secondOfMinute)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">year</span></td>
+        <td>The year. This is the &quot;absolute year&quot;,
+so a value of 0 means 1 BC, for example.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">monthOfYear</span></td>
+        <td>The month of year.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">dayOfMonth</span></td>
+        <td>The day of month.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">hourOfDay</span></td>
+        <td>The hour.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">minuteOfHour</span></td>
+        <td>The minute.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">secondOfMinute</span></td>
+        <td>The second.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.Testing.FakeClock.html">FakeClock</a></td>
+        <td>A <a class="xref" href="NodaTime.Testing.FakeClock.html">FakeClock</a> initialised to the given instant, with no auto-advance.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="NodaTime_Testing_FakeClock_GetCurrentInstant_" data-uid="NodaTime.Testing.FakeClock.GetCurrentInstant*"></a>
+  <h4 id="NodaTime_Testing_FakeClock_GetCurrentInstant" data-uid="NodaTime.Testing.FakeClock.GetCurrentInstant">GetCurrentInstant()</h4>
+  <div class="markdown level1 summary">
+Returns the &quot;current time&quot; for this clock. Unlike a normal clock, this
+property may return the same value from repeated calls until one of the methods
+to change the time is called.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 2.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Instant GetCurrentInstant()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
+        <td>The &quot;current time&quot; from this (fake) clock.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NodaTime_Testing_FakeClock_GetCurrentInstant_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+If the value of the <a class="xref" href="NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AutoAdvance">AutoAdvance</a> property is non-zero, then every
+call to this method will advance the current time by that value.
+</div>
+  <a id="NodaTime_Testing_FakeClock_Reset_" data-uid="NodaTime.Testing.FakeClock.Reset*"></a>
+  <h4 id="NodaTime_Testing_FakeClock_Reset_NodaTime_Instant_" data-uid="NodaTime.Testing.FakeClock.Reset(NodaTime.Instant)">Reset(Instant)</h4>
+  <div class="markdown level1 summary">
+Resets the clock to the given instant.
+The value of the <a class="xref" href="NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AutoAdvance">AutoAdvance</a> property will be unchanged.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <div>
+  <strong>Since</strong> 1.0.x
+  </div>
+  <div>
+  <strong>Availability</strong> net45, netstandard1.3, netstandard2.0
+  </div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Reset(Instant instant)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NodaTime.Instant.html">Instant</a></td>
+        <td><span class="parametername">instant</span></td>
+        <td>The instant to set the clock to.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="NodaTime.IClock.html">IClock</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+             
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-60886284-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
