@@ -90,7 +90,7 @@ An interval between two dates.
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="NodaTime.DateInterval.html">DateInterval</a>&gt;</div>
+    <div><span class="xref">System.IEquatable</span>&lt;<span class="xref">System.Nullable</span>&lt;<a class="xref" href="NodaTime.DateInterval.html">DateInterval</a>&gt;&gt;</div>
     <div><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="NodaTime.LocalDate.html">LocalDate</a>&gt;</div>
     <div><span class="xref">System.Collections.IEnumerable</span></div>
   </div>
@@ -113,7 +113,7 @@ An interval between two dates.
   <h6><strong>Assembly</strong>: NodaTime.dll</h6>
   <h5 id="NodaTime_DateInterval_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class DateInterval : IEquatable&lt;DateInterval&gt;, IEnumerable&lt;LocalDate&gt;, IEnumerable</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class DateInterval : IEquatable&lt;DateInterval? &gt;, IEnumerable&lt;LocalDate&gt;, IEnumerable</code></pre>
   </div>
   <h5 id="NodaTime_DateInterval_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks">
@@ -563,7 +563,7 @@ Compares the given date interval for equality with this one.
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Equals(DateInterval other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Equals(DateInterval? other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -604,7 +604,7 @@ Date intervals are equal if they have the same start and end dates.
   <a id="NodaTime_DateInterval_Equals_" data-uid="NodaTime.DateInterval.Equals*"></a>
   <h4 id="NodaTime_DateInterval_Equals_System_Object_" data-uid="NodaTime.DateInterval.Equals(System.Object)">Equals(Object)</h4>
   <div class="markdown level1 summary">
-Compares the given object for equality with this one, as per <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_Equals_NodaTime_DateInterval_">Equals(DateInterval)</a>.
+Compares the given object for equality with this one, as per <span class="xref">NodaTime.DateInterval.Equals(System.Nullable{NodaTime.DateInterval})</span>.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
@@ -645,7 +645,7 @@ Compares the given object for equality with this one, as per <a class="xref" hre
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td>true if the other object is a date interval equal to this one, consistent with <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_Equals_NodaTime_DateInterval_">Equals(DateInterval)</a>.</td>
+        <td>true if the other object is a date interval equal to this one, consistent with <span class="xref">NodaTime.DateInterval.Equals(System.Nullable{NodaTime.DateInterval})</span>.</td>
       </tr>
     </tbody>
   </table>
@@ -685,7 +685,7 @@ Returns an enumerator for the dates in the interval, including both <a class="xr
   <a id="NodaTime_DateInterval_GetHashCode_" data-uid="NodaTime.DateInterval.GetHashCode*"></a>
   <h4 id="NodaTime_DateInterval_GetHashCode" data-uid="NodaTime.DateInterval.GetHashCode">GetHashCode()</h4>
   <div class="markdown level1 summary">
-Returns the hash code for this interval, consistent with <a class="xref" href="NodaTime.DateInterval.html#NodaTime_DateInterval_Equals_NodaTime_DateInterval_">Equals(DateInterval)</a>.
+Returns the hash code for this interval, consistent with <span class="xref">NodaTime.DateInterval.Equals(System.Nullable{NodaTime.DateInterval})</span>.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
@@ -729,7 +729,7 @@ Returns the intersection between the given interval and this interval.
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateInterval Intersection(DateInterval interval)</code></pre>
+    <pre><code class="lang-csharp hljs">public DateInterval? Intersection(DateInterval interval)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -861,7 +861,7 @@ Returns the union between the given interval and this interval, as long as they&
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateInterval Union(DateInterval interval)</code></pre>
+    <pre><code class="lang-csharp hljs">public DateInterval? Union(DateInterval interval)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -933,7 +933,7 @@ Compares two <a class="xref" href="NodaTime.DateInterval.html">DateInterval</a> 
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator ==(DateInterval lhs, DateInterval rhs)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool operator ==(DateInterval? lhs, DateInterval? rhs)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -990,7 +990,7 @@ Compares two <a class="xref" href="NodaTime.DateInterval.html">DateInterval</a> 
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator !=(DateInterval lhs, DateInterval rhs)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool operator !=(DateInterval? lhs, DateInterval? rhs)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

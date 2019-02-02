@@ -3360,12 +3360,12 @@
         </member>
         <member name="M:NodaTime.Globalization.NodaFormatInfo.ConvertMonthArray(System.String[])">
             <summary>
-            The BCL returns arrays of month names starting at 0; we want a read-only list starting at 1 (with 0 as null).
+            The BCL returns arrays of month names starting at 0; we want a read-only list starting at 1 (with 0 as an empty string).
             </summary>
         </member>
         <member name="M:NodaTime.Globalization.NodaFormatInfo.ConvertDayArray(System.String[])">
             <summary>
-            The BCL returns arrays of week names starting at 0 as Sunday; we want a read-only list starting at 1 (with 0 as null)
+            The BCL returns arrays of week names starting at 0 as Sunday; we want a read-only list starting at 1 (with 0 as an empty string)
             and with 7 as Sunday.
             </summary>
         </member>
@@ -9148,12 +9148,6 @@
             <exception cref="T:System.InvalidOperationException">No component patterns have been added.</exception>
             <returns>A pattern using the patterns added to this builder.</returns>
         </member>
-        <member name="M:NodaTime.Text.CompositePatternBuilder`1.System#Collections#Generic#IEnumerable{NodaTime#Text#IPattern{T}}#GetEnumerator">
-            <inheritdoc />
-        </member>
-        <member name="M:NodaTime.Text.CompositePatternBuilder`1.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc />
-        </member>
         <member name="T:NodaTime.Text.DurationPattern">
             <summary>
             Represents a pattern for parsing and formatting <see cref="T:NodaTime.Duration"/> values.
@@ -12851,6 +12845,11 @@
             <summary>
             Raw stream to read from. Be careful before reading from this - you need to take
             account of bufferedByte as well.
+            </summary>
+        </member>
+        <member name="F:NodaTime.TimeZones.IO.DateTimeZoneReader.stringPool">
+            <summary>
+            String pool to use, or null if no string pool is in use.
             </summary>
         </member>
         <member name="F:NodaTime.TimeZones.IO.DateTimeZoneReader.bufferedByte">

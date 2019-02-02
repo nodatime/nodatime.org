@@ -91,10 +91,13 @@ weeks, months and so on.
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="NodaTime.Period.html">Period</a>&gt;</div>
+    <div><span class="xref">System.IEquatable</span>&lt;<span class="xref">System.Nullable</span>&lt;<a class="xref" href="NodaTime.Period.html">Period</a>&gt;&gt;</div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
     </div>
@@ -113,7 +116,7 @@ weeks, months and so on.
   <h5 id="NodaTime_Period_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TypeConverter(typeof(PeriodTypeConverter))]
-public sealed class Period : IEquatable&lt;Period&gt;</code></pre>
+public sealed class Period : IEquatable&lt;Period? &gt;</code></pre>
   </div>
   <h5 id="NodaTime_Period_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks">
@@ -435,7 +438,7 @@ equal 1 year.
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IEqualityComparer&lt;Period&gt; NormalizingEqualityComparer { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static IEqualityComparer&lt;Period? &gt; NormalizingEqualityComparer { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -447,7 +450,7 @@ equal 1 year.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEqualityComparer</span>&lt;<a class="xref" href="NodaTime.Period.html">Period</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEqualityComparer</span>&lt;<span class="xref">System.Nullable</span>&lt;<a class="xref" href="NodaTime.Period.html">Period</a>&gt;&gt;</td>
         <td>An equality comparer which compares periods by first normalizing them. (The value returned is never null.)</td>
       </tr>
     </tbody>
@@ -1211,7 +1214,7 @@ Creates an <span class="xref">System.Collections.Generic.IComparer&lt;T&gt;</spa
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IComparer&lt;Period&gt; CreateComparer(LocalDateTime baseDateTime)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IComparer&lt;Period? &gt; CreateComparer(LocalDateTime baseDateTime)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1240,7 +1243,7 @@ Creates an <span class="xref">System.Collections.Generic.IComparer&lt;T&gt;</spa
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IComparer</span>&lt;<a class="xref" href="NodaTime.Period.html">Period</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IComparer</span>&lt;<span class="xref">System.Nullable</span>&lt;<a class="xref" href="NodaTime.Period.html">Period</a>&gt;&gt;</td>
         <td>The new comparer. (The value returned is never null.)</td>
       </tr>
     </tbody>
@@ -1267,7 +1270,7 @@ Compares the given period for equality with this one.
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Equals(Period other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Equals(Period? other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1309,7 +1312,7 @@ However, no normalization takes place, so &quot;one hour&quot; is not equal to &
   <a id="NodaTime_Period_Equals_" data-uid="NodaTime.Period.Equals*"></a>
   <h4 id="NodaTime_Period_Equals_System_Object_" data-uid="NodaTime.Period.Equals(System.Object)">Equals(Object)</h4>
   <div class="markdown level1 summary">
-Compares the given object for equality with this one, as per <a class="xref" href="NodaTime.Period.html#NodaTime_Period_Equals_NodaTime_Period_">Equals(Period)</a>.
+Compares the given object for equality with this one, as per <span class="xref">NodaTime.Period.Equals(System.Nullable{NodaTime.Period})</span>.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>
@@ -1320,7 +1323,7 @@ Compares the given object for equality with this one, as per <a class="xref" hre
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool Equals(object other)</code></pre>
+    <pre><code class="lang-csharp hljs">public override bool Equals(object? other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1350,12 +1353,10 @@ Compares the given object for equality with this one, as per <a class="xref" hre
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td>true if the other object is a period equal to this one, consistent with <a class="xref" href="NodaTime.Period.html#NodaTime_Period_Equals_NodaTime_Period_">Equals(Period)</a></td>
+        <td>true if the other object is a period equal to this one, consistent with <span class="xref">NodaTime.Period.Equals(System.Nullable{NodaTime.Period})</span></td>
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.Object.Equals(System.Object)</span></div>
   <a id="NodaTime_Period_FromDays_" data-uid="NodaTime.Period.FromDays*"></a>
   <h4 id="NodaTime_Period_FromDays_System_Int32_" data-uid="NodaTime.Period.FromDays(System.Int32)">FromDays(Int32)</h4>
   <div class="markdown level1 summary">
@@ -1969,7 +1970,7 @@ P27Y
   <a id="NodaTime_Period_GetHashCode_" data-uid="NodaTime.Period.GetHashCode*"></a>
   <h4 id="NodaTime_Period_GetHashCode" data-uid="NodaTime.Period.GetHashCode">GetHashCode()</h4>
   <div class="markdown level1 summary">
-Returns the hash code for this period, consistent with <a class="xref" href="NodaTime.Period.html#NodaTime_Period_Equals_NodaTime_Period_">Equals(Period)</a>.
+Returns the hash code for this period, consistent with <span class="xref">NodaTime.Period.Equals(System.Nullable{NodaTime.Period})</span>.
 </div>
   <div class="markdown level1 conceptual"></div>
   <div>

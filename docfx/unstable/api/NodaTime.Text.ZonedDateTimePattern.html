@@ -160,7 +160,7 @@ as the &apos;F&apos; standard pattern.
   <h5 id="NodaTime_Text_ZonedDateTimePattern_ExtendedFormatOnlyIso_remarks">Remarks</h5>
   <div class="markdown level1 remarks">
 The calendar system is not formatted as part of this pattern, and it cannot be used for parsing as no time zone
-provider is included. Call <a class="xref" href="NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithZoneProvider_NodaTime_IDateTimeZoneProvider_">WithZoneProvider(IDateTimeZoneProvider)</a> on the value of this property to obtain a
+provider is included. Call <span class="xref">NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(System.Nullable{NodaTime.IDateTimeZoneProvider})</span> on the value of this property to obtain a
 pattern which can be used for parsing.
 </div>
   <a id="NodaTime_Text_ZonedDateTimePattern_GeneralFormatOnlyIso_" data-uid="NodaTime.Text.ZonedDateTimePattern.GeneralFormatOnlyIso*"></a>
@@ -199,7 +199,7 @@ as the &apos;G&apos; standard pattern.
   <h5 id="NodaTime_Text_ZonedDateTimePattern_GeneralFormatOnlyIso_remarks">Remarks</h5>
   <div class="markdown level1 remarks">
 The calendar system is not formatted as part of this pattern, and it cannot be used for parsing as no time zone
-provider is included. Call <a class="xref" href="NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithZoneProvider_NodaTime_IDateTimeZoneProvider_">WithZoneProvider(IDateTimeZoneProvider)</a> on the value of this property to obtain a
+provider is included. Call <span class="xref">NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(System.Nullable{NodaTime.IDateTimeZoneProvider})</span> on the value of this property to obtain a
 pattern which can be used for parsing.
 </div>
   <a id="NodaTime_Text_ZonedDateTimePattern_PatternText_" data-uid="NodaTime.Text.ZonedDateTimePattern.PatternText*"></a>
@@ -249,7 +249,7 @@ This may be null, in which case the pattern can only be used for formatting (not
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ZoneLocalMappingResolver Resolver { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ZoneLocalMappingResolver? Resolver { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -261,7 +261,7 @@ This may be null, in which case the pattern can only be used for formatting (not
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html">ZoneLocalMappingResolver</a></td>
+        <td></td>
         <td>The resolver which is used to map local date/times to zoned date/times.</td>
       </tr>
     </tbody>
@@ -314,7 +314,7 @@ only be used for formatting (not parsing).
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IDateTimeZoneProvider ZoneProvider { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IDateTimeZoneProvider? ZoneProvider { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -326,7 +326,7 @@ only be used for formatting (not parsing).
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.IDateTimeZoneProvider.html">IDateTimeZoneProvider</a></td>
+        <td></td>
         <td>The provider which is used to look up time zones when parsing a pattern
 which contains a time zone identifier.</td>
       </tr>
@@ -417,7 +417,7 @@ Creates a pattern for the given pattern text, culture, resolver, time zone provi
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ZonedDateTimePattern Create(string patternText, CultureInfo cultureInfo, ZoneLocalMappingResolver resolver, IDateTimeZoneProvider zoneProvider, ZonedDateTime templateValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public static ZonedDateTimePattern Create(string patternText, CultureInfo cultureInfo, ZoneLocalMappingResolver? resolver, IDateTimeZoneProvider? zoneProvider, ZonedDateTime templateValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -440,12 +440,12 @@ Creates a pattern for the given pattern text, culture, resolver, time zone provi
         <td>The culture to use in the pattern</td>
       </tr>
       <tr>
-        <td><a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html">ZoneLocalMappingResolver</a></td>
+        <td></td>
         <td><span class="parametername">resolver</span></td>
         <td>Resolver to apply when mapping local date/time values into the zone.</td>
       </tr>
       <tr>
-        <td><a class="xref" href="NodaTime.IDateTimeZoneProvider.html">IDateTimeZoneProvider</a></td>
+        <td></td>
         <td><span class="parametername">zoneProvider</span></td>
         <td>Time zone provider, used when parsing text which contains a time zone identifier.</td>
       </tr>
@@ -511,7 +511,7 @@ culture, and a default template value of midnight January 1st 2000 UTC.
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ZonedDateTimePattern CreateWithCurrentCulture(string patternText, IDateTimeZoneProvider zoneProvider)</code></pre>
+    <pre><code class="lang-csharp hljs">public static ZonedDateTimePattern CreateWithCurrentCulture(string patternText, IDateTimeZoneProvider? zoneProvider)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -529,7 +529,7 @@ culture, and a default template value of midnight January 1st 2000 UTC.
         <td>Pattern text to create the pattern for</td>
       </tr>
       <tr>
-        <td><a class="xref" href="NodaTime.IDateTimeZoneProvider.html">IDateTimeZoneProvider</a></td>
+        <td></td>
         <td><span class="parametername">zoneProvider</span></td>
         <td>Time zone provider, used when parsing text which contains a time zone identifier.</td>
       </tr>
@@ -587,7 +587,7 @@ culture, and a default template value of midnight January 1st 2000 UTC.
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ZonedDateTimePattern CreateWithInvariantCulture(string patternText, IDateTimeZoneProvider zoneProvider)</code></pre>
+    <pre><code class="lang-csharp hljs">public static ZonedDateTimePattern CreateWithInvariantCulture(string patternText, IDateTimeZoneProvider? zoneProvider)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -605,7 +605,7 @@ culture, and a default template value of midnight January 1st 2000 UTC.
         <td>Pattern text to create the pattern for</td>
       </tr>
       <tr>
-        <td><a class="xref" href="NodaTime.IDateTimeZoneProvider.html">IDateTimeZoneProvider</a></td>
+        <td></td>
         <td><span class="parametername">zoneProvider</span></td>
         <td>Time zone provider, used when parsing text which contains a time zone identifier.</td>
       </tr>
@@ -965,7 +965,7 @@ resolver.
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ZonedDateTimePattern WithResolver(ZoneLocalMappingResolver resolver)</code></pre>
+    <pre><code class="lang-csharp hljs">public ZonedDateTimePattern WithResolver(ZoneLocalMappingResolver? resolver)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -978,7 +978,7 @@ resolver.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.TimeZones.ZoneLocalMappingResolver.html">ZoneLocalMappingResolver</a></td>
+        <td></td>
         <td><span class="parametername">resolver</span></td>
         <td>The new local mapping resolver to use.</td>
       </tr>
@@ -1062,7 +1062,7 @@ time zone provider.
   </div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ZonedDateTimePattern WithZoneProvider(IDateTimeZoneProvider newZoneProvider)</code></pre>
+    <pre><code class="lang-csharp hljs">public ZonedDateTimePattern WithZoneProvider(IDateTimeZoneProvider? newZoneProvider)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1075,7 +1075,7 @@ time zone provider.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="NodaTime.IDateTimeZoneProvider.html">IDateTimeZoneProvider</a></td>
+        <td></td>
         <td><span class="parametername">newZoneProvider</span></td>
         <td>The new time zone provider to use.</td>
       </tr>
