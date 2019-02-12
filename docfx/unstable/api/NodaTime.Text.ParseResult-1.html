@@ -246,7 +246,7 @@ otherwise.
     <tbody>
       <tr>
         <td><span class="xref">T</span></td>
-        <td>The result of the parsing operation if it was successful.</td>
+        <td>The result of the parsing operation if it was successful. (The value returned is never null.)</td>
       </tr>
     </tbody>
   </table>
@@ -304,7 +304,7 @@ if it&apos;s a success result.</td>
       <tr>
         <td><a class="xref" href="NodaTime.Text.ParseResult-1.html">ParseResult</a>&lt;TTarget&gt;</td>
         <td>A ParseResult for the target type, either with a value obtained by applying the specified
-projection to the value in this result, or with the same error as this result. (The value returned is never null.)</td>
+projection to the value in this result, or with the same error as this result.</td>
       </tr>
     </tbody>
   </table>
@@ -366,7 +366,7 @@ This parse result must already be an error result.
     <tbody>
       <tr>
         <td><a class="xref" href="NodaTime.Text.ParseResult-1.html">ParseResult</a>&lt;TTarget&gt;</td>
-        <td>A ParseResult for the target type, with the same error as this result. (The value returned is never null.)</td>
+        <td>A ParseResult for the target type, with the same error as this result.</td>
       </tr>
     </tbody>
   </table>
@@ -430,7 +430,7 @@ caused the parse to fail.</td>
     <tbody>
       <tr>
         <td><a class="xref" href="NodaTime.Text.ParseResult-1.html">ParseResult</a>&lt;T&gt;</td>
-        <td>A ParseResult representing a failed parsing operation. (The value returned is never null.)</td>
+        <td>A ParseResult representing a failed parsing operation.</td>
       </tr>
     </tbody>
   </table>
@@ -497,13 +497,28 @@ Produces a ParseResult which represents a successful parse operation.
     <tbody>
       <tr>
         <td><a class="xref" href="NodaTime.Text.ParseResult-1.html">ParseResult</a>&lt;T&gt;</td>
-        <td>A ParseResult representing a successful parsing operation. (The value returned is never null.)</td>
+        <td>A ParseResult representing a successful parsing operation.</td>
       </tr>
     </tbody>
   </table>
   <h5 id="NodaTime_Text_ParseResult_1_ForValue__0__remarks">Remarks</h5>
   <div class="markdown level1 remarks">When T is a reference type, <code data-dev-comment-type="paramref" class="paramref">value</code> should not be null,
 but this isn&apos;t currently checked.</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><span class="paramref">value</span> is null.</td>
+      </tr>
+    </tbody>
+  </table>
   <a id="NodaTime_Text_ParseResult_1_GetValueOrThrow_" data-uid="NodaTime.Text.ParseResult`1.GetValueOrThrow*"></a>
   <h4 id="NodaTime_Text_ParseResult_1_GetValueOrThrow" data-uid="NodaTime.Text.ParseResult`1.GetValueOrThrow">GetValueOrThrow()</h4>
   <div class="markdown level1 summary">
@@ -592,6 +607,21 @@ the specified failure value of T or the successful parse result value.
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td>True if this parse result was successful, or false otherwise.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><span class="paramref">failureValue</span> is null.</td>
       </tr>
     </tbody>
   </table>

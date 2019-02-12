@@ -106,7 +106,7 @@
             <summary>
             Indicates that the parameter doesn't conform to simple NotNull/CanBeNull
             behaviour, e.g. for IPattern{T}.Parse, where the parameter shouldn't be null,
-            but the result will be a failed ParseResult rather than an ArgumentNulLException.
+            but the result will be a failed ParseResult rather than an ArgumentNullException.
             </summary>
         </member>
         <member name="T:NodaTime.Annotations.TestExemptionAttribute">
@@ -12358,7 +12358,12 @@
             <inheritdoc />
         </member>
         <member name="M:NodaTime.TimeZones.Cldr.MapZone.ToString">
-            <inheritdoc />
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            The value of the current instance, for diagnostic purposes.
+            </returns>
         </member>
         <member name="T:NodaTime.TimeZones.Cldr.NamespaceDoc">
             <summary>
@@ -15852,29 +15857,6 @@
         <member name="M:NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)">
             <inheritdoc />
         </member>
-        <member name="T:JetBrains.Annotations.CanBeNullAttribute">
-            <summary>
-            Indicates that the value of the marked element could be <c>null</c> sometimes,
-            so the check for <c>null</c> is necessary before its usage
-            </summary>
-            <example><code>
-            [CanBeNull] public object Test() { return null; }
-            public void UseTest() {
-              var p = Test();
-              var s = p.ToString(); // Warning: Possible 'System.NullReferenceException'
-            }
-            </code></example>
-        </member>
-        <member name="T:JetBrains.Annotations.NotNullAttribute">
-            <summary>
-            Indicates that the value of the marked element could never be <c>null</c>
-            </summary>
-            <example><code>
-            [NotNull] public object Foo() {
-              return null; // Warning: Possible 'null' assignment
-            }
-            </code></example>
-        </member>
         <member name="T:JetBrains.Annotations.StringFormatMethodAttribute">
             <summary>
             Indicates that the marked method builds string by format pattern and (optional) arguments.
@@ -15950,68 +15932,6 @@
             public bool TryParse(string s, out Person result)
             </code></item>
             </list></examples>
-        </member>
-        <member name="T:JetBrains.Annotations.LocalizationRequiredAttribute">
-            <summary>
-            Indicates that marked element should be localized or not
-            </summary>
-            <example><code>
-            [LocalizationRequiredAttribute(true)]
-            public class Foo {
-              private string str = "my string"; // Warning: Localizable string
-            }
-            </code></example>
-        </member>
-        <member name="T:JetBrains.Annotations.UsedImplicitlyAttribute">
-            <summary>
-            Indicates that the marked symbol is used implicitly
-            (e.g. via reflection, in external library), so this symbol
-            will not be marked as unused (as well as by other usage inspections)
-            </summary>
-        </member>
-        <member name="T:JetBrains.Annotations.MeansImplicitUseAttribute">
-            <summary>
-            Should be used on attributes and causes ReSharper
-            to not mark symbols marked with such attributes as unused
-            (as well as by other usage inspections)
-            </summary>
-        </member>
-        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.Access">
-            <summary>Only entity marked with attribute considered used</summary>
-        </member>
-        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.Assign">
-            <summary>Indicates implicit assignment to a member</summary>
-        </member>
-        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature">
-            <summary>
-            Indicates implicit instantiation of a type with fixed constructor signature.
-            That means any unused constructor parameters won't be reported as such.
-            </summary>
-        </member>
-        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.InstantiatedNoFixedConstructorSignature">
-            <summary>Indicates implicit instantiation of a type</summary>
-        </member>
-        <member name="T:JetBrains.Annotations.ImplicitUseTargetFlags">
-            <summary>
-            Specify what is considered used implicitly
-            when marked with <see cref="T:JetBrains.Annotations.MeansImplicitUseAttribute"/>
-            or <see cref="T:JetBrains.Annotations.UsedImplicitlyAttribute"/>
-            </summary>
-        </member>
-        <member name="F:JetBrains.Annotations.ImplicitUseTargetFlags.Members">
-            <summary>Members of entity marked with attribute are considered used</summary>
-        </member>
-        <member name="F:JetBrains.Annotations.ImplicitUseTargetFlags.WithMembers">
-            <summary>Entity marked with attribute and all its members considered used</summary>
-        </member>
-        <member name="T:JetBrains.Annotations.InstantHandleAttribute">
-            <summary>
-            Tells code analysis engine if the parameter is completely handled
-            when the invoked method is on stack. If the parameter is a delegate,
-            indicates that delegate is executed while the method is executed.
-            If the parameter is an enumerable, indicates that it is enumerated
-            while the method is executed
-            </summary>
         </member>
         <member name="T:JetBrains.Annotations.PureAttribute">
             <summary>
