@@ -2,7 +2,7 @@
 
 # This script populates the history directory from scratch.
 # The directory is stored as an orphan branch called 'history'
-# in the https://github.com/nodatime/nodatime repo.
+# in the https://github.com/nodatime/nodatime.org repo.
 #
 # The aim is that scripts such as buildapi.sh can just
 # fetch the branch (with a depth of 1) and use it as-is.
@@ -41,7 +41,7 @@ echo "Removing old history directory"
 rm -rf history
 
 echo "Cloning current history branch"
-git clone https://github.com/nodatime/nodatime.git -q -b history history
+git clone https://github.com/nodatime/nodatime.org.git -q -b history history
 
 cd history
 
