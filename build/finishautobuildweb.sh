@@ -14,6 +14,6 @@ echo "Build and test successful. Pushing."
  cp build/deployment/Dockerfile src/NodaTime.Web/bin/Release/netcoreapp2.2/publish;
  gcloud.cmd container builds submit \
    --config=build/deployment/cloudbuild.yaml \
-   --substitutions=COMMIT_SHA="$commit" \
+   --substitutions=COMMIT_SHA="$combined_commit" \
    src/NodaTime.Web/bin/Release/netcoreapp2.2/publish)
 
