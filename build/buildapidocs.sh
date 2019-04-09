@@ -31,7 +31,7 @@ echo "Building metadata for current branch"
 mkdir tmp/docfx/unstable
 # Note: this avoids copying the .git directory
 cp -r ../../nodatime/* tmp/docfx/unstable
-dotnet build tmp/docfx/unstable/src/NodaTime-All.sln
+dotnet build tmp/docfx/unstable/src/NodaTime.sln
  
 # Serialization
 mkdir -p tmp/docfx/serialization
@@ -74,7 +74,7 @@ dotnet run -p DocfxAnnotationGenerator -- \
 
 # Extract snippets from NodaTime.Demo (unstable only, for now)
 dotnet publish tmp/docfx/unstable/src/NodaTime.Demo
-dotnet run -p SnippetExtractor -- tmp/docfx/unstable/src/NodaTime-All.sln NodaTime.Demo tmp/docfx/obj/unstable/overwrite
+dotnet run -p SnippetExtractor -- tmp/docfx/unstable/src/NodaTime.sln NodaTime.Demo tmp/docfx/obj/unstable/overwrite
 
 echo "Running main docfx build"
 "$DOCFX" build tmp/docfx/docfx.json
