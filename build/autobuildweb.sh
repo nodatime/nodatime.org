@@ -39,7 +39,7 @@ fi
 # race condition, but it's very unlikely to cause a problem
 git clone https://github.com/nodatime/nodatime.git --depth 1 $output/nodatime
 git clone https://github.com/nodatime/nodatime.org.git --depth 1 $output/nodatime.org
-git clone https://github.com/nodatime/nodatime.serialization.git --depth 1 $output/nodatime.org
+git clone https://github.com/nodatime/nodatime.serialization.git --depth 1 $output/nodatime.serialization
 
 # Hand off to the second part of the build
 source $output/nodatime.org/build/finishautobuildweb.sh &> $output/nodatime.org/build/buildweb.log
