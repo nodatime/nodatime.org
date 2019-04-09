@@ -7,9 +7,8 @@ install_docfx
 
 if [[ ! -d history ]]
 then
-  # FIXME: This should probably be in nodatime.org
   echo "Cloning history branch"
-  git clone https://github.com/nodatime/nodatime.git -q --depth 1 -b history history
+  git clone https://github.com/nodatime/nodatime.org.git -q --depth 1 -b history history
 fi
 
 rm -rf tmp/docfx
