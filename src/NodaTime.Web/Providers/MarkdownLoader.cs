@@ -20,6 +20,7 @@ namespace NodaTime.Web.Providers
     public class MarkdownLoader
     {
         private const string NodaTypePrefix = "noda-type://";
+        private const string SerializationNodaTypePrefix = "noda-type://NodaTime.Serialization";
         private const string NodaPropertyPrefix = "noda-property://";
         private const string NodaNamespacePrefix = "noda-ns://";
         private static readonly Regex IssuePlaceholderPattern = new Regex(@"^issue \d+$");
@@ -106,21 +107,20 @@ namespace NodaTime.Web.Providers
 
         private static string ResolveUrl(string url)
         {
+            if (url.StartsWith(SerializationNodaTypePrefix))
+            {
+                var (type, anchor) = SplitAnchorUrl(NodaTypePrefix, url);
+                return $"/serialization/api/{type}.html{anchor}";
+            }
             if (url.StartsWith(NodaTypePrefix))
             {
-                url = url.Substring(NodaTypePrefix.Length);
-                int hashIndex = url.IndexOf('#');
-                string type = hashIndex < 0 ? url : url.Substring(0, hashIndex);
-                string anchor = hashIndex < 0 ? "" : url.Substring(hashIndex);
+                var (type, anchor) = SplitAnchorUrl(NodaTypePrefix, url);
                 return $"../api/{type}.html{anchor}";
             }
             else if (url.StartsWith(NodaNamespacePrefix))
             {
-                url = url.Substring(NodaNamespacePrefix.Length);
-                int hashIndex = url.IndexOf('#');
-                string type = hashIndex < 0 ? url : url.Substring(0, hashIndex);
-                string anchor = hashIndex < 0 ? "" : url.Substring(hashIndex);
-                return $"../api/{type}.html{anchor}";
+                var (ns, anchor) = SplitAnchorUrl(NodaNamespacePrefix, url);
+                return $"../api/{ns}.html{anchor}";
             }
             else if (url.StartsWith(NodaPropertyPrefix))
             {
@@ -128,6 +128,15 @@ namespace NodaTime.Web.Providers
                 int nameIndex = url.LastIndexOf('.');
                 string type = url.Substring(0, nameIndex);
                 return $"../api/{type}.html#{url.Replace(".", "_")}";
+            }
+
+            (string, string) SplitAnchorUrl(string prefix, string url)
+            {
+                url = url.Substring(prefix.Length);
+                int hashIndex = url.IndexOf('#');
+                string type = hashIndex < 0 ? url : url.Substring(0, hashIndex);
+                string anchor = hashIndex < 0 ? "" : url.Substring(hashIndex);
+                return (type, anchor);
             }
             return url;
         }
