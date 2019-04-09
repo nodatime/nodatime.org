@@ -44,7 +44,7 @@ cp docfx/docfx-unstable.json tmp/docfx/docfx.json
 "$DOCFX" metadata tmp/docfx/docfx.json -f --warningsAsErrors
 
 cp docfx/toc.yml tmp/docfx/obj/unstable
-cp docfx/toc.yml tmp/docfx/obj/serialization
+cp docfx/serialization-toc.yml tmp/docfx/obj/serialization/toc.yml
 
 echo "Building all tools"
 dotnet build Tools.sln
