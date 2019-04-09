@@ -26,8 +26,7 @@
 #   - Clone of the nodatime repo
 #   - Docfx metadata in "api" directory
 # - 2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x
-#   - Clone of the nodatime repo directory + Json.NET src 
-#     from the nodatime.serialization repo
+#   - Clone of the nodatime repo directory
 #   - Docfx metadata in "api" directory
 #   - Docfx snippets for 2.1 onwards
 # - packages
@@ -50,25 +49,11 @@ echo "Cleaning current directory"
 git rm -rf .
 git clean -df
 
-for version in 1.0.x 1.1.x 1.2.x 1.3.x 1.4.x
+for version in 1.0.x 1.1.x 1.2.x 1.3.x 1.4.x 2.0.x 2.1.x 2.2.x 2.3.x 2.4.x
 do
   echo "Cloning $version"
   git clone https://github.com/nodatime/nodatime.git -q --depth 1 -b $version $version
   rm -rf $version/.git
-done
-
-echo "Cloning serialization (for NodaTime.Serialization.JsonNet)"
-# Not: not depth 1 as we want to check out specific tags
-git clone https://github.com/nodatime/nodatime.serialization.git -q serialization
-git -C serialization checkout NodaTime.Serialization.JsonNet-2.0.0
-
-# 2.x, which has split repositories
-for version in 2.0.x 2.1.x 2.2.x 2.3.x 2.4.x
-do 
-  echo "Cloning $version main repo"
-  git clone https://github.com/nodatime/nodatime.git -q --depth 1 -b $version $version
-  rm -rf $version/.git
-  cp -r serialization/src/NodaTime.Serialization.JsonNet $version/src
 done
 
 # Preserve previous snippets for 2.1-2.3
@@ -76,13 +61,10 @@ git checkout HEAD -- 2.1.x/overwrite/snippets.md
 git checkout HEAD -- 2.2.x/overwrite/snippets.md
 git checkout HEAD -- 2.3.x/overwrite/snippets.md
 
-rm -rf serialization
-
 echo "Preparing for docfx of 2.0.x"
 cd 2.0.x
 dotnet restore src/NodaTime
 dotnet restore src/NodaTime.Testing
-dotnet restore src/NodaTime.Serialization.JsonNet
 cd ..
 
 echo "Preparing for docfx of 2.1.x"
@@ -90,7 +72,6 @@ cd 2.1.x
 dotnet restore src/NodaTime
 dotnet restore src/NodaTime.Demo
 dotnet restore src/NodaTime.Testing
-dotnet restore src/NodaTime.Serialization.JsonNet
 dotnet restore build/SnippetExtractor
 cd ..
 
@@ -99,7 +80,6 @@ cd 2.2.x
 dotnet restore src/NodaTime
 dotnet restore src/NodaTime.Demo
 dotnet restore src/NodaTime.Testing
-dotnet restore src/NodaTime.Serialization.JsonNet
 dotnet restore build/SnippetExtractor
 cd ..
 
@@ -108,7 +88,6 @@ cd 2.3.x
 dotnet restore src/NodaTime
 dotnet restore src/NodaTime.Demo
 dotnet restore src/NodaTime.Testing
-dotnet restore src/NodaTime.Serialization.JsonNet
 dotnet restore build/SnippetExtractor
 cd ..
 
@@ -117,47 +96,34 @@ cd 2.4.x
 dotnet restore src/NodaTime
 dotnet restore src/NodaTime.Demo
 dotnet restore src/NodaTime.Testing
-dotnet restore src/NodaTime.Serialization.JsonNet
 dotnet restore build/SnippetExtractor
 cd ..
 
 echo "Fetching nuget packages"
 mkdir packages
 # NodaTime
-wget --quiet -Opackages/NodaTime-1.0.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.0.0
-wget --quiet -Opackages/NodaTime-1.1.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.1.0
-wget --quiet -Opackages/NodaTime-1.2.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.2.0
-wget --quiet -Opackages/NodaTime-1.3.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.3.2
-wget --quiet -Opackages/NodaTime-1.4.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.4.0
-wget --quiet -Opackages/NodaTime-2.0.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.0.0
-wget --quiet -Opackages/NodaTime-2.1.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.1.0
-wget --quiet -Opackages/NodaTime-2.2.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.2.0
-wget --quiet -Opackages/NodaTime-2.3.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.3.0
-wget --quiet -Opackages/NodaTime-2.4.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.4.0
+curl -sSL -o packages/NodaTime-1.0.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.0.0
+curl -sSL -o packages/NodaTime-1.1.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.1.0
+curl -sSL -o packages/NodaTime-1.2.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.2.0
+curl -sSL -o packages/NodaTime-1.3.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.3.2
+curl -sSL -o packages/NodaTime-1.4.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.4.0
+curl -sSL -o packages/NodaTime-2.0.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.0.0
+curl -sSL -o packages/NodaTime-2.1.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.1.0
+curl -sSL -o packages/NodaTime-2.2.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.2.0
+curl -sSL -o packages/NodaTime-2.3.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.3.0
+curl -sSL -o packages/NodaTime-2.4.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.4.0
 
 # NodaTime.Testing
-wget --quiet -Opackages/NodaTime.Testing-1.0.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.0.0
-wget --quiet -Opackages/NodaTime.Testing-1.1.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.1.0
-wget --quiet -Opackages/NodaTime.Testing-1.2.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.2.0
-wget --quiet -Opackages/NodaTime.Testing-1.3.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.3.2
-wget --quiet -Opackages/NodaTime.Testing-1.4.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.4.0
-wget --quiet -Opackages/NodaTime.Testing-2.0.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.0.0
-wget --quiet -Opackages/NodaTime.Testing-2.1.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.1.0
-wget --quiet -Opackages/NodaTime.Testing-2.2.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.2.0
-wget --quiet -Opackages/NodaTime.Testing-2.3.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.3.0
-wget --quiet -Opackages/NodaTime.Testing-2.4.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.4.0
-
-# NodaTime.Serialization.JsonNet
-wget --quiet -Opackages/NodaTime.Serialization.JsonNet-1.2.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Serialization.JsonNet/1.2.0
-wget --quiet -Opackages/NodaTime.Serialization.JsonNet-1.3.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Serialization.JsonNet/1.3.2
-wget --quiet -Opackages/NodaTime.Serialization.JsonNet-1.4.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Serialization.JsonNet/1.4.0
-wget --quiet -Opackages/NodaTime.Serialization.JsonNet-2.0.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Serialization.JsonNet/2.0.0
-# TODO: Fix this grotty hack. It's basically pretending that we have a 2.1 (etc) serialization package,
-# for the sake of later tools.
-cp packages/NodaTime.Serialization.JsonNet-2.0.x.nupkg packages/NodaTime.Serialization.JsonNet-2.1.x.nupkg 
-cp packages/NodaTime.Serialization.JsonNet-2.0.x.nupkg packages/NodaTime.Serialization.JsonNet-2.2.x.nupkg 
-cp packages/NodaTime.Serialization.JsonNet-2.0.x.nupkg packages/NodaTime.Serialization.JsonNet-2.3.x.nupkg 
-cp packages/NodaTime.Serialization.JsonNet-2.0.x.nupkg packages/NodaTime.Serialization.JsonNet-2.4.x.nupkg
+curl -sSL -o packages/NodaTime.Testing-1.0.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.0.0
+curl -sSL -o packages/NodaTime.Testing-1.1.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.1.0
+curl -sSL -o packages/NodaTime.Testing-1.2.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.2.0
+curl -sSL -o packages/NodaTime.Testing-1.3.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.3.2
+curl -sSL -o packages/NodaTime.Testing-1.4.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.4.0
+curl -sSL -o packages/NodaTime.Testing-2.0.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.0.0
+curl -sSL -o packages/NodaTime.Testing-2.1.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.1.0
+curl -sSL -o packages/NodaTime.Testing-2.2.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.2.0
+curl -sSL -o packages/NodaTime.Testing-2.3.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.3.0
+curl -sSL -o packages/NodaTime.Testing-2.4.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.4.0
 
 # Docfx metadata
 for version in 1.0.x 1.1.x 1.2.x 1.3.x 1.4.x 2.0.x 2.1.x 2.2.x 2.3.x 2.4.x

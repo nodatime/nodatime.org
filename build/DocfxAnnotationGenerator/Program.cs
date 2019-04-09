@@ -11,7 +11,7 @@ namespace DocfxAnnotationGenerator
 {
     class Program
     {
-        private static readonly string[] packages = { "NodaTime", "NodaTime.Testing", "NodaTime.Serialization.JsonNet" };
+        private static readonly string[] packages = { "NodaTime", "NodaTime.Testing" };
         private static readonly string[] unstableFrameworks = { "netstandard2.0" };
 
         private readonly IEnumerable<Release> releases;
@@ -57,7 +57,6 @@ namespace DocfxAnnotationGenerator
             var expectedMissingUids = new[]
             {
                 "NodaTime.TimeZones.BclDateTimeZoneSource.#ctor",
-                "NodaTime.Serialization.JsonNet.NodaConverterBase`1.#ctor",
                 "NodaTime.Text.CompositePatternBuilder`1.#ctor"
             };
 
