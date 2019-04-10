@@ -75,6 +75,10 @@ dotnet run -p DocfxAnnotationGenerator -- \
 dotnet publish tmp/docfx/unstable/src/NodaTime.Demo
 dotnet run -p SnippetExtractor -- tmp/docfx/unstable/src/NodaTime.sln NodaTime.Demo tmp/docfx/obj/unstable/overwrite
 
+# Put common overwrite files where they can be used by all versions
+mkdir -p tmp/docfx/commonoverwrite
+cp docfx/namespaces.md tmp/docfx/commonoverwrite
+
 echo "Running main docfx build"
 "$DOCFX" build tmp/docfx/docfx.json
 cp docfx/logo.svg tmp/docfx/_site
