@@ -1,0 +1,77 @@
+﻿@using NodaTime.TimeZones
+@using System.Globalization
+@model (List<string> Versions, TzdbDateTimeZoneSource Source)
+@{
+    ViewData["Title"] = "Iana";
+    var source = Model.Source;
+    var locations = source.ZoneLocations?.ToDictionary(location => location.ZoneId) ?? new Dictionary<string, TzdbZoneLocation>();
+}
+
+<div class="row">
+    <div class="large-12 columns">
+        <h1>IANA (TZDB) time zone information</h1>
+
+        <form method="get">
+            <p>
+                Select a time zone data version from the drop-down below to see the list of zones from that version.
+            </p>
+
+            <p> Data version:    <select name="version" onchange="this.form.submit()" style="width: 10em">
+                    @foreach (var version in Model.Versions)
+                    {
+                        @if (version == source.TzdbVersion)
+                        {
+                            <option value="@version" selected="selected">@version</option>
+                        }
+                        else
+                        {
+                            <option value="@version">@version</option>
+                        }
+                    }
+                </select>
+            </p>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-12 columns">
+        <p>
+            IANA Version: @source.TzdbVersion <br />
+            Full source version ID: @source.VersionId <br />
+            <a href="/tzvalidate/generate?version=@source.TzdbVersion">Full tzvalidate data</a>
+        </p>
+        <table>
+            <tr>
+                <th>Zone ID</th>
+                <th width="40%">Aliases</th>
+                <th>Country name</th>
+                <th>Country code</th>
+                <th>Lat / Long</th>
+                <th>Comment</th>
+            </tr>
+            @foreach (var id in source.GetIds().Where(x => source.CanonicalIdMap[x] == x).OrderBy(x => x))
+            {
+                locations.TryGetValue(id, out var location);
+                var aliases = source.Aliases[id];
+                <tr>
+                    <td>@id</td>
+                    <td>
+                        @if (aliases.Any())
+                        {
+                            @(string.Join(", ", aliases))
+                        }
+                    </td>
+                    <td>@location?.CountryName</td>
+                    <td>@location?.CountryCode</td>
+                    <td>@if (location != null)
+                    {
+                        <a href="https://www.google.com/maps/search/?api=1&query=@string.Format(CultureInfo.InvariantCulture, "{0},{1}", location.Latitude, location.Longitude)">@Html.Raw($"({location.Latitude:0.000},&nbsp;{location.Longitude:0.000})")</a>
+                    }
+                    </td>
+                    <td>@location?.Comment</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
