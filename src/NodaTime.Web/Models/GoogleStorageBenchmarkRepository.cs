@@ -25,10 +25,9 @@ namespace NodaTime.Web.Models
 
         public GoogleStorageBenchmarkRepository(
             IApplicationLifetime lifetime,
-            ILoggerFactory loggerFactory,
-            GoogleCredential credential)
+            ILoggerFactory loggerFactory)
         {
-            StorageClient client = StorageClient.Create(credential);
+            StorageClient client = StorageClient.Create();
             cache = new TimerCache<CacheValue>(lifetime, CacheRefreshTime, () => CacheValue.Refresh(cache?.Value ?? CacheValue.Empty, client), loggerFactory,
                 CacheValue.Empty);
             cache.Start();
