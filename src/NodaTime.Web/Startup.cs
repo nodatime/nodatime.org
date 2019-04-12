@@ -77,9 +77,6 @@ namespace NodaTime.Web
 
             if (UseGoogleCloudStorage)
             {
-                // Eagerly fetch the GoogleCredential so that we're not using Task.Result in
-                // request processing.
-                services.AddSingleton(GoogleCredentialProvider.FetchCredential(Configuration));
                 services.AddSingleton<IReleaseRepository, GoogleStorageReleaseRepository>();
                 services.AddSingleton<ITzdbRepository, GoogleStorageTzdbRepository>();
                 services.AddSingleton<IBenchmarkRepository, GoogleStorageBenchmarkRepository>();

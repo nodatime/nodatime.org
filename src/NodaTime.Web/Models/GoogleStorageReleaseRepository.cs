@@ -26,10 +26,9 @@ namespace NodaTime.Web.Models
 
         public GoogleStorageReleaseRepository(
             IApplicationLifetime lifetime,
-            ILoggerFactory loggerFactory,
-            GoogleCredential credential)
+            ILoggerFactory loggerFactory)
         {
-            client = StorageClient.Create(credential);
+            client = StorageClient.Create();
             cache = new TimerCache<CacheValue>(lifetime, CacheRefreshTime, FetchReleases, loggerFactory, CacheValue.Empty);
             cache.Start();
         }

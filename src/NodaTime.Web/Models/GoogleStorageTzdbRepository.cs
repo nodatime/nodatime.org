@@ -26,10 +26,9 @@ namespace NodaTime.Web.Models
 
         public GoogleStorageTzdbRepository(
             IApplicationLifetime lifetime,
-            ILoggerFactory loggerFactory,
-            GoogleCredential credential)
+            ILoggerFactory loggerFactory)
         {
-            client = StorageClient.Create(credential);
+            client = StorageClient.Create();
             cache = new TimerCache<CacheEntry>(lifetime, CacheRefreshTime, FetchReleases, loggerFactory, CacheEntry.Empty);
             cache.Start();
         }
