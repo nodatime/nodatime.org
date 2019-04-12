@@ -6,13 +6,14 @@ using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Storage.V1;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
+using NodaTime.Web.Models;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace NodaTime.Web.Models
+namespace NodaTime.Web.Services
 {
     public class GoogleStorageTzdbRepository : ITzdbRepository
     {

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace NodaTime.Web.Models
+namespace NodaTime.Web.Services
 {
     /// <summary>
     /// Benchmark repository that loads benchmarks from the file system.

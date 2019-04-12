@@ -15,7 +15,7 @@ using System;
 using CommonMark.Syntax;
 using System.Text.RegularExpressions;
 
-namespace NodaTime.Web.Providers
+namespace NodaTime.Web.Services
 {
     public class MarkdownLoader
     {

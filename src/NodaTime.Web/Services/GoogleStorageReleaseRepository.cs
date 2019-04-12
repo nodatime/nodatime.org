@@ -1,16 +1,16 @@
 ﻿// Copyright 2016 The Noda Time Authors. All rights reserved.
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
-using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Storage.V1;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using NodaTime.Text;
+using NodaTime.Web.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace NodaTime.Web.Models
+namespace NodaTime.Web.Services
 {
     public class GoogleStorageReleaseRepository : IReleaseRepository
     {
