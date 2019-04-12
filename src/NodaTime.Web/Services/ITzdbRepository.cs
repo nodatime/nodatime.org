@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using NodaTime.Web.Models;
+using System.Collections.Generic;
 
-namespace NodaTime.Web.Models
+namespace NodaTime.Web.Services
 {
     public interface ITzdbRepository
     {

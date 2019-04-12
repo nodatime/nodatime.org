@@ -3,7 +3,7 @@
 // as found in the LICENSE.txt file.
 using CommonMark;
 using Microsoft.Extensions.FileProviders;
-using NodaTime.Web.Providers;
+using NodaTime.Web.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;

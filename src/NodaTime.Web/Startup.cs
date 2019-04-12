@@ -21,8 +21,7 @@ using Microsoft.Net.Http.Headers;
 using NodaTime.Web.Configuration;
 using NodaTime.Web.Controllers;
 using NodaTime.Web.Middleware;
-using NodaTime.Web.Models;
-using NodaTime.Web.Providers;
+using NodaTime.Web.Services;
 using System;
 using System.IO;
 

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 
-namespace NodaTime.Web.Models
+namespace NodaTime.Web.Services
 {
     public class TimerCache<T>
     {

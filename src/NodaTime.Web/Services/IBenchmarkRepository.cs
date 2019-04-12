@@ -4,7 +4,7 @@
 using NodaTime.Benchmarks;
 using System.Collections.Generic;
 
-namespace NodaTime.Web.Models
+namespace NodaTime.Web.Services
 {
     public interface IBenchmarkRepository
     {
