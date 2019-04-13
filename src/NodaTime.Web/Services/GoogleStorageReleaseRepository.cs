@@ -28,13 +28,14 @@ namespace NodaTime.Web.Services
             IStorageRepository storage)
         {
             this.storage = storage;
-            cache = new TimerCache<CacheValue>("releases", lifetime, CacheRefreshTime, FetchReleases, loggerFactory, CacheValue.Empty);
+            cache = new TimerCache<CacheValue>("releases", lifetime, CacheRefreshTime, FetchReleases, loggerFactory, FetchReleases());
             cache.Start();
         }
 
-        public IList<ReleaseDownload> GetReleases() => (cache.Value ?? FetchReleases()).Releases;
-
-        public ReleaseDownload LatestRelease => (cache.Value ?? FetchReleases()).LatestRelease;
+        public IReadOnlyList<ReleaseDownload> AllReleases => cache.Value.Releases;
+        public IReadOnlyList<string> CurrentMinorVersions => cache.Value.CurrentMinorVersions;
+        public IReadOnlyList<string> OldMinorVersions => cache.Value.OldMinorVersions;
+        public ReleaseDownload LatestRelease => cache.Value.LatestRelease;
 
         private CacheValue FetchReleases()
         {
@@ -66,9 +67,8 @@ namespace NodaTime.Web.Services
         {
             public List<ReleaseDownload> Releases { get; }
             public ReleaseDownload LatestRelease { get; }
-
-            public static CacheValue Empty { get; } =
-                new CacheValue(new List<ReleaseDownload> { new ReleaseDownload(null, "Dummy", "", "", new LocalDate(2000, 1, 1)) });
+            public List<string> CurrentMinorVersions { get; }
+            public List<string> OldMinorVersions { get; }
 
             public CacheValue(List<ReleaseDownload> releases)
             {
@@ -80,6 +80,14 @@ namespace NodaTime.Web.Services
                     .Where(r => !r.File.Contains("-src") && r.Version?.Prerelease == null)
                     .OrderByDescending(r => r.Version)
                     .First();
+                var allMinorReleasesGroupedByMajor = releases
+                    .Where(r => !r.File.Contains("-src") && r.Version != null && r.Version.Prerelease == null)
+                    .Select(r => new { r.Version!.Major, r.Version!.Minor })
+                    .Distinct()
+                    .OrderByDescending(v => v.Major).ThenByDescending(v => v.Minor)
+                    .GroupBy(v => v.Major);
+                CurrentMinorVersions = allMinorReleasesGroupedByMajor.Select(g => g.First()).Select(v => $"{v.Major}.{v.Minor}.x").ToList();
+                OldMinorVersions = allMinorReleasesGroupedByMajor.SelectMany(g => g.Skip(1)).Select(v => $"{v.Major}.{v.Minor}.x").ToList();
             }
         }
     }
