@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using NodaTime.TimeZones;
 using NodaTime.Web.Models;
 using NodaTime.Web.Services;
+using NodaTime.Web.ViewModels;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -34,13 +35,8 @@ namespace NodaTime.Web.Controllers
         public IActionResult Error() => View();
 
         private static readonly Regex NamePattern = new Regex(@"tzdb(\d+.)\.nzd");
-        public IActionResult IanaTimeZones(string? version = null)
+        public IActionResult IanaTimeZones(string? version = null, string? format = null)
         {
-            var releases = repository.GetReleases()
-                .Select(release => NamePattern.Match(release.Name))
-                .Where(m => m.Success)
-                .Select(m => m.Groups[1].Value)
-                .ToList();
             var source = TzdbDateTimeZoneSource.Default;
             if (version != null)
             {
@@ -51,8 +47,18 @@ namespace NodaTime.Web.Controllers
                 }
                 source = TzdbDateTimeZoneSource.FromStream(release.GetContent());
             }
+            var releaseModel = IanaRelease.FromTzdbDateTimeZoneSource(source);
+            if (format == "json")
+            {
+                return Json(releaseModel);
+            }
 
-            var model = (releases, source);
+            var releases = repository.GetReleases()
+                .Select(release => NamePattern.Match(release.Name))
+                .Where(m => m.Success)
+                .Select(m => m.Groups[1].Value)
+                .ToList();
+            var model = (releases, releaseModel);
             return View(model);
         }
     }
