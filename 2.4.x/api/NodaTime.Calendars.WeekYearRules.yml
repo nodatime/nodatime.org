@@ -1,0 +1,620 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Calendars.WeekYearRules
+  commentId: T:NodaTime.Calendars.WeekYearRules
+  id: WeekYearRules
+  parent: NodaTime.Calendars
+  children:
+  - NodaTime.Calendars.WeekYearRules.ForMinDaysInFirstWeek(System.Int32)
+  - NodaTime.Calendars.WeekYearRules.ForMinDaysInFirstWeek(System.Int32,NodaTime.IsoDayOfWeek)
+  - NodaTime.Calendars.WeekYearRules.FromCalendarWeekRule(System.Globalization.CalendarWeekRule,System.DayOfWeek)
+  - NodaTime.Calendars.WeekYearRules.Iso
+  langs:
+  - csharp
+  - vb
+  name: WeekYearRules
+  nameWithType: WeekYearRules
+  fullName: NodaTime.Calendars.WeekYearRules
+  type: Class
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Calendars/WeekYearRules.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: WeekYearRules
+    path: src/NodaTime/Calendars/WeekYearRules.cs
+    startLine: 15
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Calendars
+  summary: "\nFactory methods to construct week-year rules supported by Noda Time.\n"
+  example: []
+  syntax:
+    content: public static class WeekYearRules
+    content.vb: Public Module WeekYearRules
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: NodaTime.Calendars.WeekYearRules.Iso
+  commentId: P:NodaTime.Calendars.WeekYearRules.Iso
+  id: Iso
+  parent: NodaTime.Calendars.WeekYearRules
+  langs:
+  - csharp
+  - vb
+  name: Iso
+  nameWithType: WeekYearRules.Iso
+  fullName: NodaTime.Calendars.WeekYearRules.Iso
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Calendars/WeekYearRules.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Iso
+    path: src/NodaTime/Calendars/WeekYearRules.cs
+    startLine: 36
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Calendars
+  summary: "\nReturns an <xref href=\"NodaTime.Calendars.IWeekYearRule\" data-throw-if-not-resolved=\"false\"></xref> consistent with ISO-8601.\n"
+  remarks: "\n<p>\nIn the standard ISO-8601 week algorithm, the first week of the year\nis that in which at least 4 days are in the year. As a result of this\ndefinition, day 1 of the first week may be in the previous year. In ISO-8601,\nweeks always begin on a Monday, so this rule is equivalent to the first Thursday\nbeing in the first Monday-to-Sunday week of the year.\n</p>\n<p>\nFor example, January 1st 2011 was a Saturday, so only two days of that week\n(Saturday and Sunday) were in 2011. Therefore January 1st is part of\nweek 52 of week-year 2010. Conversely, December 31st 2012 is a Monday,\nso is part of week 1 of week-year 2013.\n</p>\n"
+  example: []
+  syntax:
+    content: public static IWeekYearRule Iso { get; }
+    parameters: []
+    return:
+      type: NodaTime.Calendars.IWeekYearRule
+      description: A <xref href="NodaTime.Calendars.IWeekYearRule" data-throw-if-not-resolved="false"></xref> consistent with ISO-8601.
+    content.vb: Public Shared ReadOnly Property Iso As IWeekYearRule
+  overload: NodaTime.Calendars.WeekYearRules.Iso*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.Calendars.WeekYearRules.ForMinDaysInFirstWeek(System.Int32)
+  commentId: M:NodaTime.Calendars.WeekYearRules.ForMinDaysInFirstWeek(System.Int32)
+  id: ForMinDaysInFirstWeek(System.Int32)
+  parent: NodaTime.Calendars.WeekYearRules
+  langs:
+  - csharp
+  - vb
+  name: ForMinDaysInFirstWeek(Int32)
+  nameWithType: WeekYearRules.ForMinDaysInFirstWeek(Int32)
+  fullName: NodaTime.Calendars.WeekYearRules.ForMinDaysInFirstWeek(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Calendars/WeekYearRules.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: ForMinDaysInFirstWeek
+    path: src/NodaTime/Calendars/WeekYearRules.cs
+    startLine: 58
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Calendars
+  summary: "\nCreates a week year rule where the boundary between one week-year and the next\nis parameterized in terms of how many days of the first week of the week\nyear have to be in the new calendar year. In rules created by this method, \nweeks are always deemed to begin on an Monday.\n"
+  remarks: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">minDaysInFirstWeek</code> determines when the first week of the week-year starts.\nFor any given calendar year X, consider the Monday-to-Sunday week that includes the first day of the\ncalendar year. Usually, some days of that week are in calendar year X, and some are in calendar year \nX-1. If <code data-dev-comment-type=\"paramref\" class=\"paramref\">minDaysInFirstWeek</code> or more of the days are in year X, then the week is\ndeemed to be the first week of week-year X. Otherwise, the week is deemed to be the last week of\nweek-year X-1, and the first week of week-year X starts on the following Monday.\n"
+  example: []
+  syntax:
+    content: public static IWeekYearRule ForMinDaysInFirstWeek(int minDaysInFirstWeek)
+    parameters:
+    - id: minDaysInFirstWeek
+      type: System.Int32
+      description: >
+        The minimum number of days in the first Monday-to-Sunday week
+
+        which have to be in the new calendar year for that week to count as being in that week-year.
+
+        Must be in the range 1 to 7 inclusive.
+    return:
+      type: NodaTime.Calendars.IWeekYearRule
+      description: >-
+        A <xref href="NodaTime.Calendars.SimpleWeekYearRule" data-throw-if-not-resolved="false"></xref> with the specified minimum number of days in the first
+
+        week.
+    content.vb: Public Shared Function ForMinDaysInFirstWeek(minDaysInFirstWeek As Integer) As IWeekYearRule
+  overload: NodaTime.Calendars.WeekYearRules.ForMinDaysInFirstWeek*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Calendars.WeekYearRules.ForMinDaysInFirstWeek(System.Int32,NodaTime.IsoDayOfWeek)
+  commentId: M:NodaTime.Calendars.WeekYearRules.ForMinDaysInFirstWeek(System.Int32,NodaTime.IsoDayOfWeek)
+  id: ForMinDaysInFirstWeek(System.Int32,NodaTime.IsoDayOfWeek)
+  parent: NodaTime.Calendars.WeekYearRules
+  langs:
+  - csharp
+  - vb
+  name: ForMinDaysInFirstWeek(Int32, IsoDayOfWeek)
+  nameWithType: WeekYearRules.ForMinDaysInFirstWeek(Int32, IsoDayOfWeek)
+  fullName: NodaTime.Calendars.WeekYearRules.ForMinDaysInFirstWeek(System.Int32, NodaTime.IsoDayOfWeek)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Calendars/WeekYearRules.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: ForMinDaysInFirstWeek
+    path: src/NodaTime/Calendars/WeekYearRules.cs
+    startLine: 82
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Calendars
+  summary: "\nCreates a week year rule where the boundary between one week-year and the next\nis parameterized in terms of how many days of the first week of the week\nyear have to be in the new calendar year, and also by which day is deemed\nto be the first day of the week.\n"
+  remarks: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">minDaysInFirstWeek</code> determines when the first week of the week-year starts.\nFor any given calendar year X, consider the week that includes the first day of the\ncalendar year. Usually, some days of that week are in calendar year X, and some are in calendar year \nX-1. If <code data-dev-comment-type=\"paramref\" class=\"paramref\">minDaysInFirstWeek</code> or more of the days are in year X, then the week is\ndeemed to be the first week of week-year X. Otherwise, the week is deemed to be the last week of\nweek-year X-1, and the first week of week-year X starts on the following <code data-dev-comment-type=\"paramref\" class=\"paramref\">firstDayOfWeek</code>.\n"
+  example: []
+  syntax:
+    content: public static IWeekYearRule ForMinDaysInFirstWeek(int minDaysInFirstWeek, IsoDayOfWeek firstDayOfWeek)
+    parameters:
+    - id: minDaysInFirstWeek
+      type: System.Int32
+      description: >
+        The minimum number of days in the first week (starting on
+
+        <code data-dev-comment-type="paramref" class="paramref">firstDayOfWeek</code>) which have to be in the new calendar year for that week
+
+        to count as being in that week-year. Must be in the range 1 to 7 inclusive.
+    - id: firstDayOfWeek
+      type: NodaTime.IsoDayOfWeek
+      description: The first day of the week.
+    return:
+      type: NodaTime.Calendars.IWeekYearRule
+      description: >-
+        A <xref href="NodaTime.Calendars.SimpleWeekYearRule" data-throw-if-not-resolved="false"></xref> with the specified minimum number of days in the first
+
+        week and first day of the week.
+    content.vb: Public Shared Function ForMinDaysInFirstWeek(minDaysInFirstWeek As Integer, firstDayOfWeek As IsoDayOfWeek) As IWeekYearRule
+  overload: NodaTime.Calendars.WeekYearRules.ForMinDaysInFirstWeek*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Calendars.WeekYearRules.FromCalendarWeekRule(System.Globalization.CalendarWeekRule,System.DayOfWeek)
+  commentId: M:NodaTime.Calendars.WeekYearRules.FromCalendarWeekRule(System.Globalization.CalendarWeekRule,System.DayOfWeek)
+  id: FromCalendarWeekRule(System.Globalization.CalendarWeekRule,System.DayOfWeek)
+  parent: NodaTime.Calendars.WeekYearRules
+  langs:
+  - csharp
+  - vb
+  name: FromCalendarWeekRule(CalendarWeekRule, DayOfWeek)
+  nameWithType: WeekYearRules.FromCalendarWeekRule(CalendarWeekRule, DayOfWeek)
+  fullName: NodaTime.Calendars.WeekYearRules.FromCalendarWeekRule(System.Globalization.CalendarWeekRule, System.DayOfWeek)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Calendars/WeekYearRules.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: FromCalendarWeekRule
+    path: src/NodaTime/Calendars/WeekYearRules.cs
+    startLine: 102
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Calendars
+  summary: "\nCreates a rule which behaves the same way as the BCL\n<xref href=\"System.Globalization.Calendar.GetWeekOfYear(System.DateTime%2cSystem.Globalization.CalendarWeekRule%2cSystem.DayOfWeek)\" data-throw-if-not-resolved=\"false\"></xref>\nmethod.\n"
+  remarks: >
+    The BCL week year rules are subtly different to the ISO rules.
+
+    In particular, the last few days of the calendar year are always part of the same
+
+    week-year in the BCL rules, whereas in the ISO rules they can fall into the next
+
+    week-year. (The first few days of the calendar year can be part of the previous
+
+    week-year in both kinds of rule.) This means that in the BCL rules, some weeks
+
+    are incomplete, whereas ISO weeks are always exactly 7 days long.
+  example: []
+  syntax:
+    content: public static IWeekYearRule FromCalendarWeekRule(CalendarWeekRule calendarWeekRule, DayOfWeek firstDayOfWeek)
+    parameters:
+    - id: calendarWeekRule
+      type: System.Globalization.CalendarWeekRule
+      description: The BCL rule to emulate.
+    - id: firstDayOfWeek
+      type: System.DayOfWeek
+      description: The first day of the week to use in the rule.
+    return:
+      type: NodaTime.Calendars.IWeekYearRule
+      description: >-
+        A rule which behaves the same way as the BCL
+
+        <xref href="System.Globalization.Calendar.GetWeekOfYear(System.DateTime%2cSystem.Globalization.CalendarWeekRule%2cSystem.DayOfWeek)" data-throw-if-not-resolved="false"></xref>
+
+        method.
+    content.vb: Public Shared Function FromCalendarWeekRule(calendarWeekRule As CalendarWeekRule, firstDayOfWeek As DayOfWeek) As IWeekYearRule
+  overload: NodaTime.Calendars.WeekYearRules.FromCalendarWeekRule*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: NodaTime.Calendars
+  commentId: N:NodaTime.Calendars
+  name: NodaTime.Calendars
+  nameWithType: NodaTime.Calendars
+  fullName: NodaTime.Calendars
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NodaTime.Calendars.IWeekYearRule
+  commentId: T:NodaTime.Calendars.IWeekYearRule
+  parent: NodaTime.Calendars
+  name: IWeekYearRule
+  nameWithType: IWeekYearRule
+  fullName: NodaTime.Calendars.IWeekYearRule
+- uid: NodaTime.Calendars.WeekYearRules.Iso*
+  commentId: Overload:NodaTime.Calendars.WeekYearRules.Iso
+  name: Iso
+  nameWithType: WeekYearRules.Iso
+  fullName: NodaTime.Calendars.WeekYearRules.Iso
+- uid: NodaTime.Calendars.SimpleWeekYearRule
+  commentId: T:NodaTime.Calendars.SimpleWeekYearRule
+  isExternal: true
+- uid: NodaTime.Calendars.WeekYearRules.ForMinDaysInFirstWeek*
+  commentId: Overload:NodaTime.Calendars.WeekYearRules.ForMinDaysInFirstWeek
+  name: ForMinDaysInFirstWeek
+  nameWithType: WeekYearRules.ForMinDaysInFirstWeek
+  fullName: NodaTime.Calendars.WeekYearRules.ForMinDaysInFirstWeek
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: NodaTime.IsoDayOfWeek
+  commentId: T:NodaTime.IsoDayOfWeek
+  parent: NodaTime
+  name: IsoDayOfWeek
+  nameWithType: IsoDayOfWeek
+  fullName: NodaTime.IsoDayOfWeek
+- uid: NodaTime
+  commentId: N:NodaTime
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.Globalization.Calendar.GetWeekOfYear(System.DateTime,System.Globalization.CalendarWeekRule,System.DayOfWeek)
+  commentId: M:System.Globalization.Calendar.GetWeekOfYear(System.DateTime,System.Globalization.CalendarWeekRule,System.DayOfWeek)
+  isExternal: true
+- uid: NodaTime.Calendars.WeekYearRules.FromCalendarWeekRule*
+  commentId: Overload:NodaTime.Calendars.WeekYearRules.FromCalendarWeekRule
+  name: FromCalendarWeekRule
+  nameWithType: WeekYearRules.FromCalendarWeekRule
+  fullName: NodaTime.Calendars.WeekYearRules.FromCalendarWeekRule
+- uid: System.Globalization.CalendarWeekRule
+  commentId: T:System.Globalization.CalendarWeekRule
+  parent: System.Globalization
+  isExternal: true
+  name: CalendarWeekRule
+  nameWithType: CalendarWeekRule
+  fullName: System.Globalization.CalendarWeekRule
+- uid: System.DayOfWeek
+  commentId: T:System.DayOfWeek
+  parent: System
+  isExternal: true
+  name: DayOfWeek
+  nameWithType: DayOfWeek
+  fullName: System.DayOfWeek
+- uid: System.Globalization
+  commentId: N:System.Globalization
+  isExternal: true
+  name: System.Globalization
+  nameWithType: System.Globalization
+  fullName: System.Globalization
+shouldSkipMarkup: true

@@ -1,0 +1,2082 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.CalendarSystem
+  commentId: T:NodaTime.CalendarSystem
+  id: CalendarSystem
+  parent: NodaTime
+  children:
+  - NodaTime.CalendarSystem.Badi
+  - NodaTime.CalendarSystem.Coptic
+  - NodaTime.CalendarSystem.Eras
+  - NodaTime.CalendarSystem.ForId(System.String)
+  - NodaTime.CalendarSystem.GetAbsoluteYear(System.Int32,NodaTime.Calendars.Era)
+  - NodaTime.CalendarSystem.GetDaysInMonth(System.Int32,System.Int32)
+  - NodaTime.CalendarSystem.GetDaysInYear(System.Int32)
+  - NodaTime.CalendarSystem.GetHebrewCalendar(NodaTime.Calendars.HebrewMonthNumbering)
+  - NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)
+  - NodaTime.CalendarSystem.GetMaxYearOfEra(NodaTime.Calendars.Era)
+  - NodaTime.CalendarSystem.GetMinYearOfEra(NodaTime.Calendars.Era)
+  - NodaTime.CalendarSystem.GetMonthsInYear(System.Int32)
+  - NodaTime.CalendarSystem.Gregorian
+  - NodaTime.CalendarSystem.HebrewCivil
+  - NodaTime.CalendarSystem.HebrewScriptural
+  - NodaTime.CalendarSystem.Id
+  - NodaTime.CalendarSystem.Ids
+  - NodaTime.CalendarSystem.IslamicBcl
+  - NodaTime.CalendarSystem.IsLeapYear(System.Int32)
+  - NodaTime.CalendarSystem.Iso
+  - NodaTime.CalendarSystem.Julian
+  - NodaTime.CalendarSystem.MaxYear
+  - NodaTime.CalendarSystem.MinYear
+  - NodaTime.CalendarSystem.Name
+  - NodaTime.CalendarSystem.PersianArithmetic
+  - NodaTime.CalendarSystem.PersianAstronomical
+  - NodaTime.CalendarSystem.PersianSimple
+  - NodaTime.CalendarSystem.ToString
+  - NodaTime.CalendarSystem.UmAlQura
+  langs:
+  - csharp
+  - vb
+  name: CalendarSystem
+  nameWithType: CalendarSystem
+  fullName: NodaTime.CalendarSystem
+  type: Class
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: CalendarSystem
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 40
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nA calendar system maps the non-calendar-specific &quot;local time line&quot; to human concepts\nsuch as years, months and days.\n"
+  remarks: "\n<p>\nMany developers will never need to touch this class, other than to potentially ask a calendar\nhow many days are in a particular year/month and the like. Noda Time defaults to using the ISO-8601\ncalendar anywhere that a calendar system is required but hasn&apos;t been explicitly specified.\n</p>\n<p>\nIf you need to obtain a <xref href=\"NodaTime.CalendarSystem\" data-throw-if-not-resolved=\"false\"></xref> instance, use one of the static properties or methods in this\nclass, such as the <xref href=\"NodaTime.CalendarSystem.Iso\" data-throw-if-not-resolved=\"false\"></xref> property or the <xref href=\"NodaTime.CalendarSystem.GetHebrewCalendar(NodaTime.Calendars.HebrewMonthNumbering)\" data-throw-if-not-resolved=\"false\"></xref> method.\n</p>\n<p>Although this class is currently sealed (as of Noda Time 1.2), in the future this decision may\nbe reversed. In any case, there is no current intention for third-party developers to be able to implement\ntheir own calendar systems (for various reasons). If you require a calendar system which is not\ncurrently supported, please file a feature request and we&apos;ll see what we can do.\n</p>\n"
+  example: []
+  syntax:
+    content: public sealed class CalendarSystem
+    content.vb: Public NotInheritable Class CalendarSystem
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: NodaTime.CalendarSystem.ForId(System.String)
+  commentId: M:NodaTime.CalendarSystem.ForId(System.String)
+  id: ForId(System.String)
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: ForId(String)
+  nameWithType: CalendarSystem.ForId(String)
+  fullName: NodaTime.CalendarSystem.ForId(System.String)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: ForId
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 105
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nFetches a calendar system by its unique identifier. This provides full round-tripping of a calendar\nsystem. It is not guaranteed that calling this method twice with the same identifier will return\nidentical references, but the references objects will be equal.\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem ForId(string id)
+    parameters:
+    - id: id
+      type: System.String
+      description: The ID of the calendar system. This is case-sensitive.
+    return:
+      type: NodaTime.CalendarSystem
+      description: The calendar system with the given ID.
+    content.vb: Public Shared Function ForId(id As String) As CalendarSystem
+  overload: NodaTime.CalendarSystem.ForId*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: No calendar system for the specified ID can be found.
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: The calendar system with the specified ID is known, but not supported on this platform.
+  seealso:
+  - linkId: NodaTime.CalendarSystem.Id
+    commentId: P:NodaTime.CalendarSystem.Id
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.CalendarSystem.Ids
+  commentId: P:NodaTime.CalendarSystem.Ids
+  id: Ids
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: Ids
+  nameWithType: CalendarSystem.Ids
+  fullName: NodaTime.CalendarSystem.Ids
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Ids
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 194
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the IDs of all calendar systems available within Noda Time. The order of the keys is not guaranteed.\n"
+  example: []
+  syntax:
+    content: public static IEnumerable<string> Ids { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{System.String}
+      description: The IDs of all calendar systems available within Noda Time.
+    content.vb: Public Shared ReadOnly Property Ids As IEnumerable(Of String)
+  overload: NodaTime.CalendarSystem.Ids*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.Iso
+  commentId: P:NodaTime.CalendarSystem.Iso
+  id: Iso
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: Iso
+  nameWithType: CalendarSystem.Iso
+  fullName: NodaTime.CalendarSystem.Iso
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Iso
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 231
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a calendar system that follows the rules of the ISO-8601 standard,\nwhich is compatible with Gregorian for all modern dates.\n"
+  remarks: "\nAs of Noda Time 2.0, this calendar system is equivalent to <xref href=\"NodaTime.CalendarSystem.Gregorian\" data-throw-if-not-resolved=\"false\"></xref>.\nThe only areas in which the calendars differed were around centuries, and the members\nrelating to those differences were removed in Noda Time 2.0.\nThe distinction between Gregorian and ISO has been maintained for the sake of simplicity, compatibility\nand consistency.\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem Iso { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: The ISO calendar system.
+    content.vb: Public Shared ReadOnly Property Iso As CalendarSystem
+  overload: NodaTime.CalendarSystem.Iso*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.GetHebrewCalendar(NodaTime.Calendars.HebrewMonthNumbering)
+  commentId: M:NodaTime.CalendarSystem.GetHebrewCalendar(NodaTime.Calendars.HebrewMonthNumbering)
+  id: GetHebrewCalendar(NodaTime.Calendars.HebrewMonthNumbering)
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: GetHebrewCalendar(HebrewMonthNumbering)
+  nameWithType: CalendarSystem.GetHebrewCalendar(HebrewMonthNumbering)
+  fullName: NodaTime.CalendarSystem.GetHebrewCalendar(NodaTime.Calendars.HebrewMonthNumbering)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetHebrewCalendar
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 249
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a Hebrew calendar, as described at http://en.wikipedia.org/wiki/Hebrew_calendar. This is a\npurely mathematical calculator, applied proleptically to the period where the real calendar was observational. \n"
+  remarks: "\n<p>Please note that in version 1.3.0 of Noda Time, support for the Hebrew calendar is somewhat experimental,\nparticularly in terms of calculations involving adding or subtracting years. Additionally, text formatting\nand parsing using month names is not currently supported, due to the challenges of handling leap months.\nIt is hoped that this will be improved in future versions.</p>\n<p>The implementation for this was taken from http://www.cs.tau.ac.il/~nachum/calendar-book/papers/calendar.ps,\nwhich is a public domain algorithm presumably equivalent to that given in the Calendrical Calculations book\nby the same authors (Nachum Dershowitz and Edward Reingold).\n</p>\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem GetHebrewCalendar(HebrewMonthNumbering monthNumbering)
+    parameters:
+    - id: monthNumbering
+      type: NodaTime.Calendars.HebrewMonthNumbering
+      description: The month numbering system to use
+    return:
+      type: NodaTime.CalendarSystem
+      description: A Hebrew calendar system for the given month numbering.
+    content.vb: Public Shared Function GetHebrewCalendar(monthNumbering As HebrewMonthNumbering) As CalendarSystem
+  overload: NodaTime.CalendarSystem.GetHebrewCalendar*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.CalendarSystem.Badi
+  commentId: P:NodaTime.CalendarSystem.Badi
+  id: Badi
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: Badi
+  nameWithType: CalendarSystem.Badi
+  fullName: NodaTime.CalendarSystem.Badi
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Badi
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 273
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the Badíʿ (meaning &quot;wondrous&quot; or &quot;unique&quot;) calendar, as described at https://en.wikipedia.org/wiki/Badi_calendar. \nThis is a purely solar calendar with years starting at the vernal equinox.\n"
+  remarks: "\n<p>The Badíʿ calendar was developed and defined by the founders of the Bahá&apos;í Faith in the mid to late\n1800&apos;s A.D. The first year in the calendar coincides with 1844 A.D. Years are labeled &quot;B.E.&quot; for Bahá&apos;í Era.</p>\n<p>A year consists of 19 months, each with 19 days. Each day starts at sunset. Years are grouped into sets\nof 19 &quot;Unities&quot; (Váḥid) and 19 Unities make up 1 &quot;All Things&quot; (Kull-i-Shay’).</p>\n<p>A period of days (usually 4 or 5, called Ayyám-i-Há) occurs between the 18th and 19th months. The length of this \nperiod of intercalary days is solely determined by the date of the following vernal equinox. The vernal equinox is \na momentary point in time, so the &quot;date&quot; of the equinox is determined by the date (beginning \nat sunset) in effect in Tehran, Iran at the moment of the equinox.</p>\n<p>In this Noda Time implementation, days start at midnight and lookup tables are used to determine vernal equinox dates.\nAyyám-i-Há is internally modelled as extra days added to the 18th month. As a result, a few functions will\nnot work as expected for Ayyám-i-Há, such as EndOfMonth.</p>\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem Badi { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: The Badíʿ calendar system.
+    content.vb: Public Shared ReadOnly Property Badi As CalendarSystem
+  overload: NodaTime.CalendarSystem.Badi*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)
+  commentId: M:NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)
+  id: GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: GetIslamicCalendar(IslamicLeapYearPattern, IslamicEpoch)
+  nameWithType: CalendarSystem.GetIslamicCalendar(IslamicLeapYearPattern, IslamicEpoch)
+  fullName: NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern, NodaTime.Calendars.IslamicEpoch)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetIslamicCalendar
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 332
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns an Islamic, or Hijri, calendar system.\n"
+  remarks: "\n<p>\nThis returns a tablular calendar, rather than one based on lunar observation. This calendar is a\nlunar calendar with 12 months, each of 29 or 30 days, resulting in a year of 354 days (or 355 on a leap\nyear).\n</p>\n<p>\nYear 1 in the Islamic calendar began on July 15th or 16th, 622 CE (Julian), thus\nIslamic years do not begin at the same time as Julian years. This calendar\nis not proleptic, as it does not allow dates before the first Islamic year.\n</p>\n<p>\nThere are two basic forms of the Islamic calendar, the tabular and the\nobserved. The observed form cannot easily be used by computers as it\nrelies on human observation of the new moon. The tabular calendar, implemented here, is an\narithmetic approximation of the observed form that follows relatively simple rules.\n</p>\n<p>You should choose an epoch based on which external system you wish\nto be compatible with. The epoch beginning on July 16th is the more common\none for the tabular calendar, so using <xref href=\"NodaTime.Calendars.IslamicEpoch.Civil\" data-throw-if-not-resolved=\"false\"></xref>\nwould usually be a logical choice. However, Windows uses July 15th, so\nif you need to be compatible with other Windows systems, you may wish to use\n<xref href=\"NodaTime.Calendars.IslamicEpoch.Astronomical\" data-throw-if-not-resolved=\"false\"></xref>. The fact that the Islamic calendar\ntraditionally starts at dusk, a Julian day traditionally starts at noon,\nand all calendar systems in Noda Time start their days at midnight adds\nsomewhat inevitable confusion to the mix, unfortunately.</p>\n<p>\nThe tabular form of the calendar defines 12 months of alternately\n30 and 29 days. The last month is extended to 30 days in a leap year.\nLeap years occur according to a 30 year cycle. There are four recognised\npatterns of leap years in the 30 year cycle:\n</p>\n<table><thead><tr><th>Origin</th><th>Leap years</th></tr></thead><tbody><tr><td>Kūshyār ibn Labbān</td><td>2, 5, 7, 10, 13, 15, 18, 21, 24, 26, 29</td></tr><tr><td>al-Fazārī</td><td>2, 5, 7, 10, 13, 16, 18, 21, 24, 26, 29</td></tr><tr><td>Fātimid (also known as Misri or Bohra)</td><td>2, 5, 8, 10, 13, 16, 19, 21, 24, 27, 29</td></tr><tr><td>Habash al-Hasib</td><td>2, 5, 8, 11, 13, 16, 19, 21, 24, 27, 30</td></tr></tbody></table>\n<p>\nThe leap year pattern to use is determined from the first parameter to this factory method.\nThe second parameter determines which epoch is used - the &quot;astronomical&quot; or &quot;Thursday&quot; epoch\n(July 15th 622CE) or the &quot;civil&quot; or &quot;Friday&quot; epoch (July 16th 622CE).\n</p>\n<p>\nThis implementation defines a day as midnight to midnight exactly as per\nthe ISO calendar. This correct start of day is at sunset on the previous\nday, however this cannot readily be modelled and has been ignored.\n</p>\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem GetIslamicCalendar(IslamicLeapYearPattern leapYearPattern, IslamicEpoch epoch)
+    parameters:
+    - id: leapYearPattern
+      type: NodaTime.Calendars.IslamicLeapYearPattern
+      description: The pattern of years in the 30-year cycle to consider as leap years
+    - id: epoch
+      type: NodaTime.Calendars.IslamicEpoch
+      description: The kind of epoch to use (astronomical or civil)
+    return:
+      type: NodaTime.CalendarSystem
+      description: >-
+        A suitable Islamic calendar reference; the same reference may be returned by several
+
+        calls as the object is immutable and thread-safe.
+    content.vb: Public Shared Function GetIslamicCalendar(leapYearPattern As IslamicLeapYearPattern, epoch As IslamicEpoch) As CalendarSystem
+  overload: NodaTime.CalendarSystem.GetIslamicCalendar*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.CalendarSystem.Id
+  commentId: P:NodaTime.CalendarSystem.Id
+  id: Id
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: CalendarSystem.Id
+  fullName: NodaTime.CalendarSystem.Id
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Id
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 402
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the unique identifier for this calendar system. This is provides full round-trip capability\nusing <xref href=\"NodaTime.CalendarSystem.ForId(System.String)\" data-throw-if-not-resolved=\"false\"></xref> to retrieve the calendar system from the identifier.\n"
+  remarks: "\n<p>\nA unique ID for a calendar is required when serializing types which include a <xref href=\"NodaTime.CalendarSystem\" data-throw-if-not-resolved=\"false\"></xref>.\nAs of 2 Nov 2012 (ISO calendar) there are no ISO or RFC standards for naming a calendar system. As such,\nthe identifiers provided here are specific to Noda Time, and are not guaranteed to interoperate with any other\ndate and time API.\n</p>\n<table><thead><tr><th>Calendar ID</th><th>Equivalent factory method or property</th></tr></thead><tbody><tr><td>ISO</td><td><xref href=\"NodaTime.CalendarSystem.Iso\" data-throw-if-not-resolved=\"false\"></xref></td></tr><tr><td>Gregorian</td><td><xref href=\"NodaTime.CalendarSystem.Gregorian\" data-throw-if-not-resolved=\"false\"></xref></td></tr><tr><td>Coptic</td><td><xref href=\"NodaTime.CalendarSystem.Coptic\" data-throw-if-not-resolved=\"false\"></xref></td></tr><tr><td>Badíʿ</td><td><xref href=\"NodaTime.CalendarSystem.Badi\" data-throw-if-not-resolved=\"false\"></xref></td></tr><tr><td>Julian</td><td><xref href=\"NodaTime.CalendarSystem.Julian\" data-throw-if-not-resolved=\"false\"></xref></td></tr><tr><td>Hijri Civil-Indian</td><td><xref href=\"NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern%2cNodaTime.Calendars.IslamicEpoch)\" data-throw-if-not-resolved=\"false\"></xref>(IslamicLeapYearPattern.Indian, IslamicEpoch.Civil)</td></tr><tr><td>Hijri Civil-Base15</td><td><xref href=\"NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern%2cNodaTime.Calendars.IslamicEpoch)\" data-throw-if-not-resolved=\"false\"></xref>(IslamicLeapYearPattern.Base15, IslamicEpoch.Civil)</td></tr><tr><td>Hijri Civil-Base16</td><td><xref href=\"NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern%2cNodaTime.Calendars.IslamicEpoch)\" data-throw-if-not-resolved=\"false\"></xref>(IslamicLeapYearPattern.Base16, IslamicEpoch.Civil)</td></tr><tr><td>Hijri Civil-HabashAlHasib</td><td><xref href=\"NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern%2cNodaTime.Calendars.IslamicEpoch)\" data-throw-if-not-resolved=\"false\"></xref>(IslamicLeapYearPattern.HabashAlHasib, IslamicEpoch.Civil)</td></tr><tr><td>Hijri Astronomical-Indian</td><td><xref href=\"NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern%2cNodaTime.Calendars.IslamicEpoch)\" data-throw-if-not-resolved=\"false\"></xref>(IslamicLeapYearPattern.Indian, IslamicEpoch.Astronomical)</td></tr><tr><td>Hijri Astronomical-Base15</td><td><xref href=\"NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern%2cNodaTime.Calendars.IslamicEpoch)\" data-throw-if-not-resolved=\"false\"></xref>(IslamicLeapYearPattern.Base15, IslamicEpoch.Astronomical)</td></tr><tr><td>Hijri Astronomical-Base16</td><td><xref href=\"NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern%2cNodaTime.Calendars.IslamicEpoch)\" data-throw-if-not-resolved=\"false\"></xref>(IslamicLeapYearPattern.Base16, IslamicEpoch.Astronomical)</td></tr><tr><td>Hijri Astronomical-HabashAlHasib</td><td><xref href=\"NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern%2cNodaTime.Calendars.IslamicEpoch)\" data-throw-if-not-resolved=\"false\"></xref>(IslamicLeapYearPattern.HabashAlHasib, IslamicEpoch.Astronomical)</td></tr><tr><td>Persian Simple</td><td><xref href=\"NodaTime.CalendarSystem.PersianSimple\" data-throw-if-not-resolved=\"false\"></xref></td></tr><tr><td>Persian Arithmetic</td><td><xref href=\"NodaTime.CalendarSystem.PersianArithmetic\" data-throw-if-not-resolved=\"false\"></xref></td></tr><tr><td>Persian Astronomical</td><td><xref href=\"NodaTime.CalendarSystem.PersianAstronomical\" data-throw-if-not-resolved=\"false\"></xref></td></tr><tr><td>Um Al Qura</td><td><xref href=\"NodaTime.CalendarSystem.UmAlQura\" data-throw-if-not-resolved=\"false\"></xref>()</td></tr><tr><td>Hebrew Civil</td><td><xref href=\"NodaTime.CalendarSystem.HebrewCivil\" data-throw-if-not-resolved=\"false\"></xref></td></tr><tr><td>Hebrew Scriptural</td><td><xref href=\"NodaTime.CalendarSystem.HebrewScriptural\" data-throw-if-not-resolved=\"false\"></xref></td></tr></tbody></table>\n"
+  example: []
+  syntax:
+    content: public string Id { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The unique identifier for this calendar system.
+    content.vb: Public ReadOnly Property Id As String
+  overload: NodaTime.CalendarSystem.Id*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.Name
+  commentId: P:NodaTime.CalendarSystem.Name
+  id: Name
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: CalendarSystem.Name
+  fullName: NodaTime.CalendarSystem.Name
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Name
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 410
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the name of this calendar system. Each kind of calendar system has a unique name, but this\ndoes not usually provide enough information for round-tripping. (For example, the name of an\nIslamic calendar system does not indicate which kind of leap cycle it uses.)\n"
+  example: []
+  syntax:
+    content: public string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The name of this calendar system.
+    content.vb: Public ReadOnly Property Name As String
+  overload: NodaTime.CalendarSystem.Name*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.MinYear
+  commentId: P:NodaTime.CalendarSystem.MinYear
+  id: MinYear
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: MinYear
+  nameWithType: CalendarSystem.MinYear
+  fullName: NodaTime.CalendarSystem.MinYear
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: MinYear
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 416
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the minimum valid year (inclusive) within this calendar.\n"
+  example: []
+  syntax:
+    content: public int MinYear { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The minimum valid year (inclusive) within this calendar.
+    content.vb: Public ReadOnly Property MinYear As Integer
+  overload: NodaTime.CalendarSystem.MinYear*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.MaxYear
+  commentId: P:NodaTime.CalendarSystem.MaxYear
+  id: MaxYear
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: MaxYear
+  nameWithType: CalendarSystem.MaxYear
+  fullName: NodaTime.CalendarSystem.MaxYear
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: MaxYear
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 422
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the maximum valid year (inclusive) within this calendar.\n"
+  example: []
+  syntax:
+    content: public int MaxYear { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The maximum valid year (inclusive) within this calendar.
+    content.vb: Public ReadOnly Property MaxYear As Integer
+  overload: NodaTime.CalendarSystem.MaxYear*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.Eras
+  commentId: P:NodaTime.CalendarSystem.Eras
+  id: Eras
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: Eras
+  nameWithType: CalendarSystem.Eras
+  fullName: NodaTime.CalendarSystem.Eras
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Eras
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 445
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets a read-only list of eras used in this calendar system.\n"
+  example: []
+  syntax:
+    content: public IList<Era> Eras { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IList{NodaTime.Calendars.Era}
+      description: A read-only list of eras used in this calendar system.
+    content.vb: Public ReadOnly Property Eras As IList(Of Era)
+  overload: NodaTime.CalendarSystem.Eras*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.GetAbsoluteYear(System.Int32,NodaTime.Calendars.Era)
+  commentId: M:NodaTime.CalendarSystem.GetAbsoluteYear(System.Int32,NodaTime.Calendars.Era)
+  id: GetAbsoluteYear(System.Int32,NodaTime.Calendars.Era)
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: GetAbsoluteYear(Int32, Era)
+  nameWithType: CalendarSystem.GetAbsoluteYear(Int32, Era)
+  fullName: NodaTime.CalendarSystem.GetAbsoluteYear(System.Int32, NodaTime.Calendars.Era)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetAbsoluteYear
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 462
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the &quot;absolute year&quot; (the one used throughout most of the API, without respect to eras)\nfrom a year-of-era and an era.\n"
+  remarks: "\nFor example, in the Gregorian and Julian calendar systems, the BCE era starts at year 1, which is\nequivalent to an &quot;absolute year&quot; of 0 (then BCE year 2 has an absolute year of -1, and so on).  The absolute\nyear is the year that is used throughout the API; year-of-era is typically used primarily when formatting\nand parsing date values to and from text.\n"
+  example: []
+  syntax:
+    content: public int GetAbsoluteYear(int yearOfEra, Era era)
+    parameters:
+    - id: yearOfEra
+      type: System.Int32
+      description: The year within the era.
+    - id: era
+      type: NodaTime.Calendars.Era
+      description: The era in which to consider the year
+    return:
+      type: System.Int32
+      description: The absolute year represented by the specified year of era.
+    content.vb: Public Function GetAbsoluteYear(yearOfEra As Integer, era As Era) As Integer
+  overload: NodaTime.CalendarSystem.GetAbsoluteYear*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: <code data-dev-comment-type="paramref" class="paramref">yearOfEra</code> is out of the range of years for the given era.
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code data-dev-comment-type="paramref" class="paramref">era</code> is not an era used in this calendar.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.CalendarSystem.GetMaxYearOfEra(NodaTime.Calendars.Era)
+  commentId: M:NodaTime.CalendarSystem.GetMaxYearOfEra(NodaTime.Calendars.Era)
+  id: GetMaxYearOfEra(NodaTime.Calendars.Era)
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: GetMaxYearOfEra(Era)
+  nameWithType: CalendarSystem.GetMaxYearOfEra(Era)
+  fullName: NodaTime.CalendarSystem.GetMaxYearOfEra(NodaTime.Calendars.Era)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetMaxYearOfEra
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 474
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the maximum valid year-of-era in the given era.\n"
+  remarks: >-
+    Note that depending on the calendar system, it&apos;s possible that only
+
+    part of the returned year falls within the given era. It is also possible that
+
+    the returned value represents the earliest year of the era rather than the latest
+
+    year. (See the BC era in the Gregorian calendar, for example.)
+  example: []
+  syntax:
+    content: public int GetMaxYearOfEra(Era era)
+    parameters:
+    - id: era
+      type: NodaTime.Calendars.Era
+      description: The era in which to find the greatest year
+    return:
+      type: System.Int32
+      description: The maximum valid year in the given era.
+    content.vb: Public Function GetMaxYearOfEra(era As Era) As Integer
+  overload: NodaTime.CalendarSystem.GetMaxYearOfEra*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code data-dev-comment-type="paramref" class="paramref">era</code> is not an era used in this calendar.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.CalendarSystem.GetMinYearOfEra(NodaTime.Calendars.Era)
+  commentId: M:NodaTime.CalendarSystem.GetMinYearOfEra(NodaTime.Calendars.Era)
+  id: GetMinYearOfEra(NodaTime.Calendars.Era)
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: GetMinYearOfEra(Era)
+  nameWithType: CalendarSystem.GetMinYearOfEra(Era)
+  fullName: NodaTime.CalendarSystem.GetMinYearOfEra(NodaTime.Calendars.Era)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetMinYearOfEra
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 486
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the minimum valid year-of-era in the given era.\n"
+  remarks: >-
+    Note that depending on the calendar system, it&apos;s possible that only
+
+    part of the returned year falls within the given era. It is also possible that
+
+    the returned value represents the latest year of the era rather than the earliest
+
+    year. (See the BC era in the Gregorian calendar, for example.)
+  example: []
+  syntax:
+    content: public int GetMinYearOfEra(Era era)
+    parameters:
+    - id: era
+      type: NodaTime.Calendars.Era
+      description: The era in which to find the greatest year
+    return:
+      type: System.Int32
+      description: The minimum valid year in the given eraera.
+    content.vb: Public Function GetMinYearOfEra(era As Era) As Integer
+  overload: NodaTime.CalendarSystem.GetMinYearOfEra*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code data-dev-comment-type="paramref" class="paramref">era</code> is not an era used in this calendar.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.CalendarSystem.ToString
+  commentId: M:NodaTime.CalendarSystem.ToString
+  id: ToString
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: CalendarSystem.ToString()
+  fullName: NodaTime.CalendarSystem.ToString()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: ToString
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 504
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nConverts this calendar system to text by simply returning its unique ID.\n"
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The ID of this calendar system.
+    content.vb: Public Overrides Function ToString As String
+  overridden: System.Object.ToString
+  overload: NodaTime.CalendarSystem.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: NodaTime.CalendarSystem.GetDaysInYear(System.Int32)
+  commentId: M:NodaTime.CalendarSystem.GetDaysInYear(System.Int32)
+  id: GetDaysInYear(System.Int32)
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: GetDaysInYear(Int32)
+  nameWithType: CalendarSystem.GetDaysInYear(Int32)
+  fullName: NodaTime.CalendarSystem.GetDaysInYear(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetDaysInYear
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 537
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the number of days in the given year.\n"
+  example: []
+  syntax:
+    content: public int GetDaysInYear(int year)
+    parameters:
+    - id: year
+      type: System.Int32
+      description: The year to determine the number of days in
+    return:
+      type: System.Int32
+      description: The number of days in the given year.
+    content.vb: Public Function GetDaysInYear(year As Integer) As Integer
+  overload: NodaTime.CalendarSystem.GetDaysInYear*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The given year is invalid for this calendar.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.CalendarSystem.GetDaysInMonth(System.Int32,System.Int32)
+  commentId: M:NodaTime.CalendarSystem.GetDaysInMonth(System.Int32,System.Int32)
+  id: GetDaysInMonth(System.Int32,System.Int32)
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: GetDaysInMonth(Int32, Int32)
+  nameWithType: CalendarSystem.GetDaysInMonth(Int32, Int32)
+  fullName: NodaTime.CalendarSystem.GetDaysInMonth(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetDaysInMonth
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 551
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the number of days in the given month within the given year.\n"
+  example: []
+  syntax:
+    content: public int GetDaysInMonth(int year, int month)
+    parameters:
+    - id: year
+      type: System.Int32
+      description: The year in which to consider the month
+    - id: month
+      type: System.Int32
+      description: The month to determine the number of days in
+    return:
+      type: System.Int32
+      description: The number of days in the given month and year.
+    content.vb: Public Function GetDaysInMonth(year As Integer, month As Integer) As Integer
+  overload: NodaTime.CalendarSystem.GetDaysInMonth*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      The given year / month combination
+
+      is invalid for this calendar.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.CalendarSystem.IsLeapYear(System.Int32)
+  commentId: M:NodaTime.CalendarSystem.IsLeapYear(System.Int32)
+  id: IsLeapYear(System.Int32)
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: IsLeapYear(Int32)
+  nameWithType: CalendarSystem.IsLeapYear(Int32)
+  fullName: NodaTime.CalendarSystem.IsLeapYear(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: IsLeapYear
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 566
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns whether or not the given year is a leap year in this calendar.\n"
+  example: []
+  syntax:
+    content: public bool IsLeapYear(int year)
+    parameters:
+    - id: year
+      type: System.Int32
+      description: The year to consider.
+    return:
+      type: System.Boolean
+      description: True if the given year is a leap year; false otherwise.
+    content.vb: Public Function IsLeapYear(year As Integer) As Boolean
+  overload: NodaTime.CalendarSystem.IsLeapYear*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      The given year is invalid for this calendar.
+
+      Note that some implementations may return a value rather than throw this exception. Failure to throw an
+
+      exception should not be treated as an indication that the year is valid.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.CalendarSystem.GetMonthsInYear(System.Int32)
+  commentId: M:NodaTime.CalendarSystem.GetMonthsInYear(System.Int32)
+  id: GetMonthsInYear(System.Int32)
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: GetMonthsInYear(Int32)
+  nameWithType: CalendarSystem.GetMonthsInYear(Int32)
+  fullName: NodaTime.CalendarSystem.GetMonthsInYear(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetMonthsInYear
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 586
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the maximum valid month (inclusive) within this calendar in the given year.\n"
+  remarks: "\nIt is assumed that in all calendars, every month between 1 and this month\nnumber is valid for the given year. This does not necessarily mean that the first month of the year\nis 1, however. (See the Hebrew calendar system using the scriptural month numbering system for example.)\n"
+  example: []
+  syntax:
+    content: public int GetMonthsInYear(int year)
+    parameters:
+    - id: year
+      type: System.Int32
+      description: The year to consider.
+    return:
+      type: System.Int32
+      description: The maximum month number within the given year.
+    content.vb: Public Function GetMonthsInYear(year As Integer) As Integer
+  overload: NodaTime.CalendarSystem.GetMonthsInYear*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      The given year is invalid for this calendar.
+
+      Note that some implementations may return a month rather than throw this exception (for example, if all
+
+      years have the same number of months in this calendar system). Failure to throw an exception should not be
+
+      treated as an indication that the year is valid.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.CalendarSystem.Gregorian
+  commentId: P:NodaTime.CalendarSystem.Gregorian
+  id: Gregorian
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: Gregorian
+  nameWithType: CalendarSystem.Gregorian
+  fullName: NodaTime.CalendarSystem.Gregorian
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Gregorian
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 660
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a Gregorian calendar system.\n"
+  remarks: "\n<p>\nThe Gregorian calendar system defines every\nfourth year as leap, unless the year is divisible by 100 and not by 400.\nThis improves upon the Julian calendar leap year rule.\n</p>\n<p>\nAlthough the Gregorian calendar did not exist before 1582 CE, this\ncalendar system assumes it did, thus it is proleptic. This implementation also\nfixes the start of the year at January 1.\n</p>\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem Gregorian { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: A Gregorian calendar system.
+    content.vb: Public Shared ReadOnly Property Gregorian As CalendarSystem
+  overload: NodaTime.CalendarSystem.Gregorian*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.Julian
+  commentId: P:NodaTime.CalendarSystem.Julian
+  id: Julian
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: Julian
+  nameWithType: CalendarSystem.Julian
+  fullName: NodaTime.CalendarSystem.Julian
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Julian
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 675
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a pure proleptic Julian calendar system, which defines every\nfourth year as a leap year. This implementation follows the leap year rule\nstrictly, even for dates before 8 CE, where leap years were actually\nirregular.\n"
+  remarks: "\nAlthough the Julian calendar did not exist before 45 BCE, this calendar\nassumes it did, thus it is proleptic. This implementation also fixes the\nstart of the year at January 1.\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem Julian { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: >-
+        A suitable Julian calendar reference; the same reference may be returned by several
+
+        calls as the object is immutable and thread-safe.
+    content.vb: Public Shared ReadOnly Property Julian As CalendarSystem
+  overload: NodaTime.CalendarSystem.Julian*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.Coptic
+  commentId: P:NodaTime.CalendarSystem.Coptic
+  id: Coptic
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: Coptic
+  nameWithType: CalendarSystem.Coptic
+  fullName: NodaTime.CalendarSystem.Coptic
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Coptic
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 698
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a Coptic calendar system, which defines every fourth year as\nleap, much like the Julian calendar. The year is broken down into 12 months,\neach 30 days in length. An extra period at the end of the year is either 5\nor 6 days in length. In this implementation, it is considered a 13th month.\n"
+  remarks: "\n<p>\nYear 1 in the Coptic calendar began on August 29, 284 CE (Julian), thus\nCoptic years do not begin at the same time as Julian years. This calendar\nis not proleptic, as it does not allow dates before the first Coptic year.\n</p>\n<p>\nThis implementation defines a day as midnight to midnight exactly as per\nthe ISO calendar. Some references indicate that a Coptic day starts at\nsunset on the previous ISO day, but this has not been confirmed and is not\nimplemented.\n</p>\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem Coptic { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: >-
+        A suitable Coptic calendar reference; the same reference may be returned by several
+
+        calls as the object is immutable and thread-safe.
+    content.vb: Public Shared ReadOnly Property Coptic As CalendarSystem
+  overload: NodaTime.CalendarSystem.Coptic*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.IslamicBcl
+  commentId: P:NodaTime.CalendarSystem.IslamicBcl
+  id: IslamicBcl
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: IslamicBcl
+  nameWithType: CalendarSystem.IslamicBcl
+  fullName: NodaTime.CalendarSystem.IslamicBcl
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: IslamicBcl
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 710
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns an Islamic calendar system equivalent to the one used by the BCL HijriCalendar.\n"
+  remarks: "\nThis uses the <xref href=\"NodaTime.Calendars.IslamicLeapYearPattern.Base16\" data-throw-if-not-resolved=\"false\"></xref> leap year pattern and the\n<xref href=\"NodaTime.Calendars.IslamicEpoch.Astronomical\" data-throw-if-not-resolved=\"false\"></xref> epoch. This is equivalent to HijriCalendar\nwhen the <code>HijriCalendar.HijriAdjustment</code> is 0.\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem IslamicBcl { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: An Islamic calendar system equivalent to the one used by the BCL.
+    content.vb: Public Shared ReadOnly Property IslamicBcl As CalendarSystem
+  overload: NodaTime.CalendarSystem.IslamicBcl*
+  seealso:
+  - linkId: NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)
+    commentId: M:NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.PersianSimple
+  commentId: P:NodaTime.CalendarSystem.PersianSimple
+  id: PersianSimple
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: PersianSimple
+  nameWithType: CalendarSystem.PersianSimple
+  fullName: NodaTime.CalendarSystem.PersianSimple
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: PersianSimple
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 721
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a Persian (also known as Solar Hijri) calendar system implementing the behaviour of the\nBCL <code>PersianCalendar</code> before .NET 4.6, and the sole Persian calendar in Noda Time 1.3.\n"
+  remarks: "\nThis implementation uses a simple 33-year leap cycle, where years  1, 5, 9, 13, 17, 22, 26, and 30\nin each cycle are leap years.\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem PersianSimple { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: A Persian calendar system using a simple 33-year leap cycle.
+    content.vb: Public Shared ReadOnly Property PersianSimple As CalendarSystem
+  overload: NodaTime.CalendarSystem.PersianSimple*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.PersianArithmetic
+  commentId: P:NodaTime.CalendarSystem.PersianArithmetic
+  id: PersianArithmetic
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: PersianArithmetic
+  nameWithType: CalendarSystem.PersianArithmetic
+  fullName: NodaTime.CalendarSystem.PersianArithmetic
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: PersianArithmetic
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 734
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a Persian (also known as Solar Hijri) calendar system implementing the behaviour of the\nBCL <code>PersianCalendar</code> from .NET 4.6 onwards (and Windows 10), and the astronomical\nsystem described in Wikipedia and Calendrical Calculations.\n"
+  remarks: "\nThis implementation uses data derived from the .NET 4.6 implementation (with the data built into Noda Time, so there&apos;s\nno BCL dependency) for simplicity; the actual implementation involves computing the time of noon in Iran, and\nis complex.\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem PersianArithmetic { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: A Persian calendar system using astronomical calculations to determine leap years.
+    content.vb: Public Shared ReadOnly Property PersianArithmetic As CalendarSystem
+  overload: NodaTime.CalendarSystem.PersianArithmetic*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.PersianAstronomical
+  commentId: P:NodaTime.CalendarSystem.PersianAstronomical
+  id: PersianAstronomical
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: PersianAstronomical
+  nameWithType: CalendarSystem.PersianAstronomical
+  fullName: NodaTime.CalendarSystem.PersianAstronomical
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: PersianAstronomical
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 744
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a Persian (also known as Solar Hijri) calendar system implementing the behaviour\nproposed by Ahmad Birashk with nested cycles of years determining which years are leap years.\n"
+  remarks: "\nThis calendar is also known as the algorithmic Solar Hijri calendar.\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem PersianAstronomical { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: A Persian calendar system using cycles-within-cycles of years to determine leap years.
+    content.vb: Public Shared ReadOnly Property PersianAstronomical As CalendarSystem
+  overload: NodaTime.CalendarSystem.PersianAstronomical*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.HebrewCivil
+  commentId: P:NodaTime.CalendarSystem.HebrewCivil
+  id: HebrewCivil
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: HebrewCivil
+  nameWithType: CalendarSystem.HebrewCivil
+  fullName: NodaTime.CalendarSystem.HebrewCivil
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: HebrewCivil
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 753
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a Hebrew calendar system using the civil month numbering,\nequivalent to the one used by the BCL HebrewCalendar.\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem HebrewCivil { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: >-
+        A Hebrew calendar system using the civil month numbering, equivalent to the one used by the
+
+        BCL.
+    content.vb: Public Shared ReadOnly Property HebrewCivil As CalendarSystem
+  overload: NodaTime.CalendarSystem.HebrewCivil*
+  seealso:
+  - linkId: NodaTime.CalendarSystem.GetHebrewCalendar(NodaTime.Calendars.HebrewMonthNumbering)
+    commentId: M:NodaTime.CalendarSystem.GetHebrewCalendar(NodaTime.Calendars.HebrewMonthNumbering)
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.HebrewScriptural
+  commentId: P:NodaTime.CalendarSystem.HebrewScriptural
+  id: HebrewScriptural
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: HebrewScriptural
+  nameWithType: CalendarSystem.HebrewScriptural
+  fullName: NodaTime.CalendarSystem.HebrewScriptural
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: HebrewScriptural
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 760
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a Hebrew calendar system using the scriptural month numbering.\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem HebrewScriptural { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: A Hebrew calendar system using the scriptural month numbering.
+    content.vb: Public Shared ReadOnly Property HebrewScriptural As CalendarSystem
+  overload: NodaTime.CalendarSystem.HebrewScriptural*
+  seealso:
+  - linkId: NodaTime.CalendarSystem.GetHebrewCalendar(NodaTime.Calendars.HebrewMonthNumbering)
+    commentId: M:NodaTime.CalendarSystem.GetHebrewCalendar(NodaTime.Calendars.HebrewMonthNumbering)
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.CalendarSystem.UmAlQura
+  commentId: P:NodaTime.CalendarSystem.UmAlQura
+  id: UmAlQura
+  parent: NodaTime.CalendarSystem
+  langs:
+  - csharp
+  - vb
+  name: UmAlQura
+  nameWithType: CalendarSystem.UmAlQura
+  fullName: NodaTime.CalendarSystem.UmAlQura
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/CalendarSystem.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: UmAlQura
+    path: src/NodaTime/CalendarSystem.cs
+    startLine: 770
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns an Um Al Qura calendar system - an Islamic calendar system primarily used by\nSaudi Arabia.\n"
+  remarks: "\nThis is a tabular calendar, relying on pregenerated data.\n"
+  example: []
+  syntax:
+    content: public static CalendarSystem UmAlQura { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: A calendar system for the Um Al Qura calendar.
+    content.vb: Public Shared ReadOnly Property UmAlQura As CalendarSystem
+  overload: NodaTime.CalendarSystem.UmAlQura*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+references:
+- uid: NodaTime.CalendarSystem
+  commentId: T:NodaTime.CalendarSystem
+  parent: NodaTime
+  name: CalendarSystem
+  nameWithType: CalendarSystem
+  fullName: NodaTime.CalendarSystem
+- uid: NodaTime.CalendarSystem.Iso
+  commentId: P:NodaTime.CalendarSystem.Iso
+  isExternal: true
+- uid: NodaTime.CalendarSystem.GetHebrewCalendar(NodaTime.Calendars.HebrewMonthNumbering)
+  commentId: M:NodaTime.CalendarSystem.GetHebrewCalendar(NodaTime.Calendars.HebrewMonthNumbering)
+  isExternal: true
+- uid: NodaTime
+  commentId: N:NodaTime
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NodaTime.CalendarSystem.Id
+  commentId: P:NodaTime.CalendarSystem.Id
+  isExternal: true
+- uid: System.Collections.Generic.KeyNotFoundException
+  commentId: T:System.Collections.Generic.KeyNotFoundException
+  isExternal: true
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  isExternal: true
+- uid: NodaTime.CalendarSystem.ForId*
+  commentId: Overload:NodaTime.CalendarSystem.ForId
+  name: ForId
+  nameWithType: CalendarSystem.ForId
+  fullName: NodaTime.CalendarSystem.ForId
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: NodaTime.CalendarSystem.Ids*
+  commentId: Overload:NodaTime.CalendarSystem.Ids
+  name: Ids
+  nameWithType: CalendarSystem.Ids
+  fullName: NodaTime.CalendarSystem.Ids
+- uid: System.Collections.Generic.IEnumerable{System.String}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<String>
+  nameWithType: IEnumerable<String>
+  fullName: System.Collections.Generic.IEnumerable<System.String>
+  nameWithType.vb: IEnumerable(Of String)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.String)
+  name.vb: IEnumerable(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: NodaTime.CalendarSystem.Gregorian
+  commentId: P:NodaTime.CalendarSystem.Gregorian
+  isExternal: true
+- uid: NodaTime.CalendarSystem.Iso*
+  commentId: Overload:NodaTime.CalendarSystem.Iso
+  name: Iso
+  nameWithType: CalendarSystem.Iso
+  fullName: NodaTime.CalendarSystem.Iso
+- uid: NodaTime.CalendarSystem.GetHebrewCalendar*
+  commentId: Overload:NodaTime.CalendarSystem.GetHebrewCalendar
+  name: GetHebrewCalendar
+  nameWithType: CalendarSystem.GetHebrewCalendar
+  fullName: NodaTime.CalendarSystem.GetHebrewCalendar
+- uid: NodaTime.Calendars.HebrewMonthNumbering
+  commentId: T:NodaTime.Calendars.HebrewMonthNumbering
+  parent: NodaTime.Calendars
+  name: HebrewMonthNumbering
+  nameWithType: HebrewMonthNumbering
+  fullName: NodaTime.Calendars.HebrewMonthNumbering
+- uid: NodaTime.Calendars
+  commentId: N:NodaTime.Calendars
+  name: NodaTime.Calendars
+  nameWithType: NodaTime.Calendars
+  fullName: NodaTime.Calendars
+- uid: NodaTime.CalendarSystem.Badi*
+  commentId: Overload:NodaTime.CalendarSystem.Badi
+  name: Badi
+  nameWithType: CalendarSystem.Badi
+  fullName: NodaTime.CalendarSystem.Badi
+- uid: NodaTime.Calendars.IslamicEpoch.Civil
+  commentId: F:NodaTime.Calendars.IslamicEpoch.Civil
+  isExternal: true
+- uid: NodaTime.Calendars.IslamicEpoch.Astronomical
+  commentId: F:NodaTime.Calendars.IslamicEpoch.Astronomical
+  isExternal: true
+- uid: NodaTime.CalendarSystem.GetIslamicCalendar*
+  commentId: Overload:NodaTime.CalendarSystem.GetIslamicCalendar
+  name: GetIslamicCalendar
+  nameWithType: CalendarSystem.GetIslamicCalendar
+  fullName: NodaTime.CalendarSystem.GetIslamicCalendar
+- uid: NodaTime.Calendars.IslamicLeapYearPattern
+  commentId: T:NodaTime.Calendars.IslamicLeapYearPattern
+  parent: NodaTime.Calendars
+  name: IslamicLeapYearPattern
+  nameWithType: IslamicLeapYearPattern
+  fullName: NodaTime.Calendars.IslamicLeapYearPattern
+- uid: NodaTime.Calendars.IslamicEpoch
+  commentId: T:NodaTime.Calendars.IslamicEpoch
+  parent: NodaTime.Calendars
+  name: IslamicEpoch
+  nameWithType: IslamicEpoch
+  fullName: NodaTime.Calendars.IslamicEpoch
+- uid: NodaTime.CalendarSystem.ForId(System.String)
+  commentId: M:NodaTime.CalendarSystem.ForId(System.String)
+  isExternal: true
+- uid: NodaTime.CalendarSystem.Coptic
+  commentId: P:NodaTime.CalendarSystem.Coptic
+  isExternal: true
+- uid: NodaTime.CalendarSystem.Badi
+  commentId: P:NodaTime.CalendarSystem.Badi
+  isExternal: true
+- uid: NodaTime.CalendarSystem.Julian
+  commentId: P:NodaTime.CalendarSystem.Julian
+  isExternal: true
+- uid: NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)
+  commentId: M:NodaTime.CalendarSystem.GetIslamicCalendar(NodaTime.Calendars.IslamicLeapYearPattern,NodaTime.Calendars.IslamicEpoch)
+  isExternal: true
+- uid: NodaTime.CalendarSystem.PersianSimple
+  commentId: P:NodaTime.CalendarSystem.PersianSimple
+  isExternal: true
+- uid: NodaTime.CalendarSystem.PersianArithmetic
+  commentId: P:NodaTime.CalendarSystem.PersianArithmetic
+  isExternal: true
+- uid: NodaTime.CalendarSystem.PersianAstronomical
+  commentId: P:NodaTime.CalendarSystem.PersianAstronomical
+  isExternal: true
+- uid: NodaTime.CalendarSystem.UmAlQura
+  commentId: P:NodaTime.CalendarSystem.UmAlQura
+  isExternal: true
+- uid: NodaTime.CalendarSystem.HebrewCivil
+  commentId: P:NodaTime.CalendarSystem.HebrewCivil
+  isExternal: true
+- uid: NodaTime.CalendarSystem.HebrewScriptural
+  commentId: P:NodaTime.CalendarSystem.HebrewScriptural
+  isExternal: true
+- uid: NodaTime.CalendarSystem.Id*
+  commentId: Overload:NodaTime.CalendarSystem.Id
+  name: Id
+  nameWithType: CalendarSystem.Id
+  fullName: NodaTime.CalendarSystem.Id
+- uid: NodaTime.CalendarSystem.Name*
+  commentId: Overload:NodaTime.CalendarSystem.Name
+  name: Name
+  nameWithType: CalendarSystem.Name
+  fullName: NodaTime.CalendarSystem.Name
+- uid: NodaTime.CalendarSystem.MinYear*
+  commentId: Overload:NodaTime.CalendarSystem.MinYear
+  name: MinYear
+  nameWithType: CalendarSystem.MinYear
+  fullName: NodaTime.CalendarSystem.MinYear
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: NodaTime.CalendarSystem.MaxYear*
+  commentId: Overload:NodaTime.CalendarSystem.MaxYear
+  name: MaxYear
+  nameWithType: CalendarSystem.MaxYear
+  fullName: NodaTime.CalendarSystem.MaxYear
+- uid: NodaTime.CalendarSystem.Eras*
+  commentId: Overload:NodaTime.CalendarSystem.Eras
+  name: Eras
+  nameWithType: CalendarSystem.Eras
+  fullName: NodaTime.CalendarSystem.Eras
+- uid: System.Collections.Generic.IList{NodaTime.Calendars.Era}
+  commentId: T:System.Collections.Generic.IList{NodaTime.Calendars.Era}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IList`1
+  name: IList<Era>
+  nameWithType: IList<Era>
+  fullName: System.Collections.Generic.IList<NodaTime.Calendars.Era>
+  nameWithType.vb: IList(Of Era)
+  fullName.vb: System.Collections.Generic.IList(Of NodaTime.Calendars.Era)
+  name.vb: IList(Of Era)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.Calendars.Era
+    name: Era
+    nameWithType: Era
+    fullName: NodaTime.Calendars.Era
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.Calendars.Era
+    name: Era
+    nameWithType: Era
+    fullName: NodaTime.Calendars.Era
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IList`1
+  commentId: T:System.Collections.Generic.IList`1
+  isExternal: true
+  name: IList<T>
+  nameWithType: IList<T>
+  fullName: System.Collections.Generic.IList<T>
+  nameWithType.vb: IList(Of T)
+  fullName.vb: System.Collections.Generic.IList(Of T)
+  name.vb: IList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  parent: System
+  isExternal: true
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: NodaTime.CalendarSystem.GetAbsoluteYear*
+  commentId: Overload:NodaTime.CalendarSystem.GetAbsoluteYear
+  name: GetAbsoluteYear
+  nameWithType: CalendarSystem.GetAbsoluteYear
+  fullName: NodaTime.CalendarSystem.GetAbsoluteYear
+- uid: NodaTime.Calendars.Era
+  commentId: T:NodaTime.Calendars.Era
+  parent: NodaTime.Calendars
+  name: Era
+  nameWithType: Era
+  fullName: NodaTime.Calendars.Era
+- uid: NodaTime.CalendarSystem.GetMaxYearOfEra*
+  commentId: Overload:NodaTime.CalendarSystem.GetMaxYearOfEra
+  name: GetMaxYearOfEra
+  nameWithType: CalendarSystem.GetMaxYearOfEra
+  fullName: NodaTime.CalendarSystem.GetMaxYearOfEra
+- uid: NodaTime.CalendarSystem.GetMinYearOfEra*
+  commentId: Overload:NodaTime.CalendarSystem.GetMinYearOfEra
+  name: GetMinYearOfEra
+  nameWithType: CalendarSystem.GetMinYearOfEra
+  fullName: NodaTime.CalendarSystem.GetMinYearOfEra
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.CalendarSystem.ToString*
+  commentId: Overload:NodaTime.CalendarSystem.ToString
+  name: ToString
+  nameWithType: CalendarSystem.ToString
+  fullName: NodaTime.CalendarSystem.ToString
+- uid: NodaTime.CalendarSystem.GetDaysInYear*
+  commentId: Overload:NodaTime.CalendarSystem.GetDaysInYear
+  name: GetDaysInYear
+  nameWithType: CalendarSystem.GetDaysInYear
+  fullName: NodaTime.CalendarSystem.GetDaysInYear
+- uid: NodaTime.CalendarSystem.GetDaysInMonth*
+  commentId: Overload:NodaTime.CalendarSystem.GetDaysInMonth
+  name: GetDaysInMonth
+  nameWithType: CalendarSystem.GetDaysInMonth
+  fullName: NodaTime.CalendarSystem.GetDaysInMonth
+- uid: NodaTime.CalendarSystem.IsLeapYear*
+  commentId: Overload:NodaTime.CalendarSystem.IsLeapYear
+  name: IsLeapYear
+  nameWithType: CalendarSystem.IsLeapYear
+  fullName: NodaTime.CalendarSystem.IsLeapYear
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: NodaTime.CalendarSystem.GetMonthsInYear*
+  commentId: Overload:NodaTime.CalendarSystem.GetMonthsInYear
+  name: GetMonthsInYear
+  nameWithType: CalendarSystem.GetMonthsInYear
+  fullName: NodaTime.CalendarSystem.GetMonthsInYear
+- uid: NodaTime.CalendarSystem.Gregorian*
+  commentId: Overload:NodaTime.CalendarSystem.Gregorian
+  name: Gregorian
+  nameWithType: CalendarSystem.Gregorian
+  fullName: NodaTime.CalendarSystem.Gregorian
+- uid: NodaTime.CalendarSystem.Julian*
+  commentId: Overload:NodaTime.CalendarSystem.Julian
+  name: Julian
+  nameWithType: CalendarSystem.Julian
+  fullName: NodaTime.CalendarSystem.Julian
+- uid: NodaTime.CalendarSystem.Coptic*
+  commentId: Overload:NodaTime.CalendarSystem.Coptic
+  name: Coptic
+  nameWithType: CalendarSystem.Coptic
+  fullName: NodaTime.CalendarSystem.Coptic
+- uid: NodaTime.Calendars.IslamicLeapYearPattern.Base16
+  commentId: F:NodaTime.Calendars.IslamicLeapYearPattern.Base16
+  isExternal: true
+- uid: NodaTime.CalendarSystem.IslamicBcl*
+  commentId: Overload:NodaTime.CalendarSystem.IslamicBcl
+  name: IslamicBcl
+  nameWithType: CalendarSystem.IslamicBcl
+  fullName: NodaTime.CalendarSystem.IslamicBcl
+- uid: NodaTime.CalendarSystem.PersianSimple*
+  commentId: Overload:NodaTime.CalendarSystem.PersianSimple
+  name: PersianSimple
+  nameWithType: CalendarSystem.PersianSimple
+  fullName: NodaTime.CalendarSystem.PersianSimple
+- uid: NodaTime.CalendarSystem.PersianArithmetic*
+  commentId: Overload:NodaTime.CalendarSystem.PersianArithmetic
+  name: PersianArithmetic
+  nameWithType: CalendarSystem.PersianArithmetic
+  fullName: NodaTime.CalendarSystem.PersianArithmetic
+- uid: NodaTime.CalendarSystem.PersianAstronomical*
+  commentId: Overload:NodaTime.CalendarSystem.PersianAstronomical
+  name: PersianAstronomical
+  nameWithType: CalendarSystem.PersianAstronomical
+  fullName: NodaTime.CalendarSystem.PersianAstronomical
+- uid: NodaTime.CalendarSystem.HebrewCivil*
+  commentId: Overload:NodaTime.CalendarSystem.HebrewCivil
+  name: HebrewCivil
+  nameWithType: CalendarSystem.HebrewCivil
+  fullName: NodaTime.CalendarSystem.HebrewCivil
+- uid: NodaTime.CalendarSystem.HebrewScriptural*
+  commentId: Overload:NodaTime.CalendarSystem.HebrewScriptural
+  name: HebrewScriptural
+  nameWithType: CalendarSystem.HebrewScriptural
+  fullName: NodaTime.CalendarSystem.HebrewScriptural
+- uid: NodaTime.CalendarSystem.UmAlQura*
+  commentId: Overload:NodaTime.CalendarSystem.UmAlQura
+  name: UmAlQura
+  nameWithType: CalendarSystem.UmAlQura
+  fullName: NodaTime.CalendarSystem.UmAlQura
+shouldSkipMarkup: true

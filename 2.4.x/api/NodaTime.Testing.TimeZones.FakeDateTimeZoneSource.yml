@@ -1,0 +1,823 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource
+  commentId: T:NodaTime.Testing.TimeZones.FakeDateTimeZoneSource
+  id: FakeDateTimeZoneSource
+  parent: NodaTime.Testing.TimeZones
+  children:
+  - NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ForId(System.String)
+  - NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetIds
+  - NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetSystemDefaultId
+  - NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ToProvider
+  - NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.VersionId
+  langs:
+  - csharp
+  - vb
+  name: FakeDateTimeZoneSource
+  nameWithType: FakeDateTimeZoneSource
+  fullName: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource
+  type: Class
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime.Testing/TimeZones/FakeDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: FakeDateTimeZoneSource
+    path: src/NodaTime.Testing/TimeZones/FakeDateTimeZoneSource.cs
+    startLine: 16
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing.TimeZones
+  summary: "\nA time zone source for test purposes.\nCreate instances via <xref href=\"NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.Builder\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: 'public sealed class FakeDateTimeZoneSource : IDateTimeZoneSource'
+    content.vb: >-
+      Public NotInheritable Class FakeDateTimeZoneSource
+          Implements IDateTimeZoneSource
+  inheritance:
+  - System.Object
+  implements:
+  - NodaTime.TimeZones.IDateTimeZoneSource
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ToProvider
+  commentId: M:NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ToProvider
+  id: ToProvider
+  parent: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: ToProvider()
+  nameWithType: FakeDateTimeZoneSource.ToProvider()
+  fullName: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ToProvider()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime.Testing/TimeZones/FakeDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: ToProvider
+    path: src/NodaTime.Testing/TimeZones/FakeDateTimeZoneSource.cs
+    startLine: 34
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing.TimeZones
+  summary: "\nCreates a time zone provider (<xref href=\"NodaTime.TimeZones.DateTimeZoneCache\" data-throw-if-not-resolved=\"false\"></xref>) from this source.\n"
+  example: []
+  syntax:
+    content: public IDateTimeZoneProvider ToProvider()
+    return:
+      type: NodaTime.IDateTimeZoneProvider
+      description: A provider backed by this source.
+    content.vb: Public Function ToProvider As IDateTimeZoneProvider
+  overload: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ToProvider*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetIds
+  commentId: M:NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetIds
+  id: GetIds
+  parent: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: GetIds()
+  nameWithType: FakeDateTimeZoneSource.GetIds()
+  fullName: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetIds()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime.Testing/TimeZones/FakeDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetIds
+    path: src/NodaTime.Testing/TimeZones/FakeDateTimeZoneSource.cs
+    startLine: 37
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing.TimeZones
+  summary: "\nReturns an unordered enumeration of the IDs available from this source.\n"
+  remarks: "\n<p>\nEvery value in this enumeration must return a valid time zone from <xref href=\"NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)\" data-throw-if-not-resolved=\"false\"></xref> for the life of the source.\nThe enumeration may be empty, but must not be null, and must not contain any elements which are null.  It\nshould not contain duplicates: this is not enforced, and while it may not have a significant impact on\nclients in some cases, it is generally unfriendly.  The built-in implementations never return duplicates.\n</p>\n<p>\nThe source is not required to provide the IDs in any particular order, although they should be distinct.\n</p>\n<p>\nNote that this list may optionally contain any of the fixed-offset timezones (with IDs &quot;UTC&quot; and\n&quot;UTC+/-Offset&quot;), but there is no requirement they be included.\n</p>\n"
+  example: []
+  syntax:
+    content: public IEnumerable<string> GetIds()
+    return:
+      type: System.Collections.Generic.IEnumerable{System.String}
+      description: The IDs available from this source.
+    content.vb: Public Function GetIds As IEnumerable(Of String)
+  overload: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetIds*
+  implements:
+  - NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.VersionId
+  commentId: P:NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.VersionId
+  id: VersionId
+  parent: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: VersionId
+  nameWithType: FakeDateTimeZoneSource.VersionId
+  fullName: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.VersionId
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime.Testing/TimeZones/FakeDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: VersionId
+    path: src/NodaTime.Testing/TimeZones/FakeDateTimeZoneSource.cs
+    startLine: 40
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing.TimeZones
+  summary: "\nReturns an appropriate version ID for diagnostic purposes, which must not be null.\n"
+  remarks: "\nThis doesn&apos;t have any specific format; it&apos;s solely for diagnostic purposes.\nThe included sources return strings of the format &quot;source identifier: source version&quot; indicating where the\ninformation comes from and which version of the source information has been loaded.\n"
+  example: []
+  syntax:
+    content: public string VersionId { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: An appropriate version ID for diagnostic purposes.
+    content.vb: Public ReadOnly Property VersionId As String
+  overload: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.VersionId*
+  implements:
+  - NodaTime.TimeZones.IDateTimeZoneSource.VersionId
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ForId(System.String)
+  commentId: M:NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ForId(System.String)
+  id: ForId(System.String)
+  parent: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: ForId(String)
+  nameWithType: FakeDateTimeZoneSource.ForId(String)
+  fullName: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ForId(System.String)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime.Testing/TimeZones/FakeDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: ForId
+    path: src/NodaTime.Testing/TimeZones/FakeDateTimeZoneSource.cs
+    startLine: 43
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing.TimeZones
+  summary: "\nReturns the time zone definition associated with the given ID.\n"
+  remarks: "\n<p>\nNote that this is permitted to return a <xref href=\"NodaTime.DateTimeZone\" data-throw-if-not-resolved=\"false\"></xref> that has a different ID to that\nrequested, if the ID provided is an alias.\n</p>\n<p>\nNote also that this method is not required to return the same <xref href=\"NodaTime.DateTimeZone\" data-throw-if-not-resolved=\"false\"></xref> instance for\nsuccessive requests for the same ID; however, all instances returned for a given ID must compare as equal.\n</p>\n<p>\nIt is advised that sources should document their behaviour regarding any fixed-offset timezones\n(i.e. &quot;UTC&quot; and &quot;UTC+/-Offset&quot;) that are included in the list returned by <xref href=\"NodaTime.TimeZones.IDateTimeZoneSource.GetIds\" data-throw-if-not-resolved=\"false\"></xref>.\n(These IDs will not be requested by <xref href=\"NodaTime.TimeZones.DateTimeZoneCache\" data-throw-if-not-resolved=\"false\"></xref>, but any users calling\ninto the source directly may care.)\n</p>\n<p>\nThe source need not attempt to cache time zones; caching is typically provided by\n<xref href=\"NodaTime.TimeZones.DateTimeZoneCache\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n"
+  example: []
+  syntax:
+    content: public DateTimeZone ForId(string id)
+    parameters:
+    - id: id
+      type: System.String
+      description: >-
+        The ID of the time zone to return. This must be one of the IDs
+
+        returned by <xref href="NodaTime.TimeZones.IDateTimeZoneSource.GetIds" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: NodaTime.DateTimeZone
+      description: The <xref href="NodaTime.DateTimeZone" data-throw-if-not-resolved="false"></xref> for the given ID.
+    content.vb: Public Function ForId(id As String) As DateTimeZone
+  overload: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ForId*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code data-dev-comment-type="paramref" class="paramref">id</code> is not supported by this source.
+  implements:
+  - NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetSystemDefaultId
+  commentId: M:NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetSystemDefaultId
+  id: GetSystemDefaultId
+  parent: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: GetSystemDefaultId()
+  nameWithType: FakeDateTimeZoneSource.GetSystemDefaultId()
+  fullName: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetSystemDefaultId()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime.Testing/TimeZones/FakeDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetSystemDefaultId
+    path: src/NodaTime.Testing/TimeZones/FakeDateTimeZoneSource.cs
+    startLine: 62
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing.TimeZones
+  summary: "\nReturns this source&apos;s ID for the system default time zone.\n"
+  example: []
+  syntax:
+    content: public string GetSystemDefaultId()
+    return:
+      type: System.String
+      description: "\nThe ID for the system default time zone for this source,\nor null if the system default time zone has no mapping in this source.\n"
+    content.vb: Public Function GetSystemDefaultId As String
+  overload: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetSystemDefaultId*
+  implements:
+  - NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.Builder
+  commentId: T:NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.Builder
+  name: FakeDateTimeZoneSource.Builder
+  nameWithType: FakeDateTimeZoneSource.Builder
+  fullName: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.Builder
+- uid: NodaTime.Testing.TimeZones
+  commentId: N:NodaTime.Testing.TimeZones
+  name: NodaTime.Testing.TimeZones
+  nameWithType: NodaTime.Testing.TimeZones
+  fullName: NodaTime.Testing.TimeZones
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: NodaTime.TimeZones.IDateTimeZoneSource
+  commentId: T:NodaTime.TimeZones.IDateTimeZoneSource
+  parent: NodaTime.TimeZones
+  name: IDateTimeZoneSource
+  nameWithType: IDateTimeZoneSource
+  fullName: NodaTime.TimeZones.IDateTimeZoneSource
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NodaTime.TimeZones
+  commentId: N:NodaTime.TimeZones
+  name: NodaTime.TimeZones
+  nameWithType: NodaTime.TimeZones
+  fullName: NodaTime.TimeZones
+- uid: NodaTime.TimeZones.DateTimeZoneCache
+  commentId: T:NodaTime.TimeZones.DateTimeZoneCache
+  name: DateTimeZoneCache
+  nameWithType: DateTimeZoneCache
+  fullName: NodaTime.TimeZones.DateTimeZoneCache
+- uid: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ToProvider*
+  commentId: Overload:NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ToProvider
+  name: ToProvider
+  nameWithType: FakeDateTimeZoneSource.ToProvider
+  fullName: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ToProvider
+- uid: NodaTime.IDateTimeZoneProvider
+  commentId: T:NodaTime.IDateTimeZoneProvider
+  parent: NodaTime
+  name: IDateTimeZoneProvider
+  nameWithType: IDateTimeZoneProvider
+  fullName: NodaTime.IDateTimeZoneProvider
+- uid: NodaTime
+  commentId: N:NodaTime
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetIds*
+  commentId: Overload:NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetIds
+  name: GetIds
+  nameWithType: FakeDateTimeZoneSource.GetIds
+  fullName: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetIds
+- uid: NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+  commentId: M:NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+  parent: NodaTime.TimeZones.IDateTimeZoneSource
+  name: GetIds()
+  nameWithType: IDateTimeZoneSource.GetIds()
+  fullName: NodaTime.TimeZones.IDateTimeZoneSource.GetIds()
+  spec.csharp:
+  - uid: NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+    name: GetIds
+    nameWithType: IDateTimeZoneSource.GetIds
+    fullName: NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+    name: GetIds
+    nameWithType: IDateTimeZoneSource.GetIds
+    fullName: NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{System.String}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<String>
+  nameWithType: IEnumerable<String>
+  fullName: System.Collections.Generic.IEnumerable<System.String>
+  nameWithType.vb: IEnumerable(Of String)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.String)
+  name.vb: IEnumerable(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.VersionId*
+  commentId: Overload:NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.VersionId
+  name: VersionId
+  nameWithType: FakeDateTimeZoneSource.VersionId
+  fullName: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.VersionId
+- uid: NodaTime.TimeZones.IDateTimeZoneSource.VersionId
+  commentId: P:NodaTime.TimeZones.IDateTimeZoneSource.VersionId
+  parent: NodaTime.TimeZones.IDateTimeZoneSource
+  name: VersionId
+  nameWithType: IDateTimeZoneSource.VersionId
+  fullName: NodaTime.TimeZones.IDateTimeZoneSource.VersionId
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ForId*
+  commentId: Overload:NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ForId
+  name: ForId
+  nameWithType: FakeDateTimeZoneSource.ForId
+  fullName: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.ForId
+- uid: NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)
+  commentId: M:NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)
+  parent: NodaTime.TimeZones.IDateTimeZoneSource
+  isExternal: true
+  name: ForId(String)
+  nameWithType: IDateTimeZoneSource.ForId(String)
+  fullName: NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)
+  spec.csharp:
+  - uid: NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)
+    name: ForId
+    nameWithType: IDateTimeZoneSource.ForId
+    fullName: NodaTime.TimeZones.IDateTimeZoneSource.ForId
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)
+    name: ForId
+    nameWithType: IDateTimeZoneSource.ForId
+    fullName: NodaTime.TimeZones.IDateTimeZoneSource.ForId
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: NodaTime.DateTimeZone
+  commentId: T:NodaTime.DateTimeZone
+  parent: NodaTime
+  name: DateTimeZone
+  nameWithType: DateTimeZone
+  fullName: NodaTime.DateTimeZone
+- uid: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetSystemDefaultId*
+  commentId: Overload:NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetSystemDefaultId
+  name: GetSystemDefaultId
+  nameWithType: FakeDateTimeZoneSource.GetSystemDefaultId
+  fullName: NodaTime.Testing.TimeZones.FakeDateTimeZoneSource.GetSystemDefaultId
+- uid: NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+  commentId: M:NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+  parent: NodaTime.TimeZones.IDateTimeZoneSource
+  name: GetSystemDefaultId()
+  nameWithType: IDateTimeZoneSource.GetSystemDefaultId()
+  fullName: NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId()
+  spec.csharp:
+  - uid: NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+    name: GetSystemDefaultId
+    nameWithType: IDateTimeZoneSource.GetSystemDefaultId
+    fullName: NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+    name: GetSystemDefaultId
+    nameWithType: IDateTimeZoneSource.GetSystemDefaultId
+    fullName: NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+shouldSkipMarkup: true

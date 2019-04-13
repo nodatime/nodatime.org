@@ -1,0 +1,1773 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Interval
+  commentId: T:NodaTime.Interval
+  id: Interval
+  parent: NodaTime
+  children:
+  - NodaTime.Interval.#ctor(NodaTime.Instant,NodaTime.Instant)
+  - NodaTime.Interval.#ctor(System.Nullable{NodaTime.Instant},System.Nullable{NodaTime.Instant})
+  - NodaTime.Interval.Contains(NodaTime.Instant)
+  - NodaTime.Interval.Deconstruct(System.Nullable{NodaTime.Instant}@,System.Nullable{NodaTime.Instant}@)
+  - NodaTime.Interval.Duration
+  - NodaTime.Interval.End
+  - NodaTime.Interval.Equals(NodaTime.Interval)
+  - NodaTime.Interval.Equals(System.Object)
+  - NodaTime.Interval.GetHashCode
+  - NodaTime.Interval.HasEnd
+  - NodaTime.Interval.HasStart
+  - NodaTime.Interval.op_Equality(NodaTime.Interval,NodaTime.Interval)
+  - NodaTime.Interval.op_Inequality(NodaTime.Interval,NodaTime.Interval)
+  - NodaTime.Interval.Start
+  - NodaTime.Interval.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  - NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#GetSchema
+  - NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  - NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  - NodaTime.Interval.ToString
+  langs:
+  - csharp
+  - vb
+  name: Interval
+  nameWithType: Interval
+  fullName: NodaTime.Interval
+  type: Struct
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Interval
+    path: src/NodaTime/Interval.cs
+    startLine: 30
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nAn interval between two instants in time (start and end).\n"
+  remarks: "\n<p>\nThe interval includes the start instant and excludes the end instant. However, an interval\nmay be missing its start or end, in which case the interval is deemed to be infinite in that\ndirection.\n</p>\n<p>\nThe end may equal the start (resulting in an empty interval), but will not be before the start.\n</p>\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public struct Interval : IEquatable<Interval>, IXmlSerializable, ISerializable
+    content.vb: >-
+      <Serializable>
+
+      Public Structure Interval
+          Implements IEquatable(Of Interval), IXmlSerializable, ISerializable
+  implements:
+  - System.IEquatable{NodaTime.Interval}
+  - System.Xml.Serialization.IXmlSerializable
+  - System.Runtime.Serialization.ISerializable
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetType
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - struct
+  modifiers.vb:
+  - Public
+  - Structure
+- uid: NodaTime.Interval.#ctor(NodaTime.Instant,NodaTime.Instant)
+  commentId: M:NodaTime.Interval.#ctor(NodaTime.Instant,NodaTime.Instant)
+  id: '#ctor(NodaTime.Instant,NodaTime.Instant)'
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Interval(Instant, Instant)
+  nameWithType: Interval.Interval(Instant, Instant)
+  fullName: NodaTime.Interval.Interval(NodaTime.Instant, NodaTime.Instant)
+  type: Constructor
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: .ctor
+    path: src/NodaTime/Interval.cs
+    startLine: 51
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nInitializes a new instance of the <xref href=\"NodaTime.Interval\" data-throw-if-not-resolved=\"false\"></xref> struct.\nThe interval includes the <code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code> instant and excludes the\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">end</code> instant. The end may equal the start (resulting in an empty interval), but must not be before the start.\n"
+  example: []
+  syntax:
+    content: public Interval(Instant start, Instant end)
+    parameters:
+    - id: start
+      type: NodaTime.Instant
+      description: The start <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref>.
+    - id: end
+      type: NodaTime.Instant
+      description: The end <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Sub New(start As Instant, end As Instant)
+  overload: NodaTime.Interval.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: <code data-dev-comment-type="paramref" class="paramref">end</code> is earlier than <code data-dev-comment-type="paramref" class="paramref">start</code>.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Interval.#ctor(System.Nullable{NodaTime.Instant},System.Nullable{NodaTime.Instant})
+  commentId: M:NodaTime.Interval.#ctor(System.Nullable{NodaTime.Instant},System.Nullable{NodaTime.Instant})
+  id: '#ctor(System.Nullable{NodaTime.Instant},System.Nullable{NodaTime.Instant})'
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Interval(Nullable<Instant>, Nullable<Instant>)
+  nameWithType: Interval.Interval(Nullable<Instant>, Nullable<Instant>)
+  fullName: NodaTime.Interval.Interval(System.Nullable<NodaTime.Instant>, System.Nullable<NodaTime.Instant>)
+  type: Constructor
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: .ctor
+    path: src/NodaTime/Interval.cs
+    startLine: 73
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nInitializes a new instance of the <xref href=\"NodaTime.Interval\" data-throw-if-not-resolved=\"false\"></xref> struct from two nullable <xref href=\"NodaTime.Instant\" data-throw-if-not-resolved=\"false\"></xref>\nvalues.\n"
+  remarks: "\nIf the start is null, the interval is deemed to stretch to the start of time. If the end is null,\nthe interval is deemed to stretch to the end of time.\n"
+  example: []
+  syntax:
+    content: public Interval(Instant? start, Instant? end)
+    parameters:
+    - id: start
+      type: System.Nullable{NodaTime.Instant}
+      description: The start <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref> or null.
+    - id: end
+      type: System.Nullable{NodaTime.Instant}
+      description: The end <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref> or null.
+    content.vb: Public Sub New(start As Instant?, end As Instant?)
+  overload: NodaTime.Interval.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      <code data-dev-comment-type="paramref" class="paramref">end</code> is earlier than <code data-dev-comment-type="paramref" class="paramref">start</code>,
+          if they are both non-null.
+  nameWithType.vb: Interval.Interval(Nullable(Of Instant), Nullable(Of Instant))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NodaTime.Interval.Interval(System.Nullable(Of NodaTime.Instant), System.Nullable(Of NodaTime.Instant))
+  name.vb: Interval(Nullable(Of Instant), Nullable(Of Instant))
+- uid: NodaTime.Interval.Start
+  commentId: P:NodaTime.Interval.Start
+  id: Start
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Start
+  nameWithType: Interval.Start
+  fullName: NodaTime.Interval.Start
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Start
+    path: src/NodaTime/Interval.cs
+    startLine: 92
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the start instant - the inclusive lower bound of the interval.\n"
+  remarks: "\nThis will never be later than <xref href=\"NodaTime.Interval.End\" data-throw-if-not-resolved=\"false\"></xref>, though it may be equal to it.\n"
+  example: []
+  syntax:
+    content: public Instant Start { get; }
+    parameters: []
+    return:
+      type: NodaTime.Instant
+      description: The start <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public ReadOnly Property Start As Instant
+  overload: NodaTime.Interval.Start*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The interval extends to the start of time.
+  seealso:
+  - linkId: NodaTime.Interval.HasStart
+    commentId: P:NodaTime.Interval.HasStart
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Interval.HasStart
+  commentId: P:NodaTime.Interval.HasStart
+  id: HasStart
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: HasStart
+  nameWithType: Interval.HasStart
+  fullName: NodaTime.Interval.HasStart
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: HasStart
+    path: src/NodaTime/Interval.cs
+    startLine: 107
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns <code>true</code> if this interval has a fixed start point, or <code>false</code> if it\nextends to the start of time.\n"
+  example: []
+  syntax:
+    content: public bool HasStart { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: >-
+        <code>true</code> if this interval has a fixed start point, or <code>false</code> if it
+            extends to the start of time.
+    content.vb: Public ReadOnly Property HasStart As Boolean
+  overload: NodaTime.Interval.HasStart*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Interval.End
+  commentId: P:NodaTime.Interval.End
+  id: End
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: End
+  nameWithType: Interval.End
+  fullName: NodaTime.Interval.End
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: End
+    path: src/NodaTime/Interval.cs
+    startLine: 115
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the end instant - the exclusive upper bound of the interval.\n"
+  example: []
+  syntax:
+    content: public Instant End { get; }
+    parameters: []
+    return:
+      type: NodaTime.Instant
+      description: The end <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public ReadOnly Property End As Instant
+  overload: NodaTime.Interval.End*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The interval extends to the end of time.
+  seealso:
+  - linkId: NodaTime.Interval.HasEnd
+    commentId: P:NodaTime.Interval.HasEnd
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Interval.HasEnd
+  commentId: P:NodaTime.Interval.HasEnd
+  id: HasEnd
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: HasEnd
+  nameWithType: Interval.HasEnd
+  fullName: NodaTime.Interval.HasEnd
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: HasEnd
+    path: src/NodaTime/Interval.cs
+    startLine: 136
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns <code>true</code> if this interval has a fixed end point, or <code>false</code> if it\nextends to the end of time.\n"
+  example: []
+  syntax:
+    content: public bool HasEnd { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: >-
+        <code>true</code> if this interval has a fixed end point, or <code>false</code> if it
+            extends to the end of time.
+    content.vb: Public ReadOnly Property HasEnd As Boolean
+  overload: NodaTime.Interval.HasEnd*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Interval.Duration
+  commentId: P:NodaTime.Interval.Duration
+  id: Duration
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Duration
+  nameWithType: Interval.Duration
+  fullName: NodaTime.Interval.Duration
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Duration
+    path: src/NodaTime/Interval.cs
+    startLine: 146
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the duration of the interval.\n"
+  remarks: "\nThis will always be a non-negative duration, though it may be zero.\n"
+  example: []
+  syntax:
+    content: public Duration Duration { get; }
+    parameters: []
+    return:
+      type: NodaTime.Duration
+      description: The duration of the interval.
+    content.vb: Public ReadOnly Property Duration As Duration
+  overload: NodaTime.Interval.Duration*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The interval extends to the start or end of time.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Interval.Contains(NodaTime.Instant)
+  commentId: M:NodaTime.Interval.Contains(NodaTime.Instant)
+  id: Contains(NodaTime.Instant)
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Contains(Instant)
+  nameWithType: Interval.Contains(Instant)
+  fullName: NodaTime.Interval.Contains(NodaTime.Instant)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Contains
+    path: src/NodaTime/Interval.cs
+    startLine: 153
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns whether or not this interval contains the given instant.\n"
+  example: []
+  syntax:
+    content: public bool Contains(Instant instant)
+    parameters:
+    - id: instant
+      type: NodaTime.Instant
+      description: Instant to test.
+    return:
+      type: System.Boolean
+      description: True if this interval contains the given instant; false otherwise.
+    content.vb: Public Function Contains(instant As Instant) As Boolean
+  overload: NodaTime.Interval.Contains*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Interval.Deconstruct(System.Nullable{NodaTime.Instant}@,System.Nullable{NodaTime.Instant}@)
+  commentId: M:NodaTime.Interval.Deconstruct(System.Nullable{NodaTime.Instant}@,System.Nullable{NodaTime.Instant}@)
+  id: Deconstruct(System.Nullable{NodaTime.Instant}@,System.Nullable{NodaTime.Instant}@)
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Deconstruct(out Nullable<Instant>, out Nullable<Instant>)
+  nameWithType: Interval.Deconstruct(out Nullable<Instant>, out Nullable<Instant>)
+  fullName: NodaTime.Interval.Deconstruct(out System.Nullable<NodaTime.Instant>, out System.Nullable<NodaTime.Instant>)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Deconstruct
+    path: src/NodaTime/Interval.cs
+    startLine: 161
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nDeconstruct this value into its components.\n"
+  example: []
+  syntax:
+    content: public void Deconstruct(out Instant? start, out Instant? end)
+    parameters:
+    - id: start
+      type: System.Nullable{NodaTime.Instant}
+      description: The start of the interval.
+    - id: end
+      type: System.Nullable{NodaTime.Instant}
+      description: The end of the interval.
+    content.vb: Public Sub Deconstruct(ByRef start As Instant?, ByRef end As Instant?)
+  overload: NodaTime.Interval.Deconstruct*
+  nameWithType.vb: Interval.Deconstruct(ByRef Nullable(Of Instant), ByRef Nullable(Of Instant))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NodaTime.Interval.Deconstruct(ByRef System.Nullable(Of NodaTime.Instant), ByRef System.Nullable(Of NodaTime.Instant))
+  name.vb: Deconstruct(ByRef Nullable(Of Instant), ByRef Nullable(Of Instant))
+- uid: NodaTime.Interval.Equals(NodaTime.Interval)
+  commentId: M:NodaTime.Interval.Equals(NodaTime.Interval)
+  id: Equals(NodaTime.Interval)
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Equals(Interval)
+  nameWithType: Interval.Equals(Interval)
+  fullName: NodaTime.Interval.Equals(NodaTime.Interval)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Equals
+    path: src/NodaTime/Interval.cs
+    startLine: 177
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nIndicates whether the value of this interval is equal to the value of the specified interval.\n"
+  example: []
+  syntax:
+    content: public bool Equals(Interval other)
+    parameters:
+    - id: other
+      type: NodaTime.Interval
+      description: The value to compare with this instance.
+    return:
+      type: System.Boolean
+      description: "\ntrue if the value of this instant is equal to the value of the <code data-dev-comment-type=\"paramref\" class=\"paramref\">other</code> parameter;\notherwise, false.\n"
+    content.vb: Public Function Equals(other As Interval) As Boolean
+  overload: NodaTime.Interval.Equals*
+  implements:
+  - System.IEquatable{NodaTime.Interval}.Equals(NodaTime.Interval)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Interval.Equals(System.Object)
+  commentId: M:NodaTime.Interval.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Equals(Object)
+  nameWithType: Interval.Equals(Object)
+  fullName: NodaTime.Interval.Equals(System.Object)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Equals
+    path: src/NodaTime/Interval.cs
+    startLine: 190
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nDetermines whether the specified <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> is equal to this instance.\n"
+  example: []
+  syntax:
+    content: public override bool Equals(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> to compare with this instance.
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if the specified <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> is equal to this instance;\notherwise, <code>false</code>.\n"
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: NodaTime.Interval.Equals*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: NodaTime.Interval.GetHashCode
+  commentId: M:NodaTime.Interval.GetHashCode
+  id: GetHashCode
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: Interval.GetHashCode()
+  fullName: NodaTime.Interval.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetHashCode
+    path: src/NodaTime/Interval.cs
+    startLine: 199
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the hash code for this instance.\n"
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: "\nA 32-bit signed integer that is the hash code for this instance.\n"
+    content.vb: Public Overrides Function GetHashCode As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: NodaTime.Interval.GetHashCode*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: NodaTime.Interval.ToString
+  commentId: M:NodaTime.Interval.ToString
+  id: ToString
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Interval.ToString()
+  fullName: NodaTime.Interval.ToString()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: ToString
+    path: src/NodaTime/Interval.cs
+    startLine: 208
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a string representation of this interval, in extended ISO-8601 format: the format\nis &quot;start/end&quot; where each instant uses a format of &quot;uuuu&apos;-&apos;MM&apos;-&apos;dd&apos;T&apos;HH&apos;:&apos;mm&apos;:&apos;ss;FFFFFFFFF&apos;Z&apos;&quot;.\nIf the start or end is infinite, the relevant part uses &quot;StartOfTime&quot; or &quot;EndOfTime&quot; to\nrepresent this.\n"
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string representation of this interval.
+    content.vb: Public Overrides Function ToString As String
+  overridden: System.ValueType.ToString
+  overload: NodaTime.Interval.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: NodaTime.Interval.op_Equality(NodaTime.Interval,NodaTime.Interval)
+  commentId: M:NodaTime.Interval.op_Equality(NodaTime.Interval,NodaTime.Interval)
+  id: op_Equality(NodaTime.Interval,NodaTime.Interval)
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Equality(Interval, Interval)
+  nameWithType: Interval.Equality(Interval, Interval)
+  fullName: NodaTime.Interval.Equality(NodaTime.Interval, NodaTime.Interval)
+  type: Operator
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: op_Equality
+    path: src/NodaTime/Interval.cs
+    startLine: 222
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nImplements the operator ==.\n"
+  example: []
+  syntax:
+    content: public static bool operator ==(Interval left, Interval right)
+    parameters:
+    - id: left
+      type: NodaTime.Interval
+      description: The left.
+    - id: right
+      type: NodaTime.Interval
+      description: The right.
+    return:
+      type: System.Boolean
+      description: The result of the operator.
+    content.vb: Public Shared Operator =(left As Interval, right As Interval) As Boolean
+  overload: NodaTime.Interval.op_Equality*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Interval.op_Inequality(NodaTime.Interval,NodaTime.Interval)
+  commentId: M:NodaTime.Interval.op_Inequality(NodaTime.Interval,NodaTime.Interval)
+  id: op_Inequality(NodaTime.Interval,NodaTime.Interval)
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Inequality(Interval, Interval)
+  nameWithType: Interval.Inequality(Interval, Interval)
+  fullName: NodaTime.Interval.Inequality(NodaTime.Interval, NodaTime.Interval)
+  type: Operator
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: op_Inequality
+    path: src/NodaTime/Interval.cs
+    startLine: 230
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nImplements the operator !=.\n"
+  example: []
+  syntax:
+    content: public static bool operator !=(Interval left, Interval right)
+    parameters:
+    - id: left
+      type: NodaTime.Interval
+      description: The left.
+    - id: right
+      type: NodaTime.Interval
+      description: The right.
+    return:
+      type: System.Boolean
+      description: The result of the operator.
+    content.vb: Public Shared Operator <>(left As Interval, right As Interval) As Boolean
+  overload: NodaTime.Interval.op_Inequality*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#GetSchema
+  commentId: M:NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#GetSchema
+  id: System#Xml#Serialization#IXmlSerializable#GetSchema
+  isEii: true
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.GetSchema()
+  nameWithType: Interval.IXmlSerializable.GetSchema()
+  fullName: NodaTime.Interval.System.Xml.Serialization.IXmlSerializable.GetSchema()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: System.Xml.Serialization.IXmlSerializable.GetSchema
+    path: src/NodaTime/Interval.cs
+    startLine: 235
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  example: []
+  syntax:
+    content: XmlSchema IXmlSerializable.GetSchema()
+    return:
+      type: System.Xml.Schema.XmlSchema
+    content.vb: Function System.Xml.Serialization.IXmlSerializable.GetSchema As XmlSchema Implements IXmlSerializable.GetSchema
+  overload: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#GetSchema*
+  implements:
+  - System.Xml.Serialization.IXmlSerializable.GetSchema
+  nameWithType.vb: Interval.System.Xml.Serialization.IXmlSerializable.GetSchema()
+  name.vb: System.Xml.Serialization.IXmlSerializable.GetSchema()
+- uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  commentId: M:NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  id: System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  isEii: true
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.ReadXml(XmlReader)
+  nameWithType: Interval.IXmlSerializable.ReadXml(XmlReader)
+  fullName: NodaTime.Interval.System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: System.Xml.Serialization.IXmlSerializable.ReadXml
+    path: src/NodaTime/Interval.cs
+    startLine: 238
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  example: []
+  syntax:
+    content: void IXmlSerializable.ReadXml(XmlReader reader)
+    parameters:
+    - id: reader
+      type: System.Xml.XmlReader
+    content.vb: Sub System.Xml.Serialization.IXmlSerializable.ReadXml(reader As XmlReader) Implements IXmlSerializable.ReadXml
+  overload: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#ReadXml*
+  implements:
+  - System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  nameWithType.vb: Interval.System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader)
+  name.vb: System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader)
+- uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  commentId: M:NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  id: System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  isEii: true
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.WriteXml(XmlWriter)
+  nameWithType: Interval.IXmlSerializable.WriteXml(XmlWriter)
+  fullName: NodaTime.Interval.System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: System.Xml.Serialization.IXmlSerializable.WriteXml
+    path: src/NodaTime/Interval.cs
+    startLine: 250
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  example: []
+  syntax:
+    content: void IXmlSerializable.WriteXml(XmlWriter writer)
+    parameters:
+    - id: writer
+      type: System.Xml.XmlWriter
+    content.vb: Sub System.Xml.Serialization.IXmlSerializable.WriteXml(writer As XmlWriter) Implements IXmlSerializable.WriteXml
+  overload: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#WriteXml*
+  implements:
+  - System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  nameWithType.vb: Interval.System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter)
+  name.vb: System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter)
+- uid: NodaTime.Interval.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:NodaTime.Interval.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  id: System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  isEii: true
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType: Interval.ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+  fullName: NodaTime.Interval.System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Interval.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: System.Runtime.Serialization.ISerializable.GetObjectData
+    path: src/NodaTime/Interval.cs
+    startLine: 298
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nImplementation of <xref href=\"System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo%2cSystem.Runtime.Serialization.StreamingContext)\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: >-
+      [SecurityCritical]
+
+      void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
+    parameters:
+    - id: info
+      type: System.Runtime.Serialization.SerializationInfo
+      description: The <xref href="System.Runtime.Serialization.SerializationInfo" data-throw-if-not-resolved="false"></xref> to populate with data.
+    - id: context
+      type: System.Runtime.Serialization.StreamingContext
+      description: The destination for this serialization.
+    content.vb: >-
+      <SecurityCritical>
+
+      Sub System.Runtime.Serialization.ISerializable.GetObjectData(info As SerializationInfo, context As StreamingContext) Implements ISerializable.GetObjectData
+  overload: NodaTime.Interval.System#Runtime#Serialization#ISerializable#GetObjectData*
+  implements:
+  - System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  attributes:
+  - type: System.Security.SecurityCriticalAttribute
+    ctor: System.Security.SecurityCriticalAttribute.#ctor
+    arguments: []
+  nameWithType.vb: Interval.System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+  name.vb: System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+references:
+- uid: NodaTime
+  commentId: N:NodaTime
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.IEquatable{NodaTime.Interval}
+  commentId: T:System.IEquatable{NodaTime.Interval}
+  parent: System
+  definition: System.IEquatable`1
+  name: IEquatable<Interval>
+  nameWithType: IEquatable<Interval>
+  fullName: System.IEquatable<NodaTime.Interval>
+  nameWithType.vb: IEquatable(Of Interval)
+  fullName.vb: System.IEquatable(Of NodaTime.Interval)
+  name.vb: IEquatable(Of Interval)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.Interval
+    name: Interval
+    nameWithType: Interval
+    fullName: NodaTime.Interval
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.Interval
+    name: Interval
+    nameWithType: Interval
+    fullName: NodaTime.Interval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Xml.Serialization.IXmlSerializable
+  commentId: T:System.Xml.Serialization.IXmlSerializable
+  parent: System.Xml.Serialization
+  isExternal: true
+  name: IXmlSerializable
+  nameWithType: IXmlSerializable
+  fullName: System.Xml.Serialization.IXmlSerializable
+- uid: System.Runtime.Serialization.ISerializable
+  commentId: T:System.Runtime.Serialization.ISerializable
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: ISerializable
+  nameWithType: ISerializable
+  fullName: System.Runtime.Serialization.ISerializable
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Xml.Serialization
+  commentId: N:System.Xml.Serialization
+  isExternal: true
+  name: System.Xml.Serialization
+  nameWithType: System.Xml.Serialization
+  fullName: System.Xml.Serialization
+- uid: System.Runtime.Serialization
+  commentId: N:System.Runtime.Serialization
+  isExternal: true
+  name: System.Runtime.Serialization
+  nameWithType: System.Runtime.Serialization
+  fullName: System.Runtime.Serialization
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: NodaTime.Interval
+  commentId: T:NodaTime.Interval
+  parent: NodaTime
+  name: Interval
+  nameWithType: Interval
+  fullName: NodaTime.Interval
+- uid: NodaTime.Instant
+  commentId: T:NodaTime.Instant
+  parent: NodaTime
+  name: Instant
+  nameWithType: Instant
+  fullName: NodaTime.Instant
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  parent: System
+  isExternal: true
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: NodaTime.Interval.#ctor*
+  commentId: Overload:NodaTime.Interval.#ctor
+  name: Interval
+  nameWithType: Interval.Interval
+  fullName: NodaTime.Interval.Interval
+- uid: System.Nullable{NodaTime.Instant}
+  commentId: T:System.Nullable{NodaTime.Instant}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Instant>
+  nameWithType: Nullable<Instant>
+  fullName: System.Nullable<NodaTime.Instant>
+  nameWithType.vb: Nullable(Of Instant)
+  fullName.vb: System.Nullable(Of NodaTime.Instant)
+  name.vb: Nullable(Of Instant)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.Instant
+    name: Instant
+    nameWithType: Instant
+    fullName: NodaTime.Instant
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.Instant
+    name: Instant
+    nameWithType: Instant
+    fullName: NodaTime.Instant
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Interval.End
+  commentId: P:NodaTime.Interval.End
+  isExternal: true
+- uid: NodaTime.Interval.HasStart
+  commentId: P:NodaTime.Interval.HasStart
+  isExternal: true
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+- uid: NodaTime.Interval.Start*
+  commentId: Overload:NodaTime.Interval.Start
+  name: Start
+  nameWithType: Interval.Start
+  fullName: NodaTime.Interval.Start
+- uid: NodaTime.Interval.HasStart*
+  commentId: Overload:NodaTime.Interval.HasStart
+  name: HasStart
+  nameWithType: Interval.HasStart
+  fullName: NodaTime.Interval.HasStart
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: NodaTime.Interval.HasEnd
+  commentId: P:NodaTime.Interval.HasEnd
+  isExternal: true
+- uid: NodaTime.Interval.End*
+  commentId: Overload:NodaTime.Interval.End
+  name: End
+  nameWithType: Interval.End
+  fullName: NodaTime.Interval.End
+- uid: NodaTime.Interval.HasEnd*
+  commentId: Overload:NodaTime.Interval.HasEnd
+  name: HasEnd
+  nameWithType: Interval.HasEnd
+  fullName: NodaTime.Interval.HasEnd
+- uid: NodaTime.Interval.Duration*
+  commentId: Overload:NodaTime.Interval.Duration
+  name: Duration
+  nameWithType: Interval.Duration
+  fullName: NodaTime.Interval.Duration
+- uid: NodaTime.Duration
+  commentId: T:NodaTime.Duration
+  parent: NodaTime
+  name: Duration
+  nameWithType: Duration
+  fullName: NodaTime.Duration
+- uid: NodaTime.Interval.Contains*
+  commentId: Overload:NodaTime.Interval.Contains
+  name: Contains
+  nameWithType: Interval.Contains
+  fullName: NodaTime.Interval.Contains
+- uid: NodaTime.Interval.Deconstruct*
+  commentId: Overload:NodaTime.Interval.Deconstruct
+  name: Deconstruct
+  nameWithType: Interval.Deconstruct
+  fullName: NodaTime.Interval.Deconstruct
+- uid: NodaTime.Interval.Equals*
+  commentId: Overload:NodaTime.Interval.Equals
+  name: Equals
+  nameWithType: Interval.Equals
+  fullName: NodaTime.Interval.Equals
+- uid: System.IEquatable{NodaTime.Interval}.Equals(NodaTime.Interval)
+  commentId: M:System.IEquatable{NodaTime.Interval}.Equals(NodaTime.Interval)
+  parent: System.IEquatable{NodaTime.Interval}
+  definition: System.IEquatable`1.Equals(`0)
+  name: Equals(Interval)
+  nameWithType: IEquatable<Interval>.Equals(Interval)
+  fullName: System.IEquatable<NodaTime.Interval>.Equals(NodaTime.Interval)
+  nameWithType.vb: IEquatable(Of Interval).Equals(Interval)
+  fullName.vb: System.IEquatable(Of NodaTime.Interval).Equals(NodaTime.Interval)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<Interval>.Equals
+    fullName: System.IEquatable<NodaTime.Interval>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.Interval
+    name: Interval
+    nameWithType: Interval
+    fullName: NodaTime.Interval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of Interval).Equals
+    fullName: System.IEquatable(Of NodaTime.Interval).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.Interval
+    name: Interval
+    nameWithType: Interval
+    fullName: NodaTime.Interval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<T>.Equals
+    fullName: System.IEquatable<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of T).Equals
+    fullName: System.IEquatable(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: ValueType.Equals(Object)
+  fullName: System.ValueType.Equals(System.Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Interval.GetHashCode*
+  commentId: Overload:NodaTime.Interval.GetHashCode
+  name: GetHashCode
+  nameWithType: Interval.GetHashCode
+  fullName: NodaTime.Interval.GetHashCode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Interval.ToString*
+  commentId: Overload:NodaTime.Interval.ToString
+  name: ToString
+  nameWithType: Interval.ToString
+  fullName: NodaTime.Interval.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: NodaTime.Interval.op_Equality*
+  commentId: Overload:NodaTime.Interval.op_Equality
+  name: Equality
+  nameWithType: Interval.Equality
+  fullName: NodaTime.Interval.Equality
+- uid: NodaTime.Interval.op_Inequality*
+  commentId: Overload:NodaTime.Interval.op_Inequality
+  name: Inequality
+  nameWithType: Interval.Inequality
+  fullName: NodaTime.Interval.Inequality
+- uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#GetSchema*
+  commentId: Overload:NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#GetSchema
+  name: IXmlSerializable.GetSchema
+  nameWithType: Interval.IXmlSerializable.GetSchema
+  fullName: NodaTime.Interval.System.Xml.Serialization.IXmlSerializable.GetSchema
+  nameWithType.vb: Interval.System.Xml.Serialization.IXmlSerializable.GetSchema
+  name.vb: System.Xml.Serialization.IXmlSerializable.GetSchema
+- uid: System.Xml.Serialization.IXmlSerializable.GetSchema
+  commentId: M:System.Xml.Serialization.IXmlSerializable.GetSchema
+  parent: System.Xml.Serialization.IXmlSerializable
+  isExternal: true
+  name: GetSchema()
+  nameWithType: IXmlSerializable.GetSchema()
+  fullName: System.Xml.Serialization.IXmlSerializable.GetSchema()
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable.GetSchema
+    name: GetSchema
+    nameWithType: IXmlSerializable.GetSchema
+    fullName: System.Xml.Serialization.IXmlSerializable.GetSchema
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Xml.Serialization.IXmlSerializable.GetSchema
+    name: GetSchema
+    nameWithType: IXmlSerializable.GetSchema
+    fullName: System.Xml.Serialization.IXmlSerializable.GetSchema
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Xml.Schema.XmlSchema
+  commentId: T:System.Xml.Schema.XmlSchema
+  parent: System.Xml.Schema
+  isExternal: true
+  name: XmlSchema
+  nameWithType: XmlSchema
+  fullName: System.Xml.Schema.XmlSchema
+- uid: System.Xml.Schema
+  commentId: N:System.Xml.Schema
+  isExternal: true
+  name: System.Xml.Schema
+  nameWithType: System.Xml.Schema
+  fullName: System.Xml.Schema
+- uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#ReadXml*
+  commentId: Overload:NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#ReadXml
+  name: IXmlSerializable.ReadXml
+  nameWithType: Interval.IXmlSerializable.ReadXml
+  fullName: NodaTime.Interval.System.Xml.Serialization.IXmlSerializable.ReadXml
+  nameWithType.vb: Interval.System.Xml.Serialization.IXmlSerializable.ReadXml
+  name.vb: System.Xml.Serialization.IXmlSerializable.ReadXml
+- uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  commentId: M:System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  parent: System.Xml.Serialization.IXmlSerializable
+  isExternal: true
+  name: ReadXml(XmlReader)
+  nameWithType: IXmlSerializable.ReadXml(XmlReader)
+  fullName: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    nameWithType: IXmlSerializable.ReadXml
+    fullName: System.Xml.Serialization.IXmlSerializable.ReadXml
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    nameWithType: XmlReader
+    fullName: System.Xml.XmlReader
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    nameWithType: IXmlSerializable.ReadXml
+    fullName: System.Xml.Serialization.IXmlSerializable.ReadXml
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    nameWithType: XmlReader
+    fullName: System.Xml.XmlReader
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Xml.XmlReader
+  commentId: T:System.Xml.XmlReader
+  parent: System.Xml
+  isExternal: true
+  name: XmlReader
+  nameWithType: XmlReader
+  fullName: System.Xml.XmlReader
+- uid: System.Xml
+  commentId: N:System.Xml
+  isExternal: true
+  name: System.Xml
+  nameWithType: System.Xml
+  fullName: System.Xml
+- uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#WriteXml*
+  commentId: Overload:NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#WriteXml
+  name: IXmlSerializable.WriteXml
+  nameWithType: Interval.IXmlSerializable.WriteXml
+  fullName: NodaTime.Interval.System.Xml.Serialization.IXmlSerializable.WriteXml
+  nameWithType.vb: Interval.System.Xml.Serialization.IXmlSerializable.WriteXml
+  name.vb: System.Xml.Serialization.IXmlSerializable.WriteXml
+- uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  commentId: M:System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  parent: System.Xml.Serialization.IXmlSerializable
+  isExternal: true
+  name: WriteXml(XmlWriter)
+  nameWithType: IXmlSerializable.WriteXml(XmlWriter)
+  fullName: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    nameWithType: IXmlSerializable.WriteXml
+    fullName: System.Xml.Serialization.IXmlSerializable.WriteXml
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    nameWithType: XmlWriter
+    fullName: System.Xml.XmlWriter
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    nameWithType: IXmlSerializable.WriteXml
+    fullName: System.Xml.Serialization.IXmlSerializable.WriteXml
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    nameWithType: XmlWriter
+    fullName: System.Xml.XmlWriter
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Xml.XmlWriter
+  commentId: T:System.Xml.XmlWriter
+  parent: System.Xml
+  isExternal: true
+  name: XmlWriter
+  nameWithType: XmlWriter
+  fullName: System.Xml.XmlWriter
+- uid: System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  parent: System.Runtime.Serialization.ISerializable
+  isExternal: true
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType: ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+  fullName: System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  spec.csharp:
+  - uid: System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    nameWithType: ISerializable.GetObjectData
+    fullName: System.Runtime.Serialization.ISerializable.GetObjectData
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    nameWithType: SerializationInfo
+    fullName: System.Runtime.Serialization.SerializationInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    nameWithType: StreamingContext
+    fullName: System.Runtime.Serialization.StreamingContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    nameWithType: ISerializable.GetObjectData
+    fullName: System.Runtime.Serialization.ISerializable.GetObjectData
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    nameWithType: SerializationInfo
+    fullName: System.Runtime.Serialization.SerializationInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    nameWithType: StreamingContext
+    fullName: System.Runtime.Serialization.StreamingContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Runtime.Serialization.SerializationInfo
+  commentId: T:System.Runtime.Serialization.SerializationInfo
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: SerializationInfo
+  nameWithType: SerializationInfo
+  fullName: System.Runtime.Serialization.SerializationInfo
+- uid: NodaTime.Interval.System#Runtime#Serialization#ISerializable#GetObjectData*
+  commentId: Overload:NodaTime.Interval.System#Runtime#Serialization#ISerializable#GetObjectData
+  name: ISerializable.GetObjectData
+  nameWithType: Interval.ISerializable.GetObjectData
+  fullName: NodaTime.Interval.System.Runtime.Serialization.ISerializable.GetObjectData
+  nameWithType.vb: Interval.System.Runtime.Serialization.ISerializable.GetObjectData
+  name.vb: System.Runtime.Serialization.ISerializable.GetObjectData
+- uid: System.Runtime.Serialization.StreamingContext
+  commentId: T:System.Runtime.Serialization.StreamingContext
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: StreamingContext
+  nameWithType: StreamingContext
+  fullName: System.Runtime.Serialization.StreamingContext
+shouldSkipMarkup: true

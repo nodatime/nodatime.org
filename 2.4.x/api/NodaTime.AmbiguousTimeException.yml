@@ -1,0 +1,789 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.AmbiguousTimeException
+  commentId: T:NodaTime.AmbiguousTimeException
+  id: AmbiguousTimeException
+  parent: NodaTime
+  children:
+  - NodaTime.AmbiguousTimeException.#ctor(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  - NodaTime.AmbiguousTimeException.EarlierMapping
+  - NodaTime.AmbiguousTimeException.LaterMapping
+  - NodaTime.AmbiguousTimeException.Zone
+  langs:
+  - csharp
+  - vb
+  name: AmbiguousTimeException
+  nameWithType: AmbiguousTimeException
+  fullName: NodaTime.AmbiguousTimeException
+  type: Class
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/AmbiguousTimeException.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: AmbiguousTimeException
+    path: src/NodaTime/AmbiguousTimeException.cs
+    startLine: 38
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nException thrown to indicate that the specified local date/time occurs twice\nin a particular time zone due to daylight saving time changes.\n"
+  remarks: "\n<p>\nThis occurs for transitions where the clock goes backward (usually by\nan hour). For example, suppose the time zone goes backward\nat 2am, so the second after 01:59:59 becomes 01:00:00. In that case,\ntimes such as 01:30:00 occur twice.\n</p>\n<p>\nThis exception is used to indicate such problems, as they&apos;re usually\nnot the same as other <xref href=\"System.ArgumentOutOfRangeException\" data-throw-if-not-resolved=\"false\"></xref> causes,\nsuch as entering &quot;15&quot; for a month number.\n</p>\n<p>\nIn theory this isn&apos;t calendar-specific; the local value will be ambiguous in\nthis time zone regardless of the calendar used. However, this exception is\nalways created in conjunction with a specific calendar, which leads to a more\nnatural way of examining its information and constructing an error message.\n</p>\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public sealed class AmbiguousTimeException : ArgumentOutOfRangeException, _Exception, ISerializable
+    content.vb: >-
+      <Serializable>
+
+      Public NotInheritable Class AmbiguousTimeException
+          Inherits ArgumentOutOfRangeException
+          Implements _Exception, ISerializable
+  inheritance:
+  - System.Object
+  - System.Exception
+  - System.SystemException
+  - System.ArgumentException
+  - System.ArgumentOutOfRangeException
+  implements:
+  - System.Runtime.InteropServices._Exception
+  - System.Runtime.Serialization.ISerializable
+  inheritedMembers:
+  - System.ArgumentOutOfRangeException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  - System.ArgumentOutOfRangeException.Message
+  - System.ArgumentOutOfRangeException.ActualValue
+  - System.ArgumentException.ParamName
+  - System.Exception.GetBaseException
+  - System.Exception.ToString
+  - System.Exception.GetType
+  - System.Exception.Data
+  - System.Exception.InnerException
+  - System.Exception.TargetSite
+  - System.Exception.StackTrace
+  - System.Exception.HelpLink
+  - System.Exception.Source
+  - System.Exception.HResult
+  - System.Exception.SerializeObjectState
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.MemberwiseClone
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: NodaTime.AmbiguousTimeException.Zone
+  commentId: P:NodaTime.AmbiguousTimeException.Zone
+  id: Zone
+  parent: NodaTime.AmbiguousTimeException
+  langs:
+  - csharp
+  - vb
+  name: Zone
+  nameWithType: AmbiguousTimeException.Zone
+  fullName: NodaTime.AmbiguousTimeException.Zone
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/AmbiguousTimeException.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Zone
+    path: src/NodaTime/AmbiguousTimeException.cs
+    startLine: 53
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nThe time zone in which the local date and time is ambiguous.\n"
+  example: []
+  syntax:
+    content: public DateTimeZone Zone { get; }
+    parameters: []
+    return:
+      type: NodaTime.DateTimeZone
+      description: The time zone in which the local date and time is ambiguous.
+    content.vb: Public ReadOnly Property Zone As DateTimeZone
+  overload: NodaTime.AmbiguousTimeException.Zone*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.AmbiguousTimeException.EarlierMapping
+  commentId: P:NodaTime.AmbiguousTimeException.EarlierMapping
+  id: EarlierMapping
+  parent: NodaTime.AmbiguousTimeException
+  langs:
+  - csharp
+  - vb
+  name: EarlierMapping
+  nameWithType: AmbiguousTimeException.EarlierMapping
+  fullName: NodaTime.AmbiguousTimeException.EarlierMapping
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/AmbiguousTimeException.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: EarlierMapping
+    path: src/NodaTime/AmbiguousTimeException.cs
+    startLine: 59
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the earlier of the two occurrences of the local date and time within the time zone.\n"
+  example: []
+  syntax:
+    content: public ZonedDateTime EarlierMapping { get; }
+    parameters: []
+    return:
+      type: NodaTime.ZonedDateTime
+      description: The earlier of the two occurrences of the local date and time within the time zone.
+    content.vb: Public ReadOnly Property EarlierMapping As ZonedDateTime
+  overload: NodaTime.AmbiguousTimeException.EarlierMapping*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.AmbiguousTimeException.LaterMapping
+  commentId: P:NodaTime.AmbiguousTimeException.LaterMapping
+  id: LaterMapping
+  parent: NodaTime.AmbiguousTimeException
+  langs:
+  - csharp
+  - vb
+  name: LaterMapping
+  nameWithType: AmbiguousTimeException.LaterMapping
+  fullName: NodaTime.AmbiguousTimeException.LaterMapping
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/AmbiguousTimeException.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: LaterMapping
+    path: src/NodaTime/AmbiguousTimeException.cs
+    startLine: 65
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the later of the two occurrences of the local date and time within the time zone.\n"
+  example: []
+  syntax:
+    content: public ZonedDateTime LaterMapping { get; }
+    parameters: []
+    return:
+      type: NodaTime.ZonedDateTime
+      description: The later of the two occurrences of the local date and time within the time zone.
+    content.vb: Public ReadOnly Property LaterMapping As ZonedDateTime
+  overload: NodaTime.AmbiguousTimeException.LaterMapping*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.AmbiguousTimeException.#ctor(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.AmbiguousTimeException.#ctor(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  id: '#ctor(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)'
+  parent: NodaTime.AmbiguousTimeException
+  langs:
+  - csharp
+  - vb
+  name: AmbiguousTimeException(ZonedDateTime, ZonedDateTime)
+  nameWithType: AmbiguousTimeException.AmbiguousTimeException(ZonedDateTime, ZonedDateTime)
+  fullName: NodaTime.AmbiguousTimeException.AmbiguousTimeException(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  type: Constructor
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/AmbiguousTimeException.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: .ctor
+    path: src/NodaTime/AmbiguousTimeException.cs
+    startLine: 81
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nConstructs an instance from the given information.\n"
+  remarks: "\n<p>\nUser code is unlikely to need to deliberately call this constructor except\npossibly for testing.\n</p>\n<p>\nThe two mappings must have the same local time and time zone.\n</p>\n"
+  example: []
+  syntax:
+    content: public AmbiguousTimeException(ZonedDateTime earlierMapping, ZonedDateTime laterMapping)
+    parameters:
+    - id: earlierMapping
+      type: NodaTime.ZonedDateTime
+      description: The earlier possible mapping
+    - id: laterMapping
+      type: NodaTime.ZonedDateTime
+      description: The later possible mapping
+    content.vb: Public Sub New(earlierMapping As ZonedDateTime, laterMapping As ZonedDateTime)
+  overload: NodaTime.AmbiguousTimeException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  parent: System
+  isExternal: true
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: NodaTime
+  commentId: N:NodaTime
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: System.SystemException
+  commentId: T:System.SystemException
+  parent: System
+  isExternal: true
+  name: SystemException
+  nameWithType: SystemException
+  fullName: System.SystemException
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: System.Runtime.InteropServices._Exception
+  commentId: T:System.Runtime.InteropServices._Exception
+  parent: System.Runtime.InteropServices
+  isExternal: true
+  name: _Exception
+  nameWithType: _Exception
+  fullName: System.Runtime.InteropServices._Exception
+- uid: System.Runtime.Serialization.ISerializable
+  commentId: T:System.Runtime.Serialization.ISerializable
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: ISerializable
+  nameWithType: ISerializable
+  fullName: System.Runtime.Serialization.ISerializable
+- uid: System.ArgumentOutOfRangeException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:System.ArgumentOutOfRangeException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  parent: System.ArgumentOutOfRangeException
+  isExternal: true
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType: ArgumentOutOfRangeException.GetObjectData(SerializationInfo, StreamingContext)
+  fullName: System.ArgumentOutOfRangeException.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  spec.csharp:
+  - uid: System.ArgumentOutOfRangeException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    nameWithType: ArgumentOutOfRangeException.GetObjectData
+    fullName: System.ArgumentOutOfRangeException.GetObjectData
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    nameWithType: SerializationInfo
+    fullName: System.Runtime.Serialization.SerializationInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    nameWithType: StreamingContext
+    fullName: System.Runtime.Serialization.StreamingContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ArgumentOutOfRangeException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    nameWithType: ArgumentOutOfRangeException.GetObjectData
+    fullName: System.ArgumentOutOfRangeException.GetObjectData
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    nameWithType: SerializationInfo
+    fullName: System.Runtime.Serialization.SerializationInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    nameWithType: StreamingContext
+    fullName: System.Runtime.Serialization.StreamingContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ArgumentOutOfRangeException.Message
+  commentId: P:System.ArgumentOutOfRangeException.Message
+  parent: System.ArgumentOutOfRangeException
+  isExternal: true
+  name: Message
+  nameWithType: ArgumentOutOfRangeException.Message
+  fullName: System.ArgumentOutOfRangeException.Message
+- uid: System.ArgumentOutOfRangeException.ActualValue
+  commentId: P:System.ArgumentOutOfRangeException.ActualValue
+  parent: System.ArgumentOutOfRangeException
+  isExternal: true
+  name: ActualValue
+  nameWithType: ArgumentOutOfRangeException.ActualValue
+  fullName: System.ArgumentOutOfRangeException.ActualValue
+- uid: System.ArgumentException.ParamName
+  commentId: P:System.ArgumentException.ParamName
+  parent: System.ArgumentException
+  isExternal: true
+  name: ParamName
+  nameWithType: ArgumentException.ParamName
+  fullName: System.ArgumentException.ParamName
+- uid: System.Exception.GetBaseException
+  commentId: M:System.Exception.GetBaseException
+  parent: System.Exception
+  isExternal: true
+  name: GetBaseException()
+  nameWithType: Exception.GetBaseException()
+  fullName: System.Exception.GetBaseException()
+  spec.csharp:
+  - uid: System.Exception.GetBaseException
+    name: GetBaseException
+    nameWithType: Exception.GetBaseException
+    fullName: System.Exception.GetBaseException
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Exception.GetBaseException
+    name: GetBaseException
+    nameWithType: Exception.GetBaseException
+    fullName: System.Exception.GetBaseException
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Exception.ToString
+  commentId: M:System.Exception.ToString
+  parent: System.Exception
+  isExternal: true
+  name: ToString()
+  nameWithType: Exception.ToString()
+  fullName: System.Exception.ToString()
+  spec.csharp:
+  - uid: System.Exception.ToString
+    name: ToString
+    nameWithType: Exception.ToString
+    fullName: System.Exception.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Exception.ToString
+    name: ToString
+    nameWithType: Exception.ToString
+    fullName: System.Exception.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Exception.GetType
+  commentId: M:System.Exception.GetType
+  parent: System.Exception
+  isExternal: true
+  name: GetType()
+  nameWithType: Exception.GetType()
+  fullName: System.Exception.GetType()
+  spec.csharp:
+  - uid: System.Exception.GetType
+    name: GetType
+    nameWithType: Exception.GetType
+    fullName: System.Exception.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Exception.GetType
+    name: GetType
+    nameWithType: Exception.GetType
+    fullName: System.Exception.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Exception.Data
+  commentId: P:System.Exception.Data
+  parent: System.Exception
+  isExternal: true
+  name: Data
+  nameWithType: Exception.Data
+  fullName: System.Exception.Data
+- uid: System.Exception.InnerException
+  commentId: P:System.Exception.InnerException
+  parent: System.Exception
+  isExternal: true
+  name: InnerException
+  nameWithType: Exception.InnerException
+  fullName: System.Exception.InnerException
+- uid: System.Exception.TargetSite
+  commentId: P:System.Exception.TargetSite
+  parent: System.Exception
+  isExternal: true
+  name: TargetSite
+  nameWithType: Exception.TargetSite
+  fullName: System.Exception.TargetSite
+- uid: System.Exception.StackTrace
+  commentId: P:System.Exception.StackTrace
+  parent: System.Exception
+  isExternal: true
+  name: StackTrace
+  nameWithType: Exception.StackTrace
+  fullName: System.Exception.StackTrace
+- uid: System.Exception.HelpLink
+  commentId: P:System.Exception.HelpLink
+  parent: System.Exception
+  isExternal: true
+  name: HelpLink
+  nameWithType: Exception.HelpLink
+  fullName: System.Exception.HelpLink
+- uid: System.Exception.Source
+  commentId: P:System.Exception.Source
+  parent: System.Exception
+  isExternal: true
+  name: Source
+  nameWithType: Exception.Source
+  fullName: System.Exception.Source
+- uid: System.Exception.HResult
+  commentId: P:System.Exception.HResult
+  parent: System.Exception
+  isExternal: true
+  name: HResult
+  nameWithType: Exception.HResult
+  fullName: System.Exception.HResult
+- uid: System.Exception.SerializeObjectState
+  commentId: E:System.Exception.SerializeObjectState
+  parent: System.Exception
+  isExternal: true
+  name: SerializeObjectState
+  nameWithType: Exception.SerializeObjectState
+  fullName: System.Exception.SerializeObjectState
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Runtime.InteropServices
+  commentId: N:System.Runtime.InteropServices
+  isExternal: true
+  name: System.Runtime.InteropServices
+  nameWithType: System.Runtime.InteropServices
+  fullName: System.Runtime.InteropServices
+- uid: System.Runtime.Serialization
+  commentId: N:System.Runtime.Serialization
+  isExternal: true
+  name: System.Runtime.Serialization
+  nameWithType: System.Runtime.Serialization
+  fullName: System.Runtime.Serialization
+- uid: NodaTime.AmbiguousTimeException.Zone*
+  commentId: Overload:NodaTime.AmbiguousTimeException.Zone
+  name: Zone
+  nameWithType: AmbiguousTimeException.Zone
+  fullName: NodaTime.AmbiguousTimeException.Zone
+- uid: NodaTime.DateTimeZone
+  commentId: T:NodaTime.DateTimeZone
+  parent: NodaTime
+  name: DateTimeZone
+  nameWithType: DateTimeZone
+  fullName: NodaTime.DateTimeZone
+- uid: NodaTime.AmbiguousTimeException.EarlierMapping*
+  commentId: Overload:NodaTime.AmbiguousTimeException.EarlierMapping
+  name: EarlierMapping
+  nameWithType: AmbiguousTimeException.EarlierMapping
+  fullName: NodaTime.AmbiguousTimeException.EarlierMapping
+- uid: NodaTime.ZonedDateTime
+  commentId: T:NodaTime.ZonedDateTime
+  parent: NodaTime
+  name: ZonedDateTime
+  nameWithType: ZonedDateTime
+  fullName: NodaTime.ZonedDateTime
+- uid: NodaTime.AmbiguousTimeException.LaterMapping*
+  commentId: Overload:NodaTime.AmbiguousTimeException.LaterMapping
+  name: LaterMapping
+  nameWithType: AmbiguousTimeException.LaterMapping
+  fullName: NodaTime.AmbiguousTimeException.LaterMapping
+- uid: NodaTime.AmbiguousTimeException.#ctor*
+  commentId: Overload:NodaTime.AmbiguousTimeException.#ctor
+  name: AmbiguousTimeException
+  nameWithType: AmbiguousTimeException.AmbiguousTimeException
+  fullName: NodaTime.AmbiguousTimeException.AmbiguousTimeException
+shouldSkipMarkup: true

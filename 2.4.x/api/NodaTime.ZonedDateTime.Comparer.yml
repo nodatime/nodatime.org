@@ -1,0 +1,1096 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.ZonedDateTime.Comparer
+  commentId: T:NodaTime.ZonedDateTime.Comparer
+  id: ZonedDateTime.Comparer
+  parent: NodaTime
+  children:
+  - NodaTime.ZonedDateTime.Comparer.Compare(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  - NodaTime.ZonedDateTime.Comparer.Equals(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  - NodaTime.ZonedDateTime.Comparer.GetHashCode(NodaTime.ZonedDateTime)
+  - NodaTime.ZonedDateTime.Comparer.Instant
+  - NodaTime.ZonedDateTime.Comparer.Local
+  langs:
+  - csharp
+  - vb
+  name: ZonedDateTime.Comparer
+  nameWithType: ZonedDateTime.Comparer
+  fullName: NodaTime.ZonedDateTime.Comparer
+  type: Class
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/ZonedDateTime.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Comparer
+    path: src/NodaTime/ZonedDateTime.cs
+    startLine: 660
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nBase class for <xref href=\"NodaTime.ZonedDateTime\" data-throw-if-not-resolved=\"false\"></xref> comparers.\n"
+  remarks: "\nUse the static properties of this class to obtain instances. This type is exposed so that the\nsame value can be used for both equality and ordering comparisons.\n"
+  example: []
+  syntax:
+    content: 'public abstract class Comparer : IComparer<ZonedDateTime>, IEqualityComparer<ZonedDateTime>'
+    content.vb: >-
+      Public MustInherit Class Comparer
+          Implements IComparer(Of ZonedDateTime), IEqualityComparer(Of ZonedDateTime)
+  inheritance:
+  - System.Object
+  implements:
+  - System.Collections.Generic.IComparer{NodaTime.ZonedDateTime}
+  - System.Collections.Generic.IEqualityComparer{NodaTime.ZonedDateTime}
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: NodaTime.ZonedDateTime.Comparer.Local
+  commentId: P:NodaTime.ZonedDateTime.Comparer.Local
+  id: Local
+  parent: NodaTime.ZonedDateTime.Comparer
+  langs:
+  - csharp
+  - vb
+  name: Local
+  nameWithType: ZonedDateTime.Comparer.Local
+  fullName: NodaTime.ZonedDateTime.Comparer.Local
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/ZonedDateTime.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Local
+    path: src/NodaTime/ZonedDateTime.cs
+    startLine: 675
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets a comparer which compares <xref href=\"NodaTime.ZonedDateTime\" data-throw-if-not-resolved=\"false\"></xref> values by their local date/time, without reference to\nthe time zone or offset. Comparisons between two values of different calendar systems will fail with <xref href=\"System.ArgumentException\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\n<p>For example, this comparer considers 2013-03-04T20:21:00 (Europe/London) to be later than\n2013-03-04T19:21:00 (America/Los_Angeles) even though the second value represents a later instant in time.</p>\n<p>This property will return a reference to the same instance every time it is called.</p>\n"
+  example: []
+  syntax:
+    content: public static ZonedDateTime.Comparer Local { get; }
+    parameters: []
+    return:
+      type: NodaTime.ZonedDateTime.Comparer
+      description: A comparer which compares values by their local date/time.
+    content.vb: Public Shared ReadOnly Property Local As ZonedDateTime.Comparer
+  overload: NodaTime.ZonedDateTime.Comparer.Local*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.ZonedDateTime.Comparer.Instant
+  commentId: P:NodaTime.ZonedDateTime.Comparer.Instant
+  id: Instant
+  parent: NodaTime.ZonedDateTime.Comparer
+  langs:
+  - csharp
+  - vb
+  name: Instant
+  nameWithType: ZonedDateTime.Comparer.Instant
+  fullName: NodaTime.ZonedDateTime.Comparer.Instant
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/ZonedDateTime.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Instant
+    path: src/NodaTime/ZonedDateTime.cs
+    startLine: 689
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets a comparer which compares <xref href=\"NodaTime.ZonedDateTime\" data-throw-if-not-resolved=\"false\"></xref> values by the instants obtained by applying the offset to\nthe local date/time, ignoring the calendar system.\n"
+  remarks: "\n<p>For example, this comparer considers 2013-03-04T20:21:00 (Europe/London) to be earlier than\n2013-03-04T19:21:00 (America/Los_Angeles) even though the second value has a local time which is earlier; the time zones\nmean that the first value occurred earlier in the universal time line.</p>\n<p>This property will return a reference to the same instance every time it is called.</p>\n"
+  example: []
+  syntax:
+    content: public static ZonedDateTime.Comparer Instant { get; }
+    parameters: []
+    return:
+      type: NodaTime.ZonedDateTime.Comparer
+      description: >-
+        A comparer which compares values by the instants obtained by applying the offset to
+
+        the local date/time, ignoring the calendar system.
+    content.vb: Public Shared ReadOnly Property Instant As ZonedDateTime.Comparer
+  overload: NodaTime.ZonedDateTime.Comparer.Instant*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.ZonedDateTime.Comparer.Compare(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.ZonedDateTime.Comparer.Compare(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  id: Compare(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  parent: NodaTime.ZonedDateTime.Comparer
+  langs:
+  - csharp
+  - vb
+  name: Compare(ZonedDateTime, ZonedDateTime)
+  nameWithType: ZonedDateTime.Comparer.Compare(ZonedDateTime, ZonedDateTime)
+  fullName: NodaTime.ZonedDateTime.Comparer.Compare(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/ZonedDateTime.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Compare
+    path: src/NodaTime/ZonedDateTime.cs
+    startLine: 724
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCompares two <xref href=\"NodaTime.ZonedDateTime\" data-throw-if-not-resolved=\"false\"></xref> values and returns a value indicating whether one is less than, equal to, or greater than the other.\n"
+  example: []
+  syntax:
+    content: public abstract int Compare(ZonedDateTime x, ZonedDateTime y)
+    parameters:
+    - id: x
+      type: NodaTime.ZonedDateTime
+      description: The first value to compare.
+    - id: y
+      type: NodaTime.ZonedDateTime
+      description: The second value to compare.
+    return:
+      type: System.Int32
+      description: >
+        A signed integer that indicates the relative values of <code data-dev-comment-type="paramref" class="paramref">x</code> and <code data-dev-comment-type="paramref" class="paramref">y</code>, as shown in the following table.
+
+        <table><thead><tr><th>Value</th><th>Meaning</th></tr></thead><tbody><tr><td>Less than zero</td><td><code data-dev-comment-type="paramref" class="paramref">x</code> is less than <code data-dev-comment-type="paramref" class="paramref">y</code>.</td></tr><tr><td>Zero</td><td><code data-dev-comment-type="paramref" class="paramref">x</code> is equals to <code data-dev-comment-type="paramref" class="paramref">y</code>.</td></tr><tr><td>Greater than zero</td><td><code data-dev-comment-type="paramref" class="paramref">x</code> is greater than <code data-dev-comment-type="paramref" class="paramref">y</code>.</td></tr></tbody></table>
+    content.vb: Public MustOverride Function Compare(x As ZonedDateTime, y As ZonedDateTime) As Integer
+  overload: NodaTime.ZonedDateTime.Comparer.Compare*
+  implements:
+  - System.Collections.Generic.IComparer{NodaTime.ZonedDateTime}.Compare(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: NodaTime.ZonedDateTime.Comparer.Equals(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.ZonedDateTime.Comparer.Equals(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  id: Equals(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  parent: NodaTime.ZonedDateTime.Comparer
+  langs:
+  - csharp
+  - vb
+  name: Equals(ZonedDateTime, ZonedDateTime)
+  nameWithType: ZonedDateTime.Comparer.Equals(ZonedDateTime, ZonedDateTime)
+  fullName: NodaTime.ZonedDateTime.Comparer.Equals(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/ZonedDateTime.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Equals
+    path: src/NodaTime/ZonedDateTime.cs
+    startLine: 732
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nDetermines whether the specified <code>ZonedDateTime</code> values are equal.\n"
+  example: []
+  syntax:
+    content: public abstract bool Equals(ZonedDateTime x, ZonedDateTime y)
+    parameters:
+    - id: x
+      type: NodaTime.ZonedDateTime
+      description: The first <code>ZonedDateTime</code> to compare.
+    - id: y
+      type: NodaTime.ZonedDateTime
+      description: The second <code>ZonedDateTime</code> to compare.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the specified objects are equal; otherwise, <code>false</code>.
+    content.vb: Public MustOverride Function Equals(x As ZonedDateTime, y As ZonedDateTime) As Boolean
+  overload: NodaTime.ZonedDateTime.Comparer.Equals*
+  implements:
+  - System.Collections.Generic.IEqualityComparer{NodaTime.ZonedDateTime}.Equals(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: NodaTime.ZonedDateTime.Comparer.GetHashCode(NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.ZonedDateTime.Comparer.GetHashCode(NodaTime.ZonedDateTime)
+  id: GetHashCode(NodaTime.ZonedDateTime)
+  parent: NodaTime.ZonedDateTime.Comparer
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode(ZonedDateTime)
+  nameWithType: ZonedDateTime.Comparer.GetHashCode(ZonedDateTime)
+  fullName: NodaTime.ZonedDateTime.Comparer.GetHashCode(NodaTime.ZonedDateTime)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/ZonedDateTime.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetHashCode
+    path: src/NodaTime/ZonedDateTime.cs
+    startLine: 739
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a hash code for the specified <code>ZonedDateTime</code>.\n"
+  example: []
+  syntax:
+    content: public abstract int GetHashCode(ZonedDateTime obj)
+    parameters:
+    - id: obj
+      type: NodaTime.ZonedDateTime
+      description: The <code>ZonedDateTime</code> for which a hash code is to be returned.
+    return:
+      type: System.Int32
+      description: A hash code for the specified value.
+    content.vb: Public MustOverride Function GetHashCode(obj As ZonedDateTime) As Integer
+  overload: NodaTime.ZonedDateTime.Comparer.GetHashCode*
+  implements:
+  - System.Collections.Generic.IEqualityComparer{NodaTime.ZonedDateTime}.GetHashCode(NodaTime.ZonedDateTime)
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+references:
+- uid: NodaTime.ZonedDateTime
+  commentId: T:NodaTime.ZonedDateTime
+  parent: NodaTime
+  name: ZonedDateTime
+  nameWithType: ZonedDateTime
+  fullName: NodaTime.ZonedDateTime
+- uid: NodaTime
+  commentId: N:NodaTime
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Collections.Generic.IComparer{NodaTime.ZonedDateTime}
+  commentId: T:System.Collections.Generic.IComparer{NodaTime.ZonedDateTime}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IComparer`1
+  name: IComparer<ZonedDateTime>
+  nameWithType: IComparer<ZonedDateTime>
+  fullName: System.Collections.Generic.IComparer<NodaTime.ZonedDateTime>
+  nameWithType.vb: IComparer(Of ZonedDateTime)
+  fullName.vb: System.Collections.Generic.IComparer(Of NodaTime.ZonedDateTime)
+  name.vb: IComparer(Of ZonedDateTime)
+  spec.csharp:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    nameWithType: IComparer
+    fullName: System.Collections.Generic.IComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    nameWithType: IComparer
+    fullName: System.Collections.Generic.IComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEqualityComparer{NodaTime.ZonedDateTime}
+  commentId: T:System.Collections.Generic.IEqualityComparer{NodaTime.ZonedDateTime}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEqualityComparer`1
+  name: IEqualityComparer<ZonedDateTime>
+  nameWithType: IEqualityComparer<ZonedDateTime>
+  fullName: System.Collections.Generic.IEqualityComparer<NodaTime.ZonedDateTime>
+  nameWithType.vb: IEqualityComparer(Of ZonedDateTime)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of NodaTime.ZonedDateTime)
+  name.vb: IEqualityComparer(Of ZonedDateTime)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.IComparer`1
+  commentId: T:System.Collections.Generic.IComparer`1
+  isExternal: true
+  name: IComparer<T>
+  nameWithType: IComparer<T>
+  fullName: System.Collections.Generic.IComparer<T>
+  nameWithType.vb: IComparer(Of T)
+  fullName.vb: System.Collections.Generic.IComparer(Of T)
+  name.vb: IComparer(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    nameWithType: IComparer
+    fullName: System.Collections.Generic.IComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    nameWithType: IComparer
+    fullName: System.Collections.Generic.IComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Collections.Generic.IEqualityComparer`1
+  commentId: T:System.Collections.Generic.IEqualityComparer`1
+  isExternal: true
+  name: IEqualityComparer<T>
+  nameWithType: IEqualityComparer<T>
+  fullName: System.Collections.Generic.IEqualityComparer<T>
+  nameWithType.vb: IEqualityComparer(Of T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T)
+  name.vb: IEqualityComparer(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: NodaTime.ZonedDateTime.Comparer.Local*
+  commentId: Overload:NodaTime.ZonedDateTime.Comparer.Local
+  name: Local
+  nameWithType: ZonedDateTime.Comparer.Local
+  fullName: NodaTime.ZonedDateTime.Comparer.Local
+- uid: NodaTime.ZonedDateTime.Comparer
+  commentId: T:NodaTime.ZonedDateTime.Comparer
+  parent: NodaTime
+  name: ZonedDateTime.Comparer
+  nameWithType: ZonedDateTime.Comparer
+  fullName: NodaTime.ZonedDateTime.Comparer
+- uid: NodaTime.ZonedDateTime.Comparer.Instant*
+  commentId: Overload:NodaTime.ZonedDateTime.Comparer.Instant
+  name: Instant
+  nameWithType: ZonedDateTime.Comparer.Instant
+  fullName: NodaTime.ZonedDateTime.Comparer.Instant
+- uid: NodaTime.ZonedDateTime.Comparer.Compare*
+  commentId: Overload:NodaTime.ZonedDateTime.Comparer.Compare
+  name: Compare
+  nameWithType: ZonedDateTime.Comparer.Compare
+  fullName: NodaTime.ZonedDateTime.Comparer.Compare
+- uid: System.Collections.Generic.IComparer{NodaTime.ZonedDateTime}.Compare(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  commentId: M:System.Collections.Generic.IComparer{NodaTime.ZonedDateTime}.Compare(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  parent: System.Collections.Generic.IComparer{NodaTime.ZonedDateTime}
+  definition: System.Collections.Generic.IComparer`1.Compare(`0,`0)
+  name: Compare(ZonedDateTime, ZonedDateTime)
+  nameWithType: IComparer<ZonedDateTime>.Compare(ZonedDateTime, ZonedDateTime)
+  fullName: System.Collections.Generic.IComparer<NodaTime.ZonedDateTime>.Compare(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  nameWithType.vb: IComparer(Of ZonedDateTime).Compare(ZonedDateTime, ZonedDateTime)
+  fullName.vb: System.Collections.Generic.IComparer(Of NodaTime.ZonedDateTime).Compare(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  spec.csharp:
+  - uid: System.Collections.Generic.IComparer`1.Compare(`0,`0)
+    name: Compare
+    nameWithType: IComparer<ZonedDateTime>.Compare
+    fullName: System.Collections.Generic.IComparer<NodaTime.ZonedDateTime>.Compare
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IComparer`1.Compare(`0,`0)
+    name: Compare
+    nameWithType: IComparer(Of ZonedDateTime).Compare
+    fullName: System.Collections.Generic.IComparer(Of NodaTime.ZonedDateTime).Compare
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Collections.Generic.IComparer`1.Compare(`0,`0)
+  commentId: M:System.Collections.Generic.IComparer`1.Compare(`0,`0)
+  isExternal: true
+  name: Compare(T, T)
+  nameWithType: IComparer<T>.Compare(T, T)
+  fullName: System.Collections.Generic.IComparer<T>.Compare(T, T)
+  nameWithType.vb: IComparer(Of T).Compare(T, T)
+  fullName.vb: System.Collections.Generic.IComparer(Of T).Compare(T, T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IComparer`1.Compare(`0,`0)
+    name: Compare
+    nameWithType: IComparer<T>.Compare
+    fullName: System.Collections.Generic.IComparer<T>.Compare
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IComparer`1.Compare(`0,`0)
+    name: Compare
+    nameWithType: IComparer(Of T).Compare
+    fullName: System.Collections.Generic.IComparer(Of T).Compare
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.ZonedDateTime.Comparer.Equals*
+  commentId: Overload:NodaTime.ZonedDateTime.Comparer.Equals
+  name: Equals
+  nameWithType: ZonedDateTime.Comparer.Equals
+  fullName: NodaTime.ZonedDateTime.Comparer.Equals
+- uid: System.Collections.Generic.IEqualityComparer{NodaTime.ZonedDateTime}.Equals(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  commentId: M:System.Collections.Generic.IEqualityComparer{NodaTime.ZonedDateTime}.Equals(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  parent: System.Collections.Generic.IEqualityComparer{NodaTime.ZonedDateTime}
+  definition: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+  name: Equals(ZonedDateTime, ZonedDateTime)
+  nameWithType: IEqualityComparer<ZonedDateTime>.Equals(ZonedDateTime, ZonedDateTime)
+  fullName: System.Collections.Generic.IEqualityComparer<NodaTime.ZonedDateTime>.Equals(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  nameWithType.vb: IEqualityComparer(Of ZonedDateTime).Equals(ZonedDateTime, ZonedDateTime)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of NodaTime.ZonedDateTime).Equals(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+    name: Equals
+    nameWithType: IEqualityComparer<ZonedDateTime>.Equals
+    fullName: System.Collections.Generic.IEqualityComparer<NodaTime.ZonedDateTime>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+    name: Equals
+    nameWithType: IEqualityComparer(Of ZonedDateTime).Equals
+    fullName: System.Collections.Generic.IEqualityComparer(Of NodaTime.ZonedDateTime).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+  commentId: M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+  isExternal: true
+  name: Equals(T, T)
+  nameWithType: IEqualityComparer<T>.Equals(T, T)
+  fullName: System.Collections.Generic.IEqualityComparer<T>.Equals(T, T)
+  nameWithType.vb: IEqualityComparer(Of T).Equals(T, T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T).Equals(T, T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+    name: Equals
+    nameWithType: IEqualityComparer<T>.Equals
+    fullName: System.Collections.Generic.IEqualityComparer<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+    name: Equals
+    nameWithType: IEqualityComparer(Of T).Equals
+    fullName: System.Collections.Generic.IEqualityComparer(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.ZonedDateTime.Comparer.GetHashCode*
+  commentId: Overload:NodaTime.ZonedDateTime.Comparer.GetHashCode
+  name: GetHashCode
+  nameWithType: ZonedDateTime.Comparer.GetHashCode
+  fullName: NodaTime.ZonedDateTime.Comparer.GetHashCode
+- uid: System.Collections.Generic.IEqualityComparer{NodaTime.ZonedDateTime}.GetHashCode(NodaTime.ZonedDateTime)
+  commentId: M:System.Collections.Generic.IEqualityComparer{NodaTime.ZonedDateTime}.GetHashCode(NodaTime.ZonedDateTime)
+  parent: System.Collections.Generic.IEqualityComparer{NodaTime.ZonedDateTime}
+  definition: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+  name: GetHashCode(ZonedDateTime)
+  nameWithType: IEqualityComparer<ZonedDateTime>.GetHashCode(ZonedDateTime)
+  fullName: System.Collections.Generic.IEqualityComparer<NodaTime.ZonedDateTime>.GetHashCode(NodaTime.ZonedDateTime)
+  nameWithType.vb: IEqualityComparer(Of ZonedDateTime).GetHashCode(ZonedDateTime)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of NodaTime.ZonedDateTime).GetHashCode(NodaTime.ZonedDateTime)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+    name: GetHashCode
+    nameWithType: IEqualityComparer<ZonedDateTime>.GetHashCode
+    fullName: System.Collections.Generic.IEqualityComparer<NodaTime.ZonedDateTime>.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+    name: GetHashCode
+    nameWithType: IEqualityComparer(Of ZonedDateTime).GetHashCode
+    fullName: System.Collections.Generic.IEqualityComparer(Of NodaTime.ZonedDateTime).GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    nameWithType: ZonedDateTime
+    fullName: NodaTime.ZonedDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+  commentId: M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+  isExternal: true
+  name: GetHashCode(T)
+  nameWithType: IEqualityComparer<T>.GetHashCode(T)
+  fullName: System.Collections.Generic.IEqualityComparer<T>.GetHashCode(T)
+  nameWithType.vb: IEqualityComparer(Of T).GetHashCode(T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T).GetHashCode(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+    name: GetHashCode
+    nameWithType: IEqualityComparer<T>.GetHashCode
+    fullName: System.Collections.Generic.IEqualityComparer<T>.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+    name: GetHashCode
+    nameWithType: IEqualityComparer(Of T).GetHashCode
+    fullName: System.Collections.Generic.IEqualityComparer(Of T).GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+shouldSkipMarkup: true

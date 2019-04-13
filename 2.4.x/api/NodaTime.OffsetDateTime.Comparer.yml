@@ -1,0 +1,1096 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.OffsetDateTime.Comparer
+  commentId: T:NodaTime.OffsetDateTime.Comparer
+  id: OffsetDateTime.Comparer
+  parent: NodaTime
+  children:
+  - NodaTime.OffsetDateTime.Comparer.Compare(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  - NodaTime.OffsetDateTime.Comparer.Equals(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  - NodaTime.OffsetDateTime.Comparer.GetHashCode(NodaTime.OffsetDateTime)
+  - NodaTime.OffsetDateTime.Comparer.Instant
+  - NodaTime.OffsetDateTime.Comparer.Local
+  langs:
+  - csharp
+  - vb
+  name: OffsetDateTime.Comparer
+  nameWithType: OffsetDateTime.Comparer
+  fullName: NodaTime.OffsetDateTime.Comparer
+  type: Class
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/OffsetDateTime.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Comparer
+    path: src/NodaTime/OffsetDateTime.cs
+    startLine: 768
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nBase class for <xref href=\"NodaTime.OffsetDateTime\" data-throw-if-not-resolved=\"false\"></xref> comparers.\n"
+  remarks: "\nUse the static properties of this class to obtain instances. This type is exposed so that the\nsame value can be used for both equality and ordering comparisons.\n"
+  example: []
+  syntax:
+    content: 'public abstract class Comparer : IComparer<OffsetDateTime>, IEqualityComparer<OffsetDateTime>'
+    content.vb: >-
+      Public MustInherit Class Comparer
+          Implements IComparer(Of OffsetDateTime), IEqualityComparer(Of OffsetDateTime)
+  inheritance:
+  - System.Object
+  implements:
+  - System.Collections.Generic.IComparer{NodaTime.OffsetDateTime}
+  - System.Collections.Generic.IEqualityComparer{NodaTime.OffsetDateTime}
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: NodaTime.OffsetDateTime.Comparer.Local
+  commentId: P:NodaTime.OffsetDateTime.Comparer.Local
+  id: Local
+  parent: NodaTime.OffsetDateTime.Comparer
+  langs:
+  - csharp
+  - vb
+  name: Local
+  nameWithType: OffsetDateTime.Comparer.Local
+  fullName: NodaTime.OffsetDateTime.Comparer.Local
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/OffsetDateTime.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Local
+    path: src/NodaTime/OffsetDateTime.cs
+    startLine: 784
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets a comparer which compares <xref href=\"NodaTime.OffsetDateTime\" data-throw-if-not-resolved=\"false\"></xref> values by their local date/time, without reference to\nthe offset. Comparisons between two values of different calendar systems will fail with <xref href=\"System.ArgumentException\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\n<p>For example, this comparer considers 2013-03-04T20:21:00+0100 to be later than 2013-03-04T19:21:00-0700 even though\nthe second value represents a later instant in time.</p>\n<p>This property will return a reference to the same instance every time it is called.</p>\n"
+  example: []
+  syntax:
+    content: public static OffsetDateTime.Comparer Local { get; }
+    parameters: []
+    return:
+      type: NodaTime.OffsetDateTime.Comparer
+      description: A comparer which compares values by their local date/time, without reference to the offset.
+    content.vb: Public Shared ReadOnly Property Local As OffsetDateTime.Comparer
+  overload: NodaTime.OffsetDateTime.Comparer.Local*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.OffsetDateTime.Comparer.Instant
+  commentId: P:NodaTime.OffsetDateTime.Comparer.Instant
+  id: Instant
+  parent: NodaTime.OffsetDateTime.Comparer
+  langs:
+  - csharp
+  - vb
+  name: Instant
+  nameWithType: OffsetDateTime.Comparer.Instant
+  fullName: NodaTime.OffsetDateTime.Comparer.Instant
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/OffsetDateTime.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Instant
+    path: src/NodaTime/OffsetDateTime.cs
+    startLine: 797
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a comparer which compares <xref href=\"NodaTime.OffsetDateTime\" data-throw-if-not-resolved=\"false\"></xref> values by the instant values obtained by applying the offset to\nthe local date/time, ignoring the calendar system.\n"
+  remarks: "\n<p>For example, this comparer considers 2013-03-04T20:21:00+0100 to be earlier than 2013-03-04T19:21:00-0700 even though\nthe second value has a local time which is earlier.</p>\n<p>This property will return a reference to the same instance every time it is called.</p>\n"
+  example: []
+  syntax:
+    content: public static OffsetDateTime.Comparer Instant { get; }
+    parameters: []
+    return:
+      type: NodaTime.OffsetDateTime.Comparer
+      description: >-
+        A comparer which compares values by the instant values obtained by applying the offset to
+
+        the local date/time, ignoring the calendar system.
+    content.vb: Public Shared ReadOnly Property Instant As OffsetDateTime.Comparer
+  overload: NodaTime.OffsetDateTime.Comparer.Instant*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.OffsetDateTime.Comparer.Compare(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  commentId: M:NodaTime.OffsetDateTime.Comparer.Compare(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  id: Compare(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  parent: NodaTime.OffsetDateTime.Comparer
+  langs:
+  - csharp
+  - vb
+  name: Compare(OffsetDateTime, OffsetDateTime)
+  nameWithType: OffsetDateTime.Comparer.Compare(OffsetDateTime, OffsetDateTime)
+  fullName: NodaTime.OffsetDateTime.Comparer.Compare(NodaTime.OffsetDateTime, NodaTime.OffsetDateTime)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/OffsetDateTime.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Compare
+    path: src/NodaTime/OffsetDateTime.cs
+    startLine: 832
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCompares two <xref href=\"NodaTime.OffsetDateTime\" data-throw-if-not-resolved=\"false\"></xref> values and returns a value indicating whether one is less than, equal to, or greater than the other.\n"
+  example: []
+  syntax:
+    content: public abstract int Compare(OffsetDateTime x, OffsetDateTime y)
+    parameters:
+    - id: x
+      type: NodaTime.OffsetDateTime
+      description: The first value to compare.
+    - id: y
+      type: NodaTime.OffsetDateTime
+      description: The second value to compare.
+    return:
+      type: System.Int32
+      description: >
+        A signed integer that indicates the relative values of <code data-dev-comment-type="paramref" class="paramref">x</code> and <code data-dev-comment-type="paramref" class="paramref">y</code>, as shown in the following table.
+
+        <table><thead><tr><th>Value</th><th>Meaning</th></tr></thead><tbody><tr><td>Less than zero</td><td><code data-dev-comment-type="paramref" class="paramref">x</code> is less than <code data-dev-comment-type="paramref" class="paramref">y</code>.</td></tr><tr><td>Zero</td><td><code data-dev-comment-type="paramref" class="paramref">x</code> is equals to <code data-dev-comment-type="paramref" class="paramref">y</code>.</td></tr><tr><td>Greater than zero</td><td><code data-dev-comment-type="paramref" class="paramref">x</code> is greater than <code data-dev-comment-type="paramref" class="paramref">y</code>.</td></tr></tbody></table>
+    content.vb: Public MustOverride Function Compare(x As OffsetDateTime, y As OffsetDateTime) As Integer
+  overload: NodaTime.OffsetDateTime.Comparer.Compare*
+  implements:
+  - System.Collections.Generic.IComparer{NodaTime.OffsetDateTime}.Compare(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: NodaTime.OffsetDateTime.Comparer.Equals(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  commentId: M:NodaTime.OffsetDateTime.Comparer.Equals(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  id: Equals(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  parent: NodaTime.OffsetDateTime.Comparer
+  langs:
+  - csharp
+  - vb
+  name: Equals(OffsetDateTime, OffsetDateTime)
+  nameWithType: OffsetDateTime.Comparer.Equals(OffsetDateTime, OffsetDateTime)
+  fullName: NodaTime.OffsetDateTime.Comparer.Equals(NodaTime.OffsetDateTime, NodaTime.OffsetDateTime)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/OffsetDateTime.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Equals
+    path: src/NodaTime/OffsetDateTime.cs
+    startLine: 840
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nDetermines whether the specified <code>OffsetDateTime</code> values are equal.\n"
+  example: []
+  syntax:
+    content: public abstract bool Equals(OffsetDateTime x, OffsetDateTime y)
+    parameters:
+    - id: x
+      type: NodaTime.OffsetDateTime
+      description: The first <code>OffsetDateTime</code> to compare.
+    - id: y
+      type: NodaTime.OffsetDateTime
+      description: The second <code>OffsetDateTime</code> to compare.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the specified objects are equal; otherwise, <code>false</code>.
+    content.vb: Public MustOverride Function Equals(x As OffsetDateTime, y As OffsetDateTime) As Boolean
+  overload: NodaTime.OffsetDateTime.Comparer.Equals*
+  implements:
+  - System.Collections.Generic.IEqualityComparer{NodaTime.OffsetDateTime}.Equals(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: NodaTime.OffsetDateTime.Comparer.GetHashCode(NodaTime.OffsetDateTime)
+  commentId: M:NodaTime.OffsetDateTime.Comparer.GetHashCode(NodaTime.OffsetDateTime)
+  id: GetHashCode(NodaTime.OffsetDateTime)
+  parent: NodaTime.OffsetDateTime.Comparer
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode(OffsetDateTime)
+  nameWithType: OffsetDateTime.Comparer.GetHashCode(OffsetDateTime)
+  fullName: NodaTime.OffsetDateTime.Comparer.GetHashCode(NodaTime.OffsetDateTime)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/OffsetDateTime.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetHashCode
+    path: src/NodaTime/OffsetDateTime.cs
+    startLine: 847
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a hash code for the specified <code>OffsetDateTime</code>.\n"
+  example: []
+  syntax:
+    content: public abstract int GetHashCode(OffsetDateTime obj)
+    parameters:
+    - id: obj
+      type: NodaTime.OffsetDateTime
+      description: The <code>OffsetDateTime</code> for which a hash code is to be returned.
+    return:
+      type: System.Int32
+      description: A hash code for the specified value.
+    content.vb: Public MustOverride Function GetHashCode(obj As OffsetDateTime) As Integer
+  overload: NodaTime.OffsetDateTime.Comparer.GetHashCode*
+  implements:
+  - System.Collections.Generic.IEqualityComparer{NodaTime.OffsetDateTime}.GetHashCode(NodaTime.OffsetDateTime)
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+references:
+- uid: NodaTime.OffsetDateTime
+  commentId: T:NodaTime.OffsetDateTime
+  parent: NodaTime
+  name: OffsetDateTime
+  nameWithType: OffsetDateTime
+  fullName: NodaTime.OffsetDateTime
+- uid: NodaTime
+  commentId: N:NodaTime
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Collections.Generic.IComparer{NodaTime.OffsetDateTime}
+  commentId: T:System.Collections.Generic.IComparer{NodaTime.OffsetDateTime}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IComparer`1
+  name: IComparer<OffsetDateTime>
+  nameWithType: IComparer<OffsetDateTime>
+  fullName: System.Collections.Generic.IComparer<NodaTime.OffsetDateTime>
+  nameWithType.vb: IComparer(Of OffsetDateTime)
+  fullName.vb: System.Collections.Generic.IComparer(Of NodaTime.OffsetDateTime)
+  name.vb: IComparer(Of OffsetDateTime)
+  spec.csharp:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    nameWithType: IComparer
+    fullName: System.Collections.Generic.IComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    nameWithType: IComparer
+    fullName: System.Collections.Generic.IComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEqualityComparer{NodaTime.OffsetDateTime}
+  commentId: T:System.Collections.Generic.IEqualityComparer{NodaTime.OffsetDateTime}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEqualityComparer`1
+  name: IEqualityComparer<OffsetDateTime>
+  nameWithType: IEqualityComparer<OffsetDateTime>
+  fullName: System.Collections.Generic.IEqualityComparer<NodaTime.OffsetDateTime>
+  nameWithType.vb: IEqualityComparer(Of OffsetDateTime)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of NodaTime.OffsetDateTime)
+  name.vb: IEqualityComparer(Of OffsetDateTime)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.IComparer`1
+  commentId: T:System.Collections.Generic.IComparer`1
+  isExternal: true
+  name: IComparer<T>
+  nameWithType: IComparer<T>
+  fullName: System.Collections.Generic.IComparer<T>
+  nameWithType.vb: IComparer(Of T)
+  fullName.vb: System.Collections.Generic.IComparer(Of T)
+  name.vb: IComparer(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    nameWithType: IComparer
+    fullName: System.Collections.Generic.IComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    nameWithType: IComparer
+    fullName: System.Collections.Generic.IComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Collections.Generic.IEqualityComparer`1
+  commentId: T:System.Collections.Generic.IEqualityComparer`1
+  isExternal: true
+  name: IEqualityComparer<T>
+  nameWithType: IEqualityComparer<T>
+  fullName: System.Collections.Generic.IEqualityComparer<T>
+  nameWithType.vb: IEqualityComparer(Of T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T)
+  name.vb: IEqualityComparer(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: NodaTime.OffsetDateTime.Comparer.Local*
+  commentId: Overload:NodaTime.OffsetDateTime.Comparer.Local
+  name: Local
+  nameWithType: OffsetDateTime.Comparer.Local
+  fullName: NodaTime.OffsetDateTime.Comparer.Local
+- uid: NodaTime.OffsetDateTime.Comparer
+  commentId: T:NodaTime.OffsetDateTime.Comparer
+  parent: NodaTime
+  name: OffsetDateTime.Comparer
+  nameWithType: OffsetDateTime.Comparer
+  fullName: NodaTime.OffsetDateTime.Comparer
+- uid: NodaTime.OffsetDateTime.Comparer.Instant*
+  commentId: Overload:NodaTime.OffsetDateTime.Comparer.Instant
+  name: Instant
+  nameWithType: OffsetDateTime.Comparer.Instant
+  fullName: NodaTime.OffsetDateTime.Comparer.Instant
+- uid: NodaTime.OffsetDateTime.Comparer.Compare*
+  commentId: Overload:NodaTime.OffsetDateTime.Comparer.Compare
+  name: Compare
+  nameWithType: OffsetDateTime.Comparer.Compare
+  fullName: NodaTime.OffsetDateTime.Comparer.Compare
+- uid: System.Collections.Generic.IComparer{NodaTime.OffsetDateTime}.Compare(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  commentId: M:System.Collections.Generic.IComparer{NodaTime.OffsetDateTime}.Compare(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  parent: System.Collections.Generic.IComparer{NodaTime.OffsetDateTime}
+  definition: System.Collections.Generic.IComparer`1.Compare(`0,`0)
+  name: Compare(OffsetDateTime, OffsetDateTime)
+  nameWithType: IComparer<OffsetDateTime>.Compare(OffsetDateTime, OffsetDateTime)
+  fullName: System.Collections.Generic.IComparer<NodaTime.OffsetDateTime>.Compare(NodaTime.OffsetDateTime, NodaTime.OffsetDateTime)
+  nameWithType.vb: IComparer(Of OffsetDateTime).Compare(OffsetDateTime, OffsetDateTime)
+  fullName.vb: System.Collections.Generic.IComparer(Of NodaTime.OffsetDateTime).Compare(NodaTime.OffsetDateTime, NodaTime.OffsetDateTime)
+  spec.csharp:
+  - uid: System.Collections.Generic.IComparer`1.Compare(`0,`0)
+    name: Compare
+    nameWithType: IComparer<OffsetDateTime>.Compare
+    fullName: System.Collections.Generic.IComparer<NodaTime.OffsetDateTime>.Compare
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IComparer`1.Compare(`0,`0)
+    name: Compare
+    nameWithType: IComparer(Of OffsetDateTime).Compare
+    fullName: System.Collections.Generic.IComparer(Of NodaTime.OffsetDateTime).Compare
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Collections.Generic.IComparer`1.Compare(`0,`0)
+  commentId: M:System.Collections.Generic.IComparer`1.Compare(`0,`0)
+  isExternal: true
+  name: Compare(T, T)
+  nameWithType: IComparer<T>.Compare(T, T)
+  fullName: System.Collections.Generic.IComparer<T>.Compare(T, T)
+  nameWithType.vb: IComparer(Of T).Compare(T, T)
+  fullName.vb: System.Collections.Generic.IComparer(Of T).Compare(T, T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IComparer`1.Compare(`0,`0)
+    name: Compare
+    nameWithType: IComparer<T>.Compare
+    fullName: System.Collections.Generic.IComparer<T>.Compare
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IComparer`1.Compare(`0,`0)
+    name: Compare
+    nameWithType: IComparer(Of T).Compare
+    fullName: System.Collections.Generic.IComparer(Of T).Compare
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.OffsetDateTime.Comparer.Equals*
+  commentId: Overload:NodaTime.OffsetDateTime.Comparer.Equals
+  name: Equals
+  nameWithType: OffsetDateTime.Comparer.Equals
+  fullName: NodaTime.OffsetDateTime.Comparer.Equals
+- uid: System.Collections.Generic.IEqualityComparer{NodaTime.OffsetDateTime}.Equals(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  commentId: M:System.Collections.Generic.IEqualityComparer{NodaTime.OffsetDateTime}.Equals(NodaTime.OffsetDateTime,NodaTime.OffsetDateTime)
+  parent: System.Collections.Generic.IEqualityComparer{NodaTime.OffsetDateTime}
+  definition: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+  name: Equals(OffsetDateTime, OffsetDateTime)
+  nameWithType: IEqualityComparer<OffsetDateTime>.Equals(OffsetDateTime, OffsetDateTime)
+  fullName: System.Collections.Generic.IEqualityComparer<NodaTime.OffsetDateTime>.Equals(NodaTime.OffsetDateTime, NodaTime.OffsetDateTime)
+  nameWithType.vb: IEqualityComparer(Of OffsetDateTime).Equals(OffsetDateTime, OffsetDateTime)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of NodaTime.OffsetDateTime).Equals(NodaTime.OffsetDateTime, NodaTime.OffsetDateTime)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+    name: Equals
+    nameWithType: IEqualityComparer<OffsetDateTime>.Equals
+    fullName: System.Collections.Generic.IEqualityComparer<NodaTime.OffsetDateTime>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+    name: Equals
+    nameWithType: IEqualityComparer(Of OffsetDateTime).Equals
+    fullName: System.Collections.Generic.IEqualityComparer(Of NodaTime.OffsetDateTime).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+  commentId: M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+  isExternal: true
+  name: Equals(T, T)
+  nameWithType: IEqualityComparer<T>.Equals(T, T)
+  fullName: System.Collections.Generic.IEqualityComparer<T>.Equals(T, T)
+  nameWithType.vb: IEqualityComparer(Of T).Equals(T, T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T).Equals(T, T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+    name: Equals
+    nameWithType: IEqualityComparer<T>.Equals
+    fullName: System.Collections.Generic.IEqualityComparer<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+    name: Equals
+    nameWithType: IEqualityComparer(Of T).Equals
+    fullName: System.Collections.Generic.IEqualityComparer(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.OffsetDateTime.Comparer.GetHashCode*
+  commentId: Overload:NodaTime.OffsetDateTime.Comparer.GetHashCode
+  name: GetHashCode
+  nameWithType: OffsetDateTime.Comparer.GetHashCode
+  fullName: NodaTime.OffsetDateTime.Comparer.GetHashCode
+- uid: System.Collections.Generic.IEqualityComparer{NodaTime.OffsetDateTime}.GetHashCode(NodaTime.OffsetDateTime)
+  commentId: M:System.Collections.Generic.IEqualityComparer{NodaTime.OffsetDateTime}.GetHashCode(NodaTime.OffsetDateTime)
+  parent: System.Collections.Generic.IEqualityComparer{NodaTime.OffsetDateTime}
+  definition: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+  name: GetHashCode(OffsetDateTime)
+  nameWithType: IEqualityComparer<OffsetDateTime>.GetHashCode(OffsetDateTime)
+  fullName: System.Collections.Generic.IEqualityComparer<NodaTime.OffsetDateTime>.GetHashCode(NodaTime.OffsetDateTime)
+  nameWithType.vb: IEqualityComparer(Of OffsetDateTime).GetHashCode(OffsetDateTime)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of NodaTime.OffsetDateTime).GetHashCode(NodaTime.OffsetDateTime)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+    name: GetHashCode
+    nameWithType: IEqualityComparer<OffsetDateTime>.GetHashCode
+    fullName: System.Collections.Generic.IEqualityComparer<NodaTime.OffsetDateTime>.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+    name: GetHashCode
+    nameWithType: IEqualityComparer(Of OffsetDateTime).GetHashCode
+    fullName: System.Collections.Generic.IEqualityComparer(Of NodaTime.OffsetDateTime).GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.OffsetDateTime
+    name: OffsetDateTime
+    nameWithType: OffsetDateTime
+    fullName: NodaTime.OffsetDateTime
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+  commentId: M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+  isExternal: true
+  name: GetHashCode(T)
+  nameWithType: IEqualityComparer<T>.GetHashCode(T)
+  fullName: System.Collections.Generic.IEqualityComparer<T>.GetHashCode(T)
+  nameWithType.vb: IEqualityComparer(Of T).GetHashCode(T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T).GetHashCode(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+    name: GetHashCode
+    nameWithType: IEqualityComparer<T>.GetHashCode
+    fullName: System.Collections.Generic.IEqualityComparer<T>.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+    name: GetHashCode
+    nameWithType: IEqualityComparer(Of T).GetHashCode
+    fullName: System.Collections.Generic.IEqualityComparer(Of T).GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+shouldSkipMarkup: true

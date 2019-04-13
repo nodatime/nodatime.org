@@ -1,0 +1,88 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.TimeZones.AmbiguousTimeResolver
+  commentId: T:NodaTime.TimeZones.AmbiguousTimeResolver
+  id: AmbiguousTimeResolver
+  parent: NodaTime.TimeZones
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: AmbiguousTimeResolver
+  nameWithType: AmbiguousTimeResolver
+  fullName: NodaTime.TimeZones.AmbiguousTimeResolver
+  type: Delegate
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/Delegates.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: AmbiguousTimeResolver
+    path: src/NodaTime/TimeZones/Delegates.cs
+    startLine: 36
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nChooses between two <xref href=\"NodaTime.ZonedDateTime\" data-throw-if-not-resolved=\"false\"></xref> values that resolve to the same <xref href=\"NodaTime.LocalDateTime\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\n<p>\nThis delegate is used by <xref href=\"NodaTime.TimeZones.Resolvers.CreateMappingResolver(NodaTime.TimeZones.AmbiguousTimeResolver%2cNodaTime.TimeZones.SkippedTimeResolver)\" data-throw-if-not-resolved=\"false\"></xref> when handling an ambiguous local time,\ndue to clocks moving backward in a time zone transition (usually due to an autumnal daylight saving transition).\n</p>\n<p>\nThe returned value should be one of the two parameter values, based on the policy of the specific\nimplementation. Alternatively, it can throw an <xref href=\"NodaTime.AmbiguousTimeException\" data-throw-if-not-resolved=\"false\"></xref> to implement a policy of\n&quot;reject ambiguous times.&quot;\n</p>\n<p>See the <xref href=\"NodaTime.TimeZones.Resolvers\" data-throw-if-not-resolved=\"false\"></xref> class for predefined implementations.</p>\n<p>\nImplementations of this delegate can reasonably\nassume that the target local date and time really is ambiguous; the behaviour when the local date and time\ncan be unambiguously mapped into the target time zone (or when it&apos;s skipped) is undefined.\n</p>\n"
+  example: []
+  syntax:
+    content: public delegate ZonedDateTime AmbiguousTimeResolver(ZonedDateTime earlier, ZonedDateTime later);
+    parameters:
+    - id: earlier
+      type: NodaTime.ZonedDateTime
+      description: The earlier of the ambiguous matches for the original local date and time
+    - id: later
+      type: NodaTime.ZonedDateTime
+      description: The later of the ambiguous matches for the original local date and time
+    return:
+      type: NodaTime.ZonedDateTime
+      description: "\nA <xref href=\"NodaTime.ZonedDateTime\" data-throw-if-not-resolved=\"false\"></xref> in the target time zone; typically, one of the two input parameters.\n"
+    content.vb: Public Delegate Function AmbiguousTimeResolver(earlier As ZonedDateTime, later As ZonedDateTime) As ZonedDateTime
+  exceptions:
+  - type: NodaTime.AmbiguousTimeException
+    commentId: T:NodaTime.AmbiguousTimeException
+    description: The implementation rejects requests to map ambiguous times.
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: NodaTime.ZonedDateTime
+  commentId: T:NodaTime.ZonedDateTime
+  parent: NodaTime
+  name: ZonedDateTime
+  nameWithType: ZonedDateTime
+  fullName: NodaTime.ZonedDateTime
+- uid: NodaTime.LocalDateTime
+  commentId: T:NodaTime.LocalDateTime
+  parent: NodaTime
+  name: LocalDateTime
+  nameWithType: LocalDateTime
+  fullName: NodaTime.LocalDateTime
+- uid: NodaTime.TimeZones.Resolvers.CreateMappingResolver(NodaTime.TimeZones.AmbiguousTimeResolver,NodaTime.TimeZones.SkippedTimeResolver)
+  commentId: M:NodaTime.TimeZones.Resolvers.CreateMappingResolver(NodaTime.TimeZones.AmbiguousTimeResolver,NodaTime.TimeZones.SkippedTimeResolver)
+  isExternal: true
+- uid: NodaTime.AmbiguousTimeException
+  commentId: T:NodaTime.AmbiguousTimeException
+  name: AmbiguousTimeException
+  nameWithType: AmbiguousTimeException
+  fullName: NodaTime.AmbiguousTimeException
+- uid: NodaTime.TimeZones.Resolvers
+  commentId: T:NodaTime.TimeZones.Resolvers
+  name: Resolvers
+  nameWithType: Resolvers
+  fullName: NodaTime.TimeZones.Resolvers
+- uid: NodaTime.TimeZones
+  commentId: N:NodaTime.TimeZones
+  name: NodaTime.TimeZones
+  nameWithType: NodaTime.TimeZones
+  fullName: NodaTime.TimeZones
+- uid: NodaTime
+  commentId: N:NodaTime
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+shouldSkipMarkup: true

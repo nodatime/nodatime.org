@@ -1,0 +1,1632 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  commentId: T:NodaTime.TimeZones.TzdbDateTimeZoneSource
+  id: TzdbDateTimeZoneSource
+  parent: NodaTime.TimeZones
+  children:
+  - NodaTime.TimeZones.TzdbDateTimeZoneSource.Aliases
+  - NodaTime.TimeZones.TzdbDateTimeZoneSource.CanonicalIdMap
+  - NodaTime.TimeZones.TzdbDateTimeZoneSource.Default
+  - NodaTime.TimeZones.TzdbDateTimeZoneSource.ForId(System.String)
+  - NodaTime.TimeZones.TzdbDateTimeZoneSource.FromStream(System.IO.Stream)
+  - NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds
+  - NodaTime.TimeZones.TzdbDateTimeZoneSource.GetSystemDefaultId
+  - NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion
+  - NodaTime.TimeZones.TzdbDateTimeZoneSource.Validate
+  - NodaTime.TimeZones.TzdbDateTimeZoneSource.VersionId
+  - NodaTime.TimeZones.TzdbDateTimeZoneSource.WindowsMapping
+  - NodaTime.TimeZones.TzdbDateTimeZoneSource.Zone1970Locations
+  - NodaTime.TimeZones.TzdbDateTimeZoneSource.ZoneLocations
+  langs:
+  - csharp
+  - vb
+  name: TzdbDateTimeZoneSource
+  nameWithType: TzdbDateTimeZoneSource
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  type: Class
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: TzdbDateTimeZoneSource
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 30
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nProvides an implementation of <xref href=\"NodaTime.TimeZones.IDateTimeZoneSource\" data-throw-if-not-resolved=\"false\"></xref> that loads data originating from the\n<a href=\"http://www.iana.org/time-zones\">tz database</a> (also known as the IANA Time Zone database, or zoneinfo\nor Olson database).\n"
+  remarks: "\nAll calls to <xref href=\"NodaTime.TimeZones.TzdbDateTimeZoneSource.ForId(System.String)\" data-throw-if-not-resolved=\"false\"></xref> for fixed-offset IDs advertised by the source (i.e. &quot;UTC&quot; and &quot;UTC+/-Offset&quot;)\nwill return zones equal to those returned by <xref href=\"NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: 'public sealed class TzdbDateTimeZoneSource : IDateTimeZoneSource'
+    content.vb: >-
+      Public NotInheritable Class TzdbDateTimeZoneSource
+          Implements IDateTimeZoneSource
+  inheritance:
+  - System.Object
+  implements:
+  - NodaTime.TimeZones.IDateTimeZoneSource
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.Default
+  commentId: P:NodaTime.TimeZones.TzdbDateTimeZoneSource.Default
+  id: Default
+  parent: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: TzdbDateTimeZoneSource.Default
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.Default
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Default
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 37
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nGets the <xref href=\"NodaTime.TimeZones.TzdbDateTimeZoneSource\" data-throw-if-not-resolved=\"false\"></xref> initialised from resources within the NodaTime assembly.\n"
+  example: []
+  syntax:
+    content: public static TzdbDateTimeZoneSource Default { get; }
+    parameters: []
+    return:
+      type: NodaTime.TimeZones.TzdbDateTimeZoneSource
+      description: The source initialised from resources within the NodaTime assembly.
+    content.vb: Public Shared ReadOnly Property Default As TzdbDateTimeZoneSource
+  overload: NodaTime.TimeZones.TzdbDateTimeZoneSource.Default*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.Aliases
+  commentId: P:NodaTime.TimeZones.TzdbDateTimeZoneSource.Aliases
+  id: Aliases
+  parent: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: Aliases
+  nameWithType: TzdbDateTimeZoneSource.Aliases
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.Aliases
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Aliases
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 77
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nGets a lookup from canonical time zone ID (e.g. &quot;Europe/London&quot;) to a group of aliases for that time zone\n(e.g. {&quot;Europe/Belfast&quot;, &quot;Europe/Guernsey&quot;, &quot;Europe/Jersey&quot;, &quot;Europe/Isle_of_Man&quot;, &quot;GB&quot;, &quot;GB-Eire&quot;}).\n"
+  remarks: "\nThe group of values for a key never contains the canonical ID, only aliases. Any time zone\nID which is itself an alias or has no aliases linking to it will not be present in the lookup.\nThe aliases within a group are returned in alphabetical (ordinal) order.\n"
+  example: []
+  syntax:
+    content: public ILookup<string, string> Aliases { get; }
+    parameters: []
+    return:
+      type: System.Linq.ILookup{System.String,System.String}
+      description: A lookup from canonical ID to the aliases of that ID.
+    content.vb: Public ReadOnly Property Aliases As ILookup(Of String, String)
+  overload: NodaTime.TimeZones.TzdbDateTimeZoneSource.Aliases*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.CanonicalIdMap
+  commentId: P:NodaTime.TimeZones.TzdbDateTimeZoneSource.CanonicalIdMap
+  id: CanonicalIdMap
+  parent: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: CanonicalIdMap
+  nameWithType: TzdbDateTimeZoneSource.CanonicalIdMap
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.CanonicalIdMap
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: CanonicalIdMap
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 90
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nReturns a read-only map from time zone ID to the canonical ID. For example, the key &quot;Europe/Jersey&quot;\nwould be associated with the value &quot;Europe/London&quot;.\n"
+  remarks: "\n<p>This map contains an entry for every ID returned by <xref href=\"NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds\" data-throw-if-not-resolved=\"false\"></xref>, where\ncanonical IDs map to themselves.</p>\n<p>The returned map is read-only; any attempts to call a mutating method will throw\n<xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example: []
+  syntax:
+    content: public IDictionary<string, string> CanonicalIdMap { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IDictionary{System.String,System.String}
+      description: A map from time zone ID to the canonical ID.
+    content.vb: Public ReadOnly Property CanonicalIdMap As IDictionary(Of String, String)
+  overload: NodaTime.TimeZones.TzdbDateTimeZoneSource.CanonicalIdMap*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.ZoneLocations
+  commentId: P:NodaTime.TimeZones.TzdbDateTimeZoneSource.ZoneLocations
+  id: ZoneLocations
+  parent: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: ZoneLocations
+  nameWithType: TzdbDateTimeZoneSource.ZoneLocations
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.ZoneLocations
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: ZoneLocations
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 101
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nGets a read-only list of zone locations known to this source, or null if the original source data\ndoes not include zone locations.\n"
+  remarks: "\nEvery zone location&apos;s time zone ID is guaranteed to be valid within this source (assuming the source\nhas been validated).\n"
+  example: []
+  syntax:
+    content: public IList<TzdbZoneLocation> ZoneLocations { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IList{NodaTime.TimeZones.TzdbZoneLocation}
+      description: A read-only list of zone locations known to this source.
+    content.vb: Public ReadOnly Property ZoneLocations As IList(Of TzdbZoneLocation)
+  overload: NodaTime.TimeZones.TzdbDateTimeZoneSource.ZoneLocations*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.Zone1970Locations
+  commentId: P:NodaTime.TimeZones.TzdbDateTimeZoneSource.Zone1970Locations
+  id: Zone1970Locations
+  parent: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: Zone1970Locations
+  nameWithType: TzdbDateTimeZoneSource.Zone1970Locations
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.Zone1970Locations
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Zone1970Locations
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 127
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nGets a read-only list of &quot;zone 1970&quot; locations known to this source, or null if the original source data\ndoes not include zone locations.\n"
+  remarks: "\n<p>\nThis location data differs from <xref href=\"NodaTime.TimeZones.TzdbDateTimeZoneSource.ZoneLocations\" data-throw-if-not-resolved=\"false\"></xref> in two important respects:\n<ul>\n<li>Where multiple similar zones exist but only differ in transitions before 1970,\n  this location data chooses one zone to be the canonical &quot;post 1970&quot; zone.\n</li>\n<li>\n  This location data can represent multiple ISO-3166 country codes in a single entry. For example,\n  the entry corresponding to &quot;Europe/London&quot; includes country codes GB, GG, JE and IM (Britain,\n  Guernsey, Jersey and the Isle of Man, respectively).\n</li>\n</ul>\n</p>\n<p>\nEvery zone location&apos;s time zone ID is guaranteed to be valid within this source (assuming the source\nhas been validated).\n</p>\n"
+  example: []
+  syntax:
+    content: public IList<TzdbZone1970Location> Zone1970Locations { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IList{NodaTime.TimeZones.TzdbZone1970Location}
+      description: A read-only list of zone locations known to this source.
+    content.vb: Public ReadOnly Property Zone1970Locations As IList(Of TzdbZone1970Location)
+  overload: NodaTime.TimeZones.TzdbDateTimeZoneSource.Zone1970Locations*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.VersionId
+  commentId: P:NodaTime.TimeZones.TzdbDateTimeZoneSource.VersionId
+  id: VersionId
+  parent: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: VersionId
+  nameWithType: TzdbDateTimeZoneSource.VersionId
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.VersionId
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: VersionId
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 140
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nReturns an appropriate version ID for diagnostic purposes, which must not be null.\n"
+  remarks: "\n<p>\nThis source returns a string such as &quot;TZDB: 2013b (mapping: 8274)&quot; corresponding to the versions of the tz\ndatabase and the CLDR Windows zones mapping file.\n</p>\n<p>\nNote that there is no need to parse this string to extract any of the above information, as it is available\ndirectly from the <xref href=\"NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"NodaTime.TimeZones.Cldr.WindowsZones.Version\" data-throw-if-not-resolved=\"false\"></xref> properties.\n</p>\n"
+  example: []
+  syntax:
+    content: public string VersionId { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: An appropriate version ID for diagnostic purposes.
+    content.vb: Public ReadOnly Property VersionId As String
+  overload: NodaTime.TimeZones.TzdbDateTimeZoneSource.VersionId*
+  implements:
+  - NodaTime.TimeZones.IDateTimeZoneSource.VersionId
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.FromStream(System.IO.Stream)
+  commentId: M:NodaTime.TimeZones.TzdbDateTimeZoneSource.FromStream(System.IO.Stream)
+  id: FromStream(System.IO.Stream)
+  parent: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: FromStream(Stream)
+  nameWithType: TzdbDateTimeZoneSource.FromStream(Stream)
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.FromStream(System.IO.Stream)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: FromStream
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 161
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nCreates an instance from a stream in the custom Noda Time format. The stream must be readable.\n"
+  remarks: "\n<p>\nThe stream is not closed by this method, but will be read from\nwithout rewinding. A successful call will read the stream to the end.\n</p>\n<p>\nSee the user guide for instructions on how to generate an updated time zone database file from a copy of the\n(textual) tz database.\n</p>\n"
+  example: []
+  syntax:
+    content: public static TzdbDateTimeZoneSource FromStream(Stream stream)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+      description: The stream containing time zone data
+    return:
+      type: NodaTime.TimeZones.TzdbDateTimeZoneSource
+      description: A <code>TzdbDateTimeZoneSource</code> providing information from the given stream.
+    content.vb: Public Shared Function FromStream(stream As Stream) As TzdbDateTimeZoneSource
+  overload: NodaTime.TimeZones.TzdbDateTimeZoneSource.FromStream*
+  exceptions:
+  - type: NodaTime.Utility.InvalidNodaDataException
+    commentId: T:NodaTime.Utility.InvalidNodaDataException
+    description: >-
+      The stream contains invalid time zone data, or data which cannot
+
+      be read by this version of Noda Time.
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: Reading from the stream failed.
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The supplied stream doesn&apos;t support reading.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.ForId(System.String)
+  commentId: M:NodaTime.TimeZones.TzdbDateTimeZoneSource.ForId(System.String)
+  id: ForId(System.String)
+  parent: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: ForId(String)
+  nameWithType: TzdbDateTimeZoneSource.ForId(String)
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.ForId(System.String)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: ForId
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 184
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nReturns the time zone definition associated with the given ID.\n"
+  remarks: "\n<p>\nNote that this is permitted to return a <xref href=\"NodaTime.DateTimeZone\" data-throw-if-not-resolved=\"false\"></xref> that has a different ID to that\nrequested, if the ID provided is an alias.\n</p>\n<p>\nNote also that this method is not required to return the same <xref href=\"NodaTime.DateTimeZone\" data-throw-if-not-resolved=\"false\"></xref> instance for\nsuccessive requests for the same ID; however, all instances returned for a given ID must compare as equal.\n</p>\n<p>\nIt is advised that sources should document their behaviour regarding any fixed-offset timezones\n(i.e. &quot;UTC&quot; and &quot;UTC+/-Offset&quot;) that are included in the list returned by <xref href=\"NodaTime.TimeZones.IDateTimeZoneSource.GetIds\" data-throw-if-not-resolved=\"false\"></xref>.\n(These IDs will not be requested by <xref href=\"NodaTime.TimeZones.DateTimeZoneCache\" data-throw-if-not-resolved=\"false\"></xref>, but any users calling\ninto the source directly may care.)\n</p>\n<p>\nThe source need not attempt to cache time zones; caching is typically provided by\n<xref href=\"NodaTime.TimeZones.DateTimeZoneCache\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n"
+  example: []
+  syntax:
+    content: public DateTimeZone ForId(string id)
+    parameters:
+    - id: id
+      type: System.String
+      description: >-
+        The ID of the time zone to return. This must be one of the IDs
+
+        returned by <xref href="NodaTime.TimeZones.IDateTimeZoneSource.GetIds" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: NodaTime.DateTimeZone
+      description: The <xref href="NodaTime.DateTimeZone" data-throw-if-not-resolved="false"></xref> for the given ID.
+    content.vb: Public Function ForId(id As String) As DateTimeZone
+  overload: NodaTime.TimeZones.TzdbDateTimeZoneSource.ForId*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code data-dev-comment-type="paramref" class="paramref">id</code> is not supported by this source.
+  implements:
+  - NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds
+  commentId: M:NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds
+  id: GetIds
+  parent: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: GetIds()
+  nameWithType: TzdbDateTimeZoneSource.GetIds()
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetIds
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 194
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nReturns an unordered enumeration of the IDs available from this source.\n"
+  remarks: "\n<p>\nEvery value in this enumeration must return a valid time zone from <xref href=\"NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)\" data-throw-if-not-resolved=\"false\"></xref> for the life of the source.\nThe enumeration may be empty, but must not be null, and must not contain any elements which are null.  It\nshould not contain duplicates: this is not enforced, and while it may not have a significant impact on\nclients in some cases, it is generally unfriendly.  The built-in implementations never return duplicates.\n</p>\n<p>\nThe source is not required to provide the IDs in any particular order, although they should be distinct.\n</p>\n<p>\nNote that this list may optionally contain any of the fixed-offset timezones (with IDs &quot;UTC&quot; and\n&quot;UTC+/-Offset&quot;), but there is no requirement they be included.\n</p>\n"
+  example: []
+  syntax:
+    content: public IEnumerable<string> GetIds()
+    return:
+      type: System.Collections.Generic.IEnumerable{System.String}
+      description: The IDs available from this source.
+    content.vb: Public Function GetIds As IEnumerable(Of String)
+  overload: NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds*
+  implements:
+  - NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.GetSystemDefaultId
+  commentId: M:NodaTime.TimeZones.TzdbDateTimeZoneSource.GetSystemDefaultId
+  id: GetSystemDefaultId
+  parent: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: GetSystemDefaultId()
+  nameWithType: TzdbDateTimeZoneSource.GetSystemDefaultId()
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.GetSystemDefaultId()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetSystemDefaultId
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 198
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nReturns this source&apos;s ID for the system default time zone.\n"
+  example: []
+  syntax:
+    content: public string GetSystemDefaultId()
+    return:
+      type: System.String
+      description: "\nThe ID for the system default time zone for this source,\nor null if the system default time zone has no mapping in this source.\n"
+    content.vb: Public Function GetSystemDefaultId As String
+  overload: NodaTime.TimeZones.TzdbDateTimeZoneSource.GetSystemDefaultId*
+  implements:
+  - NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion
+  commentId: P:NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion
+  id: TzdbVersion
+  parent: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: TzdbVersion
+  nameWithType: TzdbDateTimeZoneSource.TzdbVersion
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: TzdbVersion
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 298
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nGets just the TZDB version (e.g. &quot;2013a&quot;) of the source data.\n"
+  example: []
+  syntax:
+    content: public string TzdbVersion { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The TZDB version (e.g. &quot;2013a&quot;) of the source data.
+    content.vb: Public ReadOnly Property TzdbVersion As String
+  overload: NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.WindowsMapping
+  commentId: P:NodaTime.TimeZones.TzdbDateTimeZoneSource.WindowsMapping
+  id: WindowsMapping
+  parent: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: WindowsMapping
+  nameWithType: TzdbDateTimeZoneSource.WindowsMapping
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.WindowsMapping
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: WindowsMapping
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 306
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nGets the Windows time zone mapping information provided in the CLDR\nsupplemental &quot;windowsZones.xml&quot; file.\n"
+  example: []
+  syntax:
+    content: public WindowsZones WindowsMapping { get; }
+    parameters: []
+    return:
+      type: NodaTime.TimeZones.Cldr.WindowsZones
+      description: >-
+        The Windows time zone mapping information provided in the CLDR
+
+        supplemental &quot;windowsZones.xml&quot; file.
+    content.vb: Public ReadOnly Property WindowsMapping As WindowsZones
+  overload: NodaTime.TimeZones.TzdbDateTimeZoneSource.WindowsMapping*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.Validate
+  commentId: M:NodaTime.TimeZones.TzdbDateTimeZoneSource.Validate
+  id: Validate
+  parent: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  langs:
+  - csharp
+  - vb
+  name: Validate()
+  nameWithType: TzdbDateTimeZoneSource.Validate()
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.Validate()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Validate
+    path: src/NodaTime/TimeZones/TzdbDateTimeZoneSource.cs
+    startLine: 319
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: "\nValidates that the data within this source is consistent with itself.\n"
+  remarks: "\nSource data is not validated automatically when it&apos;s loaded, but any source\nloaded from data produced by <code>NodaTime.TzdbCompiler</code> (including the data shipped with Noda Time)\nwill already have been validated via this method when it was originally produced. This method should\nonly normally be called explicitly if you have data from a source you&apos;re unsure of.\n"
+  example: []
+  syntax:
+    content: public void Validate()
+    content.vb: Public Sub Validate
+  overload: NodaTime.TimeZones.TzdbDateTimeZoneSource.Validate*
+  exceptions:
+  - type: NodaTime.Utility.InvalidNodaDataException
+    commentId: T:NodaTime.Utility.InvalidNodaDataException
+    description: >-
+      The source data is invalid. The source may not function
+
+      correctly.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: NodaTime.TimeZones.IDateTimeZoneSource
+  commentId: T:NodaTime.TimeZones.IDateTimeZoneSource
+  parent: NodaTime.TimeZones
+  name: IDateTimeZoneSource
+  nameWithType: IDateTimeZoneSource
+  fullName: NodaTime.TimeZones.IDateTimeZoneSource
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.ForId(System.String)
+  commentId: M:NodaTime.TimeZones.TzdbDateTimeZoneSource.ForId(System.String)
+  isExternal: true
+- uid: NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)
+  commentId: M:NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)
+  parent: NodaTime.DateTimeZone
+  name: ForOffset(Offset)
+  nameWithType: DateTimeZone.ForOffset(Offset)
+  fullName: NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)
+  spec.csharp:
+  - uid: NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)
+    name: ForOffset
+    nameWithType: DateTimeZone.ForOffset
+    fullName: NodaTime.DateTimeZone.ForOffset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.Offset
+    name: Offset
+    nameWithType: Offset
+    fullName: NodaTime.Offset
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)
+    name: ForOffset
+    nameWithType: DateTimeZone.ForOffset
+    fullName: NodaTime.DateTimeZone.ForOffset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.Offset
+    name: Offset
+    nameWithType: Offset
+    fullName: NodaTime.Offset
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.TimeZones
+  commentId: N:NodaTime.TimeZones
+  name: NodaTime.TimeZones
+  nameWithType: NodaTime.TimeZones
+  fullName: NodaTime.TimeZones
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.DateTimeZone
+  commentId: T:NodaTime.DateTimeZone
+  parent: NodaTime
+  name: DateTimeZone
+  nameWithType: DateTimeZone
+  fullName: NodaTime.DateTimeZone
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NodaTime
+  commentId: N:NodaTime
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource
+  commentId: T:NodaTime.TimeZones.TzdbDateTimeZoneSource
+  parent: NodaTime.TimeZones
+  name: TzdbDateTimeZoneSource
+  nameWithType: TzdbDateTimeZoneSource
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.Default*
+  commentId: Overload:NodaTime.TimeZones.TzdbDateTimeZoneSource.Default
+  name: Default
+  nameWithType: TzdbDateTimeZoneSource.Default
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.Default
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.Aliases*
+  commentId: Overload:NodaTime.TimeZones.TzdbDateTimeZoneSource.Aliases
+  name: Aliases
+  nameWithType: TzdbDateTimeZoneSource.Aliases
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.Aliases
+- uid: System.Linq.ILookup{System.String,System.String}
+  commentId: T:System.Linq.ILookup{System.String,System.String}
+  parent: System.Linq
+  definition: System.Linq.ILookup`2
+  name: ILookup<String, String>
+  nameWithType: ILookup<String, String>
+  fullName: System.Linq.ILookup<System.String, System.String>
+  nameWithType.vb: ILookup(Of String, String)
+  fullName.vb: System.Linq.ILookup(Of System.String, System.String)
+  name.vb: ILookup(Of String, String)
+  spec.csharp:
+  - uid: System.Linq.ILookup`2
+    name: ILookup
+    nameWithType: ILookup
+    fullName: System.Linq.ILookup
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.ILookup`2
+    name: ILookup
+    nameWithType: ILookup
+    fullName: System.Linq.ILookup
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.ILookup`2
+  commentId: T:System.Linq.ILookup`2
+  isExternal: true
+  name: ILookup<TKey, TElement>
+  nameWithType: ILookup<TKey, TElement>
+  fullName: System.Linq.ILookup<TKey, TElement>
+  nameWithType.vb: ILookup(Of TKey, TElement)
+  fullName.vb: System.Linq.ILookup(Of TKey, TElement)
+  name.vb: ILookup(Of TKey, TElement)
+  spec.csharp:
+  - uid: System.Linq.ILookup`2
+    name: ILookup
+    nameWithType: ILookup
+    fullName: System.Linq.ILookup
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TElement
+    nameWithType: TElement
+    fullName: TElement
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.ILookup`2
+    name: ILookup
+    nameWithType: ILookup
+    fullName: System.Linq.ILookup
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TElement
+    nameWithType: TElement
+    fullName: TElement
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq
+  commentId: N:System.Linq
+  isExternal: true
+  name: System.Linq
+  nameWithType: System.Linq
+  fullName: System.Linq
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds
+  commentId: M:NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds
+  isExternal: true
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  isExternal: true
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.CanonicalIdMap*
+  commentId: Overload:NodaTime.TimeZones.TzdbDateTimeZoneSource.CanonicalIdMap
+  name: CanonicalIdMap
+  nameWithType: TzdbDateTimeZoneSource.CanonicalIdMap
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.CanonicalIdMap
+- uid: System.Collections.Generic.IDictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.IDictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IDictionary`2
+  name: IDictionary<String, String>
+  nameWithType: IDictionary<String, String>
+  fullName: System.Collections.Generic.IDictionary<System.String, System.String>
+  nameWithType.vb: IDictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.IDictionary(Of System.String, System.String)
+  name.vb: IDictionary(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IDictionary`2
+  commentId: T:System.Collections.Generic.IDictionary`2
+  isExternal: true
+  name: IDictionary<TKey, TValue>
+  nameWithType: IDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>
+  nameWithType.vb: IDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue)
+  name.vb: IDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.ZoneLocations*
+  commentId: Overload:NodaTime.TimeZones.TzdbDateTimeZoneSource.ZoneLocations
+  name: ZoneLocations
+  nameWithType: TzdbDateTimeZoneSource.ZoneLocations
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.ZoneLocations
+- uid: System.Collections.Generic.IList{NodaTime.TimeZones.TzdbZoneLocation}
+  commentId: T:System.Collections.Generic.IList{NodaTime.TimeZones.TzdbZoneLocation}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IList`1
+  name: IList<TzdbZoneLocation>
+  nameWithType: IList<TzdbZoneLocation>
+  fullName: System.Collections.Generic.IList<NodaTime.TimeZones.TzdbZoneLocation>
+  nameWithType.vb: IList(Of TzdbZoneLocation)
+  fullName.vb: System.Collections.Generic.IList(Of NodaTime.TimeZones.TzdbZoneLocation)
+  name.vb: IList(Of TzdbZoneLocation)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.TimeZones.TzdbZoneLocation
+    name: TzdbZoneLocation
+    nameWithType: TzdbZoneLocation
+    fullName: NodaTime.TimeZones.TzdbZoneLocation
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.TimeZones.TzdbZoneLocation
+    name: TzdbZoneLocation
+    nameWithType: TzdbZoneLocation
+    fullName: NodaTime.TimeZones.TzdbZoneLocation
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IList`1
+  commentId: T:System.Collections.Generic.IList`1
+  isExternal: true
+  name: IList<T>
+  nameWithType: IList<T>
+  fullName: System.Collections.Generic.IList<T>
+  nameWithType.vb: IList(Of T)
+  fullName.vb: System.Collections.Generic.IList(Of T)
+  name.vb: IList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.ZoneLocations
+  commentId: P:NodaTime.TimeZones.TzdbDateTimeZoneSource.ZoneLocations
+  isExternal: true
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.Zone1970Locations*
+  commentId: Overload:NodaTime.TimeZones.TzdbDateTimeZoneSource.Zone1970Locations
+  name: Zone1970Locations
+  nameWithType: TzdbDateTimeZoneSource.Zone1970Locations
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.Zone1970Locations
+- uid: System.Collections.Generic.IList{NodaTime.TimeZones.TzdbZone1970Location}
+  commentId: T:System.Collections.Generic.IList{NodaTime.TimeZones.TzdbZone1970Location}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IList`1
+  name: IList<TzdbZone1970Location>
+  nameWithType: IList<TzdbZone1970Location>
+  fullName: System.Collections.Generic.IList<NodaTime.TimeZones.TzdbZone1970Location>
+  nameWithType.vb: IList(Of TzdbZone1970Location)
+  fullName.vb: System.Collections.Generic.IList(Of NodaTime.TimeZones.TzdbZone1970Location)
+  name.vb: IList(Of TzdbZone1970Location)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.TimeZones.TzdbZone1970Location
+    name: TzdbZone1970Location
+    nameWithType: TzdbZone1970Location
+    fullName: NodaTime.TimeZones.TzdbZone1970Location
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.TimeZones.TzdbZone1970Location
+    name: TzdbZone1970Location
+    nameWithType: TzdbZone1970Location
+    fullName: NodaTime.TimeZones.TzdbZone1970Location
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion
+  commentId: P:NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion
+  isExternal: true
+- uid: NodaTime.TimeZones.Cldr.WindowsZones.Version
+  commentId: P:NodaTime.TimeZones.Cldr.WindowsZones.Version
+  isExternal: true
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.VersionId*
+  commentId: Overload:NodaTime.TimeZones.TzdbDateTimeZoneSource.VersionId
+  name: VersionId
+  nameWithType: TzdbDateTimeZoneSource.VersionId
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.VersionId
+- uid: NodaTime.TimeZones.IDateTimeZoneSource.VersionId
+  commentId: P:NodaTime.TimeZones.IDateTimeZoneSource.VersionId
+  parent: NodaTime.TimeZones.IDateTimeZoneSource
+  name: VersionId
+  nameWithType: IDateTimeZoneSource.VersionId
+  fullName: NodaTime.TimeZones.IDateTimeZoneSource.VersionId
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: NodaTime.Utility.InvalidNodaDataException
+  commentId: T:NodaTime.Utility.InvalidNodaDataException
+  name: InvalidNodaDataException
+  nameWithType: InvalidNodaDataException
+  fullName: NodaTime.Utility.InvalidNodaDataException
+- uid: System.IO.IOException
+  commentId: T:System.IO.IOException
+  isExternal: true
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.FromStream*
+  commentId: Overload:NodaTime.TimeZones.TzdbDateTimeZoneSource.FromStream
+  name: FromStream
+  nameWithType: TzdbDateTimeZoneSource.FromStream
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.FromStream
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.ForId*
+  commentId: Overload:NodaTime.TimeZones.TzdbDateTimeZoneSource.ForId
+  name: ForId
+  nameWithType: TzdbDateTimeZoneSource.ForId
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.ForId
+- uid: NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)
+  commentId: M:NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)
+  parent: NodaTime.TimeZones.IDateTimeZoneSource
+  isExternal: true
+  name: ForId(String)
+  nameWithType: IDateTimeZoneSource.ForId(String)
+  fullName: NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)
+  spec.csharp:
+  - uid: NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)
+    name: ForId
+    nameWithType: IDateTimeZoneSource.ForId
+    fullName: NodaTime.TimeZones.IDateTimeZoneSource.ForId
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.TimeZones.IDateTimeZoneSource.ForId(System.String)
+    name: ForId
+    nameWithType: IDateTimeZoneSource.ForId
+    fullName: NodaTime.TimeZones.IDateTimeZoneSource.ForId
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds*
+  commentId: Overload:NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds
+  name: GetIds
+  nameWithType: TzdbDateTimeZoneSource.GetIds
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.GetIds
+- uid: NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+  commentId: M:NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+  parent: NodaTime.TimeZones.IDateTimeZoneSource
+  name: GetIds()
+  nameWithType: IDateTimeZoneSource.GetIds()
+  fullName: NodaTime.TimeZones.IDateTimeZoneSource.GetIds()
+  spec.csharp:
+  - uid: NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+    name: GetIds
+    nameWithType: IDateTimeZoneSource.GetIds
+    fullName: NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+    name: GetIds
+    nameWithType: IDateTimeZoneSource.GetIds
+    fullName: NodaTime.TimeZones.IDateTimeZoneSource.GetIds
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{System.String}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<String>
+  nameWithType: IEnumerable<String>
+  fullName: System.Collections.Generic.IEnumerable<System.String>
+  nameWithType.vb: IEnumerable(Of String)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.String)
+  name.vb: IEnumerable(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.GetSystemDefaultId*
+  commentId: Overload:NodaTime.TimeZones.TzdbDateTimeZoneSource.GetSystemDefaultId
+  name: GetSystemDefaultId
+  nameWithType: TzdbDateTimeZoneSource.GetSystemDefaultId
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.GetSystemDefaultId
+- uid: NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+  commentId: M:NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+  parent: NodaTime.TimeZones.IDateTimeZoneSource
+  name: GetSystemDefaultId()
+  nameWithType: IDateTimeZoneSource.GetSystemDefaultId()
+  fullName: NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId()
+  spec.csharp:
+  - uid: NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+    name: GetSystemDefaultId
+    nameWithType: IDateTimeZoneSource.GetSystemDefaultId
+    fullName: NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+    name: GetSystemDefaultId
+    nameWithType: IDateTimeZoneSource.GetSystemDefaultId
+    fullName: NodaTime.TimeZones.IDateTimeZoneSource.GetSystemDefaultId
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion*
+  commentId: Overload:NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion
+  name: TzdbVersion
+  nameWithType: TzdbDateTimeZoneSource.TzdbVersion
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.TzdbVersion
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.WindowsMapping*
+  commentId: Overload:NodaTime.TimeZones.TzdbDateTimeZoneSource.WindowsMapping
+  name: WindowsMapping
+  nameWithType: TzdbDateTimeZoneSource.WindowsMapping
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.WindowsMapping
+- uid: NodaTime.TimeZones.Cldr.WindowsZones
+  commentId: T:NodaTime.TimeZones.Cldr.WindowsZones
+  parent: NodaTime.TimeZones.Cldr
+  name: WindowsZones
+  nameWithType: WindowsZones
+  fullName: NodaTime.TimeZones.Cldr.WindowsZones
+- uid: NodaTime.TimeZones.Cldr
+  commentId: N:NodaTime.TimeZones.Cldr
+  name: NodaTime.TimeZones.Cldr
+  nameWithType: NodaTime.TimeZones.Cldr
+  fullName: NodaTime.TimeZones.Cldr
+- uid: NodaTime.TimeZones.TzdbDateTimeZoneSource.Validate*
+  commentId: Overload:NodaTime.TimeZones.TzdbDateTimeZoneSource.Validate
+  name: Validate
+  nameWithType: TzdbDateTimeZoneSource.Validate
+  fullName: NodaTime.TimeZones.TzdbDateTimeZoneSource.Validate
+shouldSkipMarkup: true

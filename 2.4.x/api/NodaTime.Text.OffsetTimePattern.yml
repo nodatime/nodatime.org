@@ -1,0 +1,1495 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Text.OffsetTimePattern
+  commentId: T:NodaTime.Text.OffsetTimePattern
+  id: OffsetTimePattern
+  parent: NodaTime.Text
+  children:
+  - NodaTime.Text.OffsetTimePattern.AppendFormat(NodaTime.OffsetTime,System.Text.StringBuilder)
+  - NodaTime.Text.OffsetTimePattern.Create(System.String,System.Globalization.CultureInfo,NodaTime.OffsetTime)
+  - NodaTime.Text.OffsetTimePattern.CreateWithCurrentCulture(System.String)
+  - NodaTime.Text.OffsetTimePattern.CreateWithInvariantCulture(System.String)
+  - NodaTime.Text.OffsetTimePattern.ExtendedIso
+  - NodaTime.Text.OffsetTimePattern.Format(NodaTime.OffsetTime)
+  - NodaTime.Text.OffsetTimePattern.GeneralIso
+  - NodaTime.Text.OffsetTimePattern.Parse(System.String)
+  - NodaTime.Text.OffsetTimePattern.PatternText
+  - NodaTime.Text.OffsetTimePattern.Rfc3339
+  - NodaTime.Text.OffsetTimePattern.TemplateValue
+  - NodaTime.Text.OffsetTimePattern.WithCulture(System.Globalization.CultureInfo)
+  - NodaTime.Text.OffsetTimePattern.WithPatternText(System.String)
+  - NodaTime.Text.OffsetTimePattern.WithTemplateValue(NodaTime.OffsetTime)
+  langs:
+  - csharp
+  - vb
+  name: OffsetTimePattern
+  nameWithType: OffsetTimePattern
+  fullName: NodaTime.Text.OffsetTimePattern
+  type: Class
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: OffsetTimePattern
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 22
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nRepresents a pattern for parsing and formatting <xref href=\"NodaTime.OffsetTime\" data-throw-if-not-resolved=\"false\"></xref> values.\n"
+  example: []
+  syntax:
+    content: 'public sealed class OffsetTimePattern : IPattern<OffsetTime>'
+    content.vb: >-
+      Public NotInheritable Class OffsetTimePattern
+          Implements IPattern(Of OffsetTime)
+  inheritance:
+  - System.Object
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.OffsetTime}
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: NodaTime.Text.OffsetTimePattern.GeneralIso
+  commentId: P:NodaTime.Text.OffsetTimePattern.GeneralIso
+  id: GeneralIso
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: GeneralIso
+  nameWithType: OffsetTimePattern.GeneralIso
+  fullName: NodaTime.Text.OffsetTimePattern.GeneralIso
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GeneralIso
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 35
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nGets an invariant offset time pattern based on ISO-8601 (down to the second), including offset from UTC.\n"
+  remarks: "\nThis corresponds to a custom pattern of &quot;HH&apos;:&apos;mm&apos;:&apos;sso&lt;G>&quot;. It is available as the &quot;G&quot;\nstandard pattern (even though it is invariant).\n"
+  example: []
+  syntax:
+    content: public static OffsetTimePattern GeneralIso { get; }
+    parameters: []
+    return:
+      type: NodaTime.Text.OffsetTimePattern
+      description: An invariant offset time pattern based on ISO-8601 (down to the second), including offset from UTC.
+    content.vb: Public Shared ReadOnly Property GeneralIso As OffsetTimePattern
+  overload: NodaTime.Text.OffsetTimePattern.GeneralIso*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.Text.OffsetTimePattern.ExtendedIso
+  commentId: P:NodaTime.Text.OffsetTimePattern.ExtendedIso
+  id: ExtendedIso
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: ExtendedIso
+  nameWithType: OffsetTimePattern.ExtendedIso
+  fullName: NodaTime.Text.OffsetTimePattern.ExtendedIso
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: ExtendedIso
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 45
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nGets an invariant offset time pattern based on ISO-8601 (down to the nanosecond), including offset from UTC.\n"
+  remarks: "\nThis corresponds to a custom pattern of &quot;HH&apos;:&apos;mm&apos;:&apos;ss;FFFFFFFFFo&lt;G>&quot;.\nThis will round-trip all values, and is available as the &quot;o&quot; standard pattern.\n"
+  example: []
+  syntax:
+    content: public static OffsetTimePattern ExtendedIso { get; }
+    parameters: []
+    return:
+      type: NodaTime.Text.OffsetTimePattern
+      description: An invariant offset time pattern based on ISO-8601 (down to the nanosecond), including offset from UTC.
+    content.vb: Public Shared ReadOnly Property ExtendedIso As OffsetTimePattern
+  overload: NodaTime.Text.OffsetTimePattern.ExtendedIso*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.Text.OffsetTimePattern.Rfc3339
+  commentId: P:NodaTime.Text.OffsetTimePattern.Rfc3339
+  id: Rfc3339
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: Rfc3339
+  nameWithType: OffsetTimePattern.Rfc3339
+  fullName: NodaTime.Text.OffsetTimePattern.Rfc3339
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Rfc3339
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 61
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nGets an invariant offset time pattern based on RFC 3339 (down to the nanosecond), including offset from UTC\nas hours and minutes only.\n"
+  remarks: "\nThe minutes part of the offset is always included, but any sub-minute component\nof the offset is lost. An offset of zero is formatted as &apos;Z&apos;, but all of &apos;Z&apos;, &apos;+00:00&apos; and &apos;-00:00&apos; are parsed\nthe same way. The RFC 3339 meaning of &apos;-00:00&apos; is not supported by Noda Time.\nNote that parsing is case-sensitive (so &apos;T&apos; and &apos;Z&apos; must be upper case).\nThis pattern corresponds to a custom pattern of\n&quot;HH&apos;:&apos;mm&apos;:&apos;ss;FFFFFFFFFo&lt;Z+HH:mm>&quot;.\n"
+  example: []
+  syntax:
+    content: public static OffsetTimePattern Rfc3339 { get; }
+    parameters: []
+    return:
+      type: NodaTime.Text.OffsetTimePattern
+      description: >-
+        An invariant offset time pattern based on RFC 3339 (down to the nanosecond), including offset from UTC
+
+        as hours and minutes only.
+    content.vb: Public Shared ReadOnly Property Rfc3339 As OffsetTimePattern
+  overload: NodaTime.Text.OffsetTimePattern.Rfc3339*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.Text.OffsetTimePattern.PatternText
+  commentId: P:NodaTime.Text.OffsetTimePattern.PatternText
+  id: PatternText
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: PatternText
+  nameWithType: OffsetTimePattern.PatternText
+  fullName: NodaTime.Text.OffsetTimePattern.PatternText
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: PatternText
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 81
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nGets the pattern text for this pattern, as supplied on creation.\n"
+  example: []
+  syntax:
+    content: public string PatternText { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The pattern text for this pattern, as supplied on creation.
+    content.vb: Public ReadOnly Property PatternText As String
+  overload: NodaTime.Text.OffsetTimePattern.PatternText*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Text.OffsetTimePattern.TemplateValue
+  commentId: P:NodaTime.Text.OffsetTimePattern.TemplateValue
+  id: TemplateValue
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: TemplateValue
+  nameWithType: OffsetTimePattern.TemplateValue
+  fullName: NodaTime.Text.OffsetTimePattern.TemplateValue
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: TemplateValue
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 93
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nGets the value used as a template for parsing: any field values unspecified\nin the pattern are taken from the template.\n"
+  example: []
+  syntax:
+    content: public OffsetTime TemplateValue { get; }
+    parameters: []
+    return:
+      type: NodaTime.OffsetTime
+      description: The value used as a template for parsing.
+    content.vb: Public ReadOnly Property TemplateValue As OffsetTime
+  overload: NodaTime.Text.OffsetTimePattern.TemplateValue*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Text.OffsetTimePattern.Parse(System.String)
+  commentId: M:NodaTime.Text.OffsetTimePattern.Parse(System.String)
+  id: Parse(System.String)
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: Parse(String)
+  nameWithType: OffsetTimePattern.Parse(String)
+  fullName: NodaTime.Text.OffsetTimePattern.Parse(System.String)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Parse
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 113
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nParses the given text value according to the rules of this pattern.\n"
+  remarks: "\nThis method never throws an exception (barring a bug in Noda Time itself). Even errors such as\nthe argument being null are wrapped in a parse result.\n"
+  example: []
+  syntax:
+    content: public ParseResult<OffsetTime> Parse(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text value to parse.
+    return:
+      type: NodaTime.Text.ParseResult{NodaTime.OffsetTime}
+      description: The result of parsing, which may be successful or unsuccessful.
+    content.vb: Public Function Parse(text As String) As ParseResult(Of OffsetTime)
+  overload: NodaTime.Text.OffsetTimePattern.Parse*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.OffsetTime}.Parse(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Text.OffsetTimePattern.Format(NodaTime.OffsetTime)
+  commentId: M:NodaTime.Text.OffsetTimePattern.Format(NodaTime.OffsetTime)
+  id: Format(NodaTime.OffsetTime)
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: Format(OffsetTime)
+  nameWithType: OffsetTimePattern.Format(OffsetTime)
+  fullName: NodaTime.Text.OffsetTimePattern.Format(NodaTime.OffsetTime)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Format
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 120
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nFormats the given zoned time as text according to the rules of this pattern.\n"
+  example: []
+  syntax:
+    content: public string Format(OffsetTime value)
+    parameters:
+    - id: value
+      type: NodaTime.OffsetTime
+      description: The zoned time to format.
+    return:
+      type: System.String
+      description: The zoned time formatted according to this pattern.
+    content.vb: Public Function Format(value As OffsetTime) As String
+  overload: NodaTime.Text.OffsetTimePattern.Format*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.OffsetTime}.Format(NodaTime.OffsetTime)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Text.OffsetTimePattern.AppendFormat(NodaTime.OffsetTime,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.OffsetTimePattern.AppendFormat(NodaTime.OffsetTime,System.Text.StringBuilder)
+  id: AppendFormat(NodaTime.OffsetTime,System.Text.StringBuilder)
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: AppendFormat(OffsetTime, StringBuilder)
+  nameWithType: OffsetTimePattern.AppendFormat(OffsetTime, StringBuilder)
+  fullName: NodaTime.Text.OffsetTimePattern.AppendFormat(NodaTime.OffsetTime, System.Text.StringBuilder)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: AppendFormat
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 129
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nFormats the given value as text according to the rules of this pattern,\nappending to the given <xref href=\"System.Text.StringBuilder\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public StringBuilder AppendFormat(OffsetTime value, StringBuilder builder)
+    parameters:
+    - id: value
+      type: NodaTime.OffsetTime
+      description: The value to format.
+    - id: builder
+      type: System.Text.StringBuilder
+      description: The <code>StringBuilder</code> to append to.
+    return:
+      type: System.Text.StringBuilder
+      description: The builder passed in as <code data-dev-comment-type="paramref" class="paramref">builder</code>.
+    content.vb: Public Function AppendFormat(value As OffsetTime, builder As StringBuilder) As StringBuilder
+  overload: NodaTime.Text.OffsetTimePattern.AppendFormat*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.OffsetTime}.AppendFormat(NodaTime.OffsetTime,System.Text.StringBuilder)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Text.OffsetTimePattern.Create(System.String,System.Globalization.CultureInfo,NodaTime.OffsetTime)
+  commentId: M:NodaTime.Text.OffsetTimePattern.Create(System.String,System.Globalization.CultureInfo,NodaTime.OffsetTime)
+  id: Create(System.String,System.Globalization.CultureInfo,NodaTime.OffsetTime)
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: Create(String, CultureInfo, OffsetTime)
+  nameWithType: OffsetTimePattern.Create(String, CultureInfo, OffsetTime)
+  fullName: NodaTime.Text.OffsetTimePattern.Create(System.String, System.Globalization.CultureInfo, NodaTime.OffsetTime)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Create
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 159
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nCreates a pattern for the given pattern text, culture, and template value.\n"
+  remarks: "\nSee the user guide for the available pattern text options.\n"
+  example: []
+  syntax:
+    content: public static OffsetTimePattern Create(string patternText, CultureInfo cultureInfo, OffsetTime templateValue)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: Pattern text to create the pattern for
+    - id: cultureInfo
+      type: System.Globalization.CultureInfo
+      description: The culture to use in the pattern
+    - id: templateValue
+      type: NodaTime.OffsetTime
+      description: Template value to use for unspecified fields
+    return:
+      type: NodaTime.Text.OffsetTimePattern
+      description: A pattern for parsing and formatting local times.
+    content.vb: Public Shared Function Create(patternText As String, cultureInfo As CultureInfo, templateValue As OffsetTime) As OffsetTimePattern
+  overload: NodaTime.Text.OffsetTimePattern.Create*
+  exceptions:
+  - type: NodaTime.Text.InvalidPatternException
+    commentId: T:NodaTime.Text.InvalidPatternException
+    description: The pattern text was invalid.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Text.OffsetTimePattern.CreateWithInvariantCulture(System.String)
+  commentId: M:NodaTime.Text.OffsetTimePattern.CreateWithInvariantCulture(System.String)
+  id: CreateWithInvariantCulture(System.String)
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: CreateWithInvariantCulture(String)
+  nameWithType: OffsetTimePattern.CreateWithInvariantCulture(String)
+  fullName: NodaTime.Text.OffsetTimePattern.CreateWithInvariantCulture(System.String)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: CreateWithInvariantCulture
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 172
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nCreates a pattern for the given pattern text in the invariant culture, using the default\ntemplate value of midnight January 1st 2000 at an offset of 0.\n"
+  remarks: "\nSee the user guide for the available pattern text options.\n"
+  example: []
+  syntax:
+    content: public static OffsetTimePattern CreateWithInvariantCulture(string patternText)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: Pattern text to create the pattern for
+    return:
+      type: NodaTime.Text.OffsetTimePattern
+      description: A pattern for parsing and formatting local times.
+    content.vb: Public Shared Function CreateWithInvariantCulture(patternText As String) As OffsetTimePattern
+  overload: NodaTime.Text.OffsetTimePattern.CreateWithInvariantCulture*
+  exceptions:
+  - type: NodaTime.Text.InvalidPatternException
+    commentId: T:NodaTime.Text.InvalidPatternException
+    description: The pattern text was invalid.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Text.OffsetTimePattern.CreateWithCurrentCulture(System.String)
+  commentId: M:NodaTime.Text.OffsetTimePattern.CreateWithCurrentCulture(System.String)
+  id: CreateWithCurrentCulture(System.String)
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: CreateWithCurrentCulture(String)
+  nameWithType: OffsetTimePattern.CreateWithCurrentCulture(String)
+  fullName: NodaTime.Text.OffsetTimePattern.CreateWithCurrentCulture(System.String)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: CreateWithCurrentCulture
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 187
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nCreates a pattern for the given pattern text in the current culture, using the default\ntemplate value of midnight January 1st 2000 at an offset of 0.\n"
+  remarks: "\nSee the user guide for the available pattern text options. Note that the current culture\nis captured at the time this method is called - it is not captured at the point of parsing\nor formatting values.\n"
+  example: []
+  syntax:
+    content: public static OffsetTimePattern CreateWithCurrentCulture(string patternText)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: Pattern text to create the pattern for
+    return:
+      type: NodaTime.Text.OffsetTimePattern
+      description: A pattern for parsing and formatting local times.
+    content.vb: Public Shared Function CreateWithCurrentCulture(patternText As String) As OffsetTimePattern
+  overload: NodaTime.Text.OffsetTimePattern.CreateWithCurrentCulture*
+  exceptions:
+  - type: NodaTime.Text.InvalidPatternException
+    commentId: T:NodaTime.Text.InvalidPatternException
+    description: The pattern text was invalid.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Text.OffsetTimePattern.WithPatternText(System.String)
+  commentId: M:NodaTime.Text.OffsetTimePattern.WithPatternText(System.String)
+  id: WithPatternText(System.String)
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: WithPatternText(String)
+  nameWithType: OffsetTimePattern.WithPatternText(String)
+  fullName: NodaTime.Text.OffsetTimePattern.WithPatternText(System.String)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: WithPatternText
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 196
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nCreates a pattern for the same original localization information as this pattern, but with the specified\npattern text.\n"
+  example: []
+  syntax:
+    content: public OffsetTimePattern WithPatternText(string patternText)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: The pattern text to use in the new pattern.
+    return:
+      type: NodaTime.Text.OffsetTimePattern
+      description: A new pattern with the given pattern text.
+    content.vb: Public Function WithPatternText(patternText As String) As OffsetTimePattern
+  overload: NodaTime.Text.OffsetTimePattern.WithPatternText*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Text.OffsetTimePattern.WithCulture(System.Globalization.CultureInfo)
+  commentId: M:NodaTime.Text.OffsetTimePattern.WithCulture(System.Globalization.CultureInfo)
+  id: WithCulture(System.Globalization.CultureInfo)
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: WithCulture(CultureInfo)
+  nameWithType: OffsetTimePattern.WithCulture(CultureInfo)
+  fullName: NodaTime.Text.OffsetTimePattern.WithCulture(System.Globalization.CultureInfo)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: WithCulture
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 214
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nCreates a pattern for the same original pattern text as this pattern, but with the specified\nculture.\n"
+  example: []
+  syntax:
+    content: public OffsetTimePattern WithCulture(CultureInfo cultureInfo)
+    parameters:
+    - id: cultureInfo
+      type: System.Globalization.CultureInfo
+      description: The culture to use in the new pattern.
+    return:
+      type: NodaTime.Text.OffsetTimePattern
+      description: A new pattern with the given culture.
+    content.vb: Public Function WithCulture(cultureInfo As CultureInfo) As OffsetTimePattern
+  overload: NodaTime.Text.OffsetTimePattern.WithCulture*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Text.OffsetTimePattern.WithTemplateValue(NodaTime.OffsetTime)
+  commentId: M:NodaTime.Text.OffsetTimePattern.WithTemplateValue(NodaTime.OffsetTime)
+  id: WithTemplateValue(NodaTime.OffsetTime)
+  parent: NodaTime.Text.OffsetTimePattern
+  langs:
+  - csharp
+  - vb
+  name: WithTemplateValue(OffsetTime)
+  nameWithType: OffsetTimePattern.WithTemplateValue(OffsetTime)
+  fullName: NodaTime.Text.OffsetTimePattern.WithTemplateValue(NodaTime.OffsetTime)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/OffsetTimePattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: WithTemplateValue
+    path: src/NodaTime/Text/OffsetTimePattern.cs
+    startLine: 223
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nCreates a pattern for the same original pattern text and culture as this pattern, but with\nthe specified template value.\n"
+  example: []
+  syntax:
+    content: public OffsetTimePattern WithTemplateValue(OffsetTime newTemplateValue)
+    parameters:
+    - id: newTemplateValue
+      type: NodaTime.OffsetTime
+      description: The template value to use in the new pattern.
+    return:
+      type: NodaTime.Text.OffsetTimePattern
+      description: A new pattern with the given template value.
+    content.vb: Public Function WithTemplateValue(newTemplateValue As OffsetTime) As OffsetTimePattern
+  overload: NodaTime.Text.OffsetTimePattern.WithTemplateValue*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: NodaTime.OffsetTime
+  commentId: T:NodaTime.OffsetTime
+  parent: NodaTime
+  name: OffsetTime
+  nameWithType: OffsetTime
+  fullName: NodaTime.OffsetTime
+- uid: System.Globalization.CultureInfo
+  commentId: T:System.Globalization.CultureInfo
+  parent: System.Globalization
+  isExternal: true
+  name: CultureInfo
+  nameWithType: CultureInfo
+  fullName: System.Globalization.CultureInfo
+- uid: NodaTime.Text
+  commentId: N:NodaTime.Text
+  name: NodaTime.Text
+  nameWithType: NodaTime.Text
+  fullName: NodaTime.Text
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: NodaTime.Text.IPattern{NodaTime.OffsetTime}
+  commentId: T:NodaTime.Text.IPattern{NodaTime.OffsetTime}
+  parent: NodaTime.Text
+  definition: NodaTime.Text.IPattern`1
+  name: IPattern<OffsetTime>
+  nameWithType: IPattern<OffsetTime>
+  fullName: NodaTime.Text.IPattern<NodaTime.OffsetTime>
+  nameWithType.vb: IPattern(Of OffsetTime)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.OffsetTime)
+  name.vb: IPattern(Of OffsetTime)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    nameWithType: IPattern
+    fullName: NodaTime.Text.IPattern
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.OffsetTime
+    name: OffsetTime
+    nameWithType: OffsetTime
+    fullName: NodaTime.OffsetTime
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    nameWithType: IPattern
+    fullName: NodaTime.Text.IPattern
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.OffsetTime
+    name: OffsetTime
+    nameWithType: OffsetTime
+    fullName: NodaTime.OffsetTime
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime
+  commentId: N:NodaTime
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.Globalization
+  commentId: N:System.Globalization
+  isExternal: true
+  name: System.Globalization
+  nameWithType: System.Globalization
+  fullName: System.Globalization
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NodaTime.Text.IPattern`1
+  commentId: T:NodaTime.Text.IPattern`1
+  name: IPattern<T>
+  nameWithType: IPattern<T>
+  fullName: NodaTime.Text.IPattern<T>
+  nameWithType.vb: IPattern(Of T)
+  fullName.vb: NodaTime.Text.IPattern(Of T)
+  name.vb: IPattern(Of T)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    nameWithType: IPattern
+    fullName: NodaTime.Text.IPattern
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    nameWithType: IPattern
+    fullName: NodaTime.Text.IPattern
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Text.OffsetTimePattern.GeneralIso*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.GeneralIso
+  name: GeneralIso
+  nameWithType: OffsetTimePattern.GeneralIso
+  fullName: NodaTime.Text.OffsetTimePattern.GeneralIso
+- uid: NodaTime.Text.OffsetTimePattern
+  commentId: T:NodaTime.Text.OffsetTimePattern
+  parent: NodaTime.Text
+  name: OffsetTimePattern
+  nameWithType: OffsetTimePattern
+  fullName: NodaTime.Text.OffsetTimePattern
+- uid: NodaTime.Text.OffsetTimePattern.ExtendedIso*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.ExtendedIso
+  name: ExtendedIso
+  nameWithType: OffsetTimePattern.ExtendedIso
+  fullName: NodaTime.Text.OffsetTimePattern.ExtendedIso
+- uid: NodaTime.Text.OffsetTimePattern.Rfc3339*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.Rfc3339
+  name: Rfc3339
+  nameWithType: OffsetTimePattern.Rfc3339
+  fullName: NodaTime.Text.OffsetTimePattern.Rfc3339
+- uid: NodaTime.Text.OffsetTimePattern.PatternText*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.PatternText
+  name: PatternText
+  nameWithType: OffsetTimePattern.PatternText
+  fullName: NodaTime.Text.OffsetTimePattern.PatternText
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: NodaTime.Text.OffsetTimePattern.TemplateValue*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.TemplateValue
+  name: TemplateValue
+  nameWithType: OffsetTimePattern.TemplateValue
+  fullName: NodaTime.Text.OffsetTimePattern.TemplateValue
+- uid: NodaTime.Text.OffsetTimePattern.Parse*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.Parse
+  name: Parse
+  nameWithType: OffsetTimePattern.Parse
+  fullName: NodaTime.Text.OffsetTimePattern.Parse
+- uid: NodaTime.Text.IPattern{NodaTime.OffsetTime}.Parse(System.String)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.OffsetTime}.Parse(System.String)
+  parent: NodaTime.Text.IPattern{NodaTime.OffsetTime}
+  definition: NodaTime.Text.IPattern`1.Parse(System.String)
+  name: Parse(String)
+  nameWithType: IPattern<OffsetTime>.Parse(String)
+  fullName: NodaTime.Text.IPattern<NodaTime.OffsetTime>.Parse(System.String)
+  nameWithType.vb: IPattern(Of OffsetTime).Parse(String)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.OffsetTime).Parse(System.String)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    nameWithType: IPattern<OffsetTime>.Parse
+    fullName: NodaTime.Text.IPattern<NodaTime.OffsetTime>.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    nameWithType: IPattern(Of OffsetTime).Parse
+    fullName: NodaTime.Text.IPattern(Of NodaTime.OffsetTime).Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Text.ParseResult{NodaTime.OffsetTime}
+  commentId: T:NodaTime.Text.ParseResult{NodaTime.OffsetTime}
+  parent: NodaTime.Text
+  definition: NodaTime.Text.ParseResult`1
+  name: ParseResult<OffsetTime>
+  nameWithType: ParseResult<OffsetTime>
+  fullName: NodaTime.Text.ParseResult<NodaTime.OffsetTime>
+  nameWithType.vb: ParseResult(Of OffsetTime)
+  fullName.vb: NodaTime.Text.ParseResult(Of NodaTime.OffsetTime)
+  name.vb: ParseResult(Of OffsetTime)
+  spec.csharp:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    nameWithType: ParseResult
+    fullName: NodaTime.Text.ParseResult
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.OffsetTime
+    name: OffsetTime
+    nameWithType: OffsetTime
+    fullName: NodaTime.OffsetTime
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    nameWithType: ParseResult
+    fullName: NodaTime.Text.ParseResult
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.OffsetTime
+    name: OffsetTime
+    nameWithType: OffsetTime
+    fullName: NodaTime.OffsetTime
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Text.IPattern`1.Parse(System.String)
+  commentId: M:NodaTime.Text.IPattern`1.Parse(System.String)
+  isExternal: true
+  name: Parse(String)
+  nameWithType: IPattern<T>.Parse(String)
+  fullName: NodaTime.Text.IPattern<T>.Parse(System.String)
+  nameWithType.vb: IPattern(Of T).Parse(String)
+  fullName.vb: NodaTime.Text.IPattern(Of T).Parse(System.String)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    nameWithType: IPattern<T>.Parse
+    fullName: NodaTime.Text.IPattern<T>.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    nameWithType: IPattern(Of T).Parse
+    fullName: NodaTime.Text.IPattern(Of T).Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Text.ParseResult`1
+  commentId: T:NodaTime.Text.ParseResult`1
+  parent: NodaTime.Text
+  name: ParseResult<T>
+  nameWithType: ParseResult<T>
+  fullName: NodaTime.Text.ParseResult<T>
+  nameWithType.vb: ParseResult(Of T)
+  fullName.vb: NodaTime.Text.ParseResult(Of T)
+  name.vb: ParseResult(Of T)
+  spec.csharp:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    nameWithType: ParseResult
+    fullName: NodaTime.Text.ParseResult
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    nameWithType: ParseResult
+    fullName: NodaTime.Text.ParseResult
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Text.OffsetTimePattern.Format*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.Format
+  name: Format
+  nameWithType: OffsetTimePattern.Format
+  fullName: NodaTime.Text.OffsetTimePattern.Format
+- uid: NodaTime.Text.IPattern{NodaTime.OffsetTime}.Format(NodaTime.OffsetTime)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.OffsetTime}.Format(NodaTime.OffsetTime)
+  parent: NodaTime.Text.IPattern{NodaTime.OffsetTime}
+  definition: NodaTime.Text.IPattern`1.Format(`0)
+  name: Format(OffsetTime)
+  nameWithType: IPattern<OffsetTime>.Format(OffsetTime)
+  fullName: NodaTime.Text.IPattern<NodaTime.OffsetTime>.Format(NodaTime.OffsetTime)
+  nameWithType.vb: IPattern(Of OffsetTime).Format(OffsetTime)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.OffsetTime).Format(NodaTime.OffsetTime)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    nameWithType: IPattern<OffsetTime>.Format
+    fullName: NodaTime.Text.IPattern<NodaTime.OffsetTime>.Format
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.OffsetTime
+    name: OffsetTime
+    nameWithType: OffsetTime
+    fullName: NodaTime.OffsetTime
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    nameWithType: IPattern(Of OffsetTime).Format
+    fullName: NodaTime.Text.IPattern(Of NodaTime.OffsetTime).Format
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.OffsetTime
+    name: OffsetTime
+    nameWithType: OffsetTime
+    fullName: NodaTime.OffsetTime
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Text.IPattern`1.Format(`0)
+  commentId: M:NodaTime.Text.IPattern`1.Format(`0)
+  name: Format(T)
+  nameWithType: IPattern<T>.Format(T)
+  fullName: NodaTime.Text.IPattern<T>.Format(T)
+  nameWithType.vb: IPattern(Of T).Format(T)
+  fullName.vb: NodaTime.Text.IPattern(Of T).Format(T)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    nameWithType: IPattern<T>.Format
+    fullName: NodaTime.Text.IPattern<T>.Format
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    nameWithType: IPattern(Of T).Format
+    fullName: NodaTime.Text.IPattern(Of T).Format
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Text.StringBuilder
+  commentId: T:System.Text.StringBuilder
+  parent: System.Text
+  isExternal: true
+  name: StringBuilder
+  nameWithType: StringBuilder
+  fullName: System.Text.StringBuilder
+- uid: NodaTime.Text.OffsetTimePattern.AppendFormat*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.AppendFormat
+  name: AppendFormat
+  nameWithType: OffsetTimePattern.AppendFormat
+  fullName: NodaTime.Text.OffsetTimePattern.AppendFormat
+- uid: NodaTime.Text.IPattern{NodaTime.OffsetTime}.AppendFormat(NodaTime.OffsetTime,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.OffsetTime}.AppendFormat(NodaTime.OffsetTime,System.Text.StringBuilder)
+  parent: NodaTime.Text.IPattern{NodaTime.OffsetTime}
+  definition: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  name: AppendFormat(OffsetTime, StringBuilder)
+  nameWithType: IPattern<OffsetTime>.AppendFormat(OffsetTime, StringBuilder)
+  fullName: NodaTime.Text.IPattern<NodaTime.OffsetTime>.AppendFormat(NodaTime.OffsetTime, System.Text.StringBuilder)
+  nameWithType.vb: IPattern(Of OffsetTime).AppendFormat(OffsetTime, StringBuilder)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.OffsetTime).AppendFormat(NodaTime.OffsetTime, System.Text.StringBuilder)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    nameWithType: IPattern<OffsetTime>.AppendFormat
+    fullName: NodaTime.Text.IPattern<NodaTime.OffsetTime>.AppendFormat
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.OffsetTime
+    name: OffsetTime
+    nameWithType: OffsetTime
+    fullName: NodaTime.OffsetTime
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    nameWithType: IPattern(Of OffsetTime).AppendFormat
+    fullName: NodaTime.Text.IPattern(Of NodaTime.OffsetTime).AppendFormat
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.OffsetTime
+    name: OffsetTime
+    nameWithType: OffsetTime
+    fullName: NodaTime.OffsetTime
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Text
+  commentId: N:System.Text
+  isExternal: true
+  name: System.Text
+  nameWithType: System.Text
+  fullName: System.Text
+- uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  isExternal: true
+  name: AppendFormat(T, StringBuilder)
+  nameWithType: IPattern<T>.AppendFormat(T, StringBuilder)
+  fullName: NodaTime.Text.IPattern<T>.AppendFormat(T, System.Text.StringBuilder)
+  nameWithType.vb: IPattern(Of T).AppendFormat(T, StringBuilder)
+  fullName.vb: NodaTime.Text.IPattern(Of T).AppendFormat(T, System.Text.StringBuilder)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    nameWithType: IPattern<T>.AppendFormat
+    fullName: NodaTime.Text.IPattern<T>.AppendFormat
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    nameWithType: IPattern(Of T).AppendFormat
+    fullName: NodaTime.Text.IPattern(Of T).AppendFormat
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Text.InvalidPatternException
+  commentId: T:NodaTime.Text.InvalidPatternException
+  name: InvalidPatternException
+  nameWithType: InvalidPatternException
+  fullName: NodaTime.Text.InvalidPatternException
+- uid: NodaTime.Text.OffsetTimePattern.Create*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.Create
+  name: Create
+  nameWithType: OffsetTimePattern.Create
+  fullName: NodaTime.Text.OffsetTimePattern.Create
+- uid: NodaTime.Text.OffsetTimePattern.CreateWithInvariantCulture*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.CreateWithInvariantCulture
+  name: CreateWithInvariantCulture
+  nameWithType: OffsetTimePattern.CreateWithInvariantCulture
+  fullName: NodaTime.Text.OffsetTimePattern.CreateWithInvariantCulture
+- uid: NodaTime.Text.OffsetTimePattern.CreateWithCurrentCulture*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.CreateWithCurrentCulture
+  name: CreateWithCurrentCulture
+  nameWithType: OffsetTimePattern.CreateWithCurrentCulture
+  fullName: NodaTime.Text.OffsetTimePattern.CreateWithCurrentCulture
+- uid: NodaTime.Text.OffsetTimePattern.WithPatternText*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.WithPatternText
+  name: WithPatternText
+  nameWithType: OffsetTimePattern.WithPatternText
+  fullName: NodaTime.Text.OffsetTimePattern.WithPatternText
+- uid: NodaTime.Text.OffsetTimePattern.WithCulture*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.WithCulture
+  name: WithCulture
+  nameWithType: OffsetTimePattern.WithCulture
+  fullName: NodaTime.Text.OffsetTimePattern.WithCulture
+- uid: NodaTime.Text.OffsetTimePattern.WithTemplateValue*
+  commentId: Overload:NodaTime.Text.OffsetTimePattern.WithTemplateValue
+  name: WithTemplateValue
+  nameWithType: OffsetTimePattern.WithTemplateValue
+  fullName: NodaTime.Text.OffsetTimePattern.WithTemplateValue
+shouldSkipMarkup: true

@@ -1,0 +1,2843 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Period
+  commentId: T:NodaTime.Period
+  id: Period
+  parent: NodaTime
+  children:
+  - NodaTime.Period.Between(NodaTime.LocalDate,NodaTime.LocalDate)
+  - NodaTime.Period.Between(NodaTime.LocalDate,NodaTime.LocalDate,NodaTime.PeriodUnits)
+  - NodaTime.Period.Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime)
+  - NodaTime.Period.Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime,NodaTime.PeriodUnits)
+  - NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime)
+  - NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime,NodaTime.PeriodUnits)
+  - NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)
+  - NodaTime.Period.Days
+  - NodaTime.Period.Equals(NodaTime.Period)
+  - NodaTime.Period.Equals(System.Object)
+  - NodaTime.Period.FromDays(System.Int32)
+  - NodaTime.Period.FromHours(System.Int64)
+  - NodaTime.Period.FromMilliseconds(System.Int64)
+  - NodaTime.Period.FromMinutes(System.Int64)
+  - NodaTime.Period.FromMonths(System.Int32)
+  - NodaTime.Period.FromNanoseconds(System.Int64)
+  - NodaTime.Period.FromSeconds(System.Int64)
+  - NodaTime.Period.FromTicks(System.Int64)
+  - NodaTime.Period.FromWeeks(System.Int32)
+  - NodaTime.Period.FromYears(System.Int32)
+  - NodaTime.Period.GetHashCode
+  - NodaTime.Period.HasDateComponent
+  - NodaTime.Period.HasTimeComponent
+  - NodaTime.Period.Hours
+  - NodaTime.Period.Milliseconds
+  - NodaTime.Period.Minutes
+  - NodaTime.Period.Months
+  - NodaTime.Period.Nanoseconds
+  - NodaTime.Period.Normalize
+  - NodaTime.Period.NormalizingEqualityComparer
+  - NodaTime.Period.op_Addition(NodaTime.Period,NodaTime.Period)
+  - NodaTime.Period.op_Subtraction(NodaTime.Period,NodaTime.Period)
+  - NodaTime.Period.Seconds
+  - NodaTime.Period.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  - NodaTime.Period.Ticks
+  - NodaTime.Period.ToBuilder
+  - NodaTime.Period.ToDuration
+  - NodaTime.Period.ToString
+  - NodaTime.Period.Weeks
+  - NodaTime.Period.Years
+  - NodaTime.Period.Zero
+  langs:
+  - csharp
+  - vb
+  name: Period
+  nameWithType: Period
+  fullName: NodaTime.Period
+  type: Class
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Period
+    path: src/NodaTime/Period.cs
+    startLine: 46
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nRepresents a period of time expressed in human chronological terms: hours, days,\nweeks, months and so on.\n"
+  remarks: "\n<p>\nA <xref href=\"NodaTime.Period\" data-throw-if-not-resolved=\"false\"></xref> contains a set of properties such as <xref href=\"NodaTime.Period.Years\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"NodaTime.Period.Months\" data-throw-if-not-resolved=\"false\"></xref>, and so on\nthat return the number of each unit contained within this period. Note that these properties are not normalized in\nany way by default, and so a <xref href=\"NodaTime.Period\" data-throw-if-not-resolved=\"false\"></xref> may contain values such as &quot;2 hours and 90 minutes&quot;. The\n<xref href=\"NodaTime.Period.Normalize\" data-throw-if-not-resolved=\"false\"></xref> method will convert equivalent periods into a standard representation.\n</p>\n<p>\nPeriods can contain negative units as well as positive units (&quot;+2 hours, -43 minutes, +10 seconds&quot;), but do not\ndifferentiate between properties that are zero and those that are absent (i.e. a period created as &quot;10 years&quot;\nand one created as &quot;10 years, zero months&quot; are equal periods; the <xref href=\"NodaTime.Period.Months\" data-throw-if-not-resolved=\"false\"></xref> property returns zero in\nboth cases).\n</p>\n<p>\n<xref href=\"NodaTime.Period\" data-throw-if-not-resolved=\"false\"></xref> equality is implemented by comparing each property&apos;s values individually.\n</p>\n<p>\nPeriods operate on calendar-related types such as\n<xref href=\"NodaTime.LocalDateTime\" data-throw-if-not-resolved=\"false\"></xref> whereas <xref href=\"NodaTime.Duration\" data-throw-if-not-resolved=\"false\"></xref> operates on instants\non the time line. (Note that although <xref href=\"NodaTime.ZonedDateTime\" data-throw-if-not-resolved=\"false\"></xref> includes both concepts, it only supports\nduration-based arithmetic.)\n</p>\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public sealed class Period : IEquatable<Period>, ISerializable
+    content.vb: >-
+      <Serializable>
+
+      Public NotInheritable Class Period
+          Implements IEquatable(Of Period), ISerializable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{NodaTime.Period}
+  - System.Runtime.Serialization.ISerializable
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: NodaTime.Period.Zero
+  commentId: P:NodaTime.Period.Zero
+  id: Zero
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Zero
+  nameWithType: Period.Zero
+  fullName: NodaTime.Period.Zero
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Zero
+    path: src/NodaTime/Period.cs
+    startLine: 63
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nA period containing only zero-valued properties.\n"
+  example: []
+  syntax:
+    content: public static Period Zero { get; }
+    parameters: []
+    return:
+      type: NodaTime.Period
+      description: A period containing only zero-valued properties.
+    content.vb: Public Shared ReadOnly Property Zero As Period
+  overload: NodaTime.Period.Zero*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.Period.NormalizingEqualityComparer
+  commentId: P:NodaTime.Period.NormalizingEqualityComparer
+  id: NormalizingEqualityComparer
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: NormalizingEqualityComparer
+  nameWithType: Period.NormalizingEqualityComparer
+  fullName: NodaTime.Period.NormalizingEqualityComparer
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: NormalizingEqualityComparer
+    path: src/NodaTime/Period.cs
+    startLine: 71
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns an equality comparer which compares periods by first normalizing them - so 24 hours is deemed equal to 1 day, and so on.\nNote that as per the <xref href=\"NodaTime.Period.Normalize\" data-throw-if-not-resolved=\"false\"></xref> method, years and months are unchanged by normalization - so 12 months does not\nequal 1 year.\n"
+  example: []
+  syntax:
+    content: public static IEqualityComparer<Period> NormalizingEqualityComparer { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEqualityComparer{NodaTime.Period}
+      description: An equality comparer which compares periods by first normalizing them.
+    content.vb: Public Shared ReadOnly Property NormalizingEqualityComparer As IEqualityComparer(Of Period)
+  overload: NodaTime.Period.NormalizingEqualityComparer*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.Period.Nanoseconds
+  commentId: P:NodaTime.Period.Nanoseconds
+  id: Nanoseconds
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Nanoseconds
+  nameWithType: Period.Nanoseconds
+  fullName: NodaTime.Period.Nanoseconds
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Nanoseconds
+    path: src/NodaTime/Period.cs
+    startLine: 83
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the number of nanoseconds within this period.\n"
+  remarks: "\nThis property returns zero both when the property has been explicitly set to zero and when the period does not\ncontain this property.\n"
+  example: []
+  syntax:
+    content: public long Nanoseconds { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of nanoseconds within this period.
+    content.vb: Public ReadOnly Property Nanoseconds As Long
+  overload: NodaTime.Period.Nanoseconds*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Period.Ticks
+  commentId: P:NodaTime.Period.Ticks
+  id: Ticks
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Ticks
+  nameWithType: Period.Ticks
+  fullName: NodaTime.Period.Ticks
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Ticks
+    path: src/NodaTime/Period.cs
+    startLine: 93
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the number of ticks within this period.\n"
+  remarks: "\nThis property returns zero both when the property has been explicitly set to zero and when the period does not\ncontain this property.\n"
+  example: []
+  syntax:
+    content: public long Ticks { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of ticks within this period.
+    content.vb: Public ReadOnly Property Ticks As Long
+  overload: NodaTime.Period.Ticks*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Period.Milliseconds
+  commentId: P:NodaTime.Period.Milliseconds
+  id: Milliseconds
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Milliseconds
+  nameWithType: Period.Milliseconds
+  fullName: NodaTime.Period.Milliseconds
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Milliseconds
+    path: src/NodaTime/Period.cs
+    startLine: 103
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the number of milliseconds within this period.\n"
+  remarks: "\nThis property returns zero both when the property has been explicitly set to zero and when the period does not\ncontain this property.\n"
+  example: []
+  syntax:
+    content: public long Milliseconds { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of milliseconds within this period.
+    content.vb: Public ReadOnly Property Milliseconds As Long
+  overload: NodaTime.Period.Milliseconds*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Period.Seconds
+  commentId: P:NodaTime.Period.Seconds
+  id: Seconds
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Seconds
+  nameWithType: Period.Seconds
+  fullName: NodaTime.Period.Seconds
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Seconds
+    path: src/NodaTime/Period.cs
+    startLine: 113
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the number of seconds within this period.\n"
+  remarks: "\nThis property returns zero both when the property has been explicitly set to zero and when the period does not\ncontain this property.\n"
+  example: []
+  syntax:
+    content: public long Seconds { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of seconds within this period.
+    content.vb: Public ReadOnly Property Seconds As Long
+  overload: NodaTime.Period.Seconds*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Period.Minutes
+  commentId: P:NodaTime.Period.Minutes
+  id: Minutes
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Minutes
+  nameWithType: Period.Minutes
+  fullName: NodaTime.Period.Minutes
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Minutes
+    path: src/NodaTime/Period.cs
+    startLine: 123
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the number of minutes within this period.\n"
+  remarks: "\nThis property returns zero both when the property has been explicitly set to zero and when the period does not\ncontain this property.\n"
+  example: []
+  syntax:
+    content: public long Minutes { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of minutes within this period.
+    content.vb: Public ReadOnly Property Minutes As Long
+  overload: NodaTime.Period.Minutes*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Period.Hours
+  commentId: P:NodaTime.Period.Hours
+  id: Hours
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Hours
+  nameWithType: Period.Hours
+  fullName: NodaTime.Period.Hours
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Hours
+    path: src/NodaTime/Period.cs
+    startLine: 133
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the number of hours within this period.\n"
+  remarks: "\nThis property returns zero both when the property has been explicitly set to zero and when the period does not\ncontain this property.\n"
+  example: []
+  syntax:
+    content: public long Hours { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of hours within this period.
+    content.vb: Public ReadOnly Property Hours As Long
+  overload: NodaTime.Period.Hours*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Period.Days
+  commentId: P:NodaTime.Period.Days
+  id: Days
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Days
+  nameWithType: Period.Days
+  fullName: NodaTime.Period.Days
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Days
+    path: src/NodaTime/Period.cs
+    startLine: 143
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the number of days within this period.\n"
+  remarks: "\nThis property returns zero both when the property has been explicitly set to zero and when the period does not\ncontain this property.\n"
+  example: []
+  syntax:
+    content: public int Days { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The number of days within this period.
+    content.vb: Public ReadOnly Property Days As Integer
+  overload: NodaTime.Period.Days*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Period.Weeks
+  commentId: P:NodaTime.Period.Weeks
+  id: Weeks
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Weeks
+  nameWithType: Period.Weeks
+  fullName: NodaTime.Period.Weeks
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Weeks
+    path: src/NodaTime/Period.cs
+    startLine: 153
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the number of weeks within this period.\n"
+  remarks: "\nThis property returns zero both when the property has been explicitly set to zero and when the period does not\ncontain this property.\n"
+  example: []
+  syntax:
+    content: public int Weeks { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The number of weeks within this period.
+    content.vb: Public ReadOnly Property Weeks As Integer
+  overload: NodaTime.Period.Weeks*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Period.Months
+  commentId: P:NodaTime.Period.Months
+  id: Months
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Months
+  nameWithType: Period.Months
+  fullName: NodaTime.Period.Months
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Months
+    path: src/NodaTime/Period.cs
+    startLine: 163
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the number of months within this period.\n"
+  remarks: "\nThis property returns zero both when the property has been explicitly set to zero and when the period does not\ncontain this property.\n"
+  example: []
+  syntax:
+    content: public int Months { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The number of months within this period.
+    content.vb: Public ReadOnly Property Months As Integer
+  overload: NodaTime.Period.Months*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Period.Years
+  commentId: P:NodaTime.Period.Years
+  id: Years
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Years
+  nameWithType: Period.Years
+  fullName: NodaTime.Period.Years
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Years
+    path: src/NodaTime/Period.cs
+    startLine: 173
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nGets the number of years within this period.\n"
+  remarks: "\nThis property returns zero both when the property has been explicitly set to zero and when the period does not\ncontain this property.\n"
+  example: []
+  syntax:
+    content: public int Years { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The number of years within this period.
+    content.vb: Public ReadOnly Property Years As Integer
+  overload: NodaTime.Period.Years*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Period.FromYears(System.Int32)
+  commentId: M:NodaTime.Period.FromYears(System.Int32)
+  id: FromYears(System.Int32)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromYears(Int32)
+  nameWithType: Period.FromYears(Int32)
+  fullName: NodaTime.Period.FromYears(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: FromYears
+    path: src/NodaTime/Period.cs
+    startLine: 222
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCreates a period representing the specified number of years.\n"
+  example: []
+  syntax:
+    content: public static Period FromYears(int years)
+    parameters:
+    - id: years
+      type: System.Int32
+      description: The number of years in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of years.
+    content.vb: Public Shared Function FromYears(years As Integer) As Period
+  overload: NodaTime.Period.FromYears*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.FromMonths(System.Int32)
+  commentId: M:NodaTime.Period.FromMonths(System.Int32)
+  id: FromMonths(System.Int32)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromMonths(Int32)
+  nameWithType: Period.FromMonths(Int32)
+  fullName: NodaTime.Period.FromMonths(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: FromMonths
+    path: src/NodaTime/Period.cs
+    startLine: 230
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCreates a period representing the specified number of months.\n"
+  example: []
+  syntax:
+    content: public static Period FromMonths(int months)
+    parameters:
+    - id: months
+      type: System.Int32
+      description: The number of months in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of months.
+    content.vb: Public Shared Function FromMonths(months As Integer) As Period
+  overload: NodaTime.Period.FromMonths*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.FromWeeks(System.Int32)
+  commentId: M:NodaTime.Period.FromWeeks(System.Int32)
+  id: FromWeeks(System.Int32)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromWeeks(Int32)
+  nameWithType: Period.FromWeeks(Int32)
+  fullName: NodaTime.Period.FromWeeks(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: FromWeeks
+    path: src/NodaTime/Period.cs
+    startLine: 238
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCreates a period representing the specified number of weeks.\n"
+  example: []
+  syntax:
+    content: public static Period FromWeeks(int weeks)
+    parameters:
+    - id: weeks
+      type: System.Int32
+      description: The number of weeks in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of weeks.
+    content.vb: Public Shared Function FromWeeks(weeks As Integer) As Period
+  overload: NodaTime.Period.FromWeeks*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.FromDays(System.Int32)
+  commentId: M:NodaTime.Period.FromDays(System.Int32)
+  id: FromDays(System.Int32)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromDays(Int32)
+  nameWithType: Period.FromDays(Int32)
+  fullName: NodaTime.Period.FromDays(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: FromDays
+    path: src/NodaTime/Period.cs
+    startLine: 246
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCreates a period representing the specified number of days.\n"
+  example: []
+  syntax:
+    content: public static Period FromDays(int days)
+    parameters:
+    - id: days
+      type: System.Int32
+      description: The number of days in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of days.
+    content.vb: Public Shared Function FromDays(days As Integer) As Period
+  overload: NodaTime.Period.FromDays*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.FromHours(System.Int64)
+  commentId: M:NodaTime.Period.FromHours(System.Int64)
+  id: FromHours(System.Int64)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromHours(Int64)
+  nameWithType: Period.FromHours(Int64)
+  fullName: NodaTime.Period.FromHours(System.Int64)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: FromHours
+    path: src/NodaTime/Period.cs
+    startLine: 254
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCreates a period representing the specified number of hours.\n"
+  example: []
+  syntax:
+    content: public static Period FromHours(long hours)
+    parameters:
+    - id: hours
+      type: System.Int64
+      description: The number of hours in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of hours.
+    content.vb: Public Shared Function FromHours(hours As Long) As Period
+  overload: NodaTime.Period.FromHours*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.FromMinutes(System.Int64)
+  commentId: M:NodaTime.Period.FromMinutes(System.Int64)
+  id: FromMinutes(System.Int64)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromMinutes(Int64)
+  nameWithType: Period.FromMinutes(Int64)
+  fullName: NodaTime.Period.FromMinutes(System.Int64)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: FromMinutes
+    path: src/NodaTime/Period.cs
+    startLine: 262
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCreates a period representing the specified number of minutes.\n"
+  example: []
+  syntax:
+    content: public static Period FromMinutes(long minutes)
+    parameters:
+    - id: minutes
+      type: System.Int64
+      description: The number of minutes in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of minutes.
+    content.vb: Public Shared Function FromMinutes(minutes As Long) As Period
+  overload: NodaTime.Period.FromMinutes*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.FromSeconds(System.Int64)
+  commentId: M:NodaTime.Period.FromSeconds(System.Int64)
+  id: FromSeconds(System.Int64)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromSeconds(Int64)
+  nameWithType: Period.FromSeconds(Int64)
+  fullName: NodaTime.Period.FromSeconds(System.Int64)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: FromSeconds
+    path: src/NodaTime/Period.cs
+    startLine: 270
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCreates a period representing the specified number of seconds.\n"
+  example: []
+  syntax:
+    content: public static Period FromSeconds(long seconds)
+    parameters:
+    - id: seconds
+      type: System.Int64
+      description: The number of seconds in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of seconds.
+    content.vb: Public Shared Function FromSeconds(seconds As Long) As Period
+  overload: NodaTime.Period.FromSeconds*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.FromMilliseconds(System.Int64)
+  commentId: M:NodaTime.Period.FromMilliseconds(System.Int64)
+  id: FromMilliseconds(System.Int64)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromMilliseconds(Int64)
+  nameWithType: Period.FromMilliseconds(Int64)
+  fullName: NodaTime.Period.FromMilliseconds(System.Int64)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: FromMilliseconds
+    path: src/NodaTime/Period.cs
+    startLine: 278
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCreates a period representing the specified number of milliseconds.\n"
+  example: []
+  syntax:
+    content: public static Period FromMilliseconds(long milliseconds)
+    parameters:
+    - id: milliseconds
+      type: System.Int64
+      description: The number of milliseconds in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of milliseconds.
+    content.vb: Public Shared Function FromMilliseconds(milliseconds As Long) As Period
+  overload: NodaTime.Period.FromMilliseconds*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.FromTicks(System.Int64)
+  commentId: M:NodaTime.Period.FromTicks(System.Int64)
+  id: FromTicks(System.Int64)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromTicks(Int64)
+  nameWithType: Period.FromTicks(Int64)
+  fullName: NodaTime.Period.FromTicks(System.Int64)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: FromTicks
+    path: src/NodaTime/Period.cs
+    startLine: 286
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCreates a period representing the specified number of ticks.\n"
+  example: []
+  syntax:
+    content: public static Period FromTicks(long ticks)
+    parameters:
+    - id: ticks
+      type: System.Int64
+      description: The number of ticks in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of ticks.
+    content.vb: Public Shared Function FromTicks(ticks As Long) As Period
+  overload: NodaTime.Period.FromTicks*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.FromNanoseconds(System.Int64)
+  commentId: M:NodaTime.Period.FromNanoseconds(System.Int64)
+  id: FromNanoseconds(System.Int64)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromNanoseconds(Int64)
+  nameWithType: Period.FromNanoseconds(Int64)
+  fullName: NodaTime.Period.FromNanoseconds(System.Int64)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: FromNanoseconds
+    path: src/NodaTime/Period.cs
+    startLine: 294
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCreates a period representing the specified number of nanooseconds.\n"
+  example: []
+  syntax:
+    content: public static Period FromNanoseconds(long nanoseconds)
+    parameters:
+    - id: nanoseconds
+      type: System.Int64
+      description: The number of nanoseconds in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of nanoseconds.
+    content.vb: Public Shared Function FromNanoseconds(nanoseconds As Long) As Period
+  overload: NodaTime.Period.FromNanoseconds*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.op_Addition(NodaTime.Period,NodaTime.Period)
+  commentId: M:NodaTime.Period.op_Addition(NodaTime.Period,NodaTime.Period)
+  id: op_Addition(NodaTime.Period,NodaTime.Period)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Addition(Period, Period)
+  nameWithType: Period.Addition(Period, Period)
+  fullName: NodaTime.Period.Addition(NodaTime.Period, NodaTime.Period)
+  type: Operator
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: op_Addition
+    path: src/NodaTime/Period.cs
+    startLine: 304
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nAdds two periods together, by simply adding the values for each property.\n"
+  example: []
+  syntax:
+    content: public static Period operator +(Period left, Period right)
+    parameters:
+    - id: left
+      type: NodaTime.Period
+      description: The first period to add
+    - id: right
+      type: NodaTime.Period
+      description: The second period to add
+    return:
+      type: NodaTime.Period
+      description: >-
+        The sum of the two periods. The units of the result will be the union of those in both
+
+        periods.
+    content.vb: Public Shared Operator +(left As Period, right As Period) As Period
+  overload: NodaTime.Period.op_Addition*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)
+  commentId: M:NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)
+  id: CreateComparer(NodaTime.LocalDateTime)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: CreateComparer(LocalDateTime)
+  nameWithType: Period.CreateComparer(LocalDateTime)
+  fullName: NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: CreateComparer
+    path: src/NodaTime/Period.cs
+    startLine: 334
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCreates an <xref href=\"System.Collections.Generic.IComparer%601\" data-throw-if-not-resolved=\"false\"></xref> for periods, using the given &quot;base&quot; local date/time.\n"
+  remarks: "\nCertain periods can&apos;t naturally be compared without more context - how &quot;one month&quot; compares to\n&quot;30 days&quot; depends on where you start. In order to compare two periods, the returned comparer\neffectively adds both periods to the &quot;base&quot; specified by <code data-dev-comment-type=\"paramref\" class=\"paramref\">baseDateTime</code> and compares\nthe results. In some cases this arithmetic isn&apos;t actually required - when two periods can be\nconverted to durations, the comparer uses that conversion for efficiency.\n"
+  example: []
+  syntax:
+    content: public static IComparer<Period> CreateComparer(LocalDateTime baseDateTime)
+    parameters:
+    - id: baseDateTime
+      type: NodaTime.LocalDateTime
+      description: The base local date/time to use for comparisons.
+    return:
+      type: System.Collections.Generic.IComparer{NodaTime.Period}
+      description: The new comparer.
+    content.vb: Public Shared Function CreateComparer(baseDateTime As LocalDateTime) As IComparer(Of Period)
+  overload: NodaTime.Period.CreateComparer*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.op_Subtraction(NodaTime.Period,NodaTime.Period)
+  commentId: M:NodaTime.Period.op_Subtraction(NodaTime.Period,NodaTime.Period)
+  id: op_Subtraction(NodaTime.Period,NodaTime.Period)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Subtraction(Period, Period)
+  nameWithType: Period.Subtraction(Period, Period)
+  fullName: NodaTime.Period.Subtraction(NodaTime.Period, NodaTime.Period)
+  type: Operator
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: op_Subtraction
+    path: src/NodaTime/Period.cs
+    startLine: 345
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nSubtracts one period from another, by simply subtracting each property value.\n"
+  example: []
+  syntax:
+    content: public static Period operator -(Period minuend, Period subtrahend)
+    parameters:
+    - id: minuend
+      type: NodaTime.Period
+      description: The period to subtract the second operand from
+    - id: subtrahend
+      type: NodaTime.Period
+      description: The period to subtract the first operand from
+    return:
+      type: NodaTime.Period
+      description: >-
+        The result of subtracting all the values in the second operand from the values in the first. The
+
+        units of the result will be the union of both periods, even if the subtraction caused some properties to
+
+        become zero (so &quot;2 weeks, 1 days&quot; minus &quot;2 weeks&quot; is &quot;zero weeks, 1 days&quot;, not &quot;1 days&quot;).
+    content.vb: Public Shared Operator -(minuend As Period, subtrahend As Period) As Period
+  overload: NodaTime.Period.op_Subtraction*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime,NodaTime.PeriodUnits)
+  commentId: M:NodaTime.Period.Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime,NodaTime.PeriodUnits)
+  id: Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime,NodaTime.PeriodUnits)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(LocalDateTime, LocalDateTime, PeriodUnits)
+  nameWithType: Period.Between(LocalDateTime, LocalDateTime, PeriodUnits)
+  fullName: NodaTime.Period.Between(NodaTime.LocalDateTime, NodaTime.LocalDateTime, NodaTime.PeriodUnits)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Between
+    path: src/NodaTime/Period.cs
+    startLine: 379
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the period between a start and an end date/time, using only the given units.\n"
+  remarks: "\nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">end</code> is before <code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code>, each property in the returned period\nwill be negative. If the given set of units cannot exactly reach the end point (e.g. finding\nthe difference between 1am and 3:15am in hours) the result will be such that adding it to <code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code>\nwill give a value between <code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code> and <code data-dev-comment-type=\"paramref\" class=\"paramref\">end</code>. In other words,\nany rounding is &quot;towards start&quot;; this is true whether the resulting period is negative or positive.\n"
+  example: []
+  syntax:
+    content: public static Period Between(LocalDateTime start, LocalDateTime end, PeriodUnits units)
+    parameters:
+    - id: start
+      type: NodaTime.LocalDateTime
+      description: Start date/time
+    - id: end
+      type: NodaTime.LocalDateTime
+      description: End date/time
+    - id: units
+      type: NodaTime.PeriodUnits
+      description: Units to use for calculations
+    return:
+      type: NodaTime.Period
+      description: The period between the given date/times, using the given units.
+    content.vb: Public Shared Function Between(start As LocalDateTime, end As LocalDateTime, units As PeriodUnits) As Period
+  overload: NodaTime.Period.Between*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code data-dev-comment-type="paramref" class="paramref">units</code> is empty or contained unknown values.
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code data-dev-comment-type="paramref" class="paramref">start</code> and <code data-dev-comment-type="paramref" class="paramref">end</code> use different calendars.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime)
+  commentId: M:NodaTime.Period.Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime)
+  id: Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(LocalDateTime, LocalDateTime)
+  nameWithType: Period.Between(LocalDateTime, LocalDateTime)
+  fullName: NodaTime.Period.Between(NodaTime.LocalDateTime, NodaTime.LocalDateTime)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Between
+    path: src/NodaTime/Period.cs
+    startLine: 602
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the exact difference between two date/times.\n"
+  remarks: "\nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">end</code> is before <code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code>, each property in the returned period\nwill be negative.\n"
+  example: []
+  syntax:
+    content: public static Period Between(LocalDateTime start, LocalDateTime end)
+    parameters:
+    - id: start
+      type: NodaTime.LocalDateTime
+      description: Start date/time
+    - id: end
+      type: NodaTime.LocalDateTime
+      description: End date/time
+    return:
+      type: NodaTime.Period
+      description: The period between the two date and time values, using all units.
+    content.vb: Public Shared Function Between(start As LocalDateTime, end As LocalDateTime) As Period
+  overload: NodaTime.Period.Between*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.Between(NodaTime.LocalDate,NodaTime.LocalDate,NodaTime.PeriodUnits)
+  commentId: M:NodaTime.Period.Between(NodaTime.LocalDate,NodaTime.LocalDate,NodaTime.PeriodUnits)
+  id: Between(NodaTime.LocalDate,NodaTime.LocalDate,NodaTime.PeriodUnits)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(LocalDate, LocalDate, PeriodUnits)
+  nameWithType: Period.Between(LocalDate, LocalDate, PeriodUnits)
+  fullName: NodaTime.Period.Between(NodaTime.LocalDate, NodaTime.LocalDate, NodaTime.PeriodUnits)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Between
+    path: src/NodaTime/Period.cs
+    startLine: 622
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the period between a start and an end date, using only the given units.\n"
+  remarks: "\nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">end</code> is before <code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code>, each property in the returned period\nwill be negative. If the given set of units cannot exactly reach the end point (e.g. finding\nthe difference between 12th February and 15th March in months) the result will be such that adding it to <code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code>\nwill give a value between <code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code> and <code data-dev-comment-type=\"paramref\" class=\"paramref\">end</code>. In other words,\nany rounding is &quot;towards start&quot;; this is true whether the resulting period is negative or positive.\n"
+  example: []
+  syntax:
+    content: public static Period Between(LocalDate start, LocalDate end, PeriodUnits units)
+    parameters:
+    - id: start
+      type: NodaTime.LocalDate
+      description: Start date
+    - id: end
+      type: NodaTime.LocalDate
+      description: End date
+    - id: units
+      type: NodaTime.PeriodUnits
+      description: Units to use for calculations
+    return:
+      type: NodaTime.Period
+      description: The period between the given dates, using the given units.
+    content.vb: Public Shared Function Between(start As LocalDate, end As LocalDate, units As PeriodUnits) As Period
+  overload: NodaTime.Period.Between*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code data-dev-comment-type="paramref" class="paramref">units</code> contains time units, is empty or contains unknown values.
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code data-dev-comment-type="paramref" class="paramref">start</code> and <code data-dev-comment-type="paramref" class="paramref">end</code> use different calendars.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.Between(NodaTime.LocalDate,NodaTime.LocalDate)
+  commentId: M:NodaTime.Period.Between(NodaTime.LocalDate,NodaTime.LocalDate)
+  id: Between(NodaTime.LocalDate,NodaTime.LocalDate)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(LocalDate, LocalDate)
+  nameWithType: Period.Between(LocalDate, LocalDate)
+  fullName: NodaTime.Period.Between(NodaTime.LocalDate, NodaTime.LocalDate)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Between
+    path: src/NodaTime/Period.cs
+    startLine: 665
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the exact difference between two dates.\n"
+  remarks: "\nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">end</code> is before <code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code>, each property in the returned period\nwill be negative.\nThe calendar systems of the two dates must be the same; an exception will be thrown otherwise.\n"
+  example: []
+  syntax:
+    content: public static Period Between(LocalDate start, LocalDate end)
+    parameters:
+    - id: start
+      type: NodaTime.LocalDate
+      description: Start date
+    - id: end
+      type: NodaTime.LocalDate
+      description: End date
+    return:
+      type: NodaTime.Period
+      description: The period between the two dates, using year, month and day units.
+    content.vb: Public Shared Function Between(start As LocalDate, end As LocalDate) As Period
+  overload: NodaTime.Period.Between*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code> and <code data-dev-comment-type=\"paramref\" class=\"paramref\">end</code> are not in the same calendar system.\n"
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime,NodaTime.PeriodUnits)
+  commentId: M:NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime,NodaTime.PeriodUnits)
+  id: Between(NodaTime.LocalTime,NodaTime.LocalTime,NodaTime.PeriodUnits)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(LocalTime, LocalTime, PeriodUnits)
+  nameWithType: Period.Between(LocalTime, LocalTime, PeriodUnits)
+  fullName: NodaTime.Period.Between(NodaTime.LocalTime, NodaTime.LocalTime, NodaTime.PeriodUnits)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Between
+    path: src/NodaTime/Period.cs
+    startLine: 685
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the period between a start and an end time, using only the given units.\n"
+  remarks: "\nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">end</code> is before <code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code>, each property in the returned period\nwill be negative. If the given set of units cannot exactly reach the end point (e.g. finding\nthe difference between 3am and 4.30am in hours) the result will be such that adding it to <code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code>\nwill give a value between <code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code> and <code data-dev-comment-type=\"paramref\" class=\"paramref\">end</code>. In other words,\nany rounding is &quot;towards start&quot;; this is true whether the resulting period is negative or positive.\n"
+  example: []
+  syntax:
+    content: public static Period Between(LocalTime start, LocalTime end, PeriodUnits units)
+    parameters:
+    - id: start
+      type: NodaTime.LocalTime
+      description: Start time
+    - id: end
+      type: NodaTime.LocalTime
+      description: End time
+    - id: units
+      type: NodaTime.PeriodUnits
+      description: Units to use for calculations
+    return:
+      type: NodaTime.Period
+      description: The period between the given times, using the given units.
+    content.vb: Public Shared Function Between(start As LocalTime, end As LocalTime, units As PeriodUnits) As Period
+  overload: NodaTime.Period.Between*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code data-dev-comment-type="paramref" class="paramref">units</code> contains date units, is empty or contains unknown values.
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code data-dev-comment-type="paramref" class="paramref">start</code> and <code data-dev-comment-type="paramref" class="paramref">end</code> use different calendars.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime)
+  commentId: M:NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime)
+  id: Between(NodaTime.LocalTime,NodaTime.LocalTime)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(LocalTime, LocalTime)
+  nameWithType: Period.Between(LocalTime, LocalTime)
+  fullName: NodaTime.Period.Between(NodaTime.LocalTime, NodaTime.LocalTime)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Between
+    path: src/NodaTime/Period.cs
+    startLine: 724
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the exact difference between two times.\n"
+  remarks: "\nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">end</code> is before <code data-dev-comment-type=\"paramref\" class=\"paramref\">start</code>, each property in the returned period\nwill be negative.\n"
+  example: []
+  syntax:
+    content: public static Period Between(LocalTime start, LocalTime end)
+    parameters:
+    - id: start
+      type: NodaTime.LocalTime
+      description: Start time
+    - id: end
+      type: NodaTime.LocalTime
+      description: End time
+    return:
+      type: NodaTime.Period
+      description: The period between the two times, using the time period units.
+    content.vb: Public Shared Function Between(start As LocalTime, end As LocalTime) As Period
+  overload: NodaTime.Period.Between*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Period.HasTimeComponent
+  commentId: P:NodaTime.Period.HasTimeComponent
+  id: HasTimeComponent
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: HasTimeComponent
+  nameWithType: Period.HasTimeComponent
+  fullName: NodaTime.Period.HasTimeComponent
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: HasTimeComponent
+    path: src/NodaTime/Period.cs
+    startLine: 752
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns whether or not this period contains any non-zero-valued time-based properties (hours or lower).\n"
+  example: []
+  syntax:
+    content: public bool HasTimeComponent { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: true if the period contains any non-zero-valued time-based properties (hours or lower); false otherwise.
+    content.vb: Public ReadOnly Property HasTimeComponent As Boolean
+  overload: NodaTime.Period.HasTimeComponent*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Period.HasDateComponent
+  commentId: P:NodaTime.Period.HasDateComponent
+  id: HasDateComponent
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: HasDateComponent
+  nameWithType: Period.HasDateComponent
+  fullName: NodaTime.Period.HasDateComponent
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: HasDateComponent
+    path: src/NodaTime/Period.cs
+    startLine: 758
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns whether or not this period contains any non-zero date-based properties (days or higher).\n"
+  example: []
+  syntax:
+    content: public bool HasDateComponent { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: true if this period contains any non-zero date-based properties (days or higher); false otherwise.
+    content.vb: Public ReadOnly Property HasDateComponent As Boolean
+  overload: NodaTime.Period.HasDateComponent*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NodaTime.Period.ToDuration
+  commentId: M:NodaTime.Period.ToDuration
+  id: ToDuration
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: ToDuration()
+  nameWithType: Period.ToDuration()
+  fullName: NodaTime.Period.ToDuration()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: ToDuration
+    path: src/NodaTime/Period.cs
+    startLine: 770
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nFor periods that do not contain a non-zero number of years or months, returns a duration for this period\nassuming a standard 7-day week, 24-hour day, 60-minute hour etc.\n"
+  example: []
+  syntax:
+    content: public Duration ToDuration()
+    return:
+      type: NodaTime.Duration
+      description: The duration of the period.
+    content.vb: Public Function ToDuration As Duration
+  overload: NodaTime.Period.ToDuration*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The month or year property in the period is non-zero.
+  - type: System.OverflowException
+    commentId: T:System.OverflowException
+    description: >-
+      The period doesn&apos;t have years or months, but the calculation
+
+      overflows the bounds of <xref href="NodaTime.Duration" data-throw-if-not-resolved="false"></xref>. In some cases this may occur even though the theoretical
+
+      result would be valid due to balancing positive and negative values, but for simplicity there is
+
+      no attempt to work around this - in realistic periods, it shouldn&apos;t be a problem.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Period.ToBuilder
+  commentId: M:NodaTime.Period.ToBuilder
+  id: ToBuilder
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: ToBuilder()
+  nameWithType: Period.ToBuilder()
+  fullName: NodaTime.Period.ToBuilder()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: ToBuilder
+    path: src/NodaTime/Period.cs
+    startLine: 800
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCreates a <xref href=\"NodaTime.PeriodBuilder\" data-throw-if-not-resolved=\"false\"></xref> from this instance. The new builder\nis populated with the values from this period, but is then detached from it:\nchanges made to the builder are not reflected in this period.\n"
+  example: []
+  syntax:
+    content: public PeriodBuilder ToBuilder()
+    return:
+      type: NodaTime.PeriodBuilder
+      description: A builder with the same values and units as this period.
+    content.vb: Public Function ToBuilder As PeriodBuilder
+  overload: NodaTime.Period.ToBuilder*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Period.Normalize
+  commentId: M:NodaTime.Period.Normalize
+  id: Normalize
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Normalize()
+  nameWithType: Period.Normalize()
+  fullName: NodaTime.Period.Normalize()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Normalize
+    path: src/NodaTime/Period.cs
+    startLine: 823
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns a normalized version of this period, such that equivalent (but potentially non-equal) periods are\nchanged to the same representation.\n"
+  remarks: "\nMonths and years are unchanged\n(as they can vary in length), but weeks are multiplied by 7 and added to the\nDays property, and all time properties are normalized to their natural range.\nSubsecond values are normalized to millisecond and &quot;nanosecond within millisecond&quot; values.\nSo for example, a period of 25 hours becomes a period of 1 day\nand 1 hour. A period of 1,500,750,000 nanoseconds becomes 1 second, 500 milliseconds and\n750,000 nanoseconds. Aside from months and years, either all the properties\nend up positive, or they all end up negative. &quot;Week&quot; and &quot;tick&quot; units in the returned period are always 0.\n"
+  example: []
+  syntax:
+    content: public Period Normalize()
+    return:
+      type: NodaTime.Period
+      description: The normalized period.
+    content.vb: Public Function Normalize As Period
+  overload: NodaTime.Period.Normalize*
+  exceptions:
+  - type: System.OverflowException
+    commentId: T:System.OverflowException
+    description: >-
+      The period doesn&apos;t have years or months, but it contains more than
+
+      <xref href="System.Int64.MaxValue" data-throw-if-not-resolved="false"></xref> nanoseconds when the combined weeks/days/time portions are considered. This is
+
+      over 292 years, so unlikely to be a problem in normal usage.
+
+      In some cases this may occur even though the theoretical result would be valid due to balancing positive and
+
+      negative values, but for simplicity there is no attempt to work around this.
+  seealso:
+  - linkId: NodaTime.Period.NormalizingEqualityComparer
+    commentId: P:NodaTime.Period.NormalizingEqualityComparer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Period.ToString
+  commentId: M:NodaTime.Period.ToString
+  id: ToString
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Period.ToString()
+  fullName: NodaTime.Period.ToString()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: ToString
+    path: src/NodaTime/Period.cs
+    startLine: 844
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns this string formatted according to the <xref href=\"NodaTime.Text.PeriodPattern.Roundtrip\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A formatted representation of this period.
+    content.vb: Public Overrides Function ToString As String
+  overridden: System.Object.ToString
+  overload: NodaTime.Period.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: NodaTime.Period.Equals(System.Object)
+  commentId: M:NodaTime.Period.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Equals(Object)
+  nameWithType: Period.Equals(Object)
+  fullName: NodaTime.Period.Equals(System.Object)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Equals
+    path: src/NodaTime/Period.cs
+    startLine: 851
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCompares the given object for equality with this one, as per <xref href=\"NodaTime.Period.Equals(NodaTime.Period)\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public override bool Equals(object other)
+    parameters:
+    - id: other
+      type: System.Object
+      description: The value to compare this one with.
+    return:
+      type: System.Boolean
+      description: true if the other object is a period equal to this one, consistent with <xref href="NodaTime.Period.Equals(NodaTime.Period)" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Overrides Function Equals(other As Object) As Boolean
+  overridden: System.Object.Equals(System.Object)
+  overload: NodaTime.Period.Equals*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: NodaTime.Period.GetHashCode
+  commentId: M:NodaTime.Period.GetHashCode
+  id: GetHashCode
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: Period.GetHashCode()
+  fullName: NodaTime.Period.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: GetHashCode
+    path: src/NodaTime/Period.cs
+    startLine: 857
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nReturns the hash code for this period, consistent with <xref href=\"NodaTime.Period.Equals(NodaTime.Period)\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: The hash code for this period.
+    content.vb: Public Overrides Function GetHashCode As Integer
+  overridden: System.Object.GetHashCode
+  overload: NodaTime.Period.GetHashCode*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: NodaTime.Period.Equals(NodaTime.Period)
+  commentId: M:NodaTime.Period.Equals(NodaTime.Period)
+  id: Equals(NodaTime.Period)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Equals(Period)
+  nameWithType: Period.Equals(Period)
+  fullName: NodaTime.Period.Equals(NodaTime.Period)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Equals
+    path: src/NodaTime/Period.cs
+    startLine: 880
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nCompares the given period for equality with this one.\n"
+  remarks: "\nPeriods are equal if they contain the same values for the same properties.\nHowever, no normalization takes place, so &quot;one hour&quot; is not equal to &quot;sixty minutes&quot;.\n"
+  example: []
+  syntax:
+    content: public bool Equals(Period other)
+    parameters:
+    - id: other
+      type: NodaTime.Period
+      description: The period to compare this one with.
+    return:
+      type: System.Boolean
+      description: True if this period has the same values for the same properties as the one specified.
+    content.vb: Public Function Equals(other As Period) As Boolean
+  overload: NodaTime.Period.Equals*
+  implements:
+  - System.IEquatable{NodaTime.Period}.Equals(NodaTime.Period)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Period.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:NodaTime.Period.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  id: System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  isEii: true
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType: Period.ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+  fullName: NodaTime.Period.System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Period.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: System.Runtime.Serialization.ISerializable.GetObjectData
+    path: src/NodaTime/Period.cs
+    startLine: 920
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: "\nImplementation of <xref href=\"System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo%2cSystem.Runtime.Serialization.StreamingContext)\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: >-
+      [SecurityCritical]
+
+      void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
+    parameters:
+    - id: info
+      type: System.Runtime.Serialization.SerializationInfo
+      description: The <xref href="System.Runtime.Serialization.SerializationInfo" data-throw-if-not-resolved="false"></xref> to populate with data.
+    - id: context
+      type: System.Runtime.Serialization.StreamingContext
+      description: The destination for this serialization.
+    content.vb: >-
+      <SecurityCritical>
+
+      Sub System.Runtime.Serialization.ISerializable.GetObjectData(info As SerializationInfo, context As StreamingContext) Implements ISerializable.GetObjectData
+  overload: NodaTime.Period.System#Runtime#Serialization#ISerializable#GetObjectData*
+  implements:
+  - System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  attributes:
+  - type: System.Security.SecurityCriticalAttribute
+    ctor: System.Security.SecurityCriticalAttribute.#ctor
+    arguments: []
+  nameWithType.vb: Period.System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+  name.vb: System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+references:
+- uid: NodaTime.Period
+  commentId: T:NodaTime.Period
+  parent: NodaTime
+  name: Period
+  nameWithType: Period
+  fullName: NodaTime.Period
+- uid: NodaTime.Period.Years
+  commentId: P:NodaTime.Period.Years
+  isExternal: true
+- uid: NodaTime.Period.Months
+  commentId: P:NodaTime.Period.Months
+  isExternal: true
+- uid: NodaTime.Period.Normalize
+  commentId: M:NodaTime.Period.Normalize
+  isExternal: true
+- uid: NodaTime.LocalDateTime
+  commentId: T:NodaTime.LocalDateTime
+  parent: NodaTime
+  name: LocalDateTime
+  nameWithType: LocalDateTime
+  fullName: NodaTime.LocalDateTime
+- uid: NodaTime.Duration
+  commentId: T:NodaTime.Duration
+  parent: NodaTime
+  name: Duration
+  nameWithType: Duration
+  fullName: NodaTime.Duration
+- uid: NodaTime.ZonedDateTime
+  commentId: T:NodaTime.ZonedDateTime
+  parent: NodaTime
+  name: ZonedDateTime
+  nameWithType: ZonedDateTime
+  fullName: NodaTime.ZonedDateTime
+- uid: NodaTime
+  commentId: N:NodaTime
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.IEquatable{NodaTime.Period}
+  commentId: T:System.IEquatable{NodaTime.Period}
+  parent: System
+  definition: System.IEquatable`1
+  name: IEquatable<Period>
+  nameWithType: IEquatable<Period>
+  fullName: System.IEquatable<NodaTime.Period>
+  nameWithType.vb: IEquatable(Of Period)
+  fullName.vb: System.IEquatable(Of NodaTime.Period)
+  name.vb: IEquatable(Of Period)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Runtime.Serialization.ISerializable
+  commentId: T:System.Runtime.Serialization.ISerializable
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: ISerializable
+  nameWithType: ISerializable
+  fullName: System.Runtime.Serialization.ISerializable
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Runtime.Serialization
+  commentId: N:System.Runtime.Serialization
+  isExternal: true
+  name: System.Runtime.Serialization
+  nameWithType: System.Runtime.Serialization
+  fullName: System.Runtime.Serialization
+- uid: NodaTime.Period.Zero*
+  commentId: Overload:NodaTime.Period.Zero
+  name: Zero
+  nameWithType: Period.Zero
+  fullName: NodaTime.Period.Zero
+- uid: NodaTime.Period.NormalizingEqualityComparer*
+  commentId: Overload:NodaTime.Period.NormalizingEqualityComparer
+  name: NormalizingEqualityComparer
+  nameWithType: Period.NormalizingEqualityComparer
+  fullName: NodaTime.Period.NormalizingEqualityComparer
+- uid: System.Collections.Generic.IEqualityComparer{NodaTime.Period}
+  commentId: T:System.Collections.Generic.IEqualityComparer{NodaTime.Period}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEqualityComparer`1
+  name: IEqualityComparer<Period>
+  nameWithType: IEqualityComparer<Period>
+  fullName: System.Collections.Generic.IEqualityComparer<NodaTime.Period>
+  nameWithType.vb: IEqualityComparer(Of Period)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of NodaTime.Period)
+  name.vb: IEqualityComparer(Of Period)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEqualityComparer`1
+  commentId: T:System.Collections.Generic.IEqualityComparer`1
+  isExternal: true
+  name: IEqualityComparer<T>
+  nameWithType: IEqualityComparer<T>
+  fullName: System.Collections.Generic.IEqualityComparer<T>
+  nameWithType.vb: IEqualityComparer(Of T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T)
+  name.vb: IEqualityComparer(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: NodaTime.Period.Nanoseconds*
+  commentId: Overload:NodaTime.Period.Nanoseconds
+  name: Nanoseconds
+  nameWithType: Period.Nanoseconds
+  fullName: NodaTime.Period.Nanoseconds
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  name: Int64
+  nameWithType: Int64
+  fullName: System.Int64
+- uid: NodaTime.Period.Ticks*
+  commentId: Overload:NodaTime.Period.Ticks
+  name: Ticks
+  nameWithType: Period.Ticks
+  fullName: NodaTime.Period.Ticks
+- uid: NodaTime.Period.Milliseconds*
+  commentId: Overload:NodaTime.Period.Milliseconds
+  name: Milliseconds
+  nameWithType: Period.Milliseconds
+  fullName: NodaTime.Period.Milliseconds
+- uid: NodaTime.Period.Seconds*
+  commentId: Overload:NodaTime.Period.Seconds
+  name: Seconds
+  nameWithType: Period.Seconds
+  fullName: NodaTime.Period.Seconds
+- uid: NodaTime.Period.Minutes*
+  commentId: Overload:NodaTime.Period.Minutes
+  name: Minutes
+  nameWithType: Period.Minutes
+  fullName: NodaTime.Period.Minutes
+- uid: NodaTime.Period.Hours*
+  commentId: Overload:NodaTime.Period.Hours
+  name: Hours
+  nameWithType: Period.Hours
+  fullName: NodaTime.Period.Hours
+- uid: NodaTime.Period.Days*
+  commentId: Overload:NodaTime.Period.Days
+  name: Days
+  nameWithType: Period.Days
+  fullName: NodaTime.Period.Days
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: NodaTime.Period.Weeks*
+  commentId: Overload:NodaTime.Period.Weeks
+  name: Weeks
+  nameWithType: Period.Weeks
+  fullName: NodaTime.Period.Weeks
+- uid: NodaTime.Period.Months*
+  commentId: Overload:NodaTime.Period.Months
+  name: Months
+  nameWithType: Period.Months
+  fullName: NodaTime.Period.Months
+- uid: NodaTime.Period.Years*
+  commentId: Overload:NodaTime.Period.Years
+  name: Years
+  nameWithType: Period.Years
+  fullName: NodaTime.Period.Years
+- uid: NodaTime.Period.FromYears*
+  commentId: Overload:NodaTime.Period.FromYears
+  name: FromYears
+  nameWithType: Period.FromYears
+  fullName: NodaTime.Period.FromYears
+- uid: NodaTime.Period.FromMonths*
+  commentId: Overload:NodaTime.Period.FromMonths
+  name: FromMonths
+  nameWithType: Period.FromMonths
+  fullName: NodaTime.Period.FromMonths
+- uid: NodaTime.Period.FromWeeks*
+  commentId: Overload:NodaTime.Period.FromWeeks
+  name: FromWeeks
+  nameWithType: Period.FromWeeks
+  fullName: NodaTime.Period.FromWeeks
+- uid: NodaTime.Period.FromDays*
+  commentId: Overload:NodaTime.Period.FromDays
+  name: FromDays
+  nameWithType: Period.FromDays
+  fullName: NodaTime.Period.FromDays
+- uid: NodaTime.Period.FromHours*
+  commentId: Overload:NodaTime.Period.FromHours
+  name: FromHours
+  nameWithType: Period.FromHours
+  fullName: NodaTime.Period.FromHours
+- uid: NodaTime.Period.FromMinutes*
+  commentId: Overload:NodaTime.Period.FromMinutes
+  name: FromMinutes
+  nameWithType: Period.FromMinutes
+  fullName: NodaTime.Period.FromMinutes
+- uid: NodaTime.Period.FromSeconds*
+  commentId: Overload:NodaTime.Period.FromSeconds
+  name: FromSeconds
+  nameWithType: Period.FromSeconds
+  fullName: NodaTime.Period.FromSeconds
+- uid: NodaTime.Period.FromMilliseconds*
+  commentId: Overload:NodaTime.Period.FromMilliseconds
+  name: FromMilliseconds
+  nameWithType: Period.FromMilliseconds
+  fullName: NodaTime.Period.FromMilliseconds
+- uid: NodaTime.Period.FromTicks*
+  commentId: Overload:NodaTime.Period.FromTicks
+  name: FromTicks
+  nameWithType: Period.FromTicks
+  fullName: NodaTime.Period.FromTicks
+- uid: NodaTime.Period.FromNanoseconds*
+  commentId: Overload:NodaTime.Period.FromNanoseconds
+  name: FromNanoseconds
+  nameWithType: Period.FromNanoseconds
+  fullName: NodaTime.Period.FromNanoseconds
+- uid: NodaTime.Period.op_Addition*
+  commentId: Overload:NodaTime.Period.op_Addition
+  name: Addition
+  nameWithType: Period.Addition
+  fullName: NodaTime.Period.Addition
+- uid: System.Collections.Generic.IComparer`1
+  commentId: T:System.Collections.Generic.IComparer`1
+  isExternal: true
+  name: IComparer<T>
+  nameWithType: IComparer<T>
+  fullName: System.Collections.Generic.IComparer<T>
+  nameWithType.vb: IComparer(Of T)
+  fullName.vb: System.Collections.Generic.IComparer(Of T)
+  name.vb: IComparer(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    nameWithType: IComparer
+    fullName: System.Collections.Generic.IComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    nameWithType: IComparer
+    fullName: System.Collections.Generic.IComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Period.CreateComparer*
+  commentId: Overload:NodaTime.Period.CreateComparer
+  name: CreateComparer
+  nameWithType: Period.CreateComparer
+  fullName: NodaTime.Period.CreateComparer
+- uid: System.Collections.Generic.IComparer{NodaTime.Period}
+  commentId: T:System.Collections.Generic.IComparer{NodaTime.Period}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IComparer`1
+  name: IComparer<Period>
+  nameWithType: IComparer<Period>
+  fullName: System.Collections.Generic.IComparer<NodaTime.Period>
+  nameWithType.vb: IComparer(Of Period)
+  fullName.vb: System.Collections.Generic.IComparer(Of NodaTime.Period)
+  name.vb: IComparer(Of Period)
+  spec.csharp:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    nameWithType: IComparer
+    fullName: System.Collections.Generic.IComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    nameWithType: IComparer
+    fullName: System.Collections.Generic.IComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Period.op_Subtraction*
+  commentId: Overload:NodaTime.Period.op_Subtraction
+  name: Subtraction
+  nameWithType: Period.Subtraction
+  fullName: NodaTime.Period.Subtraction
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: NodaTime.Period.Between*
+  commentId: Overload:NodaTime.Period.Between
+  name: Between
+  nameWithType: Period.Between
+  fullName: NodaTime.Period.Between
+- uid: NodaTime.PeriodUnits
+  commentId: T:NodaTime.PeriodUnits
+  parent: NodaTime
+  name: PeriodUnits
+  nameWithType: PeriodUnits
+  fullName: NodaTime.PeriodUnits
+- uid: NodaTime.LocalDate
+  commentId: T:NodaTime.LocalDate
+  parent: NodaTime
+  name: LocalDate
+  nameWithType: LocalDate
+  fullName: NodaTime.LocalDate
+- uid: NodaTime.LocalTime
+  commentId: T:NodaTime.LocalTime
+  parent: NodaTime
+  name: LocalTime
+  nameWithType: LocalTime
+  fullName: NodaTime.LocalTime
+- uid: NodaTime.Period.HasTimeComponent*
+  commentId: Overload:NodaTime.Period.HasTimeComponent
+  name: HasTimeComponent
+  nameWithType: Period.HasTimeComponent
+  fullName: NodaTime.Period.HasTimeComponent
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: NodaTime.Period.HasDateComponent*
+  commentId: Overload:NodaTime.Period.HasDateComponent
+  name: HasDateComponent
+  nameWithType: Period.HasDateComponent
+  fullName: NodaTime.Period.HasDateComponent
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+- uid: System.OverflowException
+  commentId: T:System.OverflowException
+  isExternal: true
+- uid: NodaTime.Period.ToDuration*
+  commentId: Overload:NodaTime.Period.ToDuration
+  name: ToDuration
+  nameWithType: Period.ToDuration
+  fullName: NodaTime.Period.ToDuration
+- uid: NodaTime.PeriodBuilder
+  commentId: T:NodaTime.PeriodBuilder
+  parent: NodaTime
+  name: PeriodBuilder
+  nameWithType: PeriodBuilder
+  fullName: NodaTime.PeriodBuilder
+- uid: NodaTime.Period.ToBuilder*
+  commentId: Overload:NodaTime.Period.ToBuilder
+  name: ToBuilder
+  nameWithType: Period.ToBuilder
+  fullName: NodaTime.Period.ToBuilder
+- uid: System.Int64.MaxValue
+  commentId: F:System.Int64.MaxValue
+  isExternal: true
+- uid: NodaTime.Period.NormalizingEqualityComparer
+  commentId: P:NodaTime.Period.NormalizingEqualityComparer
+  isExternal: true
+- uid: NodaTime.Period.Normalize*
+  commentId: Overload:NodaTime.Period.Normalize
+  name: Normalize
+  nameWithType: Period.Normalize
+  fullName: NodaTime.Period.Normalize
+- uid: NodaTime.Text.PeriodPattern.Roundtrip
+  commentId: P:NodaTime.Text.PeriodPattern.Roundtrip
+  isExternal: true
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Period.ToString*
+  commentId: Overload:NodaTime.Period.ToString
+  name: ToString
+  nameWithType: Period.ToString
+  fullName: NodaTime.Period.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: NodaTime.Period.Equals(NodaTime.Period)
+  commentId: M:NodaTime.Period.Equals(NodaTime.Period)
+  isExternal: true
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Period.Equals*
+  commentId: Overload:NodaTime.Period.Equals
+  name: Equals
+  nameWithType: Period.Equals
+  fullName: NodaTime.Period.Equals
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Period.GetHashCode*
+  commentId: Overload:NodaTime.Period.GetHashCode
+  name: GetHashCode
+  nameWithType: Period.GetHashCode
+  fullName: NodaTime.Period.GetHashCode
+- uid: System.IEquatable{NodaTime.Period}.Equals(NodaTime.Period)
+  commentId: M:System.IEquatable{NodaTime.Period}.Equals(NodaTime.Period)
+  parent: System.IEquatable{NodaTime.Period}
+  definition: System.IEquatable`1.Equals(`0)
+  name: Equals(Period)
+  nameWithType: IEquatable<Period>.Equals(Period)
+  fullName: System.IEquatable<NodaTime.Period>.Equals(NodaTime.Period)
+  nameWithType.vb: IEquatable(Of Period).Equals(Period)
+  fullName.vb: System.IEquatable(Of NodaTime.Period).Equals(NodaTime.Period)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<Period>.Equals
+    fullName: System.IEquatable<NodaTime.Period>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of Period).Equals
+    fullName: System.IEquatable(Of NodaTime.Period).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<T>.Equals
+    fullName: System.IEquatable<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of T).Equals
+    fullName: System.IEquatable(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  parent: System.Runtime.Serialization.ISerializable
+  isExternal: true
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType: ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+  fullName: System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  spec.csharp:
+  - uid: System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    nameWithType: ISerializable.GetObjectData
+    fullName: System.Runtime.Serialization.ISerializable.GetObjectData
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    nameWithType: SerializationInfo
+    fullName: System.Runtime.Serialization.SerializationInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    nameWithType: StreamingContext
+    fullName: System.Runtime.Serialization.StreamingContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    nameWithType: ISerializable.GetObjectData
+    fullName: System.Runtime.Serialization.ISerializable.GetObjectData
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    nameWithType: SerializationInfo
+    fullName: System.Runtime.Serialization.SerializationInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    nameWithType: StreamingContext
+    fullName: System.Runtime.Serialization.StreamingContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Runtime.Serialization.SerializationInfo
+  commentId: T:System.Runtime.Serialization.SerializationInfo
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: SerializationInfo
+  nameWithType: SerializationInfo
+  fullName: System.Runtime.Serialization.SerializationInfo
+- uid: NodaTime.Period.System#Runtime#Serialization#ISerializable#GetObjectData*
+  commentId: Overload:NodaTime.Period.System#Runtime#Serialization#ISerializable#GetObjectData
+  name: ISerializable.GetObjectData
+  nameWithType: Period.ISerializable.GetObjectData
+  fullName: NodaTime.Period.System.Runtime.Serialization.ISerializable.GetObjectData
+  nameWithType.vb: Period.System.Runtime.Serialization.ISerializable.GetObjectData
+  name.vb: System.Runtime.Serialization.ISerializable.GetObjectData
+- uid: System.Runtime.Serialization.StreamingContext
+  commentId: T:System.Runtime.Serialization.StreamingContext
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: StreamingContext
+  nameWithType: StreamingContext
+  fullName: System.Runtime.Serialization.StreamingContext
+shouldSkipMarkup: true

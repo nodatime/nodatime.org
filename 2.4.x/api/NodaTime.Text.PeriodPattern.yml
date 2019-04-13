@@ -1,0 +1,1047 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Text.PeriodPattern
+  commentId: T:NodaTime.Text.PeriodPattern
+  id: PeriodPattern
+  parent: NodaTime.Text
+  children:
+  - NodaTime.Text.PeriodPattern.AppendFormat(NodaTime.Period,System.Text.StringBuilder)
+  - NodaTime.Text.PeriodPattern.Format(NodaTime.Period)
+  - NodaTime.Text.PeriodPattern.NormalizingIso
+  - NodaTime.Text.PeriodPattern.Parse(System.String)
+  - NodaTime.Text.PeriodPattern.Roundtrip
+  langs:
+  - csharp
+  - vb
+  name: PeriodPattern
+  nameWithType: PeriodPattern
+  fullName: NodaTime.Text.PeriodPattern
+  type: Class
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/PeriodPattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: PeriodPattern
+    path: src/NodaTime/Text/PeriodPattern.cs
+    startLine: 16
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nRepresents a pattern for parsing and formatting <xref href=\"NodaTime.Period\" data-throw-if-not-resolved=\"false\"></xref> values.\n"
+  example: []
+  syntax:
+    content: 'public sealed class PeriodPattern : IPattern<Period>'
+    content.vb: >-
+      Public NotInheritable Class PeriodPattern
+          Implements IPattern(Of Period)
+  inheritance:
+  - System.Object
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.Period}
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: NodaTime.Text.PeriodPattern.Roundtrip
+  commentId: P:NodaTime.Text.PeriodPattern.Roundtrip
+  id: Roundtrip
+  parent: NodaTime.Text.PeriodPattern
+  langs:
+  - csharp
+  - vb
+  name: Roundtrip
+  nameWithType: PeriodPattern.Roundtrip
+  fullName: NodaTime.Text.PeriodPattern.Roundtrip
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/PeriodPattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Roundtrip
+    path: src/NodaTime/Text/PeriodPattern.cs
+    startLine: 30
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nPattern which uses the normal ISO format for all the supported ISO\nfields, but extends the time part with &quot;s&quot; for milliseconds, &quot;t&quot; for ticks and &quot;n&quot; for nanoseconds.\nNo normalization is carried out, and a period may contain weeks as well as years, months and days.\nEach element may also be negative, independently of other elements. This pattern round-trips its\nvalues: a parse/format cycle will produce an identical period, including units.\n"
+  example: []
+  syntax:
+    content: public static PeriodPattern Roundtrip { get; }
+    parameters: []
+    return:
+      type: NodaTime.Text.PeriodPattern
+      description: "\nPattern which uses the normal ISO format for all the supported ISO\nfields, but extends the time part with &quot;s&quot; for milliseconds, &quot;t&quot; for ticks and &quot;n&quot; for nanoseconds.\n"
+    content.vb: Public Shared ReadOnly Property Roundtrip As PeriodPattern
+  overload: NodaTime.Text.PeriodPattern.Roundtrip*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.Text.PeriodPattern.NormalizingIso
+  commentId: P:NodaTime.Text.PeriodPattern.NormalizingIso
+  id: NormalizingIso
+  parent: NodaTime.Text.PeriodPattern
+  langs:
+  - csharp
+  - vb
+  name: NormalizingIso
+  nameWithType: PeriodPattern.NormalizingIso
+  fullName: NodaTime.Text.PeriodPattern.NormalizingIso
+  type: Property
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/PeriodPattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: NormalizingIso
+    path: src/NodaTime/Text/PeriodPattern.cs
+    startLine: 45
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nA &quot;normalizing&quot; pattern which abides by the ISO-8601 duration format as far as possible.\nWeeks are added to the number of days (after multiplying by 7). Time units are normalized\n(extending into days where necessary), and fractions of seconds are represented within the\nseconds part. Unlike ISO-8601, which pattern allows for negative values within a period.\n"
+  remarks: "\nNote that normalizing the period when formatting will cause an <xref href=\"System.OverflowException\" data-throw-if-not-resolved=\"false\"></xref>\nif the period contains more than <xref href=\"System.Int64.MaxValue\" data-throw-if-not-resolved=\"false\"></xref> ticks when the\ncombined weeks/days/time portions are considered. Such a period could never\nbe useful anyway, however.\n"
+  example: []
+  syntax:
+    content: public static PeriodPattern NormalizingIso { get; }
+    parameters: []
+    return:
+      type: NodaTime.Text.PeriodPattern
+      description: A &quot;normalizing&quot; pattern which abides by the ISO-8601 duration format as far as possible.
+    content.vb: Public Shared ReadOnly Property NormalizingIso As PeriodPattern
+  overload: NodaTime.Text.PeriodPattern.NormalizingIso*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: NodaTime.Text.PeriodPattern.Parse(System.String)
+  commentId: M:NodaTime.Text.PeriodPattern.Parse(System.String)
+  id: Parse(System.String)
+  parent: NodaTime.Text.PeriodPattern
+  langs:
+  - csharp
+  - vb
+  name: Parse(String)
+  nameWithType: PeriodPattern.Parse(String)
+  fullName: NodaTime.Text.PeriodPattern.Parse(System.String)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/PeriodPattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Parse
+    path: src/NodaTime/Text/PeriodPattern.cs
+    startLine: 63
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nParses the given text value according to the rules of this pattern.\n"
+  remarks: "\nThis method never throws an exception (barring a bug in Noda Time itself). Even errors such as\nthe argument being null are wrapped in a parse result.\n"
+  example: []
+  syntax:
+    content: public ParseResult<Period> Parse(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text value to parse.
+    return:
+      type: NodaTime.Text.ParseResult{NodaTime.Period}
+      description: The result of parsing, which may be successful or unsuccessful.
+    content.vb: Public Function Parse(text As String) As ParseResult(Of Period)
+  overload: NodaTime.Text.PeriodPattern.Parse*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.Period}.Parse(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Text.PeriodPattern.Format(NodaTime.Period)
+  commentId: M:NodaTime.Text.PeriodPattern.Format(NodaTime.Period)
+  id: Format(NodaTime.Period)
+  parent: NodaTime.Text.PeriodPattern
+  langs:
+  - csharp
+  - vb
+  name: Format(Period)
+  nameWithType: PeriodPattern.Format(Period)
+  fullName: NodaTime.Text.PeriodPattern.Format(NodaTime.Period)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/PeriodPattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: Format
+    path: src/NodaTime/Text/PeriodPattern.cs
+    startLine: 70
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nFormats the given period as text according to the rules of this pattern.\n"
+  example: []
+  syntax:
+    content: public string Format(Period value)
+    parameters:
+    - id: value
+      type: NodaTime.Period
+      description: The period to format.
+    return:
+      type: System.String
+      description: The period formatted according to this pattern.
+    content.vb: Public Function Format(value As Period) As String
+  overload: NodaTime.Text.PeriodPattern.Format*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.Period}.Format(NodaTime.Period)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NodaTime.Text.PeriodPattern.AppendFormat(NodaTime.Period,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.PeriodPattern.AppendFormat(NodaTime.Period,System.Text.StringBuilder)
+  id: AppendFormat(NodaTime.Period,System.Text.StringBuilder)
+  parent: NodaTime.Text.PeriodPattern
+  langs:
+  - csharp
+  - vb
+  name: AppendFormat(Period, StringBuilder)
+  nameWithType: PeriodPattern.AppendFormat(Period, StringBuilder)
+  fullName: NodaTime.Text.PeriodPattern.AppendFormat(NodaTime.Period, System.Text.StringBuilder)
+  type: Method
+  source:
+    remote:
+      path: 2.4.x/src/NodaTime/Text/PeriodPattern.cs
+      branch: history
+      repo: https://github.com/nodatime/nodatime.git
+    id: AppendFormat
+    path: src/NodaTime/Text/PeriodPattern.cs
+    startLine: 79
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: "\nFormats the given value as text according to the rules of this pattern,\nappending to the given <xref href=\"System.Text.StringBuilder\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public StringBuilder AppendFormat(Period value, StringBuilder builder)
+    parameters:
+    - id: value
+      type: NodaTime.Period
+      description: The value to format.
+    - id: builder
+      type: System.Text.StringBuilder
+      description: The <code>StringBuilder</code> to append to.
+    return:
+      type: System.Text.StringBuilder
+      description: The builder passed in as <code data-dev-comment-type="paramref" class="paramref">builder</code>.
+    content.vb: Public Function AppendFormat(value As Period, builder As StringBuilder) As StringBuilder
+  overload: NodaTime.Text.PeriodPattern.AppendFormat*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.Period}.AppendFormat(NodaTime.Period,System.Text.StringBuilder)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: NodaTime.Period
+  commentId: T:NodaTime.Period
+  parent: NodaTime
+  name: Period
+  nameWithType: Period
+  fullName: NodaTime.Period
+- uid: NodaTime.Text
+  commentId: N:NodaTime.Text
+  name: NodaTime.Text
+  nameWithType: NodaTime.Text
+  fullName: NodaTime.Text
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: NodaTime.Text.IPattern{NodaTime.Period}
+  commentId: T:NodaTime.Text.IPattern{NodaTime.Period}
+  parent: NodaTime.Text
+  definition: NodaTime.Text.IPattern`1
+  name: IPattern<Period>
+  nameWithType: IPattern<Period>
+  fullName: NodaTime.Text.IPattern<NodaTime.Period>
+  nameWithType.vb: IPattern(Of Period)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.Period)
+  name.vb: IPattern(Of Period)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    nameWithType: IPattern
+    fullName: NodaTime.Text.IPattern
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    nameWithType: IPattern
+    fullName: NodaTime.Text.IPattern
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime
+  commentId: N:NodaTime
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NodaTime.Text.IPattern`1
+  commentId: T:NodaTime.Text.IPattern`1
+  name: IPattern<T>
+  nameWithType: IPattern<T>
+  fullName: NodaTime.Text.IPattern<T>
+  nameWithType.vb: IPattern(Of T)
+  fullName.vb: NodaTime.Text.IPattern(Of T)
+  name.vb: IPattern(Of T)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    nameWithType: IPattern
+    fullName: NodaTime.Text.IPattern
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    nameWithType: IPattern
+    fullName: NodaTime.Text.IPattern
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Text.PeriodPattern.Roundtrip*
+  commentId: Overload:NodaTime.Text.PeriodPattern.Roundtrip
+  name: Roundtrip
+  nameWithType: PeriodPattern.Roundtrip
+  fullName: NodaTime.Text.PeriodPattern.Roundtrip
+- uid: NodaTime.Text.PeriodPattern
+  commentId: T:NodaTime.Text.PeriodPattern
+  parent: NodaTime.Text
+  name: PeriodPattern
+  nameWithType: PeriodPattern
+  fullName: NodaTime.Text.PeriodPattern
+- uid: System.OverflowException
+  commentId: T:System.OverflowException
+  isExternal: true
+- uid: System.Int64.MaxValue
+  commentId: F:System.Int64.MaxValue
+  isExternal: true
+- uid: NodaTime.Text.PeriodPattern.NormalizingIso*
+  commentId: Overload:NodaTime.Text.PeriodPattern.NormalizingIso
+  name: NormalizingIso
+  nameWithType: PeriodPattern.NormalizingIso
+  fullName: NodaTime.Text.PeriodPattern.NormalizingIso
+- uid: NodaTime.Text.PeriodPattern.Parse*
+  commentId: Overload:NodaTime.Text.PeriodPattern.Parse
+  name: Parse
+  nameWithType: PeriodPattern.Parse
+  fullName: NodaTime.Text.PeriodPattern.Parse
+- uid: NodaTime.Text.IPattern{NodaTime.Period}.Parse(System.String)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.Period}.Parse(System.String)
+  parent: NodaTime.Text.IPattern{NodaTime.Period}
+  definition: NodaTime.Text.IPattern`1.Parse(System.String)
+  name: Parse(String)
+  nameWithType: IPattern<Period>.Parse(String)
+  fullName: NodaTime.Text.IPattern<NodaTime.Period>.Parse(System.String)
+  nameWithType.vb: IPattern(Of Period).Parse(String)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.Period).Parse(System.String)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    nameWithType: IPattern<Period>.Parse
+    fullName: NodaTime.Text.IPattern<NodaTime.Period>.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    nameWithType: IPattern(Of Period).Parse
+    fullName: NodaTime.Text.IPattern(Of NodaTime.Period).Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: NodaTime.Text.ParseResult{NodaTime.Period}
+  commentId: T:NodaTime.Text.ParseResult{NodaTime.Period}
+  parent: NodaTime.Text
+  definition: NodaTime.Text.ParseResult`1
+  name: ParseResult<Period>
+  nameWithType: ParseResult<Period>
+  fullName: NodaTime.Text.ParseResult<NodaTime.Period>
+  nameWithType.vb: ParseResult(Of Period)
+  fullName.vb: NodaTime.Text.ParseResult(Of NodaTime.Period)
+  name.vb: ParseResult(Of Period)
+  spec.csharp:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    nameWithType: ParseResult
+    fullName: NodaTime.Text.ParseResult
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    nameWithType: ParseResult
+    fullName: NodaTime.Text.ParseResult
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Text.IPattern`1.Parse(System.String)
+  commentId: M:NodaTime.Text.IPattern`1.Parse(System.String)
+  isExternal: true
+  name: Parse(String)
+  nameWithType: IPattern<T>.Parse(String)
+  fullName: NodaTime.Text.IPattern<T>.Parse(System.String)
+  nameWithType.vb: IPattern(Of T).Parse(String)
+  fullName.vb: NodaTime.Text.IPattern(Of T).Parse(System.String)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    nameWithType: IPattern<T>.Parse
+    fullName: NodaTime.Text.IPattern<T>.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    nameWithType: IPattern(Of T).Parse
+    fullName: NodaTime.Text.IPattern(Of T).Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Text.ParseResult`1
+  commentId: T:NodaTime.Text.ParseResult`1
+  parent: NodaTime.Text
+  name: ParseResult<T>
+  nameWithType: ParseResult<T>
+  fullName: NodaTime.Text.ParseResult<T>
+  nameWithType.vb: ParseResult(Of T)
+  fullName.vb: NodaTime.Text.ParseResult(Of T)
+  name.vb: ParseResult(Of T)
+  spec.csharp:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    nameWithType: ParseResult
+    fullName: NodaTime.Text.ParseResult
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    nameWithType: ParseResult
+    fullName: NodaTime.Text.ParseResult
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Text.PeriodPattern.Format*
+  commentId: Overload:NodaTime.Text.PeriodPattern.Format
+  name: Format
+  nameWithType: PeriodPattern.Format
+  fullName: NodaTime.Text.PeriodPattern.Format
+- uid: NodaTime.Text.IPattern{NodaTime.Period}.Format(NodaTime.Period)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.Period}.Format(NodaTime.Period)
+  parent: NodaTime.Text.IPattern{NodaTime.Period}
+  definition: NodaTime.Text.IPattern`1.Format(`0)
+  name: Format(Period)
+  nameWithType: IPattern<Period>.Format(Period)
+  fullName: NodaTime.Text.IPattern<NodaTime.Period>.Format(NodaTime.Period)
+  nameWithType.vb: IPattern(Of Period).Format(Period)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.Period).Format(NodaTime.Period)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    nameWithType: IPattern<Period>.Format
+    fullName: NodaTime.Text.IPattern<NodaTime.Period>.Format
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    nameWithType: IPattern(Of Period).Format
+    fullName: NodaTime.Text.IPattern(Of NodaTime.Period).Format
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NodaTime.Text.IPattern`1.Format(`0)
+  commentId: M:NodaTime.Text.IPattern`1.Format(`0)
+  name: Format(T)
+  nameWithType: IPattern<T>.Format(T)
+  fullName: NodaTime.Text.IPattern<T>.Format(T)
+  nameWithType.vb: IPattern(Of T).Format(T)
+  fullName.vb: NodaTime.Text.IPattern(Of T).Format(T)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    nameWithType: IPattern<T>.Format
+    fullName: NodaTime.Text.IPattern<T>.Format
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    nameWithType: IPattern(Of T).Format
+    fullName: NodaTime.Text.IPattern(Of T).Format
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Text.StringBuilder
+  commentId: T:System.Text.StringBuilder
+  parent: System.Text
+  isExternal: true
+  name: StringBuilder
+  nameWithType: StringBuilder
+  fullName: System.Text.StringBuilder
+- uid: NodaTime.Text.PeriodPattern.AppendFormat*
+  commentId: Overload:NodaTime.Text.PeriodPattern.AppendFormat
+  name: AppendFormat
+  nameWithType: PeriodPattern.AppendFormat
+  fullName: NodaTime.Text.PeriodPattern.AppendFormat
+- uid: NodaTime.Text.IPattern{NodaTime.Period}.AppendFormat(NodaTime.Period,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.Period}.AppendFormat(NodaTime.Period,System.Text.StringBuilder)
+  parent: NodaTime.Text.IPattern{NodaTime.Period}
+  definition: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  name: AppendFormat(Period, StringBuilder)
+  nameWithType: IPattern<Period>.AppendFormat(Period, StringBuilder)
+  fullName: NodaTime.Text.IPattern<NodaTime.Period>.AppendFormat(NodaTime.Period, System.Text.StringBuilder)
+  nameWithType.vb: IPattern(Of Period).AppendFormat(Period, StringBuilder)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.Period).AppendFormat(NodaTime.Period, System.Text.StringBuilder)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    nameWithType: IPattern<Period>.AppendFormat
+    fullName: NodaTime.Text.IPattern<NodaTime.Period>.AppendFormat
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    nameWithType: IPattern(Of Period).AppendFormat
+    fullName: NodaTime.Text.IPattern(Of NodaTime.Period).AppendFormat
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NodaTime.Period
+    name: Period
+    nameWithType: Period
+    fullName: NodaTime.Period
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Text
+  commentId: N:System.Text
+  isExternal: true
+  name: System.Text
+  nameWithType: System.Text
+  fullName: System.Text
+- uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  isExternal: true
+  name: AppendFormat(T, StringBuilder)
+  nameWithType: IPattern<T>.AppendFormat(T, StringBuilder)
+  fullName: NodaTime.Text.IPattern<T>.AppendFormat(T, System.Text.StringBuilder)
+  nameWithType.vb: IPattern(Of T).AppendFormat(T, StringBuilder)
+  fullName.vb: NodaTime.Text.IPattern(Of T).AppendFormat(T, System.Text.StringBuilder)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    nameWithType: IPattern<T>.AppendFormat
+    fullName: NodaTime.Text.IPattern<T>.AppendFormat
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    nameWithType: IPattern(Of T).AppendFormat
+    fullName: NodaTime.Text.IPattern(Of T).AppendFormat
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+shouldSkipMarkup: true

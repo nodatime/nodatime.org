@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net451;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
+    <AssemblyOriginatorKeyFile>../../NodaTime Release.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <Deterministic>True</Deterministic>
+    <IsPackable>False</IsPackable>
+    <DefineConstants Condition="$(TargetFramework.Contains('netcore'))">NETCORE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\*" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Nesting for tests -->
+    <Compile Update="CalendarSystemTest.*.cs">
+      <DependentUpon>CalendarSystemTest.cs</DependentUpon>
+    </Compile>
+    <Compile Update="DateTimeZoneTest.*.cs">
+      <DependentUpon>DateTimeZoneTest.cs</DependentUpon>
+    </Compile>
+    <Compile Update="DurationTest.*.cs">
+      <DependentUpon>DurationTest.cs</DependentUpon>
+    </Compile>
+    <Compile Update="InstantTest.*.cs">
+      <DependentUpon>InstantTest.cs</DependentUpon>
+    </Compile>
+    <Compile Update="LocalDateTest.*.cs">
+      <DependentUpon>LocalDateTest.cs</DependentUpon>
+    </Compile>
+    <Compile Update="LocalDateTimeTest.*.cs">
+      <DependentUpon>LocalDateTimeTest.cs</DependentUpon>
+    </Compile>
+    <Compile Update="LocalTimeTest.*.cs">
+      <DependentUpon>LocalTimeTest.cs</DependentUpon>
+    </Compile>
+    <Compile Update="OffsetTest.*.cs">
+      <DependentUpon>OffsetTest.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NodaTime\NodaTime.csproj" />
+    <ProjectReference Include="..\NodaTime.Testing\NodaTime.Testing.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="NUnitLite" Version="3.10.1" />
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+  </ItemGroup>
+
+</Project>
