@@ -24,11 +24,11 @@ namespace NodaTime.Web.SmokeTest
         [TestCase("downloads", "NodaTime-1.0.0.zip")]
         [TestCase("1.0.x/userguide/text", "There are two options for text handling")]
         [TestCase("1.0.x/api/NodaTime.DateTimeZone.html", "The mapping is unambiguous")]
-        [TestCase("tzdb/index.txt", "https://nodatime.org/tzdb/tzdb2013h.nzd")]
+        // Note: not the full URL as that depends on the server URL
+        [TestCase("tzdb/index.txt", "/tzdb/tzdb2013h.nzd")]
         public async Task TextPage(string path, string expectedContent)
         {
             var client = new HttpClient();
-            var addresses = fixture.Host.ServerFeatures.Get<IServerAddressesFeature>();
             string page = await client.GetStringAsync($"{fixture.BaseUrl}/{path}");
             Assert.True(page.Contains(expectedContent), $"Couldn't find {expectedContent} in path {path}");
         }

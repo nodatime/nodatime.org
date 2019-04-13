@@ -33,19 +33,21 @@ namespace NodaTime.Web.Controllers
         }
 
         [Route("/tzdb/latest.txt")]
-        public IActionResult Latest() =>
-            new ContentResult
+        public IActionResult Latest()
+        {
+            var download = tzdbRepository.GetReleases().Last();
+            return new ContentResult
             {
                 ContentType = "text/plain",
-                Content = tzdbRepository.GetReleases().Last().NodaTimeOrgUrl,
+                Content = GetDownloadUrl(download),
                 StatusCode = 200
             };
+        }
 
         [Route("/tzdb/index.txt")]
         public IActionResult Index()
         {
-            var releases = tzdbRepository.GetReleases();
-            var releaseUrls = releases.Select(r => r.NodaTimeOrgUrl);
+            var releaseUrls = tzdbRepository.GetReleases().Select(GetDownloadUrl);
             return new ContentResult
             {
                 ContentType = "text/plain",
@@ -53,5 +55,8 @@ namespace NodaTime.Web.Controllers
                 StatusCode = 200
             };
         }
+
+        private string GetDownloadUrl(TzdbDownload download) =>
+            $"{Request.Scheme}://{Request.Host}/tzdb/{download.Name}";
     }
 }

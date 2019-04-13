@@ -15,14 +15,12 @@ namespace NodaTime.Web.Models
     public class TzdbDownload
     {
         public string Name { get; }
-        public string NodaTimeOrgUrl { get; }
 
         private readonly Lazy<byte[]> data;
 
         public TzdbDownload(IStorageRepository storage, string name)
         {
             Name = Path.GetFileName(name);
-            NodaTimeOrgUrl = $"https://nodatime.org/tzdb/{Name}";
             data = new Lazy<byte[]>(LoadContent, LazyThreadSafetyMode.ExecutionAndPublication);
 
             byte[] LoadContent()
