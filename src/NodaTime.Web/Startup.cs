@@ -147,28 +147,17 @@ namespace NodaTime.Web
             // we're just serving static files, so we don't need much.
             app.UseMvc(routes =>
             {
-                // TODO: Find a better way of routing. This is pretty nasty.
                 routes.MapRoute("Developer docs", "developer/{*url}", new { controller = "Documentation", bundle = "developer", action = nameof(DocumentationController.ViewDocumentation) });
-                routes.MapRoute("1.0.x user guide", "1.0.x/userguide/{*url}", new { controller = "Documentation", bundle = "1.0.x", action = nameof(DocumentationController.ViewDocumentation) });
-                routes.MapRoute("1.1.x user guide", "1.1.x/userguide/{*url}", new { controller = "Documentation", bundle = "1.1.x", action = nameof(DocumentationController.ViewDocumentation) });
-                routes.MapRoute("1.2.x user guide", "1.2.x/userguide/{*url}", new { controller = "Documentation", bundle = "1.2.x", action = nameof(DocumentationController.ViewDocumentation) });
-                routes.MapRoute("1.3.x user guide", "1.3.x/userguide/{*url}", new { controller = "Documentation", bundle = "1.3.x", action = nameof(DocumentationController.ViewDocumentation) });
-                routes.MapRoute("1.4.x user guide", "1.4.x/userguide/{*url}", new { controller = "Documentation", bundle = "1.4.x", action = nameof(DocumentationController.ViewDocumentation) });
-                routes.MapRoute("2.0.x user guide", "2.0.x/userguide/{*url}", new { controller = "Documentation", bundle = "2.0.x", action = nameof(DocumentationController.ViewDocumentation) });
-                routes.MapRoute("2.1.x user guide", "2.1.x/userguide/{*url}", new { controller = "Documentation", bundle = "2.1.x", action = nameof(DocumentationController.ViewDocumentation) });
-                routes.MapRoute("2.2.x user guide", "2.2.x/userguide/{*url}", new { controller = "Documentation", bundle = "2.2.x", action = nameof(DocumentationController.ViewDocumentation) });
-                routes.MapRoute("2.3.x user guide", "2.3.x/userguide/{*url}", new { controller = "Documentation", bundle = "2.3.x", action = nameof(DocumentationController.ViewDocumentation) });
-                routes.MapRoute("2.4.x user guide", "2.4.x/userguide/{*url}", new { controller = "Documentation", bundle = "2.4.x", action = nameof(DocumentationController.ViewDocumentation) });
-                routes.MapRoute("Unstable user guide", "unstable/userguide/{*url}", new { controller = "Documentation", bundle = "unstable", action = nameof(DocumentationController.ViewDocumentation) });
+                routes.MapRoute("User guides", "{bundle}/userguide/{*url}", new { controller = "Documentation", action = nameof(DocumentationController.ViewDocumentation) });
                 routes.MapRoute("default", "{action=Index}/{id?}", new { controller = "Home" });
             });
 
             // Force the set of releases to be first loaded on startup.
-            app.ApplicationServices.GetRequiredService<IReleaseRepository>().GetReleases();
+            app.ApplicationServices.GetRequiredService<IReleaseRepository>();
             // Force the set of benchmarks to be first loaded on startup.
-            app.ApplicationServices.GetRequiredService<IBenchmarkRepository>().ListEnvironments();
+            app.ApplicationServices.GetRequiredService<IBenchmarkRepository>();
             // Force the set of TZDB data to be first loaded on startup.
-            app.ApplicationServices.GetRequiredService<ITzdbRepository>().GetReleases();
+            app.ApplicationServices.GetRequiredService<ITzdbRepository>();
             // Force all the Markdown to be loaded on startup.
             // (This loads pages synchronously; start it running after prodding the repositories,
             // which load asynchronously.)
