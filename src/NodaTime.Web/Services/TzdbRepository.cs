@@ -13,7 +13,7 @@ using System.Text.RegularExpressions;
 
 namespace NodaTime.Web.Services
 {
-    public class GoogleStorageTzdbRepository : ITzdbRepository
+    public class TzdbRepository : ITzdbRepository
     {
         private static readonly Regex PlausibleReleaseName = new Regex(@"^[-_a-zA-Z0-9.]+\.nzd$");
         private static readonly Duration CacheRefreshTime = Duration.FromMinutes(7);
@@ -21,7 +21,7 @@ namespace NodaTime.Web.Services
         private readonly IStorageRepository storage;
         private readonly TimerCache<CacheEntry> cache;
 
-        public GoogleStorageTzdbRepository(
+        public TzdbRepository(
             IApplicationLifetime lifetime,
             ILoggerFactory loggerFactory,
             IStorageRepository storage)
