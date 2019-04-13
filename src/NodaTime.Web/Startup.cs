@@ -73,19 +73,8 @@ namespace NodaTime.Web
                 });
             });
 #endif
-
-            if (UseGoogleCloudStorage)
-            {
-                services.AddSingleton<IReleaseRepository, GoogleStorageReleaseRepository>();
-                services.AddSingleton<ITzdbRepository, GoogleStorageTzdbRepository>();
-                services.AddSingleton<IBenchmarkRepository, GoogleStorageBenchmarkRepository>();
-            }
-            else
-            {
-                services.AddSingleton<IReleaseRepository, FakeReleaseRepository>();
-                services.AddSingleton<ITzdbRepository, FakeTzdbRepository>();
-                services.AddSingleton<IBenchmarkRepository, LocalBenchmarkRepository>();
-            }
+            var storageOptions = Configuration.GetSection("Storage").Get<StorageOptions>();
+            storageOptions.ConfigureServices(services);
             services.AddSingleton<MarkdownLoader>();
             services.AddMemoryCache();
         }
@@ -172,15 +161,16 @@ namespace NodaTime.Web
                 routes.MapRoute("default", "{action=Index}/{id?}", new { controller = "Home" });
             });
 
-            // Force all the Markdown to be loaded on startup.
-            app.ApplicationServices.GetRequiredService<MarkdownLoader>();
             // Force the set of releases to be first loaded on startup.
             app.ApplicationServices.GetRequiredService<IReleaseRepository>().GetReleases();
             // Force the set of benchmarks to be first loaded on startup.
             app.ApplicationServices.GetRequiredService<IBenchmarkRepository>().ListEnvironments();
             // Force the set of TZDB data to be first loaded on startup.
             app.ApplicationServices.GetRequiredService<ITzdbRepository>().GetReleases();
-
+            // Force all the Markdown to be loaded on startup.
+            // (This loads pages synchronously; start it running after prodding the repositories,
+            // which load asynchronously.)
+            app.ApplicationServices.GetRequiredService<MarkdownLoader>();
 #if BLAZOR
             app.Map("/blazor", child => child.UseBlazor<NodaTime.Web.Blazor.Program>());
 #endif

@@ -35,6 +35,7 @@
                 <th></th>
             </tr>
             @foreach (var env in Model
+           .Where(e => e.Runs?.Any() ?? false)
            .OrderByDescending(e => e.Runs?.FirstOrDefault()?.Start?.ToInstant())
            .ThenBy(e => e.Machine)
            .ThenBy(e => e.TargetFramework))

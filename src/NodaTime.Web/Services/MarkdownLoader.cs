@@ -14,6 +14,8 @@ using System.Linq;
 using System;
 using CommonMark.Syntax;
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace NodaTime.Web.Services
 {
@@ -29,7 +31,7 @@ namespace NodaTime.Web.Services
         private readonly CommonMarkSettings commonMarkSettings;
         private readonly Dictionary<string, MarkdownBundle> bundles;
 
-        public MarkdownLoader(IHostingEnvironment environment)
+        public MarkdownLoader(IHostingEnvironment environment, ILoggerFactory loggerFactory)
         {
             fileProvider = environment.ContentRootFileProvider;
             commonMarkSettings = CommonMarkSettings.Default.Clone();
@@ -41,10 +43,16 @@ namespace NodaTime.Web.Services
             // May become obsolete, if we can resolve [NodaTime.LocalDateTime] to the right type link etc.
             commonMarkSettings.UriResolver = ResolveUrl;
 
+            var logger = loggerFactory.CreateLogger<MarkdownLoader>();
+            var stopwatch = Stopwatch.StartNew();
             // TODO: Make the root location configurable
             LoadBundleMetadata("Markdown");
             PopulateParentBundles();
             LoadBundleContent();
+            
+            var totalPages = bundles.Values.SelectMany(b => b.Categories).Sum(c => c.Pages.Count);
+            logger.LogInformation("Loaded {bundleCount} bundles totalling {pageCount} pages in {durationMs}ms",
+                bundles.Count, totalPages, stopwatch.ElapsedMilliseconds);
         }
 
         private void LoadBundleMetadata(string directory)
