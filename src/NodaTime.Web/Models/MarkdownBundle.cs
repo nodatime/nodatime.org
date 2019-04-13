@@ -61,7 +61,7 @@ namespace NodaTime.Web.Models
         }
 
         internal void LoadContent(IFileProvider fileProvider, CommonMarkSettings commonMarkSettings)
-        {        
+        {
             foreach (var category in Categories)
             {
                 category.Pages = category.PageIds.Select(id => LoadPage(fileProvider, commonMarkSettings, id)).ToList();

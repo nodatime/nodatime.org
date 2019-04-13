@@ -31,9 +31,6 @@ namespace NodaTime.Web
     {
         private static readonly MediaTypeHeaderValue TextHtml = new MediaTypeHeaderValue("text/html");
 
-        // Not const to avoid unreachable code warnings.
-        private static readonly bool UseGoogleCloudStorage = Environment.GetEnvironmentVariable("DISABLE_GCS") == null;
-
         private IConfigurationRoot Configuration { get; set; }
         private IHostingEnvironment CurrentEnvironment { get; set; }
         public StackdriverOptions StackdriverOptions { get; }
