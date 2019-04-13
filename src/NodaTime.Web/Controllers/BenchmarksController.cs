@@ -2,10 +2,8 @@
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using NodaTime.Benchmarks;
 using NodaTime.Helpers;
-using NodaTime.Web.Models;
 using NodaTime.Web.Services;
 using NodaTime.Web.ViewModels;
 using System.Linq;

@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// Copyright 2016 The Noda Time Authors. All rights reserved.
+// Use of this source code is governed by the Apache License 2.0,
+// as found in the LICENSE.txt file.
+
+using Microsoft.AspNetCore.Mvc;
 using NodaTime.TimeZones;
 using NodaTime.Web.Models;
 using NodaTime.Web.Services;
