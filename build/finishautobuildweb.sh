@@ -5,15 +5,23 @@
 # Build site and run smoke tests
 (cd $output/nodatime.org/build; ./buildweb.sh)
 
-echo $combined_commit > $output/nodatime.org/src/NodaTime.Web/bin/Release/netcoreapp2.2/publish/wwwroot/commit.txt
-echo "Built at $(date -u -Iseconds)" > $output/nodatime.org/src/NodaTime.Web/bin/Release/netcoreapp2.2/publish/wwwroot/build.txt 
+declare -r publish=$output/nodatime.org/src/NodaTime.Web/bin/Release/netcoreapp2.2/publish
+
+# Remove the Windows and OSX gRPC binaries; replace the unused Linux one
+# with an empty file. (It has to be present, but can be empty.)
+rm -rf $publish/runtimes/{osx,win}
+> $publish/runtimes/linux/native/libgrpc_csharp_ext.x86.so
+
+# Add diagnostic text files
+echo $combined_commit > $publish/wwwroot/commit.txt
+echo "Built at $(date -u -Iseconds)" > $publish/wwwroot/build.txt 
 
 echo "Build and test successful. Pushing."
 
 (cd $output/nodatime.org;
- cp build/deployment/Dockerfile src/NodaTime.Web/bin/Release/netcoreapp2.2/publish;
+ cp build/deployment/Dockerfile $publish;
  gcloud.cmd container builds submit \
    --config=build/deployment/cloudbuild.yaml \
    --substitutions=TAG_NAME="$combined_commit" \
-   src/NodaTime.Web/bin/Release/netcoreapp2.2/publish)
+   $publish)
 
