@@ -14,7 +14,7 @@ namespace NodaTime.Web.Services
     public class GoogleStorageReleaseRepository : IReleaseRepository
     {
         private const string ObjectPrefix = "releases/";
-        private static readonly Regex ReleasePattern = new Regex(ObjectPrefix + @"NodaTime-(\d+\.\d+\.\d+(?:-beta\d+)?)(?:-src)?.zip");
+        private static readonly Regex ReleasePattern = new Regex(ObjectPrefix + @"NodaTime-(\d+\.\d+\.\d+(?:-[a-z]+\d+)?)(?:-src)?.zip");
         private const string Sha256Key = "SHA-256";
         private const string ReleaseDateKey = "ReleaseDate";
 
