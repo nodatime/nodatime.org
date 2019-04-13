@@ -40,9 +40,9 @@ namespace NodaTime.Web.Configuration
                 services.AddSingleton<IStorageRepository>(new GoogleCloudStorageRepository(Bucket!));
             }
 
-            services.AddSingleton<IReleaseRepository, GoogleStorageReleaseRepository>();
-            services.AddSingleton<ITzdbRepository, GoogleStorageTzdbRepository>();
-            services.AddSingletonWithArguments<IBenchmarkRepository, GoogleStorageBenchmarkRepository>(BenchmarkLimit ?? int.MaxValue);
+            services.AddSingleton<IReleaseRepository, ReleaseRepository>();
+            services.AddSingleton<ITzdbRepository, TzdbRepository>();
+            services.AddSingletonWithArguments<IBenchmarkRepository, BenchmarkRepository>(BenchmarkLimit ?? int.MaxValue);
         }
     }
 }

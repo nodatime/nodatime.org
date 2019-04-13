@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 
 namespace NodaTime.Web.Services
 {
-    public class GoogleStorageReleaseRepository : IReleaseRepository
+    public class ReleaseRepository : IReleaseRepository
     {
         private const string ObjectPrefix = "releases/";
         private static readonly Regex ReleasePattern = new Regex(ObjectPrefix + @"NodaTime-(\d+\.\d+\.\d+(?:-[a-z]+\d+)?)(?:-src)?.zip");
@@ -22,7 +22,7 @@ namespace NodaTime.Web.Services
         private readonly IStorageRepository storage;
         private readonly TimerCache<CacheValue> cache;
 
-        public GoogleStorageReleaseRepository(
+        public ReleaseRepository(
             IApplicationLifetime lifetime,
             ILoggerFactory loggerFactory,
             IStorageRepository storage)

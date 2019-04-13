@@ -5,15 +5,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using NodaTime.Benchmarks;
 using NodaTime.Web.Helpers;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
 namespace NodaTime.Web.Services
 {
-    public class GoogleStorageBenchmarkRepository : IBenchmarkRepository
+    public class BenchmarkRepository : IBenchmarkRepository
     {
         private const string EnvironmentObjectName = "benchmarks/environments.pb";
         private const string ContainerObjectsPrefix = "benchmarks/benchmark-run-";
@@ -21,13 +19,13 @@ namespace NodaTime.Web.Services
         private static readonly Duration CacheRefreshTime = Duration.FromMinutes(15);
         private readonly TimerCache<CacheValue> cache;
 
-        public GoogleStorageBenchmarkRepository(
+        public BenchmarkRepository(
             IApplicationLifetime lifetime,
             ILoggerFactory loggerFactory,
             IStorageRepository storage,
             int limit)
         {
-            var logger = loggerFactory.CreateLogger<GoogleStorageBenchmarkRepository>();
+            var logger = loggerFactory.CreateLogger<BenchmarkRepository>();
             cache = new TimerCache<CacheValue>(
                 cacheName: "benchmarks",
                 lifetime,
