@@ -1,7 +1,6 @@
 ﻿// Copyright 2016 The Noda Time Authors. All rights reserved.
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
-using Google.Cloud.Storage.V1;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using NodaTime.Text;
@@ -14,22 +13,22 @@ namespace NodaTime.Web.Services
 {
     public class GoogleStorageReleaseRepository : IReleaseRepository
     {
-        private const string Bucket = "nodatime";
         private const string ObjectPrefix = "releases/";
         private static readonly Regex ReleasePattern = new Regex(ObjectPrefix + @"NodaTime-(\d+\.\d+\.\d+(?:-beta\d+)?)(?:-src)?.zip");
         private const string Sha256Key = "SHA-256";
         private const string ReleaseDateKey = "ReleaseDate";
 
         private static readonly Duration CacheRefreshTime = Duration.FromMinutes(6);
-        private readonly StorageClient client;
+        private readonly IStorageRepository storage;
         private readonly TimerCache<CacheValue> cache;
 
         public GoogleStorageReleaseRepository(
             IApplicationLifetime lifetime,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            IStorageRepository storage)
         {
-            client = StorageClient.Create();
-            cache = new TimerCache<CacheValue>(lifetime, CacheRefreshTime, FetchReleases, loggerFactory, CacheValue.Empty);
+            this.storage = storage;
+            cache = new TimerCache<CacheValue>("releases", lifetime, CacheRefreshTime, FetchReleases, loggerFactory, CacheValue.Empty);
             cache.Start();
         }
 
@@ -39,8 +38,8 @@ namespace NodaTime.Web.Services
 
         private CacheValue FetchReleases()
         {
-            var releases = client
-                .ListObjects(Bucket, ObjectPrefix)
+            var releases = storage
+                .ListFiles(ObjectPrefix)
                 .Where(obj => !obj.Name.EndsWith("/"))
                 .Select(ConvertObject)
                 .OrderByDescending(r => r.Version)
@@ -48,18 +47,19 @@ namespace NodaTime.Web.Services
             return new CacheValue(releases);
         }
 
-        private static ReleaseDownload ConvertObject(Google.Apis.Storage.v1.Data.Object obj)
+        private ReleaseDownload ConvertObject(StorageFile file)
         {
-            string? sha256Hash = null;
-            obj.Metadata?.TryGetValue(Sha256Key, out sha256Hash);
-            string? releaseDateMetadata = null;
-            obj.Metadata?.TryGetValue(ReleaseDateKey, out releaseDateMetadata);
-            var match = ReleasePattern.Match(obj.Name);
+            string? sha256Hash;
+            file.Metadata.TryGetValue(Sha256Key, out sha256Hash);
+            string? releaseDateMetadata;
+            file.Metadata.TryGetValue(ReleaseDateKey, out releaseDateMetadata);
+            var match = ReleasePattern.Match(file.Name);
             StructuredVersion? version = match.Success ? new StructuredVersion(match.Groups[1].Value) : null;
             LocalDate releaseDate = releaseDateMetadata == null
-                ? LocalDate.FromDateTime(obj.Updated!.Value)
+                ? LocalDate.FromDateTime(file.LastUpdated)
                 : LocalDatePattern.Iso.Parse(releaseDateMetadata).Value;
-            return new ReleaseDownload(version, obj.Name.Substring(ObjectPrefix.Length), $"https://storage.googleapis.com/{Bucket}/{obj.Name}", sha256Hash, releaseDate);
+            return new ReleaseDownload(version, file.Name.Substring(ObjectPrefix.Length),
+                storage.GetDownloadUrl(file.Name), sha256Hash, releaseDate);
         }
 
         private class CacheValue

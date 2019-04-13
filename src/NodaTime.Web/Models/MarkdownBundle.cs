@@ -46,7 +46,7 @@ namespace NodaTime.Web.Models
             public string Title { get; set; }
             public List<string> PageIds { get; set; }
             public List<MarkdownPage> Pages { get; set; }
-        }        
+        }
 
         public MarkdownPage TryGetPage(string id)
         {

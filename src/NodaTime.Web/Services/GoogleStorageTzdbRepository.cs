@@ -2,8 +2,6 @@
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
 using Google;
-using Google.Apis.Auth.OAuth2;
-using Google.Cloud.Storage.V1;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using NodaTime.Web.Models;
@@ -18,19 +16,18 @@ namespace NodaTime.Web.Services
     public class GoogleStorageTzdbRepository : ITzdbRepository
     {
         private static readonly Regex PlausibleReleaseName = new Regex(@"^[-_a-zA-Z0-9.]+\.nzd$");
-
-        private const string Bucket = "nodatime";
         private static readonly Duration CacheRefreshTime = Duration.FromMinutes(7);
 
-        private readonly StorageClient client;
+        private readonly IStorageRepository storage;
         private readonly TimerCache<CacheEntry> cache;
 
         public GoogleStorageTzdbRepository(
             IApplicationLifetime lifetime,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            IStorageRepository storage)
         {
-            client = StorageClient.Create();
-            cache = new TimerCache<CacheEntry>(lifetime, CacheRefreshTime, FetchReleases, loggerFactory, CacheEntry.Empty);
+            this.storage = storage;
+            cache = new TimerCache<CacheEntry>("time zone releases", lifetime, CacheRefreshTime, FetchReleases, loggerFactory, CacheEntry.Empty);
             cache.Start();
         }
 
@@ -59,14 +56,14 @@ namespace NodaTime.Web.Services
             string objectName = $"tzdb/{name}";
             try
             {
-                client.GetObject(Bucket, objectName);
+                storage.GetObject(objectName);
             }
             catch (GoogleApiException)
             {
                 // If we can't get the metadata entry for *any* reason, just return that it's not been found.
                 return null;
             }
-            value = new TzdbDownload($"https://storage.googleapis.com/{Bucket}/{objectName}");
+            value = new TzdbDownload(storage.GetDownloadUrl(objectName));
             onDemandCache[name] = value;
             return value;
         }
@@ -74,9 +71,9 @@ namespace NodaTime.Web.Services
         private CacheEntry FetchReleases()
         {
             var oldReleasesByName = cache.Value?.ReleasesByName ?? new Dictionary<string, TzdbDownload>();
-            var releases = client.ListObjects(Bucket, "tzdb/")
+            var releases = storage.ListFiles("tzdb/")
                                 .Where(o => o.Name.EndsWith(".nzd"))
-                                .Select(obj => new TzdbDownload($"https://storage.googleapis.com/{Bucket}/{obj.Name}"))
+                                .Select(obj => new TzdbDownload(storage.GetDownloadUrl(obj.Name)))
                                 .Select(r => oldReleasesByName.ContainsKey(r.Name) ? oldReleasesByName[r.Name] : r)
                                 .OrderBy(r => r.Name, StringComparer.Ordinal)
                                 .ToList();

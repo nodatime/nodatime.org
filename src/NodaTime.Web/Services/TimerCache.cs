@@ -5,6 +5,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Diagnostics;
 using System.Threading;
 
 namespace NodaTime.Web.Services
@@ -16,6 +17,7 @@ namespace NodaTime.Web.Services
         private readonly ILogger logger;
         private readonly object padlock = new object();
         private readonly Duration refreshPeriod;
+        private readonly string cacheName;
         private T value;
         // TODO: Use Interlocked or similar to ensure proper volatility.
         // It's possible that using volatile would be enough...
@@ -37,9 +39,10 @@ namespace NodaTime.Web.Services
             }
         }
 
-        public TimerCache(IApplicationLifetime lifetime, Duration refreshPeriod, Func<T> provider, ILoggerFactory loggerFactory,
+        public TimerCache(string cacheName, IApplicationLifetime lifetime, Duration refreshPeriod, Func<T> provider, ILoggerFactory loggerFactory,
             T initialValue)
         {
+            this.cacheName = cacheName;
             lifetime.ApplicationStopping.Register(() => timer?.Dispose());
             logger = loggerFactory.CreateLogger(typeof(TimerCache<T>));
             this.provider = provider;
@@ -53,15 +56,16 @@ namespace NodaTime.Web.Services
 
         private void Fetch(object state)
         {
+            Stopwatch stopwatch = Stopwatch.StartNew();
             try
             {
-                logger.LogInformation($"Refreshing cache for {typeof(T)}");
+                logger.LogInformation($"Refreshing cache for {cacheName}");
                 Value = provider();
-                logger.LogInformation($"Cache refresh complete for {typeof(T)}");
+                logger.LogInformation("Cache refresh complete for {cacheName} in {durationMs}ms", cacheName, stopwatch.ElapsedMilliseconds);
             }
             catch (Exception e)
             {
-                logger.LogError(0, e, $"Error fetching {typeof(T)}");
+                logger.LogError(e, "Error fetching {cacheName} after {durationMs}ms", cacheName, stopwatch.ElapsedMilliseconds);
             }
         }
     }

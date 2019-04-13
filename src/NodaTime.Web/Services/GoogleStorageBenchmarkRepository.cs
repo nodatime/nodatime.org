@@ -1,14 +1,13 @@
 ﻿// Copyright 2017 The Noda Time Authors. All rights reserved.
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
-using Google.Apis.Auth.OAuth2;
-using Google.Cloud.Storage.V1;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using NodaTime.Benchmarks;
 using NodaTime.Web.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -16,7 +15,6 @@ namespace NodaTime.Web.Services
 {
     public class GoogleStorageBenchmarkRepository : IBenchmarkRepository
     {
-        private const string BucketName = "nodatime";
         private const string EnvironmentObjectName = "benchmarks/environments.pb";
         private const string ContainerObjectsPrefix = "benchmarks/benchmark-run-";
 
@@ -25,10 +23,15 @@ namespace NodaTime.Web.Services
 
         public GoogleStorageBenchmarkRepository(
             IApplicationLifetime lifetime,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            IStorageRepository storage,
+            int limit)
         {
-            StorageClient client = StorageClient.Create();
-            cache = new TimerCache<CacheValue>(lifetime, CacheRefreshTime, () => CacheValue.Refresh(cache?.Value ?? CacheValue.Empty, client), loggerFactory,
+            var logger = loggerFactory.CreateLogger<GoogleStorageBenchmarkRepository>();
+            cache = new TimerCache<CacheValue>(
+                cacheName: "benchmarks",
+                lifetime,
+                CacheRefreshTime, () => CacheValue.Refresh(cache?.Value ?? CacheValue.Empty, storage, logger, limit), loggerFactory,
                 CacheValue.Empty);
             cache.Start();
         }
@@ -77,9 +80,13 @@ namespace NodaTime.Web.Services
                 BenchmarksById = TypesById.Values.SelectMany(t => t.Benchmarks).ToDictionary(b => b.BenchmarkId);
             }
 
-            public static CacheValue Refresh(CacheValue previous, StorageClient client)
+            public static CacheValue Refresh(CacheValue previous, IStorageRepository storage, ILogger logger, int limit)
             {
-                var containerObjects = client.ListObjects(BucketName, ContainerObjectsPrefix).Select(obj => obj.Name).ToList();
+                var containerObjects = storage.ListFiles(ContainerObjectsPrefix)
+                    .Select(obj => obj.Name)
+                    .OrderBy(name => name)
+                    .Take(limit)
+                    .ToList();
                 var newContainerNames = containerObjects.Except(previous.runsByStorageName.Keys).ToList();
 
                 // If there are no new runs to load, use the previous set even if there are new environments.
@@ -89,13 +96,14 @@ namespace NodaTime.Web.Services
                 {
                     return previous;
                 }
+                logger.LogInformation("Loading {count} benchmarks.", newContainerNames.Count);
 
                 // We won't reload everything from storage, but we'll come up with completely new set of objects each time, so we
                 // don't need to worry about the changes involved as we reattach links.
-                var environmentObject = client.GetObject(BucketName, EnvironmentObjectName);
+                var environmentObject = storage.GetObject(EnvironmentObjectName);
                 var environments = environmentObject.Crc32c == previous.environmentCrc32c
                     ? previous.Environments.Select(env => { var clone = env.Clone(); clone.Runs.Clear(); return clone; }).ToList()
-                    : LoadEnvironments(client).OrderBy(e => e.Machine).ThenBy(e => e.TargetFramework).ThenBy(e => e.OperatingSystem).ToList();
+                    : LoadEnvironments(storage).OrderBy(e => e.Machine).ThenBy(e => e.TargetFramework).ThenBy(e => e.OperatingSystem).ToList();
 
                 // Don't just use previous.runsByStorageName blindly - some may have been removed.
                 var runsByStorageName = new Dictionary<string, BenchmarkRun>();
@@ -107,14 +115,13 @@ namespace NodaTime.Web.Services
                     }
                     else
                     {
-                        runToAdd = LoadContainer(client, runStorageName);
+                        runToAdd = LoadContainer(storage, runStorageName);
                     }
                     runToAdd.Environment = environments.FirstOrDefault(env => env.BenchmarkEnvironmentId == runToAdd.BenchmarkEnvironmentId);
                     // If we don't have an environment, that's a bit worrying - skip and move on.
                     if (runToAdd.Environment == null)
                     {
-                        // TODO: Use a proper logger
-                        Console.WriteLine($"Run {runStorageName} has no environment. Skipping.");
+                        logger.LogInformation("Run {runName} has no environment. Skipping.", runStorageName);
                         continue;
                     }
                     runToAdd.PopulateLinks();
@@ -128,19 +135,19 @@ namespace NodaTime.Web.Services
                 return new CacheValue(environments, environmentObject.Crc32c, runsByStorageName);
             }
 
-            private static BenchmarkRun LoadContainer(StorageClient client, string runStorageName)
+            private static BenchmarkRun LoadContainer(IStorageRepository storage, string runStorageName)
             {
                 var stream = new MemoryStream();
-                client.DownloadObject(BucketName, runStorageName, stream);
+                storage.DownloadObject(runStorageName, stream);
                 stream.Position = 0;
                 return BenchmarkRun.Parser.ParseFrom(stream);
             }
 
-            private static IList<BenchmarkEnvironment> LoadEnvironments(StorageClient client)
+            private static IList<BenchmarkEnvironment> LoadEnvironments(IStorageRepository storage)
             {
                 var environments = new List<BenchmarkEnvironment>();
                 var stream = new MemoryStream();
-                client.DownloadObject(BucketName, EnvironmentObjectName, stream);
+                storage.DownloadObject(EnvironmentObjectName, stream);
                 stream.Position = 0;
                 while (stream.Position != stream.Length)
                 {
