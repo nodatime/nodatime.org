@@ -63,7 +63,7 @@ namespace NodaTime.Web.Services
                 // If we can't get the metadata entry for *any* reason, just return that it's not been found.
                 return null;
             }
-            value = new TzdbDownload(storage.GetDownloadUrl(objectName));
+            value = new TzdbDownload(storage, objectName);
             onDemandCache[name] = value;
             return value;
         }
@@ -73,7 +73,7 @@ namespace NodaTime.Web.Services
             var oldReleasesByName = cache.Value?.ReleasesByName ?? new Dictionary<string, TzdbDownload>();
             var releases = storage.ListFiles("tzdb/")
                                 .Where(o => o.Name.EndsWith(".nzd"))
-                                .Select(obj => new TzdbDownload(storage.GetDownloadUrl(obj.Name)))
+                                .Select(obj => new TzdbDownload(storage, obj.Name))
                                 .Select(r => oldReleasesByName.ContainsKey(r.Name) ? oldReleasesByName[r.Name] : r)
                                 .OrderBy(r => r.Name, StringComparer.Ordinal)
                                 .ToList();

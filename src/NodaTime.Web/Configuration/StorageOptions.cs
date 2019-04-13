@@ -14,6 +14,8 @@ namespace NodaTime.Web.Configuration
     /// </summary>
     public class StorageOptions
     {
+        private const string LocalBucketPrefix = "local:";
+
         /// <summary>
         /// The storage bucket to use. This is either a GCS bucket, or "local:{directory}"
         /// for a local file system directory.
@@ -28,13 +30,19 @@ namespace NodaTime.Web.Configuration
         public void ConfigureServices(IServiceCollection services)
         {
             GaxPreconditions.CheckState(Bucket != null, "Bucket must be configured");
-            var repository = new GoogleCloudStorageRepository(Bucket!);
+            if (Bucket!.StartsWith(LocalBucketPrefix))
+            {
+                services.AddSingletonWithArguments<IStorageRepository, LocalStorageRepository>(
+                    Bucket!.Substring(LocalBucketPrefix.Length));
+            }
+            else
+            {
+                services.AddSingleton<IStorageRepository>(new GoogleCloudStorageRepository(Bucket!));
+            }
 
-            services.AddSingleton<IStorageRepository>(repository);
             services.AddSingleton<IReleaseRepository, GoogleStorageReleaseRepository>();
             services.AddSingleton<ITzdbRepository, GoogleStorageTzdbRepository>();
-            services.AddSingleton<IBenchmarkRepository, GoogleStorageBenchmarkRepository>(serviceProvider =>
-                ActivatorUtilities.CreateInstance<GoogleStorageBenchmarkRepository>(serviceProvider, BenchmarkLimit ?? int.MaxValue));
+            services.AddSingletonWithArguments<IBenchmarkRepository, GoogleStorageBenchmarkRepository>(BenchmarkLimit ?? int.MaxValue);
         }
     }
 }
