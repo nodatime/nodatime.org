@@ -1,25 +1,26 @@
-﻿@using NodaTime.TimeZones
-@using System.Globalization
-@model (List<string> Versions, TzdbDateTimeZoneSource Source)
+﻿@using System.Globalization
+@model (List<string> Versions, IanaRelease Source)
 @{
     ViewData["Title"] = "Iana";
     var source = Model.Source;
-    var locations = source.ZoneLocations?.ToDictionary(location => location.ZoneId) ?? new Dictionary<string, TzdbZoneLocation>();
 }
 
 <div class="row">
     <div class="large-12 columns">
         <h1>IANA (TZDB) time zone information</h1>
 
-        <form method="get">
-            <p>
-                Select a time zone data version from the drop-down below to see the list of zones from that version.
-            </p>
+        <p>
+            Select a time zone data version from the drop-down below to see the list of zones from that version.
+            See the <a href="#notes">notes</a> at the end of this page for more information.
+        </p>
 
-            <p> Data version:    <select name="version" onchange="this.form.submit()" style="width: 10em">
+        @* The action is "#" so that if the user has clicked on the notes link but then changes data source, we don't go back to the notes. *@
+        <form method="get" action="#">
+            <p>
+                Data version:  <select name="version" onchange="this.form.submit()" style="width: 10em; margin-bottom: 0">
                     @foreach (var version in Model.Versions)
                     {
-                        @if (version == source.TzdbVersion)
+                        @if (version == source.IanaVersion)
                         {
                             <option value="@version" selected="selected">@version</option>
                         }
@@ -31,47 +32,63 @@
                 </select>
             </p>
         </form>
-    </div>
-</div>
-
-<div class="row">
-    <div class="large-12 columns">
-        <p>
-            IANA Version: @source.TzdbVersion <br />
-            Full source version ID: @source.VersionId <br />
-            <a href="/tzvalidate/generate?version=@source.TzdbVersion">Full tzvalidate data</a>
-        </p>
+        <ul>
+            <li>IANA Version: @source.IanaVersion</li>
+            <li>Full source version ID: @source.FullVersionId</li>
+            <li>Alternative representations: <a href="?version=@source.IanaVersion&format=json">JSON</a>, <a href="/tzvalidate/generate?version=@source.IanaVersion">tzvalidate</a></li>
+        </ul>
         <table>
             <tr>
                 <th>Zone ID</th>
+                <th>Offsets (years 2000-2039)</th>
                 <th width="40%">Aliases</th>
                 <th>Country name</th>
                 <th>Country code</th>
                 <th>Lat / Long</th>
                 <th>Comment</th>
             </tr>
-            @foreach (var id in source.GetIds().Where(x => source.CanonicalIdMap[x] == x).OrderBy(x => x))
+            @foreach (var zone in source.Zones)
             {
-                locations.TryGetValue(id, out var location);
-                var aliases = source.Aliases[id];
+                var location = zone.Location;
                 <tr>
-                    <td>@id</td>
-                    <td>
-                        @if (aliases.Any())
-                        {
-                            @(string.Join(", ", aliases))
-                        }
-                    </td>
+                    <td>@zone.Id</td>
+                    <td>@(string.Join(", ", zone.Offsets))</td>
+                    <td>@(string.Join(", ", zone.Aliases))</td>
                     <td>@location?.CountryName</td>
                     <td>@location?.CountryCode</td>
-                    <td>@if (location != null)
-                    {
-                        <a href="https://www.google.com/maps/search/?api=1&query=@string.Format(CultureInfo.InvariantCulture, "{0},{1}", location.Latitude, location.Longitude)">@Html.Raw($"({location.Latitude:0.000},&nbsp;{location.Longitude:0.000})")</a>
-                    }
+                    <td>
+                        @if (location != null)
+                        {
+                            <a href="https://www.google.com/maps/search/?api=1&query=@string.Format(CultureInfo.InvariantCulture, "{0},{1}", location.Latitude, location.Longitude)">@Html.Raw($"({location.Latitude:0.000},&nbsp;{location.Longitude:0.000})")</a>
+                        }
                     </td>
                     <td>@location?.Comment</td>
                 </tr>
             }
         </table>
+
+        <h2><a name="notes">Notes</a></h2>
+        <p>
+            This page displays a single row per canonical ID. Aliases for each ID are listed in the row for that
+            canonical ID, but don't each have their own row.
+        </p>
+        <p>
+            The latitude and longitude are in degrees. These are the values provided by zone.tab in IANA,
+            and are the reference locations for the zones. However, that does <em>not</em> mean that finding the
+            time zone at a particular location is as simple as finding the zone with the nearest location to the
+            target one. See <a href="https://stackoverflow.com/questions/16086962#16086964">this Stack Overflow answer</a>
+            for more information and resources.
+        </p>
+        <p>
+            The offsets for each zone are the ones which are effective (in the specified version)
+            in the interval [2000-01-01T00:00, 2040-01-01T00:00). May time zones observed a wider range of
+            offsets earlier than the year 2000. There's nothing special about the year 2000 here; it's just
+            an arbitrary cutoff that is likely to give enough information for most uses. Of course,
+            using Noda Time directly you can find all the offsets ever observed.
+        </p>
+        <p>
+            The JSON format models the information from this web page closely, but latitude and longitude are
+            separated out to make them easier to use programmatically.
+        </p>
     </div>
 </div>
