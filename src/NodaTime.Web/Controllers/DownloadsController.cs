@@ -19,7 +19,7 @@ namespace NodaTime.Web.Controllers
         [Route("/downloads")]
         public IActionResult Index()
         {
-            var releases = releaseRepository.GetReleases();
+            var releases = releaseRepository.AllReleases;
             return View(releases);
         }
     }

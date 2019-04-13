@@ -8,7 +8,9 @@ namespace NodaTime.Web.Services
 {
     public interface IReleaseRepository
     {
-        IList<ReleaseDownload> GetReleases();
+        IReadOnlyList<ReleaseDownload> AllReleases { get; }
+        IReadOnlyList<string> CurrentMinorVersions { get; }
+        IReadOnlyList<string> OldMinorVersions { get; }
 
         /// <summary>
         /// The download file for the latest release. This is always the
