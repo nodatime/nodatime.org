@@ -108,16 +108,21 @@ namespace NodaTime.Web
                 OnPrepareResponse = context => SetCacheControlHeaderForStaticContent(env, context.Context)
             });
 
-            // API documentation
-            app.UseStaticFiles(new StaticFileOptions
+            // API documentation, if present. (It normally will be in production, but making this optional
+            // allows the github repository to be cloned and then immediately used.)
+            var docfxDirectory = Path.Combine(env.ContentRootPath, "docfx");
+            if (Directory.Exists(docfxDirectory))
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "docfx")),
-                ContentTypeProvider = new FileExtensionContentTypeProvider
+                app.UseStaticFiles(new StaticFileOptions
                 {
-                    Mappings = { [".yml"] = "text/x-yaml" }
-                },
-                OnPrepareResponse = context => SetCacheControlHeaderForStaticContent(env, context.Context)
-            });
+                    FileProvider = new PhysicalFileProvider(docfxDirectory),
+                    ContentTypeProvider = new FileExtensionContentTypeProvider
+                    {
+                        Mappings = { [".yml"] = "text/x-yaml" }
+                    },
+                    OnPrepareResponse = context => SetCacheControlHeaderForStaticContent(env, context.Context)
+                });
+            }
             // Captures "unstable" or a specific version - used several times below.
             string anyVersion = @"((?:1\.[0-4]\.x)|(?:unstable)|(?:2\.[0-4]\.x))";
             var rewriteOptions = new RewriteOptions()
