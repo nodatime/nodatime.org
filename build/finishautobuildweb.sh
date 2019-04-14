@@ -13,7 +13,10 @@ rm -rf $publish/runtimes/{osx,win}
 > $publish/runtimes/linux/native/libgrpc_csharp_ext.x86.so
 
 # Add diagnostic text files
-echo $combined_commit > $publish/wwwroot/commit.txt
+echo "Combined: $combined_commit" > $publish/wwwroot/commit.txt
+echo "nodatime: $nodatime_commit" >> $publish/wwwroot/commit.txt
+echo "nodatime.org: $nodatime_org_commit" >> $publish/wwwroot/commit.txt
+echo "nodatime.serialization: $nodatime_serialization_commit" >> $publish/wwwroot/commit.txt
 echo "Built at $(date -u -Iseconds)" > $publish/wwwroot/build.txt 
 
 echo "Build and test successful. Pushing."

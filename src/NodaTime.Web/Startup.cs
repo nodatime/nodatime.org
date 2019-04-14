@@ -24,6 +24,7 @@ using NodaTime.Web.Middleware;
 using NodaTime.Web.Services;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace NodaTime.Web
 {
@@ -123,8 +124,18 @@ namespace NodaTime.Web
                     OnPrepareResponse = context => SetCacheControlHeaderForStaticContent(env, context.Context)
                 });
             }
+
+            // Fetch the latest release so we can use it in rewrite options.
+            // The fact that the rewrite options are fixed after initialization means
+            // that until the next web site push, we'll end up redirecting /api and /userguide
+            // to the previous latest release, but that's probably okay. (It'll only be temporary.)
+            var releaseRepository = app.ApplicationServices.GetRequiredService<IReleaseRepository>();
+            var latestRelease = releaseRepository.CurrentMinorVersions.First(); // e.g. 2.4.x
+
             // Captures "unstable" or a specific version - used several times below.
-            string anyVersion = @"((?:1\.[0-4]\.x)|(?:unstable)|(?:2\.[0-4]\.x))";
+            // This includes versions that don't exist at the moment, but it just means they'll
+            // fail after the redirect instead of before.
+            string anyVersion = @"((?:\d\.\d\.x)|(?:unstable))";
             var rewriteOptions = new RewriteOptions()
                 // Docfx wants index.html to exist, which is annoying... just redirect.
                 .AddRedirect($@"^index.html$", "/")
@@ -140,7 +151,7 @@ namespace NodaTime.Web
                 .AddRedirect($@"^{anyVersion}/userguide$", "$1/userguide/")
                 .AddRedirect($@"^developer$", "developer/")
                 // Make /api and /userguide links to the latest stable release.
-                .AddRedirect("^(api|userguide)(/.*)?$", "2.4.x/$1$2");
+                .AddRedirect("^(api|userguide)(/.*)?$", $"{latestRelease}/$1$2");
             app.UseRewriter(rewriteOptions);
 
             // At some stage we may want an MVC view for the home page, but at the moment
@@ -152,8 +163,6 @@ namespace NodaTime.Web
                 routes.MapRoute("default", "{action=Index}/{id?}", new { controller = "Home" });
             });
 
-            // Force the set of releases to be first loaded on startup.
-            app.ApplicationServices.GetRequiredService<IReleaseRepository>();
             // Force the set of benchmarks to be first loaded on startup.
             app.ApplicationServices.GetRequiredService<IBenchmarkRepository>();
             // Force the set of TZDB data to be first loaded on startup.
@@ -173,10 +182,14 @@ namespace NodaTime.Web
         {
             var headers = new ResponseHeaders(context.Response.Headers);
 
-            if (headers.ContentType.IsSubsetOf(TextHtml))
+            // Don't set Cache-Control for HTML files (e.g. /tzdb/). The browser can figure out when to revalidate
+            // (Which it can do easily, since we send an ETag with all static content responses).
+            // Also don't set cache control for build.txt and commit.txt, which are diagnostic files designed
+            // to show "the version being served" and should never be cached.
+            if (headers.ContentType.IsSubsetOf(TextHtml) ||
+                context.Request.Path.Value == "/build.txt" ||
+                context.Request.Path.Value == "/commit.txt")
             {
-                // Don't set Cache-Control for HTML files (e.g. /tzdb/). The browser can figure out when to revalidate.
-                // (Which it can do easily, since we send an ETag with all static content responses).
                 return;
             }
 
