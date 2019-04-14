@@ -34,8 +34,8 @@ namespace NodaTime.Web.Controllers
 
         public IActionResult Error() => View();
 
-        private static readonly Regex NamePattern = new Regex(@"tzdb(\d+.)\.nzd");
-        public IActionResult IanaTimeZones(string? version = null, string? format = null)
+        private static readonly Regex NzdNamePattern = new Regex(@"tzdb(\d+.)\.nzd");
+        public IActionResult TimeZones(string? version = null, string? format = null)
         {
             var source = TzdbDateTimeZoneSource.Default;
             if (version != null)
@@ -54,7 +54,7 @@ namespace NodaTime.Web.Controllers
             }
 
             var releases = repository.GetReleases()
-                .Select(release => NamePattern.Match(release.Name))
+                .Select(release => NzdNamePattern.Match(release.Name))
                 .Where(m => m.Success)
                 .Select(m => m.Groups[1].Value)
                 .ToList();
