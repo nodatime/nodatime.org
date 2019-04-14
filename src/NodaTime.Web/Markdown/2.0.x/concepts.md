@@ -179,6 +179,9 @@ by only depending on [`IDateTimeZoneProvider`][IDateTimeZoneProvider], and
 injecting the appropriate provider in the normal way. "Stock" providers are
 available via the [`DateTimeZoneProviders`][DateTimeZoneProviders] class.
 
+The <a href="/TimeZones">IANA time zones</a> page lists the time zones for each
+release of the time zone database.
+
 Also note that in some cases, you may not have full time zone information,
 but have just a local time and an offset. For example, if you're parsing the string
 "2012-06-26T20:41:00+01:00" that gives the information that the local time is one hour

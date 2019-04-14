@@ -69,6 +69,9 @@ Olson database) and one to wrap the information provided by the BCL via
 chosen a provider, you can find the identifiers that provider publishes, and
 fetch any specific time zone by ID.
 
+The <a href="/TimeZones">IANA time zones</a> page lists the time zones for each
+release of the time zone database.
+
 ZonedDateTime
 -------------
 
