@@ -22,17 +22,36 @@
 
 # Contents:
 
+# Top-level: one directory for each package (including NodaTime and NodaTime.Testing separated out)
+
+# Within each package directory:
+# - Released versions (1.0.x, 2.0.x etc)
+
+# Within each version directory:
+# - nupkg file for all but unstable
+# - api directory with docfx output
+# - (Where appropriate) overwrite directory with snippets
+
 # - 1.0.x / 1.1.x / 1.2.x / 1.3.x / 1.4.x
-#   - Clone of the nodatime repo
 #   - Docfx metadata in "api" directory
 # - 2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x
-#   - Clone of the nodatime repo directory
 #   - Docfx metadata in "api" directory
 #   - Docfx snippets for 2.1 onwards
 # - packages
 #   - nupkg files for each minor version, e.g NodaTime-1.0.x.nupkg
 
 set -e
+
+fetch_packages() {
+  declare -r package=$1
+  shift
+  while (( "$#" ))
+  do
+    VERSION=$1
+    curl -sSL -o $package/$VERSION.x/$package-$VERSION.0.nupkg https://www.nuget.org/api/v2/package/$package/$VERSION.0
+    shift
+  done
+}
 
 source docfx_functions.sh
 install_docfx
@@ -46,63 +65,45 @@ git clone https://github.com/nodatime/nodatime.org.git -q -b history history
 cd history
 
 echo "Cleaning current directory"
-git rm -rf .
-git clean -dfq
+git rm -qrf .
+git clean -qdf
 
-# Do lots of building in a tmp directory, then just copy what we actually need
-mkdir tmp
-cd tmp
+# Output directories
+mkdir NodaTime
+mkdir NodaTime.Testing
+mkdir NodaTime.Serialization.JsonNet
+mkdir NodaTime.Serialization.Protobuf
+
+# Do lots of building in a temporary directory, then just copy what we actually need
+mkdir main
+cd main
 
 for version in 1.0.x 1.1.x 1.2.x 1.3.x 1.4.x 2.0.x 2.1.x 2.2.x 2.3.x 2.4.x
 do
   echo "Cloning $version"
-  git clone https://github.com/nodatime/nodatime.git -q --depth 1 -b $version $version
+  git clone -q https://github.com/nodatime/nodatime.git --depth 1 -b $version $version
 done
 
-echo "Preparing for docfx of 2.0.x"
-cd 2.0.x
-dotnet restore src/NodaTime
-dotnet restore src/NodaTime.Testing
-cd ..
-
-echo "Preparing for docfx of 2.1.x"
-cd 2.1.x
-dotnet restore src/NodaTime
-dotnet restore src/NodaTime.Demo
-dotnet restore src/NodaTime.Testing
-dotnet restore build/SnippetExtractor
-cd ..
-
-echo "Preparing for docfx of 2.2.x"
-cd 2.2.x
-dotnet restore src/NodaTime
-dotnet restore src/NodaTime.Demo
-dotnet restore src/NodaTime.Testing
-dotnet restore build/SnippetExtractor
-cd ..
-
-echo "Preparing for docfx of 2.3.x"
-cd 2.3.x
-dotnet restore src/NodaTime
-dotnet restore src/NodaTime.Demo
-dotnet restore src/NodaTime.Testing
-dotnet restore build/SnippetExtractor
-cd ..
-
-echo "Preparing for docfx of 2.4.x"
-cd 2.4.x
-dotnet restore src/NodaTime
-dotnet restore src/NodaTime.Demo
-dotnet restore src/NodaTime.Testing
-dotnet restore build/SnippetExtractor
-cd ..
-
-# Docfx metadata
-for version in 1.0.x 1.1.x 1.2.x 1.3.x 1.4.x 2.0.x 2.1.x 2.2.x 2.3.x 2.4.x
+# 1.x versions have different sets of packages, as sometimes there's serialization
+# and sometimes not.
+for version in 1.0.x 1.1.x 1.2.x 1.3.x 1.4.x
 do
   echo "Building docfx metadata for $version"
-  cp ../../docfx/docfx-$version.json $version/docfx.json
-  "$DOCFX" metadata $version/docfx.json -f
+  if [[ $version != "1.0.x" && $version != "1.1.x" ]]
+  then
+    generate_metadata .. $version/src $version net45 NodaTime NodaTime.Testing NodaTime.Serialization.JsonNet
+  else
+    generate_metadata .. $version/src $version net45 NodaTime NodaTime.Testing
+  fi
+done
+
+# 2.x versions need to be restored first, but all have the same set of packages.
+for version in 2.0.x 2.1.x 2.2.x 2.3.x 2.4.x
+do
+  echo "Building docfx metadata for $version"
+  dotnet restore -v quiet $version/src/NodaTime
+  dotnet restore -v quiet $version/src/NodaTime.Testing
+  generate_metadata .. $version/src $version net45 NodaTime NodaTime.Testing
 done
 
 # Snippets
@@ -114,56 +115,42 @@ do
   echo "Generating snippets for $version"
   (cd $version;
    dotnet publish src/NodaTime.Demo;
-   mkdir overwrite;
-   dotnet run -p ../../../SnippetExtractor -- src/NodaTime-All.sln NodaTime.Demo overwrite)
+   mkdir ../../NodaTime/$version/overwrite;
+   dotnet run -p ../../../SnippetExtractor -- src/NodaTime-All.sln NodaTime.Demo ../../NodaTime/$version/overwrite)
 done
-
 cd ..
-# End of building
 
-# Move the relevant information from the build directory
-for version in 1.0.x 1.1.x 1.2.x 1.3.x 1.4.x 2.0.x 2.1.x 2.2.x 2.3.x 2.4.x
+# Clone the whole serialization repo, so we can checkout specific tags.
+git clone -q https://github.com/nodatime/nodatime.serialization.git serialization
+# Build JsonNet versions
+cd serialization
+for version in 2.0.x 2.1.x 2.2.x
 do
-  mkdir $version
-  mv tmp/$version/api $version  
+  tag=NodaTime.Serialization.JsonNet-$(echo $version | sed s/x/0/g)
+  git checkout -q NodaTime.Serialization.JsonNet-$(echo $version | sed s/x/0/g)
+  dotnet restore -v quiet src/NodaTime.Serialization.JsonNet
+  generate_metadata .. src $version net45 NodaTime.Serialization.JsonNet
 done
 
-# Preserve previous snippets for 2.1-2.3
-git checkout HEAD -- 2.1.x/overwrite/snippets.md
-git checkout HEAD -- 2.2.x/overwrite/snippets.md
-git checkout HEAD -- 2.3.x/overwrite/snippets.md
+# Build protobuf versions
+for version in 1.0.x
+do
+  git checkout -q NodaTime.Serialization.Protobuf-$(echo $version | sed s/x/0/g)
+  dotnet restore -v quiet src/NodaTime.Serialization.Protobuf
+  generate_metadata .. src $version netstandard2.0 NodaTime.Serialization.Protobuf
+done
+cd ..
 
-# Move generated snippets for 2.4
-mv tmp/2.4.x/overwrite 2.4.x
+# Fetch all the nuget packages
+echo "Fetching nuget packages"
+fetch_packages NodaTime 1.0 1.1 1.2 1.3 1.4 2.0 2.1 2.2 2.3 2.4
+fetch_packages NodaTime.Testing 1.0 1.1 1.2 1.3 1.4 2.0 2.1 2.2 2.3 2.4
+fetch_packages NodaTime.Serialization.JsonNet 1.2 1.3 1.4 2.0 2.1 2.2
+fetch_packages NodaTime.Serialization.Protobuf 1.0
 
 # Clean up
-rm -rf tmp
-
-echo "Fetching nuget packages"
-mkdir packages
-# NodaTime
-curl -sSL -o packages/NodaTime-1.0.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.0.0
-curl -sSL -o packages/NodaTime-1.1.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.1.0
-curl -sSL -o packages/NodaTime-1.2.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.2.0
-curl -sSL -o packages/NodaTime-1.3.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.3.2
-curl -sSL -o packages/NodaTime-1.4.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/1.4.0
-curl -sSL -o packages/NodaTime-2.0.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.0.0
-curl -sSL -o packages/NodaTime-2.1.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.1.0
-curl -sSL -o packages/NodaTime-2.2.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.2.0
-curl -sSL -o packages/NodaTime-2.3.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.3.0
-curl -sSL -o packages/NodaTime-2.4.x.nupkg https://www.nuget.org/api/v2/package/NodaTime/2.4.0
-
-# NodaTime.Testing
-curl -sSL -o packages/NodaTime.Testing-1.0.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.0.0
-curl -sSL -o packages/NodaTime.Testing-1.1.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.1.0
-curl -sSL -o packages/NodaTime.Testing-1.2.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.2.0
-curl -sSL -o packages/NodaTime.Testing-1.3.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.3.2
-curl -sSL -o packages/NodaTime.Testing-1.4.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/1.4.0
-curl -sSL -o packages/NodaTime.Testing-2.0.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.0.0
-curl -sSL -o packages/NodaTime.Testing-2.1.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.1.0
-curl -sSL -o packages/NodaTime.Testing-2.2.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.2.0
-curl -sSL -o packages/NodaTime.Testing-2.3.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.3.0
-curl -sSL -o packages/NodaTime.Testing-2.4.x.nupkg https://www.nuget.org/api/v2/package/NodaTime.Testing/2.4.0
+rm -rf main
+rm -rf serialization
 
 cat > README.md <<"End-of-readme"
 The contents of this branch are generated by the `build/buildhistory.sh`
@@ -179,8 +166,13 @@ branches:
   - history
 End-of-travis
 
+# Preserve previous snippets for 2.1-2.3
+git checkout HEAD -- NodaTime/2.1.x/overwrite/snippets.md
+git checkout HEAD -- NodaTime/2.2.x/overwrite/snippets.md
+git checkout HEAD -- NodaTime/2.3.x/overwrite/snippets.md
+
 git add --all
-git commit -m "Regenerated history directory"
+git commit -q -m "Regenerated history directory"
 
 cd ..
 echo "Done. Check for errors, then push to github"

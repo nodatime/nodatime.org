@@ -11,17 +11,26 @@ namespace ReleaseDiffGenerator
     {
         static int Main(string[] args)
         {
-            if (args.Length < 2)
+            if (args.Length != 1)
             {
-                Console.WriteLine("Usage: ReleaseDiffGenerator <old release directory> <new release directory> [...]");
+                Console.WriteLine("Usage: ReleaseDiffGenerator <package directory>");
                 return 1;
             }
 
-            var releases = args.Select(arg => Release.Load(arg, Path.GetFileName(arg))).ToArray();
-            // Generate diffs pair-wise
-            for (int i = 1; i < args.Length; i++)
+            var packageDirectory = args[0];
+            if (!Directory.Exists(packageDirectory))
             {
-                GenerateDiffs(releases[i - 1], releases[i], args[i]);
+                Console.WriteLine($"Package directory '{packageDirectory}' does not exist.");
+                return 1;
+            }
+
+            var versions = Directory.GetDirectories(packageDirectory).Select(dir => Path.GetRelativePath(packageDirectory, dir)).ToList();
+
+            var releases = versions.Select(version => Release.Load(Path.Combine(packageDirectory, version, "api"), version)).ToArray();
+            // Generate diffs pair-wise
+            for (int i = 1; i < versions.Count; i++)
+            {
+                GenerateDiffs(releases[i - 1], releases[i], Path.Combine(packageDirectory, versions[i], "api"));
             }
             return 0;
         }
@@ -62,7 +71,7 @@ namespace ReleaseDiffGenerator
 
             // TODO:
             // - Linking of removed items (can't be a normal link, as it has to be to previous version)
-            using (var writer = File.CreateText(Path.Combine(destination, "api", "changes.md")))
+            using (var writer = File.CreateText(Path.Combine(destination, "changes.md")))
             {
                 writer.WriteLine($"# API changes from {oldRelease.Version} to {newRelease.Version}");
 
@@ -71,7 +80,7 @@ namespace ReleaseDiffGenerator
                 WriteChanges(writer, newlyObsoleteMembers, "Newly obsolete", true, ""); // No need to put "(obsolete)" on everything...
             }
 
-            var tocFile = Path.Combine(destination, "api", "toc.yml");
+            var tocFile = Path.Combine(destination, "toc.yml");
             var toc = File.ReadAllLines(tocFile).ToList();
             if (!toc[1].StartsWith("- name: Changes"))
             {

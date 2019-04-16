@@ -2,6 +2,7 @@
 using MoreLinq;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,44 +12,51 @@ namespace DocfxAnnotationGenerator
 {
     class Program
     {
-        private static readonly string[] packages = { "NodaTime", "NodaTime.Testing" };
-        private static readonly string[] unstableFrameworks = { "netstandard2.0" };
-
-        private readonly IEnumerable<Release> releases;
-        private readonly Dictionary<string, List<BuildAssembly>> reflectionDataByVersion;
-        private readonly string docfxRoot;
+        private readonly string root;
+        private readonly string package;
+        private readonly IReadOnlyList<string> versions;
+        private readonly Dictionary<string, IImmutableList<BuildAssembly>> reflectionDataByVersion;
+        private readonly IReadOnlyList<Release> releases;
 
         private static int Main(string[] args)
         {
-            if (args.Length < 4)
+            if (args.Length == 0)
             {
-                Console.WriteLine("Arguments: <docfx root> <packages dir> <src root> <version1> <version2> ...");
-                Console.WriteLine("The docfx root dir should contain the obj directory");
-                Console.WriteLine("The packages dir should contain the nuget packages (as NodaTime-1.0.x.nupkg etc)");
-                Console.WriteLine("The src root dir should contain the 'unstable' code");
+                Console.WriteLine("Arguments: <package directories>");
+                Console.WriteLine("The package directories are expected to each multiple versions, with the nuget package within each version directory");
                 return 1;
             }
 
-
-            var instance = new Program(args.Skip(3), args[0], args[1], args[2]);
-            if (!instance.CheckMembers())
+            foreach (var package in args)
             {
-                return 1;
+                Console.WriteLine($"Annotating {Path.GetFileName(package)}");
+                var instance = new Program(package);
+                /* TODO: Reinstate this once we've fixed the Json.NET package docs; just do it for unstable though.
+                if (!instance.CheckMembers())
+                {
+                    return 1;
+                }*/
+                instance.CreateDirectories();
+                instance.WriteSinceAnnotations();
+                instance.WriteAvailabilityAnnotations();
+                instance.ModifyYamlFiles();
             }
-            instance.CreateDirectories();
-            instance.WriteSinceAnnotations();
-            instance.WriteAvailabilityAnnotations();
-            instance.ModifyYamlFiles();
+
             return 0;
         }
 
-        private Program(IEnumerable<string> versions, string docfxRoot, string packagesDir, string srcRoot)
+        private Program(string root)
         {
-            this.docfxRoot = docfxRoot;
+            this.root = root;
+            package = Path.GetFileName(root);
+            versions = Directory.GetDirectories(root).Select(dir => Path.GetRelativePath(root, dir)).ToList();
+            var packageName = Path.GetFileName(root);
+
             Console.WriteLine("Loading docfx metadata");
-            releases = versions.Select(v => Release.Load(Path.Combine(docfxRoot, "obj", v), v)).ToList();
+            releases = versions.Select(v => Release.Load(Path.Combine(root, v, "api"), v)).ToList();
             Console.WriteLine("Loading assemblies");
-            reflectionDataByVersion = versions.ToDictionary(v => v, v => LoadAssemblies(v, packagesDir, srcRoot).ToList());
+            reflectionDataByVersion = versions
+                .ToDictionary(v => v, v => NuGetPackage.Load(Directory.GetFiles(Path.Combine(root, v), "*.nupkg").Single()).Assemblies);
         }
 
         private bool CheckMembers()
@@ -57,7 +65,9 @@ namespace DocfxAnnotationGenerator
             var expectedMissingUids = new[]
             {
                 "NodaTime.TimeZones.BclDateTimeZoneSource.#ctor",
-                "NodaTime.Text.CompositePatternBuilder`1.#ctor"
+                "NodaTime.Text.CompositePatternBuilder`1.#ctor",
+                "NodaTime.Serialization.JsonNet.NodaConverterBase`1.#ctor",
+
             };
 
             bool result = true;
@@ -69,6 +79,7 @@ namespace DocfxAnnotationGenerator
                     .Select(member => member.DocfxUid)
                     .Where(uid => !release.MembersByUid.ContainsKey(uid))
                     .Where(uid => !expectedMissingUids.Contains(uid))
+                    .Distinct()
                     .ToList();
                 if (missing.Count != 0)
                 {
@@ -101,7 +112,7 @@ namespace DocfxAnnotationGenerator
                 var frameworksByUid = 
                     assemblies.SelectMany(asm => asm.Members.Select(mem => new { Uid = mem.DocfxUid, Framework = asm.TargetFramework }))
                               .ToLookup(pair => pair.Uid, pair => pair.Framework);
-                var file = Path.Combine(GetOverwriteDirectory(release), "availability.md");
+                var file = Path.Combine(GetOverwriteDirectory(release), $"{package}-availability.md");
                 using (var writer = File.CreateText(file))
                 {
                     foreach (var uid in release.Members.Where(m => m.Type != DocfxMember.TypeKind.Namespace).Select(m => m.Uid))
@@ -110,7 +121,7 @@ namespace DocfxAnnotationGenerator
                         if (availability == "")
                         {
                             // We can refine this later...
-                            throw new Exception($"No reflection metadata for {uid}");
+                            throw new Exception($"No reflection metadata for {uid} in release {release.Version}");
                         }
                         writer.WriteLine("---");
                         writer.WriteLine($"uid: {uid}");
@@ -129,7 +140,7 @@ namespace DocfxAnnotationGenerator
 
             foreach (Release release in releases)
             {
-                var file = Path.Combine(GetOverwriteDirectory(release), "since.md");
+                var file = Path.Combine(GetOverwriteDirectory(release), $"{package}-since.md");
                 using (var writer = File.CreateText(file))
                 {
                     foreach (var uid in release.Members.Select(m => m.Uid))
@@ -277,10 +288,14 @@ namespace DocfxAnnotationGenerator
                     description.Value += suffix;
                 }
             }
+            /* TODO: Reinstate this, if we can get doc inheritance to work properly.
+             * At the moment, we can't inherit documentation from one project to another, which is annoying :(
+             * This is a docfx limitation.
             if (errors.Count != 0)
             {
                 throw new Exception($"UIDs with no return description:{Environment.NewLine}{string.Join(Environment.NewLine, errors)}");
             }
+            */
         }
 
         private YamlMappingNode FindDocument(Release release, Dictionary<string, YamlStream> files, string uid)
@@ -312,27 +327,6 @@ namespace DocfxAnnotationGenerator
         }
 
         private string GetOverwriteDirectory(Release release)
-            => Path.Combine(docfxRoot, "obj", release.Version, "overwrite");
-
-        private static IEnumerable<BuildAssembly> LoadAssemblies(string version, string packagesDir, string srcRoot)
-        {
-            if (version == "unstable")
-            {
-                return from package in packages
-                       from framework in unstableFrameworks
-                       let file = $"{package}.dll"
-                       let fullFile = Path.Combine(srcRoot, package, "bin", "Debug", framework, file)
-                       where File.Exists(fullFile)
-                       select BuildAssembly.Load(framework, file, fullFile);
-            }
-            else
-            {
-                return packages
-                    .Select(p => Path.Combine(packagesDir, $"{p}-{version}.nupkg"))
-                    .Where(file => File.Exists(file))
-                    .Select(file => NuGetPackage.Load(file))
-                    .SelectMany(pkg => pkg.Assemblies);
-            }
-        }
+            => Path.Combine(root, release.Version, "overwrite");
     }
 }
