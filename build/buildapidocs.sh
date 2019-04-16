@@ -5,80 +5,86 @@ set -e
 source docfx_functions.sh
 install_docfx
 
+copy_metadata() {
+  version=$1
+  target=$2
+  shift 2
+  mkdir -p tmp/web/$target/api
+  mkdir -p tmp/web/$target/overwrite
+  cp docfx/toc.yml tmp/web/$target
+
+  for package in $*
+  do
+    cp tmp/metadata/$package/$version/api/* tmp/web/$target/api
+    if [ -d tmp/metadata/$package/$version/overwrite ]
+    then
+      cp tmp/metadata/$package/$version/overwrite/* tmp/web/$target/overwrite
+    fi
+  done
+
+  # Combine TOCs
+  > tmp/web/$target/api/toc.yml
+  for package in $*
+  do
+    cat tmp/metadata/$package/$version/api/toc.yml >> tmp/web/$target/api/toc.yml
+  done
+}
+
 if [[ ! -d history ]]
 then
   echo "Cloning history branch"
   git clone https://github.com/nodatime/nodatime.org.git -q --depth 1 -b history history
 fi
 
-rm -rf tmp/docfx
+rm -rf tmp
+mkdir -p tmp/metadata
 
 echo "Copying metadata for previous versions"
-for version in 1.0.x 1.1.x 1.2.x 1.3.x 1.4.x 2.0.x 2.1.x 2.2.x 2.3.x 2.4.x; do
-  mkdir -p tmp/docfx/obj/$version
-  cp -r history/$version/api tmp/docfx/obj/$version
-  if [[ -d history/$version/overwrite ]]
-  then
-    cp -r history/$version/overwrite tmp/docfx/obj/$version
-  fi
-  cp docfx/toc.yml tmp/docfx/obj/$version
-done
+cp -r history/Noda* tmp/metadata
 
-echo "Building metadata for current branch"
-
-# Main source code
-mkdir tmp/docfx/unstable
-# Note: this avoids copying the .git directory
-cp -r ../../nodatime/* tmp/docfx/unstable
-dotnet build tmp/docfx/unstable/src/NodaTime.sln
- 
-# Serialization
-mkdir -p tmp/docfx/serialization
-cp -r ../../nodatime.serialization/* tmp/docfx/serialization
-dotnet build tmp/docfx/serialization/src/NodaTime.Serialization.sln
-
-# Metadata build for main source code and serialization
-cp -r docfx/template tmp/docfx
-cp docfx/docfx-unstable.json tmp/docfx/docfx.json
-"$DOCFX" metadata tmp/docfx/docfx.json -f --warningsAsErrors
-
-cp docfx/toc.yml tmp/docfx/obj/unstable
-cp docfx/serialization-toc.yml tmp/docfx/obj/serialization/toc.yml
-
-echo "Building all tools"
-dotnet build Tools.sln
+echo "Building packages and metadata for local code (may not be committed)"
+dotnet pack -v quiet ../../nodatime/src/NodaTime -o $PWD/tmp/metadata/NodaTime/unstable
+dotnet pack -v quiet ../../nodatime/src/NodaTime.Testing -o $PWD/tmp/metadata/NodaTime.Testing/unstable
+dotnet pack -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.JsonNet -o $PWD/tmp/metadata/NodaTime.Serialization.JsonNet/unstable
+dotnet pack -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.Protobuf -o $PWD/tmp/metadata/NodaTime.Serialization.Protobuf/unstable
+generate_metadata tmp/metadata ../../nodatime/src unstable netstandard2.0 NodaTime NodaTime.Testing
+generate_metadata tmp/metadata ../../nodatime.serialization/src unstable netstandard2.0 NodaTime.Serialization.JsonNet NodaTime.Serialization.Protobuf
 
 # Awooga! Awooga! Horrible hack! docfx doesn't support C# 8 yet, and refers to nullable
 # references types as if they were nullable value types. Fix this up in a purely textual way for now.
-dotnet run -p DocfxNullableReferenceFixer -- --fix tmp/docfx/obj/unstable/api
+dotnet run -p DocfxNullableReferenceFixer -- --fix tmp/metadata/NodaTime/unstable/api
+dotnet run -p DocfxNullableReferenceFixer -- --fix tmp/metadata/NodaTime.Testing/unstable/api
 
-# Create diffs between versions and other annotations
+echo "Building all tools"
+dotnet build -v quiet Tools.sln
 
-dotnet run -p ReleaseDiffGenerator -- \
-  tmp/docfx/obj/1.0.x \
-  tmp/docfx/obj/1.1.x \
-  tmp/docfx/obj/1.2.x \
-  tmp/docfx/obj/1.3.x \
-  tmp/docfx/obj/1.4.x \
-  tmp/docfx/obj/2.0.x \
-  tmp/docfx/obj/2.1.x \
-  tmp/docfx/obj/2.2.x \
-  tmp/docfx/obj/2.3.x \
-  tmp/docfx/obj/2.4.x \
-  tmp/docfx/obj/unstable
+# Create diffs between versions and other annotations, just for NodaTime
+dotnet run -p ReleaseDiffGenerator -- tmp/metadata/NodaTime
 
 # Extract annotations
-dotnet run -p DocfxAnnotationGenerator -- \
-    tmp/docfx history/packages tmp/docfx/unstable/src 1.0.x 1.1.x 1.2.x 1.3.x 1.4.x 2.0.x 2.1.x 2.2.x 2.3.x 2.4.x unstable
+dotnet run -p DocfxAnnotationGenerator -- tmp/metadata/*
 
 # Extract snippets from NodaTime.Demo (unstable only, for now)
-dotnet publish tmp/docfx/unstable/src/NodaTime.Demo
-dotnet run -p SnippetExtractor -- tmp/docfx/unstable/src/NodaTime.sln NodaTime.Demo tmp/docfx/obj/unstable/overwrite
+dotnet publish -v quiet ../../nodatime/src/NodaTime.Demo
+dotnet run -p SnippetExtractor -- ../../nodatime/src/NodaTime.sln NodaTime.Demo tmp/metadata/NodaTime/unstable/overwrite
+
+# Reorganize the files to suit docfx build
+# NodaTime and NodaTime.Testing
+for dir in tmp/metadata/NodaTime/*
+do
+  version=$(basename $dir)
+  copy_metadata $version $version NodaTime NodaTime.Testing
+done
+
+copy_metadata unstable serialization NodaTime.Serialization.JsonNet NodaTime.Serialization.Protobuf
+cp docfx/serialization-toc.yml tmp/web/serialization/toc.yml
 
 # Put common overwrite files where they can be used by all versions
-mkdir -p tmp/docfx/commonoverwrite
-cp docfx/namespaces.md tmp/docfx/commonoverwrite
+mkdir -p tmp/web/commonoverwrite
+cp docfx/namespaces.md tmp/web/commonoverwrite
 
+cp docfx/docfx-web.json tmp
+cp -r docfx/template tmp
 echo "Running main docfx build"
-"$DOCFX" build tmp/docfx/docfx.json
-cp docfx/logo.svg tmp/docfx/_site
+"$DOCFX" build --disableGitFeatures --logLevel Warning tmp/docfx-web.json
+cp docfx/logo.svg tmp/site

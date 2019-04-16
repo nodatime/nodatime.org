@@ -14,14 +14,14 @@ if [[ "$1" != "--skip-api" ]]
 then
   ./buildapidocs.sh
   rm -rf ../src/NodaTime.Web/docfx
-  cp -r tmp/docfx/_site ../src/NodaTime.Web/docfx
+  cp -r tmp/site ../src/NodaTime.Web/docfx
 fi
 
 # Build the web site ASP.NET Core
 rm -rf ../src/NodaTime.Web/bin/Release
 # Make sure minification happens before publish...
-dotnet build -c Release ../src/NodaTime.Web
-dotnet publish -c Release ../src/NodaTime.Web
+dotnet build -v quiet -c Release ../src/NodaTime.Web
+dotnet publish -v quiet -c Release ../src/NodaTime.Web
 
 # Fix up blazor.config to work in Unix
 # (Blazor is currently disabled.)
