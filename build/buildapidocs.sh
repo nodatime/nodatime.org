@@ -83,6 +83,9 @@ cp docfx/serialization-toc.yml tmp/web/serialization/toc.yml
 mkdir -p tmp/web/commonoverwrite
 cp docfx/namespaces.md tmp/web/commonoverwrite
 
+# Copy local xref maps
+cp -r history/xrefs tmp
+
 cp docfx/docfx-web.json tmp
 cp -r docfx/template tmp
 echo "Running main docfx build"
