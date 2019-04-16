@@ -31,11 +31,10 @@ namespace DocfxAnnotationGenerator
             {
                 Console.WriteLine($"Annotating {Path.GetFileName(package)}");
                 var instance = new Program(package);
-                /* TODO: Reinstate this once we've fixed the Json.NET package docs; just do it for unstable though.
                 if (!instance.CheckMembers())
                 {
                     return 1;
-                }*/
+                }
                 instance.CreateDirectories();
                 instance.WriteSinceAnnotations();
                 instance.WriteAvailabilityAnnotations();
@@ -61,35 +60,28 @@ namespace DocfxAnnotationGenerator
 
         private bool CheckMembers()
         {
-            // TODO: Either fix these in historical versions, or at least stop ignoring them from now on.
-            var expectedMissingUids = new[]
-            {
-                "NodaTime.TimeZones.BclDateTimeZoneSource.#ctor",
-                "NodaTime.Text.CompositePatternBuilder`1.#ctor",
-                "NodaTime.Serialization.JsonNet.NodaConverterBase`1.#ctor",
-
-            };
-
             bool result = true;
-            foreach (var release in releases)
+            // We only check the current source code. We can't easily go back and fix old comments.
+            var unstableRelease = releases.SingleOrDefault(r => r.Version == "unstable");
+            if (unstableRelease is null)
             {
-                var reflectionData = reflectionDataByVersion[release.Version];
-                var missing = reflectionData
-                    .SelectMany(rd => rd.Members)
-                    .Select(member => member.DocfxUid)
-                    .Where(uid => !release.MembersByUid.ContainsKey(uid))
-                    .Where(uid => !expectedMissingUids.Contains(uid))
-                    .Distinct()
-                    .ToList();
-                if (missing.Count != 0)
+                return true;
+            }
+            var reflectionData = reflectionDataByVersion[unstableRelease.Version];
+            var missing = reflectionData
+                .SelectMany(rd => rd.Members)
+                .Select(member => member.DocfxUid)
+                .Where(uid => !unstableRelease.MembersByUid.ContainsKey(uid))
+                .Distinct()
+                .ToList();
+            if (missing.Count != 0)
+            {
+                Console.WriteLine($"Unstable release is missing members in docfx:");
+                foreach (var uid in missing)
                 {
-                    Console.WriteLine($"Release {release.Version} is missing members in docfx:");
-                    foreach (var uid in missing)
-                    {
-                        Console.WriteLine($"  {uid}");
-                    }
-                    result = false;
+                    Console.WriteLine($"  {uid}");
                 }
+                result = false;
             }
             return result;
         }
