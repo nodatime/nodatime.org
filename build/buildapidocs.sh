@@ -23,11 +23,12 @@ copy_metadata() {
   done
 
   # Combine TOCs
-  > tmp/web/$target/api/toc.yml
+  tocs=()
   for package in $*
   do
-    cat tmp/metadata/$package/$version/api/toc.yml >> tmp/web/$target/api/toc.yml
+    tocs+="tmp/metadata/$package/$version/api/toc.yml "
   done
+  dotnet run -p TocCombiner -- ${tocs[*]} > tmp/web/$target/api/toc.yml
 }
 
 if [[ ! -d history ]]
