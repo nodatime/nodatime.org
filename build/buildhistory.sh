@@ -148,6 +148,13 @@ fetch_packages NodaTime.Testing 1.0 1.1 1.2 1.3 1.4 2.0 2.1 2.2 2.3 2.4
 fetch_packages NodaTime.Serialization.JsonNet 1.2 1.3 1.4 2.0 2.1 2.2
 fetch_packages NodaTime.Serialization.Protobuf 1.0
 
+echo "Generating xref maps"
+mkdir xrefs
+dotnet run -p ../SandcastleXrefGenerator -- \
+    Newtonsoft.Json 12.0.1 netstandard2.0 \
+    https://www.newtonsoft.com/json/help/html/ \
+    > xrefs/Newtonsoft.Json-xrefmap.yml
+
 # Clean up
 rm -rf main
 rm -rf serialization
@@ -170,6 +177,7 @@ End-of-travis
 git checkout HEAD -- NodaTime/2.1.x/overwrite/snippets.md
 git checkout HEAD -- NodaTime/2.2.x/overwrite/snippets.md
 git checkout HEAD -- NodaTime/2.3.x/overwrite/snippets.md
+
 
 git add --all
 git commit -q -m "Regenerated history directory"
