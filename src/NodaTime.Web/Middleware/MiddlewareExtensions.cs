@@ -13,5 +13,8 @@ namespace NodaTime.Web.Middleware
     {
         public static IApplicationBuilder UseSingleLineResponseLogging(this IApplicationBuilder builder) =>
             builder.UseMiddleware<SingleLineResponseLoggingMiddleware>();
+
+        public static IApplicationBuilder UseReferralNotFoundLogging(this IApplicationBuilder builder) =>
+            builder.UseMiddleware<ReferralNotFoundLoggingMiddleware>();
     }
 }
