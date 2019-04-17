@@ -83,7 +83,9 @@ namespace NodaTime.Web
             app.UseHealthChecks("/healthz");
             StackdriverOptions.Configure(app, env, loggerFactory);
             NetworkOptions.Configure(app, env);
+
             app.UseSingleLineResponseLogging();
+            app.UseReferralNotFoundLogging();
 
             if (env.IsDevelopment())
             {
