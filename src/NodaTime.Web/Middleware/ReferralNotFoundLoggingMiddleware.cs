@@ -43,7 +43,12 @@ namespace NodaTime.Web.Middleware
             {
                 return;
             }
-            var path = context.Request.Path;
+            var path = context.Request.Path.ToString();
+            // We see a lot of malware probing like this
+            if (path.StartsWith("//"))
+            {
+                return;
+            }
             var referer = context.Request.GetTypedHeaders().Referer?.ToString();
             if (referer is null)
             {
