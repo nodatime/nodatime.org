@@ -11,12 +11,10 @@ The following standard patterns are supported:
   The ISO-8601 representation of this instant in UTC, using the
   pattern "yyyy-MM-ddTHH:mm:ss'Z'" and always using the invariant culture.
   This is the default format pattern.
-
 - `n`: Numeric with thousand separators.
   This gives the number of ticks since the Unix epoch as an integer,
   including thousands separators. Sample on September 16th 2011:
   "13,161,548,674,473,131"
-
 - `d`: Numeric without thousand separators.
   This gives the number of ticks since the Unix epoch as an integer,
   not including thousands separators. Sample on September 16th 2011:

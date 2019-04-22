@@ -13,22 +13,15 @@ The following standard patterns are supported:
   `LocalDateTime`). Note that this only has 7 decimal digits for sub-second precision, so it can lose data
   for values which have a non-zero "nanosecond of tick". This lack of precision is maintained for compatibility
   with the BCL. Use `R` for the equivalent pattern with 9 digits of sub-second precision.
-
 - `r`: The full round-trip pattern including calendar system, which is always "uuuu'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffff '('c')'" using the invariant culture.
-
 - `R`: The full round-trip pattern without calendar system, which is always "uuuu'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffff" using the invariant culture.
-
 - `s`: The sortable pattern, which is always "uuuu'-'MM'-'dd'T'HH':'mm':'ss" using the invariant culture. (Note: this is only truly sortable for years within the range \[0-9999\].)
-
 - `f`: The culture's [long date pattern](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longdatepattern.aspx) followed by a space,
   followed by the [short time pattern](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shorttimepattern.aspx).
-
 - `F`: The full date and time pattern as defined by the culture's [`DateTimeFormatInfo.FullDateTimePattern`](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.fulldatetimepattern.aspx)
   For example, in the invariant culture this is "dddd, dd MMMM yyyy HH:mm:ss".
-
 - `g`: The culture's [short date pattern](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shortdatepattern.aspx) followed by a space,
   followed by the [short time pattern](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shorttimepattern.aspx).
-
 - `G`: The culture's [short date pattern](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shortdatepattern.aspx) followed by a space,
   followed by the [long time pattern](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longtimepattern.aspx).
   This is the default format pattern.
