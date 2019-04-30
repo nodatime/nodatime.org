@@ -7,11 +7,6 @@
 
 declare -r publish=$output/nodatime.org/src/NodaTime.Web/bin/Release/netcoreapp2.2/publish
 
-# Remove the Windows and OSX gRPC binaries; replace the unused Linux one
-# with an empty file. (It has to be present, but can be empty.)
-rm -rf $publish/runtimes/{osx,win}
-> $publish/runtimes/linux/native/libgrpc_csharp_ext.x86.so
-
 # Add diagnostic text files
 echo "Combined: $combined_commit" > $publish/wwwroot/commit.txt
 echo "nodatime: $nodatime_commit" >> $publish/wwwroot/commit.txt
