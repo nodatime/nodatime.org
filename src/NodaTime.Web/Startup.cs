@@ -33,9 +33,7 @@ namespace NodaTime.Web
         private static readonly MediaTypeHeaderValue TextHtml = new MediaTypeHeaderValue("text/html");
 
         private IConfigurationRoot Configuration { get; set; }
-        private IHostingEnvironment CurrentEnvironment { get; set; }
-        public StackdriverOptions StackdriverOptions { get; }
-        public NetworkOptions NetworkOptions { get; }
+        private NetworkOptions NetworkOptions { get; }
 
         public Startup(IHostingEnvironment env)
         {
@@ -45,8 +43,6 @@ namespace NodaTime.Web
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
-            CurrentEnvironment = env;
-            StackdriverOptions = Configuration.GetSection("Stackdriver").Get<StackdriverOptions>();
             NetworkOptions = Configuration.GetSection("Network").Get<NetworkOptions>();
         }
 
@@ -55,7 +51,6 @@ namespace NodaTime.Web
             // Add framework services.
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            StackdriverOptions.ConfigureServices(services, CurrentEnvironment);
             NetworkOptions.ConfigureServices(services);
 
             // TODO: Add actual health checks, maybe.
@@ -81,7 +76,6 @@ namespace NodaTime.Web
         {
             // Note: health checks come before HTTPS redirection so we get a 200 even on HTTP.
             app.UseHealthChecks("/healthz");
-            StackdriverOptions.Configure(app, env, loggerFactory);
             NetworkOptions.Configure(app, env);
 
             app.UseSingleLineResponseLogging();
