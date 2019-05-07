@@ -83,7 +83,7 @@ namespace SnippetExtractor
                             .WithExpression(consoleWriteLineExpression)
                             .WithArgumentList(SyntaxFactory.ArgumentList().AddArguments(newNode.ArgumentList.Arguments[1]))
                             .WithTriviaFrom(newNode);
-                    case IMethodSymbol method when method.ContainingType == assertType && method.Name == "True":
+                    case IMethodSymbol method when method.ContainingType == assertType && (method.Name == "True" || method.Name == "False"):
                         return newNode
                             .WithExpression(consoleWriteLineExpression)
                             .WithArgumentList(SyntaxFactory.ArgumentList().AddArguments(newNode.ArgumentList.Arguments[0]))
