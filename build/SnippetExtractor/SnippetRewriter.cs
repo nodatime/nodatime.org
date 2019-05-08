@@ -5,6 +5,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Formatting;
 using Microsoft.CodeAnalysis.Scripting;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,9 @@ namespace SnippetExtractor
             var snippetType = model.Compilation.GetTypeByMetadataName("NodaTime.Demo.Snippet");
             var root = tree.GetRoot();
             var newRoot = root.ReplaceNodes(root.DescendantNodes().OfType<InvocationExpressionSyntax>(), ReplaceNode);
+
+            newRoot = Formatter.Format(newRoot, new AdhocWorkspace());
+
             // Force it back to have a kind of Script... not sure why this is required.
             var newTree = newRoot.SyntaxTree.WithRootAndOptions(newRoot, tree.Options);
             return compilation.ReplaceSyntaxTree(tree, newTree);
