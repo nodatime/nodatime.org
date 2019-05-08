@@ -24,10 +24,10 @@ namespace NodaTime.Web.Controllers
         public IActionResult Index() => View(repository.ListEnvironments());
 
         [Route("/benchmarks/environments/{id}")]
-        public IActionResult ViewEnvironment(string id) => View(repository.GetEnvironment(id));
+        public IActionResult ViewEnvironment(string id) => ViewOrNotFound(repository.GetEnvironment(id));
 
         [Route("/benchmarks/runs/{runId}")]
-        public IActionResult ViewRun(string runId) => View(repository.GetRun(runId));
+        public IActionResult ViewRun(string runId) => ViewOrNotFound(repository.GetRun(runId));
 
         [Route("/benchmarks/types/{typeId}")]
         public IActionResult ViewType(string typeId)
@@ -48,6 +48,10 @@ namespace NodaTime.Web.Controllers
         public IActionResult CompareTypesByEnvironment(string typeId)
         {
             var left = repository.GetType(typeId);
+            if (left == null)
+            {
+                return NotFound();
+            }
             var runs = repository.ListEnvironments()
                 .Select(e => e.Runs.FirstOrDefault(r => r.Commit == left.Run.Commit))
                 .Where(r => r != null && r != left.Run)
@@ -78,7 +82,7 @@ namespace NodaTime.Web.Controllers
         }
 
         [Route("/benchmarks/benchmarks/{benchmarkId}")]
-        public IActionResult ViewBenchmark(string benchmarkId) => View(repository.GetBenchmark(benchmarkId));
+        public IActionResult ViewBenchmark(string benchmarkId) => ViewOrNotFound(repository.GetBenchmark(benchmarkId));
 
         [Route("/benchmarks/benchmarks/{benchmarkId}/history")]
         public IActionResult ViewBenchmarkHistory(string benchmarkId)
@@ -102,6 +106,9 @@ namespace NodaTime.Web.Controllers
             repository.GetEnvironment(run.BenchmarkEnvironmentId)?.Runs
                 .SkipWhile(r => r.BenchmarkRunId != run.BenchmarkRunId)
                 .Skip(1)
-                .FirstOrDefault();            
+                .FirstOrDefault();
+
+        private IActionResult ViewOrNotFound(object? model) =>
+            model == null ? (IActionResult) NotFound() : View(model);
     }
 }
