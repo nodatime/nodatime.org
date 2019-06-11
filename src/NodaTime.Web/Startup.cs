@@ -68,6 +68,7 @@ namespace NodaTime.Web
 #endif
             var storageOptions = Configuration.GetSection("Storage").Get<StorageOptions>();
             storageOptions.ConfigureServices(services);
+            services.AddSingleton(Configuration.GetSection("TryDotNet").Get<TryDotNetOptions>());
             services.AddSingleton<MarkdownLoader>();
             services.AddMemoryCache();
         }
