@@ -25,7 +25,7 @@ namespace NodaTime.Web.ViewModels
             Right = right;
         }
 
-        public IEnumerable<(Benchmark description, Statistics left, Statistics right, bool important)> GetBenchmarks()
+        public IEnumerable<(Benchmark description, Statistics? left, Statistics? right, bool important)> GetBenchmarks()
         {
             // TODO: Handle missing types
             var leftBenchmarks = Left.Benchmarks.ToDictionary(b => b.Method);
@@ -39,7 +39,7 @@ namespace NodaTime.Web.ViewModels
             }
         }
 
-        private static bool IsImportant(Statistics left, Statistics right)
+        private static bool IsImportant(Statistics? left, Statistics? right)
         {
             if (left == null || right == null)
             {
