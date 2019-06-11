@@ -18,7 +18,6 @@ and rerun it to see the results.
 
 <div style="height:250px; padding:8px 0px">
     <iframe style="position:relative;top:0px;width:100%;height:100%"
-            src="https://try.dot.net/v2/editor?hostOrigin=https:%2F%2Fnodatime.org&waitForConfiguration=true"
             id="trydotnet-editor"></iframe>
 </div>
 <div><button id="trydotnet-run" class="trydotnetbutton">Run!</button></div>
