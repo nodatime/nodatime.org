@@ -7,6 +7,11 @@ details.
 See the [end of this page](#tzdb-updates) for the policy on which
 versions receive patch updates for TZDB releases.
 
+## 2.4.6, released 2019-07-02 with tzdb 2019b.
+
+This patch release simply updates the built-in TZDB time
+zone data to 2019b.
+
 ## 2.4.5, released 2019-03-26 with tzdb 2019a.
 
 This patch release simply updates the built-in TZDB time
