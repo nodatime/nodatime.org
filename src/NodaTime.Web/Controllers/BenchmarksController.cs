@@ -56,6 +56,7 @@ namespace NodaTime.Web.Controllers
                 .Select(e => e.Runs.FirstOrDefault(r => r.Commit == left.Run.Commit))
                 .Where(r => r != null && r != left.Run)
                 .Select(r => r.Types_.FirstOrDefault(t => t.FullTypeName == left.FullTypeName))
+                .Where(t => t != null)
                 .ToList();
             // Always make the selected run the first one.
             runs.Insert(0, left);
