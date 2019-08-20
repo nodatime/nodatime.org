@@ -25,11 +25,11 @@ namespace NodaTime.Web.Controllers
             {
                 url += "index";
             }
-
+            string origin = $"{Request.Scheme}://{Request.Host}";
             var page = loader.TryGetBundle(bundle)?.TryGetPage(url);
             if (page != null)
             {
-                return View("Docs", new MarkdownPageViewModel(tryDotNetOptions.IFrameSrc, page));
+                return View("Docs", new MarkdownPageViewModel(tryDotNetOptions.IFrameSrc, origin, page));
             }
             var resource = loader.TryGetBundle(bundle)?.TryGetResource(url);
             if (resource != null)

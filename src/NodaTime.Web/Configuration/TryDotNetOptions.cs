@@ -12,8 +12,7 @@ namespace NodaTime.Web.Configuration
     public class TryDotNetOptions
     {
         public string? Agent { get; set; }
-        public string? Origin { get; set; }
         public string Path { get; set; } = "v2/editor";
-        public IHtmlContent IFrameSrc => new HtmlString($"{Agent}/{Path}?hostOrigin={Origin}&waitForConfiguration=true");
+        public IHtmlContent IFrameSrc => new HtmlString($"{Agent}/{Path}?waitForConfiguration=true");
     }
 }
