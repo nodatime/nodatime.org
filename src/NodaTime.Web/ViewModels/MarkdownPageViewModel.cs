@@ -10,9 +10,10 @@ namespace NodaTime.Web.ViewModels
     public class MarkdownPageViewModel
     {
         public IHtmlContent TryDotNetSrc { get; }
+        public string HostOrigin { get; }
         public MarkdownPage Page { get; }
 
-        public MarkdownPageViewModel(IHtmlContent tryDotNetSrc, MarkdownPage page) =>
-            (TryDotNetSrc, Page) = (tryDotNetSrc, page);
+        public MarkdownPageViewModel(IHtmlContent tryDotNetSrc, string hostOrigin, MarkdownPage page) =>
+            (TryDotNetSrc, HostOrigin, Page) = (tryDotNetSrc, hostOrigin, page);
     }
 }
