@@ -7,6 +7,22 @@ details.
 See the [end of this page](#tzdb-updates) for the policy on which
 versions receive patch updates for TZDB releases.
 
+## 3.0.0-beta01, released 2019-09-03 with tzdb 2019b.
+
+First beta release of 3.0.0.
+
+New features since 3.0.0-alpha01:
+
+- Provide dictionaries from TZDB ID to Windows ID and vice versa [issue 274]
+- Provide Zone/Clock/Calendar properties on ZonedClock [issue 1362]
+- Add LocalTime.FromHoursSinceMidnight and FromMinutesSinceMidnight [issue 1366]
+- Introduce a date adjuster to add a period when invoked
+- Add o and O invariant round-trip standard patterns to LocalTime [issue 1361]
+- Add standard LocalDate patterns for ISO and "full round trip with calendar" [issue 1363]
+- Use 'S' as the extended ISO standard pattern specifier [issue 1219]
+- Add a template value to InstantPattern (like other patterns)
+- Add a new roundtrip pattern for durations [issue 1290]
+
 ## 2.4.6, released 2019-07-02 with tzdb 2019b.
 
 This patch release simply updates the built-in TZDB time
