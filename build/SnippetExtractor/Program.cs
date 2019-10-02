@@ -82,13 +82,13 @@ namespace SnippetExtractor
             var solution = await workspace.OpenSolutionAsync(solutionFile);
             var project = solution.Projects.Single(p => p.Name == projectName);
             // It's horrible to have this hardcoded here, but it's the simplest thing that works.
-            var netcoreapp20 = @"c:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.0.9";
-            var netcoreapp20Assemblies = Directory.GetFiles(netcoreapp20, "System*.dll")
-                .Concat(Directory.GetFiles(netcoreapp20, "netstandard*.dll"))
-                .Concat(Directory.GetFiles(netcoreapp20, "mscorlib*.dll"));
+            var netcoreapp30 = @"c:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.0";
+            var netcoreapp30Assemblies = Directory.GetFiles(netcoreapp30, "System*.dll")
+                .Concat(Directory.GetFiles(netcoreapp30, "netstandard*.dll"))
+                .Concat(Directory.GetFiles(netcoreapp30, "mscorlib*.dll"));
             var publishDirectory = Path.Combine(Path.GetDirectoryName(project.OutputFilePath), "publish");
             var localAssemblies = Directory.GetFiles(publishDirectory, "*.dll").Where(f => Path.GetFileName(f) != "NodaTime.Demo.dll");
-            var allReferences = localAssemblies.Concat(netcoreapp20Assemblies).Select(f => MetadataReference.CreateFromFile(f));
+            var allReferences = localAssemblies.Concat(netcoreapp30Assemblies).Select(f => MetadataReference.CreateFromFile(f));
             Console.WriteLine("Compiling the project");
             project = project
                 .WithProjectReferences(new ProjectReference[0])
