@@ -54,7 +54,7 @@ namespace SnippetExtractor
             syntax =>
             {
                 var symbol = model.GetSymbolInfo(syntax).Symbol;
-                return symbol?.ContainingType == snippetType && symbol.Name == name;
+                return snippetType.Equals(symbol?.ContainingType) && symbol.Name == name;
             };
 
         public static async Task<SnippetFileSyntaxTree> CreateAsync(Document document)

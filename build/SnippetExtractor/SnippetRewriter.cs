@@ -82,17 +82,17 @@ namespace SnippetExtractor
                 var symbol = model.GetSymbolInfo(oldNode).Symbol;
                 switch (symbol)
                 {
-                    case IMethodSymbol method when method.ContainingType == assertType && method.Name == "AreEqual":
+                    case IMethodSymbol method when method.ContainingType.Equals(assertType) && method.Name == "AreEqual":
                         return newNode
                             .WithExpression(consoleWriteLineExpression)
                             .WithArgumentList(SyntaxFactory.ArgumentList().AddArguments(newNode.ArgumentList.Arguments[1]))
                             .WithTriviaFrom(newNode);
-                    case IMethodSymbol method when method.ContainingType == assertType && (method.Name == "True" || method.Name == "False"):
+                    case IMethodSymbol method when method.ContainingType.Equals(assertType) && (method.Name == "True" || method.Name == "False"):
                         return newNode
                             .WithExpression(consoleWriteLineExpression)
                             .WithArgumentList(SyntaxFactory.ArgumentList().AddArguments(newNode.ArgumentList.Arguments[0]))
                             .WithTriviaFrom(newNode);
-                    case IMethodSymbol method when method.ContainingType == snippetType && method.Name == "For":
+                    case IMethodSymbol method when method.ContainingType.Equals(snippetType) && method.Name == "For":
                         return newNode.ArgumentList.Arguments[0].Expression;
                     default: return newNode;
                 }
