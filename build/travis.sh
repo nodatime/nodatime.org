@@ -4,9 +4,6 @@ set -e
 
 # Install the .NET Core 2.2 runtime, as we use ASP.NET Core 2.2 at the moment.
 # In the future we'll update to ASP.NET Core 3.0, we can use just the .NET Core 3.0 SDK.
-
-wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
 sudo apt-get update
 sudo apt-get install apt-transport-https
 sudo apt-get update
