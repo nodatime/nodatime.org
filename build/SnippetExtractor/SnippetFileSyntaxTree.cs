@@ -35,27 +35,60 @@ namespace SnippetExtractor
             // Note: this won't get using directives in namespace declarations, but hey...
             var usings = method.SyntaxTree.GetCompilationUnitRoot().Usings.Select(uds => uds.ToString());
             var invocations = method.DescendantNodes().OfType<InvocationExpressionSyntax>();
-            foreach (var snippetFor in invocations.Where(IsSnippetMethod("For")))
+            foreach (var invocation in invocations)
             {
-                var arg = snippetFor.ArgumentList.Arguments[0].Expression;
-                var targetSymbol = model.GetSymbolInfo(arg).Symbol;
+                var expression = GetSnippetInvocationExpression(invocation);
+                if (expression is null)
+                {
+                    continue;
+                }
+                var targetSymbol = model.GetSymbolInfo(expression).Symbol;
                 if (targetSymbol == null)
                 {
-                    throw new Exception($"Couldn't get a symbol for Snippet.For argument: {snippetFor.ToString()}");
+                    throw new Exception($"Couldn't get a symbol for Snippet.For argument: {invocation}");
                 }
                 // docfx UIDs don't have the M: (etc) prefix.
                 var uid = targetSymbol.GetDocumentationCommentId().Substring(2);
-                var block = snippetFor.Ancestors().OfType<BlockSyntax>().First();
+                var block = invocation.Ancestors().OfType<BlockSyntax>().First();
                 yield return new SourceSnippet(uid, block.GetLines(), usings);
             }
         }
 
-        private Func<InvocationExpressionSyntax, bool> IsSnippetMethod(string name) =>
-            syntax =>
+        private ExpressionSyntax GetSnippetInvocationExpression(InvocationExpressionSyntax syntax)
+        {
+            var symbol = model.GetSymbolInfo(syntax).Symbol;
+            if (!snippetType.Equals(symbol?.ContainingType) || syntax.ArgumentList.Arguments.Count == 0)
             {
-                var symbol = model.GetSymbolInfo(syntax).Symbol;
-                return snippetType.Equals(symbol?.ContainingType) && symbol.Name == name;
+                return null;
+            }
+            var firstArgument = syntax.ArgumentList.Arguments[0].Expression;
+            return symbol.Name switch
+            {
+                "For" => firstArgument,
+                "ForAction" => GetLambda(),
+                "SilentForAction" => GetLambda(),
+                _ => null
             };
+            
+            ExpressionSyntax GetLambda()
+            {
+                if (firstArgument is LambdaExpressionSyntax lambda)
+                {
+                    if (lambda.Body is ExpressionSyntax expression)
+                    {
+                        return expression;
+                    }
+                    throw new Exception($"Expected expression-bodied lambda");
+                }
+                throw new Exception($"Expected lambda expression syntax; was {firstArgument.GetType()}");
+            }
+        }
+
+        private bool IsSnippetMethod(InvocationExpressionSyntax syntax, string name)
+        {
+            var symbol = model.GetSymbolInfo(syntax).Symbol;
+            return snippetType.Equals(symbol?.ContainingType) && symbol.Name == name;
+        }
 
         public static async Task<SnippetFileSyntaxTree> CreateAsync(Document document)
         {
