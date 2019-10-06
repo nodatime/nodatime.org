@@ -69,32 +69,56 @@ namespace SnippetExtractor
             var assertType = model.Compilation.GetTypeByMetadataName("NUnit.Framework.Assert");
             var snippetType = model.Compilation.GetTypeByMetadataName("NodaTime.Demo.Snippet");
             var root = tree.GetRoot();
-            var newRoot = root.ReplaceNodes(root.DescendantNodes().OfType<InvocationExpressionSyntax>(), ReplaceNode);
 
+            var newRoot = root.ReplaceNodes(root.DescendantNodes(), ReplaceNode);
             newRoot = Formatter.Format(newRoot, new AdhocWorkspace());
 
             // Force it back to have a kind of Script... not sure why this is required.
             var newTree = newRoot.SyntaxTree.WithRootAndOptions(newRoot, tree.Options);
             return compilation.ReplaceSyntaxTree(tree, newTree);
 
-            SyntaxNode ReplaceNode(InvocationExpressionSyntax oldNode, InvocationExpressionSyntax newNode)
+            SyntaxNode ReplaceNode(SyntaxNode oldNode, SyntaxNode newNode)
             {
-                var symbol = model.GetSymbolInfo(oldNode).Symbol;
-                switch (symbol)
+                return oldNode switch
                 {
-                    case IMethodSymbol method when method.ContainingType.Equals(assertType) && method.Name == "AreEqual":
-                        return newNode
-                            .WithExpression(consoleWriteLineExpression)
-                            .WithArgumentList(SyntaxFactory.ArgumentList().AddArguments(newNode.ArgumentList.Arguments[1]))
-                            .WithTriviaFrom(newNode);
-                    case IMethodSymbol method when method.ContainingType.Equals(assertType) && (method.Name == "True" || method.Name == "False"):
-                        return newNode
-                            .WithExpression(consoleWriteLineExpression)
-                            .WithArgumentList(SyntaxFactory.ArgumentList().AddArguments(newNode.ArgumentList.Arguments[0]))
-                            .WithTriviaFrom(newNode);
-                    case IMethodSymbol method when method.ContainingType.Equals(snippetType) && method.Name == "For":
-                        return newNode.ArgumentList.Arguments[0].Expression;
-                    default: return newNode;
+                    InvocationExpressionSyntax invocation => ReplaceInvocation(invocation, (InvocationExpressionSyntax) newNode),
+                    GlobalStatementSyntax
+                    { 
+                        Statement: ExpressionStatementSyntax { Expression: InvocationExpressionSyntax invocation }
+                    } => ShouldRemoveStatementInvocation(invocation) ? null : newNode,
+                    _ => newNode
+                };
+
+                SyntaxNode ReplaceInvocation(InvocationExpressionSyntax oldNode, InvocationExpressionSyntax newNode)
+                {
+                    var symbol = model.GetSymbolInfo(oldNode).Symbol;
+                    return symbol switch
+                    {
+                        IMethodSymbol method when method.ContainingType.Equals(assertType) && method.Name == "AreEqual" =>
+                            newNode.WithExpression(consoleWriteLineExpression)
+                                .WithArgumentList(SyntaxFactory.ArgumentList().AddArguments(newNode.ArgumentList.Arguments[1]))
+                                .WithTriviaFrom(newNode),
+                        IMethodSymbol method when method.ContainingType.Equals(assertType) &&
+                            (method.Name == "True" || method.Name == "False") =>
+                            newNode.WithExpression(consoleWriteLineExpression)
+                                .WithArgumentList(SyntaxFactory.ArgumentList().AddArguments(newNode.ArgumentList.Arguments[0]))
+                                .WithTriviaFrom(newNode),
+                        IMethodSymbol method when method.ContainingType.Equals(snippetType) && method.Name == "For" =>
+                            newNode.ArgumentList.Arguments[0].Expression,
+                        IMethodSymbol method when method.ContainingType.Equals(snippetType) && method.Name == "ForAction" =>
+                            ((LambdaExpressionSyntax) newNode.ArgumentList.Arguments[0].Expression).Body,
+                        _ => newNode
+                    };
+                }
+
+                bool ShouldRemoveStatementInvocation(InvocationExpressionSyntax invocation)
+                {
+                    var symbol = model.GetSymbolInfo(invocation).Symbol;
+                    return symbol switch
+                    {
+                        IMethodSymbol method when method.ContainingType.Equals(snippetType) && method.Name == "SilentForAction" => true,
+                        _ => false
+                    };
                 }
             }
         }
