@@ -9,6 +9,10 @@ branches:
   only:
     - master
 
+install:
+  # Make sure we get the bash that comes with git, not WSL bash
+  - ps: $env:Path = "C:\Program Files\Git\bin;$env:Path"
+
 # Perform the build.
 build_script:
   - bash build/appveyor.sh
