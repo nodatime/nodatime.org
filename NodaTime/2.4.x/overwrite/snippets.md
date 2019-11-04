@@ -1416,7 +1416,7 @@ var start = Instant.FromUtc(2017, 7, 20, 5, 30);
 // Dublin is at UTC+1 in July 2017, so this is 6:30am.
 ZonedDateTime zoned = new ZonedDateTime(start, dublin);
 var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
-Console.WriteLine(    pattern.Format(zoned.PlusHours(1)));
+Console.WriteLine(pattern.Format(zoned.PlusHours(1)));
 ```
 
 Output:
@@ -1441,7 +1441,7 @@ var start = Instant.FromUtc(2017, 7, 20, 5, 30);
 // Dublin is at UTC+1 in July 2017, so this is 6:30am.
 ZonedDateTime zoned = new ZonedDateTime(start, dublin);
 var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
-Console.WriteLine(    pattern.Format(zoned.PlusMinutes(1)));
+Console.WriteLine(pattern.Format(zoned.PlusMinutes(1)));
 ```
 
 Output:
@@ -1466,7 +1466,7 @@ var start = Instant.FromUtc(2017, 7, 20, 5, 30);
 // Dublin is at UTC+1 in July 2017, so this is 6:30am.
 ZonedDateTime zoned = new ZonedDateTime(start, dublin);
 var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
-Console.WriteLine(    pattern.Format(zoned.PlusSeconds(1)));
+Console.WriteLine(pattern.Format(zoned.PlusSeconds(1)));
 ```
 
 Output:
@@ -1491,7 +1491,7 @@ var start = Instant.FromUtc(2017, 7, 20, 5, 30);
 // Dublin is at UTC+1 in July 2017, so this is 6:30am.
 ZonedDateTime zoned = new ZonedDateTime(start, dublin);
 var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
-Console.WriteLine(    pattern.Format(zoned.PlusMilliseconds(1)));
+Console.WriteLine(pattern.Format(zoned.PlusMilliseconds(1)));
 ```
 
 Output:
@@ -1516,7 +1516,7 @@ var start = Instant.FromUtc(2017, 7, 20, 5, 30);
 // Dublin is at UTC+1 in July 2017, so this is 6:30am.
 ZonedDateTime zoned = new ZonedDateTime(start, dublin);
 var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
-Console.WriteLine(    pattern.Format(zoned.PlusTicks(1)));
+Console.WriteLine(pattern.Format(zoned.PlusTicks(1)));
 ```
 
 Output:
@@ -1541,7 +1541,7 @@ var start = Instant.FromUtc(2017, 7, 20, 5, 30);
 // Dublin is at UTC+1 in July 2017, so this is 6:30am.
 ZonedDateTime zoned = new ZonedDateTime(start, dublin);
 var pattern = ZonedDateTimePattern.ExtendedFormatOnlyIso;
-Console.WriteLine(    pattern.Format(zoned.PlusNanoseconds(1)));
+Console.WriteLine(pattern.Format(zoned.PlusNanoseconds(1)));
 ```
 
 Output:
@@ -1576,7 +1576,7 @@ Console.WriteLine(result);
 var result2 = afterTransition - Duration.FromHours(1);
 var result3 = afterTransition.Minus(Duration.FromHours(1));
 Console.WriteLine(result2);
-Console.WriteLine(result3);            
+Console.WriteLine(result3);
 ```
 
 Output:
@@ -1614,7 +1614,7 @@ Console.WriteLine(result);
 var result2 = afterTransition - Duration.FromHours(1);
 var result3 = afterTransition.Minus(Duration.FromHours(1));
 Console.WriteLine(result2);
-Console.WriteLine(result3);            
+Console.WriteLine(result3);
 ```
 
 Output:
@@ -1652,7 +1652,7 @@ Console.WriteLine(result);
 var result2 = afterTransition - Duration.FromHours(1);
 var result3 = afterTransition.Minus(Duration.FromHours(1));
 Console.WriteLine(result2);
-Console.WriteLine(result3);            
+Console.WriteLine(result3);
 ```
 
 Output:
