@@ -48,8 +48,9 @@ dotnet pack -v quiet ../../nodatime/src/NodaTime -o $PWD/tmp/metadata/NodaTime/u
 dotnet pack -v quiet ../../nodatime/src/NodaTime.Testing -o $PWD/tmp/metadata/NodaTime.Testing/unstable
 dotnet pack -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.JsonNet -o $PWD/tmp/metadata/NodaTime.Serialization.JsonNet/unstable
 dotnet pack -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.Protobuf -o $PWD/tmp/metadata/NodaTime.Serialization.Protobuf/unstable
+dotnet pack -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.SystemTextJson -o $PWD/tmp/metadata/NodaTime.Serialization.SystemTextJson/unstable
 generate_metadata tmp/metadata ../../nodatime/src unstable netstandard2.0 NodaTime NodaTime.Testing
-generate_metadata tmp/metadata ../../nodatime.serialization/src unstable netstandard2.0 NodaTime.Serialization.JsonNet NodaTime.Serialization.Protobuf
+generate_metadata tmp/metadata ../../nodatime.serialization/src unstable netstandard2.0 NodaTime.Serialization.JsonNet NodaTime.Serialization.Protobuf NodaTime.Serialization.SystemTextJson
 
 # Awooga! Awooga! Horrible hack! docfx doesn't support C# 8 yet, and refers to nullable
 # references types as if they were nullable value types. Fix this up in a purely textual way for now.
@@ -77,7 +78,7 @@ do
   copy_metadata $version $version NodaTime NodaTime.Testing
 done
 
-copy_metadata unstable serialization NodaTime.Serialization.JsonNet NodaTime.Serialization.Protobuf
+copy_metadata unstable serialization NodaTime.Serialization.JsonNet NodaTime.Serialization.Protobuf NodaTime.Serialization.SystemTextJson
 cp docfx/serialization-toc.yml tmp/web/serialization/toc.yml
 
 # Put common overwrite files where they can be used by all versions

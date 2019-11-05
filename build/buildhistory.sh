@@ -43,7 +43,7 @@
 set -e
 
 fetch_packages() {
-  declare -r package=$1
+  declare -r package=$1  
   shift
   while (( "$#" ))
   do
@@ -68,11 +68,15 @@ echo "Cleaning current directory"
 git rm -qrf .
 git clean -qdf
 
+echo "Building snippet extractor"
+dotnet build ../SnippetExtractor
+
 # Output directories
 mkdir NodaTime
 mkdir NodaTime.Testing
 mkdir NodaTime.Serialization.JsonNet
 mkdir NodaTime.Serialization.Protobuf
+mkdir NodaTime.Serialization.SystemTextJson
 
 # Do lots of building in a temporary directory, then just copy what we actually need
 mkdir main
@@ -116,7 +120,7 @@ do
   (cd $version;
    dotnet publish src/NodaTime.Demo;
    mkdir ../../NodaTime/$version/overwrite;
-   dotnet run -p ../../../SnippetExtractor -- src/NodaTime-All.sln NodaTime.Demo ../../NodaTime/$version/overwrite)
+   dotnet run --no-build -p ../../../SnippetExtractor -- src/NodaTime-All.sln NodaTime.Demo ../../NodaTime/$version/overwrite)
 done
 cd ..
 
@@ -126,7 +130,6 @@ git clone -q https://github.com/nodatime/nodatime.serialization.git serializatio
 cd serialization
 for version in 2.0.x 2.1.x 2.2.x
 do
-  tag=NodaTime.Serialization.JsonNet-$(echo $version | sed s/x/0/g)
   git checkout -q NodaTime.Serialization.JsonNet-$(echo $version | sed s/x/0/g)
   dotnet restore -v quiet src/NodaTime.Serialization.JsonNet
   generate_metadata .. src $version net45 NodaTime.Serialization.JsonNet
@@ -139,6 +142,12 @@ do
   dotnet restore -v quiet src/NodaTime.Serialization.Protobuf
   generate_metadata .. src $version netstandard2.0 NodaTime.Serialization.Protobuf
 done
+
+# Build SystemTextJson
+git checkout -q NodaTime.Serialization.SystemTextJson-1.0.0-beta01
+dotnet restore -v quiet src/NodaTime.Serialization.SystemTextJson
+generate_metadata .. src $version netstandard2.0 NodaTime.Serialization.SystemTextJson
+
 cd ..
 
 # Fetch all the nuget packages
@@ -147,6 +156,8 @@ fetch_packages NodaTime 1.0 1.1 1.2 1.3 1.4 2.0 2.1 2.2 2.3 2.4
 fetch_packages NodaTime.Testing 1.0 1.1 1.2 1.3 1.4 2.0 2.1 2.2 2.3 2.4
 fetch_packages NodaTime.Serialization.JsonNet 1.2 1.3 1.4 2.0 2.1 2.2
 fetch_packages NodaTime.Serialization.Protobuf 1.0
+# fetch_packages doesn't support betas...
+curl -sSL -o NodaTime.Serialization.SystemTextJson/1.0.x/NodaTime.Serialization.SystemTextJson-1.0.0-beta01.nupkg https://www.nuget.org/api/v2/package/NodaTime.Serialization.SystemTextJson/1.0.0-beta01
 
 echo "Generating xref maps"
 mkdir xrefs
