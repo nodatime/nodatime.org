@@ -37,27 +37,26 @@ namespace NodaTime.Web.Controllers
         private static readonly Regex NzdNamePattern = new Regex(@"tzdb(\d+.)\.nzd");
         public IActionResult TimeZones(string? version = null, string? format = null)
         {
-            var source = TzdbDateTimeZoneSource.Default;
-            if (version != null)
+            var releases = repository.GetReleases()
+                .Select(release => NzdNamePattern.Match(release.Name))
+                .Where(m => m.Success)
+                .Select(m => m.Groups[1].Value)
+                .ToList();
+            // Default to the most recent release
+            version ??= releases.First();
+
+            var release = repository.GetRelease($"tzdb{version}.nzd");
+            if (release == null)
             {
-                var release = repository.GetRelease($"tzdb{version}.nzd");
-                if (release == null)
-                {
-                    return BadRequest("Unknown version");
-                }
-                source = TzdbDateTimeZoneSource.FromStream(release.GetContent());
+                return BadRequest("Unknown version");
             }
+            var source = TzdbDateTimeZoneSource.FromStream(release.GetContent());
             var releaseModel = IanaRelease.FromTzdbDateTimeZoneSource(source);
             if (format == "json")
             {
                 return Json(releaseModel);
             }
 
-            var releases = repository.GetReleases()
-                .Select(release => NzdNamePattern.Match(release.Name))
-                .Where(m => m.Success)
-                .Select(m => m.Groups[1].Value)
-                .ToList();
             var model = (releases, releaseModel);
             return View(model);
         }

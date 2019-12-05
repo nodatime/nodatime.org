@@ -75,7 +75,7 @@ namespace NodaTime.Web.Services
                                 .Where(o => o.Name.EndsWith(".nzd"))
                                 .Select(obj => new TzdbDownload(storage, obj.Name))
                                 .Select(r => oldReleasesByName.ContainsKey(r.Name) ? oldReleasesByName[r.Name] : r)
-                                .OrderBy(r => r.Name, StringComparer.Ordinal)
+                                .OrderByDescending(r => r.Name, StringComparer.Ordinal)
                                 .ToList();
             return new CacheEntry(releases);
         }
