@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using NodaTime.Helpers;
 using NodaTime.Web.Models;
 using NodaTime.Web.Services;
+using System;
 using System.Linq;
 
 namespace NodaTime.Web.Controllers
@@ -35,7 +36,7 @@ namespace NodaTime.Web.Controllers
         [Route("/tzdb/latest.txt")]
         public IActionResult Latest()
         {
-            var download = tzdbRepository.GetReleases().Last();
+            var download = tzdbRepository.GetReleases().First();
             return new ContentResult
             {
                 ContentType = "text/plain",
@@ -47,7 +48,8 @@ namespace NodaTime.Web.Controllers
         [Route("/tzdb/index.txt")]
         public IActionResult Index()
         {
-            var releaseUrls = tzdbRepository.GetReleases().Select(GetDownloadUrl);
+            // We've previous had this "oldest first", so let's honour that.
+            var releaseUrls = tzdbRepository.GetReleases().OrderBy(x => x.Name, StringComparer.Ordinal).Select(GetDownloadUrl);
             return new ContentResult
             {
                 ContentType = "text/plain",

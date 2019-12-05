@@ -9,6 +9,7 @@ using NodaTime.Web.Services;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace NodaTime.Web.Controllers
 {
@@ -20,6 +21,7 @@ namespace NodaTime.Web.Controllers
         public TzValidateController(ITzdbRepository repository) =>
             this.repository = repository;
 
+        private static readonly Regex NzdNamePattern = new Regex(@"tzdb(\d+.)\.nzd");
         [Route("/tzvalidate/generate")]
         public IActionResult Generate(int startYear = 1, int endYear = 2035, string? zone = null, string? version = null)
         {
@@ -28,16 +30,19 @@ namespace NodaTime.Web.Controllers
                 return BadRequest("Invalid start/end year combination");
             }
 
-            var source = TzdbDateTimeZoneSource.Default;
-            if (version != null)
+            // TODO: Remove the duplication between this and HomeController
+            version ??= repository.GetReleases().Select(release => NzdNamePattern.Match(release.Name))
+                .Where(m => m.Success)
+                .Select(m => m.Groups[1].Value)
+                .First();
+
+            var release = repository.GetRelease($"tzdb{version}.nzd");
+            if (release == null)
             {
-                var release = repository.GetRelease($"tzdb{version}.nzd");
-                if (release == null)
-                {
-                    return BadRequest("Unknown version");
-                }
-                source = TzdbDateTimeZoneSource.FromStream(release.GetContent());
+                return BadRequest("Unknown version");
             }
+            // TODO: Cache these. There's no point in reparsing on each request.
+            var source = TzdbDateTimeZoneSource.FromStream(release.GetContent());
 
             if (zone != null && !source.GetIds().Contains(zone))
             {
