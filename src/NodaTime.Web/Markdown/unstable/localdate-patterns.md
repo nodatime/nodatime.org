@@ -8,12 +8,15 @@ Standard Patterns
 The following standard patterns are supported:
 
 - `d`: Short format pattern.
-  This is the short date pattern as defined by the culture's [`DateTimeFormatInfo.ShortDatePattern`](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.shortdatepattern.aspx).
+  This is the short date pattern as defined by the culture's [`DateTimeFormatInfo.ShortDatePattern`](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.datetimeformatinfo.shortdatepattern).
   For example, in the invariant culture this is "MM/dd/yyyy".
 - `D`: Long format pattern.
-  This is the long date pattern as defined by the culture's [`DateTimeFormatInfo.LongDatePattern`](https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.longdatepattern.aspx).
+  This is the long date pattern as defined by the culture's [`DateTimeFormatInfo.LongDatePattern`](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.datetimeformatinfo.longdatepattern).
   For example, in the invariant culture this is "dddd, dd MMMM yyyy".
   This is the default format pattern.
+- `M`: Month/day format pattern.
+  This is the month/day pattern as defined by the culture's [`DateTimeFormatInfo.MonthDayPattern`](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.datetimeformatinfo.monthdaypattern).
+  For example, in the invariant culture this is "MMMM dd".
 - `r`: ISO format pattern plus calendar system, which is always "uuuu'-'MM'-'dd '('c')'" using the invariant culture.
 - `R`: ISO format pattern without calendar system, which is always "uuuu'-'MM'-'dd" using the invariant culture.
 
