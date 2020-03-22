@@ -82,13 +82,17 @@ namespace SnippetExtractor
             var solution = await workspace.OpenSolutionAsync(solutionFile);
             var project = solution.Projects.Single(p => p.Name == projectName);
             // It's horrible to have this hardcoded here, but it's the simplest thing that works.
-            var netcoreapp30 = @"c:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.0";
-            var netcoreapp30Assemblies = Directory.GetFiles(netcoreapp30, "System*.dll")
-                .Concat(Directory.GetFiles(netcoreapp30, "netstandard*.dll"))
-                .Concat(Directory.GetFiles(netcoreapp30, "mscorlib*.dll"));
+            var netcoreapp31 = @"c:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.2";
+            if (!Directory.Exists(netcoreapp31))
+            {
+                throw new Exception($"Error: required directory {netcoreapp31} does not exist. Please install the corresponding SDK.");
+            }
+            var netcoreapp31Assemblies = Directory.GetFiles(netcoreapp31, "System*.dll")
+                .Concat(Directory.GetFiles(netcoreapp31, "netstandard*.dll"))
+                .Concat(Directory.GetFiles(netcoreapp31, "mscorlib*.dll"));
             var publishDirectory = Path.Combine(Path.GetDirectoryName(project.OutputFilePath), "publish");
             var localAssemblies = Directory.GetFiles(publishDirectory, "*.dll").Where(f => Path.GetFileName(f) != "NodaTime.Demo.dll");
-            var allReferences = localAssemblies.Concat(netcoreapp30Assemblies).Select(f => MetadataReference.CreateFromFile(f));
+            var allReferences = localAssemblies.Concat(netcoreapp31Assemblies).Select(f => MetadataReference.CreateFromFile(f));
             Console.WriteLine("Compiling the project");
             project = project
                 .WithProjectReferences(new ProjectReference[0])
