@@ -94,21 +94,41 @@ namespace SnippetExtractor
                     var symbol = model.GetSymbolInfo(oldNode).Symbol;
                     return symbol switch
                     {
-                        IMethodSymbol method when method.ContainingType.Equals(assertType) && method.Name == "AreEqual" =>
-                            newNode.WithExpression(consoleWriteLineExpression)
-                                .WithArgumentList(SyntaxFactory.ArgumentList().AddArguments(newNode.ArgumentList.Arguments[1]))
-                                .WithTriviaFrom(newNode),
-                        IMethodSymbol method when method.ContainingType.Equals(assertType) &&
-                            (method.Name == "True" || method.Name == "False") =>
-                            newNode.WithExpression(consoleWriteLineExpression)
-                                .WithArgumentList(SyntaxFactory.ArgumentList().AddArguments(newNode.ArgumentList.Arguments[0]))
-                                .WithTriviaFrom(newNode),
-                        IMethodSymbol method when method.ContainingType.Equals(snippetType) && method.Name == "For" =>
-                            newNode.ArgumentList.Arguments[0].Expression,
-                        IMethodSymbol method when method.ContainingType.Equals(snippetType) && method.Name == "ForAction" =>
-                            ((LambdaExpressionSyntax) newNode.ArgumentList.Arguments[0].Expression).Body,
+                        IMethodSymbol method when method.ContainingType.Equals(assertType) => ReplaceAssert(method, newNode),
+                        IMethodSymbol method when method.ContainingType.Equals(snippetType) => ReplaceSnippetHelper(method, newNode),
                         _ => newNode
                     };
+
+                    SyntaxNode ReplaceAssert(IMethodSymbol method, InvocationExpressionSyntax newNode) =>
+                        method switch
+                        {
+                            // Assert.AreEqual(x, y) => Console.WriteLine(y)
+                            { Name: "AreEqual" } =>
+                                newNode.WithExpression(consoleWriteLineExpression)
+                                    .WithArgumentList(SyntaxFactory.ArgumentList().AddArguments(newNode.ArgumentList.Arguments[1]))
+                                    .WithTriviaFrom(newNode),
+                            // Assert.True(x) => Console.WriteLine(x)
+                            { Name: string name } when name == "True" || name == "False" || name == "IsTrue" || name == "IsFalse" =>
+                                newNode.WithExpression(consoleWriteLineExpression)
+                                    .WithArgumentList(SyntaxFactory.ArgumentList().AddArguments(newNode.ArgumentList.Arguments[0]))
+                                    .WithTriviaFrom(newNode),
+                            // Assert.Less(x, 0) and Assert.Greater(x, 0) => Console.WriteLine(x)
+                            { Name: string name } when (name == "Less" || name == "Greater") && newNode.ArgumentList.Arguments[1].ToString() == "0" =>
+                                newNode.WithExpression(consoleWriteLineExpression)
+                                    .WithArgumentList(SyntaxFactory.ArgumentList().AddArguments(newNode.ArgumentList.Arguments[0]))
+                                    .WithTriviaFrom(newNode),
+                            _ => throw new ArgumentException($"Unhandled Assert method: {method.Name}")
+                        };
+
+                    SyntaxNode ReplaceSnippetHelper(IMethodSymbol method, InvocationExpressionSyntax newNode) =>
+                        method switch
+                        {
+                            { Name: "For" } => newNode.ArgumentList.Arguments[0].Expression,
+                            { Name: "ForAction" } => ((LambdaExpressionSyntax) newNode.ArgumentList.Arguments[0].Expression).Body,
+                            // This will be removed at the statement level
+                            { Name: "SilentForAction" } => newNode,
+                            _ => throw new ArgumentException($"Unhandled Snippet method: {method.Name}")
+                        };
                 }
 
                 bool ShouldRemoveStatementInvocation(InvocationExpressionSyntax invocation)
