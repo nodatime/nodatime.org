@@ -7,6 +7,33 @@ details.
 See the [end of this page](#tzdb-updates) for the policy on which
 versions receive patch updates for TZDB releases.
 
+## 3.0.0-beta02, released 2019-04-25 with tzdb 2020a
+
+Hopefully the last release before 3.0.0.
+
+New features since 3.0.0-beta02:
+
+- Support for XML schemas [issue 1496]
+- Improved date parsing performance for ISO patterns
+- `AnnualDate` now implements the non-generic `IComparable` interface
+- Added `LocalTimePattern.GeneralIso` property ("HH:mm:ss")
+- Added `LocalDate YearMonth.OnDayOfMonth(int)`
+- Added the 'M' standard pattern for `LocalDate`, meaning "month/day pattern"
+- Added a type converter for `ZonedDateTime`. This uses the `DateTimeZoneProvider`
+  in `NodaTime.Text.TypeConverterSettings` for parsing.
+- Added XML serialization support for `AnnualDate`
+
+Semi-breaking change:
+
+- `DateTimeZoneProviders.Serialization` is now deprecated. Use `NodaTime.Xml.XmlSerializationSettings.DateTimeZoneProvider`
+instead. We'll keep `DateTimeZoneProviders.Serialization` in 3.0.0 for binary compatibility, but probably remove it for 4.0.0 (if
+that ever happens). The deprecated property just delegates to the new property.
+
+## 2.4.8, released 2020-04-25 with tzdb 2020a.
+
+This patch release simply updates the built-in TZDB time
+zone data to 2020a.
+
 ## 2.4.7, released 2019-09-11 with tzdb 2019c.
 
 This patch release simply updates the built-in TZDB time

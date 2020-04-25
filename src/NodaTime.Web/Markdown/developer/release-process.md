@@ -3,12 +3,11 @@
 This document describes how Noda Time is released. It is intended to be used as
 a checklist by the person doing a release. It only covers doing a
 new major/minor release; patch releases are generally just a matter
-of tagging the right branch and running `buildrelease.sh`, then
+of editing `Build.Directory.props`, tagging the right branch and running `buildrelease.sh`, then
 pushing the results as shown below.
 
 ## Prerequisites
 
-- Visual Studio 2017
 - .NET Core SDKs (version will change over time; check global.json)
 - NuGet command-line tool
 - Appropriate access to Google Cloud Storage and NuGet
@@ -25,6 +24,7 @@ Search the issue tracker for open issues with the right milestone (e.g.
 
 ## Preparing
 
+- Update the `Directory.Build.props` in the root directory; this contains the version number
 - In GitHub, create branch `2.3.x` from master
 - Protect the branch (in GitHub repository settings)
 - Create a release in GitHub, with a new tag `2.3.0` against the new branch
@@ -33,7 +33,7 @@ Search the issue tracker for open issues with the right milestone (e.g.
 
 This is performed locally, in bash. We currently use the bash that
 comes with Git for Windows. The release scripts may work in other
-environments too.
+environments too. (We definitely intend to move to a CI release system at some point.)
 
 - Optionally fetch the new branch (it doesn't matter too much)
 - In the build directory, run `./buildrelease.sh 2.3.0` and wait.
@@ -58,8 +58,6 @@ environments too.
 
 Make changes in the master branch
 
-- Edit the project files for NodaTime and NodaTime.Testing with the
-  expected next version number
 - Edit the version history to record the release
 - Rename the `unstable` directory in NodaTime.Web/Markdown to `2.3.x`
 - Edit `2.3.x/index.json` to specify the name `2.3.x`
