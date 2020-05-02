@@ -11,6 +11,17 @@ in comparison, Noda Time 3.0 supports only `netstandard2.0`. This effectively in
 Noda Time 3.x to *.NET Framework 4.7.2+* and *.NET Core 2.0+*.  See the [.NET Standard
 Versions](https://github.com/dotnet/standard/blob/master/docs/versions.md) documentation for more details.
 
+AllowPartiallyTrustedCallers (.NET Framework only)
+====
+
+The `net45` library in Noda Time 2.x was marked with the `AllowPartiallyTrustedCallers` attribute to allow it to be used by
+partially trusted code.
+
+The concept of partially trusted code is no longer supported, and the attribute has no effect in .NET Core (and was not present on
+the `netstandard1.3` library in Noda Time 2.x), so has been removed from Noda Time 3.x.
+
+This may be a breaking change if you have a deployment that depends upon this attribute being present.
+
 Binary serialization
 ====
 
@@ -26,3 +37,12 @@ referencing this method should use `IsoDayOfWeek.ToDayOfWeek()` instead, which h
 
 The `DateTimeZoneProviders.Serialization` property has been newly marked as obsolete in Noda Time 3.0. The replacement (to which
 the obsolete property delegates) is `NodaTime.Xml.XmlSerializationSettings.DateTimeZoneProvider`.
+
+BclDateTimeZone and midnight transitions
+====
+
+This could be considered a bugfix, but it is an incompatible change nonetheless. Transitions that would be represented as 24:00 in
+the IANA time zone database ("following day midnight") are instead represented as 23:59:59.999 in the Windows database.
+`BclDateTimeZone` in Noda Time 1.x and 2.x will use this value as provided, resulting in (for example) the start of a day being
+reported as one millisecond earlier than intended (but matching the behaviour of `TimeZoneInfo`). Noda Time 3.0 will instead
+recognise this pattern and interpret it as midnight of the following day, matching the 'correct' behaviour.
