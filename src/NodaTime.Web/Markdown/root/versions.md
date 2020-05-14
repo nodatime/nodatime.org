@@ -7,7 +7,7 @@ details.
 See the [end of this page](#tzdb-updates) for the policy on which
 versions receive patch updates for TZDB releases.
 
-## 3.0.0-beta02, released 2019-04-25 with tzdb 2020a
+## 3.0.0-beta02, released 2020-04-25 with tzdb 2020a
 
 Hopefully the last release before 3.0.0.
 
