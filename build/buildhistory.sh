@@ -34,7 +34,7 @@
 
 # - 1.0.x / 1.1.x / 1.2.x / 1.3.x / 1.4.x
 #   - Docfx metadata in "api" directory
-# - 2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x
+# - 2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x, 3.0.x
 #   - Docfx metadata in "api" directory
 #   - Docfx snippets for 2.1 onwards
 # - packages
@@ -82,7 +82,7 @@ mkdir NodaTime.Serialization.SystemTextJson
 mkdir main
 cd main
 
-for version in 1.0.x 1.1.x 1.2.x 1.3.x 1.4.x 2.0.x 2.1.x 2.2.x 2.3.x 2.4.x
+for version in 1.0.x 1.1.x 1.2.x 1.3.x 1.4.x 2.0.x 2.1.x 2.2.x 2.3.x 2.4.x 3.0.x
 do
   echo "Cloning $version"
   git clone -q https://github.com/nodatime/nodatime.git --depth 1 -b $version $version
@@ -101,26 +101,28 @@ do
   fi
 done
 
-# 2.x versions need to be restored first, but all have the same set of packages.
-for version in 2.0.x 2.1.x 2.2.x 2.3.x 2.4.x
+# 2.x+ versions need to be restored first, but all have the same set of packages.
+for version in 2.0.x 2.1.x 2.2.x 2.3.x 2.4.x 3.0.x
 do
-  echo "Building docfx metadata for $version"
+  [[ $version == 2* ]] && target_framework="net45" || target_framework="netstandard2.0"
+  echo "Building docfx metadata for $version using target framework $target_framework"
   dotnet restore -v quiet $version/src/NodaTime
   dotnet restore -v quiet $version/src/NodaTime.Testing
-  generate_metadata .. $version/src $version net45 NodaTime NodaTime.Testing
+  generate_metadata .. $version/src $version $target_framework NodaTime NodaTime.Testing
 done
 
 # Snippets
 # Note that we skip 2.1-2.3, as we can't build those easily now.
 # We build using the master SnippetExtractor, so that as things change
 # we only need to change that rather than all branches
-for version in 2.4.x
+for version in 2.4.x 3.0.x
 do
   echo "Generating snippets for $version"
+  [[ $version == 2* ]] && solution_file="NodaTime-All.sln" || solution_file="NodaTime.sln"
   (cd $version;
    dotnet publish src/NodaTime.Demo;
    mkdir ../../NodaTime/$version/overwrite;
-   dotnet run --no-build -p ../../../SnippetExtractor -- src/NodaTime-All.sln NodaTime.Demo ../../NodaTime/$version/overwrite)
+   dotnet run --no-build -p ../../../SnippetExtractor -- src/$solution_file NodaTime.Demo ../../NodaTime/$version/overwrite)
 done
 cd ..
 
@@ -152,8 +154,8 @@ cd ..
 
 # Fetch all the nuget packages
 echo "Fetching nuget packages"
-fetch_packages NodaTime 1.0 1.1 1.2 1.3 1.4 2.0 2.1 2.2 2.3 2.4
-fetch_packages NodaTime.Testing 1.0 1.1 1.2 1.3 1.4 2.0 2.1 2.2 2.3 2.4
+fetch_packages NodaTime 1.0 1.1 1.2 1.3 1.4 2.0 2.1 2.2 2.3 2.4 3.0
+fetch_packages NodaTime.Testing 1.0 1.1 1.2 1.3 1.4 2.0 2.1 2.2 2.3 2.4 3.0
 fetch_packages NodaTime.Serialization.JsonNet 1.2 1.3 1.4 2.0 2.1 2.2
 fetch_packages NodaTime.Serialization.Protobuf 1.0
 # fetch_packages doesn't support betas...
