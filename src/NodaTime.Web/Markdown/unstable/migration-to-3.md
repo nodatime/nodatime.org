@@ -3,6 +3,10 @@
 Compared to Noda Time 2.0, Noda Time 3.0 contains very few breaking changes. In particular, with the exception of the areas
 noted below, we intend for Noda Time 3.0 to be both *source- and binary-compatible* with Noda Time 2.x.
 
+Note that making use of binary compatibility to upgrade an existing deployment without recompiling will require adding
+appropriate assembly binding redirects so that the new library can be loaded in place of the old (and also requires running
+on a platform version supported by Noda Time 3.0).
+
 System requirements
 ====
 
