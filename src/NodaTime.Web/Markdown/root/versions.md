@@ -7,11 +7,59 @@ details.
 See the [end of this page](#tzdb-updates) for the policy on which
 versions receive patch updates for TZDB releases.
 
+## 3.0.0, released 2020-05-22 with tzdb 2020a
+
+Changes since 2.x:
+
+- Removal of support for binary serialization
+- Type converter support
+- C# 8 nullable reference type support
+- A single target of .NET Standard 2.0
+- Provide dictionaries from TZDB ID to Windows ID and vice versa [issue 274]
+- Provide Zone/Clock/Calendar properties on ZonedClock [issue 1362]
+- Added LocalTime.FromHoursSinceMidnight and FromMinutesSinceMidnight [issue 1366]
+- Introduce a date adjuster to add a period when invoked
+- Added o and O invariant round-trip standard patterns to LocalTime [issue 1361]
+- Added standard LocalDate patterns for ISO and "full round trip with calendar" [issue 1363]
+- Use 'S' as the extended ISO standard pattern specifier [issue 1219]
+- Added a template value to InstantPattern (like other patterns)
+- Added a new roundtrip pattern for durations [issue 1290]
+- Support for XML schemas [issue 1496]
+- Improved date parsing performance for ISO patterns
+- `AnnualDate` now implements the non-generic `IComparable` interface
+- Added `LocalTimePattern.GeneralIso` property ("HH:mm:ss")
+- Added `LocalDate YearMonth.OnDayOfMonth(int)`
+- Added the 'M' standard pattern for `LocalDate`, meaning "month/day pattern"
+- Added a type converter for `ZonedDateTime`. This uses the `DateTimeZoneProvider`
+  in `NodaTime.Text.TypeConverterSettings` for parsing.
+- Added XML serialization support for `AnnualDate`
+- Fixes to NuGet packages around SourceLink and deterministic source paths
+- `BclDateTimeZone` now interprets a `TimeZoneInfo` rule of a transition at 23:59:59.999 as "at midnight" [issue 1524]
+- Added equality operators to `Period` [issue 1529]
+- Added comparison operators to `YearMonth`
+- Added a type converter for `YearMonth` [issue 1539]
+- Improved performance of equality comparisons for `LocalDate` and `YearMonth`
+- Updated the System.Runtime.CompilerServices.Unsafe dependency
+
+Known issues:
+
+- The NodaTime.Testing 3.0.0 package does not include XML documentation
+
+New features since 3.0.0-beta02:
+
+- Fixes to NuGet packages around SourceLink and deterministic source paths
+- `BclDateTimeZone` now interprets a `TimeZoneInfo` rule of a transition at 23:59:59.999 as "at midnight" [issue 1524]
+- Added equality operators to `Period` [issue 1529]
+- Added comparison operators to `YearMonth`
+- Added a type converter for `YearMonth` [issue 1539]
+- Improved performance of equality comparisons for `LocalDate` and `YearMonth`
+- Updated the System.Runtime.CompilerServices.Unsafe dependency
+
 ## 3.0.0-beta02, released 2020-04-25 with tzdb 2020a
 
 Hopefully the last release before 3.0.0.
 
-New features since 3.0.0-beta02:
+New features since 3.0.0-beta01:
 
 - Support for XML schemas [issue 1496]
 - Improved date parsing performance for ISO patterns
