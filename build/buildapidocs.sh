@@ -52,11 +52,6 @@ dotnet pack -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.Sys
 generate_metadata tmp/metadata ../../nodatime/src unstable netstandard2.0 NodaTime NodaTime.Testing
 generate_metadata tmp/metadata ../../nodatime.serialization/src unstable netstandard2.0 NodaTime.Serialization.JsonNet NodaTime.Serialization.Protobuf NodaTime.Serialization.SystemTextJson
 
-# Awooga! Awooga! Horrible hack! docfx doesn't support C# 8 yet, and refers to nullable
-# references types as if they were nullable value types. Fix this up in a purely textual way for now.
-dotnet run -p DocfxNullableReferenceFixer -- --fix tmp/metadata/NodaTime/unstable/api
-dotnet run -p DocfxNullableReferenceFixer -- --fix tmp/metadata/NodaTime.Testing/unstable/api
-
 echo "Building all tools"
 dotnet build -v quiet Tools.sln
 
