@@ -7,7 +7,12 @@ details.
 See the [end of this page](#tzdb-updates) for the policy on which
 versions receive patch updates for TZDB releases.
 
-## 2.4.1, 3.0.1, released 2020-10-08 with tzdb 2020b
+## 2.4.10, 3.0.2, released 2020-10-08 with tzdb 2020c
+
+This set of patch releases simply updates the built-in TZDB time
+zone data to 2020c.
+
+## 2.4.9, 3.0.1, released 2020-10-08 with tzdb 2020b
 
 This set of patch releases simply updates the built-in TZDB time
 zone data to 2020b.
