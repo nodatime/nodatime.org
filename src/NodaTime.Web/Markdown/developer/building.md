@@ -44,7 +44,7 @@ To run the tests:
 ### Other scripts
 
 Bash scripts are used for more complex tasks such as updating TZDB.
-Many contributors will never need to run these scripts as they're,
+Many contributors will never need to run these scripts,
 but just occasionally they may be useful when investigating a CI
 failure.
 
