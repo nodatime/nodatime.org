@@ -88,7 +88,7 @@ Instant
 ----
 
 The range for [`Instant`](noda-type://NodaTime.Instant) is simply the range of the Gregorian calendar, in UTC.
-In other words, it covers -9998-01-01T00:00:00Z to 9999-12-031T23:59:59.999999999Z inclusive.
+In other words, it covers -9998-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z inclusive.
 
 LocalDateTime, LocalDate, ZonedDateTime, and OffsetDateTime
 ----
