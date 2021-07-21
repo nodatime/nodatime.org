@@ -130,9 +130,9 @@ The "NodaZoneData" format makes use of the following serialization primitives:
   - For `Instant.MinValue`, a single byte `0`.
   - For `Instant.MaxValue`, a single byte `1`.
   - For an instant which is a whole number of hours since the "previous" instant, and
-    that number of hours is in the range \[128, 1048576), the format is that number of hours written as a `count`.
+    that number of hours is in the range \[128, 2097152), the format is that number of hours written as a `count`.
   - For an instant which is a whole number of minutes since 1800-01-01T00:00:00Z, and that number of
-    minutes is in the range \[1048576, Int32.MaxValue\], the format is that number of minutes written as a `count`.
+    minutes is in the range \[2097152, Int32.MaxValue\], the format is that number of minutes written as a `count`.
   - For any other instant, a single byte `2` followed by a `fixed64` value for the number of ticks since the Unix epoch.
 - `dictionary`, a string-to-string dictionary where no keys or values can be null. This is simply a
   `count` number of entries followed by each key/value pair as a `string` key and `string` value.
