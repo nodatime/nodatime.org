@@ -17,7 +17,7 @@ The following standard patterns are supported:
   Typical pattern text: `+HHmmss`
 - `M`: Medium format without punctuation, displaying information down to the minute.
   Typical pattern text: `+HHmm`
-- `S`: Short format without punctuation, displaying information down to the minute.
+- `S`: Short format without punctuation, displaying information down to the hour.
   Typical pattern text: `+HH` (so equivalent to `s` in many cases, but can vary by culture)
 - `g`: General pattern. Formatting depends on the value passed in. If the offset has seconds, the long
   format is used; otherwise, if the offset has minutes, the medium format is used; otherwise the short format is used. When parsing, the other standard format patterns are tried one at a time. This is the default format pattern.
