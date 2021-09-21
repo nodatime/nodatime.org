@@ -1,6 +1,6 @@
 @Title="Patterns for YearMonth values"
 
-The [`YearMonth`](noda-type://NodaTime.LocalDate) type supports the following patterns:
+The [`YearMonth`](noda-type://NodaTime.YearMonth) type supports the following patterns:
 
 Standard Patterns
 -----------------
