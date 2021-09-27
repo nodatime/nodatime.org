@@ -4,7 +4,7 @@ set -e
 
 ROOT=$(git rev-parse --show-toplevel)
 (cd $ROOT/src/NodaTime.Web;
- declare -r PUBLISH=$ROOT/src/NodaTime.Web/bin/Debug/netcoreapp2.2/publish;
+ declare -r PUBLISH=$ROOT/src/NodaTime.Web/bin/Debug/netcoreapp3.1/publish;
  rm -rf $PUBLISH;
  dotnet publish -c Debug;
  
