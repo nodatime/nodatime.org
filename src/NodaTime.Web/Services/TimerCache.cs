@@ -3,6 +3,7 @@
 // as found in the LICENSE.txt file.
 
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Diagnostics;
@@ -39,7 +40,7 @@ namespace NodaTime.Web.Services
             }
         }
 
-        public TimerCache(string cacheName, IApplicationLifetime lifetime, Duration refreshPeriod, Func<T> provider, ILoggerFactory loggerFactory,
+        public TimerCache(string cacheName, IHostApplicationLifetime lifetime, Duration refreshPeriod, Func<T> provider, ILoggerFactory loggerFactory,
             T initialValue)
         {
             this.cacheName = cacheName;
@@ -54,7 +55,7 @@ namespace NodaTime.Web.Services
 
         public void Start() => timer.Change(TimeSpan.Zero, refreshPeriod.ToTimeSpan());
 
-        private void Fetch(object state)
+        private void Fetch(object? state)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
             try

@@ -19,7 +19,7 @@ namespace NodaTime.Web.Services
         private readonly string absoluteRoot;
         private List<string> allFiles;
 
-        public LocalStorageRepository(IHostingEnvironment environment, string relativeRoot)
+        public LocalStorageRepository(IWebHostEnvironment environment, string relativeRoot)
         {
             absoluteRoot = Path.Combine(environment.ContentRootPath, relativeRoot);
             if (!Directory.Exists(absoluteRoot))

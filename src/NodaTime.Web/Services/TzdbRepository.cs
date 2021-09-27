@@ -2,7 +2,7 @@
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
 using Google;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NodaTime.Web.Models;
 using System;
@@ -22,7 +22,7 @@ namespace NodaTime.Web.Services
         private readonly TimerCache<CacheEntry> cache;
 
         public TzdbRepository(
-            IApplicationLifetime lifetime,
+            IHostApplicationLifetime lifetime,
             ILoggerFactory loggerFactory,
             IStorageRepository storage)
         {

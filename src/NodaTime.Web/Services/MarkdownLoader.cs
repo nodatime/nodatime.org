@@ -31,7 +31,7 @@ namespace NodaTime.Web.Services
         private readonly CommonMarkSettings commonMarkSettings;
         private readonly Dictionary<string, MarkdownBundle> bundles;
 
-        public MarkdownLoader(IHostingEnvironment environment, ILoggerFactory loggerFactory)
+        public MarkdownLoader(IWebHostEnvironment environment, ILoggerFactory loggerFactory)
         {
             fileProvider = environment.ContentRootFileProvider;
             commonMarkSettings = CommonMarkSettings.Default.Clone();
@@ -149,7 +149,7 @@ namespace NodaTime.Web.Services
             return url;
         }
 
-        public MarkdownBundle TryGetBundle(string bundle)
+        public MarkdownBundle? TryGetBundle(string bundle)
         {
             bundles.TryGetValue(bundle, out var ret);
             return ret;

@@ -25,7 +25,7 @@ namespace NodaTime.Web.ViewModels
         }
 
         // TODO: Handle missing benchmarks
-        public IEnumerable<(Benchmark description, IEnumerable<Statistics> statistics)> GetBenchmarks()
+        public IEnumerable<(Benchmark description, IEnumerable<Statistics?> statistics)> GetBenchmarks()
         {
             List<Dictionary<string, Statistics>> statisticsByNameInTypeOrder = Types
                 .Select(t => t.Benchmarks.ToDictionary(tb => tb.Method, tb => tb.Statistics))
