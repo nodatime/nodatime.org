@@ -20,11 +20,9 @@ namespace NodaTime.Web.Controllers
 
         public HomeController(MarkdownLoader markdownLoader, ITzdbRepository repository)
         {
-            markdownBundle = markdownLoader.TryGetBundle("root");
-            if (markdownBundle == null)
-            {
-                throw new ArgumentException("Couldn't get root bundle", nameof(markdownLoader));
-            }
+            
+            markdownBundle = markdownLoader.TryGetBundle("root")
+                ?? throw new ArgumentException("Couldn't get root bundle", nameof(markdownLoader));
             this.repository = repository;
         }
 

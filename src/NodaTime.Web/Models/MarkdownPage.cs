@@ -44,7 +44,8 @@ namespace NodaTime.Web.Models
         {
             string line;
             string title = "";
-            while ((line = reader.ReadLine()).StartsWith("@"))
+            // TODO: Fix the NRE possibility.
+            while ((line = reader.ReadLine()!).StartsWith("@"))
             {
                 var match = DirectiveSplitter.Match(line);
                 if (!match.Success)

@@ -44,7 +44,7 @@ namespace NodaTime.Web.Models
             }
         }
 
-        public int CompareTo(StructuredVersion other) =>
+        public int CompareTo(StructuredVersion? other) =>
             other == null ? -1
             : Major != other.Major ? Major.CompareTo(other.Major)
             : Minor != other.Minor ? Minor.CompareTo(other.Minor)

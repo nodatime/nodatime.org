@@ -10,12 +10,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Headers;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 using NodaTime.Web.Configuration;
@@ -35,7 +35,7 @@ namespace NodaTime.Web
         private IConfigurationRoot Configuration { get; set; }
         private NetworkOptions NetworkOptions { get; }
 
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -49,7 +49,8 @@ namespace NodaTime.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            // TODO: Use endpoint routing at some point.
+            services.AddMvc(options => options.EnableEndpointRouting = false);
 
             NetworkOptions.ConfigureServices(services);
 
@@ -73,7 +74,7 @@ namespace NodaTime.Web
             services.AddMemoryCache();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             // Note: health checks come before HTTPS redirection so we get a 200 even on HTTP.
             app.UseHealthChecks("/healthz");
@@ -175,7 +176,7 @@ namespace NodaTime.Web
 
         /// Sets the Cache-Control header for static content, conditionally allowing the browser to use the content
         /// without revalidation.
-        private void SetCacheControlHeaderForStaticContent(IHostingEnvironment env, HttpContext context)
+        private void SetCacheControlHeaderForStaticContent(IWebHostEnvironment env, HttpContext context)
         {
             var headers = new ResponseHeaders(context.Response.Headers);
 

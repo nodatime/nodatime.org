@@ -2,6 +2,7 @@
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NodaTime.Text;
 using NodaTime.Web.Models;
@@ -23,7 +24,7 @@ namespace NodaTime.Web.Services
         private readonly TimerCache<CacheValue> cache;
 
         public ReleaseRepository(
-            IApplicationLifetime lifetime,
+            IHostApplicationLifetime lifetime,
             ILoggerFactory loggerFactory,
             IStorageRepository storage)
         {
