@@ -82,7 +82,7 @@ namespace SnippetExtractor
             var solution = await workspace.OpenSolutionAsync(solutionFile);
             var project = solution.Projects.Single(p => p.Name == projectName);
             // It's horrible to have this hardcoded here, but it's the simplest thing that works.
-            var netcoreapp31 = @"c:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.2";
+            var netcoreapp31 = @"c:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.19";
             if (!Directory.Exists(netcoreapp31))
             {
                 throw new Exception($"Error: required directory {netcoreapp31} does not exist. Please install the corresponding SDK.");
