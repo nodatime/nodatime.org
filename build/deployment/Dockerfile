@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.2-aspnetcore-runtime
+FROM mcr.microsoft.com/dotnet/aspnet:2.2
 COPY . /app
 WORKDIR /app
 ENV ASPNETCORE_URLS=http://127.0.0.1:8080
