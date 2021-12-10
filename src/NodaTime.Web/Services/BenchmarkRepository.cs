@@ -114,13 +114,14 @@ namespace NodaTime.Web.Services
                     {
                         runToAdd = LoadContainer(storage, runStorageName);
                     }
-                    runToAdd.Environment = environments.FirstOrDefault(env => env.BenchmarkEnvironmentId == runToAdd.BenchmarkEnvironmentId);
+                    var environment = environments.FirstOrDefault(env => env.BenchmarkEnvironmentId == runToAdd.BenchmarkEnvironmentId);
                     // If we don't have an environment, that's a bit worrying - skip and move on.
-                    if (runToAdd.Environment == null)
+                    if (environment is null)
                     {
                         logger.LogInformation("Run {runName} has no environment. Skipping.", runStorageName);
                         continue;
                     }
+                    runToAdd.Environment = environment;
                     runToAdd.PopulateLinks();
                     runsByStorageName[runStorageName] = runToAdd;
                 }

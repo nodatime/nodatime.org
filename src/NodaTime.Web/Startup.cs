@@ -184,7 +184,7 @@ namespace NodaTime.Web
             // (Which it can do easily, since we send an ETag with all static content responses).
             // Also don't set cache control for build.txt and commit.txt, which are diagnostic files designed
             // to show "the version being served" and should never be cached.
-            if (headers.ContentType.IsSubsetOf(TextHtml) ||
+            if (headers.ContentType is MediaTypeHeaderValue contentType && contentType.IsSubsetOf(TextHtml) ||
                 context.Request.Path.Value == "/build.txt" ||
                 context.Request.Path.Value == "/commit.txt")
             {

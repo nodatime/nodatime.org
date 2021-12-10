@@ -34,7 +34,7 @@ namespace NodaTime.Web.Logging
         // Note: log level filtering is handled by other logging infrastructure, so we don't do any of it here.
         public bool IsEnabled(LogLevel logLevel) => logLevel != LogLevel.None;
 
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
         {
             string severity = logLevel switch
             {
