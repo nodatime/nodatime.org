@@ -5,7 +5,7 @@
 # Build site and run smoke tests
 (cd $output/nodatime.org/build; ./buildweb.sh)
 
-declare -r publish=$output/nodatime.org/src/NodaTime.Web/bin/Release/netcoreapp3.1/publish
+declare -r publish=$output/nodatime.org/src/NodaTime.Web/bin/Release/net6.0/publish
 
 # Add diagnostic text files
 echo "Combined: $combined_commit" > $publish/wwwroot/commit.txt
