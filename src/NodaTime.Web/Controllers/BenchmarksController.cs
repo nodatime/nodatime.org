@@ -55,8 +55,10 @@ namespace NodaTime.Web.Controllers
             var runs = repository.ListEnvironments()
                 .Select(e => e.Runs.FirstOrDefault(r => r.Commit == left.Run.Commit))
                 .Where(r => r != null && r != left.Run)
+                .Select(r => r!) // Change the nullity of the element type
                 .Select(r => r.Types_.FirstOrDefault(t => t.FullTypeName == left.FullTypeName))
                 .Where(t => t != null)
+                .Select(t => t!) // Change the nullity of the element type
                 .ToList();
             // Always make the selected run the first one.
             runs.Insert(0, left);

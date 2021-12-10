@@ -65,7 +65,7 @@ namespace NodaTime.Web.Services
             var index = fileProvider.GetFileInfo($"{directory}/index.json");
             if (index.Exists)
             {
-                var bundle = JsonConvert.DeserializeObject<MarkdownBundle>(index.ReadAllText());
+                var bundle = JsonConvert.DeserializeObject<MarkdownBundle>(index.ReadAllText())!;
                 bundle.ContentDirectory = directory;
                 bundles.Add(bundle.Name, bundle);
             }
