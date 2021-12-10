@@ -80,8 +80,8 @@ the Unix epoch. The fact that the Unix epoch is defined in terms of
 UTC is irrelevant - it could have been defined in terms of a
 different time zone just as easily, such as "1am on January 1st 1970
 in the Europe/London time zone" (as the UK time zone was
-experimentally an hour ahead of UTC at the time). The tick values
-would remain the same.
+experimentally an hour ahead of UTC at the time). The number of
+nanoseconds would remain the same.
 
 Similarly, an `Instant` has no concept of a particular calendar
 system - it is meaningless to ask which month an instant occurs in,
