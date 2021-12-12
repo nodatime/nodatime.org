@@ -122,7 +122,7 @@ do
   (cd $version;
    dotnet publish src/NodaTime.Demo;
    mkdir ../../NodaTime/$version/overwrite;
-   dotnet run --no-build -p ../../../SnippetExtractor -- src/$solution_file NodaTime.Demo ../../NodaTime/$version/overwrite)
+   dotnet run --no-build --project ../../../SnippetExtractor -- src/$solution_file NodaTime.Demo ../../NodaTime/$version/overwrite)
 done
 cd ..
 
@@ -163,7 +163,7 @@ curl -sSL -o NodaTime.Serialization.SystemTextJson/1.0.x/NodaTime.Serialization.
 
 echo "Generating xref maps"
 mkdir xrefs
-dotnet run -p ../SandcastleXrefGenerator -- \
+dotnet run --project ../SandcastleXrefGenerator -- \
     Newtonsoft.Json 12.0.1 netstandard2.0 \
     https://www.newtonsoft.com/json/help/html/ \
     > xrefs/Newtonsoft.Json-xrefmap.yml
