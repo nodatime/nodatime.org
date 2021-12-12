@@ -28,7 +28,7 @@ copy_metadata() {
   do
     tocs+="tmp/metadata/$package/$version/api/toc.yml "
   done
-  dotnet run -p TocCombiner -- ${tocs[*]} > tmp/web/$target/api/toc.yml
+  dotnet run --project TocCombiner -- ${tocs[*]} > tmp/web/$target/api/toc.yml
 }
 
 if [[ ! -d history ]]
@@ -56,14 +56,14 @@ echo "Building all tools"
 dotnet build -v quiet Tools.sln
 
 # Create diffs between versions and other annotations, just for NodaTime
-dotnet run -p ReleaseDiffGenerator -- tmp/metadata/NodaTime
+dotnet run --project ReleaseDiffGenerator -- tmp/metadata/NodaTime
 
 # Extract annotations
-dotnet run -p DocfxAnnotationGenerator -- tmp/metadata/*
+dotnet run --project DocfxAnnotationGenerator -- tmp/metadata/*
 
 # Extract snippets from NodaTime.Demo (unstable only, for now)
 dotnet publish -v quiet ../../nodatime/src/NodaTime.Demo
-dotnet run -p SnippetExtractor -- ../../nodatime/src/NodaTime.sln NodaTime.Demo tmp/metadata/NodaTime/unstable/overwrite
+dotnet run --project SnippetExtractor -- ../../nodatime/src/NodaTime.sln NodaTime.Demo tmp/metadata/NodaTime/unstable/overwrite
 
 # Reorganize the files to suit docfx build
 # NodaTime and NodaTime.Testing
