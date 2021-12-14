@@ -3,7 +3,7 @@
 This is a companion page to the
 ["core concepts"](concepts), and ["choosing between types"](type-choices)
 pages, describing the fundamental types in Noda Time very briefly, primarily for reference.
-If you're not familiar with the core concepts, read those pages first.
+If you're not familiar with the core concepts, read the core concepts page first.
 
 Instant
 -------
