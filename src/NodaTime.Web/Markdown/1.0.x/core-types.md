@@ -1,9 +1,10 @@
 @Title="Core types quick reference"
 
-This is a companion page to the
-["core concepts"](concepts), and ["choosing between types"](type-choices)
-pages, describing the fundamental types in Noda Time very briefly, primarily for reference.
-If you're not familiar with the core concepts, read that page first.
+This is a companion page to the ["core concepts"](concepts) page. Please read
+that first, if you haven't already. 
+
+This page describes the fundamental types in Noda Time very briefly, primarily for reference.
+The ["choosing between types"](type-choices) page gives more background and guidance.
 
 Instant
 -------
