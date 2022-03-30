@@ -7,7 +7,7 @@ details.
 See the [end of this page](#tzdb-updates) for the policy on which
 versions receive patch updates for TZDB releases.
 
-## 2.4.18, 3.0.10, released 2021-10-22 with tzdb 2022a
+## 2.4.18, 3.0.10, released 2022-03-17 with tzdb 2022a
 
 This set of patch releases simply updates the built-in TZDB time
 zone data to 2022a, using CLDR version 40 for Windows mappings.
