@@ -62,8 +62,9 @@ dotnet run --project ReleaseDiffGenerator -- tmp/metadata/NodaTime
 dotnet run --project DocfxAnnotationGenerator -- tmp/metadata/*
 
 # Extract snippets from NodaTime.Demo (unstable only, for now)
-dotnet publish -v quiet ../../nodatime/src/NodaTime.Demo
-dotnet run --project SnippetExtractor -- ../../nodatime/src/NodaTime.sln NodaTime.Demo tmp/metadata/NodaTime/unstable/overwrite
+# Note: snippets are currently disabled until we can get them working again...
+# dotnet publish -v quiet ../../nodatime/src/NodaTime.Demo
+# dotnet run --project SnippetExtractor -- ../../nodatime/src/NodaTime.sln NodaTime.Demo tmp/metadata/NodaTime/unstable/overwrite
 
 # Reorganize the files to suit docfx build
 # NodaTime and NodaTime.Testing
