@@ -57,7 +57,7 @@ namespace SnippetExtractor
         private ExpressionSyntax GetSnippetInvocationExpression(InvocationExpressionSyntax syntax)
         {
             var symbol = model.GetSymbolInfo(syntax).Symbol;
-            if (!snippetType.Equals(symbol?.ContainingType) || syntax.ArgumentList.Arguments.Count == 0)
+            if (!SymbolEqualityComparer.Default.Equals(snippetType, symbol?.ContainingType) || syntax.ArgumentList.Arguments.Count == 0)
             {
                 return null;
             }
@@ -82,12 +82,6 @@ namespace SnippetExtractor
                 }
                 throw new Exception($"Expected lambda expression syntax; was {firstArgument.GetType()}");
             }
-        }
-
-        private bool IsSnippetMethod(InvocationExpressionSyntax syntax, string name)
-        {
-            var symbol = model.GetSymbolInfo(syntax).Symbol;
-            return snippetType.Equals(symbol?.ContainingType) && symbol.Name == name;
         }
 
         public static async Task<SnippetFileSyntaxTree> CreateAsync(Document document)
