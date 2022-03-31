@@ -81,22 +81,7 @@ namespace SnippetExtractor
             var workspace = MSBuildWorkspace.Create();
             var solution = await workspace.OpenSolutionAsync(solutionFile);
             var project = solution.Projects.Single(p => p.Name == projectName);
-            // It's horrible to have this hardcoded here, but it's the simplest thing that works.
-            var netcoreapp31 = @"c:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.19";
-            if (!Directory.Exists(netcoreapp31))
-            {
-                throw new Exception($"Error: required directory {netcoreapp31} does not exist. Please install the corresponding SDK.");
-            }
-            var netcoreapp31Assemblies = Directory.GetFiles(netcoreapp31, "System*.dll")
-                .Concat(Directory.GetFiles(netcoreapp31, "netstandard*.dll"))
-                .Concat(Directory.GetFiles(netcoreapp31, "mscorlib*.dll"));
-            var publishDirectory = Path.Combine(Path.GetDirectoryName(project.OutputFilePath), "publish");
-            var localAssemblies = Directory.GetFiles(publishDirectory, "*.dll").Where(f => Path.GetFileName(f) != "NodaTime.Demo.dll");
-            var allReferences = localAssemblies.Concat(netcoreapp31Assemblies).Select(f => MetadataReference.CreateFromFile(f));
             Console.WriteLine("Compiling the project");
-            project = project
-                .WithProjectReferences(new ProjectReference[0])
-                .WithMetadataReferences(allReferences);
             var compilation = await project.GetCompilationAsync();
             compilation.CheckSuccessful();
             Console.WriteLine("Compiled the project successfully");

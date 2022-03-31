@@ -31,11 +31,18 @@ namespace SnippetExtractor
 
         public SnippetRewriter(Project project)
         {
+            var nodaTimeFile = Path.Combine(Path.GetDirectoryName(project.OutputFilePath), "NodaTime.dll");
+            var nodaTimeReference = MetadataReference.CreateFromFile(nodaTimeFile);
+            var demoReference = MetadataReference.CreateFromFile(project.OutputFilePath);
+
             buildOptions = ScriptOptions.Default
                 .AddReferences(project.MetadataReferences)
-                .AddReferences(new[] { MetadataReference.CreateFromFile(project.OutputFilePath) });
-            var nodaTimeReference = buildOptions.MetadataReferences.Single(mr => mr.Display.EndsWith("NodaTime.dll"));
-            executeOptions = ScriptOptions.Default.WithReferences(nodaTimeReference);
+                .AddReferences(new[] { nodaTimeReference, demoReference });
+
+            // Remove any unresolved metadata references. I don't know why we have them, but it appears we don't need them...
+            buildOptions = buildOptions.WithReferences(buildOptions.MetadataReferences.Where(mr => mr is not UnresolvedMetadataReference));
+
+            executeOptions = ScriptOptions.Default.AddReferences(nodaTimeReference);
         }
 
         public async Task<RewrittenSnippet> RewriteSnippetAsync(SourceSnippet snippet)
@@ -43,7 +50,6 @@ namespace SnippetExtractor
             var usings = snippet.Usings.Concat(ExtraUsings).Distinct().OrderBy(x => x.TrimEnd(';'));
             var text = string.Join("\r\n", usings.Concat(new[] { "" }).Concat(Trim(snippet.Lines)));
             var tree = CSharpSyntaxTree.ParseText(text, CSharpParseOptions.Default.WithKind(SourceCodeKind.Script));
-
             Compilation compilation = CSharpCompilation.Create("Foo", new[] { tree }, buildOptions.MetadataReferences)
                 .CheckSuccessful();
             // TODO: Replace var with explicit declarations?
@@ -94,8 +100,8 @@ namespace SnippetExtractor
                     var symbol = model.GetSymbolInfo(oldNode).Symbol;
                     return symbol switch
                     {
-                        IMethodSymbol method when method.ContainingType.Equals(assertType) => ReplaceAssert(method, newNode),
-                        IMethodSymbol method when method.ContainingType.Equals(snippetType) => ReplaceSnippetHelper(method, newNode),
+                        IMethodSymbol method when SymbolEqualityComparer.Default.Equals(method.ContainingType, assertType) => ReplaceAssert(method, newNode),
+                        IMethodSymbol method when SymbolEqualityComparer.Default.Equals(method.ContainingType, snippetType) => ReplaceSnippetHelper(method, newNode),
                         _ => newNode
                     };
 
@@ -131,15 +137,9 @@ namespace SnippetExtractor
                         };
                 }
 
-                bool ShouldRemoveStatementInvocation(InvocationExpressionSyntax invocation)
-                {
-                    var symbol = model.GetSymbolInfo(invocation).Symbol;
-                    return symbol switch
-                    {
-                        IMethodSymbol method when method.ContainingType.Equals(snippetType) && method.Name == "SilentForAction" => true,
-                        _ => false
-                    };
-                }
+                bool ShouldRemoveStatementInvocation(InvocationExpressionSyntax invocation) =>
+                    model.GetSymbolInfo(invocation).Symbol is IMethodSymbol method &&
+                        SymbolEqualityComparer.Default.Equals(method.ContainingType, snippetType) && method.Name == "SilentForAction";
             }
         }
 
