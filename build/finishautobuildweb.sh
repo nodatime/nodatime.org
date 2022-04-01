@@ -2,6 +2,10 @@
 # It allows the second phase of the script to be updated without
 # refetching the file for the first phase.
 
+echo "Environment:"
+env
+echo ""
+
 # Build site and run smoke tests
 (cd $output/nodatime.org/build; ./buildweb.sh)
 
