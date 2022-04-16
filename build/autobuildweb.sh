@@ -21,9 +21,9 @@ then
 fi
 
 declare -r root=$1
-declare -r nodatime_commit=$(curl -s -H Accept:application/vnd.github.VERSION.sha https://api.github.com/repos/nodatime/nodatime/commits/master)
-declare -r nodatime_org_commit=$(curl -s -H Accept:application/vnd.github.VERSION.sha https://api.github.com/repos/nodatime/nodatime.org/commits/master)
-declare -r nodatime_serialization_commit=$(curl -s -H Accept:application/vnd.github.VERSION.sha https://api.github.com/repos/nodatime/nodatime.serialization/commits/master)
+declare -r nodatime_commit=$(curl -s -H Accept:application/vnd.github.VERSION.sha https://api.github.com/repos/nodatime/nodatime/commits/main)
+declare -r nodatime_org_commit=$(curl -s -H Accept:application/vnd.github.VERSION.sha https://api.github.com/repos/nodatime/nodatime.org/commits/main)
+declare -r nodatime_serialization_commit=$(curl -s -H Accept:application/vnd.github.VERSION.sha https://api.github.com/repos/nodatime/nodatime.serialization/commits/main)
 
 declare -r combined_commit="${nodatime_commit:0:8}_${nodatime_org_commit:0:8}_${nodatime_serialization_commit:0:8}"
 declare -r output=$root/$combined_commit

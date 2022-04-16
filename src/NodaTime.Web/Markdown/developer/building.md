@@ -9,7 +9,7 @@ installed. We periodically update the version of the .NET SDK
 that we build with, typically to the latest Long Term Support (LTS)
 version, but occasionally a more recent version in order to use the
 latest C# features. See the [root global.json
-file](https://github.com/nodatime/nodatime/blob/master/global.json)
+file](https://github.com/nodatime/nodatime/blob/main/global.json)
 to determine which version of the SDK is required, then [download
 it](https://dotnet.microsoft.com/download) if necessary.
 

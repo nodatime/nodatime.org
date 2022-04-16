@@ -13,7 +13,7 @@ System requirements
 Noda Time 2.x provided separate libraries supporting the `net45` and `netstandard1.3` frameworks (.NET 4.5+ and .NET Core 1.0+);
 in comparison, Noda Time 3.0 supports only `netstandard2.0`. This effectively increases the minimum required platform versions for
 Noda Time 3.x to *.NET Framework 4.7.2+* and *.NET Core 2.0+*.  See the [.NET Standard
-Versions](https://github.com/dotnet/standard/blob/master/docs/versions.md) documentation for more details.
+Versions](https://github.com/dotnet/standard/blob/main/docs/versions.md) documentation for more details.
 
 AllowPartiallyTrustedCallers (.NET Framework only)
 ====

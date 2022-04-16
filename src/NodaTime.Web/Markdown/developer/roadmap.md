@@ -46,4 +46,4 @@ This roadmap was last updated on **2018-05-06**.
 
 - Formatting (probably not parsing) using CLDR data for month names, Unicode pattern symbols, possibly non-ASCII numbers.
 - CLDR time zone information (e.g. sample cities to display to users)
-- Serialization for Google Protocol Buffers ([code already started](https://github.com/nodatime/nodatime.serialization/tree/master/src/NodaTime.Serialization.Protobuf))
+- Serialization for Google Protocol Buffers ([code already started](https://github.com/nodatime/nodatime.serialization/tree/main/src/NodaTime.Serialization.Protobuf))

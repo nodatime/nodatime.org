@@ -25,14 +25,14 @@ Search the issue tracker for open issues with the right milestone (e.g.
 
 - Update the `Directory.Build.props` in the root directory; this contains the version number
 - Commit this change, and push it in a PR that describes the changes in this release
-- In GitHub, create branch `2.3.x` from master
+- In GitHub, create branch `2.3.x` from main
 - Protect the branch (in GitHub repository settings)
 - Create a release in GitHub, with a new tag `2.3.0` against the new branch
   - A GitHub action will automatically build and push to NuGet
         
 ## Post-release
 
-Make changes in the master branch in the nodatime.org repo:
+Make changes in the main branch in the nodatime.org repo:
 
 - Edit the version history to record the release
 - Rename the `unstable` directory in NodaTime.Web/Markdown to `2.3.x`

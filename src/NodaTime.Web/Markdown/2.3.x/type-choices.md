@@ -129,7 +129,7 @@ schedule another meeting "the same time next month" - when *exactly*
 would that be? The time zone - including any transitions - makes a
 big difference here. Indeed, if two users in different time zones
 have a meeting and then decide to repeat it a month later "at the
-same time" they'll need to pick one time zone to be a "master" as
+same time" they'll need to pick one time zone to be canonical as
 otherwise they could miss each other.
 
 It's this sort of situation where the familiar advice of "store
