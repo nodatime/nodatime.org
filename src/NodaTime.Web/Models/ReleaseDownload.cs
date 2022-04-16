@@ -6,19 +6,16 @@ namespace NodaTime.Web.Models
 {
     public class ReleaseDownload
     {
-        public StructuredVersion? Version { get; }
-        public string File { get; }
-        public string DownloadUrl { get; }
-        public string? Sha256Hash { get; }
-        public LocalDate ReleaseDate { get; set; }
+        public StructuredVersion Version { get; }
+        /// <summary>
+        /// URL we could use to fetch the publication date if we really want that.
+        /// </summary>
+        public string NuGetMetadataUrl { get; set; }
 
-        public ReleaseDownload(StructuredVersion? version, string file, string downloadUrl, string? sha256Hash, LocalDate releaseDate)
+        public ReleaseDownload(StructuredVersion version, string nuGetMetadataUrl)
         {
             Version = version;
-            File = file;
-            DownloadUrl = downloadUrl;
-            Sha256Hash = sha256Hash;
-            ReleaseDate = releaseDate;
+            NuGetMetadataUrl = nuGetMetadataUrl;
         }
     }
 }

@@ -20,13 +20,11 @@ particularly:
 - [`wwwroot/`](https://github.com/nodatime/nodatime.org/tree/main/src/NodaTime.Web/wwwroot)
   containing static content for the site.
 - [`Views/`](https://github.com/nodatime/nodatime.org/tree/main/src/NodaTime.Web/Views)
-  containing the programmatic content, for e.g. the home page and downloads
-  page.
+  containing the programmatic content, for e.g. the home page and benchmark pages.
 
-The [downloads](/downloads/) and [TZDB NZD files](/tzdb/) are stored on
+The [benchmarks](/benchmarks/) and [TZDB NZD files](/tzdb/) are stored on
 Google Cloud Storage, under the `https://storage.googleapis.com/nodatime/`
-bucket. The downloads are served to users directly via GCS URLs, but the NZD
-files are fetched (and held permanently in memory) and then re-served via
+bucket. NZD files and benchmarks are fetched (and held permanently in memory) and then re-served via
 the nodatime.org web application (mostly because we do not want to serve
 redirects or non-nodatime.org URLs to clients).
 
@@ -46,7 +44,7 @@ as described [below](#docfx).
 Once `src/NodaTime.Web/docfx/` exists, the application can be run directly.
 Unless credentials to list the Google Cloud Storage bucket have been
 provided, the `DISABLE_GCS` environment variable should also be set (to any
-value) to use a hard-coded list of downloads and NZD files.
+value) to use a hard-coded list of NZD files.
 
 ```sh
 $ cd src/NodaTime.Web/

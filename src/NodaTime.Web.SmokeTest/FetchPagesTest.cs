@@ -20,7 +20,6 @@ namespace NodaTime.Web.SmokeTest
         }
 
         [Test]
-        [TestCase("downloads", "NodaTime-1.0.0.zip")]
         [TestCase("1.0.x/userguide/text", "There are two options for text handling")]
         [TestCase("1.0.x/api/NodaTime.DateTimeZone.html", "The mapping is unambiguous")]
         // Note: not the full URL as that depends on the server URL
