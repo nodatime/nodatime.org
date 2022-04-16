@@ -6,11 +6,6 @@ two packages:
 - [NodaTime](https://www.nuget.org/packages/NodaTime)
 - [NodaTime.Testing](https://www.nuget.org/packages/NodaTime.Testing)
 
-Alternatively, source and binary downloads are available on the
-[project download page][downloads].
-
-[downloads]: /downloads/
-
 An experimental assembly to support Json.NET is also available (in source form
 only); see the [serialization guide](serialization) for more information.
 

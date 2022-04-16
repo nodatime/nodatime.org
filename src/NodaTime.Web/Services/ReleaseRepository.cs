@@ -1,34 +1,35 @@
 ﻿// Copyright 2016 The Noda Time Authors. All rights reserved.
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NodaTime.Text;
 using NodaTime.Web.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace NodaTime.Web.Services
 {
     public class ReleaseRepository : IReleaseRepository
     {
+        private static readonly JsonSerializerSettings jsonParseSettings = new JsonSerializerSettings { DateParseHandling = DateParseHandling.None };
+
         private const string ObjectPrefix = "releases/";
-        private static readonly Regex ReleasePattern = new Regex(ObjectPrefix + @"NodaTime-(\d+\.\d+\.\d+(?:-[a-z]+\d+)?)(?:-src)?.zip");
-        private const string Sha256Key = "SHA-256";
-        private const string ReleaseDateKey = "ReleaseDate";
 
         private static readonly Duration CacheRefreshTime = Duration.FromMinutes(6);
-        private readonly IStorageRepository storage;
         private readonly TimerCache<CacheValue> cache;
+        private readonly IHttpClientFactory httpClientFactory;
 
         public ReleaseRepository(
             IHostApplicationLifetime lifetime,
             ILoggerFactory loggerFactory,
-            IStorageRepository storage)
+            IHttpClientFactory httpClientFactory)
         {
-            this.storage = storage;
+            this.httpClientFactory = httpClientFactory;
             cache = new TimerCache<CacheValue>("releases", lifetime, CacheRefreshTime, FetchReleases, loggerFactory, FetchReleases());
             cache.Start();
         }
@@ -40,28 +41,32 @@ namespace NodaTime.Web.Services
 
         private CacheValue FetchReleases()
         {
-            var releases = storage
-                .ListFiles(ObjectPrefix)
-                .Where(obj => !obj.Name.EndsWith("/"))
-                .Select(ConvertObject)
-                .OrderByDescending(r => r.Version)
-                .ToList();
-            return new CacheValue(releases);
+            return Task.Run(FetchReleasesAsync).Result;
         }
 
-        private ReleaseDownload ConvertObject(StorageFile file)
+        private async Task<CacheValue> FetchReleasesAsync()
         {
-            string? sha256Hash;
-            file.Metadata.TryGetValue(Sha256Key, out sha256Hash);
-            string? releaseDateMetadata;
-            file.Metadata.TryGetValue(ReleaseDateKey, out releaseDateMetadata);
-            var match = ReleasePattern.Match(file.Name);
-            StructuredVersion? version = match.Success ? new StructuredVersion(match.Groups[1].Value) : null;
-            LocalDate releaseDate = releaseDateMetadata == null
-                ? LocalDate.FromDateTime(file.LastUpdated)
-                : LocalDatePattern.Iso.Parse(releaseDateMetadata).Value;
-            return new ReleaseDownload(version, file.Name.Substring(ObjectPrefix.Length),
-                storage.GetDownloadUrl(file.Name), sha256Hash, releaseDate);
+            using (var client = httpClientFactory.CreateClient())
+            {
+                var json = await client.GetStringAsync("https://azuresearch-usnc.nuget.org/query?q=PackageId:NodaTime");
+                var jobject = JsonConvert.DeserializeObject<JObject>(json, jsonParseSettings)!;
+                var versions = jobject["data"]![0]!["versions"]!.ToList();
+
+                var releases = new List<ReleaseDownload>();
+                foreach (var versionObject in versions)
+                {
+                    string url = (string) versionObject["@id"]!;
+                    string version = (string)versionObject["version"]!;
+
+                    // Skip anything before 1.0
+                    if (version.StartsWith("0."))
+                    {
+                        continue;
+                    }
+                    releases.Add(new ReleaseDownload(new StructuredVersion(version), url));
+                }
+                return new CacheValue(releases);
+            }
         }
 
         private class CacheValue
@@ -78,12 +83,12 @@ namespace NodaTime.Web.Services
                 // 1.4 comes out after 2.0, 2.0 is still latest.)
                 // Pre-release versions are excluded.
                 LatestRelease = releases
-                    .Where(r => !r.File.Contains("-src") && r.Version?.Prerelease == null)
+                    .Where(r => r.Version.Prerelease == null)
                     .OrderByDescending(r => r.Version)
                     .First();
                 var allMinorReleasesGroupedByMajor = releases
-                    .Where(r => !r.File.Contains("-src") && r.Version != null && r.Version.Prerelease == null)
-                    .Select(r => new { r.Version!.Major, r.Version!.Minor })
+                    .Where(r => r.Version.Prerelease == null)
+                    .Select(r => new { r.Version.Major, r.Version.Minor })
                     .Distinct()
                     .OrderByDescending(v => v.Major).ThenByDescending(v => v.Minor)
                     .GroupBy(v => v.Major);

@@ -7,11 +7,6 @@ three packages:
 - [NodaTime.Testing](https://www.nuget.org/packages/NodaTime.Testing)
 - [NodaTime.Serialization.JsonNet](https://www.nuget.org/packages/NodaTime.Serialization.JsonNet)
 
-Alternatively, source and binary downloads are available on the
-[project download page][downloads].
-
-[downloads]: /downloads/
-
 See the ["Building and testing"][building] section in the developer guide for
 instructions on building Noda Time from source.
 
