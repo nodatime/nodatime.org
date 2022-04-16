@@ -1,4 +1,4 @@
-[![Travis build Status](https://travis-ci.org/nodatime/nodatime.org.svg?branch=master)](https://travis-ci.org/nodatime/nodatime.org)
+[![Travis build Status](https://travis-ci.org/nodatime/nodatime.org.svg?branch=main)](https://travis-ci.org/nodatime/nodatime.org)
 [![AppVeyor status](https://ci.appveyor.com/api/projects/status/1od487l2paotghwm?svg=true)](https://ci.appveyor.com/project/nodatime/nodatime-org)
 
 This repository now contains the web site code
