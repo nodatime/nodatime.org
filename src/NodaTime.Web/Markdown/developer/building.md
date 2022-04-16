@@ -2,10 +2,10 @@
 
 ## Visual Studio (Windows)
 
-Noda Time is developed on Visual Studio 2019. All editions of Visual
-Studio 2019, including the community edition, should be able to
-build Noda Time, so long as you also have the .NET Core SDK
-installed. We periodically update the version of the .NET Core SDK
+Noda Time is developed on Visual Studio 2022. All editions of Visual
+Studio 2022, including the community edition, should be able to
+build Noda Time, so long as you also have the .NET SDK
+installed. We periodically update the version of the .NET SDK
 that we build with, typically to the latest Long Term Support (LTS)
 version, but occasionally a more recent version in order to use the
 latest C# features. See the [root global.json
@@ -29,7 +29,7 @@ To fetch the source code, just clone the GitHub repository:
 
 To build everything under Visual Studio, simply open the `src\NodaTime.sln` file.
 
-To build with just the .NET Core SDK, run
+To build with just the .NET SDK, run
 
 ```bat
 > dotnet build src/NodaTime.sln
