@@ -1,0 +1,697 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Serialization.Protobuf.NodaExtensions
+  commentId: T:NodaTime.Serialization.Protobuf.NodaExtensions
+  id: NodaExtensions
+  parent: NodaTime.Serialization.Protobuf
+  children:
+  - NodaTime.Serialization.Protobuf.NodaExtensions.ToDate(NodaTime.LocalDate)
+  - NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDayOfWeek(NodaTime.IsoDayOfWeek)
+  - NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDuration(NodaTime.Duration)
+  - NodaTime.Serialization.Protobuf.NodaExtensions.ToTimeOfDay(NodaTime.LocalTime)
+  - NodaTime.Serialization.Protobuf.NodaExtensions.ToTimestamp(NodaTime.Instant)
+  langs:
+  - csharp
+  - vb
+  name: NodaExtensions
+  nameWithType: NodaExtensions
+  fullName: NodaTime.Serialization.Protobuf.NodaExtensions
+  type: Class
+  source:
+    id: NodaExtensions
+    path: C:\users\skeet\GitHub\nodatime\nodatime.serialization\src\NodaTime.Serialization.Protobuf\NodaExtensions.cs
+    startLine: 16
+  assemblies:
+  - NodaTime.Serialization.Protobuf
+  namespace: NodaTime.Serialization.Protobuf
+  summary: "\nExtension methods on the Google.Protobuf time-related types to convert them to Noda Time types.\n"
+  example: []
+  syntax:
+    content: public static class NodaExtensions
+    content.vb: Public Module NodaExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDuration(NodaTime.Duration)
+  commentId: M:NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDuration(NodaTime.Duration)
+  id: ToProtobufDuration(NodaTime.Duration)
+  isExtensionMethod: true
+  parent: NodaTime.Serialization.Protobuf.NodaExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToProtobufDuration(Duration)
+  nameWithType: NodaExtensions.ToProtobufDuration(Duration)
+  fullName: NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDuration(NodaTime.Duration)
+  type: Method
+  source:
+    id: ToProtobufDuration
+    path: C:\users\skeet\GitHub\nodatime\nodatime.serialization\src\NodaTime.Serialization.Protobuf\NodaExtensions.cs
+    startLine: 35
+  assemblies:
+  - NodaTime.Serialization.Protobuf
+  namespace: NodaTime.Serialization.Protobuf
+  summary: "\nConverts a Noda Time <xref href=\"NodaTime.Duration\" data-throw-if-not-resolved=\"false\"></xref> to a Protobuf <xref href=\"Google.Protobuf.WellKnownTypes.Duration\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\nNoda Time has a wider range of valid durations than Protobuf; durations of more than around 10,000\nyears (positive or negative) cannot be represented.\n"
+  example: []
+  syntax:
+    content: public static Duration ToProtobufDuration(this Duration duration)
+    parameters:
+    - id: duration
+      type: NodaTime.Duration
+      description: The duration to convert. Must not be null.
+    return:
+      type: Google.Protobuf.WellKnownTypes.Duration
+      description: The Protobuf representation.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToProtobufDuration(duration As Duration) As Duration
+  overload: NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDuration*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      <code data-dev-comment-type="paramref" class="paramref">duration</code> represents a duration
+          which is invalid in <xref href="Google.Protobuf.WellKnownTypes.Duration" data-throw-if-not-resolved="false"></xref>.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Serialization.Protobuf.NodaExtensions.ToTimestamp(NodaTime.Instant)
+  commentId: M:NodaTime.Serialization.Protobuf.NodaExtensions.ToTimestamp(NodaTime.Instant)
+  id: ToTimestamp(NodaTime.Instant)
+  isExtensionMethod: true
+  parent: NodaTime.Serialization.Protobuf.NodaExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToTimestamp(Instant)
+  nameWithType: NodaExtensions.ToTimestamp(Instant)
+  fullName: NodaTime.Serialization.Protobuf.NodaExtensions.ToTimestamp(NodaTime.Instant)
+  type: Method
+  source:
+    id: ToTimestamp
+    path: C:\users\skeet\GitHub\nodatime\nodatime.serialization\src\NodaTime.Serialization.Protobuf\NodaExtensions.cs
+    startLine: 60
+  assemblies:
+  - NodaTime.Serialization.Protobuf
+  namespace: NodaTime.Serialization.Protobuf
+  summary: "\nConverts a Noda Time <xref href=\"NodaTime.Instant\" data-throw-if-not-resolved=\"false\"></xref> to a Protobuf <xref href=\"Google.Protobuf.WellKnownTypes.Timestamp\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\nNoda Time has a wider range of valid instants than Protobuf timestamps; instants before 0001-01-01 CE\nare out of range.\n"
+  example: []
+  syntax:
+    content: public static Timestamp ToTimestamp(this Instant instant)
+    parameters:
+    - id: instant
+      type: NodaTime.Instant
+      description: The instant to convert.
+    return:
+      type: Google.Protobuf.WellKnownTypes.Timestamp
+      description: The Protobuf representation.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToTimestamp(instant As Instant) As Timestamp
+  overload: NodaTime.Serialization.Protobuf.NodaExtensions.ToTimestamp*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      <code data-dev-comment-type="paramref" class="paramref">instant</code> represents an instant
+          which is invalid in <xref href="Google.Protobuf.WellKnownTypes.Timestamp" data-throw-if-not-resolved="false"></xref>.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Serialization.Protobuf.NodaExtensions.ToTimeOfDay(NodaTime.LocalTime)
+  commentId: M:NodaTime.Serialization.Protobuf.NodaExtensions.ToTimeOfDay(NodaTime.LocalTime)
+  id: ToTimeOfDay(NodaTime.LocalTime)
+  isExtensionMethod: true
+  parent: NodaTime.Serialization.Protobuf.NodaExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToTimeOfDay(LocalTime)
+  nameWithType: NodaExtensions.ToTimeOfDay(LocalTime)
+  fullName: NodaTime.Serialization.Protobuf.NodaExtensions.ToTimeOfDay(NodaTime.LocalTime)
+  type: Method
+  source:
+    id: ToTimeOfDay
+    path: C:\users\skeet\GitHub\nodatime\nodatime.serialization\src\NodaTime.Serialization.Protobuf\NodaExtensions.cs
+    startLine: 82
+  assemblies:
+  - NodaTime.Serialization.Protobuf
+  namespace: NodaTime.Serialization.Protobuf
+  summary: "\nConverts a Noda Time <xref href=\"NodaTime.LocalTime\" data-throw-if-not-resolved=\"false\"></xref> to a Protobuf <xref href=\"Google.Type.TimeOfDay\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\nEvery valid Noda Time local time can be represented in Protobuf without loss of information.\n"
+  example: []
+  syntax:
+    content: public static TimeOfDay ToTimeOfDay(this LocalTime localTime)
+    parameters:
+    - id: localTime
+      type: NodaTime.LocalTime
+      description: The local time.
+    return:
+      type: Google.Type.TimeOfDay
+      description: The Protobuf representation.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToTimeOfDay(localTime As LocalTime) As TimeOfDay
+  overload: NodaTime.Serialization.Protobuf.NodaExtensions.ToTimeOfDay*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDayOfWeek(NodaTime.IsoDayOfWeek)
+  commentId: M:NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDayOfWeek(NodaTime.IsoDayOfWeek)
+  id: ToProtobufDayOfWeek(NodaTime.IsoDayOfWeek)
+  isExtensionMethod: true
+  parent: NodaTime.Serialization.Protobuf.NodaExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToProtobufDayOfWeek(IsoDayOfWeek)
+  nameWithType: NodaExtensions.ToProtobufDayOfWeek(IsoDayOfWeek)
+  fullName: NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDayOfWeek(NodaTime.IsoDayOfWeek)
+  type: Method
+  source:
+    id: ToProtobufDayOfWeek
+    path: C:\users\skeet\GitHub\nodatime\nodatime.serialization\src\NodaTime.Serialization.Protobuf\NodaExtensions.cs
+    startLine: 101
+  assemblies:
+  - NodaTime.Serialization.Protobuf
+  namespace: NodaTime.Serialization.Protobuf
+  summary: "\nConverts a Noda Time <xref href=\"NodaTime.IsoDayOfWeek\" data-throw-if-not-resolved=\"false\"></xref> to a Protobuf <xref href=\"Google.Type.DayOfWeek\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\nThe <xref href=\"NodaTime.IsoDayOfWeek.None\" data-throw-if-not-resolved=\"false\"></xref> value maps to <xref href=\"Google.Type.DayOfWeek.Unspecified\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public static DayOfWeek ToProtobufDayOfWeek(this IsoDayOfWeek isoDayOfWeek)
+    parameters:
+    - id: isoDayOfWeek
+      type: NodaTime.IsoDayOfWeek
+      description: The ISO day-of-week value to convert.
+    return:
+      type: Google.Type.DayOfWeek
+      description: The Protobuf representation.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToProtobufDayOfWeek(isoDayOfWeek As IsoDayOfWeek) As DayOfWeek
+  overload: NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDayOfWeek*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      <code data-dev-comment-type="paramref" class="paramref">isoDayOfWeek</code> is neither None nor
+          a valid ISO day-of-week value.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NodaTime.Serialization.Protobuf.NodaExtensions.ToDate(NodaTime.LocalDate)
+  commentId: M:NodaTime.Serialization.Protobuf.NodaExtensions.ToDate(NodaTime.LocalDate)
+  id: ToDate(NodaTime.LocalDate)
+  isExtensionMethod: true
+  parent: NodaTime.Serialization.Protobuf.NodaExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToDate(LocalDate)
+  nameWithType: NodaExtensions.ToDate(LocalDate)
+  fullName: NodaTime.Serialization.Protobuf.NodaExtensions.ToDate(NodaTime.LocalDate)
+  type: Method
+  source:
+    id: ToDate
+    path: C:\users\skeet\GitHub\nodatime\nodatime.serialization\src\NodaTime.Serialization.Protobuf\NodaExtensions.cs
+    startLine: 121
+  assemblies:
+  - NodaTime.Serialization.Protobuf
+  namespace: NodaTime.Serialization.Protobuf
+  summary: "\nConverts a Noda Time <xref href=\"NodaTime.LocalDate\" data-throw-if-not-resolved=\"false\"></xref> to a Protobuf <xref href=\"Google.Type.Date\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\nOnly dates in the ISO calendar can be converted, and only those in the year range of 1-9999.\n"
+  example: []
+  syntax:
+    content: public static Date ToDate(this LocalDate date)
+    parameters:
+    - id: date
+      type: NodaTime.LocalDate
+      description: The date to convert.
+    return:
+      type: Google.Type.Date
+      description: The Protobuf representation.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToDate(date As LocalDate) As Date
+  overload: NodaTime.Serialization.Protobuf.NodaExtensions.ToDate*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: NodaTime.Serialization.Protobuf
+  commentId: N:NodaTime.Serialization.Protobuf
+  name: NodaTime.Serialization.Protobuf
+  nameWithType: NodaTime.Serialization.Protobuf
+  fullName: NodaTime.Serialization.Protobuf
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NodaTime.Duration
+  commentId: T:NodaTime.Duration
+  parent: NodaTime
+  isExternal: true
+  name: Duration
+  nameWithType: Duration
+  fullName: NodaTime.Duration
+- uid: Google.Protobuf.WellKnownTypes.Duration
+  commentId: T:Google.Protobuf.WellKnownTypes.Duration
+  parent: Google.Protobuf.WellKnownTypes
+  isExternal: true
+  name: Duration
+  nameWithType: Duration
+  fullName: Google.Protobuf.WellKnownTypes.Duration
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+- uid: NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDuration*
+  commentId: Overload:NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDuration
+  name: ToProtobufDuration
+  nameWithType: NodaExtensions.ToProtobufDuration
+  fullName: NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDuration
+- uid: NodaTime
+  commentId: N:NodaTime
+  isExternal: true
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: Google.Protobuf.WellKnownTypes
+  commentId: N:Google.Protobuf.WellKnownTypes
+  isExternal: true
+  name: Google.Protobuf.WellKnownTypes
+  nameWithType: Google.Protobuf.WellKnownTypes
+  fullName: Google.Protobuf.WellKnownTypes
+- uid: NodaTime.Instant
+  commentId: T:NodaTime.Instant
+  parent: NodaTime
+  isExternal: true
+  name: Instant
+  nameWithType: Instant
+  fullName: NodaTime.Instant
+- uid: Google.Protobuf.WellKnownTypes.Timestamp
+  commentId: T:Google.Protobuf.WellKnownTypes.Timestamp
+  parent: Google.Protobuf.WellKnownTypes
+  isExternal: true
+  name: Timestamp
+  nameWithType: Timestamp
+  fullName: Google.Protobuf.WellKnownTypes.Timestamp
+- uid: NodaTime.Serialization.Protobuf.NodaExtensions.ToTimestamp*
+  commentId: Overload:NodaTime.Serialization.Protobuf.NodaExtensions.ToTimestamp
+  name: ToTimestamp
+  nameWithType: NodaExtensions.ToTimestamp
+  fullName: NodaTime.Serialization.Protobuf.NodaExtensions.ToTimestamp
+- uid: NodaTime.LocalTime
+  commentId: T:NodaTime.LocalTime
+  parent: NodaTime
+  isExternal: true
+  name: LocalTime
+  nameWithType: LocalTime
+  fullName: NodaTime.LocalTime
+- uid: Google.Type.TimeOfDay
+  commentId: T:Google.Type.TimeOfDay
+  parent: Google.Type
+  isExternal: true
+  name: TimeOfDay
+  nameWithType: TimeOfDay
+  fullName: Google.Type.TimeOfDay
+- uid: NodaTime.Serialization.Protobuf.NodaExtensions.ToTimeOfDay*
+  commentId: Overload:NodaTime.Serialization.Protobuf.NodaExtensions.ToTimeOfDay
+  name: ToTimeOfDay
+  nameWithType: NodaExtensions.ToTimeOfDay
+  fullName: NodaTime.Serialization.Protobuf.NodaExtensions.ToTimeOfDay
+- uid: Google.Type
+  commentId: N:Google.Type
+  isExternal: true
+  name: Google.Type
+  nameWithType: Google.Type
+  fullName: Google.Type
+- uid: NodaTime.IsoDayOfWeek
+  commentId: T:NodaTime.IsoDayOfWeek
+  parent: NodaTime
+  isExternal: true
+  name: IsoDayOfWeek
+  nameWithType: IsoDayOfWeek
+  fullName: NodaTime.IsoDayOfWeek
+- uid: Google.Type.DayOfWeek
+  commentId: T:Google.Type.DayOfWeek
+  parent: Google.Type
+  isExternal: true
+  name: DayOfWeek
+  nameWithType: DayOfWeek
+  fullName: Google.Type.DayOfWeek
+- uid: NodaTime.IsoDayOfWeek.None
+  commentId: F:NodaTime.IsoDayOfWeek.None
+  isExternal: true
+- uid: Google.Type.DayOfWeek.Unspecified
+  commentId: F:Google.Type.DayOfWeek.Unspecified
+  isExternal: true
+- uid: NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDayOfWeek*
+  commentId: Overload:NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDayOfWeek
+  name: ToProtobufDayOfWeek
+  nameWithType: NodaExtensions.ToProtobufDayOfWeek
+  fullName: NodaTime.Serialization.Protobuf.NodaExtensions.ToProtobufDayOfWeek
+- uid: NodaTime.LocalDate
+  commentId: T:NodaTime.LocalDate
+  parent: NodaTime
+  isExternal: true
+  name: LocalDate
+  nameWithType: LocalDate
+  fullName: NodaTime.LocalDate
+- uid: Google.Type.Date
+  commentId: T:Google.Type.Date
+  parent: Google.Type
+  isExternal: true
+  name: Date
+  nameWithType: Date
+  fullName: Google.Type.Date
+- uid: NodaTime.Serialization.Protobuf.NodaExtensions.ToDate*
+  commentId: Overload:NodaTime.Serialization.Protobuf.NodaExtensions.ToDate
+  name: ToDate
+  nameWithType: NodaExtensions.ToDate
+  fullName: NodaTime.Serialization.Protobuf.NodaExtensions.ToDate
+shouldSkipMarkup: true
