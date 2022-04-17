@@ -37,8 +37,10 @@ namespace ReleaseDiffGenerator
 
         static void GenerateDiffs(Release oldRelease, Release newRelease, string destination)
         {
-            var oldMemberUids = new HashSet<string>(oldRelease.MembersByUid.Keys);
-            var newMemberUids = new HashSet<string>(newRelease.MembersByUid.Keys);
+            // IXmlSerializable.GetSchema seems to cause problems for some reason, so we exclude it.
+            var oldMemberUids = new HashSet<string>(oldRelease.MembersByUid.Keys.Where(IsNotGetSchema));
+            var newMemberUids = new HashSet<string>(newRelease.MembersByUid.Keys.Where(IsNotGetSchema));
+            bool IsNotGetSchema(string uid) => !uid.EndsWith(".System#Xml#Serialization#IXmlSerializable#GetSchema");
 
             var addedMembers = newMemberUids
                 .Except(oldMemberUids)
