@@ -7,6 +7,22 @@ details.
 See the [end of this page](#tzdb-updates) for the policy on which
 versions receive patch updates for TZDB releases.
 
+## 3.1.0, release 2022-04-18 with tzdb 2022a
+
+Changes since 3.0.0:
+
+- Added .NET 6.0 target
+- Implemented `DateOnly` and `TimeOnly` conversions to/from
+  `LocalDate` and `LocalTime`
+- Fixed `BclDateTimeZone` support in .NET 6.0 on Unix
+- Implemented `ToString` method for `YearMonth`
+- Improved error messages for bad format specifiers
+- Added `LocalDateTime.MinIsoValue` and `LocalDate.MaxIsoValue`
+- Added `Period.Between` overload accepting `YearMonth` values
+- Added `YearMonth.PlusMonths` method
+- Added `Period.DaysBetween` method (previously internal)
+- Various documentation improvements
+
 ## 2.4.18, 3.0.10, released 2022-03-17 with tzdb 2022a
 
 This set of patch releases simply updates the built-in TZDB time
