@@ -7,6 +7,12 @@ details.
 See the [end of this page](#tzdb-updates) for the policy on which
 versions receive patch updates for TZDB releases.
 
+## 3.1.1, released 2022-08-12 with tzdb 2022b
+
+This set of patch releases simply updates the built-in TZDB time
+zone data to 2022b, using CLDR version 40 for Windows mappings.
+(Note that CLDR 41 has been released, but has the same mappings as CLDR 40.)
+
 ## 3.1.0, release 2022-04-18 with tzdb 2022a
 
 Changes since 3.0.0:
@@ -937,7 +943,7 @@ previous minor release is also updated. In other words, if you check
 once every 6 months to make sure you're on the latest minor release,
 you should always get patch releases containing TZDB updates.
 
-The 1.x series of Noda Time is no longer being updated to include new versions
-of TZDB. However, it is still compatible with the new NZD files: if you fetch
+The 1.x and 2.x series of Noda Time are no longer being updated to include new versions
+of TZDB. However, they are still compatible with the new NZD files: if you fetch
 the NZD file from the web site (as [described in the user guide](/unstable/userguide/tzdb))
 you can use the latest time zone data with old versions of Noda Time.
