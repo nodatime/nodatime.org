@@ -7,19 +7,24 @@ details.
 See the [end of this page](#tzdb-updates) for the policy on which
 versions receive patch updates for TZDB releases.
 
-## 3.1.4, released 2022-10-11 with tzdb 2022d
+## 3.1.5, released 2022-10-29 with tzdb 2022f
 
-This set of patch releases simply updates the built-in TZDB time
+This patch release simply updates the built-in TZDB time
+zone data to 2022f, using CLDR version 41 for Windows mappings.
+
+## 3.1.4, released 2022-10-11 with tzdb 2022e
+
+This patch release simply updates the built-in TZDB time
 zone data to 2022e, using CLDR version 41 for Windows mappings.
 
 ## 3.1.3, released 2022-09-24 with tzdb 2022d
 
-This set of patch releases simply updates the built-in TZDB time
+This patch release simply updates the built-in TZDB time
 zone data to 2022d, using CLDR version 41 for Windows mappings.
 
 ## 3.1.2, released 2022-08-16 with tzdb 2022c
 
-This set of patch releases simply updates the built-in TZDB time
+This patch release simply updates the built-in TZDB time
 zone data to 2022c, using CLDR version 41 for Windows mappings.
 
 There are no data differences between tzdb 2022b and 2022c; this release
@@ -27,7 +32,7 @@ is primarily to avoid confusion as to why 2022c might be missing.
 
 ## 3.1.1, released 2022-08-12 with tzdb 2022b
 
-This set of patch releases simply updates the built-in TZDB time
+This patch release simply updates the built-in TZDB time
 zone data to 2022b, using CLDR version 40 for Windows mappings.
 (Note that CLDR 41 has been released, but has the same mappings as CLDR 40.)
 
