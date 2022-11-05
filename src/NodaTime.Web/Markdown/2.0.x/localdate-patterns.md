@@ -61,7 +61,7 @@ For the meanings of "absolute" years and text handling, see later details.
 	<tr>
 	  <td><code>u</code>, <code>uu</code>, <code>uuu</code>, <code>uuuu</code>
 	  <td>
-	    The absolute, zero-padded as necessary to the same number of characters as the number of 'u' characters,
+	    The absolute year, zero-padded as necessary to the same number of characters as the number of 'u' characters,
       with an optional leading <code>-</code> sign. See notes below.
     </td>
 	  <td>
