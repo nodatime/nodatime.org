@@ -90,7 +90,12 @@ for (codeElement of document.getElementsByTagName("code")) {
 // Add relevant hooks.
 if (document.addEventListener) {
     document.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('trydotnet-run').addEventListener('click', runCode);
+        var runButton = document.getElementById('trydotnet-run');
+        // This script runs on every page, so we do need to guard against the
+        // fact that we may not have a Try .NET button on the page.
+        if (runButton !== null) {
+            runButton.addEventListener('click', runCode);
+        }
     });
 }
 
