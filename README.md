@@ -5,10 +5,10 @@ is an ASP.NET Core web application that serves the nodatime.org site.
 
 Site content is spread among the following locations:
 
-- `src/NodaTime.Web/Markdown/`: Markdown source.
-- `src/NodaTime.Web/Views/`: HTML templates.
-- `src/NodaTime.Web/wwwroot/`: Static content.
-- `build/docfx/` DocFX templates and contents (for nodatime.org/api).
+- `src/NodaTime.Web/Markdown/` — Markdown source.
+- `src/NodaTime.Web/Views/` — HTML templates.
+- `src/NodaTime.Web/wwwroot/` — Static content.
+- `build/docfx/` — DocFX templates and contents (for nodatime.org/api).
 
 In order to actually build the web site, including the docs, you
 need the `nodatime` and `nodatime.serialization` repositories as
