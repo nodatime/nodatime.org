@@ -208,3 +208,25 @@ the inclusion of a leap month, the month name/number correspondence changes in a
 Until this is fixed, it is strongly recommended that you only use month *numbers* in any textual
 representations of dates in the Hebrew calendar. Additionally, you may wish to consider how to
 best clarify whether that month number is in the scriptural or civil numbering system.
+
+**Parsing and dependent values**
+
+Text parsing consists of two phases.
+
+The first phase obtains values from the text independently, from left to right.
+These values cannot affect each other during the first phase, which leads to a small limitation
+in date patterns: a date pattern cannot contain both a calendar specifier (`c`) and an era specifier (`g` or `gg`). The parser
+would not be able to determine which eras were valid without taking the calendar into account.
+
+The second phase combines and validates values. For example, a "day of month" value may be valid in
+some year/month/calendar combinations but not in others. Likewise, a "day of week" value can only be validated
+when the complete date is known.
+
+The ordering of these phases can lead to some potentially-unexpected results in the case of errors.
+For example, when parsing the text "2000-99-00" with an ISO date rule, the result will be a failure
+due to the "00" rather than due to the "99". When a two-digit month value is parsed,
+the first phase validates that it's in the range 1-99 inclusive, leaving more fine-grained validation to the
+second phase. In the particular case of an ISO pattern, the fine-grained validation could be performed earlier,
+but in the more general date-parsing case, the set of valid month values can depend on other values (the calendar and year).
+For the sake of code simplicity, Noda Time does not attempt to ensure that the error is reported on the earliest
+possible part of the text input, although that will *usually* be the case.
