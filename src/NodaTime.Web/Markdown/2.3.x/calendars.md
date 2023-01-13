@@ -140,7 +140,11 @@ Iran and Pakistan. Three variants of this are supported in Noda Time:
 - The "arithmetic" (or algorithmic) calendar proposed by Ahmad Birashk, which organizes leap years in cycles of 2820 years,
   where each full cycle consists of 21 subcycles of 128 years, followed by one subcycle of 132 years. Each 128-year
   subcycle consists of a 29 year sub-subcycle, and three 33 year sub-subcycles. A 132-year subcycle is the same as a
-  128-year subcycle, except the final sub-subcycle has 37 years instead of 33.
+  128-year subcycle, except the final sub-subcycle has 37 years instead of 33. This calendar starts on March 19th 622 CE (Julian).
+
+> Note that the `Id` property value for the astronomical calendar is "Persian Algorithmic". This is an unfortunate error.
+(It should be "Persian Astronomical".) The ID has been incorrect in Noda Time for so long that "fixing" it now would cause
+compatibility issues between systems storing or exchanging Noda Time data.
 
 Um Al Qura
 ===
