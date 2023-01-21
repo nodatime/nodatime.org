@@ -3,7 +3,7 @@
 set -e
 
 source docfx_functions.sh
-install_docfx
+dotnet tool restore > /dev/null
 
 copy_metadata() {
   version=$1
@@ -86,5 +86,5 @@ cp -r history/xrefs tmp
 cp docfx/docfx-web.json tmp
 cp -r docfx/template tmp
 echo "Running main docfx build"
-"$DOCFX" build --disableGitFeatures --logLevel Warning tmp/docfx-web.json
+dotnet docfx build --disableGitFeatures --logLevel Warning tmp/docfx-web.json
 cp docfx/logo.svg tmp/site
