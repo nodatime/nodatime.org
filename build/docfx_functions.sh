@@ -2,25 +2,6 @@
 # any scripts that use tools.
 
 declare -r BUILD_ROOT=$(realpath $(dirname ${BASH_SOURCE}))
-declare -r DOCFX_VERSION=2.58.4
-
-# Path to the version of docfx to use
-declare -r DOCFX="$BUILD_ROOT/packages/docfx-$DOCFX_VERSION/docfx.exe"
-
-# Function to install docfx if it's not already installed.
-install_docfx() {
-  if [[ ! -f $DOCFX ]]
-  then
-    (echo "Fetching docfx v${DOCFX_VERSION}";
-     mkdir -p $BUILD_ROOT/packages;
-     cd $BUILD_ROOT/packages;
-     mkdir docfx-$DOCFX_VERSION;
-     cd docfx-$DOCFX_VERSION;
-     curl -sSL https://github.com/dotnet/docfx/releases/download/v${DOCFX_VERSION}/docfx.zip -o tmp.zip;
-     unzip -q tmp.zip;
-     rm tmp.zip)
-  fi
-}
 
 # Parameters:
 # - Root of target directory for API files (relative to current directory)
@@ -58,6 +39,6 @@ generate_metadata() {
 EOF
   done
   echo ']}' >> $docfxjson
-  "$DOCFX" metadata --disableGitFeatures --logLevel Warning -f $docfxjson
+  dotnet docfx metadata --disableGitFeatures --logLevel Warning -f $docfxjson
   rm $docfxjson
 }
