@@ -39,6 +39,6 @@ generate_metadata() {
 EOF
   done
   echo ']}' >> $docfxjson
-  dotnet docfx metadata --disableGitFeatures --logLevel Warning -f $docfxjson
+  dotnet docfx metadata --disableGitFeatures --logLevel Warning $docfxjson
   rm $docfxjson
 }
