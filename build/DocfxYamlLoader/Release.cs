@@ -9,7 +9,7 @@ namespace DocfxYamlLoader
     public class Release
     {
         private static readonly IDeserializer deserializer = new DeserializerBuilder()
-            .WithNamingConvention(new CamelCaseNamingConvention())
+            .WithNamingConvention(CamelCaseNamingConvention.Instance)
             .IgnoreUnmatchedProperties()
             .Build();
 

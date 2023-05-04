@@ -24,5 +24,21 @@ namespace TocCombiner
             combined.AddRange(items.OrderBy(item => item.Name));
             YamlUtility.Serialize(Console.Out, combined, "YamlMime:TableOfContent");
         }
+
+        /* Later version of docfx...
+        static void Main(string[] args)
+        {
+            var items = new List<TocItemViewModel>();
+            TocRootViewModel combined = null;
+            foreach (var file in args)
+            {
+                Console.WriteLine("Loading " + file);
+                var toc = YamlUtility.Deserialize<TocRootViewModel>(file);
+                items.AddRange(toc.Items);
+                combined ??= toc;
+            }
+            combined.Items = new TocViewModel(items.OrderBy(item => item.Name));
+            YamlUtility.Serialize(Console.Out, combined, "YamlMime:TableOfContent");
+        }*/
     }
 }
