@@ -15,12 +15,14 @@ generate_metadata() {
   version=$3
   framework=$4
   # Due to the confusion of Windows directories vs Unix directories,
-  # it's relatively painful to create a genuine tmp file. Let's just
-  # call it tmpdocfx.json and try to avoid accidentally committing it...
-  docfxjson=tmpdocfx.json
+  # it's relatively painful to create a genuine tmp file.
+  # Unfortunately docfx now seems to ignore the command line argument
+  # specifying the file, so we have to call it docfx.json. We remove
+  # it at the end of the script though.
+  docfxjson=docfx.json
   shift 4
   echo '{ "metadata": [' > $docfxjson
-  for package in $*;
+  for package in $*
   do
     cat >> $docfxjson<<EOF
     {
@@ -39,6 +41,6 @@ generate_metadata() {
 EOF
   done
   echo ']}' >> $docfxjson
-  dotnet docfx metadata --disableGitFeatures --logLevel Warning $docfxjson
+  dotnet docfx metadata --disableGitFeatures --logLevel Warning
   rm $docfxjson
 }
