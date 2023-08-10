@@ -44,13 +44,39 @@ echo "Copying metadata for previous versions"
 cp -r history/Noda* tmp/metadata
 
 echo "Building packages and metadata for local code (may not be committed)"
-dotnet pack -v quiet ../../nodatime/src/NodaTime -o $PWD/tmp/metadata/NodaTime/unstable
-dotnet pack -v quiet ../../nodatime/src/NodaTime.Testing -o $PWD/tmp/metadata/NodaTime.Testing/unstable
-dotnet pack -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.JsonNet -o $PWD/tmp/metadata/NodaTime.Serialization.JsonNet/unstable
-dotnet pack -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.Protobuf -o $PWD/tmp/metadata/NodaTime.Serialization.Protobuf/unstable
-dotnet pack -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.SystemTextJson -o $PWD/tmp/metadata/NodaTime.Serialization.SystemTextJson/unstable
-generate_metadata tmp/metadata ../../nodatime/src unstable net6.0 NodaTime NodaTime.Testing
+dotnet pack --nologo -v quiet ../../nodatime/src/NodaTime -o $PWD/tmp/metadata/NodaTime/unstable
+dotnet pack --nologo -v quiet ../../nodatime/src/NodaTime.Testing -o $PWD/tmp/metadata/NodaTime.Testing/unstable
+dotnet pack --nologo -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.JsonNet -o $PWD/tmp/metadata/NodaTime.Serialization.JsonNet/unstable
+dotnet pack --nologo -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.Protobuf -o $PWD/tmp/metadata/NodaTime.Serialization.Protobuf/unstable
+dotnet pack --nologo -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.SystemTextJson -o $PWD/tmp/metadata/NodaTime.Serialization.SystemTextJson/unstable
+generate_metadata tmp/metadata ../../nodatime/src unstable net6.0 NodaTime
 generate_metadata tmp/metadata ../../nodatime.serialization/src unstable netstandard2.0 NodaTime.Serialization.JsonNet NodaTime.Serialization.Protobuf NodaTime.Serialization.SystemTextJson
+
+# NodaTime.Testing is awkward: the project dependency means
+# the NodaTime csproj needs to be included, but we want to exclude its APIs.
+# We have a custom docfx.json for this, then we need to munge the toc etc.
+# (docfx filters don't work well here)
+echo "Building metadata for NodaTime.Testing"
+cp testing-docfx.json docfx.json
+dotnet docfx metadata --disableGitFeatures --logLevel Warning
+rm docfx.json
+rm -rf tmp/metadata/NodaTime.Testing/unstable/api
+mkdir tmp/metadata/NodaTime.Testing/unstable/api
+# Sort out the TOC
+echo "### YamlMime:TableOfContent" > tmp/metadata/NodaTime.Testing/unstable/api/toc.yml
+sed -n '/^- uid: NodaTime.Testing$/,$p' tmp/metadata/NodaTime.Testing/unstable/fullapi/toc.yml \
+  | sed '/^- uid: NodaTime.Text$/,$d' \
+  >> tmp/metadata/NodaTime.Testing/unstable/api/toc.yml
+# Sort out the manifest
+echo "{" > tmp/metadata/NodaTime.Testing/unstable/api/.manifest
+grep NodaTime.Testing tmp/metadata/NodaTime.Testing/unstable/fullapi/.manifest >> tmp/metadata/NodaTime.Testing/unstable/api/.manifest
+# Remove the last character (the trailing comma)
+sed -i '$ s/.$//' tmp/metadata/NodaTime.Testing/unstable/api/.manifest
+echo "}" >> tmp/metadata/NodaTime.Testing/unstable/api/.manifest
+# Copy just the relevant files
+cp tmp/metadata/NodaTime.Testing/unstable/fullapi/NodaTime.Testing.* tmp/metadata/NodaTime.Testing/unstable/api
+# Tidy up
+rm -rf tmp/metadata/NodaTime.Testing/unstable/fullapi
 
 echo "Building all tools"
 dotnet build -v quiet Tools.sln
