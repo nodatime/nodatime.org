@@ -18,6 +18,9 @@ namespace DocfxYamlLoader
             { "UnaryNegation", "-" },
             { "Multiply", "*" },
             { "Division", "/" },
+            // Looks like things may have changed over time... this is needed to fix the addition
+            // of a new multiplication operator.
+            { "operator *", "*" },
             // TODO: Conversions, unary addition, true/false. Anything else?
         };
 
