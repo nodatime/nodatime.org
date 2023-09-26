@@ -2,6 +2,8 @@
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
 
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Newtonsoft.Json;
 using NodaTime.Text;
 using NodaTime.TimeZones;
@@ -58,6 +60,12 @@ namespace NodaTime.Web.ViewModels
             [JsonProperty("Offsets")]
             public IEnumerable<string> Offsets { get; }
 
+            [JsonIgnore]
+            public string CurrentOffset { get; }
+
+            [JsonIgnore]
+            public IHtmlContent NextTransition { get; }
+
             internal Zone(TzdbDateTimeZoneSource source, Dictionary<string, TzdbZoneLocation> locations, string id)
             {
                 Id = id;
@@ -69,7 +77,23 @@ namespace NodaTime.Web.ViewModels
                     .Select(zi => zi.WallOffset)
                     .Distinct()
                     .OrderBy(x => x)
-                    .Select(o => OffsetPattern.GeneralInvariant.Format(o));
+                    .Select(OffsetPattern.GeneralInvariant.Format);
+                var now = SystemClock.Instance.GetCurrentInstant();
+                var zoneInterval = zone.GetZoneInterval(now);
+                CurrentOffset = $"{OffsetPattern.GeneralInvariant.Format(zoneInterval.WallOffset)} ({zoneInterval.Name})";
+                if (zoneInterval.HasEnd)
+                {
+                    var nextZoneInterval = zone.GetZoneInterval(zoneInterval.End);
+                    var fromOffset = OffsetPattern.GeneralInvariant.Format(zoneInterval.WallOffset);
+                    var toOffset = OffsetPattern.GeneralInvariant.Format(nextZoneInterval.WallOffset);
+                    var utcTransition = InstantPattern.General.Format(zoneInterval.End);
+                    var localTransition = LocalDateTimePattern.GeneralIso.Format(zoneInterval.IsoLocalEnd);
+                    NextTransition = new HtmlString($"{utcTransition} ({localTransition}&nbsp; local)<br />{fromOffset} to {toOffset}");
+                }
+                else
+                {
+                    NextTransition = new HtmlString("(n/a)");
+                }
             }
         }
 
