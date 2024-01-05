@@ -10,7 +10,7 @@ versions receive patch updates for TZDB releases.
 ## 3.1.10, released 2023-12-23 with tzdb 2023d
 
 This patch release simply updates the built-in TZDB time
-zone data to 2023c, using CLDR version 42 for Windows mappings.
+zone data to 2023d, using CLDR version 42 for Windows mappings.
 
 ## 3.1.9, released 2023-03-24 with tzdb 2023c
 
