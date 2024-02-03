@@ -19,7 +19,7 @@ Noda Time 2.0 (and onwards) supports the Target Framework Monikers of `netstanda
 
 This means it should work for any desktop framework application targeting .NET 4.5 or later, as well as .NET Core and related frameworks.
 It does *not* support Windows 8 store apps, or Windows Phone (Silverlight or not) 8 apps. It *does* support UWP for Windows 10. See
-the [.NET Standard Versions](https://github.com/dotnet/standard/blob/main/docs/versions.md) documentation for more details.
+the [.NET Standard Versions](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0#net-standard-versions) documentation for more details.
 
 We have not tested Noda Time 2.0 against Xamarin or Unity; recent versions of Xamarin support .NET Standard so should be fine;
 Unity targeting .NET 2.0 won't work, but the 2017-onwards support for Mono 4.8 *may* just work. (Please report any problems you
