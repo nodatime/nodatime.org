@@ -281,6 +281,9 @@ And from Protobuf to Noda Time:
 
 See the [API reference documentation](/serialization/api/NodaTime.Serialization.Protobuf.html) for more details.
 
+The [protobuf-net](https://protobuf-net.github.io/protobuf-net/) project (another implementation of Protocol Buffers)
+also supports NodaTime via the [protobuf-net.NodaTime package](https://www.nuget.org/packages/protobuf-net.NodaTime/).
+
 ServiceStack.Text: NodaTime.Serialization.ServiceStackText
 -----------------------------------------------------------
 
