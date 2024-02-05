@@ -185,6 +185,27 @@ for individual converters. (All converters are immutable.)
 
 Custom converters can be created easily from patterns using [`NodaPatternConverter`](noda-type://NodaTime.Serialization.JsonNet.NodaPatternConverter-1).
 
+### Configuring converters using NodaJsonSettings
+
+The `NodaJsonSettings` class can be used to specify converters for individual types, as well as the time zone provider to use.
+This can then be passed to the `ConfigureForNodaTime` extension methods. For example, to use the normalizing ISO period converter
+when serializing periods, you might write:
+
+```csharp
+var settings = new NodaJsonSettings
+{
+    PeriodConverter = NodaConverters.NormalizingIsoPeriodConverter
+};
+jsonSerializer.ConfigureForNodaTime(settings);
+```
+
+Note that while individual converters are immutable, `NodaJsonSettings` is deliberately mutable; the expected
+usage is for it to be constructed, passed into `ConfigureForNodaTime`, then discarded. (The `ConfigureForNodaTime`
+method doesn't mutate it itself, and keeps no further reference to it - you *can* retain a settings object if you
+want.)
+
+### Manually configuring converters
+
 Please ensure that *all* relevant JSON handlers are configured appropriately. In some cases there may be more than
 one involved, possibly one for reading and one for writing, depending on your configuration. For ASP.NET using
 `HttpConfiguration`, you probably want to configure `HttpConfiguration.Formatters.JsonFormatter.SerializerSettings`.
@@ -252,6 +273,8 @@ string json = JsonSerializer.Serialize(original, options);
 Console.WriteLine(json);
 var deserialized = JsonSerializer.Deserialize<Model>(json, options);
 ```
+
+The same sort of configuration via `NodaJsonSettings` is available for System.Text.Json as for Newtonsoft.Json.
 
 See the [API reference documentation](/serialization/api/NodaTime.Serialization.SystemTextJson.html) for more details.
 
