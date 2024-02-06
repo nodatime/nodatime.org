@@ -49,7 +49,7 @@ dotnet pack --nologo -v quiet ../../nodatime/src/NodaTime.Testing -o $PWD/tmp/me
 dotnet pack --nologo -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.JsonNet -o $PWD/tmp/metadata/NodaTime.Serialization.JsonNet/unstable
 dotnet pack --nologo -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.Protobuf -o $PWD/tmp/metadata/NodaTime.Serialization.Protobuf/unstable
 dotnet pack --nologo -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.SystemTextJson -o $PWD/tmp/metadata/NodaTime.Serialization.SystemTextJson/unstable
-generate_metadata tmp/metadata ../../nodatime/src unstable net6.0 NodaTime
+generate_metadata tmp/metadata ../../nodatime/src unstable net8.0 NodaTime
 generate_metadata tmp/metadata ../../nodatime.serialization/src unstable netstandard2.0 NodaTime.Serialization.JsonNet NodaTime.Serialization.Protobuf NodaTime.Serialization.SystemTextJson
 
 # NodaTime.Testing is awkward: the project dependency means
