@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace DocfxYamlLoader
 {
     public class DocfxMember
     {
+        // Operator names used to be just "Multiply(Duration, Int64)" etc, instead of "operator *(Duration, Int64").
+        // These are translated into the symbolic forms in DisplayName.
         private static readonly Dictionary<string, string> OperatorNames = new Dictionary<string, string>
         {
             { "GreaterThan", ">" },
@@ -18,9 +22,6 @@ namespace DocfxYamlLoader
             { "UnaryNegation", "-" },
             { "Multiply", "*" },
             { "Division", "/" },
-            // Looks like things may have changed over time... this is needed to fix the addition
-            // of a new multiplication operator.
-            { "operator *", "*" },
             // TODO: Conversions, unary addition, true/false. Anything else?
         };
 
@@ -46,9 +47,14 @@ namespace DocfxYamlLoader
                 }
                 if (Type == TypeKind.Operator)
                 {
+                    // Translation for old-style operator names. If the name
+                    // isn't in the dictionary, we just use name as it is (which is fine
+                    // for modern builds).
                     var op = Name.Split('(').First();
-                    var symbolicOp = OperatorNames[op];
-                    return $"operator {symbolicOp}{Name.Substring(op.Length)}";
+                    if (OperatorNames.TryGetValue(op, out string symbolicOp))
+                    {
+                        return $"operator {symbolicOp}{Name.Substring(op.Length)}";
+                    }
                 }
                 return Name;
             }
