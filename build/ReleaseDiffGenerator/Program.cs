@@ -24,7 +24,11 @@ namespace ReleaseDiffGenerator
                 return 1;
             }
 
-            var versions = Directory.GetDirectories(packageDirectory).Select(dir => Path.GetRelativePath(packageDirectory, dir)).ToList();
+            var versions = Directory
+                .GetDirectories(packageDirectory)
+                .Select(dir => Path.GetRelativePath(packageDirectory, dir))
+                .OrderBy(x => x, StringComparer.Ordinal)
+                .ToList();
 
             var releases = versions.Select(version => Release.Load(Path.Combine(packageDirectory, version, "api"), version)).ToArray();
             // Generate diffs pair-wise
