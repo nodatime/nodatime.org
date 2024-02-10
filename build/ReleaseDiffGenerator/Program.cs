@@ -84,10 +84,12 @@ namespace ReleaseDiffGenerator
 
             var tocFile = Path.Combine(destination, "toc.yml");
             var toc = File.ReadAllLines(tocFile).ToList();
-            if (!toc[1].StartsWith("- name: Changes"))
+            // Handle old and new style of TOC.
+            int insertLine = toc[1] == "items:" ? 2 : 1;
+            if (!toc[insertLine].StartsWith("- name: Changes"))
             {
-                toc.Insert(1, $"- name: Changes from {oldRelease.Version}");
-                toc.Insert(2, "  href: changes.md");
+                toc.Insert(insertLine, $"- name: Changes from {oldRelease.Version}");
+                toc.Insert(insertLine + 1, "  href: changes.md");
             }
             File.WriteAllLines(tocFile, toc);
         }

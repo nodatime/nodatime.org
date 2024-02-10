@@ -57,16 +57,13 @@ generate_metadata tmp/metadata ../../nodatime.serialization/src unstable netstan
 # We have a custom docfx.json for this, then we need to munge the toc etc.
 # (docfx filters don't work well here)
 echo "Building metadata for NodaTime.Testing"
-cp testing-docfx.json docfx.json
-dotnet docfx metadata --disableGitFeatures --logLevel Warning
-rm docfx.json
+dotnet docfx metadata --disableGitFeatures --logLevel Warning testing-docfx.json
 rm -rf tmp/metadata/NodaTime.Testing/unstable/api
 mkdir tmp/metadata/NodaTime.Testing/unstable/api
 # Sort out the TOC
-echo "### YamlMime:TableOfContent" > tmp/metadata/NodaTime.Testing/unstable/api/toc.yml
-sed -n '/^- uid: NodaTime.Testing$/,$p' tmp/metadata/NodaTime.Testing/unstable/fullapi/toc.yml \
-  | sed '/^- uid: NodaTime.Text$/,$d' \
-  >> tmp/metadata/NodaTime.Testing/unstable/api/toc.yml
+dotnet run --project TestingTocPruner \
+  tmp/metadata/NodaTime.Testing/unstable/fullapi/toc.yml \
+  tmp/metadata/NodaTime.Testing/unstable/api/toc.yml
 # Sort out the manifest
 echo "{" > tmp/metadata/NodaTime.Testing/unstable/api/.manifest
 grep NodaTime.Testing tmp/metadata/NodaTime.Testing/unstable/fullapi/.manifest >> tmp/metadata/NodaTime.Testing/unstable/api/.manifest
