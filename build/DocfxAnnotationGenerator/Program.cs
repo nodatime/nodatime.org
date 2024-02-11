@@ -71,13 +71,6 @@ namespace DocfxAnnotationGenerator
                 .SelectMany(rd => rd.Members)
                 .Select(member => member.DocfxUid)
                 .Where(uid => !unstableRelease.MembersByUid.ContainsKey(uid))
-                // Explicit interface implementation seems to cause problems for some reason.
-                // Not sure why, but let's ignore it for now... it really doesn't matter that
-                // it won't have any documentation.
-                .Where(uid => !uid.Contains(".System#Xml#Serialization#IXmlSerializable#") &&
-                              !uid.Contains(".System#IComparable#CompareTo") &&
-                              !uid.Contains(".NodaTime#TimeZones#IDateTimeZoneSource#ForId") &&
-                              !uid.Contains("#GetEnumerator"))
                 .Distinct()
                 .ToList();
             if (missing.Count != 0)
