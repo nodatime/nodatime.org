@@ -31,6 +31,7 @@ generate_metadata() {
       ],
       "dest": "$target/$package/$version/api",
       "shouldSkipMarkup": true,
+      "includeExplicitInterfaceImplementations": true,
       "properties": {
         "TargetFramework": "$framework"
       }
