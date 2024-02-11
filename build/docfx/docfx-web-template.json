@@ -1,0 +1,32 @@
+{
+  "rules": {
+    // We have an invalid file link to the user guide.
+    // It would be nice to be able to exempt just that link,
+    // but this makes other warnings more prominent.
+    "InvalidFileLink": "Suggestion"
+  },
+  "build": {
+    "content": [
+      { "files": [ "**/*.yml", "api/*.md" ], "src": "web/VERSION", "dest": "VERSION" },
+    ],
+    // Add an xrefService for BCL types
+    "xrefService": [
+      "https://xref.docs.microsoft.com/query?uid={uid}"
+    ],
+    "globalMetadata": {
+      "_appTitle": "Noda Time",
+      "_disableContribution": true,
+      "_appFooter": " ",
+      "_appName": "Noda Time",
+      "_navRel": "../toc.html"
+    },
+    "template": [
+      "default",
+      "template"
+    ],
+    "overwrite": [
+      { "version": "VERSION", "files": [ "web/commonoverwrite/*.md", "web/VERSION/overwrite/*.md" ] },
+    ],
+    "dest": "site"
+  }
+}
