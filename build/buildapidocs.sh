@@ -103,11 +103,24 @@ cp docfx/serialization-toc.yml tmp/web/serialization/toc.yml
 mkdir -p tmp/web/commonoverwrite
 cp docfx/namespaces.md tmp/web/commonoverwrite
 
-# Copy local xref maps
+# Copy local xref maps and templates
 cp -r history/xrefs tmp
-
-cp docfx/docfx-web.json tmp
 cp -r docfx/template tmp
-echo "Running main docfx build"
-dotnet docfx build --disableGitFeatures --logLevel Warning tmp/docfx-web.json
+
+
+# Run the main build for everything apart from serialization
+for dir in tmp/metadata/NodaTime/*
+do
+  version=$(basename $dir)
+  sed "s/VERSION/$version/g" docfx/docfx-web-template.json > tmp/docfx-web-$version.json
+  echo "Running main docfx build for $version"
+  dotnet docfx build --disableGitFeatures --logLevel Warning tmp/docfx-web-$version.json
+  mv tmp/site/xrefmap.yml tmp/site/$version.xrefmap.xml
+done
+
+# Run the main build for serialization
+cp docfx/docfx-web-serialization.json tmp
+dotnet docfx build --disableGitFeatures --logLevel Warning tmp/docfx-web-serialization.json
+mv tmp/site/xrefmap.yml tmp/site/serialization.xrefmap.xml
+
 cp docfx/logo.svg tmp/site
