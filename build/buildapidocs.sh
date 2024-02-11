@@ -115,12 +115,12 @@ do
   sed "s/VERSION/$version/g" docfx/docfx-web-template.json > tmp/docfx-web-$version.json
   echo "Running main docfx build for $version"
   dotnet docfx build --disableGitFeatures --logLevel Warning tmp/docfx-web-$version.json
-  mv tmp/site/xrefmap.yml tmp/site/$version.xrefmap.xml
+  mv tmp/site/xrefmap.yml tmp/site/$version.xrefmap.yml
 done
 
 # Run the main build for serialization
 cp docfx/docfx-web-serialization.json tmp
 dotnet docfx build --disableGitFeatures --logLevel Warning tmp/docfx-web-serialization.json
-mv tmp/site/xrefmap.yml tmp/site/serialization.xrefmap.xml
+mv tmp/site/xrefmap.yml tmp/site/serialization.xrefmap.yml
 
 cp docfx/logo.svg tmp/site
