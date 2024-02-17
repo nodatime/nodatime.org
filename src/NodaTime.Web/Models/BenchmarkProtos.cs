@@ -3,7 +3,7 @@
 
 #nullable disable
 
-#pragma warning disable 1591, 0612, 3021
+#pragma warning disable 1591, 0612, 3021, 8981
 #region Designer generated code
 
 using pb = global::Google.Protobuf;

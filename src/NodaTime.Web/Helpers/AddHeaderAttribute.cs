@@ -17,7 +17,7 @@ namespace NodaTime.Helpers
 
         public override void OnResultExecuting(ResultExecutingContext context)
         {
-            context.HttpContext.Response.Headers.Add(_name, _value);
+            context.HttpContext.Response.Headers[_name] = _value;
             base.OnResultExecuting(context);
         }
     }

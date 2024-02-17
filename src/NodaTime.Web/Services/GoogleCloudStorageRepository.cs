@@ -38,6 +38,6 @@ namespace NodaTime.Web.Services
         public string GetDownloadUrl(string name) => $"https://storage.googleapis.com/{bucket}/{name}";
 
         private static StorageFile ConvertObject(Google.Apis.Storage.v1.Data.Object obj) =>
-            new StorageFile(obj.Name, obj.Metadata, obj.Updated ?? DateTime.MinValue, obj.Crc32c);
+            new StorageFile(obj.Name, obj.Metadata, obj.UpdatedDateTimeOffset ?? DateTimeOffset.MinValue, obj.Crc32c);
     }
 }
