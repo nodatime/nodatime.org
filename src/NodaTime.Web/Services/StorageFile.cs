@@ -14,10 +14,10 @@ namespace NodaTime.Web.Services
     {
         public string Name { get; }
         public IDictionary<string, string> Metadata { get; }
-        public DateTime LastUpdated { get; }
+        public DateTimeOffset LastUpdated { get; }
         public string Crc32c { get; }
 
-        public StorageFile(string name, IDictionary<string, string>? metadata, DateTime lastUpdated, string crc32c)
+        public StorageFile(string name, IDictionary<string, string>? metadata, DateTimeOffset lastUpdated, string crc32c)
         {
             Name = name;
             Metadata = metadata ?? new Dictionary<string, string>();

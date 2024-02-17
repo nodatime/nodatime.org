@@ -43,7 +43,7 @@ namespace NodaTime.Web
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
-            NetworkOptions = Configuration.GetSection("Network").Get<NetworkOptions>();
+            NetworkOptions = Configuration.GetSection("Network").Get<NetworkOptions>() ?? throw new ArgumentException("Must specify network options");
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -67,10 +67,10 @@ namespace NodaTime.Web
                 });
             });
 #endif
-            var storageOptions = Configuration.GetSection("Storage").Get<StorageOptions>();
+            var storageOptions = Configuration.GetSection("Storage").Get<StorageOptions>() ?? throw new ArgumentException("Must have storage options");
             storageOptions.ConfigureServices(services);
             services.AddHttpClient();
-            services.AddSingleton(Configuration.GetSection("TryDotNet").Get<TryDotNetOptions>());
+            services.AddSingleton(Configuration.GetSection("TryDotNet").Get<TryDotNetOptions>() ?? throw new ArgumentException("Must specify TryDotNet options"));
             services.AddSingleton<MarkdownLoader>();
             services.AddMemoryCache();
         }

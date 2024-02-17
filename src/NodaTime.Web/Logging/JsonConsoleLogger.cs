@@ -29,7 +29,7 @@ namespace NodaTime.Web.Logging
         }
 
         // We don't really support scopes
-        public IDisposable BeginScope<TState>(TState state) => SingletonDisposable.Instance;
+        public IDisposable BeginScope<TState>(TState state) where TState : notnull => SingletonDisposable.Instance;
 
         // Note: log level filtering is handled by other logging infrastructure, so we don't do any of it here.
         public bool IsEnabled(LogLevel logLevel) => logLevel != LogLevel.None;

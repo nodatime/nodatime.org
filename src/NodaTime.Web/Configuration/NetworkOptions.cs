@@ -43,7 +43,7 @@ namespace NodaTime.Web.Configuration
                         }
                         var prefix = IPAddress.Parse(bits[0]);
                         int prefixLength = int.Parse(bits[1]);
-                        options.KnownNetworks.Add(new IPNetwork(prefix, prefixLength));
+                        options.KnownNetworks.Add(new Microsoft.AspNetCore.HttpOverrides.IPNetwork(prefix, prefixLength));
                     }
                     foreach (var forwardedHeader in ForwardedHeaders)
                     {
