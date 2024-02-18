@@ -8,15 +8,7 @@ echo ""
 
 # Build site and run smoke tests
 (cd $output/nodatime.org/build; ./buildweb.sh)
-
-declare -r publish=$output/nodatime.org/src/NodaTime.Web/bin/Release/net6.0/publish
-
-# Add diagnostic text files
-echo "Combined: $combined_commit" > $publish/wwwroot/commit.txt
-echo "nodatime: $nodatime_commit" >> $publish/wwwroot/commit.txt
-echo "nodatime.org: $nodatime_org_commit" >> $publish/wwwroot/commit.txt
-echo "nodatime.serialization: $nodatime_serialization_commit" >> $publish/wwwroot/commit.txt
-echo "Built at $(date -u -Iseconds)" > $publish/wwwroot/build.txt 
+(cd $output/nodatime.org/build; dotnet test ../src/NodaTime.Web.SmokeTest)
 
 echo "Build and test successful. Pushing."
 
@@ -26,4 +18,3 @@ echo "Build and test successful. Pushing."
    --config=build/deployment/cloudbuild.yaml \
    --substitutions=TAG_NAME="$combined_commit" \
    $publish)
-
