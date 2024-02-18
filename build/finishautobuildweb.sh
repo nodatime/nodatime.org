@@ -7,13 +7,14 @@ env
 echo ""
 
 # Build site and run smoke tests
-(cd $output/nodatime.org/build; ./buildweb.sh)
-(cd $output/nodatime.org/build; dotnet test ../src/NodaTime.Web.SmokeTest)
+(cd $output/nodatime.org/build;
+ ./buildweb.sh;
+ dotnet test ../src/NodaTime.Web.SmokeTest)
 
 echo "Build and test successful. Pushing."
 
 (cd $output/nodatime.org;
- cp build/deployment/Dockerfile $publish;
+ cp build/deployment/Dockerfile src/NodaTime.Web/bin/Release/net8.0/publish;
  gcloud.cmd container builds submit \
    --config=build/deployment/cloudbuild.yaml \
    --substitutions=TAG_NAME="$combined_commit" \
