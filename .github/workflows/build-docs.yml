@@ -27,8 +27,11 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
+    - name: Diagnostics
+      run: ls
+
     - name: Docker build
-      uses: docker/build-push-action@v5
-      with:
-        push: false
-        file: nodatime.org/build/Dockerfile
+      run: |-
+        docker build \
+          -f nodatime.org/build/Dockerfile \
+          .
