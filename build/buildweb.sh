@@ -34,13 +34,18 @@ dotnet publish -v quiet -c Release $ROOT/src/NodaTime.Web
 # dotnet test ../src/NodaTime.Web.SmokeTest
 
 # Add diagnostic text files
-declare -r publish=$ROOT/src/NodaTime.Web/bin/Release/net8.0/publish;
-echo "Built at $(date -u -Iseconds)" > $publish/wwwroot/build.txt;
-
+# commit.txt only contains commit info
+# build.txt is the commit info and build time
+# At some point we probably only want one of these.
+declare -r publish=$ROOT/src/NodaTime.Web/bin/Release/net8.0/publish
 declare -r nodatime_org_commit=$(git -C $ROOT rev-parse HEAD)
 declare -r nodatime_commit=$(git -C $ROOT/../nodatime rev-parse HEAD)
 declare -r nodatime_serialization_commit=$(git -C $ROOT/../nodatime.serialization rev-parse HEAD)
+
 echo "Commits:" > $publish/wwwroot/commit.txt
 echo "nodatime: $nodatime_commit" >> $publish/wwwroot/commit.txt
 echo "nodatime.org: $nodatime_org_commit" >> $publish/wwwroot/commit.txt
 echo "nodatime.serialization: $nodatime_serialization_commit" >> $publish/wwwroot/commit.txt
+
+echo "Built at $(date -u -Iseconds)" > $publish/wwwroot/build.txt
+cat $publish/wwwroot/commit.txt >> $publish/wwwroot/build.txt
