@@ -23,7 +23,7 @@ namespace NodaTime.Web.SmokeTest
         [TestCase("1.0.x/userguide/text", "There are two options for text handling")]
         [TestCase("1.0.x/api/NodaTime.DateTimeZone.html", "The mapping is unambiguous")]
         // Note: not the full URL as that depends on the server URL
-        [TestCase("tzdb/index.txt", "/tzdb/tzdb2013h.nzd")]
+        [TestCase("tzdb/index.txt", "/tzdb/tzdb2018h.nzd")]
         public async Task TextPage(string path, string expectedContent)
         {
             var client = new HttpClient();
@@ -32,7 +32,7 @@ namespace NodaTime.Web.SmokeTest
         }
 
         [Test]
-        [TestCase("tzdb/tzdb2013h.nzd", 125962)]
+        [TestCase("tzdb/tzdb2018h.nzd", 135698)]
         public async Task Binary(string path, int expectedSize)
         {
             var client = new HttpClient();

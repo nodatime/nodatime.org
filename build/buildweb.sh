@@ -30,8 +30,8 @@ dotnet publish -v quiet -c Release $ROOT/src/NodaTime.Web
 # (Blazor is currently disabled.)
 # sed -i 's/\\/\//g' $WEB_DIR/NodaTime.Web.Blazor.blazor.config
 
-# Run a smoke test to check it still works
-# dotnet test ../src/NodaTime.Web.SmokeTest
+# Run a smoke test to check it still works, but without using GCS
+STORAGE__BUCKET=local:fakestorage dotnet test ../src/NodaTime.Web.SmokeTest
 
 # Add diagnostic text files
 # commit.txt only contains commit info
