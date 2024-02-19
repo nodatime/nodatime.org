@@ -1,6 +1,14 @@
 name: Build documentation
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        type: choice
+        description: Deployment target
+        options: 
+        - nodatime-test
+        - nodatime
 
 jobs:
   build-docs:
@@ -12,7 +20,6 @@ jobs:
       GKE_ZONE: us-central1-a
       REPOSITORY_ZONE: us-central1
       REPOSITORY_NAME: nodatime-org
-      DEPLOYMENT_NAME: nodatime-test
       IMAGE: nodatime.org
 
     steps:
@@ -73,4 +80,4 @@ jobs:
     # Push to GKE (using the auth we've already configured)
     - name: Update GKE test deployment
       run: |-
-        kubectl set image deployment nodatime-test nodatime-test=$IMAGE_TAG
+        kubectl set image deployment "${{ inputs.deployment_target }}" "${{ inputs.deployment_target }}"=$IMAGE_TAG
