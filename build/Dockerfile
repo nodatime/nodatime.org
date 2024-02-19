@@ -4,13 +4,13 @@ WORKDIR /source
 
 # Note: we expect to build this from a parent
 # directory including clones of all three repos.
-COPY nodatime /source/nodatime
-COPY nodatime.org /source/nodatime.org
-COPY nodatime.serialization /source/nodatime.serialization
+COPY nodatime nodatime
+COPY nodatime.org nodatime.org
+COPY nodatime.serialization nodatime.serialization
 
 WORKDIR /source/nodatime.org/build
-RUN chmod +x buildweb.sh
-RUN /bin/bash -c buildweb.sh
+RUN chmod +x *.sh
+RUN /bin/bash -c ./buildweb.sh
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
