@@ -69,13 +69,12 @@ jobs:
     - name: Publish image
       run: |-
         docker push $IMAGE_TAG
-        
+
     - name: "Configure kubectl credentials"
       uses: 'google-github-actions/get-gke-credentials@v2'
       with:
-        cluster_name: $GKE_CLUSTER
-        location: $GKE_ZONE
-
+        cluster_name: ${{ env.GKE_CLUSTER }}
+        location: ${{ env.GKE_ZONE }}
 
     # Push to GKE (using the auth we've already configured)
     - name: Update GKE test deployment
