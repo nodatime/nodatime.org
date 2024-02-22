@@ -44,11 +44,11 @@ echo "Copying metadata for previous versions"
 cp -r history/Noda* tmp/metadata
 
 echo "Building packages and metadata for local code (may not be committed)"
-dotnet pack --nologo -v quiet ../../nodatime/src/NodaTime -o $PWD/tmp/metadata/NodaTime/unstable
-dotnet pack --nologo -v quiet ../../nodatime/src/NodaTime.Testing -o $PWD/tmp/metadata/NodaTime.Testing/unstable
-dotnet pack --nologo -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.JsonNet -o $PWD/tmp/metadata/NodaTime.Serialization.JsonNet/unstable
-dotnet pack --nologo -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.Protobuf -o $PWD/tmp/metadata/NodaTime.Serialization.Protobuf/unstable
-dotnet pack --nologo -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.SystemTextJson -o $PWD/tmp/metadata/NodaTime.Serialization.SystemTextJson/unstable
+dotnet pack -nologo -clp:NoSummary --nologo -v quiet ../../nodatime/src/NodaTime -o $PWD/tmp/metadata/NodaTime/unstable
+dotnet pack -nologo -clp:NoSummary -v quiet ../../nodatime/src/NodaTime.Testing -o $PWD/tmp/metadata/NodaTime.Testing/unstable
+dotnet pack -nologo -clp:NoSummary -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.JsonNet -o $PWD/tmp/metadata/NodaTime.Serialization.JsonNet/unstable
+dotnet pack -nologo -clp:NoSummary -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.Protobuf -o $PWD/tmp/metadata/NodaTime.Serialization.Protobuf/unstable
+dotnet pack -nologo -clp:NoSummary -v quiet ../../nodatime.serialization/src/NodaTime.Serialization.SystemTextJson -o $PWD/tmp/metadata/NodaTime.Serialization.SystemTextJson/unstable
 generate_metadata tmp/metadata ../../nodatime/src unstable net8.0 NodaTime
 generate_metadata tmp/metadata ../../nodatime.serialization/src unstable netstandard2.0 NodaTime.Serialization.JsonNet NodaTime.Serialization.Protobuf NodaTime.Serialization.SystemTextJson
 
@@ -76,7 +76,7 @@ cp tmp/metadata/NodaTime.Testing/unstable/fullapi/NodaTime.Testing.* tmp/metadat
 rm -rf tmp/metadata/NodaTime.Testing/unstable/fullapi
 
 echo "Building all tools"
-dotnet build -v quiet Tools.sln
+dotnet build -nologo -clp:NoSummary -v quiet Tools.sln
 
 # Create diffs between versions and other annotations, just for NodaTime
 dotnet run --project ReleaseDiffGenerator -- tmp/metadata/NodaTime
@@ -85,7 +85,7 @@ dotnet run --project ReleaseDiffGenerator -- tmp/metadata/NodaTime
 dotnet run --project DocfxAnnotationGenerator -- tmp/metadata/*
 
 # Extract snippets from NodaTime.Demo (unstable only, for now)
-dotnet publish -c Debug -v quiet ../../nodatime/src/NodaTime.Demo
+dotnet publish -nologo -clp:NoSummary -c Debug -v quiet ../../nodatime/src/NodaTime.Demo
 dotnet run --project SnippetExtractor -- ../../nodatime/src/NodaTime.sln NodaTime.Demo tmp/metadata/NodaTime/unstable/overwrite
 
 # Reorganize the files to suit docfx build
