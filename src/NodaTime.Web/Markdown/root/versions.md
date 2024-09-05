@@ -7,6 +7,13 @@ details.
 See the [end of this page](#tzdb-updates) for the policy on which
 versions receive patch updates for TZDB releases.
 
+## 3.1.12, released 2024-09-05 with tzdb 2024b
+
+This patch release simply updates the built-in TZDB time
+zone data to 2024b, using CLDR version 44 for Windows mappings.
+(It also makes some trivial changes to documentation, but no
+actual code changes.)
+
 ## 3.1.11, released 2024-02-01 with tzdb 2024a
 
 This patch release simply updates the built-in TZDB time
