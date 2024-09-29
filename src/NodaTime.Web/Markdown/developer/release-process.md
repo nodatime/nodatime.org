@@ -20,12 +20,11 @@ all the tests pass.
 Search the issue tracker for open issues with the right milestone (e.g.
 `is:open is:issue milestone:1.4.0`).
 
-## Releasing
+## Releasing (nodatime repo)
 
 - Update the `Directory.Build.props` in the root directory; this contains the version number
 - Commit this change, and push it in a PR that describes the changes in this release
-- In GitHub, create branch `3.1.x` from main
-- Protect the branch (in GitHub repository settings)
+- In GitHub, create branch `3.1.x` from main. (This is automatically a "protected" branch.)
 - Create a release in GitHub, with a new tag `3.1.0` against the new branch
   - A GitHub action will automatically build and push to NuGet
         
@@ -39,8 +38,9 @@ We keep the docfx metadata and snippets for each minor version in the history br
 This used to be maintained via a `buildhistory.sh` script which would fetch all sources and rebuild from scratch.
 As tools have aged, this has become infeasible - but we can easily add new versions.
 
-- Check out clean clones of nodatime, nodatime.org and nodatime.serialization
-- Change to the `build` directory of the nodatime.org repo
+- Check out clean clones of nodatime, nodatime.org and nodatime.serialization (using the new branch
+  of the nodatime repo)
+- In a console, change to the `build` directory of the nodatime.org repo
 - Delete any local cache of history: `rm -rf ./history`
 - Run the build for all API documentation: `./buildapidocs.sh`
 - Copy the just-generated metadata into the history branch (edit for the right version number!):
@@ -65,3 +65,8 @@ As tools have aged, this has become infeasible - but we can easily add new versi
 
 - Copy (or move) `tzdbupdate/update-3.0.sh` to `update-3.1.sh` and edit it accordingly
 - Edit `tzdbupdate/update-all.sh` to call the new script
+
+## Re-push documentation
+
+Once everything has been merged, trigger the GitHub action "Build documentation" in the nodatime.org
+repo and check the results.
