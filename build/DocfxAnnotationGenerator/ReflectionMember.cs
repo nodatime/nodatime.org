@@ -86,7 +86,8 @@ namespace DocfxAnnotationGenerator
         private ReflectionMember(PropertyDefinition property)
         {
             // property.Name will be Type.Name for explicit interface implementations, e.g. NodaTime.IClock.Now
-            DocfxUid = $"{GetUid(property.DeclaringType)}.{property.Name.Replace('.', '#')}{GetParameterNames(property.Parameters)}";
+            // For generic interfaces, we then need to replace angle brackets.
+            DocfxUid = $"{GetUid(property.DeclaringType)}.{property.Name.Replace('.', '#').Replace('<', '{').Replace('>', '}')}{GetParameterNames(property.Parameters)}";
             NotNullReturn = IsNonNullable(property.PropertyType, property);
 
             // For indexers...
@@ -114,7 +115,7 @@ namespace DocfxAnnotationGenerator
 
         private string GetUid(MethodDefinition method)
         {
-            if (method.Overrides.Count == 1)
+            if (method.Overrides.Count == 1 && !method.IsStatic)
             {
                 var interfaceMethod = method.Overrides[0];
                 var interfaceMethodNameUid = $"{GetUid(interfaceMethod.DeclaringType)}.{interfaceMethod.Name}".Replace('.', '#');
