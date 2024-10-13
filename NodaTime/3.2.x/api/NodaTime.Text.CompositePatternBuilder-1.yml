@@ -1,0 +1,1018 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Text.CompositePatternBuilder`1
+  commentId: T:NodaTime.Text.CompositePatternBuilder`1
+  id: CompositePatternBuilder`1
+  parent: NodaTime.Text
+  children:
+  - NodaTime.Text.CompositePatternBuilder`1.#ctor
+  - NodaTime.Text.CompositePatternBuilder`1.Add(NodaTime.Text.IPattern{`0},System.Func{`0,System.Boolean})
+  - NodaTime.Text.CompositePatternBuilder`1.Build
+  - NodaTime.Text.CompositePatternBuilder`1.System#Collections#Generic#IEnumerable{NodaTime#Text#IPattern{T}}#GetEnumerator
+  - NodaTime.Text.CompositePatternBuilder`1.System#Collections#IEnumerable#GetEnumerator
+  langs:
+  - csharp
+  - vb
+  name: CompositePatternBuilder<T>
+  nameWithType: CompositePatternBuilder<T>
+  fullName: NodaTime.Text.CompositePatternBuilder<T>
+  type: Class
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: A builder for composite patterns.
+  remarks: >-
+    A composite pattern is a combination of multiple patterns. When parsing, these are checked
+
+    in the order in which they are added to the builder with the <xref href="NodaTime.Text.CompositePatternBuilder%601.Add(NodaTime.Text.IPattern%7b%600%7d%2cSystem.Func%7b%600%2cSystem.Boolean%7d)" data-throw-if-not-resolved="false"></xref>
+
+    method, by trying to parse and seeing if the result is a successful one. When formatting,
+
+    the patterns are checked in the reverse order, using the predicate provided along with the pattern
+
+    when calling <code>Add</code>. The intention is that patterns are added in "most precise first" order,
+
+    and the predicate should indicate whether it can fully represent the given value - so the "less precise"
+
+    (and therefore usually shorter) pattern can be used first.
+  example: []
+  syntax:
+    content: 'public sealed class CompositePatternBuilder<T> : IEnumerable<IPattern<T>>, IEnumerable'
+    typeParameters:
+    - id: T
+      description: The type of value to be parsed or formatted by the resulting pattern.
+    content.vb: Public NotInheritable Class CompositePatternBuilder(Of T) Implements IEnumerable(Of IPattern(Of T)), IEnumerable
+  inheritance:
+  - System.Object
+  implements:
+  - System.Collections.Generic.IEnumerable{NodaTime.Text.IPattern{{T}}}
+  - System.Collections.IEnumerable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  nameWithType.vb: CompositePatternBuilder(Of T)
+  fullName.vb: NodaTime.Text.CompositePatternBuilder(Of T)
+  name.vb: CompositePatternBuilder(Of T)
+- uid: NodaTime.Text.CompositePatternBuilder`1.#ctor
+  commentId: M:NodaTime.Text.CompositePatternBuilder`1.#ctor
+  id: '#ctor'
+  parent: NodaTime.Text.CompositePatternBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: CompositePatternBuilder()
+  nameWithType: CompositePatternBuilder<T>.CompositePatternBuilder()
+  fullName: NodaTime.Text.CompositePatternBuilder<T>.CompositePatternBuilder()
+  type: Constructor
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Constructs a new instance which initially has no component patterns. At least one component
+
+    pattern must be added before <xref href="NodaTime.Text.CompositePatternBuilder%601.Build" data-throw-if-not-resolved="false"></xref> is called.
+  example: []
+  syntax:
+    content: public CompositePatternBuilder()
+    content.vb: Public Sub New()
+  overload: NodaTime.Text.CompositePatternBuilder`1.#ctor*
+  nameWithType.vb: CompositePatternBuilder(Of T).New()
+  fullName.vb: NodaTime.Text.CompositePatternBuilder(Of T).New()
+  name.vb: New()
+- uid: NodaTime.Text.CompositePatternBuilder`1.Add(NodaTime.Text.IPattern{`0},System.Func{`0,System.Boolean})
+  commentId: M:NodaTime.Text.CompositePatternBuilder`1.Add(NodaTime.Text.IPattern{`0},System.Func{`0,System.Boolean})
+  id: Add(NodaTime.Text.IPattern{`0},System.Func{`0,System.Boolean})
+  parent: NodaTime.Text.CompositePatternBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: Add(IPattern<T>, Func<T, bool>)
+  nameWithType: CompositePatternBuilder<T>.Add(IPattern<T>, Func<T, bool>)
+  fullName: NodaTime.Text.CompositePatternBuilder<T>.Add(NodaTime.Text.IPattern<T>, System.Func<T, bool>)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Adds a component pattern to this builder.
+  example: []
+  syntax:
+    content: public void Add(IPattern<T> pattern, Func<T, bool> formatPredicate)
+    parameters:
+    - id: pattern
+      type: NodaTime.Text.IPattern{{T}}
+      description: The component pattern to use as part of the eventual composite pattern.
+    - id: formatPredicate
+      type: System.Func{{T},System.Boolean}
+      description: >-
+        A predicate to determine whether or not this pattern is suitable for
+            formatting the given value.
+    content.vb: Public Sub Add(pattern As IPattern(Of T), formatPredicate As Func(Of T, Boolean))
+  overload: NodaTime.Text.CompositePatternBuilder`1.Add*
+  nameWithType.vb: CompositePatternBuilder(Of T).Add(IPattern(Of T), Func(Of T, Boolean))
+  fullName.vb: NodaTime.Text.CompositePatternBuilder(Of T).Add(NodaTime.Text.IPattern(Of T), System.Func(Of T, Boolean))
+  name.vb: Add(IPattern(Of T), Func(Of T, Boolean))
+- uid: NodaTime.Text.CompositePatternBuilder`1.Build
+  commentId: M:NodaTime.Text.CompositePatternBuilder`1.Build
+  id: Build
+  parent: NodaTime.Text.CompositePatternBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: Build()
+  nameWithType: CompositePatternBuilder<T>.Build()
+  fullName: NodaTime.Text.CompositePatternBuilder<T>.Build()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Builds a composite pattern from this builder. Further changes to this builder
+
+    will have no impact on the returned pattern.
+  example: []
+  syntax:
+    content: public IPattern<T> Build()
+    return:
+      type: NodaTime.Text.IPattern{{T}}
+      description: A pattern using the patterns added to this builder.
+    content.vb: Public Function Build() As IPattern(Of T)
+  overload: NodaTime.Text.CompositePatternBuilder`1.Build*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: No component patterns have been added.
+  nameWithType.vb: CompositePatternBuilder(Of T).Build()
+  fullName.vb: NodaTime.Text.CompositePatternBuilder(Of T).Build()
+- uid: NodaTime.Text.CompositePatternBuilder`1.System#Collections#Generic#IEnumerable{NodaTime#Text#IPattern{T}}#GetEnumerator
+  commentId: M:NodaTime.Text.CompositePatternBuilder`1.System#Collections#Generic#IEnumerable{NodaTime#Text#IPattern{T}}#GetEnumerator
+  id: System#Collections#Generic#IEnumerable{NodaTime#Text#IPattern{T}}#GetEnumerator
+  isEii: true
+  parent: NodaTime.Text.CompositePatternBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: IEnumerable<IPattern<T>>.GetEnumerator()
+  nameWithType: CompositePatternBuilder<T>.IEnumerable<IPattern<T>>.GetEnumerator()
+  fullName: NodaTime.Text.CompositePatternBuilder<T>.System.Collections.Generic.IEnumerable<NodaTime.Text.IPattern<T>>.GetEnumerator()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Returns an enumerator that iterates through the collection.
+  example: []
+  syntax:
+    content: IEnumerator<IPattern<T>> IEnumerable<IPattern<T>>.GetEnumerator()
+    return:
+      type: System.Collections.Generic.IEnumerator{NodaTime.Text.IPattern{{T}}}
+      description: An enumerator that can be used to iterate through the collection.
+    content.vb: ''
+  overload: NodaTime.Text.CompositePatternBuilder`1.System#Collections#Generic#IEnumerable{NodaTime#Text#IPattern{T}}#GetEnumerator*
+  implements:
+  - System.Collections.Generic.IEnumerable{NodaTime.Text.IPattern{{T}}}.GetEnumerator
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+- uid: NodaTime.Text.CompositePatternBuilder`1.System#Collections#IEnumerable#GetEnumerator
+  commentId: M:NodaTime.Text.CompositePatternBuilder`1.System#Collections#IEnumerable#GetEnumerator
+  id: System#Collections#IEnumerable#GetEnumerator
+  isEii: true
+  parent: NodaTime.Text.CompositePatternBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: IEnumerable.GetEnumerator()
+  nameWithType: CompositePatternBuilder<T>.IEnumerable.GetEnumerator()
+  fullName: NodaTime.Text.CompositePatternBuilder<T>.System.Collections.IEnumerable.GetEnumerator()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Returns an enumerator that iterates through a collection.
+  example: []
+  syntax:
+    content: IEnumerator IEnumerable.GetEnumerator()
+    return:
+      type: System.Collections.IEnumerator
+      description: An <xref href="System.Collections.IEnumerator" data-throw-if-not-resolved="false"></xref> object that can be used to iterate through the collection.
+    content.vb: ''
+  overload: NodaTime.Text.CompositePatternBuilder`1.System#Collections#IEnumerable#GetEnumerator*
+  implements:
+  - System.Collections.IEnumerable.GetEnumerator
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+references:
+- uid: NodaTime.Text.CompositePatternBuilder`1.Add(NodaTime.Text.IPattern{`0},System.Func{`0,System.Boolean})
+  commentId: M:NodaTime.Text.CompositePatternBuilder`1.Add(NodaTime.Text.IPattern{`0},System.Func{`0,System.Boolean})
+  isExternal: true
+  href: NodaTime.Text.CompositePatternBuilder-1.html#NodaTime_Text_CompositePatternBuilder_1_Add_NodaTime_Text_IPattern__0__System_Func__0_System_Boolean__
+  name: Add(IPattern<T>, Func<T, bool>)
+  nameWithType: CompositePatternBuilder<T>.Add(IPattern<T>, Func<T, bool>)
+  fullName: NodaTime.Text.CompositePatternBuilder<T>.Add(NodaTime.Text.IPattern<T>, System.Func<T, bool>)
+  nameWithType.vb: CompositePatternBuilder(Of T).Add(IPattern(Of T), Func(Of T, Boolean))
+  fullName.vb: NodaTime.Text.CompositePatternBuilder(Of T).Add(NodaTime.Text.IPattern(Of T), System.Func(Of T, Boolean))
+  name.vb: Add(IPattern(Of T), Func(Of T, Boolean))
+  spec.csharp:
+  - uid: NodaTime.Text.CompositePatternBuilder`1.Add(NodaTime.Text.IPattern{`0},System.Func{`0,System.Boolean})
+    name: Add
+    href: NodaTime.Text.CompositePatternBuilder-1.html#NodaTime_Text_CompositePatternBuilder_1_Add_NodaTime_Text_IPattern__0__System_Func__0_System_Boolean__
+  - name: (
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.CompositePatternBuilder`1.Add(NodaTime.Text.IPattern{`0},System.Func{`0,System.Boolean})
+    name: Add
+    href: NodaTime.Text.CompositePatternBuilder-1.html#NodaTime_Text_CompositePatternBuilder_1_Add_NodaTime_Text_IPattern__0__System_Func__0_System_Boolean__
+  - name: (
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: )
+- uid: NodaTime.Text.CompositePatternBuilder`1.Build
+  commentId: M:NodaTime.Text.CompositePatternBuilder`1.Build
+  href: NodaTime.Text.CompositePatternBuilder-1.html#NodaTime_Text_CompositePatternBuilder_1_Build
+  name: Build()
+  nameWithType: CompositePatternBuilder<T>.Build()
+  fullName: NodaTime.Text.CompositePatternBuilder<T>.Build()
+  nameWithType.vb: CompositePatternBuilder(Of T).Build()
+  fullName.vb: NodaTime.Text.CompositePatternBuilder(Of T).Build()
+  spec.csharp:
+  - uid: NodaTime.Text.CompositePatternBuilder`1.Build
+    name: Build
+    href: NodaTime.Text.CompositePatternBuilder-1.html#NodaTime_Text_CompositePatternBuilder_1_Build
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.CompositePatternBuilder`1.Build
+    name: Build
+    href: NodaTime.Text.CompositePatternBuilder-1.html#NodaTime_Text_CompositePatternBuilder_1_Build
+  - name: (
+  - name: )
+- uid: NodaTime.Text
+  commentId: N:NodaTime.Text
+  href: NodaTime.html
+  name: NodaTime.Text
+  nameWithType: NodaTime.Text
+  fullName: NodaTime.Text
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Text
+    name: Text
+    href: NodaTime.Text.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Text
+    name: Text
+    href: NodaTime.Text.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Collections.Generic.IEnumerable{NodaTime.Text.IPattern{{T}}}
+  commentId: T:System.Collections.Generic.IEnumerable{NodaTime.Text.IPattern{`0}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<IPattern<T>>
+  nameWithType: IEnumerable<IPattern<T>>
+  fullName: System.Collections.Generic.IEnumerable<NodaTime.Text.IPattern<T>>
+  nameWithType.vb: IEnumerable(Of IPattern(Of T))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of NodaTime.Text.IPattern(Of T))
+  name.vb: IEnumerable(Of IPattern(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: NodaTime.Text.CompositePatternBuilder`1.#ctor*
+  commentId: Overload:NodaTime.Text.CompositePatternBuilder`1.#ctor
+  href: NodaTime.Text.CompositePatternBuilder-1.html#NodaTime_Text_CompositePatternBuilder_1__ctor
+  name: CompositePatternBuilder
+  nameWithType: CompositePatternBuilder<T>.CompositePatternBuilder
+  fullName: NodaTime.Text.CompositePatternBuilder<T>.CompositePatternBuilder
+  nameWithType.vb: CompositePatternBuilder(Of T).New
+  fullName.vb: NodaTime.Text.CompositePatternBuilder(Of T).New
+  name.vb: New
+- uid: NodaTime.Text.CompositePatternBuilder`1.Add*
+  commentId: Overload:NodaTime.Text.CompositePatternBuilder`1.Add
+  href: NodaTime.Text.CompositePatternBuilder-1.html#NodaTime_Text_CompositePatternBuilder_1_Add_NodaTime_Text_IPattern__0__System_Func__0_System_Boolean__
+  name: Add
+  nameWithType: CompositePatternBuilder<T>.Add
+  fullName: NodaTime.Text.CompositePatternBuilder<T>.Add
+  nameWithType.vb: CompositePatternBuilder(Of T).Add
+  fullName.vb: NodaTime.Text.CompositePatternBuilder(Of T).Add
+- uid: NodaTime.Text.IPattern{{T}}
+  commentId: T:NodaTime.Text.IPattern{`0}
+  parent: NodaTime.Text
+  definition: NodaTime.Text.IPattern`1
+  href: NodaTime.Text.IPattern-1.html
+  name: IPattern<T>
+  nameWithType: IPattern<T>
+  fullName: NodaTime.Text.IPattern<T>
+  nameWithType.vb: IPattern(Of T)
+  fullName.vb: NodaTime.Text.IPattern(Of T)
+  name.vb: IPattern(Of T)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Func{{T},System.Boolean}
+  commentId: T:System.Func{`0,System.Boolean}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, bool>
+  nameWithType: Func<T, bool>
+  fullName: System.Func<T, bool>
+  nameWithType.vb: Func(Of T, Boolean)
+  fullName.vb: System.Func(Of T, Boolean)
+  name.vb: Func(Of T, Boolean)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: NodaTime.Text.IPattern`1
+  commentId: T:NodaTime.Text.IPattern`1
+  href: NodaTime.Text.IPattern-1.html
+  name: IPattern<T>
+  nameWithType: IPattern<T>
+  fullName: NodaTime.Text.IPattern<T>
+  nameWithType.vb: IPattern(Of T)
+  fullName.vb: NodaTime.Text.IPattern(Of T)
+  name.vb: IPattern(Of T)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: NodaTime.Text.CompositePatternBuilder`1.Build*
+  commentId: Overload:NodaTime.Text.CompositePatternBuilder`1.Build
+  href: NodaTime.Text.CompositePatternBuilder-1.html#NodaTime_Text_CompositePatternBuilder_1_Build
+  name: Build
+  nameWithType: CompositePatternBuilder<T>.Build
+  fullName: NodaTime.Text.CompositePatternBuilder<T>.Build
+  nameWithType.vb: CompositePatternBuilder(Of T).Build
+  fullName.vb: NodaTime.Text.CompositePatternBuilder(Of T).Build
+- uid: NodaTime.Text.CompositePatternBuilder`1.System#Collections#Generic#IEnumerable{NodaTime#Text#IPattern{T}}#GetEnumerator*
+  commentId: Overload:NodaTime.Text.CompositePatternBuilder`1.System#Collections#Generic#IEnumerable{NodaTime#Text#IPattern{T}}#GetEnumerator
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<IPattern<T>>.GetEnumerator
+  nameWithType: CompositePatternBuilder<T>.IEnumerable<IPattern<T>>.GetEnumerator
+  fullName: NodaTime.Text.CompositePatternBuilder<T>.System.Collections.Generic.IEnumerable<NodaTime.Text.IPattern<T>>.GetEnumerator
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1*
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: NodaTime.Text.IPattern`1*
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  - name: .
+  - uid: NodaTime.Text.CompositePatternBuilder`1.System#Collections#Generic#IEnumerable{NodaTime#Text#IPattern{T}}#GetEnumerator*
+    name: GetEnumerator
+    href: NodaTime.Text.CompositePatternBuilder-1.html#NodaTime_Text_CompositePatternBuilder_1_System_Collections_Generic_IEnumerable_NodaTime_Text_IPattern_T___GetEnumerator
+- uid: System.Collections.Generic.IEnumerable{NodaTime.Text.IPattern{{T}}}.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable{NodaTime.Text.IPattern{`0}}.GetEnumerator
+  parent: System.Collections.Generic.IEnumerable{NodaTime.Text.IPattern{{T}}}
+  definition: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable<IPattern<T>>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<NodaTime.Text.IPattern<T>>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of IPattern(Of T)).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of NodaTime.Text.IPattern(Of T)).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable{NodaTime.Text.IPattern{`0}}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable{NodaTime.Text.IPattern{`0}}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IEnumerator{NodaTime.Text.IPattern{{T}}}
+  commentId: T:System.Collections.Generic.IEnumerator{NodaTime.Text.IPattern{`0}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerator`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  name: IEnumerator<IPattern<T>>
+  nameWithType: IEnumerator<IPattern<T>>
+  fullName: System.Collections.Generic.IEnumerator<NodaTime.Text.IPattern<T>>
+  nameWithType.vb: IEnumerator(Of IPattern(Of T))
+  fullName.vb: System.Collections.Generic.IEnumerator(Of NodaTime.Text.IPattern(Of T))
+  name.vb: IEnumerator(Of IPattern(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: <
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable`1.GetEnumerator
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable<T>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of T).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IEnumerator`1
+  commentId: T:System.Collections.Generic.IEnumerator`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  name: IEnumerator<T>
+  nameWithType: IEnumerator<T>
+  fullName: System.Collections.Generic.IEnumerator<T>
+  nameWithType.vb: IEnumerator(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of T)
+  name.vb: IEnumerator(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.IEnumerator
+  commentId: T:System.Collections.IEnumerator
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerator
+  name: IEnumerator
+  nameWithType: IEnumerator
+  fullName: System.Collections.IEnumerator
+- uid: NodaTime.Text.CompositePatternBuilder`1.System#Collections#IEnumerable#GetEnumerator*
+  commentId: Overload:NodaTime.Text.CompositePatternBuilder`1.System#Collections#IEnumerable#GetEnumerator
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable
+  name: IEnumerable.GetEnumerator
+  nameWithType: CompositePatternBuilder<T>.IEnumerable.GetEnumerator
+  fullName: NodaTime.Text.CompositePatternBuilder<T>.System.Collections.IEnumerable.GetEnumerator
+  spec.csharp:
+  - uid: System.Collections.IEnumerable*
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable
+  - name: .
+  - uid: NodaTime.Text.CompositePatternBuilder`1.System#Collections#IEnumerable#GetEnumerator*
+    name: GetEnumerator
+    href: NodaTime.Text.CompositePatternBuilder-1.html#NodaTime_Text_CompositePatternBuilder_1_System_Collections_IEnumerable_GetEnumerator
+- uid: System.Collections.IEnumerable.GetEnumerator
+  commentId: M:System.Collections.IEnumerable.GetEnumerator
+  parent: System.Collections.IEnumerable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable.getenumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable.GetEnumerator()
+  fullName: System.Collections.IEnumerable.GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.IEnumerable.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.IEnumerable.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable.getenumerator
+  - name: (
+  - name: )
+shouldSkipMarkup: true

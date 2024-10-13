@@ -1,0 +1,1391 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Testing.FakeClock
+  commentId: T:NodaTime.Testing.FakeClock
+  id: FakeClock
+  parent: NodaTime.Testing
+  children:
+  - NodaTime.Testing.FakeClock.#ctor(NodaTime.Instant)
+  - NodaTime.Testing.FakeClock.#ctor(NodaTime.Instant,NodaTime.Duration)
+  - NodaTime.Testing.FakeClock.Advance(NodaTime.Duration)
+  - NodaTime.Testing.FakeClock.AdvanceDays(System.Int32)
+  - NodaTime.Testing.FakeClock.AdvanceHours(System.Int32)
+  - NodaTime.Testing.FakeClock.AdvanceMilliseconds(System.Int64)
+  - NodaTime.Testing.FakeClock.AdvanceMinutes(System.Int64)
+  - NodaTime.Testing.FakeClock.AdvanceNanoseconds(System.Int64)
+  - NodaTime.Testing.FakeClock.AdvanceSeconds(System.Int64)
+  - NodaTime.Testing.FakeClock.AdvanceTicks(System.Int64)
+  - NodaTime.Testing.FakeClock.AutoAdvance
+  - NodaTime.Testing.FakeClock.FromUtc(System.Int32,System.Int32,System.Int32)
+  - NodaTime.Testing.FakeClock.FromUtc(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - NodaTime.Testing.FakeClock.GetCurrentInstant
+  - NodaTime.Testing.FakeClock.Reset(NodaTime.Instant)
+  langs:
+  - csharp
+  - vb
+  name: FakeClock
+  nameWithType: FakeClock
+  fullName: NodaTime.Testing.FakeClock
+  type: Class
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: >-
+    Clock which can be constructed with an initial instant, and then advanced programmatically (and optionally,
+
+    automatically advanced on each read).
+
+    This class is designed to be used when testing classes which take an <xref href="NodaTime.IClock" data-throw-if-not-resolved="false"></xref> as a dependency.
+  remarks: >-
+    This class is somewhere between a fake and a stub, depending on how it's used - if it's set to
+
+    <xref href="NodaTime.Testing.FakeClock.AutoAdvance" data-throw-if-not-resolved="false"></xref> then time will pass, but in a pretty odd way (i.e. dependent on how
+
+    often it's consulted).
+  example: []
+  syntax:
+    content: 'public sealed class FakeClock : IClock'
+    content.vb: Public NotInheritable Class FakeClock Implements IClock
+  inheritance:
+  - System.Object
+  implements:
+  - NodaTime.IClock
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - NodaTime.IClock.NodaTime.Extensions.ClockExtensions.InBclSystemDefaultZone
+  - NodaTime.IClock.NodaTime.Extensions.ClockExtensions.InTzdbSystemDefaultZone
+  - NodaTime.IClock.NodaTime.Extensions.ClockExtensions.InUtc
+  - NodaTime.IClock.NodaTime.Extensions.ClockExtensions.InZone(NodaTime.DateTimeZone)
+  - NodaTime.IClock.NodaTime.Extensions.ClockExtensions.InZone(NodaTime.DateTimeZone,NodaTime.CalendarSystem)
+- uid: NodaTime.Testing.FakeClock.#ctor(NodaTime.Instant)
+  commentId: M:NodaTime.Testing.FakeClock.#ctor(NodaTime.Instant)
+  id: '#ctor(NodaTime.Instant)'
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: FakeClock(Instant)
+  nameWithType: FakeClock.FakeClock(Instant)
+  fullName: NodaTime.Testing.FakeClock.FakeClock(NodaTime.Instant)
+  type: Constructor
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: Creates a fake clock initially set to the given instant, with no auto-advance.
+  example: []
+  syntax:
+    content: public FakeClock(Instant initial)
+    parameters:
+    - id: initial
+      type: NodaTime.Instant
+      description: The initial instant.
+    content.vb: Public Sub New(initial As Instant)
+  overload: NodaTime.Testing.FakeClock.#ctor*
+  nameWithType.vb: FakeClock.New(Instant)
+  fullName.vb: NodaTime.Testing.FakeClock.New(NodaTime.Instant)
+  name.vb: New(Instant)
+- uid: NodaTime.Testing.FakeClock.#ctor(NodaTime.Instant,NodaTime.Duration)
+  commentId: M:NodaTime.Testing.FakeClock.#ctor(NodaTime.Instant,NodaTime.Duration)
+  id: '#ctor(NodaTime.Instant,NodaTime.Duration)'
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: FakeClock(Instant, Duration)
+  nameWithType: FakeClock.FakeClock(Instant, Duration)
+  fullName: NodaTime.Testing.FakeClock.FakeClock(NodaTime.Instant, NodaTime.Duration)
+  type: Constructor
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: >-
+    Creates a fake clock initially set to the given instant. The clock will advance by the given duration on
+
+    each read.
+  example: []
+  syntax:
+    content: public FakeClock(Instant initial, Duration autoAdvance)
+    parameters:
+    - id: initial
+      type: NodaTime.Instant
+      description: The initial instant.
+    - id: autoAdvance
+      type: NodaTime.Duration
+      description: The duration to advance the clock on each read.
+    content.vb: Public Sub New(initial As Instant, autoAdvance As Duration)
+  overload: NodaTime.Testing.FakeClock.#ctor*
+  seealso:
+  - linkId: NodaTime.Testing.FakeClock.AutoAdvance
+    commentId: P:NodaTime.Testing.FakeClock.AutoAdvance
+  nameWithType.vb: FakeClock.New(Instant, Duration)
+  fullName.vb: NodaTime.Testing.FakeClock.New(NodaTime.Instant, NodaTime.Duration)
+  name.vb: New(Instant, Duration)
+- uid: NodaTime.Testing.FakeClock.FromUtc(System.Int32,System.Int32,System.Int32)
+  commentId: M:NodaTime.Testing.FakeClock.FromUtc(System.Int32,System.Int32,System.Int32)
+  id: FromUtc(System.Int32,System.Int32,System.Int32)
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: FromUtc(int, int, int)
+  nameWithType: FakeClock.FromUtc(int, int, int)
+  fullName: NodaTime.Testing.FakeClock.FromUtc(int, int, int)
+  type: Method
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: >-
+    Returns a fake clock initially set to midnight of the given year/month/day in UTC in the ISO calendar.
+
+    The value of the <xref href="NodaTime.Testing.FakeClock.AutoAdvance" data-throw-if-not-resolved="false"></xref> property will be initialised to zero.
+  example: []
+  syntax:
+    content: public static FakeClock FromUtc(int year, int monthOfYear, int dayOfMonth)
+    parameters:
+    - id: year
+      type: System.Int32
+      description: >-
+        The year. This is the "absolute year",
+            so a value of 0 means 1 BC, for example.
+    - id: monthOfYear
+      type: System.Int32
+      description: The month of year.
+    - id: dayOfMonth
+      type: System.Int32
+      description: The day of month.
+    return:
+      type: NodaTime.Testing.FakeClock
+      description: A <xref href="NodaTime.Testing.FakeClock" data-throw-if-not-resolved="false"></xref> initialised to the given instant, with no auto-advance.
+    content.vb: Public Shared Function FromUtc(year As Integer, monthOfYear As Integer, dayOfMonth As Integer) As FakeClock
+  overload: NodaTime.Testing.FakeClock.FromUtc*
+  nameWithType.vb: FakeClock.FromUtc(Integer, Integer, Integer)
+  fullName.vb: NodaTime.Testing.FakeClock.FromUtc(Integer, Integer, Integer)
+  name.vb: FromUtc(Integer, Integer, Integer)
+- uid: NodaTime.Testing.FakeClock.FromUtc(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:NodaTime.Testing.FakeClock.FromUtc(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: FromUtc(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: FromUtc(int, int, int, int, int, int)
+  nameWithType: FakeClock.FromUtc(int, int, int, int, int, int)
+  fullName: NodaTime.Testing.FakeClock.FromUtc(int, int, int, int, int, int)
+  type: Method
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: >-
+    Returns a fake clock initially set to the given year/month/day/time in UTC in the ISO calendar.
+
+    The value of the <xref href="NodaTime.Testing.FakeClock.AutoAdvance" data-throw-if-not-resolved="false"></xref> property will be initialised to zero.
+  example: []
+  syntax:
+    content: public static FakeClock FromUtc(int year, int monthOfYear, int dayOfMonth, int hourOfDay, int minuteOfHour, int secondOfMinute)
+    parameters:
+    - id: year
+      type: System.Int32
+      description: >-
+        The year. This is the "absolute year",
+            so a value of 0 means 1 BC, for example.
+    - id: monthOfYear
+      type: System.Int32
+      description: The month of year.
+    - id: dayOfMonth
+      type: System.Int32
+      description: The day of month.
+    - id: hourOfDay
+      type: System.Int32
+      description: The hour.
+    - id: minuteOfHour
+      type: System.Int32
+      description: The minute.
+    - id: secondOfMinute
+      type: System.Int32
+      description: The second.
+    return:
+      type: NodaTime.Testing.FakeClock
+      description: A <xref href="NodaTime.Testing.FakeClock" data-throw-if-not-resolved="false"></xref> initialised to the given instant, with no auto-advance.
+    content.vb: Public Shared Function FromUtc(year As Integer, monthOfYear As Integer, dayOfMonth As Integer, hourOfDay As Integer, minuteOfHour As Integer, secondOfMinute As Integer) As FakeClock
+  overload: NodaTime.Testing.FakeClock.FromUtc*
+  nameWithType.vb: FakeClock.FromUtc(Integer, Integer, Integer, Integer, Integer, Integer)
+  fullName.vb: NodaTime.Testing.FakeClock.FromUtc(Integer, Integer, Integer, Integer, Integer, Integer)
+  name.vb: FromUtc(Integer, Integer, Integer, Integer, Integer, Integer)
+- uid: NodaTime.Testing.FakeClock.Advance(NodaTime.Duration)
+  commentId: M:NodaTime.Testing.FakeClock.Advance(NodaTime.Duration)
+  id: Advance(NodaTime.Duration)
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: Advance(Duration)
+  nameWithType: FakeClock.Advance(Duration)
+  fullName: NodaTime.Testing.FakeClock.Advance(NodaTime.Duration)
+  type: Method
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: Advances the clock by the given duration.
+  example: []
+  syntax:
+    content: public void Advance(Duration duration)
+    parameters:
+    - id: duration
+      type: NodaTime.Duration
+      description: >-
+        The duration to advance the clock by (or if negative, the duration to move it back
+            by).
+    content.vb: Public Sub Advance(duration As Duration)
+  overload: NodaTime.Testing.FakeClock.Advance*
+- uid: NodaTime.Testing.FakeClock.AdvanceNanoseconds(System.Int64)
+  commentId: M:NodaTime.Testing.FakeClock.AdvanceNanoseconds(System.Int64)
+  id: AdvanceNanoseconds(System.Int64)
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: AdvanceNanoseconds(long)
+  nameWithType: FakeClock.AdvanceNanoseconds(long)
+  fullName: NodaTime.Testing.FakeClock.AdvanceNanoseconds(long)
+  type: Method
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: Advances the clock by the given number of nanoseconds.
+  example: []
+  syntax:
+    content: public void AdvanceNanoseconds(long nanoseconds)
+    parameters:
+    - id: nanoseconds
+      type: System.Int64
+      description: >-
+        The number of nanoseconds to advance the clock by (or if negative, the number to move it back
+            by).
+    content.vb: Public Sub AdvanceNanoseconds(nanoseconds As Long)
+  overload: NodaTime.Testing.FakeClock.AdvanceNanoseconds*
+  nameWithType.vb: FakeClock.AdvanceNanoseconds(Long)
+  fullName.vb: NodaTime.Testing.FakeClock.AdvanceNanoseconds(Long)
+  name.vb: AdvanceNanoseconds(Long)
+- uid: NodaTime.Testing.FakeClock.AdvanceTicks(System.Int64)
+  commentId: M:NodaTime.Testing.FakeClock.AdvanceTicks(System.Int64)
+  id: AdvanceTicks(System.Int64)
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: AdvanceTicks(long)
+  nameWithType: FakeClock.AdvanceTicks(long)
+  fullName: NodaTime.Testing.FakeClock.AdvanceTicks(long)
+  type: Method
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: Advances the clock by the given number of ticks.
+  example: []
+  syntax:
+    content: public void AdvanceTicks(long ticks)
+    parameters:
+    - id: ticks
+      type: System.Int64
+      description: >-
+        The number of ticks to advance the clock by (or if negative, the number to move it back
+            by).
+    content.vb: Public Sub AdvanceTicks(ticks As Long)
+  overload: NodaTime.Testing.FakeClock.AdvanceTicks*
+  nameWithType.vb: FakeClock.AdvanceTicks(Long)
+  fullName.vb: NodaTime.Testing.FakeClock.AdvanceTicks(Long)
+  name.vb: AdvanceTicks(Long)
+- uid: NodaTime.Testing.FakeClock.AdvanceMilliseconds(System.Int64)
+  commentId: M:NodaTime.Testing.FakeClock.AdvanceMilliseconds(System.Int64)
+  id: AdvanceMilliseconds(System.Int64)
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: AdvanceMilliseconds(long)
+  nameWithType: FakeClock.AdvanceMilliseconds(long)
+  fullName: NodaTime.Testing.FakeClock.AdvanceMilliseconds(long)
+  type: Method
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: Advances the clock by the given number of milliseconds.
+  example: []
+  syntax:
+    content: public void AdvanceMilliseconds(long milliseconds)
+    parameters:
+    - id: milliseconds
+      type: System.Int64
+      description: >-
+        The number of milliseconds to advance the clock by (or if negative, the number
+            to move it back by).
+    content.vb: Public Sub AdvanceMilliseconds(milliseconds As Long)
+  overload: NodaTime.Testing.FakeClock.AdvanceMilliseconds*
+  nameWithType.vb: FakeClock.AdvanceMilliseconds(Long)
+  fullName.vb: NodaTime.Testing.FakeClock.AdvanceMilliseconds(Long)
+  name.vb: AdvanceMilliseconds(Long)
+- uid: NodaTime.Testing.FakeClock.AdvanceSeconds(System.Int64)
+  commentId: M:NodaTime.Testing.FakeClock.AdvanceSeconds(System.Int64)
+  id: AdvanceSeconds(System.Int64)
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: AdvanceSeconds(long)
+  nameWithType: FakeClock.AdvanceSeconds(long)
+  fullName: NodaTime.Testing.FakeClock.AdvanceSeconds(long)
+  type: Method
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: Advances the clock by the given number of seconds.
+  example: []
+  syntax:
+    content: public void AdvanceSeconds(long seconds)
+    parameters:
+    - id: seconds
+      type: System.Int64
+      description: >-
+        The number of seconds to advance the clock by (or if negative, the number to move it
+            back by).
+    content.vb: Public Sub AdvanceSeconds(seconds As Long)
+  overload: NodaTime.Testing.FakeClock.AdvanceSeconds*
+  nameWithType.vb: FakeClock.AdvanceSeconds(Long)
+  fullName.vb: NodaTime.Testing.FakeClock.AdvanceSeconds(Long)
+  name.vb: AdvanceSeconds(Long)
+- uid: NodaTime.Testing.FakeClock.AdvanceMinutes(System.Int64)
+  commentId: M:NodaTime.Testing.FakeClock.AdvanceMinutes(System.Int64)
+  id: AdvanceMinutes(System.Int64)
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: AdvanceMinutes(long)
+  nameWithType: FakeClock.AdvanceMinutes(long)
+  fullName: NodaTime.Testing.FakeClock.AdvanceMinutes(long)
+  type: Method
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: Advances the clock by the given number of minutes.
+  example: []
+  syntax:
+    content: public void AdvanceMinutes(long minutes)
+    parameters:
+    - id: minutes
+      type: System.Int64
+      description: >-
+        The number of minutes to advance the clock by (or if negative, the number to move it
+            back by).
+    content.vb: Public Sub AdvanceMinutes(minutes As Long)
+  overload: NodaTime.Testing.FakeClock.AdvanceMinutes*
+  nameWithType.vb: FakeClock.AdvanceMinutes(Long)
+  fullName.vb: NodaTime.Testing.FakeClock.AdvanceMinutes(Long)
+  name.vb: AdvanceMinutes(Long)
+- uid: NodaTime.Testing.FakeClock.AdvanceHours(System.Int32)
+  commentId: M:NodaTime.Testing.FakeClock.AdvanceHours(System.Int32)
+  id: AdvanceHours(System.Int32)
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: AdvanceHours(int)
+  nameWithType: FakeClock.AdvanceHours(int)
+  fullName: NodaTime.Testing.FakeClock.AdvanceHours(int)
+  type: Method
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: Advances the clock by the given number of hours.
+  example: []
+  syntax:
+    content: public void AdvanceHours(int hours)
+    parameters:
+    - id: hours
+      type: System.Int32
+      description: >-
+        The number of hours to advance the clock by (or if negative, the number to move it
+            back by).
+    content.vb: Public Sub AdvanceHours(hours As Integer)
+  overload: NodaTime.Testing.FakeClock.AdvanceHours*
+  nameWithType.vb: FakeClock.AdvanceHours(Integer)
+  fullName.vb: NodaTime.Testing.FakeClock.AdvanceHours(Integer)
+  name.vb: AdvanceHours(Integer)
+- uid: NodaTime.Testing.FakeClock.AdvanceDays(System.Int32)
+  commentId: M:NodaTime.Testing.FakeClock.AdvanceDays(System.Int32)
+  id: AdvanceDays(System.Int32)
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: AdvanceDays(int)
+  nameWithType: FakeClock.AdvanceDays(int)
+  fullName: NodaTime.Testing.FakeClock.AdvanceDays(int)
+  type: Method
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: Advances the clock by the given number of standard (24-hour) days.
+  example: []
+  syntax:
+    content: public void AdvanceDays(int days)
+    parameters:
+    - id: days
+      type: System.Int32
+      description: >-
+        The number of days to advance the clock by (or if negative, the number to move it
+            back by).
+    content.vb: Public Sub AdvanceDays(days As Integer)
+  overload: NodaTime.Testing.FakeClock.AdvanceDays*
+  nameWithType.vb: FakeClock.AdvanceDays(Integer)
+  fullName.vb: NodaTime.Testing.FakeClock.AdvanceDays(Integer)
+  name.vb: AdvanceDays(Integer)
+- uid: NodaTime.Testing.FakeClock.Reset(NodaTime.Instant)
+  commentId: M:NodaTime.Testing.FakeClock.Reset(NodaTime.Instant)
+  id: Reset(NodaTime.Instant)
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: Reset(Instant)
+  nameWithType: FakeClock.Reset(Instant)
+  fullName: NodaTime.Testing.FakeClock.Reset(NodaTime.Instant)
+  type: Method
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: >-
+    Resets the clock to the given instant.
+
+    The value of the <xref href="NodaTime.Testing.FakeClock.AutoAdvance" data-throw-if-not-resolved="false"></xref> property will be unchanged.
+  example: []
+  syntax:
+    content: public void Reset(Instant instant)
+    parameters:
+    - id: instant
+      type: NodaTime.Instant
+      description: The instant to set the clock to.
+    content.vb: Public Sub Reset(instant As Instant)
+  overload: NodaTime.Testing.FakeClock.Reset*
+- uid: NodaTime.Testing.FakeClock.GetCurrentInstant
+  commentId: M:NodaTime.Testing.FakeClock.GetCurrentInstant
+  id: GetCurrentInstant
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: GetCurrentInstant()
+  nameWithType: FakeClock.GetCurrentInstant()
+  fullName: NodaTime.Testing.FakeClock.GetCurrentInstant()
+  type: Method
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: >-
+    Returns the "current time" for this clock. Unlike a normal clock, this
+
+    property may return the same value from repeated calls until one of the methods
+
+    to change the time is called.
+  remarks: >-
+    If the value of the <xref href="NodaTime.Testing.FakeClock.AutoAdvance" data-throw-if-not-resolved="false"></xref> property is non-zero, then every
+
+    call to this method will advance the current time by that value.
+  example: []
+  syntax:
+    content: public Instant GetCurrentInstant()
+    return:
+      type: NodaTime.Instant
+      description: The "current time" from this (fake) clock.
+    content.vb: Public Function GetCurrentInstant() As Instant
+  overload: NodaTime.Testing.FakeClock.GetCurrentInstant*
+  implements:
+  - NodaTime.IClock.GetCurrentInstant
+- uid: NodaTime.Testing.FakeClock.AutoAdvance
+  commentId: P:NodaTime.Testing.FakeClock.AutoAdvance
+  id: AutoAdvance
+  parent: NodaTime.Testing.FakeClock
+  langs:
+  - csharp
+  - vb
+  name: AutoAdvance
+  nameWithType: FakeClock.AutoAdvance
+  fullName: NodaTime.Testing.FakeClock.AutoAdvance
+  type: Property
+  assemblies:
+  - NodaTime.Testing
+  namespace: NodaTime.Testing
+  summary: Gets the amount of time to advance the clock by on each call to read the current time.
+  remarks: >-
+    <p>
+
+    This defaults to zero, with the exception of the <xref href="NodaTime.Testing.FakeClock.%23ctor(NodaTime.Instant%2cNodaTime.Duration)" data-throw-if-not-resolved="false"></xref> constructor,
+
+    which takes the initial value directly.  If this is zero, the current time as reported by this clock will
+
+    not change other than by calls to <xref href="NodaTime.Testing.FakeClock.Reset(NodaTime.Instant)" data-throw-if-not-resolved="false"></xref> or to one of the <xref href="NodaTime.Testing.FakeClock.Advance(NodaTime.Duration)" data-throw-if-not-resolved="false"></xref> methods.
+
+    </p>
+
+    <p>
+
+    The value could even be negative, to simulate particularly odd system clock effects.
+
+    </p>
+  example: []
+  syntax:
+    content: public Duration AutoAdvance { get; set; }
+    parameters: []
+    return:
+      type: NodaTime.Duration
+      description: The amount of time to advance the clock by on each call to read the current time.
+    content.vb: Public Property AutoAdvance As Duration
+  overload: NodaTime.Testing.FakeClock.AutoAdvance*
+  seealso:
+  - linkId: NodaTime.Testing.FakeClock.GetCurrentInstant
+    commentId: M:NodaTime.Testing.FakeClock.GetCurrentInstant
+references:
+- uid: NodaTime.IClock
+  commentId: T:NodaTime.IClock
+  parent: NodaTime
+  href: NodaTime.IClock.html
+  name: IClock
+  nameWithType: IClock
+  fullName: NodaTime.IClock
+- uid: NodaTime.Testing.FakeClock.AutoAdvance
+  commentId: P:NodaTime.Testing.FakeClock.AutoAdvance
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AutoAdvance
+  name: AutoAdvance
+  nameWithType: FakeClock.AutoAdvance
+  fullName: NodaTime.Testing.FakeClock.AutoAdvance
+- uid: NodaTime.Testing
+  commentId: N:NodaTime.Testing
+  href: NodaTime.html
+  name: NodaTime.Testing
+  nameWithType: NodaTime.Testing
+  fullName: NodaTime.Testing
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Testing
+    name: Testing
+    href: NodaTime.Testing.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Testing
+    name: Testing
+    href: NodaTime.Testing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: NodaTime.IClock.NodaTime.Extensions.ClockExtensions.InBclSystemDefaultZone
+  commentId: M:NodaTime.Extensions.ClockExtensions.InBclSystemDefaultZone(NodaTime.IClock)
+  parent: NodaTime.Extensions.ClockExtensions
+  definition: NodaTime.Extensions.ClockExtensions.InBclSystemDefaultZone(NodaTime.IClock)
+  href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InBclSystemDefaultZone_NodaTime_IClock_
+  name: InBclSystemDefaultZone(IClock)
+  nameWithType: ClockExtensions.InBclSystemDefaultZone(IClock)
+  fullName: NodaTime.Extensions.ClockExtensions.InBclSystemDefaultZone(NodaTime.IClock)
+  spec.csharp:
+  - uid: NodaTime.Extensions.ClockExtensions.InBclSystemDefaultZone(NodaTime.IClock)
+    name: InBclSystemDefaultZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InBclSystemDefaultZone_NodaTime_IClock_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Extensions.ClockExtensions.InBclSystemDefaultZone(NodaTime.IClock)
+    name: InBclSystemDefaultZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InBclSystemDefaultZone_NodaTime_IClock_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: )
+- uid: NodaTime.IClock.NodaTime.Extensions.ClockExtensions.InTzdbSystemDefaultZone
+  commentId: M:NodaTime.Extensions.ClockExtensions.InTzdbSystemDefaultZone(NodaTime.IClock)
+  parent: NodaTime.Extensions.ClockExtensions
+  definition: NodaTime.Extensions.ClockExtensions.InTzdbSystemDefaultZone(NodaTime.IClock)
+  href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InTzdbSystemDefaultZone_NodaTime_IClock_
+  name: InTzdbSystemDefaultZone(IClock)
+  nameWithType: ClockExtensions.InTzdbSystemDefaultZone(IClock)
+  fullName: NodaTime.Extensions.ClockExtensions.InTzdbSystemDefaultZone(NodaTime.IClock)
+  spec.csharp:
+  - uid: NodaTime.Extensions.ClockExtensions.InTzdbSystemDefaultZone(NodaTime.IClock)
+    name: InTzdbSystemDefaultZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InTzdbSystemDefaultZone_NodaTime_IClock_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Extensions.ClockExtensions.InTzdbSystemDefaultZone(NodaTime.IClock)
+    name: InTzdbSystemDefaultZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InTzdbSystemDefaultZone_NodaTime_IClock_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: )
+- uid: NodaTime.IClock.NodaTime.Extensions.ClockExtensions.InUtc
+  commentId: M:NodaTime.Extensions.ClockExtensions.InUtc(NodaTime.IClock)
+  parent: NodaTime.Extensions.ClockExtensions
+  definition: NodaTime.Extensions.ClockExtensions.InUtc(NodaTime.IClock)
+  href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InUtc_NodaTime_IClock_
+  name: InUtc(IClock)
+  nameWithType: ClockExtensions.InUtc(IClock)
+  fullName: NodaTime.Extensions.ClockExtensions.InUtc(NodaTime.IClock)
+  spec.csharp:
+  - uid: NodaTime.Extensions.ClockExtensions.InUtc(NodaTime.IClock)
+    name: InUtc
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InUtc_NodaTime_IClock_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Extensions.ClockExtensions.InUtc(NodaTime.IClock)
+    name: InUtc
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InUtc_NodaTime_IClock_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: )
+- uid: NodaTime.IClock.NodaTime.Extensions.ClockExtensions.InZone(NodaTime.DateTimeZone)
+  commentId: M:NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone)
+  parent: NodaTime.Extensions.ClockExtensions
+  definition: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone)
+  href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_
+  name: InZone(IClock, DateTimeZone)
+  nameWithType: ClockExtensions.InZone(IClock, DateTimeZone)
+  fullName: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock, NodaTime.DateTimeZone)
+  spec.csharp:
+  - uid: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone)
+    name: InZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone)
+    name: InZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: )
+- uid: NodaTime.IClock.NodaTime.Extensions.ClockExtensions.InZone(NodaTime.DateTimeZone,NodaTime.CalendarSystem)
+  commentId: M:NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone,NodaTime.CalendarSystem)
+  parent: NodaTime.Extensions.ClockExtensions
+  definition: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone,NodaTime.CalendarSystem)
+  href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_NodaTime_CalendarSystem_
+  name: InZone(IClock, DateTimeZone, CalendarSystem)
+  nameWithType: ClockExtensions.InZone(IClock, DateTimeZone, CalendarSystem)
+  fullName: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock, NodaTime.DateTimeZone, NodaTime.CalendarSystem)
+  spec.csharp:
+  - uid: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone,NodaTime.CalendarSystem)
+    name: InZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_NodaTime_CalendarSystem_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.CalendarSystem
+    name: CalendarSystem
+    href: NodaTime.CalendarSystem.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone,NodaTime.CalendarSystem)
+    name: InZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_NodaTime_CalendarSystem_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.CalendarSystem
+    name: CalendarSystem
+    href: NodaTime.CalendarSystem.html
+  - name: )
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NodaTime.Extensions.ClockExtensions.InBclSystemDefaultZone(NodaTime.IClock)
+  commentId: M:NodaTime.Extensions.ClockExtensions.InBclSystemDefaultZone(NodaTime.IClock)
+  href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InBclSystemDefaultZone_NodaTime_IClock_
+  name: InBclSystemDefaultZone(IClock)
+  nameWithType: ClockExtensions.InBclSystemDefaultZone(IClock)
+  fullName: NodaTime.Extensions.ClockExtensions.InBclSystemDefaultZone(NodaTime.IClock)
+  spec.csharp:
+  - uid: NodaTime.Extensions.ClockExtensions.InBclSystemDefaultZone(NodaTime.IClock)
+    name: InBclSystemDefaultZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InBclSystemDefaultZone_NodaTime_IClock_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Extensions.ClockExtensions.InBclSystemDefaultZone(NodaTime.IClock)
+    name: InBclSystemDefaultZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InBclSystemDefaultZone_NodaTime_IClock_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: )
+- uid: NodaTime.Extensions.ClockExtensions
+  commentId: T:NodaTime.Extensions.ClockExtensions
+  parent: NodaTime.Extensions
+  href: NodaTime.Extensions.ClockExtensions.html
+  name: ClockExtensions
+  nameWithType: ClockExtensions
+  fullName: NodaTime.Extensions.ClockExtensions
+- uid: NodaTime.Extensions.ClockExtensions.InTzdbSystemDefaultZone(NodaTime.IClock)
+  commentId: M:NodaTime.Extensions.ClockExtensions.InTzdbSystemDefaultZone(NodaTime.IClock)
+  href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InTzdbSystemDefaultZone_NodaTime_IClock_
+  name: InTzdbSystemDefaultZone(IClock)
+  nameWithType: ClockExtensions.InTzdbSystemDefaultZone(IClock)
+  fullName: NodaTime.Extensions.ClockExtensions.InTzdbSystemDefaultZone(NodaTime.IClock)
+  spec.csharp:
+  - uid: NodaTime.Extensions.ClockExtensions.InTzdbSystemDefaultZone(NodaTime.IClock)
+    name: InTzdbSystemDefaultZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InTzdbSystemDefaultZone_NodaTime_IClock_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Extensions.ClockExtensions.InTzdbSystemDefaultZone(NodaTime.IClock)
+    name: InTzdbSystemDefaultZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InTzdbSystemDefaultZone_NodaTime_IClock_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: )
+- uid: NodaTime.Extensions.ClockExtensions.InUtc(NodaTime.IClock)
+  commentId: M:NodaTime.Extensions.ClockExtensions.InUtc(NodaTime.IClock)
+  href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InUtc_NodaTime_IClock_
+  name: InUtc(IClock)
+  nameWithType: ClockExtensions.InUtc(IClock)
+  fullName: NodaTime.Extensions.ClockExtensions.InUtc(NodaTime.IClock)
+  spec.csharp:
+  - uid: NodaTime.Extensions.ClockExtensions.InUtc(NodaTime.IClock)
+    name: InUtc
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InUtc_NodaTime_IClock_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Extensions.ClockExtensions.InUtc(NodaTime.IClock)
+    name: InUtc
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InUtc_NodaTime_IClock_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: )
+- uid: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone)
+  commentId: M:NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone)
+  href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_
+  name: InZone(IClock, DateTimeZone)
+  nameWithType: ClockExtensions.InZone(IClock, DateTimeZone)
+  fullName: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock, NodaTime.DateTimeZone)
+  spec.csharp:
+  - uid: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone)
+    name: InZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone)
+    name: InZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: )
+- uid: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone,NodaTime.CalendarSystem)
+  commentId: M:NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone,NodaTime.CalendarSystem)
+  href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_NodaTime_CalendarSystem_
+  name: InZone(IClock, DateTimeZone, CalendarSystem)
+  nameWithType: ClockExtensions.InZone(IClock, DateTimeZone, CalendarSystem)
+  fullName: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock, NodaTime.DateTimeZone, NodaTime.CalendarSystem)
+  spec.csharp:
+  - uid: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone,NodaTime.CalendarSystem)
+    name: InZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_NodaTime_CalendarSystem_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.CalendarSystem
+    name: CalendarSystem
+    href: NodaTime.CalendarSystem.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Extensions.ClockExtensions.InZone(NodaTime.IClock,NodaTime.DateTimeZone,NodaTime.CalendarSystem)
+    name: InZone
+    href: NodaTime.Extensions.ClockExtensions.html#NodaTime_Extensions_ClockExtensions_InZone_NodaTime_IClock_NodaTime_DateTimeZone_NodaTime_CalendarSystem_
+  - name: (
+  - uid: NodaTime.IClock
+    name: IClock
+    href: NodaTime.IClock.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.CalendarSystem
+    name: CalendarSystem
+    href: NodaTime.CalendarSystem.html
+  - name: )
+- uid: NodaTime.Extensions
+  commentId: N:NodaTime.Extensions
+  href: NodaTime.html
+  name: NodaTime.Extensions
+  nameWithType: NodaTime.Extensions
+  fullName: NodaTime.Extensions
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Extensions
+    name: Extensions
+    href: NodaTime.Extensions.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Extensions
+    name: Extensions
+    href: NodaTime.Extensions.html
+- uid: NodaTime.Testing.FakeClock.#ctor*
+  commentId: Overload:NodaTime.Testing.FakeClock.#ctor
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock__ctor_NodaTime_Instant_
+  name: FakeClock
+  nameWithType: FakeClock.FakeClock
+  fullName: NodaTime.Testing.FakeClock.FakeClock
+  nameWithType.vb: FakeClock.New
+  fullName.vb: NodaTime.Testing.FakeClock.New
+  name.vb: New
+- uid: NodaTime.Instant
+  commentId: T:NodaTime.Instant
+  parent: NodaTime
+  href: NodaTime.Instant.html
+  name: Instant
+  nameWithType: Instant
+  fullName: NodaTime.Instant
+- uid: NodaTime.Duration
+  commentId: T:NodaTime.Duration
+  parent: NodaTime
+  href: NodaTime.Duration.html
+  name: Duration
+  nameWithType: Duration
+  fullName: NodaTime.Duration
+- uid: NodaTime.Testing.FakeClock
+  commentId: T:NodaTime.Testing.FakeClock
+  parent: NodaTime.Testing
+  href: NodaTime.Testing.FakeClock.html
+  name: FakeClock
+  nameWithType: FakeClock
+  fullName: NodaTime.Testing.FakeClock
+- uid: NodaTime.Testing.FakeClock.FromUtc*
+  commentId: Overload:NodaTime.Testing.FakeClock.FromUtc
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_FromUtc_System_Int32_System_Int32_System_Int32_
+  name: FromUtc
+  nameWithType: FakeClock.FromUtc
+  fullName: NodaTime.Testing.FakeClock.FromUtc
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: NodaTime.Testing.FakeClock.Advance*
+  commentId: Overload:NodaTime.Testing.FakeClock.Advance
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_Advance_NodaTime_Duration_
+  name: Advance
+  nameWithType: FakeClock.Advance
+  fullName: NodaTime.Testing.FakeClock.Advance
+- uid: NodaTime.Testing.FakeClock.AdvanceNanoseconds*
+  commentId: Overload:NodaTime.Testing.FakeClock.AdvanceNanoseconds
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AdvanceNanoseconds_System_Int64_
+  name: AdvanceNanoseconds
+  nameWithType: FakeClock.AdvanceNanoseconds
+  fullName: NodaTime.Testing.FakeClock.AdvanceNanoseconds
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: NodaTime.Testing.FakeClock.AdvanceTicks*
+  commentId: Overload:NodaTime.Testing.FakeClock.AdvanceTicks
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AdvanceTicks_System_Int64_
+  name: AdvanceTicks
+  nameWithType: FakeClock.AdvanceTicks
+  fullName: NodaTime.Testing.FakeClock.AdvanceTicks
+- uid: NodaTime.Testing.FakeClock.AdvanceMilliseconds*
+  commentId: Overload:NodaTime.Testing.FakeClock.AdvanceMilliseconds
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AdvanceMilliseconds_System_Int64_
+  name: AdvanceMilliseconds
+  nameWithType: FakeClock.AdvanceMilliseconds
+  fullName: NodaTime.Testing.FakeClock.AdvanceMilliseconds
+- uid: NodaTime.Testing.FakeClock.AdvanceSeconds*
+  commentId: Overload:NodaTime.Testing.FakeClock.AdvanceSeconds
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AdvanceSeconds_System_Int64_
+  name: AdvanceSeconds
+  nameWithType: FakeClock.AdvanceSeconds
+  fullName: NodaTime.Testing.FakeClock.AdvanceSeconds
+- uid: NodaTime.Testing.FakeClock.AdvanceMinutes*
+  commentId: Overload:NodaTime.Testing.FakeClock.AdvanceMinutes
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AdvanceMinutes_System_Int64_
+  name: AdvanceMinutes
+  nameWithType: FakeClock.AdvanceMinutes
+  fullName: NodaTime.Testing.FakeClock.AdvanceMinutes
+- uid: NodaTime.Testing.FakeClock.AdvanceHours*
+  commentId: Overload:NodaTime.Testing.FakeClock.AdvanceHours
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AdvanceHours_System_Int32_
+  name: AdvanceHours
+  nameWithType: FakeClock.AdvanceHours
+  fullName: NodaTime.Testing.FakeClock.AdvanceHours
+- uid: NodaTime.Testing.FakeClock.AdvanceDays*
+  commentId: Overload:NodaTime.Testing.FakeClock.AdvanceDays
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AdvanceDays_System_Int32_
+  name: AdvanceDays
+  nameWithType: FakeClock.AdvanceDays
+  fullName: NodaTime.Testing.FakeClock.AdvanceDays
+- uid: NodaTime.Testing.FakeClock.Reset*
+  commentId: Overload:NodaTime.Testing.FakeClock.Reset
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_Reset_NodaTime_Instant_
+  name: Reset
+  nameWithType: FakeClock.Reset
+  fullName: NodaTime.Testing.FakeClock.Reset
+- uid: NodaTime.Testing.FakeClock.GetCurrentInstant*
+  commentId: Overload:NodaTime.Testing.FakeClock.GetCurrentInstant
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_GetCurrentInstant
+  name: GetCurrentInstant
+  nameWithType: FakeClock.GetCurrentInstant
+  fullName: NodaTime.Testing.FakeClock.GetCurrentInstant
+- uid: NodaTime.IClock.GetCurrentInstant
+  commentId: M:NodaTime.IClock.GetCurrentInstant
+  parent: NodaTime.IClock
+  href: NodaTime.IClock.html#NodaTime_IClock_GetCurrentInstant
+  name: GetCurrentInstant()
+  nameWithType: IClock.GetCurrentInstant()
+  fullName: NodaTime.IClock.GetCurrentInstant()
+  spec.csharp:
+  - uid: NodaTime.IClock.GetCurrentInstant
+    name: GetCurrentInstant
+    href: NodaTime.IClock.html#NodaTime_IClock_GetCurrentInstant
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NodaTime.IClock.GetCurrentInstant
+    name: GetCurrentInstant
+    href: NodaTime.IClock.html#NodaTime_IClock_GetCurrentInstant
+  - name: (
+  - name: )
+- uid: NodaTime.Testing.FakeClock.GetCurrentInstant
+  commentId: M:NodaTime.Testing.FakeClock.GetCurrentInstant
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_GetCurrentInstant
+  name: GetCurrentInstant()
+  nameWithType: FakeClock.GetCurrentInstant()
+  fullName: NodaTime.Testing.FakeClock.GetCurrentInstant()
+  spec.csharp:
+  - uid: NodaTime.Testing.FakeClock.GetCurrentInstant
+    name: GetCurrentInstant
+    href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_GetCurrentInstant
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Testing.FakeClock.GetCurrentInstant
+    name: GetCurrentInstant
+    href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_GetCurrentInstant
+  - name: (
+  - name: )
+- uid: NodaTime.Testing.FakeClock.#ctor(NodaTime.Instant,NodaTime.Duration)
+  commentId: M:NodaTime.Testing.FakeClock.#ctor(NodaTime.Instant,NodaTime.Duration)
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock__ctor_NodaTime_Instant_NodaTime_Duration_
+  name: FakeClock(Instant, Duration)
+  nameWithType: FakeClock.FakeClock(Instant, Duration)
+  fullName: NodaTime.Testing.FakeClock.FakeClock(NodaTime.Instant, NodaTime.Duration)
+  nameWithType.vb: FakeClock.New(Instant, Duration)
+  fullName.vb: NodaTime.Testing.FakeClock.New(NodaTime.Instant, NodaTime.Duration)
+  name.vb: New(Instant, Duration)
+  spec.csharp:
+  - uid: NodaTime.Testing.FakeClock.#ctor(NodaTime.Instant,NodaTime.Duration)
+    name: FakeClock
+    href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock__ctor_NodaTime_Instant_NodaTime_Duration_
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: )
+  spec.vb:
+  - name: New
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: )
+- uid: NodaTime.Testing.FakeClock.Reset(NodaTime.Instant)
+  commentId: M:NodaTime.Testing.FakeClock.Reset(NodaTime.Instant)
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_Reset_NodaTime_Instant_
+  name: Reset(Instant)
+  nameWithType: FakeClock.Reset(Instant)
+  fullName: NodaTime.Testing.FakeClock.Reset(NodaTime.Instant)
+  spec.csharp:
+  - uid: NodaTime.Testing.FakeClock.Reset(NodaTime.Instant)
+    name: Reset
+    href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_Reset_NodaTime_Instant_
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Testing.FakeClock.Reset(NodaTime.Instant)
+    name: Reset
+    href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_Reset_NodaTime_Instant_
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: )
+- uid: NodaTime.Testing.FakeClock.Advance(NodaTime.Duration)
+  commentId: M:NodaTime.Testing.FakeClock.Advance(NodaTime.Duration)
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_Advance_NodaTime_Duration_
+  name: Advance(Duration)
+  nameWithType: FakeClock.Advance(Duration)
+  fullName: NodaTime.Testing.FakeClock.Advance(NodaTime.Duration)
+  spec.csharp:
+  - uid: NodaTime.Testing.FakeClock.Advance(NodaTime.Duration)
+    name: Advance
+    href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_Advance_NodaTime_Duration_
+  - name: (
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Testing.FakeClock.Advance(NodaTime.Duration)
+    name: Advance
+    href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_Advance_NodaTime_Duration_
+  - name: (
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: )
+- uid: NodaTime.Testing.FakeClock.AutoAdvance*
+  commentId: Overload:NodaTime.Testing.FakeClock.AutoAdvance
+  href: NodaTime.Testing.FakeClock.html#NodaTime_Testing_FakeClock_AutoAdvance
+  name: AutoAdvance
+  nameWithType: FakeClock.AutoAdvance
+  fullName: NodaTime.Testing.FakeClock.AutoAdvance
+shouldSkipMarkup: true

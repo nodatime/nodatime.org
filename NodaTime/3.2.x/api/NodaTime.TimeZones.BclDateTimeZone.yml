@@ -1,0 +1,952 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.TimeZones.BclDateTimeZone
+  commentId: T:NodaTime.TimeZones.BclDateTimeZone
+  id: BclDateTimeZone
+  parent: NodaTime.TimeZones
+  children:
+  - NodaTime.TimeZones.BclDateTimeZone.DisplayName
+  - NodaTime.TimeZones.BclDateTimeZone.ForSystemDefault
+  - NodaTime.TimeZones.BclDateTimeZone.FromTimeZoneInfo(System.TimeZoneInfo)
+  - NodaTime.TimeZones.BclDateTimeZone.GetZoneInterval(NodaTime.Instant)
+  - NodaTime.TimeZones.BclDateTimeZone.OriginalZone
+  langs:
+  - csharp
+  - vb
+  name: BclDateTimeZone
+  nameWithType: BclDateTimeZone
+  fullName: NodaTime.TimeZones.BclDateTimeZone
+  type: Class
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: Representation of a time zone converted from a <xref href="System.TimeZoneInfo" data-throw-if-not-resolved="false"></xref> from the Base Class Library.
+  remarks: >-
+    <p>
+
+    Two instances of this class are deemed equal if and only if they refer to the exact same
+
+    <xref href="System.TimeZoneInfo" data-throw-if-not-resolved="false"></xref> object.
+
+    </p>
+
+    <p>
+
+    This implementation does not always give the same results as <code>TimeZoneInfo</code>, in that it doesn't replicate
+
+    the bugs in the BCL interpretation of the data. These bugs are described in
+
+    <a href="https://codeblog.jonskeet.uk/2014/09/30/the-mysteries-of-bcl-time-zone-data/">a blog post</a>, but we're
+
+    not expecting them to be fixed any time soon. Being bug-for-bug compatible would not only be tricky, but would be painful
+
+    if the BCL were ever to be fixed. As far as we are aware, there are only discrepancies around new year where the zone
+
+    changes from observing one rule to observing another.
+
+    </p>
+
+    <p>
+
+    As of version 3.0, a new "incompatible but doing the right thing" category of differences has been implemented,
+
+    for time zones which have a transition at 24:00. The Windows time zone data represents this as a transition at 23:59:59.999,
+
+    and that's faithfully represented by TimeZoneInfo (and BclDateTimeZone in version 2.x). As of 3.0, this is spotted
+
+    and converted to a midnight-on-the-following-day transition.
+
+    </p>
+  example: []
+  syntax:
+    content: 'public sealed class BclDateTimeZone : DateTimeZone'
+    content.vb: Public NotInheritable Class BclDateTimeZone Inherits DateTimeZone
+  inheritance:
+  - System.Object
+  - NodaTime.DateTimeZone
+  inheritedMembers:
+  - NodaTime.DateTimeZone.Utc
+  - NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)
+  - NodaTime.DateTimeZone.Id
+  - NodaTime.DateTimeZone.MinOffset
+  - NodaTime.DateTimeZone.MaxOffset
+  - NodaTime.DateTimeZone.GetUtcOffset(NodaTime.Instant)
+  - NodaTime.DateTimeZone.MapLocal(NodaTime.LocalDateTime)
+  - NodaTime.DateTimeZone.AtStartOfDay(NodaTime.LocalDate)
+  - NodaTime.DateTimeZone.ResolveLocal(NodaTime.LocalDateTime,NodaTime.TimeZones.ZoneLocalMappingResolver)
+  - NodaTime.DateTimeZone.AtStrictly(NodaTime.LocalDateTime)
+  - NodaTime.DateTimeZone.AtLeniently(NodaTime.LocalDateTime)
+  - NodaTime.DateTimeZone.ToString
+  - NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Instant,NodaTime.Instant)
+  - NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval)
+  - NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval,NodaTime.TimeZones.ZoneEqualityComparer.Options)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: NodaTime.TimeZones.BclDateTimeZone.OriginalZone
+  commentId: P:NodaTime.TimeZones.BclDateTimeZone.OriginalZone
+  id: OriginalZone
+  parent: NodaTime.TimeZones.BclDateTimeZone
+  langs:
+  - csharp
+  - vb
+  name: OriginalZone
+  nameWithType: BclDateTimeZone.OriginalZone
+  fullName: NodaTime.TimeZones.BclDateTimeZone.OriginalZone
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: Gets the original <xref href="System.TimeZoneInfo" data-throw-if-not-resolved="false"></xref> from which this was created.
+  example: []
+  syntax:
+    content: public TimeZoneInfo OriginalZone { get; }
+    parameters: []
+    return:
+      type: System.TimeZoneInfo
+      description: The original <xref href="System.TimeZoneInfo" data-throw-if-not-resolved="false"></xref> from which this was created.
+    content.vb: Public ReadOnly Property OriginalZone As TimeZoneInfo
+  overload: NodaTime.TimeZones.BclDateTimeZone.OriginalZone*
+- uid: NodaTime.TimeZones.BclDateTimeZone.DisplayName
+  commentId: P:NodaTime.TimeZones.BclDateTimeZone.DisplayName
+  id: DisplayName
+  parent: NodaTime.TimeZones.BclDateTimeZone
+  langs:
+  - csharp
+  - vb
+  name: DisplayName
+  nameWithType: BclDateTimeZone.DisplayName
+  fullName: NodaTime.TimeZones.BclDateTimeZone.DisplayName
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: Gets the display name associated with the time zone, as provided by the Base Class Library.
+  example: []
+  syntax:
+    content: public string DisplayName { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The display name associated with the time zone, as provided by the Base Class Library.
+    content.vb: Public ReadOnly Property DisplayName As String
+  overload: NodaTime.TimeZones.BclDateTimeZone.DisplayName*
+- uid: NodaTime.TimeZones.BclDateTimeZone.GetZoneInterval(NodaTime.Instant)
+  commentId: M:NodaTime.TimeZones.BclDateTimeZone.GetZoneInterval(NodaTime.Instant)
+  id: GetZoneInterval(NodaTime.Instant)
+  parent: NodaTime.TimeZones.BclDateTimeZone
+  langs:
+  - csharp
+  - vb
+  name: GetZoneInterval(Instant)
+  nameWithType: BclDateTimeZone.GetZoneInterval(Instant)
+  fullName: NodaTime.TimeZones.BclDateTimeZone.GetZoneInterval(NodaTime.Instant)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: >-
+    Gets the zone interval for the given instant; the range of time around the instant in which the same Offset
+
+    applies (with the same split between standard time and daylight saving time, and with the same offset).
+  remarks: This will always return a valid zone interval, as time zones cover the whole of time.
+  example: []
+  syntax:
+    content: public override ZoneInterval GetZoneInterval(Instant instant)
+    parameters:
+    - id: instant
+      type: NodaTime.Instant
+      description: The <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref> to query.
+    return:
+      type: NodaTime.TimeZones.ZoneInterval
+      description: The defined <xref href="NodaTime.TimeZones.ZoneInterval" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Overrides Function GetZoneInterval(instant As Instant) As ZoneInterval
+  overridden: NodaTime.DateTimeZone.GetZoneInterval(NodaTime.Instant)
+  overload: NodaTime.TimeZones.BclDateTimeZone.GetZoneInterval*
+  seealso:
+  - linkId: NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval)
+    commentId: M:NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval)
+- uid: NodaTime.TimeZones.BclDateTimeZone.FromTimeZoneInfo(System.TimeZoneInfo)
+  commentId: M:NodaTime.TimeZones.BclDateTimeZone.FromTimeZoneInfo(System.TimeZoneInfo)
+  id: FromTimeZoneInfo(System.TimeZoneInfo)
+  parent: NodaTime.TimeZones.BclDateTimeZone
+  langs:
+  - csharp
+  - vb
+  name: FromTimeZoneInfo(TimeZoneInfo)
+  nameWithType: BclDateTimeZone.FromTimeZoneInfo(TimeZoneInfo)
+  fullName: NodaTime.TimeZones.BclDateTimeZone.FromTimeZoneInfo(System.TimeZoneInfo)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: Creates a new <xref href="NodaTime.TimeZones.BclDateTimeZone" data-throw-if-not-resolved="false"></xref> from a <xref href="System.TimeZoneInfo" data-throw-if-not-resolved="false"></xref> from the Base Class Library.
+  example: []
+  syntax:
+    content: public static BclDateTimeZone FromTimeZoneInfo(TimeZoneInfo bclZone)
+    parameters:
+    - id: bclZone
+      type: System.TimeZoneInfo
+      description: The original time zone to take information from.
+    return:
+      type: NodaTime.TimeZones.BclDateTimeZone
+      description: A <xref href="NodaTime.TimeZones.BclDateTimeZone" data-throw-if-not-resolved="false"></xref> wrapping the given <code>TimeZoneInfo</code>.
+    content.vb: Public Shared Function FromTimeZoneInfo(bclZone As TimeZoneInfo) As BclDateTimeZone
+  overload: NodaTime.TimeZones.BclDateTimeZone.FromTimeZoneInfo*
+- uid: NodaTime.TimeZones.BclDateTimeZone.ForSystemDefault
+  commentId: M:NodaTime.TimeZones.BclDateTimeZone.ForSystemDefault
+  id: ForSystemDefault
+  parent: NodaTime.TimeZones.BclDateTimeZone
+  langs:
+  - csharp
+  - vb
+  name: ForSystemDefault()
+  nameWithType: BclDateTimeZone.ForSystemDefault()
+  fullName: NodaTime.TimeZones.BclDateTimeZone.ForSystemDefault()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: Returns a time zone converted from the BCL representation of the system local time zone.
+  remarks: >-
+    <p>
+
+    This method is approximately equivalent to calling <xref href="NodaTime.IDateTimeZoneProvider.GetSystemDefault" data-throw-if-not-resolved="false"></xref> with
+
+    an implementation that wraps <xref href="NodaTime.TimeZones.BclDateTimeZoneSource" data-throw-if-not-resolved="false"></xref> (e.g.
+
+    <xref href="NodaTime.DateTimeZoneProviders.Bcl" data-throw-if-not-resolved="false"></xref>), with the exception that it will succeed even if the current local
+
+    time zone was not one of the set of system time zones captured when the source was created (which, while
+
+    highly unlikely, might occur either because the local time zone is not a system time zone, or because the
+
+    system time zones have themselves changed).
+
+    </p>
+
+    <p>
+
+    This method will retain a reference to the returned <code>BclDateTimeZone</code>, and will attempt to return it if
+
+    called repeatedly (assuming that the local time zone has not changed) rather than creating a new instance,
+
+    though this behaviour is not guaranteed.
+
+    </p>
+  example: []
+  syntax:
+    content: public static BclDateTimeZone ForSystemDefault()
+    return:
+      type: NodaTime.TimeZones.BclDateTimeZone
+      description: >-
+        A <xref href="NodaTime.TimeZones.BclDateTimeZone" data-throw-if-not-resolved="false"></xref> wrapping the "local" (system) time zone as returned by
+            <xref href="System.TimeZoneInfo.Local" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ForSystemDefault() As BclDateTimeZone
+  overload: NodaTime.TimeZones.BclDateTimeZone.ForSystemDefault*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The system does not provide a time zone.
+references:
+- uid: System.TimeZoneInfo
+  commentId: T:System.TimeZoneInfo
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timezoneinfo
+  name: TimeZoneInfo
+  nameWithType: TimeZoneInfo
+  fullName: System.TimeZoneInfo
+- uid: NodaTime.TimeZones
+  commentId: N:NodaTime.TimeZones
+  href: NodaTime.html
+  name: NodaTime.TimeZones
+  nameWithType: NodaTime.TimeZones
+  fullName: NodaTime.TimeZones
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.TimeZones
+    name: TimeZones
+    href: NodaTime.TimeZones.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.TimeZones
+    name: TimeZones
+    href: NodaTime.TimeZones.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: NodaTime.DateTimeZone
+  commentId: T:NodaTime.DateTimeZone
+  parent: NodaTime
+  href: NodaTime.DateTimeZone.html
+  name: DateTimeZone
+  nameWithType: DateTimeZone
+  fullName: NodaTime.DateTimeZone
+- uid: NodaTime.DateTimeZone.Utc
+  commentId: P:NodaTime.DateTimeZone.Utc
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_Utc
+  name: Utc
+  nameWithType: DateTimeZone.Utc
+  fullName: NodaTime.DateTimeZone.Utc
+- uid: NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)
+  commentId: M:NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ForOffset_NodaTime_Offset_
+  name: ForOffset(Offset)
+  nameWithType: DateTimeZone.ForOffset(Offset)
+  fullName: NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)
+  spec.csharp:
+  - uid: NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)
+    name: ForOffset
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ForOffset_NodaTime_Offset_
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.DateTimeZone.ForOffset(NodaTime.Offset)
+    name: ForOffset
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ForOffset_NodaTime_Offset_
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: NodaTime.DateTimeZone.Id
+  commentId: P:NodaTime.DateTimeZone.Id
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_Id
+  name: Id
+  nameWithType: DateTimeZone.Id
+  fullName: NodaTime.DateTimeZone.Id
+- uid: NodaTime.DateTimeZone.MinOffset
+  commentId: P:NodaTime.DateTimeZone.MinOffset
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_MinOffset
+  name: MinOffset
+  nameWithType: DateTimeZone.MinOffset
+  fullName: NodaTime.DateTimeZone.MinOffset
+- uid: NodaTime.DateTimeZone.MaxOffset
+  commentId: P:NodaTime.DateTimeZone.MaxOffset
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_MaxOffset
+  name: MaxOffset
+  nameWithType: DateTimeZone.MaxOffset
+  fullName: NodaTime.DateTimeZone.MaxOffset
+- uid: NodaTime.DateTimeZone.GetUtcOffset(NodaTime.Instant)
+  commentId: M:NodaTime.DateTimeZone.GetUtcOffset(NodaTime.Instant)
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetUtcOffset_NodaTime_Instant_
+  name: GetUtcOffset(Instant)
+  nameWithType: DateTimeZone.GetUtcOffset(Instant)
+  fullName: NodaTime.DateTimeZone.GetUtcOffset(NodaTime.Instant)
+  spec.csharp:
+  - uid: NodaTime.DateTimeZone.GetUtcOffset(NodaTime.Instant)
+    name: GetUtcOffset
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetUtcOffset_NodaTime_Instant_
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.DateTimeZone.GetUtcOffset(NodaTime.Instant)
+    name: GetUtcOffset
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetUtcOffset_NodaTime_Instant_
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: )
+- uid: NodaTime.DateTimeZone.MapLocal(NodaTime.LocalDateTime)
+  commentId: M:NodaTime.DateTimeZone.MapLocal(NodaTime.LocalDateTime)
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_MapLocal_NodaTime_LocalDateTime_
+  name: MapLocal(LocalDateTime)
+  nameWithType: DateTimeZone.MapLocal(LocalDateTime)
+  fullName: NodaTime.DateTimeZone.MapLocal(NodaTime.LocalDateTime)
+  spec.csharp:
+  - uid: NodaTime.DateTimeZone.MapLocal(NodaTime.LocalDateTime)
+    name: MapLocal
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_MapLocal_NodaTime_LocalDateTime_
+  - name: (
+  - uid: NodaTime.LocalDateTime
+    name: LocalDateTime
+    href: NodaTime.LocalDateTime.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.DateTimeZone.MapLocal(NodaTime.LocalDateTime)
+    name: MapLocal
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_MapLocal_NodaTime_LocalDateTime_
+  - name: (
+  - uid: NodaTime.LocalDateTime
+    name: LocalDateTime
+    href: NodaTime.LocalDateTime.html
+  - name: )
+- uid: NodaTime.DateTimeZone.AtStartOfDay(NodaTime.LocalDate)
+  commentId: M:NodaTime.DateTimeZone.AtStartOfDay(NodaTime.LocalDate)
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtStartOfDay_NodaTime_LocalDate_
+  name: AtStartOfDay(LocalDate)
+  nameWithType: DateTimeZone.AtStartOfDay(LocalDate)
+  fullName: NodaTime.DateTimeZone.AtStartOfDay(NodaTime.LocalDate)
+  spec.csharp:
+  - uid: NodaTime.DateTimeZone.AtStartOfDay(NodaTime.LocalDate)
+    name: AtStartOfDay
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtStartOfDay_NodaTime_LocalDate_
+  - name: (
+  - uid: NodaTime.LocalDate
+    name: LocalDate
+    href: NodaTime.LocalDate.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.DateTimeZone.AtStartOfDay(NodaTime.LocalDate)
+    name: AtStartOfDay
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtStartOfDay_NodaTime_LocalDate_
+  - name: (
+  - uid: NodaTime.LocalDate
+    name: LocalDate
+    href: NodaTime.LocalDate.html
+  - name: )
+- uid: NodaTime.DateTimeZone.ResolveLocal(NodaTime.LocalDateTime,NodaTime.TimeZones.ZoneLocalMappingResolver)
+  commentId: M:NodaTime.DateTimeZone.ResolveLocal(NodaTime.LocalDateTime,NodaTime.TimeZones.ZoneLocalMappingResolver)
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ResolveLocal_NodaTime_LocalDateTime_NodaTime_TimeZones_ZoneLocalMappingResolver_
+  name: ResolveLocal(LocalDateTime, ZoneLocalMappingResolver)
+  nameWithType: DateTimeZone.ResolveLocal(LocalDateTime, ZoneLocalMappingResolver)
+  fullName: NodaTime.DateTimeZone.ResolveLocal(NodaTime.LocalDateTime, NodaTime.TimeZones.ZoneLocalMappingResolver)
+  spec.csharp:
+  - uid: NodaTime.DateTimeZone.ResolveLocal(NodaTime.LocalDateTime,NodaTime.TimeZones.ZoneLocalMappingResolver)
+    name: ResolveLocal
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ResolveLocal_NodaTime_LocalDateTime_NodaTime_TimeZones_ZoneLocalMappingResolver_
+  - name: (
+  - uid: NodaTime.LocalDateTime
+    name: LocalDateTime
+    href: NodaTime.LocalDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.TimeZones.ZoneLocalMappingResolver
+    name: ZoneLocalMappingResolver
+    href: NodaTime.TimeZones.ZoneLocalMappingResolver.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.DateTimeZone.ResolveLocal(NodaTime.LocalDateTime,NodaTime.TimeZones.ZoneLocalMappingResolver)
+    name: ResolveLocal
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ResolveLocal_NodaTime_LocalDateTime_NodaTime_TimeZones_ZoneLocalMappingResolver_
+  - name: (
+  - uid: NodaTime.LocalDateTime
+    name: LocalDateTime
+    href: NodaTime.LocalDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.TimeZones.ZoneLocalMappingResolver
+    name: ZoneLocalMappingResolver
+    href: NodaTime.TimeZones.ZoneLocalMappingResolver.html
+  - name: )
+- uid: NodaTime.DateTimeZone.AtStrictly(NodaTime.LocalDateTime)
+  commentId: M:NodaTime.DateTimeZone.AtStrictly(NodaTime.LocalDateTime)
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtStrictly_NodaTime_LocalDateTime_
+  name: AtStrictly(LocalDateTime)
+  nameWithType: DateTimeZone.AtStrictly(LocalDateTime)
+  fullName: NodaTime.DateTimeZone.AtStrictly(NodaTime.LocalDateTime)
+  spec.csharp:
+  - uid: NodaTime.DateTimeZone.AtStrictly(NodaTime.LocalDateTime)
+    name: AtStrictly
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtStrictly_NodaTime_LocalDateTime_
+  - name: (
+  - uid: NodaTime.LocalDateTime
+    name: LocalDateTime
+    href: NodaTime.LocalDateTime.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.DateTimeZone.AtStrictly(NodaTime.LocalDateTime)
+    name: AtStrictly
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtStrictly_NodaTime_LocalDateTime_
+  - name: (
+  - uid: NodaTime.LocalDateTime
+    name: LocalDateTime
+    href: NodaTime.LocalDateTime.html
+  - name: )
+- uid: NodaTime.DateTimeZone.AtLeniently(NodaTime.LocalDateTime)
+  commentId: M:NodaTime.DateTimeZone.AtLeniently(NodaTime.LocalDateTime)
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtLeniently_NodaTime_LocalDateTime_
+  name: AtLeniently(LocalDateTime)
+  nameWithType: DateTimeZone.AtLeniently(LocalDateTime)
+  fullName: NodaTime.DateTimeZone.AtLeniently(NodaTime.LocalDateTime)
+  spec.csharp:
+  - uid: NodaTime.DateTimeZone.AtLeniently(NodaTime.LocalDateTime)
+    name: AtLeniently
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtLeniently_NodaTime_LocalDateTime_
+  - name: (
+  - uid: NodaTime.LocalDateTime
+    name: LocalDateTime
+    href: NodaTime.LocalDateTime.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.DateTimeZone.AtLeniently(NodaTime.LocalDateTime)
+    name: AtLeniently
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_AtLeniently_NodaTime_LocalDateTime_
+  - name: (
+  - uid: NodaTime.LocalDateTime
+    name: LocalDateTime
+    href: NodaTime.LocalDateTime.html
+  - name: )
+- uid: NodaTime.DateTimeZone.ToString
+  commentId: M:NodaTime.DateTimeZone.ToString
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ToString
+  name: ToString()
+  nameWithType: DateTimeZone.ToString()
+  fullName: NodaTime.DateTimeZone.ToString()
+  spec.csharp:
+  - uid: NodaTime.DateTimeZone.ToString
+    name: ToString
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ToString
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NodaTime.DateTimeZone.ToString
+    name: ToString
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_ToString
+  - name: (
+  - name: )
+- uid: NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Instant,NodaTime.Instant)
+  commentId: M:NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Instant,NodaTime.Instant)
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Instant_NodaTime_Instant_
+  name: GetZoneIntervals(Instant, Instant)
+  nameWithType: DateTimeZone.GetZoneIntervals(Instant, Instant)
+  fullName: NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Instant, NodaTime.Instant)
+  spec.csharp:
+  - uid: NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Instant,NodaTime.Instant)
+    name: GetZoneIntervals
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Instant_NodaTime_Instant_
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Instant,NodaTime.Instant)
+    name: GetZoneIntervals
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Instant_NodaTime_Instant_
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: )
+- uid: NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval)
+  commentId: M:NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval)
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_
+  name: GetZoneIntervals(Interval)
+  nameWithType: DateTimeZone.GetZoneIntervals(Interval)
+  fullName: NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval)
+  spec.csharp:
+  - uid: NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval)
+    name: GetZoneIntervals
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_
+  - name: (
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval)
+    name: GetZoneIntervals
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_
+  - name: (
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: )
+- uid: NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval,NodaTime.TimeZones.ZoneEqualityComparer.Options)
+  commentId: M:NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval,NodaTime.TimeZones.ZoneEqualityComparer.Options)
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_NodaTime_TimeZones_ZoneEqualityComparer_Options_
+  name: GetZoneIntervals(Interval, Options)
+  nameWithType: DateTimeZone.GetZoneIntervals(Interval, ZoneEqualityComparer.Options)
+  fullName: NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval, NodaTime.TimeZones.ZoneEqualityComparer.Options)
+  spec.csharp:
+  - uid: NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval,NodaTime.TimeZones.ZoneEqualityComparer.Options)
+    name: GetZoneIntervals
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_NodaTime_TimeZones_ZoneEqualityComparer_Options_
+  - name: (
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.TimeZones.ZoneEqualityComparer.Options
+    name: Options
+    href: NodaTime.TimeZones.ZoneEqualityComparer.Options.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.DateTimeZone.GetZoneIntervals(NodaTime.Interval,NodaTime.TimeZones.ZoneEqualityComparer.Options)
+    name: GetZoneIntervals
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneIntervals_NodaTime_Interval_NodaTime_TimeZones_ZoneEqualityComparer_Options_
+  - name: (
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.TimeZones.ZoneEqualityComparer.Options
+    name: Options
+    href: NodaTime.TimeZones.ZoneEqualityComparer.Options.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: NodaTime.TimeZones.BclDateTimeZone.OriginalZone*
+  commentId: Overload:NodaTime.TimeZones.BclDateTimeZone.OriginalZone
+  href: NodaTime.TimeZones.BclDateTimeZone.html#NodaTime_TimeZones_BclDateTimeZone_OriginalZone
+  name: OriginalZone
+  nameWithType: BclDateTimeZone.OriginalZone
+  fullName: NodaTime.TimeZones.BclDateTimeZone.OriginalZone
+- uid: NodaTime.TimeZones.BclDateTimeZone.DisplayName*
+  commentId: Overload:NodaTime.TimeZones.BclDateTimeZone.DisplayName
+  href: NodaTime.TimeZones.BclDateTimeZone.html#NodaTime_TimeZones_BclDateTimeZone_DisplayName
+  name: DisplayName
+  nameWithType: BclDateTimeZone.DisplayName
+  fullName: NodaTime.TimeZones.BclDateTimeZone.DisplayName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: NodaTime.Instant
+  commentId: T:NodaTime.Instant
+  parent: NodaTime
+  href: NodaTime.Instant.html
+  name: Instant
+  nameWithType: Instant
+  fullName: NodaTime.Instant
+- uid: NodaTime.TimeZones.ZoneInterval
+  commentId: T:NodaTime.TimeZones.ZoneInterval
+  parent: NodaTime.TimeZones
+  href: NodaTime.TimeZones.ZoneInterval.html
+  name: ZoneInterval
+  nameWithType: ZoneInterval
+  fullName: NodaTime.TimeZones.ZoneInterval
+- uid: NodaTime.DateTimeZone.GetZoneInterval(NodaTime.Instant)
+  commentId: M:NodaTime.DateTimeZone.GetZoneInterval(NodaTime.Instant)
+  parent: NodaTime.DateTimeZone
+  href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneInterval_NodaTime_Instant_
+  name: GetZoneInterval(Instant)
+  nameWithType: DateTimeZone.GetZoneInterval(Instant)
+  fullName: NodaTime.DateTimeZone.GetZoneInterval(NodaTime.Instant)
+  spec.csharp:
+  - uid: NodaTime.DateTimeZone.GetZoneInterval(NodaTime.Instant)
+    name: GetZoneInterval
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneInterval_NodaTime_Instant_
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.DateTimeZone.GetZoneInterval(NodaTime.Instant)
+    name: GetZoneInterval
+    href: NodaTime.DateTimeZone.html#NodaTime_DateTimeZone_GetZoneInterval_NodaTime_Instant_
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: )
+- uid: NodaTime.TimeZones.BclDateTimeZone.GetZoneInterval*
+  commentId: Overload:NodaTime.TimeZones.BclDateTimeZone.GetZoneInterval
+  href: NodaTime.TimeZones.BclDateTimeZone.html#NodaTime_TimeZones_BclDateTimeZone_GetZoneInterval_NodaTime_Instant_
+  name: GetZoneInterval
+  nameWithType: BclDateTimeZone.GetZoneInterval
+  fullName: NodaTime.TimeZones.BclDateTimeZone.GetZoneInterval
+- uid: NodaTime.TimeZones.BclDateTimeZone
+  commentId: T:NodaTime.TimeZones.BclDateTimeZone
+  parent: NodaTime.TimeZones
+  href: NodaTime.TimeZones.BclDateTimeZone.html
+  name: BclDateTimeZone
+  nameWithType: BclDateTimeZone
+  fullName: NodaTime.TimeZones.BclDateTimeZone
+- uid: NodaTime.TimeZones.BclDateTimeZone.FromTimeZoneInfo*
+  commentId: Overload:NodaTime.TimeZones.BclDateTimeZone.FromTimeZoneInfo
+  href: NodaTime.TimeZones.BclDateTimeZone.html#NodaTime_TimeZones_BclDateTimeZone_FromTimeZoneInfo_System_TimeZoneInfo_
+  name: FromTimeZoneInfo
+  nameWithType: BclDateTimeZone.FromTimeZoneInfo
+  fullName: NodaTime.TimeZones.BclDateTimeZone.FromTimeZoneInfo
+- uid: NodaTime.IDateTimeZoneProvider.GetSystemDefault
+  commentId: M:NodaTime.IDateTimeZoneProvider.GetSystemDefault
+  parent: NodaTime.IDateTimeZoneProvider
+  href: NodaTime.IDateTimeZoneProvider.html#NodaTime_IDateTimeZoneProvider_GetSystemDefault
+  name: GetSystemDefault()
+  nameWithType: IDateTimeZoneProvider.GetSystemDefault()
+  fullName: NodaTime.IDateTimeZoneProvider.GetSystemDefault()
+  spec.csharp:
+  - uid: NodaTime.IDateTimeZoneProvider.GetSystemDefault
+    name: GetSystemDefault
+    href: NodaTime.IDateTimeZoneProvider.html#NodaTime_IDateTimeZoneProvider_GetSystemDefault
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NodaTime.IDateTimeZoneProvider.GetSystemDefault
+    name: GetSystemDefault
+    href: NodaTime.IDateTimeZoneProvider.html#NodaTime_IDateTimeZoneProvider_GetSystemDefault
+  - name: (
+  - name: )
+- uid: NodaTime.TimeZones.BclDateTimeZoneSource
+  commentId: T:NodaTime.TimeZones.BclDateTimeZoneSource
+  href: NodaTime.TimeZones.BclDateTimeZoneSource.html
+  name: BclDateTimeZoneSource
+  nameWithType: BclDateTimeZoneSource
+  fullName: NodaTime.TimeZones.BclDateTimeZoneSource
+- uid: NodaTime.DateTimeZoneProviders.Bcl
+  commentId: P:NodaTime.DateTimeZoneProviders.Bcl
+  href: NodaTime.DateTimeZoneProviders.html#NodaTime_DateTimeZoneProviders_Bcl
+  name: Bcl
+  nameWithType: DateTimeZoneProviders.Bcl
+  fullName: NodaTime.DateTimeZoneProviders.Bcl
+- uid: System.TimeZoneInfo.Local
+  commentId: P:System.TimeZoneInfo.Local
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timezoneinfo.local
+  name: Local
+  nameWithType: TimeZoneInfo.Local
+  fullName: System.TimeZoneInfo.Local
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: NodaTime.TimeZones.BclDateTimeZone.ForSystemDefault*
+  commentId: Overload:NodaTime.TimeZones.BclDateTimeZone.ForSystemDefault
+  href: NodaTime.TimeZones.BclDateTimeZone.html#NodaTime_TimeZones_BclDateTimeZone_ForSystemDefault
+  name: ForSystemDefault
+  nameWithType: BclDateTimeZone.ForSystemDefault
+  fullName: NodaTime.TimeZones.BclDateTimeZone.ForSystemDefault
+- uid: NodaTime.IDateTimeZoneProvider
+  commentId: T:NodaTime.IDateTimeZoneProvider
+  parent: NodaTime
+  href: NodaTime.IDateTimeZoneProvider.html
+  name: IDateTimeZoneProvider
+  nameWithType: IDateTimeZoneProvider
+  fullName: NodaTime.IDateTimeZoneProvider
+shouldSkipMarkup: true

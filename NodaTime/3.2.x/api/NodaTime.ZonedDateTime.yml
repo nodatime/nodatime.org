@@ -1,0 +1,4243 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.ZonedDateTime
+  commentId: T:NodaTime.ZonedDateTime
+  id: ZonedDateTime
+  parent: NodaTime
+  children:
+  - NodaTime.ZonedDateTime.#ctor(NodaTime.Instant,NodaTime.DateTimeZone)
+  - NodaTime.ZonedDateTime.#ctor(NodaTime.Instant,NodaTime.DateTimeZone,NodaTime.CalendarSystem)
+  - NodaTime.ZonedDateTime.#ctor(NodaTime.LocalDateTime,NodaTime.DateTimeZone,NodaTime.Offset)
+  - NodaTime.ZonedDateTime.Add(NodaTime.ZonedDateTime,NodaTime.Duration)
+  - NodaTime.ZonedDateTime.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  - NodaTime.ZonedDateTime.Calendar
+  - NodaTime.ZonedDateTime.ClockHourOfHalfDay
+  - NodaTime.ZonedDateTime.Date
+  - NodaTime.ZonedDateTime.Day
+  - NodaTime.ZonedDateTime.DayOfWeek
+  - NodaTime.ZonedDateTime.DayOfYear
+  - NodaTime.ZonedDateTime.Deconstruct(NodaTime.LocalDateTime@,NodaTime.DateTimeZone@,NodaTime.Offset@)
+  - NodaTime.ZonedDateTime.Equals(NodaTime.ZonedDateTime)
+  - NodaTime.ZonedDateTime.Equals(System.Object)
+  - NodaTime.ZonedDateTime.Era
+  - NodaTime.ZonedDateTime.FromDateTimeOffset(System.DateTimeOffset)
+  - NodaTime.ZonedDateTime.GetHashCode
+  - NodaTime.ZonedDateTime.GetZoneInterval
+  - NodaTime.ZonedDateTime.Hour
+  - NodaTime.ZonedDateTime.IsDaylightSavingTime
+  - NodaTime.ZonedDateTime.LocalDateTime
+  - NodaTime.ZonedDateTime.Millisecond
+  - NodaTime.ZonedDateTime.Minus(NodaTime.Duration)
+  - NodaTime.ZonedDateTime.Minus(NodaTime.ZonedDateTime)
+  - NodaTime.ZonedDateTime.Minute
+  - NodaTime.ZonedDateTime.Month
+  - NodaTime.ZonedDateTime.NanosecondOfDay
+  - NodaTime.ZonedDateTime.NanosecondOfSecond
+  - NodaTime.ZonedDateTime.Offset
+  - NodaTime.ZonedDateTime.Plus(NodaTime.Duration)
+  - NodaTime.ZonedDateTime.PlusHours(System.Int32)
+  - NodaTime.ZonedDateTime.PlusMilliseconds(System.Int64)
+  - NodaTime.ZonedDateTime.PlusMinutes(System.Int32)
+  - NodaTime.ZonedDateTime.PlusNanoseconds(System.Int64)
+  - NodaTime.ZonedDateTime.PlusSeconds(System.Int64)
+  - NodaTime.ZonedDateTime.PlusTicks(System.Int64)
+  - NodaTime.ZonedDateTime.Second
+  - NodaTime.ZonedDateTime.Subtract(NodaTime.ZonedDateTime,NodaTime.Duration)
+  - NodaTime.ZonedDateTime.Subtract(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  - NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#GetSchema
+  - NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  - NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  - NodaTime.ZonedDateTime.TickOfDay
+  - NodaTime.ZonedDateTime.TickOfSecond
+  - NodaTime.ZonedDateTime.TimeOfDay
+  - NodaTime.ZonedDateTime.ToDateTimeOffset
+  - NodaTime.ZonedDateTime.ToDateTimeUnspecified
+  - NodaTime.ZonedDateTime.ToDateTimeUtc
+  - NodaTime.ZonedDateTime.ToInstant
+  - NodaTime.ZonedDateTime.ToOffsetDateTime
+  - NodaTime.ZonedDateTime.ToString
+  - NodaTime.ZonedDateTime.ToString(System.String,System.IFormatProvider)
+  - NodaTime.ZonedDateTime.WithCalendar(NodaTime.CalendarSystem)
+  - NodaTime.ZonedDateTime.WithZone(NodaTime.DateTimeZone)
+  - NodaTime.ZonedDateTime.Year
+  - NodaTime.ZonedDateTime.YearOfEra
+  - NodaTime.ZonedDateTime.Zone
+  - NodaTime.ZonedDateTime.op_Addition(NodaTime.ZonedDateTime,NodaTime.Duration)
+  - NodaTime.ZonedDateTime.op_Equality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  - NodaTime.ZonedDateTime.op_Inequality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  - NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.Duration)
+  - NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  langs:
+  - csharp
+  - vb
+  name: ZonedDateTime
+  nameWithType: ZonedDateTime
+  fullName: NodaTime.ZonedDateTime
+  type: Struct
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    A <xref href="NodaTime.LocalDateTime" data-throw-if-not-resolved="false"></xref> in a specific time zone and with a particular offset to distinguish
+
+    between otherwise-ambiguous instants. A <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> is global, in that it maps to a single
+
+    <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref>.
+  remarks: >-
+    <p>Although <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> includes both local and global concepts, it only supports
+
+    duration-based - and not calendar-based - arithmetic. This avoids ambiguities
+
+    and skipped date/time values becoming a problem within a series of calculations; instead,
+
+    these can be considered just once, at the point of conversion to a <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref>.
+
+    </p>
+
+    <p>
+      <code>ZonedDateTime</code> does not implement ordered comparison operators, as there is no obvious natural ordering that works in all cases.
+    Equality is supported however, requiring equality of zone, calendar and date/time. If you want to sort <code>ZonedDateTime</code>
+
+    values, you should explicitly choose one of the orderings provided via the static properties in the
+
+    <xref href="NodaTime.ZonedDateTime.Comparer" data-throw-if-not-resolved="false"></xref> nested class (or implement your own comparison).
+
+    </p>
+
+    <p>The default value of this type is 0001-01-01T00:00:00Z (midnight on January 1st, 1 C.E.) in the ISO calendar and the UTC time zone.</p>
+  example: []
+  syntax:
+    content: >-
+      [TypeConverter(typeof(ZonedDateTimeTypeConverter))]
+
+      public readonly struct ZonedDateTime : IEquatable<ZonedDateTime>, IFormattable, IXmlSerializable, IAdditionOperators<ZonedDateTime, Duration, ZonedDateTime>, ISubtractionOperators<ZonedDateTime, ZonedDateTime, Duration>, ISubtractionOperators<ZonedDateTime, Duration, ZonedDateTime>, IEqualityOperators<ZonedDateTime, ZonedDateTime, bool>
+    content.vb: >-
+      <TypeConverter(GetType(ZonedDateTimeTypeConverter))>
+
+      Public Structure ZonedDateTime Implements IEquatable(Of ZonedDateTime), IFormattable, IXmlSerializable, IAdditionOperators(Of ZonedDateTime, Duration, ZonedDateTime), ISubtractionOperators(Of ZonedDateTime, ZonedDateTime, Duration), ISubtractionOperators(Of ZonedDateTime, Duration, ZonedDateTime), IEqualityOperators(Of ZonedDateTime, ZonedDateTime, Boolean)
+  implements:
+  - System.IEquatable{NodaTime.ZonedDateTime}
+  - System.IFormattable
+  - System.Xml.Serialization.IXmlSerializable
+  - System.Numerics.IAdditionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}
+  - System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,NodaTime.Duration}
+  - System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}
+  - System.Numerics.IEqualityOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,System.Boolean}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: NodaTime.ZonedDateTime.#ctor(NodaTime.Instant,NodaTime.DateTimeZone,NodaTime.CalendarSystem)
+  commentId: M:NodaTime.ZonedDateTime.#ctor(NodaTime.Instant,NodaTime.DateTimeZone,NodaTime.CalendarSystem)
+  id: '#ctor(NodaTime.Instant,NodaTime.DateTimeZone,NodaTime.CalendarSystem)'
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: ZonedDateTime(Instant, DateTimeZone, CalendarSystem)
+  nameWithType: ZonedDateTime.ZonedDateTime(Instant, DateTimeZone, CalendarSystem)
+  fullName: NodaTime.ZonedDateTime.ZonedDateTime(NodaTime.Instant, NodaTime.DateTimeZone, NodaTime.CalendarSystem)
+  type: Constructor
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Initializes a new instance of the <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> struct.
+  example: []
+  syntax:
+    content: public ZonedDateTime(Instant instant, DateTimeZone zone, CalendarSystem calendar)
+    parameters:
+    - id: instant
+      type: NodaTime.Instant
+      description: The instant.
+    - id: zone
+      type: NodaTime.DateTimeZone
+      description: The time zone.
+    - id: calendar
+      type: NodaTime.CalendarSystem
+      description: The calendar system.
+    content.vb: Public Sub New(instant As Instant, zone As DateTimeZone, calendar As CalendarSystem)
+  overload: NodaTime.ZonedDateTime.#ctor*
+  nameWithType.vb: ZonedDateTime.New(Instant, DateTimeZone, CalendarSystem)
+  fullName.vb: NodaTime.ZonedDateTime.New(NodaTime.Instant, NodaTime.DateTimeZone, NodaTime.CalendarSystem)
+  name.vb: New(Instant, DateTimeZone, CalendarSystem)
+- uid: NodaTime.ZonedDateTime.#ctor(NodaTime.Instant,NodaTime.DateTimeZone)
+  commentId: M:NodaTime.ZonedDateTime.#ctor(NodaTime.Instant,NodaTime.DateTimeZone)
+  id: '#ctor(NodaTime.Instant,NodaTime.DateTimeZone)'
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: ZonedDateTime(Instant, DateTimeZone)
+  nameWithType: ZonedDateTime.ZonedDateTime(Instant, DateTimeZone)
+  fullName: NodaTime.ZonedDateTime.ZonedDateTime(NodaTime.Instant, NodaTime.DateTimeZone)
+  type: Constructor
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Initializes a new instance of the <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> struct in the specified time zone
+
+    and the ISO calendar.
+  example: []
+  syntax:
+    content: public ZonedDateTime(Instant instant, DateTimeZone zone)
+    parameters:
+    - id: instant
+      type: NodaTime.Instant
+      description: The instant.
+    - id: zone
+      type: NodaTime.DateTimeZone
+      description: The time zone.
+    content.vb: Public Sub New(instant As Instant, zone As DateTimeZone)
+  overload: NodaTime.ZonedDateTime.#ctor*
+  nameWithType.vb: ZonedDateTime.New(Instant, DateTimeZone)
+  fullName.vb: NodaTime.ZonedDateTime.New(NodaTime.Instant, NodaTime.DateTimeZone)
+  name.vb: New(Instant, DateTimeZone)
+- uid: NodaTime.ZonedDateTime.#ctor(NodaTime.LocalDateTime,NodaTime.DateTimeZone,NodaTime.Offset)
+  commentId: M:NodaTime.ZonedDateTime.#ctor(NodaTime.LocalDateTime,NodaTime.DateTimeZone,NodaTime.Offset)
+  id: '#ctor(NodaTime.LocalDateTime,NodaTime.DateTimeZone,NodaTime.Offset)'
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: ZonedDateTime(LocalDateTime, DateTimeZone, Offset)
+  nameWithType: ZonedDateTime.ZonedDateTime(LocalDateTime, DateTimeZone, Offset)
+  fullName: NodaTime.ZonedDateTime.ZonedDateTime(NodaTime.LocalDateTime, NodaTime.DateTimeZone, NodaTime.Offset)
+  type: Constructor
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Initializes a new instance of the <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> struct in the specified time zone
+
+    from a given local time and offset. The offset is validated to be correct as part of initialization.
+
+    In most cases a local time can only map to a single instant anyway, but the offset is included here for cases
+
+    where the local time is ambiguous, usually due to daylight saving transitions.
+  example: []
+  syntax:
+    content: public ZonedDateTime(LocalDateTime localDateTime, DateTimeZone zone, Offset offset)
+    parameters:
+    - id: localDateTime
+      type: NodaTime.LocalDateTime
+      description: The local date and time.
+    - id: zone
+      type: NodaTime.DateTimeZone
+      description: The time zone.
+    - id: offset
+      type: NodaTime.Offset
+      description: The offset between UTC and local time at the desired instant.
+    content.vb: Public Sub New(localDateTime As LocalDateTime, zone As DateTimeZone, offset As Offset)
+  overload: NodaTime.ZonedDateTime.#ctor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: >-
+      <code class="paramref">offset</code> is not a valid offset at the given
+
+      local date and time.
+  nameWithType.vb: ZonedDateTime.New(LocalDateTime, DateTimeZone, Offset)
+  fullName.vb: NodaTime.ZonedDateTime.New(NodaTime.LocalDateTime, NodaTime.DateTimeZone, NodaTime.Offset)
+  name.vb: New(LocalDateTime, DateTimeZone, Offset)
+- uid: NodaTime.ZonedDateTime.Offset
+  commentId: P:NodaTime.ZonedDateTime.Offset
+  id: Offset
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Offset
+  nameWithType: ZonedDateTime.Offset
+  fullName: NodaTime.ZonedDateTime.Offset
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the offset of the local representation of this value from UTC.
+  example: []
+  syntax:
+    content: public Offset Offset { get; }
+    parameters: []
+    return:
+      type: NodaTime.Offset
+      description: The offset of the local representation of this value from UTC.
+    content.vb: Public ReadOnly Property Offset As Offset
+  overload: NodaTime.ZonedDateTime.Offset*
+- uid: NodaTime.ZonedDateTime.Zone
+  commentId: P:NodaTime.ZonedDateTime.Zone
+  id: Zone
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Zone
+  nameWithType: ZonedDateTime.Zone
+  fullName: NodaTime.ZonedDateTime.Zone
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the time zone associated with this value.
+  example: []
+  syntax:
+    content: public DateTimeZone Zone { get; }
+    parameters: []
+    return:
+      type: NodaTime.DateTimeZone
+      description: The time zone associated with this value.
+    content.vb: Public ReadOnly Property Zone As DateTimeZone
+  overload: NodaTime.ZonedDateTime.Zone*
+- uid: NodaTime.ZonedDateTime.LocalDateTime
+  commentId: P:NodaTime.ZonedDateTime.LocalDateTime
+  id: LocalDateTime
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: LocalDateTime
+  nameWithType: ZonedDateTime.LocalDateTime
+  fullName: NodaTime.ZonedDateTime.LocalDateTime
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the local date and time represented by this zoned date and time.
+  remarks: >-
+    The returned
+
+    <xref href="NodaTime.LocalDateTime" data-throw-if-not-resolved="false"></xref> will have the same calendar system and return the same values for
+
+    each of the calendar properties (Year, MonthOfYear and so on), but will not be associated with any
+
+    particular time zone.
+  example: []
+  syntax:
+    content: public LocalDateTime LocalDateTime { get; }
+    parameters: []
+    return:
+      type: NodaTime.LocalDateTime
+      description: The local date and time represented by this zoned date and time.
+    content.vb: Public ReadOnly Property LocalDateTime As LocalDateTime
+  overload: NodaTime.ZonedDateTime.LocalDateTime*
+- uid: NodaTime.ZonedDateTime.Calendar
+  commentId: P:NodaTime.ZonedDateTime.Calendar
+  id: Calendar
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Calendar
+  nameWithType: ZonedDateTime.Calendar
+  fullName: NodaTime.ZonedDateTime.Calendar
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the calendar system associated with this zoned date and time.
+  example: []
+  syntax:
+    content: public CalendarSystem Calendar { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: The calendar system associated with this zoned date and time.
+    content.vb: Public ReadOnly Property Calendar As CalendarSystem
+  overload: NodaTime.ZonedDateTime.Calendar*
+- uid: NodaTime.ZonedDateTime.Date
+  commentId: P:NodaTime.ZonedDateTime.Date
+  id: Date
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Date
+  nameWithType: ZonedDateTime.Date
+  fullName: NodaTime.ZonedDateTime.Date
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the local date represented by this zoned date and time.
+  remarks: >-
+    The returned <xref href="NodaTime.LocalDate" data-throw-if-not-resolved="false"></xref>
+
+    will have the same calendar system and return the same values for each of the date-based calendar
+
+    properties (Year, MonthOfYear and so on), but will not be associated with any particular time zone.
+  example: []
+  syntax:
+    content: public LocalDate Date { get; }
+    parameters: []
+    return:
+      type: NodaTime.LocalDate
+      description: The local date represented by this zoned date and time.
+    content.vb: Public ReadOnly Property [Date] As LocalDate
+  overload: NodaTime.ZonedDateTime.Date*
+- uid: NodaTime.ZonedDateTime.TimeOfDay
+  commentId: P:NodaTime.ZonedDateTime.TimeOfDay
+  id: TimeOfDay
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: TimeOfDay
+  nameWithType: ZonedDateTime.TimeOfDay
+  fullName: NodaTime.ZonedDateTime.TimeOfDay
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the time portion of this zoned date and time.
+  remarks: >-
+    The returned <xref href="NodaTime.LocalTime" data-throw-if-not-resolved="false"></xref> will
+
+    return the same values for each of the time-based properties (Hour, Minute and so on), but
+
+    will not be associated with any particular time zone.
+  example: []
+  syntax:
+    content: public LocalTime TimeOfDay { get; }
+    parameters: []
+    return:
+      type: NodaTime.LocalTime
+      description: The time portion of this zoned date and time.
+    content.vb: Public ReadOnly Property TimeOfDay As LocalTime
+  overload: NodaTime.ZonedDateTime.TimeOfDay*
+- uid: NodaTime.ZonedDateTime.Era
+  commentId: P:NodaTime.ZonedDateTime.Era
+  id: Era
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Era
+  nameWithType: ZonedDateTime.Era
+  fullName: NodaTime.ZonedDateTime.Era
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the era for this zoned date and time.
+  example: []
+  syntax:
+    content: public Era Era { get; }
+    parameters: []
+    return:
+      type: NodaTime.Calendars.Era
+      description: The era for this zoned date and time.
+    content.vb: Public ReadOnly Property Era As Era
+  overload: NodaTime.ZonedDateTime.Era*
+- uid: NodaTime.ZonedDateTime.Year
+  commentId: P:NodaTime.ZonedDateTime.Year
+  id: Year
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Year
+  nameWithType: ZonedDateTime.Year
+  fullName: NodaTime.ZonedDateTime.Year
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the year of this zoned date and time.
+  remarks: >-
+    This returns the "absolute year", so, for the ISO calendar,
+        a value of 0 means 1 BC, for example.
+  example: []
+  syntax:
+    content: public int Year { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The year of this zoned date and time.
+    content.vb: Public ReadOnly Property Year As Integer
+  overload: NodaTime.ZonedDateTime.Year*
+- uid: NodaTime.ZonedDateTime.YearOfEra
+  commentId: P:NodaTime.ZonedDateTime.YearOfEra
+  id: YearOfEra
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: YearOfEra
+  nameWithType: ZonedDateTime.YearOfEra
+  fullName: NodaTime.ZonedDateTime.YearOfEra
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the year of this zoned date and time within its era.
+  example: []
+  syntax:
+    content: public int YearOfEra { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The year of this zoned date and time within its era.
+    content.vb: Public ReadOnly Property YearOfEra As Integer
+  overload: NodaTime.ZonedDateTime.YearOfEra*
+- uid: NodaTime.ZonedDateTime.Month
+  commentId: P:NodaTime.ZonedDateTime.Month
+  id: Month
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Month
+  nameWithType: ZonedDateTime.Month
+  fullName: NodaTime.ZonedDateTime.Month
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the month of this zoned date and time within the year.
+  example: []
+  syntax:
+    content: public int Month { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The month of this zoned date and time within the year.
+    content.vb: Public ReadOnly Property Month As Integer
+  overload: NodaTime.ZonedDateTime.Month*
+- uid: NodaTime.ZonedDateTime.DayOfYear
+  commentId: P:NodaTime.ZonedDateTime.DayOfYear
+  id: DayOfYear
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: DayOfYear
+  nameWithType: ZonedDateTime.DayOfYear
+  fullName: NodaTime.ZonedDateTime.DayOfYear
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the day of this zoned date and time within the year.
+  example: []
+  syntax:
+    content: public int DayOfYear { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The day of this zoned date and time within the year.
+    content.vb: Public ReadOnly Property DayOfYear As Integer
+  overload: NodaTime.ZonedDateTime.DayOfYear*
+- uid: NodaTime.ZonedDateTime.Day
+  commentId: P:NodaTime.ZonedDateTime.Day
+  id: Day
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Day
+  nameWithType: ZonedDateTime.Day
+  fullName: NodaTime.ZonedDateTime.Day
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the day of this zoned date and time within the month.
+  example: []
+  syntax:
+    content: public int Day { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The day of this zoned date and time within the month.
+    content.vb: Public ReadOnly Property Day As Integer
+  overload: NodaTime.ZonedDateTime.Day*
+- uid: NodaTime.ZonedDateTime.DayOfWeek
+  commentId: P:NodaTime.ZonedDateTime.DayOfWeek
+  id: DayOfWeek
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: DayOfWeek
+  nameWithType: ZonedDateTime.DayOfWeek
+  fullName: NodaTime.ZonedDateTime.DayOfWeek
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the week day of this zoned date and time expressed as an <xref href="NodaTime.IsoDayOfWeek" data-throw-if-not-resolved="false"></xref> value.
+  example: []
+  syntax:
+    content: public IsoDayOfWeek DayOfWeek { get; }
+    parameters: []
+    return:
+      type: NodaTime.IsoDayOfWeek
+      description: The week day of this zoned date and time expressed as an <code>IsoDayOfWeek</code> value.
+    content.vb: Public ReadOnly Property DayOfWeek As IsoDayOfWeek
+  overload: NodaTime.ZonedDateTime.DayOfWeek*
+- uid: NodaTime.ZonedDateTime.Hour
+  commentId: P:NodaTime.ZonedDateTime.Hour
+  id: Hour
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Hour
+  nameWithType: ZonedDateTime.Hour
+  fullName: NodaTime.ZonedDateTime.Hour
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the hour of day of this zoned date and time, in the range 0 to 23 inclusive.
+  example: []
+  syntax:
+    content: public int Hour { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The hour of day of this zoned date and time, in the range 0 to 23 inclusive.
+    content.vb: Public ReadOnly Property Hour As Integer
+  overload: NodaTime.ZonedDateTime.Hour*
+- uid: NodaTime.ZonedDateTime.ClockHourOfHalfDay
+  commentId: P:NodaTime.ZonedDateTime.ClockHourOfHalfDay
+  id: ClockHourOfHalfDay
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: ClockHourOfHalfDay
+  nameWithType: ZonedDateTime.ClockHourOfHalfDay
+  fullName: NodaTime.ZonedDateTime.ClockHourOfHalfDay
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the hour of the half-day of this zoned date and time, in the range 1 to 12 inclusive.
+  example: []
+  syntax:
+    content: public int ClockHourOfHalfDay { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The hour of the half-day of this zoned date and time, in the range 1 to 12 inclusive.
+    content.vb: Public ReadOnly Property ClockHourOfHalfDay As Integer
+  overload: NodaTime.ZonedDateTime.ClockHourOfHalfDay*
+- uid: NodaTime.ZonedDateTime.Minute
+  commentId: P:NodaTime.ZonedDateTime.Minute
+  id: Minute
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Minute
+  nameWithType: ZonedDateTime.Minute
+  fullName: NodaTime.ZonedDateTime.Minute
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the minute of this zoned date and time, in the range 0 to 59 inclusive.
+  example: []
+  syntax:
+    content: public int Minute { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The minute of this zoned date and time, in the range 0 to 59 inclusive.
+    content.vb: Public ReadOnly Property Minute As Integer
+  overload: NodaTime.ZonedDateTime.Minute*
+- uid: NodaTime.ZonedDateTime.Second
+  commentId: P:NodaTime.ZonedDateTime.Second
+  id: Second
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Second
+  nameWithType: ZonedDateTime.Second
+  fullName: NodaTime.ZonedDateTime.Second
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the second of this zoned date and time within the minute, in the range 0 to 59 inclusive.
+  example: []
+  syntax:
+    content: public int Second { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The second of this zoned date and time within the minute, in the range 0 to 59 inclusive.
+    content.vb: Public ReadOnly Property Second As Integer
+  overload: NodaTime.ZonedDateTime.Second*
+- uid: NodaTime.ZonedDateTime.Millisecond
+  commentId: P:NodaTime.ZonedDateTime.Millisecond
+  id: Millisecond
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Millisecond
+  nameWithType: ZonedDateTime.Millisecond
+  fullName: NodaTime.ZonedDateTime.Millisecond
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the millisecond of this zoned date and time within the second, in the range 0 to 999 inclusive.
+  example: []
+  syntax:
+    content: public int Millisecond { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The millisecond of this zoned date and time within the second, in the range 0 to 999 inclusive.
+    content.vb: Public ReadOnly Property Millisecond As Integer
+  overload: NodaTime.ZonedDateTime.Millisecond*
+- uid: NodaTime.ZonedDateTime.TickOfSecond
+  commentId: P:NodaTime.ZonedDateTime.TickOfSecond
+  id: TickOfSecond
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: TickOfSecond
+  nameWithType: ZonedDateTime.TickOfSecond
+  fullName: NodaTime.ZonedDateTime.TickOfSecond
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the tick of this zoned date and time within the second, in the range 0 to 9,999,999 inclusive.
+  example: []
+  syntax:
+    content: public int TickOfSecond { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The tick of this zoned date and time within the second, in the range 0 to 9,999,999 inclusive.
+    content.vb: Public ReadOnly Property TickOfSecond As Integer
+  overload: NodaTime.ZonedDateTime.TickOfSecond*
+- uid: NodaTime.ZonedDateTime.TickOfDay
+  commentId: P:NodaTime.ZonedDateTime.TickOfDay
+  id: TickOfDay
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: TickOfDay
+  nameWithType: ZonedDateTime.TickOfDay
+  fullName: NodaTime.ZonedDateTime.TickOfDay
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the tick of this zoned date and time within the day, in the range 0 to 863,999,999,999 inclusive.
+  remarks: >-
+    This is the TickOfDay portion of the contained <xref href="NodaTime.OffsetDateTime" data-throw-if-not-resolved="false"></xref>.
+
+    On daylight saving time transition dates, it may not be the same as the number of ticks elapsed since the beginning of the day.
+  example: []
+  syntax:
+    content: public long TickOfDay { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The tick of this zoned date and time within the day, in the range 0 to 863,999,999,999 inclusive.
+    content.vb: Public ReadOnly Property TickOfDay As Long
+  overload: NodaTime.ZonedDateTime.TickOfDay*
+- uid: NodaTime.ZonedDateTime.NanosecondOfSecond
+  commentId: P:NodaTime.ZonedDateTime.NanosecondOfSecond
+  id: NanosecondOfSecond
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: NanosecondOfSecond
+  nameWithType: ZonedDateTime.NanosecondOfSecond
+  fullName: NodaTime.ZonedDateTime.NanosecondOfSecond
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the nanosecond of this zoned date and time within the second, in the range 0 to 999,999,999 inclusive.
+  example: []
+  syntax:
+    content: public int NanosecondOfSecond { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The nanosecond of this zoned date and time within the second, in the range 0 to 999,999,999 inclusive.
+    content.vb: Public ReadOnly Property NanosecondOfSecond As Integer
+  overload: NodaTime.ZonedDateTime.NanosecondOfSecond*
+- uid: NodaTime.ZonedDateTime.NanosecondOfDay
+  commentId: P:NodaTime.ZonedDateTime.NanosecondOfDay
+  id: NanosecondOfDay
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: NanosecondOfDay
+  nameWithType: ZonedDateTime.NanosecondOfDay
+  fullName: NodaTime.ZonedDateTime.NanosecondOfDay
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the nanosecond of this zoned date and time within the day, in the range 0 to 86,399,999,999,999 inclusive.
+  remarks: >-
+    This is the NanosecondOfDay portion of the contained <xref href="NodaTime.OffsetDateTime" data-throw-if-not-resolved="false"></xref>.
+
+    On daylight saving time transition dates, it may not be the same as the number of nanoseconds elapsed since the beginning of the day.
+  example: []
+  syntax:
+    content: public long NanosecondOfDay { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The nanosecond of this zoned date and time within the day, in the range 0 to 86,399,999,999,999 inclusive.
+    content.vb: Public ReadOnly Property NanosecondOfDay As Long
+  overload: NodaTime.ZonedDateTime.NanosecondOfDay*
+- uid: NodaTime.ZonedDateTime.ToInstant
+  commentId: M:NodaTime.ZonedDateTime.ToInstant
+  id: ToInstant
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: ToInstant()
+  nameWithType: ZonedDateTime.ToInstant()
+  fullName: NodaTime.ZonedDateTime.ToInstant()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Converts this value to the instant it represents on the time line.
+  remarks: >-
+    This is always an unambiguous conversion. Any difficulties due to daylight saving
+
+    transitions or other changes in time zone are handled when converting from a
+
+    <xref href="NodaTime.LocalDateTime" data-throw-if-not-resolved="false"></xref> to a <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref>; the <code>ZonedDateTime</code> remembers
+
+    the actual offset from UTC to local time, so it always knows the exact instant represented.
+  example: []
+  syntax:
+    content: public Instant ToInstant()
+    return:
+      type: NodaTime.Instant
+      description: The instant corresponding to this value.
+    content.vb: Public Function ToInstant() As Instant
+  overload: NodaTime.ZonedDateTime.ToInstant*
+- uid: NodaTime.ZonedDateTime.WithZone(NodaTime.DateTimeZone)
+  commentId: M:NodaTime.ZonedDateTime.WithZone(NodaTime.DateTimeZone)
+  id: WithZone(NodaTime.DateTimeZone)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: WithZone(DateTimeZone)
+  nameWithType: ZonedDateTime.WithZone(DateTimeZone)
+  fullName: NodaTime.ZonedDateTime.WithZone(NodaTime.DateTimeZone)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Creates a new <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> representing the same instant in time, in the
+
+    same calendar but a different time zone.
+  example: []
+  syntax:
+    content: public ZonedDateTime WithZone(DateTimeZone targetZone)
+    parameters:
+    - id: targetZone
+      type: NodaTime.DateTimeZone
+      description: The target time zone to convert to.
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A new value in the target time zone.
+    content.vb: Public Function WithZone(targetZone As DateTimeZone) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.WithZone*
+- uid: NodaTime.ZonedDateTime.WithCalendar(NodaTime.CalendarSystem)
+  commentId: M:NodaTime.ZonedDateTime.WithCalendar(NodaTime.CalendarSystem)
+  id: WithCalendar(NodaTime.CalendarSystem)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: WithCalendar(CalendarSystem)
+  nameWithType: ZonedDateTime.WithCalendar(CalendarSystem)
+  fullName: NodaTime.ZonedDateTime.WithCalendar(NodaTime.CalendarSystem)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Creates a new ZonedDateTime representing the same physical date, time and offset, but in a different calendar.
+
+    The returned ZonedDateTime is likely to have different date field values to this one.
+
+    For example, January 1st 1970 in the Gregorian calendar was December 19th 1969 in the Julian calendar.
+  example: []
+  syntax:
+    content: public ZonedDateTime WithCalendar(CalendarSystem calendar)
+    parameters:
+    - id: calendar
+      type: NodaTime.CalendarSystem
+      description: The calendar system to convert this zoned date and time to.
+    return:
+      type: NodaTime.ZonedDateTime
+      description: The converted ZonedDateTime.
+    content.vb: Public Function WithCalendar(calendar As CalendarSystem) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.WithCalendar*
+- uid: NodaTime.ZonedDateTime.Equals(NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.ZonedDateTime.Equals(NodaTime.ZonedDateTime)
+  id: Equals(NodaTime.ZonedDateTime)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Equals(ZonedDateTime)
+  nameWithType: ZonedDateTime.Equals(ZonedDateTime)
+  fullName: NodaTime.ZonedDateTime.Equals(NodaTime.ZonedDateTime)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Indicates whether the current object is equal to another object of the same type.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public bool Equals(ZonedDateTime other)
+    parameters:
+    - id: other
+      type: NodaTime.ZonedDateTime
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: true if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, false.
+    content.vb: Public Function Equals(other As ZonedDateTime) As Boolean
+  overload: NodaTime.ZonedDateTime.Equals*
+  implements:
+  - System.IEquatable{NodaTime.ZonedDateTime}.Equals(NodaTime.ZonedDateTime)
+- uid: NodaTime.ZonedDateTime.Equals(System.Object)
+  commentId: M:NodaTime.ZonedDateTime.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: ZonedDateTime.Equals(object?)
+  fullName: NodaTime.ZonedDateTime.Equals(object?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Indicates whether this instance and a specified object are equal.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: Another object to compare to.
+    return:
+      type: System.Boolean
+      description: true if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, false.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: NodaTime.ZonedDateTime.Equals*
+  nameWithType.vb: ZonedDateTime.Equals(Object)
+  fullName.vb: NodaTime.ZonedDateTime.Equals(Object)
+  name.vb: Equals(Object)
+- uid: NodaTime.ZonedDateTime.GetHashCode
+  commentId: M:NodaTime.ZonedDateTime.GetHashCode
+  id: GetHashCode
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: ZonedDateTime.GetHashCode()
+  fullName: NodaTime.ZonedDateTime.GetHashCode()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Computes the hash code for this instance.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A 32-bit signed integer that is the hash code for this instance.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: NodaTime.ZonedDateTime.GetHashCode*
+- uid: NodaTime.ZonedDateTime.op_Equality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.ZonedDateTime.op_Equality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  id: op_Equality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: operator ==(ZonedDateTime, ZonedDateTime)
+  nameWithType: ZonedDateTime.operator ==(ZonedDateTime, ZonedDateTime)
+  fullName: NodaTime.ZonedDateTime.operator ==(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator ==.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public static bool operator ==(ZonedDateTime left, ZonedDateTime right)
+    parameters:
+    - id: left
+      type: NodaTime.ZonedDateTime
+      description: The first value to compare
+    - id: right
+      type: NodaTime.ZonedDateTime
+      description: The second value to compare
+    return:
+      type: System.Boolean
+      description: True if the two operands are equal according to <xref href="NodaTime.ZonedDateTime.Equals(NodaTime.ZonedDateTime)" data-throw-if-not-resolved="false"></xref>; false otherwise
+    content.vb: Public Shared Operator =(left As ZonedDateTime, right As ZonedDateTime) As Boolean
+  overload: NodaTime.ZonedDateTime.op_Equality*
+  implements:
+  - System.Numerics.IEqualityOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,System.Boolean}.op_Equality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  nameWithType.vb: ZonedDateTime.=(ZonedDateTime, ZonedDateTime)
+  fullName.vb: NodaTime.ZonedDateTime.=(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  name.vb: =(ZonedDateTime, ZonedDateTime)
+- uid: NodaTime.ZonedDateTime.op_Inequality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.ZonedDateTime.op_Inequality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  id: op_Inequality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: operator !=(ZonedDateTime, ZonedDateTime)
+  nameWithType: ZonedDateTime.operator !=(ZonedDateTime, ZonedDateTime)
+  fullName: NodaTime.ZonedDateTime.operator !=(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator !=.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public static bool operator !=(ZonedDateTime left, ZonedDateTime right)
+    parameters:
+    - id: left
+      type: NodaTime.ZonedDateTime
+      description: The first value to compare
+    - id: right
+      type: NodaTime.ZonedDateTime
+      description: The second value to compare
+    return:
+      type: System.Boolean
+      description: False if the two operands are equal according to <xref href="NodaTime.ZonedDateTime.Equals(NodaTime.ZonedDateTime)" data-throw-if-not-resolved="false"></xref>; true otherwise
+    content.vb: Public Shared Operator <>(left As ZonedDateTime, right As ZonedDateTime) As Boolean
+  overload: NodaTime.ZonedDateTime.op_Inequality*
+  implements:
+  - System.Numerics.IEqualityOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,System.Boolean}.op_Inequality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  nameWithType.vb: ZonedDateTime.<>(ZonedDateTime, ZonedDateTime)
+  fullName.vb: NodaTime.ZonedDateTime.<>(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  name.vb: <>(ZonedDateTime, ZonedDateTime)
+- uid: NodaTime.ZonedDateTime.Add(NodaTime.ZonedDateTime,NodaTime.Duration)
+  commentId: M:NodaTime.ZonedDateTime.Add(NodaTime.ZonedDateTime,NodaTime.Duration)
+  id: Add(NodaTime.ZonedDateTime,NodaTime.Duration)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Add(ZonedDateTime, Duration)
+  nameWithType: ZonedDateTime.Add(ZonedDateTime, Duration)
+  fullName: NodaTime.ZonedDateTime.Add(NodaTime.ZonedDateTime, NodaTime.Duration)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Adds a duration to a zoned date and time.
+  remarks: This is an alternative way of calling <xref href="NodaTime.ZonedDateTime.op_Addition(NodaTime.ZonedDateTime%2cNodaTime.Duration)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static ZonedDateTime Add(ZonedDateTime zonedDateTime, Duration duration)
+    parameters:
+    - id: zonedDateTime
+      type: NodaTime.ZonedDateTime
+      description: The value to add the duration to.
+    - id: duration
+      type: NodaTime.Duration
+      description: The duration to add
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A new value with the time advanced by the given duration, in the same calendar system and time zone.
+    content.vb: Public Shared Function Add(zonedDateTime As ZonedDateTime, duration As Duration) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.Add*
+- uid: NodaTime.ZonedDateTime.Plus(NodaTime.Duration)
+  commentId: M:NodaTime.ZonedDateTime.Plus(NodaTime.Duration)
+  id: Plus(NodaTime.Duration)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Plus(Duration)
+  nameWithType: ZonedDateTime.Plus(Duration)
+  fullName: NodaTime.ZonedDateTime.Plus(NodaTime.Duration)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the result of adding a duration to this zoned date and time.
+  remarks: This is an alternative way of calling <xref href="NodaTime.ZonedDateTime.op_Addition(NodaTime.ZonedDateTime%2cNodaTime.Duration)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public ZonedDateTime Plus(Duration duration)
+    parameters:
+    - id: duration
+      type: NodaTime.Duration
+      description: The duration to add
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A new <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> representing the result of the addition.
+    content.vb: Public Function Plus(duration As Duration) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.Plus*
+- uid: NodaTime.ZonedDateTime.PlusHours(System.Int32)
+  commentId: M:NodaTime.ZonedDateTime.PlusHours(System.Int32)
+  id: PlusHours(System.Int32)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: PlusHours(int)
+  nameWithType: ZonedDateTime.PlusHours(int)
+  fullName: NodaTime.ZonedDateTime.PlusHours(int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the result of adding a increment of hours to this zoned date and time
+  example: []
+  syntax:
+    content: public ZonedDateTime PlusHours(int hours)
+    parameters:
+    - id: hours
+      type: System.Int32
+      description: The number of hours to add
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A new <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> representing the result of the addition.
+    content.vb: Public Function PlusHours(hours As Integer) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.PlusHours*
+  nameWithType.vb: ZonedDateTime.PlusHours(Integer)
+  fullName.vb: NodaTime.ZonedDateTime.PlusHours(Integer)
+  name.vb: PlusHours(Integer)
+- uid: NodaTime.ZonedDateTime.PlusMinutes(System.Int32)
+  commentId: M:NodaTime.ZonedDateTime.PlusMinutes(System.Int32)
+  id: PlusMinutes(System.Int32)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: PlusMinutes(int)
+  nameWithType: ZonedDateTime.PlusMinutes(int)
+  fullName: NodaTime.ZonedDateTime.PlusMinutes(int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the result of adding an increment of minutes to this zoned date and time
+  example: []
+  syntax:
+    content: public ZonedDateTime PlusMinutes(int minutes)
+    parameters:
+    - id: minutes
+      type: System.Int32
+      description: The number of minutes to add
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A new <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> representing the result of the addition.
+    content.vb: Public Function PlusMinutes(minutes As Integer) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.PlusMinutes*
+  nameWithType.vb: ZonedDateTime.PlusMinutes(Integer)
+  fullName.vb: NodaTime.ZonedDateTime.PlusMinutes(Integer)
+  name.vb: PlusMinutes(Integer)
+- uid: NodaTime.ZonedDateTime.PlusSeconds(System.Int64)
+  commentId: M:NodaTime.ZonedDateTime.PlusSeconds(System.Int64)
+  id: PlusSeconds(System.Int64)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: PlusSeconds(long)
+  nameWithType: ZonedDateTime.PlusSeconds(long)
+  fullName: NodaTime.ZonedDateTime.PlusSeconds(long)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the result of adding an increment of seconds to this zoned date and time
+  example: []
+  syntax:
+    content: public ZonedDateTime PlusSeconds(long seconds)
+    parameters:
+    - id: seconds
+      type: System.Int64
+      description: The number of seconds to add
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A new <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> representing the result of the addition.
+    content.vb: Public Function PlusSeconds(seconds As Long) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.PlusSeconds*
+  nameWithType.vb: ZonedDateTime.PlusSeconds(Long)
+  fullName.vb: NodaTime.ZonedDateTime.PlusSeconds(Long)
+  name.vb: PlusSeconds(Long)
+- uid: NodaTime.ZonedDateTime.PlusMilliseconds(System.Int64)
+  commentId: M:NodaTime.ZonedDateTime.PlusMilliseconds(System.Int64)
+  id: PlusMilliseconds(System.Int64)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: PlusMilliseconds(long)
+  nameWithType: ZonedDateTime.PlusMilliseconds(long)
+  fullName: NodaTime.ZonedDateTime.PlusMilliseconds(long)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the result of adding an increment of milliseconds to this zoned date and time
+  example: []
+  syntax:
+    content: public ZonedDateTime PlusMilliseconds(long milliseconds)
+    parameters:
+    - id: milliseconds
+      type: System.Int64
+      description: The number of milliseconds to add
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A new <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> representing the result of the addition.
+    content.vb: Public Function PlusMilliseconds(milliseconds As Long) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.PlusMilliseconds*
+  nameWithType.vb: ZonedDateTime.PlusMilliseconds(Long)
+  fullName.vb: NodaTime.ZonedDateTime.PlusMilliseconds(Long)
+  name.vb: PlusMilliseconds(Long)
+- uid: NodaTime.ZonedDateTime.PlusTicks(System.Int64)
+  commentId: M:NodaTime.ZonedDateTime.PlusTicks(System.Int64)
+  id: PlusTicks(System.Int64)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: PlusTicks(long)
+  nameWithType: ZonedDateTime.PlusTicks(long)
+  fullName: NodaTime.ZonedDateTime.PlusTicks(long)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the result of adding an increment of ticks to this zoned date and time
+  example: []
+  syntax:
+    content: public ZonedDateTime PlusTicks(long ticks)
+    parameters:
+    - id: ticks
+      type: System.Int64
+      description: The number of ticks to add
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A new <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> representing the result of the addition.
+    content.vb: Public Function PlusTicks(ticks As Long) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.PlusTicks*
+  nameWithType.vb: ZonedDateTime.PlusTicks(Long)
+  fullName.vb: NodaTime.ZonedDateTime.PlusTicks(Long)
+  name.vb: PlusTicks(Long)
+- uid: NodaTime.ZonedDateTime.PlusNanoseconds(System.Int64)
+  commentId: M:NodaTime.ZonedDateTime.PlusNanoseconds(System.Int64)
+  id: PlusNanoseconds(System.Int64)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: PlusNanoseconds(long)
+  nameWithType: ZonedDateTime.PlusNanoseconds(long)
+  fullName: NodaTime.ZonedDateTime.PlusNanoseconds(long)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the result of adding an increment of nanoseconds to this zoned date and time
+  example: []
+  syntax:
+    content: public ZonedDateTime PlusNanoseconds(long nanoseconds)
+    parameters:
+    - id: nanoseconds
+      type: System.Int64
+      description: The number of nanoseconds to add
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A new <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> representing the result of the addition.
+    content.vb: Public Function PlusNanoseconds(nanoseconds As Long) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.PlusNanoseconds*
+  nameWithType.vb: ZonedDateTime.PlusNanoseconds(Long)
+  fullName.vb: NodaTime.ZonedDateTime.PlusNanoseconds(Long)
+  name.vb: PlusNanoseconds(Long)
+- uid: NodaTime.ZonedDateTime.op_Addition(NodaTime.ZonedDateTime,NodaTime.Duration)
+  commentId: M:NodaTime.ZonedDateTime.op_Addition(NodaTime.ZonedDateTime,NodaTime.Duration)
+  id: op_Addition(NodaTime.ZonedDateTime,NodaTime.Duration)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: operator +(ZonedDateTime, Duration)
+  nameWithType: ZonedDateTime.operator +(ZonedDateTime, Duration)
+  fullName: NodaTime.ZonedDateTime.operator +(NodaTime.ZonedDateTime, NodaTime.Duration)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns a new <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> with the time advanced by the given duration. Note that
+
+    due to daylight saving time changes this may not advance the local time by the same amount.
+  remarks: The returned value retains the calendar system and time zone of <code class="paramref">zonedDateTime</code>.
+  example: []
+  syntax:
+    content: public static ZonedDateTime operator +(ZonedDateTime zonedDateTime, Duration duration)
+    parameters:
+    - id: zonedDateTime
+      type: NodaTime.ZonedDateTime
+      description: The <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> to add the duration to.
+    - id: duration
+      type: NodaTime.Duration
+      description: The duration to add.
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A new value with the time advanced by the given duration, in the same calendar system and time zone.
+    content.vb: Public Shared Operator +(zonedDateTime As ZonedDateTime, duration As Duration) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.op_Addition*
+  implements:
+  - System.Numerics.IAdditionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}.op_Addition(NodaTime.ZonedDateTime,NodaTime.Duration)
+  nameWithType.vb: ZonedDateTime.+(ZonedDateTime, Duration)
+  fullName.vb: NodaTime.ZonedDateTime.+(NodaTime.ZonedDateTime, NodaTime.Duration)
+  name.vb: +(ZonedDateTime, Duration)
+- uid: NodaTime.ZonedDateTime.Subtract(NodaTime.ZonedDateTime,NodaTime.Duration)
+  commentId: M:NodaTime.ZonedDateTime.Subtract(NodaTime.ZonedDateTime,NodaTime.Duration)
+  id: Subtract(NodaTime.ZonedDateTime,NodaTime.Duration)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Subtract(ZonedDateTime, Duration)
+  nameWithType: ZonedDateTime.Subtract(ZonedDateTime, Duration)
+  fullName: NodaTime.ZonedDateTime.Subtract(NodaTime.ZonedDateTime, NodaTime.Duration)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Subtracts a duration from a zoned date and time.
+  remarks: This is an alternative way of calling <xref href="NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime%2cNodaTime.Duration)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static ZonedDateTime Subtract(ZonedDateTime zonedDateTime, Duration duration)
+    parameters:
+    - id: zonedDateTime
+      type: NodaTime.ZonedDateTime
+      description: The value to subtract the duration from.
+    - id: duration
+      type: NodaTime.Duration
+      description: The duration to subtract.
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A new value with the time "rewound" by the given duration, in the same calendar system and time zone.
+    content.vb: Public Shared Function Subtract(zonedDateTime As ZonedDateTime, duration As Duration) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.Subtract*
+- uid: NodaTime.ZonedDateTime.Minus(NodaTime.Duration)
+  commentId: M:NodaTime.ZonedDateTime.Minus(NodaTime.Duration)
+  id: Minus(NodaTime.Duration)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Minus(Duration)
+  nameWithType: ZonedDateTime.Minus(Duration)
+  fullName: NodaTime.ZonedDateTime.Minus(NodaTime.Duration)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns the result of subtracting a duration from this zoned date and time, for a fluent alternative to
+
+    <xref href="NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime%2cNodaTime.Duration)" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public ZonedDateTime Minus(Duration duration)
+    parameters:
+    - id: duration
+      type: NodaTime.Duration
+      description: The duration to subtract
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A new <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> representing the result of the subtraction.
+    content.vb: Public Function Minus(duration As Duration) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.Minus*
+- uid: NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.Duration)
+  commentId: M:NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.Duration)
+  id: op_Subtraction(NodaTime.ZonedDateTime,NodaTime.Duration)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: operator -(ZonedDateTime, Duration)
+  nameWithType: ZonedDateTime.operator -(ZonedDateTime, Duration)
+  fullName: NodaTime.ZonedDateTime.operator -(NodaTime.ZonedDateTime, NodaTime.Duration)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns a new <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> with the duration subtracted. Note that
+
+    due to daylight saving time changes this may not change the local time by the same amount.
+  remarks: The returned value retains the calendar system and time zone of <code class="paramref">zonedDateTime</code>.
+  example: []
+  syntax:
+    content: public static ZonedDateTime operator -(ZonedDateTime zonedDateTime, Duration duration)
+    parameters:
+    - id: zonedDateTime
+      type: NodaTime.ZonedDateTime
+      description: The value to subtract the duration from.
+    - id: duration
+      type: NodaTime.Duration
+      description: The duration to subtract.
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A new value with the time "rewound" by the given duration, in the same calendar system and time zone.
+    content.vb: Public Shared Operator -(zonedDateTime As ZonedDateTime, duration As Duration) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.op_Subtraction*
+  implements:
+  - System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.Duration)
+  nameWithType.vb: ZonedDateTime.-(ZonedDateTime, Duration)
+  fullName.vb: NodaTime.ZonedDateTime.-(NodaTime.ZonedDateTime, NodaTime.Duration)
+  name.vb: -(ZonedDateTime, Duration)
+- uid: NodaTime.ZonedDateTime.Subtract(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.ZonedDateTime.Subtract(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  id: Subtract(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Subtract(ZonedDateTime, ZonedDateTime)
+  nameWithType: ZonedDateTime.Subtract(ZonedDateTime, ZonedDateTime)
+  fullName: NodaTime.ZonedDateTime.Subtract(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Subtracts one zoned date and time from another, returning an elapsed duration.
+  remarks: This is an alternative way of calling <xref href="NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime%2cNodaTime.ZonedDateTime)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static Duration Subtract(ZonedDateTime end, ZonedDateTime start)
+    parameters:
+    - id: end
+      type: NodaTime.ZonedDateTime
+      description: >-
+        The zoned date and time value to subtract from; if this is later than <code class="paramref">start</code>
+            then the result will be positive.
+    - id: start
+      type: NodaTime.ZonedDateTime
+      description: The zoned date and time to subtract from <code class="paramref">end</code>.
+    return:
+      type: NodaTime.Duration
+      description: The elapsed duration from <code class="paramref">start</code> to <code class="paramref">end</code>.
+    content.vb: Public Shared Function Subtract([end] As ZonedDateTime, start As ZonedDateTime) As Duration
+  overload: NodaTime.ZonedDateTime.Subtract*
+- uid: NodaTime.ZonedDateTime.Minus(NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.ZonedDateTime.Minus(NodaTime.ZonedDateTime)
+  id: Minus(NodaTime.ZonedDateTime)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Minus(ZonedDateTime)
+  nameWithType: ZonedDateTime.Minus(ZonedDateTime)
+  fullName: NodaTime.ZonedDateTime.Minus(NodaTime.ZonedDateTime)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns the result of subtracting another zoned date and time from this one, resulting in the elapsed duration
+
+    between the two instants represented in the values.
+  remarks: This is an alternative way of calling <xref href="NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime%2cNodaTime.ZonedDateTime)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public Duration Minus(ZonedDateTime other)
+    parameters:
+    - id: other
+      type: NodaTime.ZonedDateTime
+      description: The zoned date and time to subtract from this one.
+    return:
+      type: NodaTime.Duration
+      description: The elapsed duration from <code class="paramref">other</code> to this value.
+    content.vb: Public Function Minus(other As ZonedDateTime) As Duration
+  overload: NodaTime.ZonedDateTime.Minus*
+- uid: NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  id: op_Subtraction(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: operator -(ZonedDateTime, ZonedDateTime)
+  nameWithType: ZonedDateTime.operator -(ZonedDateTime, ZonedDateTime)
+  fullName: NodaTime.ZonedDateTime.operator -(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Subtracts one <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> from another, resulting in the elapsed time between
+
+    the two values.
+  remarks: >-
+    This is equivalent to <code>end.ToInstant() - start.ToInstant()</code>; in particular:
+
+    <ul><li>The two values can use different calendar systems</li><li>The two values can be in different time zones</li><li>The two values can have different UTC offsets</li></ul>
+  example: []
+  syntax:
+    content: public static Duration operator -(ZonedDateTime end, ZonedDateTime start)
+    parameters:
+    - id: end
+      type: NodaTime.ZonedDateTime
+      description: >-
+        The zoned date and time value to subtract from; if this is later than <code class="paramref">start</code>
+            then the result will be positive.
+    - id: start
+      type: NodaTime.ZonedDateTime
+      description: The zoned date and time to subtract from <code class="paramref">end</code>.
+    return:
+      type: NodaTime.Duration
+      description: The elapsed duration from <code class="paramref">start</code> to <code class="paramref">end</code>.
+    content.vb: Public Shared Operator -([end] As ZonedDateTime, start As ZonedDateTime) As Duration
+  overload: NodaTime.ZonedDateTime.op_Subtraction*
+  implements:
+  - System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,NodaTime.Duration}.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  nameWithType.vb: ZonedDateTime.-(ZonedDateTime, ZonedDateTime)
+  fullName.vb: NodaTime.ZonedDateTime.-(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  name.vb: -(ZonedDateTime, ZonedDateTime)
+- uid: NodaTime.ZonedDateTime.GetZoneInterval
+  commentId: M:NodaTime.ZonedDateTime.GetZoneInterval
+  id: GetZoneInterval
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: GetZoneInterval()
+  nameWithType: ZonedDateTime.GetZoneInterval()
+  fullName: NodaTime.ZonedDateTime.GetZoneInterval()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns the <xref href="NodaTime.TimeZones.ZoneInterval" data-throw-if-not-resolved="false"></xref> containing this value, in the time zone this
+
+    value refers to.
+  remarks: >-
+    This is simply a convenience method - it is logically equivalent to converting this
+
+    value to an <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref> and then asking the appropriate <xref href="NodaTime.DateTimeZone" data-throw-if-not-resolved="false"></xref>
+
+    for the <code>ZoneInterval</code> containing that instant.
+  example: []
+  syntax:
+    content: public ZoneInterval GetZoneInterval()
+    return:
+      type: NodaTime.TimeZones.ZoneInterval
+      description: The <code>ZoneInterval</code> containing this value.
+    content.vb: Public Function GetZoneInterval() As ZoneInterval
+  overload: NodaTime.ZonedDateTime.GetZoneInterval*
+- uid: NodaTime.ZonedDateTime.IsDaylightSavingTime
+  commentId: M:NodaTime.ZonedDateTime.IsDaylightSavingTime
+  id: IsDaylightSavingTime
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: IsDaylightSavingTime()
+  nameWithType: ZonedDateTime.IsDaylightSavingTime()
+  fullName: NodaTime.ZonedDateTime.IsDaylightSavingTime()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Indicates whether or not this <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> is in daylight saving time
+
+    for its time zone. This is determined by checking the <xref href="NodaTime.TimeZones.ZoneInterval.Savings" data-throw-if-not-resolved="false"></xref> property
+
+    of the zone interval containing this value.
+  example: []
+  syntax:
+    content: public bool IsDaylightSavingTime()
+    return:
+      type: System.Boolean
+      description: >-
+        <code>true</code> if the zone interval containing this value has a non-zero savings
+
+        component; <code>false</code> otherwise.
+    content.vb: Public Function IsDaylightSavingTime() As Boolean
+  overload: NodaTime.ZonedDateTime.IsDaylightSavingTime*
+  seealso:
+  - linkId: NodaTime.ZonedDateTime.GetZoneInterval
+    commentId: M:NodaTime.ZonedDateTime.GetZoneInterval
+- uid: NodaTime.ZonedDateTime.ToString
+  commentId: M:NodaTime.ZonedDateTime.ToString
+  id: ToString
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: ZonedDateTime.ToString()
+  fullName: NodaTime.ZonedDateTime.ToString()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns a <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents this instance.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: >-
+        The value of the current instance in the default format pattern ("G"), using the current thread's
+
+        culture to obtain a format provider.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: NodaTime.ZonedDateTime.ToString*
+- uid: NodaTime.ZonedDateTime.ToString(System.String,System.IFormatProvider)
+  commentId: M:NodaTime.ZonedDateTime.ToString(System.String,System.IFormatProvider)
+  id: ToString(System.String,System.IFormatProvider)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: ToString(string?, IFormatProvider?)
+  nameWithType: ZonedDateTime.ToString(string?, IFormatProvider?)
+  fullName: NodaTime.ZonedDateTime.ToString(string?, System.IFormatProvider?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Formats the value of the current instance using the specified pattern.
+  example: []
+  syntax:
+    content: public string ToString(string? patternText, IFormatProvider? formatProvider)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: >-
+        The <xref href="System.String" data-throw-if-not-resolved="false"></xref> specifying the pattern to use,
+            or null to use the default format pattern ("G").
+    - id: formatProvider
+      type: System.IFormatProvider
+      description: >-
+        The <xref href="System.IFormatProvider" data-throw-if-not-resolved="false"></xref> to use when formatting the value,
+            or null to use the current thread's culture to obtain a format provider.
+    return:
+      type: System.String
+      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> containing the value of the current instance in the specified format.
+    content.vb: Public Function ToString(patternText As String, formatProvider As IFormatProvider) As String
+  overload: NodaTime.ZonedDateTime.ToString*
+  implements:
+  - System.IFormattable.ToString(System.String,System.IFormatProvider)
+  nameWithType.vb: ZonedDateTime.ToString(String, IFormatProvider)
+  fullName.vb: NodaTime.ZonedDateTime.ToString(String, System.IFormatProvider)
+  name.vb: ToString(String, IFormatProvider)
+- uid: NodaTime.ZonedDateTime.ToDateTimeOffset
+  commentId: M:NodaTime.ZonedDateTime.ToDateTimeOffset
+  id: ToDateTimeOffset
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: ToDateTimeOffset()
+  nameWithType: ZonedDateTime.ToDateTimeOffset()
+  fullName: NodaTime.ZonedDateTime.ToDateTimeOffset()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Constructs a <xref href="System.DateTimeOffset" data-throw-if-not-resolved="false"></xref> value with the same local time and offset from
+
+    UTC as this value.
+  remarks: >-
+    <p>
+
+    An offset does not convey as much information as a time zone; a <xref href="System.DateTimeOffset" data-throw-if-not-resolved="false"></xref>
+
+    represents an instant in time along with an associated local time, but it doesn't allow you
+
+    to find out what the local time would be for another instant.
+
+    </p>
+
+    <p>
+
+    If the date and time is not on a tick boundary (the unit of granularity of DateTime) the value will be truncated
+
+    towards the start of time.
+
+    </p>
+
+    <p>
+
+    If the offset has a non-zero second component, this is truncated as <code>DateTimeOffset</code> has an offset
+
+    granularity of minutes.
+
+    </p>
+
+    <p>
+      <xref href="System.DateTimeOffset" data-throw-if-not-resolved="false"></xref> uses the Gregorian calendar by definition, so the value is implicitly converted
+    to the Gregorian calendar first. The result will be the same instant in time (potentially truncated as described
+
+    above), but the values returned by the Year/Month/Day properties of the <xref href="System.DateTimeOffset" data-throw-if-not-resolved="false"></xref> may not
+
+    match the Year/Month/Day properties of this value.
+
+    </p>
+  example: []
+  syntax:
+    content: public DateTimeOffset ToDateTimeOffset()
+    return:
+      type: System.DateTimeOffset
+      description: >-
+        A <code>DateTimeOffset</code> with the same local date/time and offset as this. The <xref href="System.DateTime" data-throw-if-not-resolved="false"></xref> part of
+            the result always has a "kind" of Unspecified.
+    content.vb: Public Function ToDateTimeOffset() As DateTimeOffset
+  overload: NodaTime.ZonedDateTime.ToDateTimeOffset*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: >-
+      The date/time is outside the range of <code>DateTimeOffset</code>,
+          or the offset is outside the range of +/-14 hours (the range supported by <code>DateTimeOffset</code>).
+- uid: NodaTime.ZonedDateTime.FromDateTimeOffset(System.DateTimeOffset)
+  commentId: M:NodaTime.ZonedDateTime.FromDateTimeOffset(System.DateTimeOffset)
+  id: FromDateTimeOffset(System.DateTimeOffset)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: FromDateTimeOffset(DateTimeOffset)
+  nameWithType: ZonedDateTime.FromDateTimeOffset(DateTimeOffset)
+  fullName: NodaTime.ZonedDateTime.FromDateTimeOffset(System.DateTimeOffset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns a new <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> representing the same instant in time as the given
+
+    <xref href="System.DateTimeOffset" data-throw-if-not-resolved="false"></xref>.
+
+    The time zone used will be a fixed time zone, which uses the same offset throughout time.
+  example: []
+  syntax:
+    content: public static ZonedDateTime FromDateTimeOffset(DateTimeOffset dateTimeOffset)
+    parameters:
+    - id: dateTimeOffset
+      type: System.DateTimeOffset
+      description: Date and time value with an offset.
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> value representing the same instant in time as the given <xref href="System.DateTimeOffset" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function FromDateTimeOffset(dateTimeOffset As DateTimeOffset) As ZonedDateTime
+  overload: NodaTime.ZonedDateTime.FromDateTimeOffset*
+- uid: NodaTime.ZonedDateTime.ToDateTimeUtc
+  commentId: M:NodaTime.ZonedDateTime.ToDateTimeUtc
+  id: ToDateTimeUtc
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: ToDateTimeUtc()
+  nameWithType: ZonedDateTime.ToDateTimeUtc()
+  fullName: NodaTime.ZonedDateTime.ToDateTimeUtc()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Constructs a <xref href="System.DateTime" data-throw-if-not-resolved="false"></xref> from this <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> which has a
+
+    <xref href="System.DateTime.Kind" data-throw-if-not-resolved="false"></xref> of <xref href="System.DateTimeKind.Utc" data-throw-if-not-resolved="false"></xref> and represents the same instant of time as
+
+    this value rather than the same local time.
+  remarks: >-
+    <p>
+
+    If the date and time is not on a tick boundary (the unit of granularity of DateTime) the value will be truncated
+
+    towards the start of time.
+
+    </p>
+  example: []
+  syntax:
+    content: public DateTime ToDateTimeUtc()
+    return:
+      type: System.DateTime
+      description: >-
+        A <xref href="System.DateTime" data-throw-if-not-resolved="false"></xref> representation of this value with a "universal" kind, with the same
+            instant of time as this value.
+    content.vb: Public Function ToDateTimeUtc() As Date
+  overload: NodaTime.ZonedDateTime.ToDateTimeUtc*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The final date/time is outside the range of <code>DateTime</code>.
+- uid: NodaTime.ZonedDateTime.ToDateTimeUnspecified
+  commentId: M:NodaTime.ZonedDateTime.ToDateTimeUnspecified
+  id: ToDateTimeUnspecified
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: ToDateTimeUnspecified()
+  nameWithType: ZonedDateTime.ToDateTimeUnspecified()
+  fullName: NodaTime.ZonedDateTime.ToDateTimeUnspecified()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Constructs a <xref href="System.DateTime" data-throw-if-not-resolved="false"></xref> from this <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> which has a
+
+    <xref href="System.DateTime.Kind" data-throw-if-not-resolved="false"></xref> of <xref href="System.DateTimeKind.Unspecified" data-throw-if-not-resolved="false"></xref> and represents the same local time as
+
+    this value rather than the same instant in time.
+  remarks: >-
+    <p>
+      <xref href="System.DateTimeKind.Unspecified" data-throw-if-not-resolved="false"></xref> is slightly odd - it can be treated as UTC if you use <xref href="System.DateTime.ToLocalTime" data-throw-if-not-resolved="false"></xref>
+    or as system local time if you use <xref href="System.DateTime.ToUniversalTime" data-throw-if-not-resolved="false"></xref>, but it's the only kind which allows
+
+    you to construct a <xref href="System.DateTimeOffset" data-throw-if-not-resolved="false"></xref> with an arbitrary offset.
+
+    </p>
+
+    <p>
+
+    If the date and time is not on a tick boundary (the unit of granularity of DateTime) the value will be truncated
+
+    towards the start of time.
+
+    </p>
+
+    <p>
+      <xref href="System.DateTime" data-throw-if-not-resolved="false"></xref> uses the Gregorian calendar by definition, so the value is implicitly converted
+    to the Gregorian calendar first. The result will be on the same physical date,
+
+    but the values returned by the Year/Month/Day properties of the <xref href="System.DateTime" data-throw-if-not-resolved="false"></xref> may not
+
+    match the Year/Month/Day properties of this value.
+
+    </p>
+  example: []
+  syntax:
+    content: public DateTime ToDateTimeUnspecified()
+    return:
+      type: System.DateTime
+      description: >-
+        A <xref href="System.DateTime" data-throw-if-not-resolved="false"></xref> representation of this value with an "unspecified" kind, with the same
+            local date and time as this value.
+    content.vb: Public Function ToDateTimeUnspecified() As Date
+  overload: NodaTime.ZonedDateTime.ToDateTimeUnspecified*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The date/time is outside the range of <code>DateTime</code>.
+- uid: NodaTime.ZonedDateTime.ToOffsetDateTime
+  commentId: M:NodaTime.ZonedDateTime.ToOffsetDateTime
+  id: ToOffsetDateTime
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: ToOffsetDateTime()
+  nameWithType: ZonedDateTime.ToOffsetDateTime()
+  fullName: NodaTime.ZonedDateTime.ToOffsetDateTime()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Constructs an <xref href="NodaTime.OffsetDateTime" data-throw-if-not-resolved="false"></xref> with the same local date and time, and the same offset
+
+    as this zoned date and time, effectively just "removing" the time zone itself.
+  example: []
+  syntax:
+    content: public OffsetDateTime ToOffsetDateTime()
+    return:
+      type: NodaTime.OffsetDateTime
+      description: An OffsetDateTime with the same local date/time and offset as this value.
+    content.vb: Public Function ToOffsetDateTime() As OffsetDateTime
+  overload: NodaTime.ZonedDateTime.ToOffsetDateTime*
+- uid: NodaTime.ZonedDateTime.Deconstruct(NodaTime.LocalDateTime@,NodaTime.DateTimeZone@,NodaTime.Offset@)
+  commentId: M:NodaTime.ZonedDateTime.Deconstruct(NodaTime.LocalDateTime@,NodaTime.DateTimeZone@,NodaTime.Offset@)
+  id: Deconstruct(NodaTime.LocalDateTime@,NodaTime.DateTimeZone@,NodaTime.Offset@)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: Deconstruct(out LocalDateTime, out DateTimeZone, out Offset)
+  nameWithType: ZonedDateTime.Deconstruct(out LocalDateTime, out DateTimeZone, out Offset)
+  fullName: NodaTime.ZonedDateTime.Deconstruct(out NodaTime.LocalDateTime, out NodaTime.DateTimeZone, out NodaTime.Offset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Deconstruct this <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> into its components.
+  example: []
+  syntax:
+    content: public void Deconstruct(out LocalDateTime localDateTime, out DateTimeZone dateTimeZone, out Offset offset)
+    parameters:
+    - id: localDateTime
+      type: NodaTime.LocalDateTime
+      description: The <xref href="NodaTime.ZonedDateTime.LocalDateTime" data-throw-if-not-resolved="false"></xref> component.
+    - id: dateTimeZone
+      type: NodaTime.DateTimeZone
+      description: The <xref href="NodaTime.DateTimeZone" data-throw-if-not-resolved="false"></xref> component.
+    - id: offset
+      type: NodaTime.Offset
+      description: The <xref href="NodaTime.ZonedDateTime.Offset" data-throw-if-not-resolved="false"></xref> component.
+    content.vb: Public Sub Deconstruct(localDateTime As LocalDateTime, dateTimeZone As DateTimeZone, offset As Offset)
+  overload: NodaTime.ZonedDateTime.Deconstruct*
+  nameWithType.vb: ZonedDateTime.Deconstruct(LocalDateTime, DateTimeZone, Offset)
+  fullName.vb: NodaTime.ZonedDateTime.Deconstruct(NodaTime.LocalDateTime, NodaTime.DateTimeZone, NodaTime.Offset)
+  name.vb: Deconstruct(LocalDateTime, DateTimeZone, Offset)
+- uid: NodaTime.ZonedDateTime.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  commentId: M:NodaTime.ZonedDateTime.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  id: AddSchema(System.Xml.Schema.XmlSchemaSet)
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: AddSchema(XmlSchemaSet)
+  nameWithType: ZonedDateTime.AddSchema(XmlSchemaSet)
+  fullName: NodaTime.ZonedDateTime.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Adds the XML schema type describing the structure of the <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> XML serialization to the given <code class="paramref">xmlSchemaSet</code>.
+  example: []
+  syntax:
+    content: public static XmlQualifiedName AddSchema(XmlSchemaSet xmlSchemaSet)
+    parameters:
+    - id: xmlSchemaSet
+      type: System.Xml.Schema.XmlSchemaSet
+      description: The XML schema set provided by <xref href="System.Xml.Serialization.XmlSchemaExporter" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Xml.XmlQualifiedName
+      description: The qualified name of the schema type that was added to the <code class="paramref">xmlSchemaSet</code>.
+    content.vb: Public Shared Function AddSchema(xmlSchemaSet As XmlSchemaSet) As XmlQualifiedName
+  overload: NodaTime.ZonedDateTime.AddSchema*
+- uid: NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#GetSchema
+  commentId: M:NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#GetSchema
+  id: System#Xml#Serialization#IXmlSerializable#GetSchema
+  isEii: true
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.GetSchema()
+  nameWithType: ZonedDateTime.IXmlSerializable.GetSchema()
+  fullName: NodaTime.ZonedDateTime.System.Xml.Serialization.IXmlSerializable.GetSchema()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: This method is reserved and should not be used. When implementing the <code>IXmlSerializable</code> interface, you should return <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> (<code>Nothing</code> in Visual Basic) from this method, and instead, if specifying a custom schema is required, apply the <xref href="System.Xml.Serialization.XmlSchemaProviderAttribute" data-throw-if-not-resolved="false"></xref> to the class.
+  example: []
+  syntax:
+    content: XmlSchema IXmlSerializable.GetSchema()
+    return:
+      type: System.Xml.Schema.XmlSchema
+      description: An <xref href="System.Xml.Schema.XmlSchema" data-throw-if-not-resolved="false"></xref> that describes the XML representation of the object that is produced by the <xref href="System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)" data-throw-if-not-resolved="false"></xref> method and consumed by the <xref href="System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)" data-throw-if-not-resolved="false"></xref> method.
+    content.vb: ''
+  overload: NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#GetSchema*
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+- uid: NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  commentId: M:NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  id: System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  isEii: true
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.ReadXml(XmlReader)
+  nameWithType: ZonedDateTime.IXmlSerializable.ReadXml(XmlReader)
+  fullName: NodaTime.ZonedDateTime.System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Generates an object from its XML representation.
+  example: []
+  syntax:
+    content: void IXmlSerializable.ReadXml(XmlReader reader)
+    parameters:
+    - id: reader
+      type: System.Xml.XmlReader
+      description: The <xref href="System.Xml.XmlReader" data-throw-if-not-resolved="false"></xref> stream from which the object is deserialized.
+    content.vb: ''
+  overload: NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#ReadXml*
+  implements:
+  - System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+- uid: NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  commentId: M:NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  id: System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  isEii: true
+  parent: NodaTime.ZonedDateTime
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.WriteXml(XmlWriter)
+  nameWithType: ZonedDateTime.IXmlSerializable.WriteXml(XmlWriter)
+  fullName: NodaTime.ZonedDateTime.System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Converts an object into its XML representation.
+  example: []
+  syntax:
+    content: void IXmlSerializable.WriteXml(XmlWriter writer)
+    parameters:
+    - id: writer
+      type: System.Xml.XmlWriter
+      description: The <xref href="System.Xml.XmlWriter" data-throw-if-not-resolved="false"></xref> stream to which the object is serialized.
+    content.vb: ''
+  overload: NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#WriteXml*
+  implements:
+  - System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+references:
+- uid: NodaTime.LocalDateTime
+  commentId: T:NodaTime.LocalDateTime
+  parent: NodaTime
+  href: NodaTime.LocalDateTime.html
+  name: LocalDateTime
+  nameWithType: LocalDateTime
+  fullName: NodaTime.LocalDateTime
+- uid: NodaTime.ZonedDateTime
+  commentId: T:NodaTime.ZonedDateTime
+  parent: NodaTime
+  href: NodaTime.ZonedDateTime.html
+  name: ZonedDateTime
+  nameWithType: ZonedDateTime
+  fullName: NodaTime.ZonedDateTime
+- uid: NodaTime.Instant
+  commentId: T:NodaTime.Instant
+  parent: NodaTime
+  href: NodaTime.Instant.html
+  name: Instant
+  nameWithType: Instant
+  fullName: NodaTime.Instant
+- uid: NodaTime.ZonedDateTime.Comparer
+  commentId: T:NodaTime.ZonedDateTime.Comparer
+  parent: NodaTime
+  href: NodaTime.ZonedDateTime.html
+  name: ZonedDateTime.Comparer
+  nameWithType: ZonedDateTime.Comparer
+  fullName: NodaTime.ZonedDateTime.Comparer
+  spec.csharp:
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: .
+  - uid: NodaTime.ZonedDateTime.Comparer
+    name: Comparer
+    href: NodaTime.ZonedDateTime.Comparer.html
+  spec.vb:
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: .
+  - uid: NodaTime.ZonedDateTime.Comparer
+    name: Comparer
+    href: NodaTime.ZonedDateTime.Comparer.html
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.IEquatable{NodaTime.ZonedDateTime}
+  commentId: T:System.IEquatable{NodaTime.ZonedDateTime}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<ZonedDateTime>
+  nameWithType: IEquatable<ZonedDateTime>
+  fullName: System.IEquatable<NodaTime.ZonedDateTime>
+  nameWithType.vb: IEquatable(Of ZonedDateTime)
+  fullName.vb: System.IEquatable(Of NodaTime.ZonedDateTime)
+  name.vb: IEquatable(Of ZonedDateTime)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+- uid: System.IFormattable
+  commentId: T:System.IFormattable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iformattable
+  name: IFormattable
+  nameWithType: IFormattable
+  fullName: System.IFormattable
+- uid: System.Xml.Serialization.IXmlSerializable
+  commentId: T:System.Xml.Serialization.IXmlSerializable
+  parent: System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable
+  nameWithType: IXmlSerializable
+  fullName: System.Xml.Serialization.IXmlSerializable
+- uid: System.Numerics.IAdditionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}
+  commentId: T:System.Numerics.IAdditionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}
+  parent: System.Numerics
+  definition: System.Numerics.IAdditionOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  name: IAdditionOperators<ZonedDateTime, Duration, ZonedDateTime>
+  nameWithType: IAdditionOperators<ZonedDateTime, Duration, ZonedDateTime>
+  fullName: System.Numerics.IAdditionOperators<NodaTime.ZonedDateTime, NodaTime.Duration, NodaTime.ZonedDateTime>
+  nameWithType.vb: IAdditionOperators(Of ZonedDateTime, Duration, ZonedDateTime)
+  fullName.vb: System.Numerics.IAdditionOperators(Of NodaTime.ZonedDateTime, NodaTime.Duration, NodaTime.ZonedDateTime)
+  name.vb: IAdditionOperators(Of ZonedDateTime, Duration, ZonedDateTime)
+  spec.csharp:
+  - uid: System.Numerics.IAdditionOperators`3
+    name: IAdditionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  - name: <
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IAdditionOperators`3
+    name: IAdditionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+- uid: System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,NodaTime.Duration}
+  commentId: T:System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,NodaTime.Duration}
+  parent: System.Numerics
+  definition: System.Numerics.ISubtractionOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  name: ISubtractionOperators<ZonedDateTime, ZonedDateTime, Duration>
+  nameWithType: ISubtractionOperators<ZonedDateTime, ZonedDateTime, Duration>
+  fullName: System.Numerics.ISubtractionOperators<NodaTime.ZonedDateTime, NodaTime.ZonedDateTime, NodaTime.Duration>
+  nameWithType.vb: ISubtractionOperators(Of ZonedDateTime, ZonedDateTime, Duration)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of NodaTime.ZonedDateTime, NodaTime.ZonedDateTime, NodaTime.Duration)
+  name.vb: ISubtractionOperators(Of ZonedDateTime, ZonedDateTime, Duration)
+  spec.csharp:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: <
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: )
+- uid: System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}
+  commentId: T:System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}
+  parent: System.Numerics
+  definition: System.Numerics.ISubtractionOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  name: ISubtractionOperators<ZonedDateTime, Duration, ZonedDateTime>
+  nameWithType: ISubtractionOperators<ZonedDateTime, Duration, ZonedDateTime>
+  fullName: System.Numerics.ISubtractionOperators<NodaTime.ZonedDateTime, NodaTime.Duration, NodaTime.ZonedDateTime>
+  nameWithType.vb: ISubtractionOperators(Of ZonedDateTime, Duration, ZonedDateTime)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of NodaTime.ZonedDateTime, NodaTime.Duration, NodaTime.ZonedDateTime)
+  name.vb: ISubtractionOperators(Of ZonedDateTime, Duration, ZonedDateTime)
+  spec.csharp:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: <
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+- uid: System.Numerics.IEqualityOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,System.Boolean}
+  commentId: T:System.Numerics.IEqualityOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,System.Boolean}
+  parent: System.Numerics
+  definition: System.Numerics.IEqualityOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  name: IEqualityOperators<ZonedDateTime, ZonedDateTime, bool>
+  nameWithType: IEqualityOperators<ZonedDateTime, ZonedDateTime, bool>
+  fullName: System.Numerics.IEqualityOperators<NodaTime.ZonedDateTime, NodaTime.ZonedDateTime, bool>
+  nameWithType.vb: IEqualityOperators(Of ZonedDateTime, ZonedDateTime, Boolean)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.ZonedDateTime, NodaTime.ZonedDateTime, Boolean)
+  name.vb: IEqualityOperators(Of ZonedDateTime, ZonedDateTime, Boolean)
+  spec.csharp:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: <
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Xml.Serialization
+  commentId: N:System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Serialization
+  nameWithType: System.Xml.Serialization
+  fullName: System.Xml.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+- uid: System.Numerics.IAdditionOperators`3
+  commentId: T:System.Numerics.IAdditionOperators`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  name: IAdditionOperators<TSelf, TOther, TResult>
+  nameWithType: IAdditionOperators<TSelf, TOther, TResult>
+  fullName: System.Numerics.IAdditionOperators<TSelf, TOther, TResult>
+  nameWithType.vb: IAdditionOperators(Of TSelf, TOther, TResult)
+  fullName.vb: System.Numerics.IAdditionOperators(Of TSelf, TOther, TResult)
+  name.vb: IAdditionOperators(Of TSelf, TOther, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IAdditionOperators`3
+    name: IAdditionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IAdditionOperators`3
+    name: IAdditionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics
+  commentId: N:System.Numerics
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Numerics
+  nameWithType: System.Numerics
+  fullName: System.Numerics
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+- uid: System.Numerics.ISubtractionOperators`3
+  commentId: T:System.Numerics.ISubtractionOperators`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  name: ISubtractionOperators<TSelf, TOther, TResult>
+  nameWithType: ISubtractionOperators<TSelf, TOther, TResult>
+  fullName: System.Numerics.ISubtractionOperators<TSelf, TOther, TResult>
+  nameWithType.vb: ISubtractionOperators(Of TSelf, TOther, TResult)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of TSelf, TOther, TResult)
+  name.vb: ISubtractionOperators(Of TSelf, TOther, TResult)
+  spec.csharp:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics.IEqualityOperators`3
+  commentId: T:System.Numerics.IEqualityOperators`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  name: IEqualityOperators<TSelf, TOther, TResult>
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult)
+  name.vb: IEqualityOperators(Of TSelf, TOther, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: NodaTime.ZonedDateTime.#ctor*
+  commentId: Overload:NodaTime.ZonedDateTime.#ctor
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime__ctor_NodaTime_Instant_NodaTime_DateTimeZone_NodaTime_CalendarSystem_
+  name: ZonedDateTime
+  nameWithType: ZonedDateTime.ZonedDateTime
+  fullName: NodaTime.ZonedDateTime.ZonedDateTime
+  nameWithType.vb: ZonedDateTime.New
+  fullName.vb: NodaTime.ZonedDateTime.New
+  name.vb: New
+- uid: NodaTime.DateTimeZone
+  commentId: T:NodaTime.DateTimeZone
+  parent: NodaTime
+  href: NodaTime.DateTimeZone.html
+  name: DateTimeZone
+  nameWithType: DateTimeZone
+  fullName: NodaTime.DateTimeZone
+- uid: NodaTime.CalendarSystem
+  commentId: T:NodaTime.CalendarSystem
+  parent: NodaTime
+  href: NodaTime.CalendarSystem.html
+  name: CalendarSystem
+  nameWithType: CalendarSystem
+  fullName: NodaTime.CalendarSystem
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: NodaTime.Offset
+  commentId: T:NodaTime.Offset
+  parent: NodaTime
+  href: NodaTime.Offset.html
+  name: Offset
+  nameWithType: Offset
+  fullName: NodaTime.Offset
+- uid: NodaTime.ZonedDateTime.Offset*
+  commentId: Overload:NodaTime.ZonedDateTime.Offset
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Offset
+  name: Offset
+  nameWithType: ZonedDateTime.Offset
+  fullName: NodaTime.ZonedDateTime.Offset
+- uid: NodaTime.ZonedDateTime.Zone*
+  commentId: Overload:NodaTime.ZonedDateTime.Zone
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Zone
+  name: Zone
+  nameWithType: ZonedDateTime.Zone
+  fullName: NodaTime.ZonedDateTime.Zone
+- uid: NodaTime.ZonedDateTime.LocalDateTime*
+  commentId: Overload:NodaTime.ZonedDateTime.LocalDateTime
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_LocalDateTime
+  name: LocalDateTime
+  nameWithType: ZonedDateTime.LocalDateTime
+  fullName: NodaTime.ZonedDateTime.LocalDateTime
+- uid: NodaTime.ZonedDateTime.Calendar*
+  commentId: Overload:NodaTime.ZonedDateTime.Calendar
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Calendar
+  name: Calendar
+  nameWithType: ZonedDateTime.Calendar
+  fullName: NodaTime.ZonedDateTime.Calendar
+- uid: NodaTime.LocalDate
+  commentId: T:NodaTime.LocalDate
+  parent: NodaTime
+  href: NodaTime.LocalDate.html
+  name: LocalDate
+  nameWithType: LocalDate
+  fullName: NodaTime.LocalDate
+- uid: NodaTime.ZonedDateTime.Date*
+  commentId: Overload:NodaTime.ZonedDateTime.Date
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Date
+  name: Date
+  nameWithType: ZonedDateTime.Date
+  fullName: NodaTime.ZonedDateTime.Date
+- uid: NodaTime.LocalTime
+  commentId: T:NodaTime.LocalTime
+  parent: NodaTime
+  href: NodaTime.LocalTime.html
+  name: LocalTime
+  nameWithType: LocalTime
+  fullName: NodaTime.LocalTime
+- uid: NodaTime.ZonedDateTime.TimeOfDay*
+  commentId: Overload:NodaTime.ZonedDateTime.TimeOfDay
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_TimeOfDay
+  name: TimeOfDay
+  nameWithType: ZonedDateTime.TimeOfDay
+  fullName: NodaTime.ZonedDateTime.TimeOfDay
+- uid: NodaTime.ZonedDateTime.Era*
+  commentId: Overload:NodaTime.ZonedDateTime.Era
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Era
+  name: Era
+  nameWithType: ZonedDateTime.Era
+  fullName: NodaTime.ZonedDateTime.Era
+- uid: NodaTime.Calendars.Era
+  commentId: T:NodaTime.Calendars.Era
+  parent: NodaTime.Calendars
+  href: NodaTime.Calendars.Era.html
+  name: Era
+  nameWithType: Era
+  fullName: NodaTime.Calendars.Era
+- uid: NodaTime.Calendars
+  commentId: N:NodaTime.Calendars
+  href: NodaTime.html
+  name: NodaTime.Calendars
+  nameWithType: NodaTime.Calendars
+  fullName: NodaTime.Calendars
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Calendars
+    name: Calendars
+    href: NodaTime.Calendars.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Calendars
+    name: Calendars
+    href: NodaTime.Calendars.html
+- uid: NodaTime.ZonedDateTime.Year*
+  commentId: Overload:NodaTime.ZonedDateTime.Year
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Year
+  name: Year
+  nameWithType: ZonedDateTime.Year
+  fullName: NodaTime.ZonedDateTime.Year
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: NodaTime.ZonedDateTime.YearOfEra*
+  commentId: Overload:NodaTime.ZonedDateTime.YearOfEra
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_YearOfEra
+  name: YearOfEra
+  nameWithType: ZonedDateTime.YearOfEra
+  fullName: NodaTime.ZonedDateTime.YearOfEra
+- uid: NodaTime.ZonedDateTime.Month*
+  commentId: Overload:NodaTime.ZonedDateTime.Month
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Month
+  name: Month
+  nameWithType: ZonedDateTime.Month
+  fullName: NodaTime.ZonedDateTime.Month
+- uid: NodaTime.ZonedDateTime.DayOfYear*
+  commentId: Overload:NodaTime.ZonedDateTime.DayOfYear
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_DayOfYear
+  name: DayOfYear
+  nameWithType: ZonedDateTime.DayOfYear
+  fullName: NodaTime.ZonedDateTime.DayOfYear
+- uid: NodaTime.ZonedDateTime.Day*
+  commentId: Overload:NodaTime.ZonedDateTime.Day
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Day
+  name: Day
+  nameWithType: ZonedDateTime.Day
+  fullName: NodaTime.ZonedDateTime.Day
+- uid: NodaTime.IsoDayOfWeek
+  commentId: T:NodaTime.IsoDayOfWeek
+  parent: NodaTime
+  href: NodaTime.IsoDayOfWeek.html
+  name: IsoDayOfWeek
+  nameWithType: IsoDayOfWeek
+  fullName: NodaTime.IsoDayOfWeek
+- uid: NodaTime.ZonedDateTime.DayOfWeek*
+  commentId: Overload:NodaTime.ZonedDateTime.DayOfWeek
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_DayOfWeek
+  name: DayOfWeek
+  nameWithType: ZonedDateTime.DayOfWeek
+  fullName: NodaTime.ZonedDateTime.DayOfWeek
+- uid: NodaTime.ZonedDateTime.Hour*
+  commentId: Overload:NodaTime.ZonedDateTime.Hour
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Hour
+  name: Hour
+  nameWithType: ZonedDateTime.Hour
+  fullName: NodaTime.ZonedDateTime.Hour
+- uid: NodaTime.ZonedDateTime.ClockHourOfHalfDay*
+  commentId: Overload:NodaTime.ZonedDateTime.ClockHourOfHalfDay
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_ClockHourOfHalfDay
+  name: ClockHourOfHalfDay
+  nameWithType: ZonedDateTime.ClockHourOfHalfDay
+  fullName: NodaTime.ZonedDateTime.ClockHourOfHalfDay
+- uid: NodaTime.ZonedDateTime.Minute*
+  commentId: Overload:NodaTime.ZonedDateTime.Minute
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Minute
+  name: Minute
+  nameWithType: ZonedDateTime.Minute
+  fullName: NodaTime.ZonedDateTime.Minute
+- uid: NodaTime.ZonedDateTime.Second*
+  commentId: Overload:NodaTime.ZonedDateTime.Second
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Second
+  name: Second
+  nameWithType: ZonedDateTime.Second
+  fullName: NodaTime.ZonedDateTime.Second
+- uid: NodaTime.ZonedDateTime.Millisecond*
+  commentId: Overload:NodaTime.ZonedDateTime.Millisecond
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Millisecond
+  name: Millisecond
+  nameWithType: ZonedDateTime.Millisecond
+  fullName: NodaTime.ZonedDateTime.Millisecond
+- uid: NodaTime.ZonedDateTime.TickOfSecond*
+  commentId: Overload:NodaTime.ZonedDateTime.TickOfSecond
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_TickOfSecond
+  name: TickOfSecond
+  nameWithType: ZonedDateTime.TickOfSecond
+  fullName: NodaTime.ZonedDateTime.TickOfSecond
+- uid: NodaTime.OffsetDateTime
+  commentId: T:NodaTime.OffsetDateTime
+  parent: NodaTime
+  href: NodaTime.OffsetDateTime.html
+  name: OffsetDateTime
+  nameWithType: OffsetDateTime
+  fullName: NodaTime.OffsetDateTime
+- uid: NodaTime.ZonedDateTime.TickOfDay*
+  commentId: Overload:NodaTime.ZonedDateTime.TickOfDay
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_TickOfDay
+  name: TickOfDay
+  nameWithType: ZonedDateTime.TickOfDay
+  fullName: NodaTime.ZonedDateTime.TickOfDay
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: NodaTime.ZonedDateTime.NanosecondOfSecond*
+  commentId: Overload:NodaTime.ZonedDateTime.NanosecondOfSecond
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_NanosecondOfSecond
+  name: NanosecondOfSecond
+  nameWithType: ZonedDateTime.NanosecondOfSecond
+  fullName: NodaTime.ZonedDateTime.NanosecondOfSecond
+- uid: NodaTime.ZonedDateTime.NanosecondOfDay*
+  commentId: Overload:NodaTime.ZonedDateTime.NanosecondOfDay
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_NanosecondOfDay
+  name: NanosecondOfDay
+  nameWithType: ZonedDateTime.NanosecondOfDay
+  fullName: NodaTime.ZonedDateTime.NanosecondOfDay
+- uid: NodaTime.ZonedDateTime.ToInstant*
+  commentId: Overload:NodaTime.ZonedDateTime.ToInstant
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_ToInstant
+  name: ToInstant
+  nameWithType: ZonedDateTime.ToInstant
+  fullName: NodaTime.ZonedDateTime.ToInstant
+- uid: NodaTime.ZonedDateTime.WithZone*
+  commentId: Overload:NodaTime.ZonedDateTime.WithZone
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_WithZone_NodaTime_DateTimeZone_
+  name: WithZone
+  nameWithType: ZonedDateTime.WithZone
+  fullName: NodaTime.ZonedDateTime.WithZone
+- uid: NodaTime.ZonedDateTime.WithCalendar*
+  commentId: Overload:NodaTime.ZonedDateTime.WithCalendar
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_WithCalendar_NodaTime_CalendarSystem_
+  name: WithCalendar
+  nameWithType: ZonedDateTime.WithCalendar
+  fullName: NodaTime.ZonedDateTime.WithCalendar
+- uid: NodaTime.ZonedDateTime.Equals*
+  commentId: Overload:NodaTime.ZonedDateTime.Equals
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Equals_NodaTime_ZonedDateTime_
+  name: Equals
+  nameWithType: ZonedDateTime.Equals
+  fullName: NodaTime.ZonedDateTime.Equals
+- uid: System.IEquatable{NodaTime.ZonedDateTime}.Equals(NodaTime.ZonedDateTime)
+  commentId: M:System.IEquatable{NodaTime.ZonedDateTime}.Equals(NodaTime.ZonedDateTime)
+  parent: System.IEquatable{NodaTime.ZonedDateTime}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(ZonedDateTime)
+  nameWithType: IEquatable<ZonedDateTime>.Equals(ZonedDateTime)
+  fullName: System.IEquatable<NodaTime.ZonedDateTime>.Equals(NodaTime.ZonedDateTime)
+  nameWithType.vb: IEquatable(Of ZonedDateTime).Equals(ZonedDateTime)
+  fullName.vb: System.IEquatable(Of NodaTime.ZonedDateTime).Equals(NodaTime.ZonedDateTime)
+  spec.csharp:
+  - uid: System.IEquatable{NodaTime.ZonedDateTime}.Equals(NodaTime.ZonedDateTime)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{NodaTime.ZonedDateTime}.Equals(NodaTime.ZonedDateTime)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: NodaTime.ZonedDateTime.GetHashCode*
+  commentId: Overload:NodaTime.ZonedDateTime.GetHashCode
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_GetHashCode
+  name: GetHashCode
+  nameWithType: ZonedDateTime.GetHashCode
+  fullName: NodaTime.ZonedDateTime.GetHashCode
+- uid: NodaTime.ZonedDateTime.Equals(NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.ZonedDateTime.Equals(NodaTime.ZonedDateTime)
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Equals_NodaTime_ZonedDateTime_
+  name: Equals(ZonedDateTime)
+  nameWithType: ZonedDateTime.Equals(ZonedDateTime)
+  fullName: NodaTime.ZonedDateTime.Equals(NodaTime.ZonedDateTime)
+  spec.csharp:
+  - uid: NodaTime.ZonedDateTime.Equals(NodaTime.ZonedDateTime)
+    name: Equals
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Equals_NodaTime_ZonedDateTime_
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.ZonedDateTime.Equals(NodaTime.ZonedDateTime)
+    name: Equals
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Equals_NodaTime_ZonedDateTime_
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+- uid: NodaTime.ZonedDateTime.op_Equality*
+  commentId: Overload:NodaTime.ZonedDateTime.op_Equality
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Equality_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_
+  name: operator ==
+  nameWithType: ZonedDateTime.operator ==
+  fullName: NodaTime.ZonedDateTime.operator ==
+  nameWithType.vb: ZonedDateTime.=
+  fullName.vb: NodaTime.ZonedDateTime.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.ZonedDateTime.op_Equality*
+    name: ==
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Equality_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_
+- uid: System.Numerics.IEqualityOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,System.Boolean}.op_Equality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  commentId: M:System.Numerics.IEqualityOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,System.Boolean}.op_Equality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  parent: System.Numerics.IEqualityOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,System.Boolean}
+  definition: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  name: operator ==(ZonedDateTime, ZonedDateTime)
+  nameWithType: IEqualityOperators<ZonedDateTime, ZonedDateTime, bool>.operator ==(ZonedDateTime, ZonedDateTime)
+  fullName: System.Numerics.IEqualityOperators<NodaTime.ZonedDateTime, NodaTime.ZonedDateTime, bool>.operator ==(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  nameWithType.vb: IEqualityOperators(Of ZonedDateTime, ZonedDateTime, Boolean).=(ZonedDateTime, ZonedDateTime)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.ZonedDateTime, NodaTime.ZonedDateTime, Boolean).=(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  name.vb: =(ZonedDateTime, ZonedDateTime)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,System.Boolean}.op_Equality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+    name: ==
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+  spec.vb:
+  - name: =
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+- uid: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  commentId: M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  name: operator ==(TSelf, TOther)
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>.operator ==(TSelf, TOther)
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>.operator ==(TSelf, TOther)
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult).=(TSelf, TOther)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult).=(TSelf, TOther)
+  name.vb: =(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+    name: ==
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: =
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.ZonedDateTime.op_Inequality*
+  commentId: Overload:NodaTime.ZonedDateTime.op_Inequality
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Inequality_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_
+  name: operator !=
+  nameWithType: ZonedDateTime.operator !=
+  fullName: NodaTime.ZonedDateTime.operator !=
+  nameWithType.vb: ZonedDateTime.<>
+  fullName.vb: NodaTime.ZonedDateTime.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.ZonedDateTime.op_Inequality*
+    name: '!='
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Inequality_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_
+- uid: System.Numerics.IEqualityOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,System.Boolean}.op_Inequality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  commentId: M:System.Numerics.IEqualityOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,System.Boolean}.op_Inequality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  parent: System.Numerics.IEqualityOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,System.Boolean}
+  definition: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  name: operator !=(ZonedDateTime, ZonedDateTime)
+  nameWithType: IEqualityOperators<ZonedDateTime, ZonedDateTime, bool>.operator !=(ZonedDateTime, ZonedDateTime)
+  fullName: System.Numerics.IEqualityOperators<NodaTime.ZonedDateTime, NodaTime.ZonedDateTime, bool>.operator !=(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  nameWithType.vb: IEqualityOperators(Of ZonedDateTime, ZonedDateTime, Boolean).<>(ZonedDateTime, ZonedDateTime)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.ZonedDateTime, NodaTime.ZonedDateTime, Boolean).<>(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  name.vb: <>(ZonedDateTime, ZonedDateTime)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,System.Boolean}.op_Inequality(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+    name: '!='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+  spec.vb:
+  - name: <>
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+- uid: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  commentId: M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  name: operator !=(TSelf, TOther)
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>.operator !=(TSelf, TOther)
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>.operator !=(TSelf, TOther)
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult).<>(TSelf, TOther)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult).<>(TSelf, TOther)
+  name.vb: <>(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+    name: '!='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: <>
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.ZonedDateTime.op_Addition(NodaTime.ZonedDateTime,NodaTime.Duration)
+  commentId: M:NodaTime.ZonedDateTime.op_Addition(NodaTime.ZonedDateTime,NodaTime.Duration)
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Addition_NodaTime_ZonedDateTime_NodaTime_Duration_
+  name: operator +(ZonedDateTime, Duration)
+  nameWithType: ZonedDateTime.operator +(ZonedDateTime, Duration)
+  fullName: NodaTime.ZonedDateTime.operator +(NodaTime.ZonedDateTime, NodaTime.Duration)
+  nameWithType.vb: ZonedDateTime.+(ZonedDateTime, Duration)
+  fullName.vb: NodaTime.ZonedDateTime.+(NodaTime.ZonedDateTime, NodaTime.Duration)
+  name.vb: +(ZonedDateTime, Duration)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.ZonedDateTime.op_Addition(NodaTime.ZonedDateTime,NodaTime.Duration)
+    name: +
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Addition_NodaTime_ZonedDateTime_NodaTime_Duration_
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: )
+  spec.vb:
+  - name: +
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: )
+- uid: NodaTime.ZonedDateTime.Add*
+  commentId: Overload:NodaTime.ZonedDateTime.Add
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Add_NodaTime_ZonedDateTime_NodaTime_Duration_
+  name: Add
+  nameWithType: ZonedDateTime.Add
+  fullName: NodaTime.ZonedDateTime.Add
+- uid: NodaTime.Duration
+  commentId: T:NodaTime.Duration
+  parent: NodaTime
+  href: NodaTime.Duration.html
+  name: Duration
+  nameWithType: Duration
+  fullName: NodaTime.Duration
+- uid: NodaTime.ZonedDateTime.Plus*
+  commentId: Overload:NodaTime.ZonedDateTime.Plus
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Plus_NodaTime_Duration_
+  name: Plus
+  nameWithType: ZonedDateTime.Plus
+  fullName: NodaTime.ZonedDateTime.Plus
+- uid: NodaTime.ZonedDateTime.PlusHours*
+  commentId: Overload:NodaTime.ZonedDateTime.PlusHours
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_PlusHours_System_Int32_
+  name: PlusHours
+  nameWithType: ZonedDateTime.PlusHours
+  fullName: NodaTime.ZonedDateTime.PlusHours
+- uid: NodaTime.ZonedDateTime.PlusMinutes*
+  commentId: Overload:NodaTime.ZonedDateTime.PlusMinutes
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_PlusMinutes_System_Int32_
+  name: PlusMinutes
+  nameWithType: ZonedDateTime.PlusMinutes
+  fullName: NodaTime.ZonedDateTime.PlusMinutes
+- uid: NodaTime.ZonedDateTime.PlusSeconds*
+  commentId: Overload:NodaTime.ZonedDateTime.PlusSeconds
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_PlusSeconds_System_Int64_
+  name: PlusSeconds
+  nameWithType: ZonedDateTime.PlusSeconds
+  fullName: NodaTime.ZonedDateTime.PlusSeconds
+- uid: NodaTime.ZonedDateTime.PlusMilliseconds*
+  commentId: Overload:NodaTime.ZonedDateTime.PlusMilliseconds
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_PlusMilliseconds_System_Int64_
+  name: PlusMilliseconds
+  nameWithType: ZonedDateTime.PlusMilliseconds
+  fullName: NodaTime.ZonedDateTime.PlusMilliseconds
+- uid: NodaTime.ZonedDateTime.PlusTicks*
+  commentId: Overload:NodaTime.ZonedDateTime.PlusTicks
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_PlusTicks_System_Int64_
+  name: PlusTicks
+  nameWithType: ZonedDateTime.PlusTicks
+  fullName: NodaTime.ZonedDateTime.PlusTicks
+- uid: NodaTime.ZonedDateTime.PlusNanoseconds*
+  commentId: Overload:NodaTime.ZonedDateTime.PlusNanoseconds
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_PlusNanoseconds_System_Int64_
+  name: PlusNanoseconds
+  nameWithType: ZonedDateTime.PlusNanoseconds
+  fullName: NodaTime.ZonedDateTime.PlusNanoseconds
+- uid: NodaTime.ZonedDateTime.op_Addition*
+  commentId: Overload:NodaTime.ZonedDateTime.op_Addition
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Addition_NodaTime_ZonedDateTime_NodaTime_Duration_
+  name: operator +
+  nameWithType: ZonedDateTime.operator +
+  fullName: NodaTime.ZonedDateTime.operator +
+  nameWithType.vb: ZonedDateTime.+
+  fullName.vb: NodaTime.ZonedDateTime.+
+  name.vb: +
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.ZonedDateTime.op_Addition*
+    name: +
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Addition_NodaTime_ZonedDateTime_NodaTime_Duration_
+- uid: System.Numerics.IAdditionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}.op_Addition(NodaTime.ZonedDateTime,NodaTime.Duration)
+  commentId: M:System.Numerics.IAdditionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}.op_Addition(NodaTime.ZonedDateTime,NodaTime.Duration)
+  parent: System.Numerics.IAdditionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}
+  definition: System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3.op_addition
+  name: operator +(ZonedDateTime, Duration)
+  nameWithType: IAdditionOperators<ZonedDateTime, Duration, ZonedDateTime>.operator +(ZonedDateTime, Duration)
+  fullName: System.Numerics.IAdditionOperators<NodaTime.ZonedDateTime, NodaTime.Duration, NodaTime.ZonedDateTime>.operator +(NodaTime.ZonedDateTime, NodaTime.Duration)
+  nameWithType.vb: IAdditionOperators(Of ZonedDateTime, Duration, ZonedDateTime).+(ZonedDateTime, Duration)
+  fullName.vb: System.Numerics.IAdditionOperators(Of NodaTime.ZonedDateTime, NodaTime.Duration, NodaTime.ZonedDateTime).+(NodaTime.ZonedDateTime, NodaTime.Duration)
+  name.vb: +(ZonedDateTime, Duration)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IAdditionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}.op_Addition(NodaTime.ZonedDateTime,NodaTime.Duration)
+    name: +
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3.op_addition
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: )
+  spec.vb:
+  - name: +
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: )
+- uid: System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)
+  commentId: M:System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3.op_addition
+  name: operator +(TSelf, TOther)
+  nameWithType: IAdditionOperators<TSelf, TOther, TResult>.operator +(TSelf, TOther)
+  fullName: System.Numerics.IAdditionOperators<TSelf, TOther, TResult>.operator +(TSelf, TOther)
+  nameWithType.vb: IAdditionOperators(Of TSelf, TOther, TResult).+(TSelf, TOther)
+  fullName.vb: System.Numerics.IAdditionOperators(Of TSelf, TOther, TResult).+(TSelf, TOther)
+  name.vb: +(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)
+    name: +
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3.op_addition
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: +
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.Duration)
+  commentId: M:NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.Duration)
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_Duration_
+  name: operator -(ZonedDateTime, Duration)
+  nameWithType: ZonedDateTime.operator -(ZonedDateTime, Duration)
+  fullName: NodaTime.ZonedDateTime.operator -(NodaTime.ZonedDateTime, NodaTime.Duration)
+  nameWithType.vb: ZonedDateTime.-(ZonedDateTime, Duration)
+  fullName.vb: NodaTime.ZonedDateTime.-(NodaTime.ZonedDateTime, NodaTime.Duration)
+  name.vb: -(ZonedDateTime, Duration)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.Duration)
+    name: '-'
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_Duration_
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: )
+  spec.vb:
+  - name: '-'
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: )
+- uid: NodaTime.ZonedDateTime.Subtract*
+  commentId: Overload:NodaTime.ZonedDateTime.Subtract
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Subtract_NodaTime_ZonedDateTime_NodaTime_Duration_
+  name: Subtract
+  nameWithType: ZonedDateTime.Subtract
+  fullName: NodaTime.ZonedDateTime.Subtract
+- uid: NodaTime.ZonedDateTime.Minus*
+  commentId: Overload:NodaTime.ZonedDateTime.Minus
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Minus_NodaTime_Duration_
+  name: Minus
+  nameWithType: ZonedDateTime.Minus
+  fullName: NodaTime.ZonedDateTime.Minus
+- uid: NodaTime.ZonedDateTime.op_Subtraction*
+  commentId: Overload:NodaTime.ZonedDateTime.op_Subtraction
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_Duration_
+  name: operator -
+  nameWithType: ZonedDateTime.operator -
+  fullName: NodaTime.ZonedDateTime.operator -
+  nameWithType.vb: ZonedDateTime.-
+  fullName.vb: NodaTime.ZonedDateTime.-
+  name.vb: '-'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.ZonedDateTime.op_Subtraction*
+    name: '-'
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_Duration_
+- uid: System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.Duration)
+  commentId: M:System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.Duration)
+  parent: System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}
+  definition: System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  name: operator -(ZonedDateTime, Duration)
+  nameWithType: ISubtractionOperators<ZonedDateTime, Duration, ZonedDateTime>.operator -(ZonedDateTime, Duration)
+  fullName: System.Numerics.ISubtractionOperators<NodaTime.ZonedDateTime, NodaTime.Duration, NodaTime.ZonedDateTime>.operator -(NodaTime.ZonedDateTime, NodaTime.Duration)
+  nameWithType.vb: ISubtractionOperators(Of ZonedDateTime, Duration, ZonedDateTime).-(ZonedDateTime, Duration)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of NodaTime.ZonedDateTime, NodaTime.Duration, NodaTime.ZonedDateTime).-(NodaTime.ZonedDateTime, NodaTime.Duration)
+  name.vb: -(ZonedDateTime, Duration)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.Duration,NodaTime.ZonedDateTime}.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.Duration)
+    name: '-'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: )
+  spec.vb:
+  - name: '-'
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Duration
+    name: Duration
+    href: NodaTime.Duration.html
+  - name: )
+- uid: System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)
+  commentId: M:System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  name: operator -(TSelf, TOther)
+  nameWithType: ISubtractionOperators<TSelf, TOther, TResult>.operator -(TSelf, TOther)
+  fullName: System.Numerics.ISubtractionOperators<TSelf, TOther, TResult>.operator -(TSelf, TOther)
+  nameWithType.vb: ISubtractionOperators(Of TSelf, TOther, TResult).-(TSelf, TOther)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of TSelf, TOther, TResult).-(TSelf, TOther)
+  name.vb: -(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)
+    name: '-'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: '-'
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_
+  name: operator -(ZonedDateTime, ZonedDateTime)
+  nameWithType: ZonedDateTime.operator -(ZonedDateTime, ZonedDateTime)
+  fullName: NodaTime.ZonedDateTime.operator -(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  nameWithType.vb: ZonedDateTime.-(ZonedDateTime, ZonedDateTime)
+  fullName.vb: NodaTime.ZonedDateTime.-(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  name.vb: -(ZonedDateTime, ZonedDateTime)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.ZonedDateTime.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+    name: '-'
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_op_Subtraction_NodaTime_ZonedDateTime_NodaTime_ZonedDateTime_
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+  spec.vb:
+  - name: '-'
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+- uid: System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,NodaTime.Duration}.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  commentId: M:System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,NodaTime.Duration}.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+  parent: System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,NodaTime.Duration}
+  definition: System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  name: operator -(ZonedDateTime, ZonedDateTime)
+  nameWithType: ISubtractionOperators<ZonedDateTime, ZonedDateTime, Duration>.operator -(ZonedDateTime, ZonedDateTime)
+  fullName: System.Numerics.ISubtractionOperators<NodaTime.ZonedDateTime, NodaTime.ZonedDateTime, NodaTime.Duration>.operator -(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  nameWithType.vb: ISubtractionOperators(Of ZonedDateTime, ZonedDateTime, Duration).-(ZonedDateTime, ZonedDateTime)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of NodaTime.ZonedDateTime, NodaTime.ZonedDateTime, NodaTime.Duration).-(NodaTime.ZonedDateTime, NodaTime.ZonedDateTime)
+  name.vb: -(ZonedDateTime, ZonedDateTime)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.ISubtractionOperators{NodaTime.ZonedDateTime,NodaTime.ZonedDateTime,NodaTime.Duration}.op_Subtraction(NodaTime.ZonedDateTime,NodaTime.ZonedDateTime)
+    name: '-'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+  spec.vb:
+  - name: '-'
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+- uid: NodaTime.TimeZones.ZoneInterval
+  commentId: T:NodaTime.TimeZones.ZoneInterval
+  parent: NodaTime.TimeZones
+  href: NodaTime.TimeZones.ZoneInterval.html
+  name: ZoneInterval
+  nameWithType: ZoneInterval
+  fullName: NodaTime.TimeZones.ZoneInterval
+- uid: NodaTime.ZonedDateTime.GetZoneInterval*
+  commentId: Overload:NodaTime.ZonedDateTime.GetZoneInterval
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_GetZoneInterval
+  name: GetZoneInterval
+  nameWithType: ZonedDateTime.GetZoneInterval
+  fullName: NodaTime.ZonedDateTime.GetZoneInterval
+- uid: NodaTime.TimeZones
+  commentId: N:NodaTime.TimeZones
+  href: NodaTime.html
+  name: NodaTime.TimeZones
+  nameWithType: NodaTime.TimeZones
+  fullName: NodaTime.TimeZones
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.TimeZones
+    name: TimeZones
+    href: NodaTime.TimeZones.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.TimeZones
+    name: TimeZones
+    href: NodaTime.TimeZones.html
+- uid: NodaTime.ZonedDateTime.GetZoneInterval
+  commentId: M:NodaTime.ZonedDateTime.GetZoneInterval
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_GetZoneInterval
+  name: GetZoneInterval()
+  nameWithType: ZonedDateTime.GetZoneInterval()
+  fullName: NodaTime.ZonedDateTime.GetZoneInterval()
+  spec.csharp:
+  - uid: NodaTime.ZonedDateTime.GetZoneInterval
+    name: GetZoneInterval
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_GetZoneInterval
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NodaTime.ZonedDateTime.GetZoneInterval
+    name: GetZoneInterval
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_GetZoneInterval
+  - name: (
+  - name: )
+- uid: NodaTime.TimeZones.ZoneInterval.Savings
+  commentId: P:NodaTime.TimeZones.ZoneInterval.Savings
+  href: NodaTime.TimeZones.ZoneInterval.html#NodaTime_TimeZones_ZoneInterval_Savings
+  name: Savings
+  nameWithType: ZoneInterval.Savings
+  fullName: NodaTime.TimeZones.ZoneInterval.Savings
+- uid: NodaTime.ZonedDateTime.IsDaylightSavingTime*
+  commentId: Overload:NodaTime.ZonedDateTime.IsDaylightSavingTime
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_IsDaylightSavingTime
+  name: IsDaylightSavingTime
+  nameWithType: ZonedDateTime.IsDaylightSavingTime
+  fullName: NodaTime.ZonedDateTime.IsDaylightSavingTime
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: NodaTime.ZonedDateTime.ToString*
+  commentId: Overload:NodaTime.ZonedDateTime.ToString
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_ToString
+  name: ToString
+  nameWithType: ZonedDateTime.ToString
+  fullName: NodaTime.ZonedDateTime.ToString
+- uid: System.IFormatProvider
+  commentId: T:System.IFormatProvider
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  name: IFormatProvider
+  nameWithType: IFormatProvider
+  fullName: System.IFormatProvider
+- uid: System.IFormattable.ToString(System.String,System.IFormatProvider)
+  commentId: M:System.IFormattable.ToString(System.String,System.IFormatProvider)
+  parent: System.IFormattable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iformattable.tostring
+  name: ToString(string, IFormatProvider)
+  nameWithType: IFormattable.ToString(string, IFormatProvider)
+  fullName: System.IFormattable.ToString(string, System.IFormatProvider)
+  nameWithType.vb: IFormattable.ToString(String, IFormatProvider)
+  fullName.vb: System.IFormattable.ToString(String, System.IFormatProvider)
+  name.vb: ToString(String, IFormatProvider)
+  spec.csharp:
+  - uid: System.IFormattable.ToString(System.String,System.IFormatProvider)
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformattable.tostring
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IFormattable.ToString(System.String,System.IFormatProvider)
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformattable.tostring
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: System.DateTimeOffset
+  commentId: T:System.DateTimeOffset
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetimeoffset
+  name: DateTimeOffset
+  nameWithType: DateTimeOffset
+  fullName: System.DateTimeOffset
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: NodaTime.ZonedDateTime.ToDateTimeOffset*
+  commentId: Overload:NodaTime.ZonedDateTime.ToDateTimeOffset
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_ToDateTimeOffset
+  name: ToDateTimeOffset
+  nameWithType: ZonedDateTime.ToDateTimeOffset
+  fullName: NodaTime.ZonedDateTime.ToDateTimeOffset
+- uid: NodaTime.ZonedDateTime.FromDateTimeOffset*
+  commentId: Overload:NodaTime.ZonedDateTime.FromDateTimeOffset
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_FromDateTimeOffset_System_DateTimeOffset_
+  name: FromDateTimeOffset
+  nameWithType: ZonedDateTime.FromDateTimeOffset
+  fullName: NodaTime.ZonedDateTime.FromDateTimeOffset
+- uid: System.DateTime.Kind
+  commentId: P:System.DateTime.Kind
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime.kind
+  name: Kind
+  nameWithType: DateTime.Kind
+  fullName: System.DateTime.Kind
+  nameWithType.vb: Date.Kind
+  fullName.vb: Date.Kind
+- uid: System.DateTimeKind.Utc
+  commentId: F:System.DateTimeKind.Utc
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetimekind#system-datetimekind-utc
+  name: Utc
+  nameWithType: DateTimeKind.Utc
+  fullName: System.DateTimeKind.Utc
+- uid: NodaTime.ZonedDateTime.ToDateTimeUtc*
+  commentId: Overload:NodaTime.ZonedDateTime.ToDateTimeUtc
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_ToDateTimeUtc
+  name: ToDateTimeUtc
+  nameWithType: ZonedDateTime.ToDateTimeUtc
+  fullName: NodaTime.ZonedDateTime.ToDateTimeUtc
+- uid: System.DateTimeKind.Unspecified
+  commentId: F:System.DateTimeKind.Unspecified
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetimekind#system-datetimekind-unspecified
+  name: Unspecified
+  nameWithType: DateTimeKind.Unspecified
+  fullName: System.DateTimeKind.Unspecified
+- uid: System.DateTime.ToLocalTime
+  commentId: M:System.DateTime.ToLocalTime
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime.tolocaltime
+  name: ToLocalTime()
+  nameWithType: DateTime.ToLocalTime()
+  fullName: System.DateTime.ToLocalTime()
+  nameWithType.vb: Date.ToLocalTime()
+  fullName.vb: Date.ToLocalTime()
+  spec.csharp:
+  - uid: System.DateTime.ToLocalTime
+    name: ToLocalTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime.tolocaltime
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.DateTime.ToLocalTime
+    name: ToLocalTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime.tolocaltime
+  - name: (
+  - name: )
+- uid: System.DateTime.ToUniversalTime
+  commentId: M:System.DateTime.ToUniversalTime
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime.touniversaltime
+  name: ToUniversalTime()
+  nameWithType: DateTime.ToUniversalTime()
+  fullName: System.DateTime.ToUniversalTime()
+  nameWithType.vb: Date.ToUniversalTime()
+  fullName.vb: Date.ToUniversalTime()
+  spec.csharp:
+  - uid: System.DateTime.ToUniversalTime
+    name: ToUniversalTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime.touniversaltime
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.DateTime.ToUniversalTime
+    name: ToUniversalTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime.touniversaltime
+  - name: (
+  - name: )
+- uid: NodaTime.ZonedDateTime.ToDateTimeUnspecified*
+  commentId: Overload:NodaTime.ZonedDateTime.ToDateTimeUnspecified
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_ToDateTimeUnspecified
+  name: ToDateTimeUnspecified
+  nameWithType: ZonedDateTime.ToDateTimeUnspecified
+  fullName: NodaTime.ZonedDateTime.ToDateTimeUnspecified
+- uid: NodaTime.ZonedDateTime.ToOffsetDateTime*
+  commentId: Overload:NodaTime.ZonedDateTime.ToOffsetDateTime
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_ToOffsetDateTime
+  name: ToOffsetDateTime
+  nameWithType: ZonedDateTime.ToOffsetDateTime
+  fullName: NodaTime.ZonedDateTime.ToOffsetDateTime
+- uid: NodaTime.ZonedDateTime.LocalDateTime
+  commentId: P:NodaTime.ZonedDateTime.LocalDateTime
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_LocalDateTime
+  name: LocalDateTime
+  nameWithType: ZonedDateTime.LocalDateTime
+  fullName: NodaTime.ZonedDateTime.LocalDateTime
+- uid: NodaTime.ZonedDateTime.Offset
+  commentId: P:NodaTime.ZonedDateTime.Offset
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Offset
+  name: Offset
+  nameWithType: ZonedDateTime.Offset
+  fullName: NodaTime.ZonedDateTime.Offset
+- uid: NodaTime.ZonedDateTime.Deconstruct*
+  commentId: Overload:NodaTime.ZonedDateTime.Deconstruct
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_Deconstruct_NodaTime_LocalDateTime__NodaTime_DateTimeZone__NodaTime_Offset__
+  name: Deconstruct
+  nameWithType: ZonedDateTime.Deconstruct
+  fullName: NodaTime.ZonedDateTime.Deconstruct
+- uid: System.Xml.Serialization.XmlSchemaExporter
+  commentId: T:System.Xml.Serialization.XmlSchemaExporter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.xmlschemaexporter
+  name: XmlSchemaExporter
+  nameWithType: XmlSchemaExporter
+  fullName: System.Xml.Serialization.XmlSchemaExporter
+- uid: NodaTime.ZonedDateTime.AddSchema*
+  commentId: Overload:NodaTime.ZonedDateTime.AddSchema
+  href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_AddSchema_System_Xml_Schema_XmlSchemaSet_
+  name: AddSchema
+  nameWithType: ZonedDateTime.AddSchema
+  fullName: NodaTime.ZonedDateTime.AddSchema
+- uid: System.Xml.Schema.XmlSchemaSet
+  commentId: T:System.Xml.Schema.XmlSchemaSet
+  parent: System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.schema.xmlschemaset
+  name: XmlSchemaSet
+  nameWithType: XmlSchemaSet
+  fullName: System.Xml.Schema.XmlSchemaSet
+- uid: System.Xml.XmlQualifiedName
+  commentId: T:System.Xml.XmlQualifiedName
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlqualifiedname
+  name: XmlQualifiedName
+  nameWithType: XmlQualifiedName
+  fullName: System.Xml.XmlQualifiedName
+- uid: System.Xml.Schema
+  commentId: N:System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Schema
+  nameWithType: System.Xml.Schema
+  fullName: System.Xml.Schema
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Schema
+    name: Schema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.schema
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Schema
+    name: Schema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.schema
+- uid: System.Xml
+  commentId: N:System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml
+  nameWithType: System.Xml
+  fullName: System.Xml
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+- uid: System.Xml.Serialization.XmlSchemaProviderAttribute
+  commentId: T:System.Xml.Serialization.XmlSchemaProviderAttribute
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.xmlschemaproviderattribute
+  name: XmlSchemaProviderAttribute
+  nameWithType: XmlSchemaProviderAttribute
+  fullName: System.Xml.Serialization.XmlSchemaProviderAttribute
+- uid: System.Xml.Schema.XmlSchema
+  commentId: T:System.Xml.Schema.XmlSchema
+  parent: System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.schema.xmlschema
+  name: XmlSchema
+  nameWithType: XmlSchema
+  fullName: System.Xml.Schema.XmlSchema
+- uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  commentId: M:System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  parent: System.Xml.Serialization.IXmlSerializable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  name: WriteXml(XmlWriter)
+  nameWithType: IXmlSerializable.WriteXml(XmlWriter)
+  fullName: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  - name: )
+  spec.vb:
+  - uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  - name: )
+- uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  commentId: M:System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  parent: System.Xml.Serialization.IXmlSerializable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  name: ReadXml(XmlReader)
+  nameWithType: IXmlSerializable.ReadXml(XmlReader)
+  fullName: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  - name: )
+  spec.vb:
+  - uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  - name: )
+- uid: NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#GetSchema*
+  commentId: Overload:NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#GetSchema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.GetSchema
+  nameWithType: ZonedDateTime.IXmlSerializable.GetSchema
+  fullName: NodaTime.ZonedDateTime.System.Xml.Serialization.IXmlSerializable.GetSchema
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#GetSchema*
+    name: GetSchema
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_System_Xml_Serialization_IXmlSerializable_GetSchema
+- uid: System.Xml.XmlReader
+  commentId: T:System.Xml.XmlReader
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  name: XmlReader
+  nameWithType: XmlReader
+  fullName: System.Xml.XmlReader
+- uid: NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#ReadXml*
+  commentId: Overload:NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#ReadXml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.ReadXml
+  nameWithType: ZonedDateTime.IXmlSerializable.ReadXml
+  fullName: NodaTime.ZonedDateTime.System.Xml.Serialization.IXmlSerializable.ReadXml
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#ReadXml*
+    name: ReadXml
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_System_Xml_Serialization_IXmlSerializable_ReadXml_System_Xml_XmlReader_
+- uid: System.Xml.XmlWriter
+  commentId: T:System.Xml.XmlWriter
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  name: XmlWriter
+  nameWithType: XmlWriter
+  fullName: System.Xml.XmlWriter
+- uid: NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#WriteXml*
+  commentId: Overload:NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#WriteXml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.WriteXml
+  nameWithType: ZonedDateTime.IXmlSerializable.WriteXml
+  fullName: NodaTime.ZonedDateTime.System.Xml.Serialization.IXmlSerializable.WriteXml
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.ZonedDateTime.System#Xml#Serialization#IXmlSerializable#WriteXml*
+    name: WriteXml
+    href: NodaTime.ZonedDateTime.html#NodaTime_ZonedDateTime_System_Xml_Serialization_IXmlSerializable_WriteXml_System_Xml_XmlWriter_
+shouldSkipMarkup: true

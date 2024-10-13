@@ -1,0 +1,2549 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.AnnualDate
+  commentId: T:NodaTime.AnnualDate
+  id: AnnualDate
+  parent: NodaTime
+  children:
+  - NodaTime.AnnualDate.#ctor(System.Int32,System.Int32)
+  - NodaTime.AnnualDate.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  - NodaTime.AnnualDate.CompareTo(NodaTime.AnnualDate)
+  - NodaTime.AnnualDate.CompareTo(System.Object)
+  - NodaTime.AnnualDate.Day
+  - NodaTime.AnnualDate.Equals(NodaTime.AnnualDate)
+  - NodaTime.AnnualDate.Equals(System.Object)
+  - NodaTime.AnnualDate.GetHashCode
+  - NodaTime.AnnualDate.InYear(System.Int32)
+  - NodaTime.AnnualDate.IsValidYear(System.Int32)
+  - NodaTime.AnnualDate.Month
+  - NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#GetSchema
+  - NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  - NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  - NodaTime.AnnualDate.ToString
+  - NodaTime.AnnualDate.ToString(System.String,System.IFormatProvider)
+  - NodaTime.AnnualDate.op_Equality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  - NodaTime.AnnualDate.op_GreaterThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  - NodaTime.AnnualDate.op_GreaterThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  - NodaTime.AnnualDate.op_Inequality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  - NodaTime.AnnualDate.op_LessThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  - NodaTime.AnnualDate.op_LessThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  langs:
+  - csharp
+  - vb
+  name: AnnualDate
+  nameWithType: AnnualDate
+  fullName: NodaTime.AnnualDate
+  type: Struct
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Represents an annual date (month and day) in the ISO calendar but without a specific year,
+
+    typically for recurrent events such as birthdays, anniversaries, and deadlines.
+  remarks: >-
+    <p>
+
+    Equality and comparison order are defined in the natural way. Two values are equal if they
+
+    represent the same month and the same day-of-month. One value is earlier than another if it
+
+    has a smaller month, or the same month but an earlier day-of-month.
+
+    </p>
+
+    <p>
+
+    In the future, this struct may be expanded to support other calendar systems,
+
+    but this does not generalize terribly cleanly, particularly to the Hebrew calendar system
+
+    with its leap month.
+
+    </p>
+
+    <p>The default value of this type is January 1st.</p>
+  example: []
+  syntax:
+    content: >-
+      [TypeConverter(typeof(AnnualDateTypeConverter))]
+
+      public readonly struct AnnualDate : IEquatable<AnnualDate>, IComparable<AnnualDate>, IComparable, IFormattable, IXmlSerializable, IComparisonOperators<AnnualDate, AnnualDate, bool>, IEqualityOperators<AnnualDate, AnnualDate, bool>
+    content.vb: >-
+      <TypeConverter(GetType(AnnualDateTypeConverter))>
+
+      Public Structure AnnualDate Implements IEquatable(Of AnnualDate), IComparable(Of AnnualDate), IComparable, IFormattable, IXmlSerializable, IComparisonOperators(Of AnnualDate, AnnualDate, Boolean), IEqualityOperators(Of AnnualDate, AnnualDate, Boolean)
+  implements:
+  - System.IEquatable{NodaTime.AnnualDate}
+  - System.IComparable{NodaTime.AnnualDate}
+  - System.IComparable
+  - System.IFormattable
+  - System.Xml.Serialization.IXmlSerializable
+  - System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}
+  - System.Numerics.IEqualityOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: NodaTime.AnnualDate.#ctor(System.Int32,System.Int32)
+  commentId: M:NodaTime.AnnualDate.#ctor(System.Int32,System.Int32)
+  id: '#ctor(System.Int32,System.Int32)'
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: AnnualDate(int, int)
+  nameWithType: AnnualDate.AnnualDate(int, int)
+  fullName: NodaTime.AnnualDate.AnnualDate(int, int)
+  type: Constructor
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Constructs an instance for the given month and day in the ISO calendar.
+  example: []
+  syntax:
+    content: public AnnualDate(int month, int day)
+    parameters:
+    - id: month
+      type: System.Int32
+      description: The month of year.
+    - id: day
+      type: System.Int32
+      description: The day of month.
+    content.vb: Public Sub New(month As Integer, day As Integer)
+  overload: NodaTime.AnnualDate.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      The parameters do not form a valid date.
+          (February 29th is considered valid.)
+  nameWithType.vb: AnnualDate.New(Integer, Integer)
+  fullName.vb: NodaTime.AnnualDate.New(Integer, Integer)
+  name.vb: New(Integer, Integer)
+- uid: NodaTime.AnnualDate.Month
+  commentId: P:NodaTime.AnnualDate.Month
+  id: Month
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: Month
+  nameWithType: AnnualDate.Month
+  fullName: NodaTime.AnnualDate.Month
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the month of year.
+  example: []
+  syntax:
+    content: public int Month { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The month of year.
+    content.vb: Public ReadOnly Property Month As Integer
+  overload: NodaTime.AnnualDate.Month*
+- uid: NodaTime.AnnualDate.Day
+  commentId: P:NodaTime.AnnualDate.Day
+  id: Day
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: Day
+  nameWithType: AnnualDate.Day
+  fullName: NodaTime.AnnualDate.Day
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the day of month.
+  example: []
+  syntax:
+    content: public int Day { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The day of month.
+    content.vb: Public ReadOnly Property Day As Integer
+  overload: NodaTime.AnnualDate.Day*
+- uid: NodaTime.AnnualDate.InYear(System.Int32)
+  commentId: M:NodaTime.AnnualDate.InYear(System.Int32)
+  id: InYear(System.Int32)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: InYear(int)
+  nameWithType: AnnualDate.InYear(int)
+  fullName: NodaTime.AnnualDate.InYear(int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns this annual date in a particular year, as a <xref href="NodaTime.LocalDate" data-throw-if-not-resolved="false"></xref>.
+  remarks: >-
+    <p>
+
+    If this value represents February 29th, and the specified year is not a leap
+
+    year, the returned value will be February 28th of that year. To see whether the
+
+    original month and day is valid without truncation in a particular year,
+
+    use <xref href="NodaTime.AnnualDate.IsValidYear(System.Int32)" data-throw-if-not-resolved="false"></xref></p>
+  example: []
+  syntax:
+    content: public LocalDate InYear(int year)
+    parameters:
+    - id: year
+      type: System.Int32
+      description: The year component of the required date.
+    return:
+      type: NodaTime.LocalDate
+      description: A date in the given year, suitable for this annual date.
+    content.vb: Public Function InYear(year As Integer) As LocalDate
+  overload: NodaTime.AnnualDate.InYear*
+  nameWithType.vb: AnnualDate.InYear(Integer)
+  fullName.vb: NodaTime.AnnualDate.InYear(Integer)
+  name.vb: InYear(Integer)
+- uid: NodaTime.AnnualDate.IsValidYear(System.Int32)
+  commentId: M:NodaTime.AnnualDate.IsValidYear(System.Int32)
+  id: IsValidYear(System.Int32)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: IsValidYear(int)
+  nameWithType: AnnualDate.IsValidYear(int)
+  fullName: NodaTime.AnnualDate.IsValidYear(int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Checks whether the specified year forms a valid date with the month/day in this
+
+    value, without any truncation. This will always return <code>true</code> except
+
+    for values representing February 29th, where the specified year is a non leap year.
+  example: []
+  syntax:
+    content: public bool IsValidYear(int year)
+    parameters:
+    - id: year
+      type: System.Int32
+      description: The year to test for validity
+    return:
+      type: System.Boolean
+      description: >-
+        <code>true</code> if the current value occurs within the given year;
+
+        <code>false</code> otherwise.
+    content.vb: Public Function IsValidYear(year As Integer) As Boolean
+  overload: NodaTime.AnnualDate.IsValidYear*
+  nameWithType.vb: AnnualDate.IsValidYear(Integer)
+  fullName.vb: NodaTime.AnnualDate.IsValidYear(Integer)
+  name.vb: IsValidYear(Integer)
+- uid: NodaTime.AnnualDate.Equals(System.Object)
+  commentId: M:NodaTime.AnnualDate.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: AnnualDate.Equals(object?)
+  fullName: NodaTime.AnnualDate.Equals(object?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Compares this annual date with the specified reference.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare this one with
+    return:
+      type: System.Boolean
+      description: True if the specified value is an annual date which is equal to this one; false otherwise
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: NodaTime.AnnualDate.Equals*
+  nameWithType.vb: AnnualDate.Equals(Object)
+  fullName.vb: NodaTime.AnnualDate.Equals(Object)
+  name.vb: Equals(Object)
+- uid: NodaTime.AnnualDate.GetHashCode
+  commentId: M:NodaTime.AnnualDate.GetHashCode
+  id: GetHashCode
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: AnnualDate.GetHashCode()
+  fullName: NodaTime.AnnualDate.GetHashCode()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns a hash code for this annual date.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A hash code for this annual date.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: NodaTime.AnnualDate.GetHashCode*
+- uid: NodaTime.AnnualDate.ToString
+  commentId: M:NodaTime.AnnualDate.ToString
+  id: ToString
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: AnnualDate.ToString()
+  fullName: NodaTime.AnnualDate.ToString()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns a <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents this instance.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The value of the current instance in the default format pattern ("G").
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: NodaTime.AnnualDate.ToString*
+- uid: NodaTime.AnnualDate.ToString(System.String,System.IFormatProvider)
+  commentId: M:NodaTime.AnnualDate.ToString(System.String,System.IFormatProvider)
+  id: ToString(System.String,System.IFormatProvider)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: ToString(string?, IFormatProvider?)
+  nameWithType: AnnualDate.ToString(string?, IFormatProvider?)
+  fullName: NodaTime.AnnualDate.ToString(string?, System.IFormatProvider?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Formats the value of the current instance using the specified pattern.
+  example: []
+  syntax:
+    content: public string ToString(string? patternText, IFormatProvider? formatProvider)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: >-
+        The <xref href="System.String" data-throw-if-not-resolved="false"></xref> specifying the pattern to use,
+            or null to use the default format pattern ("G").
+    - id: formatProvider
+      type: System.IFormatProvider
+      description: >-
+        The <xref href="System.IFormatProvider" data-throw-if-not-resolved="false"></xref> to use when formatting the value,
+            or null to use the current thread's culture to obtain a format provider.
+    return:
+      type: System.String
+      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> containing the value of the current instance in the specified format.
+    content.vb: Public Function ToString(patternText As String, formatProvider As IFormatProvider) As String
+  overload: NodaTime.AnnualDate.ToString*
+  implements:
+  - System.IFormattable.ToString(System.String,System.IFormatProvider)
+  nameWithType.vb: AnnualDate.ToString(String, IFormatProvider)
+  fullName.vb: NodaTime.AnnualDate.ToString(String, System.IFormatProvider)
+  name.vb: ToString(String, IFormatProvider)
+- uid: NodaTime.AnnualDate.Equals(NodaTime.AnnualDate)
+  commentId: M:NodaTime.AnnualDate.Equals(NodaTime.AnnualDate)
+  id: Equals(NodaTime.AnnualDate)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: Equals(AnnualDate)
+  nameWithType: AnnualDate.Equals(AnnualDate)
+  fullName: NodaTime.AnnualDate.Equals(NodaTime.AnnualDate)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Compares this annual date with the specified one for equality.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public bool Equals(AnnualDate other)
+    parameters:
+    - id: other
+      type: NodaTime.AnnualDate
+      description: The other annual date to compare this one with
+    return:
+      type: System.Boolean
+      description: True if the specified annual date is equal to this one; false otherwise
+    content.vb: Public Function Equals(other As AnnualDate) As Boolean
+  overload: NodaTime.AnnualDate.Equals*
+  implements:
+  - System.IEquatable{NodaTime.AnnualDate}.Equals(NodaTime.AnnualDate)
+- uid: NodaTime.AnnualDate.CompareTo(NodaTime.AnnualDate)
+  commentId: M:NodaTime.AnnualDate.CompareTo(NodaTime.AnnualDate)
+  id: CompareTo(NodaTime.AnnualDate)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: CompareTo(AnnualDate)
+  nameWithType: AnnualDate.CompareTo(AnnualDate)
+  fullName: NodaTime.AnnualDate.CompareTo(NodaTime.AnnualDate)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Indicates whether this annual date is earlier, later or the same as another one.
+
+    See the type documentation for a description of ordering semantics.
+  example: []
+  syntax:
+    content: public int CompareTo(AnnualDate other)
+    parameters:
+    - id: other
+      type: NodaTime.AnnualDate
+      description: The other annual date to compare this one with
+    return:
+      type: System.Int32
+      description: >-
+        A value less than zero if this annual date is earlier than <code class="paramref">other</code>;
+            zero if this time is the same as <code class="paramref">other</code>; a value greater than zero if this annual date is
+            later than <code class="paramref">other</code>.
+    content.vb: Public Function CompareTo(other As AnnualDate) As Integer
+  overload: NodaTime.AnnualDate.CompareTo*
+  implements:
+  - System.IComparable{NodaTime.AnnualDate}.CompareTo(NodaTime.AnnualDate)
+- uid: NodaTime.AnnualDate.CompareTo(System.Object)
+  commentId: M:NodaTime.AnnualDate.CompareTo(System.Object)
+  id: CompareTo(System.Object)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: CompareTo(object?)
+  nameWithType: AnnualDate.CompareTo(object?)
+  fullName: NodaTime.AnnualDate.CompareTo(object?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implementation of <xref href="System.IComparable.CompareTo(System.Object)" data-throw-if-not-resolved="false"></xref> to compare two AnnualDates.
+
+    See the type documentation for a description of ordering semantics.
+  remarks: This uses explicit interface implementation to avoid it being called accidentally. The generic implementation should usually be preferred.
+  example: []
+  syntax:
+    content: public int CompareTo(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare this value with.
+    return:
+      type: System.Int32
+      description: >-
+        The result of comparing this AnnualDate with another one.
+            If <code class="paramref">obj</code> is null, this method returns a value greater than 0.
+    content.vb: Public Function CompareTo(obj As Object) As Integer
+  overload: NodaTime.AnnualDate.CompareTo*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">obj</code> is non-null but does not refer to an instance of <xref href="NodaTime.AnnualDate" data-throw-if-not-resolved="false"></xref>
+  implements:
+  - System.IComparable.CompareTo(System.Object)
+  nameWithType.vb: AnnualDate.CompareTo(Object)
+  fullName.vb: NodaTime.AnnualDate.CompareTo(Object)
+  name.vb: CompareTo(Object)
+- uid: NodaTime.AnnualDate.op_Equality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  commentId: M:NodaTime.AnnualDate.op_Equality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  id: op_Equality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: operator ==(AnnualDate, AnnualDate)
+  nameWithType: AnnualDate.operator ==(AnnualDate, AnnualDate)
+  fullName: NodaTime.AnnualDate.operator ==(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Compares two <xref href="NodaTime.AnnualDate" data-throw-if-not-resolved="false"></xref> values for equality.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public static bool operator ==(AnnualDate lhs, AnnualDate rhs)
+    parameters:
+    - id: lhs
+      type: NodaTime.AnnualDate
+      description: The first value to compare
+    - id: rhs
+      type: NodaTime.AnnualDate
+      description: The second value to compare
+    return:
+      type: System.Boolean
+      description: True if the two dates are the same; false otherwise
+    content.vb: Public Shared Operator =(lhs As AnnualDate, rhs As AnnualDate) As Boolean
+  overload: NodaTime.AnnualDate.op_Equality*
+  implements:
+  - System.Numerics.IEqualityOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_Equality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  nameWithType.vb: AnnualDate.=(AnnualDate, AnnualDate)
+  fullName.vb: NodaTime.AnnualDate.=(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  name.vb: =(AnnualDate, AnnualDate)
+- uid: NodaTime.AnnualDate.op_Inequality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  commentId: M:NodaTime.AnnualDate.op_Inequality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  id: op_Inequality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: operator !=(AnnualDate, AnnualDate)
+  nameWithType: AnnualDate.operator !=(AnnualDate, AnnualDate)
+  fullName: NodaTime.AnnualDate.operator !=(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Compares two <xref href="NodaTime.AnnualDate" data-throw-if-not-resolved="false"></xref> values for inequality.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public static bool operator !=(AnnualDate lhs, AnnualDate rhs)
+    parameters:
+    - id: lhs
+      type: NodaTime.AnnualDate
+      description: The first value to compare
+    - id: rhs
+      type: NodaTime.AnnualDate
+      description: The second value to compare
+    return:
+      type: System.Boolean
+      description: False if the two dates are the same and in the same calendar; true otherwise
+    content.vb: Public Shared Operator <>(lhs As AnnualDate, rhs As AnnualDate) As Boolean
+  overload: NodaTime.AnnualDate.op_Inequality*
+  implements:
+  - System.Numerics.IEqualityOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_Inequality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  nameWithType.vb: AnnualDate.<>(AnnualDate, AnnualDate)
+  fullName.vb: NodaTime.AnnualDate.<>(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  name.vb: <>(AnnualDate, AnnualDate)
+- uid: NodaTime.AnnualDate.op_LessThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  commentId: M:NodaTime.AnnualDate.op_LessThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  id: op_LessThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: operator <(AnnualDate, AnnualDate)
+  nameWithType: AnnualDate.operator <(AnnualDate, AnnualDate)
+  fullName: NodaTime.AnnualDate.operator <(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Compares two annual dates to see if the left one is strictly earlier than the right one.
+
+    See the type documentation for a description of ordering semantics.
+  example: []
+  syntax:
+    content: public static bool operator <(AnnualDate lhs, AnnualDate rhs)
+    parameters:
+    - id: lhs
+      type: NodaTime.AnnualDate
+      description: First operand of the comparison
+    - id: rhs
+      type: NodaTime.AnnualDate
+      description: Second operand of the comparison
+    return:
+      type: System.Boolean
+      description: true if the <code class="paramref">lhs</code> is strictly earlier than <code class="paramref">rhs</code>, false otherwise.
+    content.vb: Public Shared Operator <(lhs As AnnualDate, rhs As AnnualDate) As Boolean
+  overload: NodaTime.AnnualDate.op_LessThan*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: >-
+      The calendar system of <code class="paramref">rhs</code> is not the same
+          as the calendar of <code class="paramref">lhs</code>.
+  implements:
+  - System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_LessThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  nameWithType.vb: AnnualDate.<(AnnualDate, AnnualDate)
+  fullName.vb: NodaTime.AnnualDate.<(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  name.vb: <(AnnualDate, AnnualDate)
+- uid: NodaTime.AnnualDate.op_LessThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  commentId: M:NodaTime.AnnualDate.op_LessThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  id: op_LessThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: operator <=(AnnualDate, AnnualDate)
+  nameWithType: AnnualDate.operator <=(AnnualDate, AnnualDate)
+  fullName: NodaTime.AnnualDate.operator <=(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Compares two annual dates to see if the left one is earlier than or equal to the right one.
+
+    See the type documentation for a description of ordering semantics.
+  example: []
+  syntax:
+    content: public static bool operator <=(AnnualDate lhs, AnnualDate rhs)
+    parameters:
+    - id: lhs
+      type: NodaTime.AnnualDate
+      description: First operand of the comparison
+    - id: rhs
+      type: NodaTime.AnnualDate
+      description: Second operand of the comparison
+    return:
+      type: System.Boolean
+      description: true if the <code class="paramref">lhs</code> is earlier than or equal to <code class="paramref">rhs</code>, false otherwise.
+    content.vb: Public Shared Operator <=(lhs As AnnualDate, rhs As AnnualDate) As Boolean
+  overload: NodaTime.AnnualDate.op_LessThanOrEqual*
+  implements:
+  - System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_LessThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  nameWithType.vb: AnnualDate.<=(AnnualDate, AnnualDate)
+  fullName.vb: NodaTime.AnnualDate.<=(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  name.vb: <=(AnnualDate, AnnualDate)
+- uid: NodaTime.AnnualDate.op_GreaterThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  commentId: M:NodaTime.AnnualDate.op_GreaterThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  id: op_GreaterThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: operator >(AnnualDate, AnnualDate)
+  nameWithType: AnnualDate.operator >(AnnualDate, AnnualDate)
+  fullName: NodaTime.AnnualDate.operator >(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Compares two annual dates to see if the left one is strictly later than the right one.
+
+    See the type documentation for a description of ordering semantics.
+  example: []
+  syntax:
+    content: public static bool operator >(AnnualDate lhs, AnnualDate rhs)
+    parameters:
+    - id: lhs
+      type: NodaTime.AnnualDate
+      description: First operand of the comparison
+    - id: rhs
+      type: NodaTime.AnnualDate
+      description: Second operand of the comparison
+    return:
+      type: System.Boolean
+      description: true if the <code class="paramref">lhs</code> is strictly later than <code class="paramref">rhs</code>, false otherwise.
+    content.vb: Public Shared Operator >(lhs As AnnualDate, rhs As AnnualDate) As Boolean
+  overload: NodaTime.AnnualDate.op_GreaterThan*
+  implements:
+  - System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_GreaterThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  nameWithType.vb: AnnualDate.>(AnnualDate, AnnualDate)
+  fullName.vb: NodaTime.AnnualDate.>(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  name.vb: '>(AnnualDate, AnnualDate)'
+- uid: NodaTime.AnnualDate.op_GreaterThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  commentId: M:NodaTime.AnnualDate.op_GreaterThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  id: op_GreaterThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: operator >=(AnnualDate, AnnualDate)
+  nameWithType: AnnualDate.operator >=(AnnualDate, AnnualDate)
+  fullName: NodaTime.AnnualDate.operator >=(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Compares two annual dates to see if the left one is later than or equal to the right one.
+
+    See the type documentation for a description of ordering semantics.
+  example: []
+  syntax:
+    content: public static bool operator >=(AnnualDate lhs, AnnualDate rhs)
+    parameters:
+    - id: lhs
+      type: NodaTime.AnnualDate
+      description: First operand of the comparison
+    - id: rhs
+      type: NodaTime.AnnualDate
+      description: Second operand of the comparison
+    return:
+      type: System.Boolean
+      description: true if the <code class="paramref">lhs</code> is later than or equal to <code class="paramref">rhs</code>, false otherwise.
+    content.vb: Public Shared Operator >=(lhs As AnnualDate, rhs As AnnualDate) As Boolean
+  overload: NodaTime.AnnualDate.op_GreaterThanOrEqual*
+  implements:
+  - System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_GreaterThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  nameWithType.vb: AnnualDate.>=(AnnualDate, AnnualDate)
+  fullName.vb: NodaTime.AnnualDate.>=(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  name.vb: '>=(AnnualDate, AnnualDate)'
+- uid: NodaTime.AnnualDate.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  commentId: M:NodaTime.AnnualDate.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  id: AddSchema(System.Xml.Schema.XmlSchemaSet)
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: AddSchema(XmlSchemaSet)
+  nameWithType: AnnualDate.AddSchema(XmlSchemaSet)
+  fullName: NodaTime.AnnualDate.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Adds the XML schema type describing the structure of the <xref href="NodaTime.AnnualDate" data-throw-if-not-resolved="false"></xref> XML serialization to the given <code class="paramref">xmlSchemaSet</code>.
+  example: []
+  syntax:
+    content: public static XmlQualifiedName AddSchema(XmlSchemaSet xmlSchemaSet)
+    parameters:
+    - id: xmlSchemaSet
+      type: System.Xml.Schema.XmlSchemaSet
+      description: The XML schema set provided by <xref href="System.Xml.Serialization.XmlSchemaExporter" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Xml.XmlQualifiedName
+      description: The qualified name of the schema type that was added to the <code class="paramref">xmlSchemaSet</code>.
+    content.vb: Public Shared Function AddSchema(xmlSchemaSet As XmlSchemaSet) As XmlQualifiedName
+  overload: NodaTime.AnnualDate.AddSchema*
+- uid: NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#GetSchema
+  commentId: M:NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#GetSchema
+  id: System#Xml#Serialization#IXmlSerializable#GetSchema
+  isEii: true
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.GetSchema()
+  nameWithType: AnnualDate.IXmlSerializable.GetSchema()
+  fullName: NodaTime.AnnualDate.System.Xml.Serialization.IXmlSerializable.GetSchema()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: This method is reserved and should not be used. When implementing the <code>IXmlSerializable</code> interface, you should return <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> (<code>Nothing</code> in Visual Basic) from this method, and instead, if specifying a custom schema is required, apply the <xref href="System.Xml.Serialization.XmlSchemaProviderAttribute" data-throw-if-not-resolved="false"></xref> to the class.
+  example: []
+  syntax:
+    content: XmlSchema IXmlSerializable.GetSchema()
+    return:
+      type: System.Xml.Schema.XmlSchema
+      description: An <xref href="System.Xml.Schema.XmlSchema" data-throw-if-not-resolved="false"></xref> that describes the XML representation of the object that is produced by the <xref href="System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)" data-throw-if-not-resolved="false"></xref> method and consumed by the <xref href="System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)" data-throw-if-not-resolved="false"></xref> method.
+    content.vb: ''
+  overload: NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#GetSchema*
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+- uid: NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  commentId: M:NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  id: System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  isEii: true
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.ReadXml(XmlReader)
+  nameWithType: AnnualDate.IXmlSerializable.ReadXml(XmlReader)
+  fullName: NodaTime.AnnualDate.System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Generates an object from its XML representation.
+  example: []
+  syntax:
+    content: void IXmlSerializable.ReadXml(XmlReader reader)
+    parameters:
+    - id: reader
+      type: System.Xml.XmlReader
+      description: The <xref href="System.Xml.XmlReader" data-throw-if-not-resolved="false"></xref> stream from which the object is deserialized.
+    content.vb: ''
+  overload: NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#ReadXml*
+  implements:
+  - System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+- uid: NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  commentId: M:NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  id: System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  isEii: true
+  parent: NodaTime.AnnualDate
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.WriteXml(XmlWriter)
+  nameWithType: AnnualDate.IXmlSerializable.WriteXml(XmlWriter)
+  fullName: NodaTime.AnnualDate.System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Converts an object into its XML representation.
+  example: []
+  syntax:
+    content: void IXmlSerializable.WriteXml(XmlWriter writer)
+    parameters:
+    - id: writer
+      type: System.Xml.XmlWriter
+      description: The <xref href="System.Xml.XmlWriter" data-throw-if-not-resolved="false"></xref> stream to which the object is serialized.
+    content.vb: ''
+  overload: NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#WriteXml*
+  implements:
+  - System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+references:
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.IEquatable{NodaTime.AnnualDate}
+  commentId: T:System.IEquatable{NodaTime.AnnualDate}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<AnnualDate>
+  nameWithType: IEquatable<AnnualDate>
+  fullName: System.IEquatable<NodaTime.AnnualDate>
+  nameWithType.vb: IEquatable(Of AnnualDate)
+  fullName.vb: System.IEquatable(Of NodaTime.AnnualDate)
+  name.vb: IEquatable(Of AnnualDate)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+- uid: System.IComparable{NodaTime.AnnualDate}
+  commentId: T:System.IComparable{NodaTime.AnnualDate}
+  parent: System
+  definition: System.IComparable`1
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  name: IComparable<AnnualDate>
+  nameWithType: IComparable<AnnualDate>
+  fullName: System.IComparable<NodaTime.AnnualDate>
+  nameWithType.vb: IComparable(Of AnnualDate)
+  fullName.vb: System.IComparable(Of NodaTime.AnnualDate)
+  name.vb: IComparable(Of AnnualDate)
+  spec.csharp:
+  - uid: System.IComparable`1
+    name: IComparable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  - name: <
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IComparable`1
+    name: IComparable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+- uid: System.IComparable
+  commentId: T:System.IComparable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable
+  name: IComparable
+  nameWithType: IComparable
+  fullName: System.IComparable
+- uid: System.IFormattable
+  commentId: T:System.IFormattable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iformattable
+  name: IFormattable
+  nameWithType: IFormattable
+  fullName: System.IFormattable
+- uid: System.Xml.Serialization.IXmlSerializable
+  commentId: T:System.Xml.Serialization.IXmlSerializable
+  parent: System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable
+  nameWithType: IXmlSerializable
+  fullName: System.Xml.Serialization.IXmlSerializable
+- uid: System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}
+  commentId: T:System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}
+  parent: System.Numerics
+  definition: System.Numerics.IComparisonOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3
+  name: IComparisonOperators<AnnualDate, AnnualDate, bool>
+  nameWithType: IComparisonOperators<AnnualDate, AnnualDate, bool>
+  fullName: System.Numerics.IComparisonOperators<NodaTime.AnnualDate, NodaTime.AnnualDate, bool>
+  nameWithType.vb: IComparisonOperators(Of AnnualDate, AnnualDate, Boolean)
+  fullName.vb: System.Numerics.IComparisonOperators(Of NodaTime.AnnualDate, NodaTime.AnnualDate, Boolean)
+  name.vb: IComparisonOperators(Of AnnualDate, AnnualDate, Boolean)
+  spec.csharp:
+  - uid: System.Numerics.IComparisonOperators`3
+    name: IComparisonOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3
+  - name: <
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IComparisonOperators`3
+    name: IComparisonOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Numerics.IEqualityOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}
+  commentId: T:System.Numerics.IEqualityOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}
+  parent: System.Numerics
+  definition: System.Numerics.IEqualityOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  name: IEqualityOperators<AnnualDate, AnnualDate, bool>
+  nameWithType: IEqualityOperators<AnnualDate, AnnualDate, bool>
+  fullName: System.Numerics.IEqualityOperators<NodaTime.AnnualDate, NodaTime.AnnualDate, bool>
+  nameWithType.vb: IEqualityOperators(Of AnnualDate, AnnualDate, Boolean)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.AnnualDate, NodaTime.AnnualDate, Boolean)
+  name.vb: IEqualityOperators(Of AnnualDate, AnnualDate, Boolean)
+  spec.csharp:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: <
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IComparable`1
+  commentId: T:System.IComparable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  name: IComparable<T>
+  nameWithType: IComparable<T>
+  fullName: System.IComparable<T>
+  nameWithType.vb: IComparable(Of T)
+  fullName.vb: System.IComparable(Of T)
+  name.vb: IComparable(Of T)
+  spec.csharp:
+  - uid: System.IComparable`1
+    name: IComparable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IComparable`1
+    name: IComparable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Xml.Serialization
+  commentId: N:System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Serialization
+  nameWithType: System.Xml.Serialization
+  fullName: System.Xml.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+- uid: System.Numerics.IComparisonOperators`3
+  commentId: T:System.Numerics.IComparisonOperators`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3
+  name: IComparisonOperators<TSelf, TOther, TResult>
+  nameWithType: IComparisonOperators<TSelf, TOther, TResult>
+  fullName: System.Numerics.IComparisonOperators<TSelf, TOther, TResult>
+  nameWithType.vb: IComparisonOperators(Of TSelf, TOther, TResult)
+  fullName.vb: System.Numerics.IComparisonOperators(Of TSelf, TOther, TResult)
+  name.vb: IComparisonOperators(Of TSelf, TOther, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IComparisonOperators`3
+    name: IComparisonOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IComparisonOperators`3
+    name: IComparisonOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics
+  commentId: N:System.Numerics
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Numerics
+  nameWithType: System.Numerics
+  fullName: System.Numerics
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+- uid: System.Numerics.IEqualityOperators`3
+  commentId: T:System.Numerics.IEqualityOperators`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  name: IEqualityOperators<TSelf, TOther, TResult>
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult)
+  name.vb: IEqualityOperators(Of TSelf, TOther, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: NodaTime.AnnualDate.#ctor*
+  commentId: Overload:NodaTime.AnnualDate.#ctor
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate__ctor_System_Int32_System_Int32_
+  name: AnnualDate
+  nameWithType: AnnualDate.AnnualDate
+  fullName: NodaTime.AnnualDate.AnnualDate
+  nameWithType.vb: AnnualDate.New
+  fullName.vb: NodaTime.AnnualDate.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: NodaTime.AnnualDate.Month*
+  commentId: Overload:NodaTime.AnnualDate.Month
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_Month
+  name: Month
+  nameWithType: AnnualDate.Month
+  fullName: NodaTime.AnnualDate.Month
+- uid: NodaTime.AnnualDate.Day*
+  commentId: Overload:NodaTime.AnnualDate.Day
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_Day
+  name: Day
+  nameWithType: AnnualDate.Day
+  fullName: NodaTime.AnnualDate.Day
+- uid: NodaTime.LocalDate
+  commentId: T:NodaTime.LocalDate
+  parent: NodaTime
+  href: NodaTime.LocalDate.html
+  name: LocalDate
+  nameWithType: LocalDate
+  fullName: NodaTime.LocalDate
+- uid: NodaTime.AnnualDate.IsValidYear(System.Int32)
+  commentId: M:NodaTime.AnnualDate.IsValidYear(System.Int32)
+  isExternal: true
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_IsValidYear_System_Int32_
+  name: IsValidYear(int)
+  nameWithType: AnnualDate.IsValidYear(int)
+  fullName: NodaTime.AnnualDate.IsValidYear(int)
+  nameWithType.vb: AnnualDate.IsValidYear(Integer)
+  fullName.vb: NodaTime.AnnualDate.IsValidYear(Integer)
+  name.vb: IsValidYear(Integer)
+  spec.csharp:
+  - uid: NodaTime.AnnualDate.IsValidYear(System.Int32)
+    name: IsValidYear
+    href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_IsValidYear_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: NodaTime.AnnualDate.IsValidYear(System.Int32)
+    name: IsValidYear
+    href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_IsValidYear_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: NodaTime.AnnualDate.InYear*
+  commentId: Overload:NodaTime.AnnualDate.InYear
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_InYear_System_Int32_
+  name: InYear
+  nameWithType: AnnualDate.InYear
+  fullName: NodaTime.AnnualDate.InYear
+- uid: NodaTime.AnnualDate.IsValidYear*
+  commentId: Overload:NodaTime.AnnualDate.IsValidYear
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_IsValidYear_System_Int32_
+  name: IsValidYear
+  nameWithType: AnnualDate.IsValidYear
+  fullName: NodaTime.AnnualDate.IsValidYear
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NodaTime.AnnualDate.Equals*
+  commentId: Overload:NodaTime.AnnualDate.Equals
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_Equals_System_Object_
+  name: Equals
+  nameWithType: AnnualDate.Equals
+  fullName: NodaTime.AnnualDate.Equals
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: NodaTime.AnnualDate.GetHashCode*
+  commentId: Overload:NodaTime.AnnualDate.GetHashCode
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_GetHashCode
+  name: GetHashCode
+  nameWithType: AnnualDate.GetHashCode
+  fullName: NodaTime.AnnualDate.GetHashCode
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: NodaTime.AnnualDate.ToString*
+  commentId: Overload:NodaTime.AnnualDate.ToString
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_ToString
+  name: ToString
+  nameWithType: AnnualDate.ToString
+  fullName: NodaTime.AnnualDate.ToString
+- uid: System.IFormatProvider
+  commentId: T:System.IFormatProvider
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  name: IFormatProvider
+  nameWithType: IFormatProvider
+  fullName: System.IFormatProvider
+- uid: System.IFormattable.ToString(System.String,System.IFormatProvider)
+  commentId: M:System.IFormattable.ToString(System.String,System.IFormatProvider)
+  parent: System.IFormattable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iformattable.tostring
+  name: ToString(string, IFormatProvider)
+  nameWithType: IFormattable.ToString(string, IFormatProvider)
+  fullName: System.IFormattable.ToString(string, System.IFormatProvider)
+  nameWithType.vb: IFormattable.ToString(String, IFormatProvider)
+  fullName.vb: System.IFormattable.ToString(String, System.IFormatProvider)
+  name.vb: ToString(String, IFormatProvider)
+  spec.csharp:
+  - uid: System.IFormattable.ToString(System.String,System.IFormatProvider)
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformattable.tostring
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IFormattable.ToString(System.String,System.IFormatProvider)
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformattable.tostring
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: System.IEquatable{NodaTime.AnnualDate}.Equals(NodaTime.AnnualDate)
+  commentId: M:System.IEquatable{NodaTime.AnnualDate}.Equals(NodaTime.AnnualDate)
+  parent: System.IEquatable{NodaTime.AnnualDate}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(AnnualDate)
+  nameWithType: IEquatable<AnnualDate>.Equals(AnnualDate)
+  fullName: System.IEquatable<NodaTime.AnnualDate>.Equals(NodaTime.AnnualDate)
+  nameWithType.vb: IEquatable(Of AnnualDate).Equals(AnnualDate)
+  fullName.vb: System.IEquatable(Of NodaTime.AnnualDate).Equals(NodaTime.AnnualDate)
+  spec.csharp:
+  - uid: System.IEquatable{NodaTime.AnnualDate}.Equals(NodaTime.AnnualDate)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{NodaTime.AnnualDate}.Equals(NodaTime.AnnualDate)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+- uid: NodaTime.AnnualDate
+  commentId: T:NodaTime.AnnualDate
+  parent: NodaTime
+  href: NodaTime.AnnualDate.html
+  name: AnnualDate
+  nameWithType: AnnualDate
+  fullName: NodaTime.AnnualDate
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: NodaTime.AnnualDate.CompareTo*
+  commentId: Overload:NodaTime.AnnualDate.CompareTo
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_CompareTo_NodaTime_AnnualDate_
+  name: CompareTo
+  nameWithType: AnnualDate.CompareTo
+  fullName: NodaTime.AnnualDate.CompareTo
+- uid: System.IComparable{NodaTime.AnnualDate}.CompareTo(NodaTime.AnnualDate)
+  commentId: M:System.IComparable{NodaTime.AnnualDate}.CompareTo(NodaTime.AnnualDate)
+  parent: System.IComparable{NodaTime.AnnualDate}
+  definition: System.IComparable`1.CompareTo(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  name: CompareTo(AnnualDate)
+  nameWithType: IComparable<AnnualDate>.CompareTo(AnnualDate)
+  fullName: System.IComparable<NodaTime.AnnualDate>.CompareTo(NodaTime.AnnualDate)
+  nameWithType.vb: IComparable(Of AnnualDate).CompareTo(AnnualDate)
+  fullName.vb: System.IComparable(Of NodaTime.AnnualDate).CompareTo(NodaTime.AnnualDate)
+  spec.csharp:
+  - uid: System.IComparable{NodaTime.AnnualDate}.CompareTo(NodaTime.AnnualDate)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+  spec.vb:
+  - uid: System.IComparable{NodaTime.AnnualDate}.CompareTo(NodaTime.AnnualDate)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+- uid: System.IComparable`1.CompareTo(`0)
+  commentId: M:System.IComparable`1.CompareTo(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  name: CompareTo(T)
+  nameWithType: IComparable<T>.CompareTo(T)
+  fullName: System.IComparable<T>.CompareTo(T)
+  nameWithType.vb: IComparable(Of T).CompareTo(T)
+  fullName.vb: System.IComparable(Of T).CompareTo(T)
+  spec.csharp:
+  - uid: System.IComparable`1.CompareTo(`0)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IComparable`1.CompareTo(`0)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  - name: (
+  - name: T
+  - name: )
+- uid: System.IComparable.CompareTo(System.Object)
+  commentId: M:System.IComparable.CompareTo(System.Object)
+  parent: System.IComparable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable.compareto
+  name: CompareTo(object)
+  nameWithType: IComparable.CompareTo(object)
+  fullName: System.IComparable.CompareTo(object)
+  nameWithType.vb: IComparable.CompareTo(Object)
+  fullName.vb: System.IComparable.CompareTo(Object)
+  name.vb: CompareTo(Object)
+  spec.csharp:
+  - uid: System.IComparable.CompareTo(System.Object)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable.compareto
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.IComparable.CompareTo(System.Object)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable.compareto
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: NodaTime.AnnualDate.op_Equality*
+  commentId: Overload:NodaTime.AnnualDate.op_Equality
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_op_Equality_NodaTime_AnnualDate_NodaTime_AnnualDate_
+  name: operator ==
+  nameWithType: AnnualDate.operator ==
+  fullName: NodaTime.AnnualDate.operator ==
+  nameWithType.vb: AnnualDate.=
+  fullName.vb: NodaTime.AnnualDate.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.AnnualDate.op_Equality*
+    name: ==
+    href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_op_Equality_NodaTime_AnnualDate_NodaTime_AnnualDate_
+- uid: System.Numerics.IEqualityOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_Equality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  commentId: M:System.Numerics.IEqualityOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_Equality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  parent: System.Numerics.IEqualityOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}
+  definition: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  name: operator ==(AnnualDate, AnnualDate)
+  nameWithType: IEqualityOperators<AnnualDate, AnnualDate, bool>.operator ==(AnnualDate, AnnualDate)
+  fullName: System.Numerics.IEqualityOperators<NodaTime.AnnualDate, NodaTime.AnnualDate, bool>.operator ==(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  nameWithType.vb: IEqualityOperators(Of AnnualDate, AnnualDate, Boolean).=(AnnualDate, AnnualDate)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.AnnualDate, NodaTime.AnnualDate, Boolean).=(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  name.vb: =(AnnualDate, AnnualDate)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_Equality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+    name: ==
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+  spec.vb:
+  - name: =
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+- uid: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  commentId: M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  name: operator ==(TSelf, TOther)
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>.operator ==(TSelf, TOther)
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>.operator ==(TSelf, TOther)
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult).=(TSelf, TOther)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult).=(TSelf, TOther)
+  name.vb: =(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+    name: ==
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: =
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.AnnualDate.op_Inequality*
+  commentId: Overload:NodaTime.AnnualDate.op_Inequality
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_op_Inequality_NodaTime_AnnualDate_NodaTime_AnnualDate_
+  name: operator !=
+  nameWithType: AnnualDate.operator !=
+  fullName: NodaTime.AnnualDate.operator !=
+  nameWithType.vb: AnnualDate.<>
+  fullName.vb: NodaTime.AnnualDate.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.AnnualDate.op_Inequality*
+    name: '!='
+    href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_op_Inequality_NodaTime_AnnualDate_NodaTime_AnnualDate_
+- uid: System.Numerics.IEqualityOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_Inequality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  commentId: M:System.Numerics.IEqualityOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_Inequality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  parent: System.Numerics.IEqualityOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}
+  definition: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  name: operator !=(AnnualDate, AnnualDate)
+  nameWithType: IEqualityOperators<AnnualDate, AnnualDate, bool>.operator !=(AnnualDate, AnnualDate)
+  fullName: System.Numerics.IEqualityOperators<NodaTime.AnnualDate, NodaTime.AnnualDate, bool>.operator !=(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  nameWithType.vb: IEqualityOperators(Of AnnualDate, AnnualDate, Boolean).<>(AnnualDate, AnnualDate)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.AnnualDate, NodaTime.AnnualDate, Boolean).<>(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  name.vb: <>(AnnualDate, AnnualDate)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_Inequality(NodaTime.AnnualDate,NodaTime.AnnualDate)
+    name: '!='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+  spec.vb:
+  - name: <>
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+- uid: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  commentId: M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  name: operator !=(TSelf, TOther)
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>.operator !=(TSelf, TOther)
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>.operator !=(TSelf, TOther)
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult).<>(TSelf, TOther)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult).<>(TSelf, TOther)
+  name.vb: <>(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+    name: '!='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: <>
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.AnnualDate.op_LessThan*
+  commentId: Overload:NodaTime.AnnualDate.op_LessThan
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_op_LessThan_NodaTime_AnnualDate_NodaTime_AnnualDate_
+  name: operator <
+  nameWithType: AnnualDate.operator <
+  fullName: NodaTime.AnnualDate.operator <
+  nameWithType.vb: AnnualDate.<
+  fullName.vb: NodaTime.AnnualDate.<
+  name.vb: <
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.AnnualDate.op_LessThan*
+    name: <
+    href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_op_LessThan_NodaTime_AnnualDate_NodaTime_AnnualDate_
+- uid: System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_LessThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  commentId: M:System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_LessThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  parent: System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}
+  definition: System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthan
+  name: operator <(AnnualDate, AnnualDate)
+  nameWithType: IComparisonOperators<AnnualDate, AnnualDate, bool>.operator <(AnnualDate, AnnualDate)
+  fullName: System.Numerics.IComparisonOperators<NodaTime.AnnualDate, NodaTime.AnnualDate, bool>.operator <(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  nameWithType.vb: IComparisonOperators(Of AnnualDate, AnnualDate, Boolean).<(AnnualDate, AnnualDate)
+  fullName.vb: System.Numerics.IComparisonOperators(Of NodaTime.AnnualDate, NodaTime.AnnualDate, Boolean).<(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  name.vb: <(AnnualDate, AnnualDate)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_LessThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+    name: <
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthan
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+  spec.vb:
+  - name: <
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+- uid: System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)
+  commentId: M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthan
+  name: operator <(TSelf, TOther)
+  nameWithType: IComparisonOperators<TSelf, TOther, TResult>.operator <(TSelf, TOther)
+  fullName: System.Numerics.IComparisonOperators<TSelf, TOther, TResult>.operator <(TSelf, TOther)
+  nameWithType.vb: IComparisonOperators(Of TSelf, TOther, TResult).<(TSelf, TOther)
+  fullName.vb: System.Numerics.IComparisonOperators(Of TSelf, TOther, TResult).<(TSelf, TOther)
+  name.vb: <(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)
+    name: <
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthan
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: <
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.AnnualDate.op_LessThanOrEqual*
+  commentId: Overload:NodaTime.AnnualDate.op_LessThanOrEqual
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_op_LessThanOrEqual_NodaTime_AnnualDate_NodaTime_AnnualDate_
+  name: operator <=
+  nameWithType: AnnualDate.operator <=
+  fullName: NodaTime.AnnualDate.operator <=
+  nameWithType.vb: AnnualDate.<=
+  fullName.vb: NodaTime.AnnualDate.<=
+  name.vb: <=
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.AnnualDate.op_LessThanOrEqual*
+    name: <=
+    href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_op_LessThanOrEqual_NodaTime_AnnualDate_NodaTime_AnnualDate_
+- uid: System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_LessThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  commentId: M:System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_LessThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  parent: System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}
+  definition: System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthanorequal
+  name: operator <=(AnnualDate, AnnualDate)
+  nameWithType: IComparisonOperators<AnnualDate, AnnualDate, bool>.operator <=(AnnualDate, AnnualDate)
+  fullName: System.Numerics.IComparisonOperators<NodaTime.AnnualDate, NodaTime.AnnualDate, bool>.operator <=(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  nameWithType.vb: IComparisonOperators(Of AnnualDate, AnnualDate, Boolean).<=(AnnualDate, AnnualDate)
+  fullName.vb: System.Numerics.IComparisonOperators(Of NodaTime.AnnualDate, NodaTime.AnnualDate, Boolean).<=(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  name.vb: <=(AnnualDate, AnnualDate)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_LessThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+    name: <=
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthanorequal
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+  spec.vb:
+  - name: <=
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+- uid: System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)
+  commentId: M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthanorequal
+  name: operator <=(TSelf, TOther)
+  nameWithType: IComparisonOperators<TSelf, TOther, TResult>.operator <=(TSelf, TOther)
+  fullName: System.Numerics.IComparisonOperators<TSelf, TOther, TResult>.operator <=(TSelf, TOther)
+  nameWithType.vb: IComparisonOperators(Of TSelf, TOther, TResult).<=(TSelf, TOther)
+  fullName.vb: System.Numerics.IComparisonOperators(Of TSelf, TOther, TResult).<=(TSelf, TOther)
+  name.vb: <=(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)
+    name: <=
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthanorequal
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: <=
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.AnnualDate.op_GreaterThan*
+  commentId: Overload:NodaTime.AnnualDate.op_GreaterThan
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_op_GreaterThan_NodaTime_AnnualDate_NodaTime_AnnualDate_
+  name: operator >
+  nameWithType: AnnualDate.operator >
+  fullName: NodaTime.AnnualDate.operator >
+  nameWithType.vb: AnnualDate.>
+  fullName.vb: NodaTime.AnnualDate.>
+  name.vb: '>'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.AnnualDate.op_GreaterThan*
+    name: '>'
+    href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_op_GreaterThan_NodaTime_AnnualDate_NodaTime_AnnualDate_
+- uid: System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_GreaterThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  commentId: M:System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_GreaterThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  parent: System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}
+  definition: System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthan
+  name: operator >(AnnualDate, AnnualDate)
+  nameWithType: IComparisonOperators<AnnualDate, AnnualDate, bool>.operator >(AnnualDate, AnnualDate)
+  fullName: System.Numerics.IComparisonOperators<NodaTime.AnnualDate, NodaTime.AnnualDate, bool>.operator >(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  nameWithType.vb: IComparisonOperators(Of AnnualDate, AnnualDate, Boolean).>(AnnualDate, AnnualDate)
+  fullName.vb: System.Numerics.IComparisonOperators(Of NodaTime.AnnualDate, NodaTime.AnnualDate, Boolean).>(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  name.vb: '>(AnnualDate, AnnualDate)'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_GreaterThan(NodaTime.AnnualDate,NodaTime.AnnualDate)
+    name: '>'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthan
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+  spec.vb:
+  - name: '>'
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+- uid: System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)
+  commentId: M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthan
+  name: operator >(TSelf, TOther)
+  nameWithType: IComparisonOperators<TSelf, TOther, TResult>.operator >(TSelf, TOther)
+  fullName: System.Numerics.IComparisonOperators<TSelf, TOther, TResult>.operator >(TSelf, TOther)
+  nameWithType.vb: IComparisonOperators(Of TSelf, TOther, TResult).>(TSelf, TOther)
+  fullName.vb: System.Numerics.IComparisonOperators(Of TSelf, TOther, TResult).>(TSelf, TOther)
+  name.vb: '>(TSelf, TOther)'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)
+    name: '>'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthan
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: '>'
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.AnnualDate.op_GreaterThanOrEqual*
+  commentId: Overload:NodaTime.AnnualDate.op_GreaterThanOrEqual
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_op_GreaterThanOrEqual_NodaTime_AnnualDate_NodaTime_AnnualDate_
+  name: operator >=
+  nameWithType: AnnualDate.operator >=
+  fullName: NodaTime.AnnualDate.operator >=
+  nameWithType.vb: AnnualDate.>=
+  fullName.vb: NodaTime.AnnualDate.>=
+  name.vb: '>='
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.AnnualDate.op_GreaterThanOrEqual*
+    name: '>='
+    href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_op_GreaterThanOrEqual_NodaTime_AnnualDate_NodaTime_AnnualDate_
+- uid: System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_GreaterThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  commentId: M:System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_GreaterThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+  parent: System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}
+  definition: System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthanorequal
+  name: operator >=(AnnualDate, AnnualDate)
+  nameWithType: IComparisonOperators<AnnualDate, AnnualDate, bool>.operator >=(AnnualDate, AnnualDate)
+  fullName: System.Numerics.IComparisonOperators<NodaTime.AnnualDate, NodaTime.AnnualDate, bool>.operator >=(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  nameWithType.vb: IComparisonOperators(Of AnnualDate, AnnualDate, Boolean).>=(AnnualDate, AnnualDate)
+  fullName.vb: System.Numerics.IComparisonOperators(Of NodaTime.AnnualDate, NodaTime.AnnualDate, Boolean).>=(NodaTime.AnnualDate, NodaTime.AnnualDate)
+  name.vb: '>=(AnnualDate, AnnualDate)'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators{NodaTime.AnnualDate,NodaTime.AnnualDate,System.Boolean}.op_GreaterThanOrEqual(NodaTime.AnnualDate,NodaTime.AnnualDate)
+    name: '>='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthanorequal
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+  spec.vb:
+  - name: '>='
+  - name: (
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.AnnualDate
+    name: AnnualDate
+    href: NodaTime.AnnualDate.html
+  - name: )
+- uid: System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)
+  commentId: M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthanorequal
+  name: operator >=(TSelf, TOther)
+  nameWithType: IComparisonOperators<TSelf, TOther, TResult>.operator >=(TSelf, TOther)
+  fullName: System.Numerics.IComparisonOperators<TSelf, TOther, TResult>.operator >=(TSelf, TOther)
+  nameWithType.vb: IComparisonOperators(Of TSelf, TOther, TResult).>=(TSelf, TOther)
+  fullName.vb: System.Numerics.IComparisonOperators(Of TSelf, TOther, TResult).>=(TSelf, TOther)
+  name.vb: '>=(TSelf, TOther)'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)
+    name: '>='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthanorequal
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: '>='
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: System.Xml.Serialization.XmlSchemaExporter
+  commentId: T:System.Xml.Serialization.XmlSchemaExporter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.xmlschemaexporter
+  name: XmlSchemaExporter
+  nameWithType: XmlSchemaExporter
+  fullName: System.Xml.Serialization.XmlSchemaExporter
+- uid: NodaTime.AnnualDate.AddSchema*
+  commentId: Overload:NodaTime.AnnualDate.AddSchema
+  href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_AddSchema_System_Xml_Schema_XmlSchemaSet_
+  name: AddSchema
+  nameWithType: AnnualDate.AddSchema
+  fullName: NodaTime.AnnualDate.AddSchema
+- uid: System.Xml.Schema.XmlSchemaSet
+  commentId: T:System.Xml.Schema.XmlSchemaSet
+  parent: System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.schema.xmlschemaset
+  name: XmlSchemaSet
+  nameWithType: XmlSchemaSet
+  fullName: System.Xml.Schema.XmlSchemaSet
+- uid: System.Xml.XmlQualifiedName
+  commentId: T:System.Xml.XmlQualifiedName
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlqualifiedname
+  name: XmlQualifiedName
+  nameWithType: XmlQualifiedName
+  fullName: System.Xml.XmlQualifiedName
+- uid: System.Xml.Schema
+  commentId: N:System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Schema
+  nameWithType: System.Xml.Schema
+  fullName: System.Xml.Schema
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Schema
+    name: Schema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.schema
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Schema
+    name: Schema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.schema
+- uid: System.Xml
+  commentId: N:System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml
+  nameWithType: System.Xml
+  fullName: System.Xml
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+- uid: System.Xml.Serialization.XmlSchemaProviderAttribute
+  commentId: T:System.Xml.Serialization.XmlSchemaProviderAttribute
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.xmlschemaproviderattribute
+  name: XmlSchemaProviderAttribute
+  nameWithType: XmlSchemaProviderAttribute
+  fullName: System.Xml.Serialization.XmlSchemaProviderAttribute
+- uid: System.Xml.Schema.XmlSchema
+  commentId: T:System.Xml.Schema.XmlSchema
+  parent: System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.schema.xmlschema
+  name: XmlSchema
+  nameWithType: XmlSchema
+  fullName: System.Xml.Schema.XmlSchema
+- uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  commentId: M:System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  parent: System.Xml.Serialization.IXmlSerializable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  name: WriteXml(XmlWriter)
+  nameWithType: IXmlSerializable.WriteXml(XmlWriter)
+  fullName: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  - name: )
+  spec.vb:
+  - uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  - name: )
+- uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  commentId: M:System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  parent: System.Xml.Serialization.IXmlSerializable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  name: ReadXml(XmlReader)
+  nameWithType: IXmlSerializable.ReadXml(XmlReader)
+  fullName: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  - name: )
+  spec.vb:
+  - uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  - name: )
+- uid: NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#GetSchema*
+  commentId: Overload:NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#GetSchema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.GetSchema
+  nameWithType: AnnualDate.IXmlSerializable.GetSchema
+  fullName: NodaTime.AnnualDate.System.Xml.Serialization.IXmlSerializable.GetSchema
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#GetSchema*
+    name: GetSchema
+    href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_System_Xml_Serialization_IXmlSerializable_GetSchema
+- uid: System.Xml.XmlReader
+  commentId: T:System.Xml.XmlReader
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  name: XmlReader
+  nameWithType: XmlReader
+  fullName: System.Xml.XmlReader
+- uid: NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#ReadXml*
+  commentId: Overload:NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#ReadXml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.ReadXml
+  nameWithType: AnnualDate.IXmlSerializable.ReadXml
+  fullName: NodaTime.AnnualDate.System.Xml.Serialization.IXmlSerializable.ReadXml
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#ReadXml*
+    name: ReadXml
+    href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_System_Xml_Serialization_IXmlSerializable_ReadXml_System_Xml_XmlReader_
+- uid: System.Xml.XmlWriter
+  commentId: T:System.Xml.XmlWriter
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  name: XmlWriter
+  nameWithType: XmlWriter
+  fullName: System.Xml.XmlWriter
+- uid: NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#WriteXml*
+  commentId: Overload:NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#WriteXml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.WriteXml
+  nameWithType: AnnualDate.IXmlSerializable.WriteXml
+  fullName: NodaTime.AnnualDate.System.Xml.Serialization.IXmlSerializable.WriteXml
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.AnnualDate.System#Xml#Serialization#IXmlSerializable#WriteXml*
+    name: WriteXml
+    href: NodaTime.AnnualDate.html#NodaTime_AnnualDate_System_Xml_Serialization_IXmlSerializable_WriteXml_System_Xml_XmlWriter_
+shouldSkipMarkup: true

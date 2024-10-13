@@ -1,0 +1,3713 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Period
+  commentId: T:NodaTime.Period
+  id: Period
+  parent: NodaTime
+  children:
+  - NodaTime.Period.Add(NodaTime.Period,NodaTime.Period)
+  - NodaTime.Period.AdditiveIdentity
+  - NodaTime.Period.Between(NodaTime.LocalDate,NodaTime.LocalDate)
+  - NodaTime.Period.Between(NodaTime.LocalDate,NodaTime.LocalDate,NodaTime.PeriodUnits)
+  - NodaTime.Period.Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime)
+  - NodaTime.Period.Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime,NodaTime.PeriodUnits)
+  - NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime)
+  - NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime,NodaTime.PeriodUnits)
+  - NodaTime.Period.Between(NodaTime.YearMonth,NodaTime.YearMonth)
+  - NodaTime.Period.Between(NodaTime.YearMonth,NodaTime.YearMonth,NodaTime.PeriodUnits)
+  - NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)
+  - NodaTime.Period.Days
+  - NodaTime.Period.DaysBetween(NodaTime.LocalDate,NodaTime.LocalDate)
+  - NodaTime.Period.Equals(NodaTime.Period)
+  - NodaTime.Period.Equals(System.Object)
+  - NodaTime.Period.FromDays(System.Int32)
+  - NodaTime.Period.FromHours(System.Int64)
+  - NodaTime.Period.FromMilliseconds(System.Int64)
+  - NodaTime.Period.FromMinutes(System.Int64)
+  - NodaTime.Period.FromMonths(System.Int32)
+  - NodaTime.Period.FromNanoseconds(System.Int64)
+  - NodaTime.Period.FromSeconds(System.Int64)
+  - NodaTime.Period.FromTicks(System.Int64)
+  - NodaTime.Period.FromWeeks(System.Int32)
+  - NodaTime.Period.FromYears(System.Int32)
+  - NodaTime.Period.GetHashCode
+  - NodaTime.Period.HasDateComponent
+  - NodaTime.Period.HasTimeComponent
+  - NodaTime.Period.Hours
+  - NodaTime.Period.MaxValue
+  - NodaTime.Period.Milliseconds
+  - NodaTime.Period.MinValue
+  - NodaTime.Period.Minutes
+  - NodaTime.Period.Months
+  - NodaTime.Period.Nanoseconds
+  - NodaTime.Period.Normalize
+  - NodaTime.Period.NormalizingEqualityComparer
+  - NodaTime.Period.Seconds
+  - NodaTime.Period.Subtract(NodaTime.Period,NodaTime.Period)
+  - NodaTime.Period.Ticks
+  - NodaTime.Period.ToBuilder
+  - NodaTime.Period.ToDuration
+  - NodaTime.Period.ToString
+  - NodaTime.Period.Weeks
+  - NodaTime.Period.Years
+  - NodaTime.Period.Zero
+  - NodaTime.Period.op_Addition(NodaTime.Period,NodaTime.Period)
+  - NodaTime.Period.op_Equality(NodaTime.Period,NodaTime.Period)
+  - NodaTime.Period.op_Inequality(NodaTime.Period,NodaTime.Period)
+  - NodaTime.Period.op_Subtraction(NodaTime.Period,NodaTime.Period)
+  - NodaTime.Period.op_UnaryNegation(NodaTime.Period)
+  - NodaTime.Period.op_UnaryPlus(NodaTime.Period)
+  langs:
+  - csharp
+  - vb
+  name: Period
+  nameWithType: Period
+  fullName: NodaTime.Period
+  type: Class
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Represents a period of time expressed in human chronological terms: hours, days,
+
+    weeks, months and so on.
+  remarks: >-
+    <p>
+
+    A <xref href="NodaTime.Period" data-throw-if-not-resolved="false"></xref> contains a set of properties such as <xref href="NodaTime.Period.Years" data-throw-if-not-resolved="false"></xref>, <xref href="NodaTime.Period.Months" data-throw-if-not-resolved="false"></xref>, and so on
+
+    that return the number of each unit contained within this period. Note that these properties are not normalized in
+
+    any way by default, and so a <xref href="NodaTime.Period" data-throw-if-not-resolved="false"></xref> may contain values such as "2 hours and 90 minutes". The
+
+    <xref href="NodaTime.Period.Normalize" data-throw-if-not-resolved="false"></xref> method will convert equivalent periods into a standard representation.
+
+    </p>
+
+    <p>
+
+    Periods can contain negative units as well as positive units ("+2 hours, -43 minutes, +10 seconds"), but do not
+
+    differentiate between properties that are zero and those that are absent (i.e. a period created as "10 years"
+
+    and one created as "10 years, zero months" are equal periods; the <xref href="NodaTime.Period.Months" data-throw-if-not-resolved="false"></xref> property returns zero in
+
+    both cases).
+
+    </p>
+
+    <p>
+      <xref href="NodaTime.Period" data-throw-if-not-resolved="false"></xref> equality is implemented by comparing each property's values individually, without any normalization.
+    (For example, a period of "24 hours" is not considered equal to a period of "1 day".) The static
+
+    <xref href="NodaTime.Period.NormalizingEqualityComparer" data-throw-if-not-resolved="false"></xref> comparer provides an equality comparer which performs normalization before comparisons.
+
+    </p>
+
+    <p>
+
+    There is no natural ordering for periods, but <xref href="NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)" data-throw-if-not-resolved="false"></xref> can be used to create a
+
+    comparer which orders periods according to a reference date, by adding each period to that date and comparing the results.
+
+    </p>
+
+    <p>
+
+    Periods operate on calendar-related types such as
+
+    <xref href="NodaTime.LocalDateTime" data-throw-if-not-resolved="false"></xref> whereas <xref href="NodaTime.Duration" data-throw-if-not-resolved="false"></xref> operates on instants
+
+    on the time line. (Note that although <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> includes both concepts, it only supports
+
+    duration-based arithmetic.)
+
+    </p>
+
+    <p>
+
+    The complexity of each method in this type is hard to document precisely, and often depends on the calendar system
+
+    involved in performing the actual calculations. Operations do not depend on the magnitude of the units in the period,
+
+    other than for optimizations for values of zero or occasionally for particularly small values. For example,
+
+    adding 10,000 days to a date does not require greater algorithmic complexity than adding 1,000 days to the same date.
+
+    </p>
+  example: []
+  syntax:
+    content: >-
+      [TypeConverter(typeof(PeriodTypeConverter))]
+
+      public sealed class Period : IEquatable<Period?>, IAdditionOperators<Period, Period, Period>, ISubtractionOperators<Period, Period, Period>, IUnaryNegationOperators<Period, Period>, IUnaryPlusOperators<Period, Period>, IAdditiveIdentity<Period, Period>, IMinMaxValue<Period>
+    content.vb: >-
+      <TypeConverter(GetType(PeriodTypeConverter))>
+
+      Public NotInheritable Class Period Implements IEquatable(Of Period), IAdditionOperators(Of Period, Period, Period), ISubtractionOperators(Of Period, Period, Period), IUnaryNegationOperators(Of Period, Period), IUnaryPlusOperators(Of Period, Period), IAdditiveIdentity(Of Period, Period), IMinMaxValue(Of Period)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{NodaTime.Period}
+  - System.Numerics.IAdditionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}
+  - System.Numerics.ISubtractionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}
+  - System.Numerics.IUnaryNegationOperators{NodaTime.Period,NodaTime.Period}
+  - System.Numerics.IUnaryPlusOperators{NodaTime.Period,NodaTime.Period}
+  - System.Numerics.IAdditiveIdentity{NodaTime.Period,NodaTime.Period}
+  - System.Numerics.IMinMaxValue{NodaTime.Period}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: NodaTime.Period.Zero
+  commentId: P:NodaTime.Period.Zero
+  id: Zero
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Zero
+  nameWithType: Period.Zero
+  fullName: NodaTime.Period.Zero
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: A period containing only zero-valued properties.
+  example: []
+  syntax:
+    content: public static Period Zero { get; }
+    parameters: []
+    return:
+      type: NodaTime.Period
+      description: A period containing only zero-valued properties.
+    content.vb: Public Shared ReadOnly Property Zero As Period
+  overload: NodaTime.Period.Zero*
+- uid: NodaTime.Period.MaxValue
+  commentId: P:NodaTime.Period.MaxValue
+  id: MaxValue
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: MaxValue
+  nameWithType: Period.MaxValue
+  fullName: NodaTime.Period.MaxValue
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: A period containing the maximum value for all properties.
+  example: []
+  syntax:
+    content: public static Period MaxValue { get; }
+    parameters: []
+    return:
+      type: NodaTime.Period
+      description: A period containing the maximum value for all properties.
+    content.vb: Public Shared ReadOnly Property MaxValue As Period
+  overload: NodaTime.Period.MaxValue*
+  implements:
+  - System.Numerics.IMinMaxValue{NodaTime.Period}.MaxValue
+- uid: NodaTime.Period.MinValue
+  commentId: P:NodaTime.Period.MinValue
+  id: MinValue
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: MinValue
+  nameWithType: Period.MinValue
+  fullName: NodaTime.Period.MinValue
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: A period containing the minimum value for all properties.
+  example: []
+  syntax:
+    content: public static Period MinValue { get; }
+    parameters: []
+    return:
+      type: NodaTime.Period
+      description: A period containing the minimum value for all properties.
+    content.vb: Public Shared ReadOnly Property MinValue As Period
+  overload: NodaTime.Period.MinValue*
+  implements:
+  - System.Numerics.IMinMaxValue{NodaTime.Period}.MinValue
+- uid: NodaTime.Period.AdditiveIdentity
+  commentId: P:NodaTime.Period.AdditiveIdentity
+  id: AdditiveIdentity
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: AdditiveIdentity
+  nameWithType: Period.AdditiveIdentity
+  fullName: NodaTime.Period.AdditiveIdentity
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the additive identity.
+  example: []
+  syntax:
+    content: public static Period AdditiveIdentity { get; }
+    parameters: []
+    return:
+      type: NodaTime.Period
+    content.vb: Public Shared ReadOnly Property AdditiveIdentity As Period
+  overload: NodaTime.Period.AdditiveIdentity*
+  implements:
+  - System.Numerics.IAdditiveIdentity{NodaTime.Period,NodaTime.Period}.AdditiveIdentity
+- uid: NodaTime.Period.NormalizingEqualityComparer
+  commentId: P:NodaTime.Period.NormalizingEqualityComparer
+  id: NormalizingEqualityComparer
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: NormalizingEqualityComparer
+  nameWithType: Period.NormalizingEqualityComparer
+  fullName: NodaTime.Period.NormalizingEqualityComparer
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns an equality comparer which compares periods by first normalizing them - so 24 hours is deemed equal to 1 day, and so on.
+
+    Note that as per the <xref href="NodaTime.Period.Normalize" data-throw-if-not-resolved="false"></xref> method, years and months are unchanged by normalization - so 12 months does not
+
+    equal 1 year.
+  example: []
+  syntax:
+    content: public static IEqualityComparer<Period?> NormalizingEqualityComparer { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEqualityComparer{NodaTime.Period}
+      description: An equality comparer which compares periods by first normalizing them. (The value returned is never null.)
+    content.vb: Public Shared ReadOnly Property NormalizingEqualityComparer As IEqualityComparer(Of Period)
+  overload: NodaTime.Period.NormalizingEqualityComparer*
+- uid: NodaTime.Period.Nanoseconds
+  commentId: P:NodaTime.Period.Nanoseconds
+  id: Nanoseconds
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Nanoseconds
+  nameWithType: Period.Nanoseconds
+  fullName: NodaTime.Period.Nanoseconds
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of nanoseconds within this period.
+  remarks: >-
+    This property returns zero both when the property has been explicitly set to zero and when the period does not
+
+    contain this property.
+  example: []
+  syntax:
+    content: public long Nanoseconds { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of nanoseconds within this period.
+    content.vb: Public ReadOnly Property Nanoseconds As Long
+  overload: NodaTime.Period.Nanoseconds*
+- uid: NodaTime.Period.Ticks
+  commentId: P:NodaTime.Period.Ticks
+  id: Ticks
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Ticks
+  nameWithType: Period.Ticks
+  fullName: NodaTime.Period.Ticks
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of ticks within this period.
+  remarks: >-
+    This property returns zero both when the property has been explicitly set to zero and when the period does not
+
+    contain this property.
+  example: []
+  syntax:
+    content: public long Ticks { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of ticks within this period.
+    content.vb: Public ReadOnly Property Ticks As Long
+  overload: NodaTime.Period.Ticks*
+- uid: NodaTime.Period.Milliseconds
+  commentId: P:NodaTime.Period.Milliseconds
+  id: Milliseconds
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Milliseconds
+  nameWithType: Period.Milliseconds
+  fullName: NodaTime.Period.Milliseconds
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of milliseconds within this period.
+  remarks: >-
+    This property returns zero both when the property has been explicitly set to zero and when the period does not
+
+    contain this property.
+  example: []
+  syntax:
+    content: public long Milliseconds { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of milliseconds within this period.
+    content.vb: Public ReadOnly Property Milliseconds As Long
+  overload: NodaTime.Period.Milliseconds*
+- uid: NodaTime.Period.Seconds
+  commentId: P:NodaTime.Period.Seconds
+  id: Seconds
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Seconds
+  nameWithType: Period.Seconds
+  fullName: NodaTime.Period.Seconds
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of seconds within this period.
+  remarks: >-
+    This property returns zero both when the property has been explicitly set to zero and when the period does not
+
+    contain this property.
+  example: []
+  syntax:
+    content: public long Seconds { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of seconds within this period.
+    content.vb: Public ReadOnly Property Seconds As Long
+  overload: NodaTime.Period.Seconds*
+- uid: NodaTime.Period.Minutes
+  commentId: P:NodaTime.Period.Minutes
+  id: Minutes
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Minutes
+  nameWithType: Period.Minutes
+  fullName: NodaTime.Period.Minutes
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of minutes within this period.
+  remarks: >-
+    This property returns zero both when the property has been explicitly set to zero and when the period does not
+
+    contain this property.
+  example: []
+  syntax:
+    content: public long Minutes { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of minutes within this period.
+    content.vb: Public ReadOnly Property Minutes As Long
+  overload: NodaTime.Period.Minutes*
+- uid: NodaTime.Period.Hours
+  commentId: P:NodaTime.Period.Hours
+  id: Hours
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Hours
+  nameWithType: Period.Hours
+  fullName: NodaTime.Period.Hours
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of hours within this period.
+  remarks: >-
+    This property returns zero both when the property has been explicitly set to zero and when the period does not
+
+    contain this property.
+  example: []
+  syntax:
+    content: public long Hours { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of hours within this period.
+    content.vb: Public ReadOnly Property Hours As Long
+  overload: NodaTime.Period.Hours*
+- uid: NodaTime.Period.Days
+  commentId: P:NodaTime.Period.Days
+  id: Days
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Days
+  nameWithType: Period.Days
+  fullName: NodaTime.Period.Days
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of days within this period.
+  remarks: >-
+    This property returns zero both when the property has been explicitly set to zero and when the period does not
+
+    contain this property.
+  example: []
+  syntax:
+    content: public int Days { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The number of days within this period.
+    content.vb: Public ReadOnly Property Days As Integer
+  overload: NodaTime.Period.Days*
+- uid: NodaTime.Period.Weeks
+  commentId: P:NodaTime.Period.Weeks
+  id: Weeks
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Weeks
+  nameWithType: Period.Weeks
+  fullName: NodaTime.Period.Weeks
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of weeks within this period.
+  remarks: >-
+    This property returns zero both when the property has been explicitly set to zero and when the period does not
+
+    contain this property.
+  example: []
+  syntax:
+    content: public int Weeks { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The number of weeks within this period.
+    content.vb: Public ReadOnly Property Weeks As Integer
+  overload: NodaTime.Period.Weeks*
+- uid: NodaTime.Period.Months
+  commentId: P:NodaTime.Period.Months
+  id: Months
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Months
+  nameWithType: Period.Months
+  fullName: NodaTime.Period.Months
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of months within this period.
+  remarks: >-
+    This property returns zero both when the property has been explicitly set to zero and when the period does not
+
+    contain this property.
+  example: []
+  syntax:
+    content: public int Months { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The number of months within this period.
+    content.vb: Public ReadOnly Property Months As Integer
+  overload: NodaTime.Period.Months*
+- uid: NodaTime.Period.Years
+  commentId: P:NodaTime.Period.Years
+  id: Years
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Years
+  nameWithType: Period.Years
+  fullName: NodaTime.Period.Years
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of years within this period.
+  remarks: >-
+    This property returns zero both when the property has been explicitly set to zero and when the period does not
+
+    contain this property.
+  example: []
+  syntax:
+    content: public int Years { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The number of years within this period.
+    content.vb: Public ReadOnly Property Years As Integer
+  overload: NodaTime.Period.Years*
+- uid: NodaTime.Period.FromYears(System.Int32)
+  commentId: M:NodaTime.Period.FromYears(System.Int32)
+  id: FromYears(System.Int32)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromYears(int)
+  nameWithType: Period.FromYears(int)
+  fullName: NodaTime.Period.FromYears(int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Creates a period representing the specified number of years.
+  example: []
+  syntax:
+    content: public static Period FromYears(int years)
+    parameters:
+    - id: years
+      type: System.Int32
+      description: The number of years in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of years.
+    content.vb: Public Shared Function FromYears(years As Integer) As Period
+  overload: NodaTime.Period.FromYears*
+  nameWithType.vb: Period.FromYears(Integer)
+  fullName.vb: NodaTime.Period.FromYears(Integer)
+  name.vb: FromYears(Integer)
+- uid: NodaTime.Period.FromMonths(System.Int32)
+  commentId: M:NodaTime.Period.FromMonths(System.Int32)
+  id: FromMonths(System.Int32)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromMonths(int)
+  nameWithType: Period.FromMonths(int)
+  fullName: NodaTime.Period.FromMonths(int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Creates a period representing the specified number of months.
+  example: []
+  syntax:
+    content: public static Period FromMonths(int months)
+    parameters:
+    - id: months
+      type: System.Int32
+      description: The number of months in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of months.
+    content.vb: Public Shared Function FromMonths(months As Integer) As Period
+  overload: NodaTime.Period.FromMonths*
+  nameWithType.vb: Period.FromMonths(Integer)
+  fullName.vb: NodaTime.Period.FromMonths(Integer)
+  name.vb: FromMonths(Integer)
+- uid: NodaTime.Period.FromWeeks(System.Int32)
+  commentId: M:NodaTime.Period.FromWeeks(System.Int32)
+  id: FromWeeks(System.Int32)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromWeeks(int)
+  nameWithType: Period.FromWeeks(int)
+  fullName: NodaTime.Period.FromWeeks(int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Creates a period representing the specified number of weeks.
+  example: []
+  syntax:
+    content: public static Period FromWeeks(int weeks)
+    parameters:
+    - id: weeks
+      type: System.Int32
+      description: The number of weeks in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of weeks.
+    content.vb: Public Shared Function FromWeeks(weeks As Integer) As Period
+  overload: NodaTime.Period.FromWeeks*
+  nameWithType.vb: Period.FromWeeks(Integer)
+  fullName.vb: NodaTime.Period.FromWeeks(Integer)
+  name.vb: FromWeeks(Integer)
+- uid: NodaTime.Period.FromDays(System.Int32)
+  commentId: M:NodaTime.Period.FromDays(System.Int32)
+  id: FromDays(System.Int32)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromDays(int)
+  nameWithType: Period.FromDays(int)
+  fullName: NodaTime.Period.FromDays(int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Creates a period representing the specified number of days.
+  example: []
+  syntax:
+    content: public static Period FromDays(int days)
+    parameters:
+    - id: days
+      type: System.Int32
+      description: The number of days in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of days.
+    content.vb: Public Shared Function FromDays(days As Integer) As Period
+  overload: NodaTime.Period.FromDays*
+  nameWithType.vb: Period.FromDays(Integer)
+  fullName.vb: NodaTime.Period.FromDays(Integer)
+  name.vb: FromDays(Integer)
+- uid: NodaTime.Period.FromHours(System.Int64)
+  commentId: M:NodaTime.Period.FromHours(System.Int64)
+  id: FromHours(System.Int64)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromHours(long)
+  nameWithType: Period.FromHours(long)
+  fullName: NodaTime.Period.FromHours(long)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Creates a period representing the specified number of hours.
+  example: []
+  syntax:
+    content: public static Period FromHours(long hours)
+    parameters:
+    - id: hours
+      type: System.Int64
+      description: The number of hours in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of hours.
+    content.vb: Public Shared Function FromHours(hours As Long) As Period
+  overload: NodaTime.Period.FromHours*
+  nameWithType.vb: Period.FromHours(Long)
+  fullName.vb: NodaTime.Period.FromHours(Long)
+  name.vb: FromHours(Long)
+- uid: NodaTime.Period.FromMinutes(System.Int64)
+  commentId: M:NodaTime.Period.FromMinutes(System.Int64)
+  id: FromMinutes(System.Int64)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromMinutes(long)
+  nameWithType: Period.FromMinutes(long)
+  fullName: NodaTime.Period.FromMinutes(long)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Creates a period representing the specified number of minutes.
+  example: []
+  syntax:
+    content: public static Period FromMinutes(long minutes)
+    parameters:
+    - id: minutes
+      type: System.Int64
+      description: The number of minutes in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of minutes.
+    content.vb: Public Shared Function FromMinutes(minutes As Long) As Period
+  overload: NodaTime.Period.FromMinutes*
+  nameWithType.vb: Period.FromMinutes(Long)
+  fullName.vb: NodaTime.Period.FromMinutes(Long)
+  name.vb: FromMinutes(Long)
+- uid: NodaTime.Period.FromSeconds(System.Int64)
+  commentId: M:NodaTime.Period.FromSeconds(System.Int64)
+  id: FromSeconds(System.Int64)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromSeconds(long)
+  nameWithType: Period.FromSeconds(long)
+  fullName: NodaTime.Period.FromSeconds(long)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Creates a period representing the specified number of seconds.
+  example: []
+  syntax:
+    content: public static Period FromSeconds(long seconds)
+    parameters:
+    - id: seconds
+      type: System.Int64
+      description: The number of seconds in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of seconds.
+    content.vb: Public Shared Function FromSeconds(seconds As Long) As Period
+  overload: NodaTime.Period.FromSeconds*
+  nameWithType.vb: Period.FromSeconds(Long)
+  fullName.vb: NodaTime.Period.FromSeconds(Long)
+  name.vb: FromSeconds(Long)
+- uid: NodaTime.Period.FromMilliseconds(System.Int64)
+  commentId: M:NodaTime.Period.FromMilliseconds(System.Int64)
+  id: FromMilliseconds(System.Int64)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromMilliseconds(long)
+  nameWithType: Period.FromMilliseconds(long)
+  fullName: NodaTime.Period.FromMilliseconds(long)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Creates a period representing the specified number of milliseconds.
+  example: []
+  syntax:
+    content: public static Period FromMilliseconds(long milliseconds)
+    parameters:
+    - id: milliseconds
+      type: System.Int64
+      description: The number of milliseconds in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of milliseconds.
+    content.vb: Public Shared Function FromMilliseconds(milliseconds As Long) As Period
+  overload: NodaTime.Period.FromMilliseconds*
+  nameWithType.vb: Period.FromMilliseconds(Long)
+  fullName.vb: NodaTime.Period.FromMilliseconds(Long)
+  name.vb: FromMilliseconds(Long)
+- uid: NodaTime.Period.FromTicks(System.Int64)
+  commentId: M:NodaTime.Period.FromTicks(System.Int64)
+  id: FromTicks(System.Int64)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromTicks(long)
+  nameWithType: Period.FromTicks(long)
+  fullName: NodaTime.Period.FromTicks(long)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Creates a period representing the specified number of ticks.
+  example: []
+  syntax:
+    content: public static Period FromTicks(long ticks)
+    parameters:
+    - id: ticks
+      type: System.Int64
+      description: The number of ticks in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of ticks.
+    content.vb: Public Shared Function FromTicks(ticks As Long) As Period
+  overload: NodaTime.Period.FromTicks*
+  nameWithType.vb: Period.FromTicks(Long)
+  fullName.vb: NodaTime.Period.FromTicks(Long)
+  name.vb: FromTicks(Long)
+- uid: NodaTime.Period.FromNanoseconds(System.Int64)
+  commentId: M:NodaTime.Period.FromNanoseconds(System.Int64)
+  id: FromNanoseconds(System.Int64)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: FromNanoseconds(long)
+  nameWithType: Period.FromNanoseconds(long)
+  fullName: NodaTime.Period.FromNanoseconds(long)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Creates a period representing the specified number of nanoseconds.
+  example: []
+  syntax:
+    content: public static Period FromNanoseconds(long nanoseconds)
+    parameters:
+    - id: nanoseconds
+      type: System.Int64
+      description: The number of nanoseconds in the new period
+    return:
+      type: NodaTime.Period
+      description: A period consisting of the given number of nanoseconds.
+    content.vb: Public Shared Function FromNanoseconds(nanoseconds As Long) As Period
+  overload: NodaTime.Period.FromNanoseconds*
+  nameWithType.vb: Period.FromNanoseconds(Long)
+  fullName.vb: NodaTime.Period.FromNanoseconds(Long)
+  name.vb: FromNanoseconds(Long)
+- uid: NodaTime.Period.op_Addition(NodaTime.Period,NodaTime.Period)
+  commentId: M:NodaTime.Period.op_Addition(NodaTime.Period,NodaTime.Period)
+  id: op_Addition(NodaTime.Period,NodaTime.Period)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: operator +(Period, Period)
+  nameWithType: Period.operator +(Period, Period)
+  fullName: NodaTime.Period.operator +(NodaTime.Period, NodaTime.Period)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Adds two periods together, by simply adding the values for each property.
+  example: []
+  syntax:
+    content: public static Period operator +(Period left, Period right)
+    parameters:
+    - id: left
+      type: NodaTime.Period
+      description: The first period to add
+    - id: right
+      type: NodaTime.Period
+      description: The second period to add
+    return:
+      type: NodaTime.Period
+      description: >-
+        The sum of the two periods. The units of the result will be the union of those in both
+            periods.
+    content.vb: Public Shared Operator +(left As Period, right As Period) As Period
+  overload: NodaTime.Period.op_Addition*
+  implements:
+  - System.Numerics.IAdditionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}.op_Addition(NodaTime.Period,NodaTime.Period)
+  nameWithType.vb: Period.+(Period, Period)
+  fullName.vb: NodaTime.Period.+(NodaTime.Period, NodaTime.Period)
+  name.vb: +(Period, Period)
+- uid: NodaTime.Period.Add(NodaTime.Period,NodaTime.Period)
+  commentId: M:NodaTime.Period.Add(NodaTime.Period,NodaTime.Period)
+  id: Add(NodaTime.Period,NodaTime.Period)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Add(Period, Period)
+  nameWithType: Period.Add(Period, Period)
+  fullName: NodaTime.Period.Add(NodaTime.Period, NodaTime.Period)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Adds two periods together, by simply adding the values for each property.
+  example: []
+  syntax:
+    content: public static Period Add(Period left, Period right)
+    parameters:
+    - id: left
+      type: NodaTime.Period
+      description: The first period to add
+    - id: right
+      type: NodaTime.Period
+      description: The second period to add
+    return:
+      type: NodaTime.Period
+      description: >-
+        The sum of the two periods. The units of the result will be the union of those in both
+            periods.
+    content.vb: Public Shared Function Add(left As Period, right As Period) As Period
+  overload: NodaTime.Period.Add*
+- uid: NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)
+  commentId: M:NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)
+  id: CreateComparer(NodaTime.LocalDateTime)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: CreateComparer(LocalDateTime)
+  nameWithType: Period.CreateComparer(LocalDateTime)
+  fullName: NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Creates an <xref href="System.Collections.Generic.IComparer%601" data-throw-if-not-resolved="false"></xref> for periods, using the given "base" local date/time.
+  remarks: >-
+    Certain periods can't naturally be compared without more context - how "one month" compares to
+
+    "30 days" depends on where you start. In order to compare two periods, the returned comparer
+
+    effectively adds both periods to the "base" specified by <code class="paramref">baseDateTime</code> and compares
+
+    the results. In some cases this arithmetic isn't actually required - when two periods can be
+
+    converted to durations, the comparer uses that conversion for efficiency.
+  example: []
+  syntax:
+    content: public static IComparer<Period?> CreateComparer(LocalDateTime baseDateTime)
+    parameters:
+    - id: baseDateTime
+      type: NodaTime.LocalDateTime
+      description: The base local date/time to use for comparisons.
+    return:
+      type: System.Collections.Generic.IComparer{NodaTime.Period}
+      description: The new comparer.
+    content.vb: Public Shared Function CreateComparer(baseDateTime As LocalDateTime) As IComparer(Of Period)
+  overload: NodaTime.Period.CreateComparer*
+- uid: NodaTime.Period.op_Subtraction(NodaTime.Period,NodaTime.Period)
+  commentId: M:NodaTime.Period.op_Subtraction(NodaTime.Period,NodaTime.Period)
+  id: op_Subtraction(NodaTime.Period,NodaTime.Period)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: operator -(Period, Period)
+  nameWithType: Period.operator -(Period, Period)
+  fullName: NodaTime.Period.operator -(NodaTime.Period, NodaTime.Period)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Subtracts one period from another, by simply subtracting each property value.
+  example: []
+  syntax:
+    content: public static Period operator -(Period minuend, Period subtrahend)
+    parameters:
+    - id: minuend
+      type: NodaTime.Period
+      description: The period to subtract the second operand from
+    - id: subtrahend
+      type: NodaTime.Period
+      description: The period to subtract the first operand from
+    return:
+      type: NodaTime.Period
+      description: >-
+        The result of subtracting all the values in the second operand from the values in the first. The
+            units of the result will be the union of both periods, even if the subtraction caused some properties to
+            become zero (so "2 weeks, 1 days" minus "2 weeks" is "zero weeks, 1 days", not "1 days").
+    content.vb: Public Shared Operator -(minuend As Period, subtrahend As Period) As Period
+  overload: NodaTime.Period.op_Subtraction*
+  implements:
+  - System.Numerics.ISubtractionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}.op_Subtraction(NodaTime.Period,NodaTime.Period)
+  nameWithType.vb: Period.-(Period, Period)
+  fullName.vb: NodaTime.Period.-(NodaTime.Period, NodaTime.Period)
+  name.vb: -(Period, Period)
+- uid: NodaTime.Period.op_UnaryNegation(NodaTime.Period)
+  commentId: M:NodaTime.Period.op_UnaryNegation(NodaTime.Period)
+  id: op_UnaryNegation(NodaTime.Period)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: operator -(Period)
+  nameWithType: Period.operator -(Period)
+  fullName: NodaTime.Period.operator -(NodaTime.Period)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Implements the unary negation operator.
+  example: []
+  syntax:
+    content: public static Period operator -(Period period)
+    parameters:
+    - id: period
+      type: NodaTime.Period
+      description: Period to negate
+    return:
+      type: NodaTime.Period
+      description: The negative value of this period
+    content.vb: Public Shared Operator -(period As Period) As Period
+  overload: NodaTime.Period.op_UnaryNegation*
+  implements:
+  - System.Numerics.IUnaryNegationOperators{NodaTime.Period,NodaTime.Period}.op_UnaryNegation(NodaTime.Period)
+  nameWithType.vb: Period.-(Period)
+  fullName.vb: NodaTime.Period.-(NodaTime.Period)
+  name.vb: -(Period)
+- uid: NodaTime.Period.Subtract(NodaTime.Period,NodaTime.Period)
+  commentId: M:NodaTime.Period.Subtract(NodaTime.Period,NodaTime.Period)
+  id: Subtract(NodaTime.Period,NodaTime.Period)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Subtract(Period, Period)
+  nameWithType: Period.Subtract(Period, Period)
+  fullName: NodaTime.Period.Subtract(NodaTime.Period, NodaTime.Period)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Subtracts one period from another, by simply subtracting each property value.
+  example: []
+  syntax:
+    content: public static Period Subtract(Period minuend, Period subtrahend)
+    parameters:
+    - id: minuend
+      type: NodaTime.Period
+      description: The period to subtract the second operand from
+    - id: subtrahend
+      type: NodaTime.Period
+      description: The period to subtract the first operand from
+    return:
+      type: NodaTime.Period
+      description: >-
+        The result of subtracting all the values in the second operand from the values in the first. The
+            units of the result will be the union of both periods, even if the subtraction caused some properties to
+            become zero (so "2 weeks, 1 days" minus "2 weeks" is "zero weeks, 1 days", not "1 days").
+    content.vb: Public Shared Function Subtract(minuend As Period, subtrahend As Period) As Period
+  overload: NodaTime.Period.Subtract*
+- uid: NodaTime.Period.DaysBetween(NodaTime.LocalDate,NodaTime.LocalDate)
+  commentId: M:NodaTime.Period.DaysBetween(NodaTime.LocalDate,NodaTime.LocalDate)
+  id: DaysBetween(NodaTime.LocalDate,NodaTime.LocalDate)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: DaysBetween(LocalDate, LocalDate)
+  nameWithType: Period.DaysBetween(LocalDate, LocalDate)
+  fullName: NodaTime.Period.DaysBetween(NodaTime.LocalDate, NodaTime.LocalDate)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the number of days between two <xref href="NodaTime.LocalDate" data-throw-if-not-resolved="false"></xref> objects.
+  example: []
+  syntax:
+    content: public static int DaysBetween(LocalDate start, LocalDate end)
+    parameters:
+    - id: start
+      type: NodaTime.LocalDate
+      description: Start date/time
+    - id: end
+      type: NodaTime.LocalDate
+      description: End date/time
+    return:
+      type: System.Int32
+      description: The number of days between the given dates.
+    content.vb: Public Shared Function DaysBetween(start As LocalDate, [end] As LocalDate) As Integer
+  overload: NodaTime.Period.DaysBetween*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">start</code> and <code class="paramref">end</code> use different calendars.
+- uid: NodaTime.Period.Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime,NodaTime.PeriodUnits)
+  commentId: M:NodaTime.Period.Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime,NodaTime.PeriodUnits)
+  id: Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime,NodaTime.PeriodUnits)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(LocalDateTime, LocalDateTime, PeriodUnits)
+  nameWithType: Period.Between(LocalDateTime, LocalDateTime, PeriodUnits)
+  fullName: NodaTime.Period.Between(NodaTime.LocalDateTime, NodaTime.LocalDateTime, NodaTime.PeriodUnits)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the period between a start and an end date/time, using only the given units.
+  remarks: >-
+    If <code class="paramref">end</code> is before <code class="paramref">start</code>, each property in the returned period
+
+    will be negative. If the given set of units cannot exactly reach the end point (e.g. finding
+
+    the difference between 1am and 3:15am in hours) the result will be such that adding it to <code class="paramref">start</code>
+
+    will give a value between <code class="paramref">start</code> and <code class="paramref">end</code>. In other words,
+
+    any rounding is "towards start"; this is true whether the resulting period is negative or positive.
+  example: []
+  syntax:
+    content: public static Period Between(LocalDateTime start, LocalDateTime end, PeriodUnits units)
+    parameters:
+    - id: start
+      type: NodaTime.LocalDateTime
+      description: Start date/time
+    - id: end
+      type: NodaTime.LocalDateTime
+      description: End date/time
+    - id: units
+      type: NodaTime.PeriodUnits
+      description: Units to use for calculations
+    return:
+      type: NodaTime.Period
+      description: The period between the given date/times, using the given units.
+    content.vb: Public Shared Function Between(start As LocalDateTime, [end] As LocalDateTime, units As PeriodUnits) As Period
+  overload: NodaTime.Period.Between*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">units</code> is empty or contained unknown values.
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">start</code> and <code class="paramref">end</code> use different calendars.
+- uid: NodaTime.Period.Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime)
+  commentId: M:NodaTime.Period.Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime)
+  id: Between(NodaTime.LocalDateTime,NodaTime.LocalDateTime)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(LocalDateTime, LocalDateTime)
+  nameWithType: Period.Between(LocalDateTime, LocalDateTime)
+  fullName: NodaTime.Period.Between(NodaTime.LocalDateTime, NodaTime.LocalDateTime)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the exact difference between two date/times.
+  remarks: >-
+    If <code class="paramref">end</code> is before <code class="paramref">start</code>, each property in the returned period
+
+    will be negative.
+  example: []
+  syntax:
+    content: public static Period Between(LocalDateTime start, LocalDateTime end)
+    parameters:
+    - id: start
+      type: NodaTime.LocalDateTime
+      description: Start date/time
+    - id: end
+      type: NodaTime.LocalDateTime
+      description: End date/time
+    return:
+      type: NodaTime.Period
+      description: The period between the two date and time values, using all units.
+    content.vb: Public Shared Function Between(start As LocalDateTime, [end] As LocalDateTime) As Period
+  overload: NodaTime.Period.Between*
+- uid: NodaTime.Period.Between(NodaTime.LocalDate,NodaTime.LocalDate,NodaTime.PeriodUnits)
+  commentId: M:NodaTime.Period.Between(NodaTime.LocalDate,NodaTime.LocalDate,NodaTime.PeriodUnits)
+  id: Between(NodaTime.LocalDate,NodaTime.LocalDate,NodaTime.PeriodUnits)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(LocalDate, LocalDate, PeriodUnits)
+  nameWithType: Period.Between(LocalDate, LocalDate, PeriodUnits)
+  fullName: NodaTime.Period.Between(NodaTime.LocalDate, NodaTime.LocalDate, NodaTime.PeriodUnits)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the period between a start and an end date, using only the given units.
+  remarks: >-
+    If <code class="paramref">end</code> is before <code class="paramref">start</code>, each property in the returned period
+
+    will be negative. If the given set of units cannot exactly reach the end point (e.g. finding
+
+    the difference between 12th February and 15th March in months) the result will be such that adding it to <code class="paramref">start</code>
+
+    will give a value between <code class="paramref">start</code> and <code class="paramref">end</code>. In other words,
+
+    any rounding is "towards start"; this is true whether the resulting period is negative or positive.
+  example: []
+  syntax:
+    content: public static Period Between(LocalDate start, LocalDate end, PeriodUnits units)
+    parameters:
+    - id: start
+      type: NodaTime.LocalDate
+      description: Start date
+    - id: end
+      type: NodaTime.LocalDate
+      description: End date
+    - id: units
+      type: NodaTime.PeriodUnits
+      description: Units to use for calculations
+    return:
+      type: NodaTime.Period
+      description: The period between the given dates, using the given units.
+    content.vb: Public Shared Function Between(start As LocalDate, [end] As LocalDate, units As PeriodUnits) As Period
+  overload: NodaTime.Period.Between*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">units</code> contains time units, is empty or contains unknown values.
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">start</code> and <code class="paramref">end</code> use different calendars.
+- uid: NodaTime.Period.Between(NodaTime.LocalDate,NodaTime.LocalDate)
+  commentId: M:NodaTime.Period.Between(NodaTime.LocalDate,NodaTime.LocalDate)
+  id: Between(NodaTime.LocalDate,NodaTime.LocalDate)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(LocalDate, LocalDate)
+  nameWithType: Period.Between(LocalDate, LocalDate)
+  fullName: NodaTime.Period.Between(NodaTime.LocalDate, NodaTime.LocalDate)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the exact difference between two dates.
+  remarks: >-
+    If <code class="paramref">end</code> is before <code class="paramref">start</code>, each property in the returned period
+
+    will be negative.
+
+    The calendar systems of the two dates must be the same; an exception will be thrown otherwise.
+  example: []
+  syntax:
+    content: public static Period Between(LocalDate start, LocalDate end)
+    parameters:
+    - id: start
+      type: NodaTime.LocalDate
+      description: Start date
+    - id: end
+      type: NodaTime.LocalDate
+      description: End date
+    return:
+      type: NodaTime.Period
+      description: The period between the two dates, using year, month and day units.
+    content.vb: Public Shared Function Between(start As LocalDate, [end] As LocalDate) As Period
+  overload: NodaTime.Period.Between*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">start</code> and <code class="paramref">end</code> are not in the same calendar system.
+- uid: NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime,NodaTime.PeriodUnits)
+  commentId: M:NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime,NodaTime.PeriodUnits)
+  id: Between(NodaTime.LocalTime,NodaTime.LocalTime,NodaTime.PeriodUnits)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(LocalTime, LocalTime, PeriodUnits)
+  nameWithType: Period.Between(LocalTime, LocalTime, PeriodUnits)
+  fullName: NodaTime.Period.Between(NodaTime.LocalTime, NodaTime.LocalTime, NodaTime.PeriodUnits)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the period between a start and an end time, using only the given units.
+  remarks: >-
+    If <code class="paramref">end</code> is before <code class="paramref">start</code>, each property in the returned period
+
+    will be negative. If the given set of units cannot exactly reach the end point (e.g. finding
+
+    the difference between 3am and 4.30am in hours) the result will be such that adding it to <code class="paramref">start</code>
+
+    will give a value between <code class="paramref">start</code> and <code class="paramref">end</code>. In other words,
+
+    any rounding is "towards start"; this is true whether the resulting period is negative or positive.
+  example: []
+  syntax:
+    content: public static Period Between(LocalTime start, LocalTime end, PeriodUnits units)
+    parameters:
+    - id: start
+      type: NodaTime.LocalTime
+      description: Start time
+    - id: end
+      type: NodaTime.LocalTime
+      description: End time
+    - id: units
+      type: NodaTime.PeriodUnits
+      description: Units to use for calculations
+    return:
+      type: NodaTime.Period
+      description: The period between the given times, using the given units.
+    content.vb: Public Shared Function Between(start As LocalTime, [end] As LocalTime, units As PeriodUnits) As Period
+  overload: NodaTime.Period.Between*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">units</code> contains date units, is empty or contains unknown values.
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">start</code> and <code class="paramref">end</code> use different calendars.
+- uid: NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime)
+  commentId: M:NodaTime.Period.Between(NodaTime.LocalTime,NodaTime.LocalTime)
+  id: Between(NodaTime.LocalTime,NodaTime.LocalTime)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(LocalTime, LocalTime)
+  nameWithType: Period.Between(LocalTime, LocalTime)
+  fullName: NodaTime.Period.Between(NodaTime.LocalTime, NodaTime.LocalTime)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the exact difference between two times.
+  remarks: >-
+    If <code class="paramref">end</code> is before <code class="paramref">start</code>, each property in the returned period
+
+    will be negative.
+  example: []
+  syntax:
+    content: public static Period Between(LocalTime start, LocalTime end)
+    parameters:
+    - id: start
+      type: NodaTime.LocalTime
+      description: Start time
+    - id: end
+      type: NodaTime.LocalTime
+      description: End time
+    return:
+      type: NodaTime.Period
+      description: The period between the two times, using the time period units.
+    content.vb: Public Shared Function Between(start As LocalTime, [end] As LocalTime) As Period
+  overload: NodaTime.Period.Between*
+- uid: NodaTime.Period.Between(NodaTime.YearMonth,NodaTime.YearMonth,NodaTime.PeriodUnits)
+  commentId: M:NodaTime.Period.Between(NodaTime.YearMonth,NodaTime.YearMonth,NodaTime.PeriodUnits)
+  id: Between(NodaTime.YearMonth,NodaTime.YearMonth,NodaTime.PeriodUnits)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(YearMonth, YearMonth, PeriodUnits)
+  nameWithType: Period.Between(YearMonth, YearMonth, PeriodUnits)
+  fullName: NodaTime.Period.Between(NodaTime.YearMonth, NodaTime.YearMonth, NodaTime.PeriodUnits)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the period between a start and an end <xref href="NodaTime.YearMonth" data-throw-if-not-resolved="false"></xref>, using only the given units.
+  remarks: >-
+    If <code class="paramref">end</code> is before <code class="paramref">start</code>, each property in the returned period
+
+    will be negative. If the given set of units cannot exactly reach the end point (e.g. finding
+
+    the difference between February 2010 and March 2012 in years) the result will be such that adding it to <code class="paramref">start</code>
+
+    will give a value between <code class="paramref">start</code> and <code class="paramref">end</code>. In other words,
+
+    any rounding is "towards start"; this is true whether the resulting period is negative or positive.
+  example: []
+  syntax:
+    content: public static Period Between(YearMonth start, YearMonth end, PeriodUnits units)
+    parameters:
+    - id: start
+      type: NodaTime.YearMonth
+      description: Start year and month
+    - id: end
+      type: NodaTime.YearMonth
+      description: End year and month
+    - id: units
+      type: NodaTime.PeriodUnits
+      description: Units to use for calculations
+    return:
+      type: NodaTime.Period
+      description: The period between the given YearMonths, using the given units.
+    content.vb: Public Shared Function Between(start As YearMonth, [end] As YearMonth, units As PeriodUnits) As Period
+  overload: NodaTime.Period.Between*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: >-
+      <code class="paramref">units</code> is empty or contains anything other than than PeriodUnits.Years
+
+      and/or PeriodUnits.Months.
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">start</code> and <code class="paramref">end</code> use different calendars.
+- uid: NodaTime.Period.Between(NodaTime.YearMonth,NodaTime.YearMonth)
+  commentId: M:NodaTime.Period.Between(NodaTime.YearMonth,NodaTime.YearMonth)
+  id: Between(NodaTime.YearMonth,NodaTime.YearMonth)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Between(YearMonth, YearMonth)
+  nameWithType: Period.Between(YearMonth, YearMonth)
+  fullName: NodaTime.Period.Between(NodaTime.YearMonth, NodaTime.YearMonth)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the exact difference between two <xref href="NodaTime.YearMonth" data-throw-if-not-resolved="false"></xref>.
+  remarks: >-
+    If <code class="paramref">end</code> is before <code class="paramref">start</code>, each property in the returned period
+
+    will be negative.
+
+    The calendar systems of the two dates must be the same; an exception will be thrown otherwise.
+  example: []
+  syntax:
+    content: public static Period Between(YearMonth start, YearMonth end)
+    parameters:
+    - id: start
+      type: NodaTime.YearMonth
+      description: Start year and month
+    - id: end
+      type: NodaTime.YearMonth
+      description: End year and month
+    return:
+      type: NodaTime.Period
+      description: The period between the two YearMonths, using year and month units.
+    content.vb: Public Shared Function Between(start As YearMonth, [end] As YearMonth) As Period
+  overload: NodaTime.Period.Between*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">start</code> and <code class="paramref">end</code> are not in the same calendar system.
+- uid: NodaTime.Period.HasTimeComponent
+  commentId: P:NodaTime.Period.HasTimeComponent
+  id: HasTimeComponent
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: HasTimeComponent
+  nameWithType: Period.HasTimeComponent
+  fullName: NodaTime.Period.HasTimeComponent
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns whether or not this period contains any non-zero-valued time-based properties (hours or lower).
+  example: []
+  syntax:
+    content: public bool HasTimeComponent { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: true if the period contains any non-zero-valued time-based properties (hours or lower); false otherwise.
+    content.vb: Public ReadOnly Property HasTimeComponent As Boolean
+  overload: NodaTime.Period.HasTimeComponent*
+- uid: NodaTime.Period.HasDateComponent
+  commentId: P:NodaTime.Period.HasDateComponent
+  id: HasDateComponent
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: HasDateComponent
+  nameWithType: Period.HasDateComponent
+  fullName: NodaTime.Period.HasDateComponent
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns whether or not this period contains any non-zero date-based properties (days or higher).
+  example: []
+  syntax:
+    content: public bool HasDateComponent { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: true if this period contains any non-zero date-based properties (days or higher); false otherwise.
+    content.vb: Public ReadOnly Property HasDateComponent As Boolean
+  overload: NodaTime.Period.HasDateComponent*
+- uid: NodaTime.Period.ToDuration
+  commentId: M:NodaTime.Period.ToDuration
+  id: ToDuration
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: ToDuration()
+  nameWithType: Period.ToDuration()
+  fullName: NodaTime.Period.ToDuration()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    For periods that do not contain a non-zero number of years or months, returns a duration for this period
+
+    assuming a standard 7-day week, 24-hour day, 60-minute hour etc.
+  example: []
+  syntax:
+    content: public Duration ToDuration()
+    return:
+      type: NodaTime.Duration
+      description: The duration of the period.
+    content.vb: Public Function ToDuration() As Duration
+  overload: NodaTime.Period.ToDuration*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The month or year property in the period is non-zero.
+  - type: System.OverflowException
+    commentId: T:System.OverflowException
+    description: >-
+      The period doesn't have years or months, but the calculation
+          overflows the bounds of <xref href="NodaTime.Duration" data-throw-if-not-resolved="false"></xref>. In some cases this may occur even though the theoretical
+          result would be valid due to balancing positive and negative values, but for simplicity there is
+          no attempt to work around this - in realistic periods, it shouldn't be a problem.
+- uid: NodaTime.Period.ToBuilder
+  commentId: M:NodaTime.Period.ToBuilder
+  id: ToBuilder
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: ToBuilder()
+  nameWithType: Period.ToBuilder()
+  fullName: NodaTime.Period.ToBuilder()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Creates a <xref href="NodaTime.PeriodBuilder" data-throw-if-not-resolved="false"></xref> from this instance. The new builder
+
+    is populated with the values from this period, but is then detached from it:
+
+    changes made to the builder are not reflected in this period.
+  example: []
+  syntax:
+    content: public PeriodBuilder ToBuilder()
+    return:
+      type: NodaTime.PeriodBuilder
+      description: A builder with the same values and units as this period.
+    content.vb: Public Function ToBuilder() As PeriodBuilder
+  overload: NodaTime.Period.ToBuilder*
+- uid: NodaTime.Period.Normalize
+  commentId: M:NodaTime.Period.Normalize
+  id: Normalize
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Normalize()
+  nameWithType: Period.Normalize()
+  fullName: NodaTime.Period.Normalize()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns a normalized version of this period, such that equivalent (but potentially non-equal) periods are
+
+    changed to the same representation.
+  remarks: >-
+    Months and years are unchanged
+
+    (as they can vary in length), but weeks are multiplied by 7 and added to the
+
+    Days property, and all time properties are normalized to their natural range.
+
+    Subsecond values are normalized to millisecond and "nanosecond within millisecond" values.
+
+    So for example, a period of 25 hours becomes a period of 1 day
+
+    and 1 hour. A period of 1,500,750,000 nanoseconds becomes 1 second, 500 milliseconds and
+
+    750,000 nanoseconds. Aside from months and years, either all the properties
+
+    end up positive, or they all end up negative. "Week" and "tick" units in the returned period are always 0.
+  example: []
+  syntax:
+    content: public Period Normalize()
+    return:
+      type: NodaTime.Period
+      description: The normalized period.
+    content.vb: Public Function Normalize() As Period
+  overload: NodaTime.Period.Normalize*
+  exceptions:
+  - type: System.OverflowException
+    commentId: T:System.OverflowException
+    description: >-
+      The period doesn't have years or months, but it contains more than
+          <xref href="System.Int64.MaxValue" data-throw-if-not-resolved="false"></xref> nanoseconds when the combined weeks/days/time portions are considered. This is
+          over 292 years, so unlikely to be a problem in normal usage.
+          In some cases this may occur even though the theoretical result would be valid due to balancing positive and
+          negative values, but for simplicity there is no attempt to work around this.
+  seealso:
+  - linkId: NodaTime.Period.NormalizingEqualityComparer
+    commentId: P:NodaTime.Period.NormalizingEqualityComparer
+- uid: NodaTime.Period.ToString
+  commentId: M:NodaTime.Period.ToString
+  id: ToString
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Period.ToString()
+  fullName: NodaTime.Period.ToString()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns this string formatted according to the <xref href="NodaTime.Text.PeriodPattern.Roundtrip" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A formatted representation of this period.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: NodaTime.Period.ToString*
+- uid: NodaTime.Period.op_UnaryPlus(NodaTime.Period)
+  commentId: M:NodaTime.Period.op_UnaryPlus(NodaTime.Period)
+  id: op_UnaryPlus(NodaTime.Period)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: operator +(Period)
+  nameWithType: Period.operator +(Period)
+  fullName: NodaTime.Period.operator +(NodaTime.Period)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Implements the operator + (unary).
+  example: []
+  syntax:
+    content: public static Period operator +(Period period)
+    parameters:
+    - id: period
+      type: NodaTime.Period
+      description: The period.
+    return:
+      type: NodaTime.Period
+      description: The same period <xref href="NodaTime.Period" data-throw-if-not-resolved="false"></xref> as provided.
+    content.vb: Public Shared Operator +(period As Period) As Period
+  overload: NodaTime.Period.op_UnaryPlus*
+  implements:
+  - System.Numerics.IUnaryPlusOperators{NodaTime.Period,NodaTime.Period}.op_UnaryPlus(NodaTime.Period)
+  nameWithType.vb: Period.+(Period)
+  fullName.vb: NodaTime.Period.+(NodaTime.Period)
+  name.vb: +(Period)
+- uid: NodaTime.Period.Equals(System.Object)
+  commentId: M:NodaTime.Period.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: Period.Equals(object?)
+  fullName: NodaTime.Period.Equals(object?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Compares the given object for equality with this one, as per <xref href="NodaTime.Period.Equals(NodaTime.Period)" data-throw-if-not-resolved="false"></xref>.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public override bool Equals(object? other)
+    parameters:
+    - id: other
+      type: System.Object
+      description: The value to compare this one with.
+    return:
+      type: System.Boolean
+      description: true if the other object is a period equal to this one, consistent with <xref href="NodaTime.Period.Equals(NodaTime.Period)" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Overrides Function Equals(other As Object) As Boolean
+  overridden: System.Object.Equals(System.Object)
+  overload: NodaTime.Period.Equals*
+  nameWithType.vb: Period.Equals(Object)
+  fullName.vb: NodaTime.Period.Equals(Object)
+  name.vb: Equals(Object)
+- uid: NodaTime.Period.GetHashCode
+  commentId: M:NodaTime.Period.GetHashCode
+  id: GetHashCode
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: Period.GetHashCode()
+  fullName: NodaTime.Period.GetHashCode()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns the hash code for this period, consistent with <xref href="NodaTime.Period.Equals(NodaTime.Period)" data-throw-if-not-resolved="false"></xref>.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: The hash code for this period.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.Object.GetHashCode
+  overload: NodaTime.Period.GetHashCode*
+- uid: NodaTime.Period.Equals(NodaTime.Period)
+  commentId: M:NodaTime.Period.Equals(NodaTime.Period)
+  id: Equals(NodaTime.Period)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: Equals(Period?)
+  nameWithType: Period.Equals(Period?)
+  fullName: NodaTime.Period.Equals(NodaTime.Period?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Compares the given period for equality with this one.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public bool Equals(Period? other)
+    parameters:
+    - id: other
+      type: NodaTime.Period
+      description: The period to compare this one with.
+    return:
+      type: System.Boolean
+      description: True if this period has the same values for the same properties as the one specified.
+    content.vb: Public Function Equals(other As Period) As Boolean
+  overload: NodaTime.Period.Equals*
+  implements:
+  - System.IEquatable{NodaTime.Period}.Equals(NodaTime.Period)
+  nameWithType.vb: Period.Equals(Period)
+  fullName.vb: NodaTime.Period.Equals(NodaTime.Period)
+  name.vb: Equals(Period)
+- uid: NodaTime.Period.op_Equality(NodaTime.Period,NodaTime.Period)
+  commentId: M:NodaTime.Period.op_Equality(NodaTime.Period,NodaTime.Period)
+  id: op_Equality(NodaTime.Period,NodaTime.Period)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: operator ==(Period?, Period?)
+  nameWithType: Period.operator ==(Period?, Period?)
+  fullName: NodaTime.Period.operator ==(NodaTime.Period?, NodaTime.Period?)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator == (equality).
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public static bool operator ==(Period? left, Period? right)
+    parameters:
+    - id: left
+      type: NodaTime.Period
+      description: The left hand side of the operator.
+    - id: right
+      type: NodaTime.Period
+      description: The right hand side of the operator.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if values are equal to each other, otherwise <code>false</code>.
+    content.vb: Public Shared Operator =(left As Period, right As Period) As Boolean
+  overload: NodaTime.Period.op_Equality*
+  nameWithType.vb: Period.=(Period, Period)
+  fullName.vb: NodaTime.Period.=(NodaTime.Period, NodaTime.Period)
+  name.vb: =(Period, Period)
+- uid: NodaTime.Period.op_Inequality(NodaTime.Period,NodaTime.Period)
+  commentId: M:NodaTime.Period.op_Inequality(NodaTime.Period,NodaTime.Period)
+  id: op_Inequality(NodaTime.Period,NodaTime.Period)
+  parent: NodaTime.Period
+  langs:
+  - csharp
+  - vb
+  name: operator !=(Period?, Period?)
+  nameWithType: Period.operator !=(Period?, Period?)
+  fullName: NodaTime.Period.operator !=(NodaTime.Period?, NodaTime.Period?)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator != (inequality).
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public static bool operator !=(Period? left, Period? right)
+    parameters:
+    - id: left
+      type: NodaTime.Period
+      description: The left hand side of the operator.
+    - id: right
+      type: NodaTime.Period
+      description: The right hand side of the operator.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if values are not equal to each other, otherwise <code>false</code>.
+    content.vb: Public Shared Operator <>(left As Period, right As Period) As Boolean
+  overload: NodaTime.Period.op_Inequality*
+  nameWithType.vb: Period.<>(Period, Period)
+  fullName.vb: NodaTime.Period.<>(NodaTime.Period, NodaTime.Period)
+  name.vb: <>(Period, Period)
+references:
+- uid: NodaTime.Period
+  commentId: T:NodaTime.Period
+  parent: NodaTime
+  href: NodaTime.Period.html
+  name: Period
+  nameWithType: Period
+  fullName: NodaTime.Period
+- uid: NodaTime.Period.Years
+  commentId: P:NodaTime.Period.Years
+  href: NodaTime.Period.html#NodaTime_Period_Years
+  name: Years
+  nameWithType: Period.Years
+  fullName: NodaTime.Period.Years
+- uid: NodaTime.Period.Months
+  commentId: P:NodaTime.Period.Months
+  href: NodaTime.Period.html#NodaTime_Period_Months
+  name: Months
+  nameWithType: Period.Months
+  fullName: NodaTime.Period.Months
+- uid: NodaTime.Period.Normalize
+  commentId: M:NodaTime.Period.Normalize
+  href: NodaTime.Period.html#NodaTime_Period_Normalize
+  name: Normalize()
+  nameWithType: Period.Normalize()
+  fullName: NodaTime.Period.Normalize()
+  spec.csharp:
+  - uid: NodaTime.Period.Normalize
+    name: Normalize
+    href: NodaTime.Period.html#NodaTime_Period_Normalize
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Period.Normalize
+    name: Normalize
+    href: NodaTime.Period.html#NodaTime_Period_Normalize
+  - name: (
+  - name: )
+- uid: NodaTime.Period.NormalizingEqualityComparer
+  commentId: P:NodaTime.Period.NormalizingEqualityComparer
+  href: NodaTime.Period.html#NodaTime_Period_NormalizingEqualityComparer
+  name: NormalizingEqualityComparer
+  nameWithType: Period.NormalizingEqualityComparer
+  fullName: NodaTime.Period.NormalizingEqualityComparer
+- uid: NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)
+  commentId: M:NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)
+  href: NodaTime.Period.html#NodaTime_Period_CreateComparer_NodaTime_LocalDateTime_
+  name: CreateComparer(LocalDateTime)
+  nameWithType: Period.CreateComparer(LocalDateTime)
+  fullName: NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)
+  spec.csharp:
+  - uid: NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)
+    name: CreateComparer
+    href: NodaTime.Period.html#NodaTime_Period_CreateComparer_NodaTime_LocalDateTime_
+  - name: (
+  - uid: NodaTime.LocalDateTime
+    name: LocalDateTime
+    href: NodaTime.LocalDateTime.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Period.CreateComparer(NodaTime.LocalDateTime)
+    name: CreateComparer
+    href: NodaTime.Period.html#NodaTime_Period_CreateComparer_NodaTime_LocalDateTime_
+  - name: (
+  - uid: NodaTime.LocalDateTime
+    name: LocalDateTime
+    href: NodaTime.LocalDateTime.html
+  - name: )
+- uid: NodaTime.LocalDateTime
+  commentId: T:NodaTime.LocalDateTime
+  parent: NodaTime
+  href: NodaTime.LocalDateTime.html
+  name: LocalDateTime
+  nameWithType: LocalDateTime
+  fullName: NodaTime.LocalDateTime
+- uid: NodaTime.Duration
+  commentId: T:NodaTime.Duration
+  parent: NodaTime
+  href: NodaTime.Duration.html
+  name: Duration
+  nameWithType: Duration
+  fullName: NodaTime.Duration
+- uid: NodaTime.ZonedDateTime
+  commentId: T:NodaTime.ZonedDateTime
+  parent: NodaTime
+  href: NodaTime.ZonedDateTime.html
+  name: ZonedDateTime
+  nameWithType: ZonedDateTime
+  fullName: NodaTime.ZonedDateTime
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{NodaTime.Period}
+  commentId: T:System.IEquatable{NodaTime.Period}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Period>
+  nameWithType: IEquatable<Period>
+  fullName: System.IEquatable<NodaTime.Period>
+  nameWithType.vb: IEquatable(Of Period)
+  fullName.vb: System.IEquatable(Of NodaTime.Period)
+  name.vb: IEquatable(Of Period)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.Numerics.IAdditionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}
+  commentId: T:System.Numerics.IAdditionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}
+  parent: System.Numerics
+  definition: System.Numerics.IAdditionOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  name: IAdditionOperators<Period, Period, Period>
+  nameWithType: IAdditionOperators<Period, Period, Period>
+  fullName: System.Numerics.IAdditionOperators<NodaTime.Period, NodaTime.Period, NodaTime.Period>
+  nameWithType.vb: IAdditionOperators(Of Period, Period, Period)
+  fullName.vb: System.Numerics.IAdditionOperators(Of NodaTime.Period, NodaTime.Period, NodaTime.Period)
+  name.vb: IAdditionOperators(Of Period, Period, Period)
+  spec.csharp:
+  - uid: System.Numerics.IAdditionOperators`3
+    name: IAdditionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  - name: <
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IAdditionOperators`3
+    name: IAdditionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.Numerics.ISubtractionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}
+  commentId: T:System.Numerics.ISubtractionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}
+  parent: System.Numerics
+  definition: System.Numerics.ISubtractionOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  name: ISubtractionOperators<Period, Period, Period>
+  nameWithType: ISubtractionOperators<Period, Period, Period>
+  fullName: System.Numerics.ISubtractionOperators<NodaTime.Period, NodaTime.Period, NodaTime.Period>
+  nameWithType.vb: ISubtractionOperators(Of Period, Period, Period)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of NodaTime.Period, NodaTime.Period, NodaTime.Period)
+  name.vb: ISubtractionOperators(Of Period, Period, Period)
+  spec.csharp:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: <
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.Numerics.IUnaryNegationOperators{NodaTime.Period,NodaTime.Period}
+  commentId: T:System.Numerics.IUnaryNegationOperators{NodaTime.Period,NodaTime.Period}
+  parent: System.Numerics
+  definition: System.Numerics.IUnaryNegationOperators`2
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2
+  name: IUnaryNegationOperators<Period, Period>
+  nameWithType: IUnaryNegationOperators<Period, Period>
+  fullName: System.Numerics.IUnaryNegationOperators<NodaTime.Period, NodaTime.Period>
+  nameWithType.vb: IUnaryNegationOperators(Of Period, Period)
+  fullName.vb: System.Numerics.IUnaryNegationOperators(Of NodaTime.Period, NodaTime.Period)
+  name.vb: IUnaryNegationOperators(Of Period, Period)
+  spec.csharp:
+  - uid: System.Numerics.IUnaryNegationOperators`2
+    name: IUnaryNegationOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2
+  - name: <
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IUnaryNegationOperators`2
+    name: IUnaryNegationOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.Numerics.IUnaryPlusOperators{NodaTime.Period,NodaTime.Period}
+  commentId: T:System.Numerics.IUnaryPlusOperators{NodaTime.Period,NodaTime.Period}
+  parent: System.Numerics
+  definition: System.Numerics.IUnaryPlusOperators`2
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2
+  name: IUnaryPlusOperators<Period, Period>
+  nameWithType: IUnaryPlusOperators<Period, Period>
+  fullName: System.Numerics.IUnaryPlusOperators<NodaTime.Period, NodaTime.Period>
+  nameWithType.vb: IUnaryPlusOperators(Of Period, Period)
+  fullName.vb: System.Numerics.IUnaryPlusOperators(Of NodaTime.Period, NodaTime.Period)
+  name.vb: IUnaryPlusOperators(Of Period, Period)
+  spec.csharp:
+  - uid: System.Numerics.IUnaryPlusOperators`2
+    name: IUnaryPlusOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2
+  - name: <
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IUnaryPlusOperators`2
+    name: IUnaryPlusOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.Numerics.IAdditiveIdentity{NodaTime.Period,NodaTime.Period}
+  commentId: T:System.Numerics.IAdditiveIdentity{NodaTime.Period,NodaTime.Period}
+  parent: System.Numerics
+  definition: System.Numerics.IAdditiveIdentity`2
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2
+  name: IAdditiveIdentity<Period, Period>
+  nameWithType: IAdditiveIdentity<Period, Period>
+  fullName: System.Numerics.IAdditiveIdentity<NodaTime.Period, NodaTime.Period>
+  nameWithType.vb: IAdditiveIdentity(Of Period, Period)
+  fullName.vb: System.Numerics.IAdditiveIdentity(Of NodaTime.Period, NodaTime.Period)
+  name.vb: IAdditiveIdentity(Of Period, Period)
+  spec.csharp:
+  - uid: System.Numerics.IAdditiveIdentity`2
+    name: IAdditiveIdentity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2
+  - name: <
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IAdditiveIdentity`2
+    name: IAdditiveIdentity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.Numerics.IMinMaxValue{NodaTime.Period}
+  commentId: T:System.Numerics.IMinMaxValue{NodaTime.Period}
+  parent: System.Numerics
+  definition: System.Numerics.IMinMaxValue`1
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  name: IMinMaxValue<Period>
+  nameWithType: IMinMaxValue<Period>
+  fullName: System.Numerics.IMinMaxValue<NodaTime.Period>
+  nameWithType.vb: IMinMaxValue(Of Period)
+  fullName.vb: System.Numerics.IMinMaxValue(Of NodaTime.Period)
+  name.vb: IMinMaxValue(Of Period)
+  spec.csharp:
+  - uid: System.Numerics.IMinMaxValue`1
+    name: IMinMaxValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  - name: <
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IMinMaxValue`1
+    name: IMinMaxValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Numerics.IAdditionOperators`3
+  commentId: T:System.Numerics.IAdditionOperators`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  name: IAdditionOperators<TSelf, TOther, TResult>
+  nameWithType: IAdditionOperators<TSelf, TOther, TResult>
+  fullName: System.Numerics.IAdditionOperators<TSelf, TOther, TResult>
+  nameWithType.vb: IAdditionOperators(Of TSelf, TOther, TResult)
+  fullName.vb: System.Numerics.IAdditionOperators(Of TSelf, TOther, TResult)
+  name.vb: IAdditionOperators(Of TSelf, TOther, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IAdditionOperators`3
+    name: IAdditionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IAdditionOperators`3
+    name: IAdditionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics
+  commentId: N:System.Numerics
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Numerics
+  nameWithType: System.Numerics
+  fullName: System.Numerics
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+- uid: System.Numerics.ISubtractionOperators`3
+  commentId: T:System.Numerics.ISubtractionOperators`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  name: ISubtractionOperators<TSelf, TOther, TResult>
+  nameWithType: ISubtractionOperators<TSelf, TOther, TResult>
+  fullName: System.Numerics.ISubtractionOperators<TSelf, TOther, TResult>
+  nameWithType.vb: ISubtractionOperators(Of TSelf, TOther, TResult)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of TSelf, TOther, TResult)
+  name.vb: ISubtractionOperators(Of TSelf, TOther, TResult)
+  spec.csharp:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics.IUnaryNegationOperators`2
+  commentId: T:System.Numerics.IUnaryNegationOperators`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2
+  name: IUnaryNegationOperators<TSelf, TResult>
+  nameWithType: IUnaryNegationOperators<TSelf, TResult>
+  fullName: System.Numerics.IUnaryNegationOperators<TSelf, TResult>
+  nameWithType.vb: IUnaryNegationOperators(Of TSelf, TResult)
+  fullName.vb: System.Numerics.IUnaryNegationOperators(Of TSelf, TResult)
+  name.vb: IUnaryNegationOperators(Of TSelf, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IUnaryNegationOperators`2
+    name: IUnaryNegationOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IUnaryNegationOperators`2
+    name: IUnaryNegationOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics.IUnaryPlusOperators`2
+  commentId: T:System.Numerics.IUnaryPlusOperators`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2
+  name: IUnaryPlusOperators<TSelf, TResult>
+  nameWithType: IUnaryPlusOperators<TSelf, TResult>
+  fullName: System.Numerics.IUnaryPlusOperators<TSelf, TResult>
+  nameWithType.vb: IUnaryPlusOperators(Of TSelf, TResult)
+  fullName.vb: System.Numerics.IUnaryPlusOperators(Of TSelf, TResult)
+  name.vb: IUnaryPlusOperators(Of TSelf, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IUnaryPlusOperators`2
+    name: IUnaryPlusOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IUnaryPlusOperators`2
+    name: IUnaryPlusOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics.IAdditiveIdentity`2
+  commentId: T:System.Numerics.IAdditiveIdentity`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2
+  name: IAdditiveIdentity<TSelf, TResult>
+  nameWithType: IAdditiveIdentity<TSelf, TResult>
+  fullName: System.Numerics.IAdditiveIdentity<TSelf, TResult>
+  nameWithType.vb: IAdditiveIdentity(Of TSelf, TResult)
+  fullName.vb: System.Numerics.IAdditiveIdentity(Of TSelf, TResult)
+  name.vb: IAdditiveIdentity(Of TSelf, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IAdditiveIdentity`2
+    name: IAdditiveIdentity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IAdditiveIdentity`2
+    name: IAdditiveIdentity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics.IMinMaxValue`1
+  commentId: T:System.Numerics.IMinMaxValue`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  name: IMinMaxValue<TSelf>
+  nameWithType: IMinMaxValue<TSelf>
+  fullName: System.Numerics.IMinMaxValue<TSelf>
+  nameWithType.vb: IMinMaxValue(Of TSelf)
+  fullName.vb: System.Numerics.IMinMaxValue(Of TSelf)
+  name.vb: IMinMaxValue(Of TSelf)
+  spec.csharp:
+  - uid: System.Numerics.IMinMaxValue`1
+    name: IMinMaxValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  - name: <
+  - name: TSelf
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IMinMaxValue`1
+    name: IMinMaxValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: )
+- uid: NodaTime.Period.Zero*
+  commentId: Overload:NodaTime.Period.Zero
+  href: NodaTime.Period.html#NodaTime_Period_Zero
+  name: Zero
+  nameWithType: Period.Zero
+  fullName: NodaTime.Period.Zero
+- uid: NodaTime.Period.MaxValue*
+  commentId: Overload:NodaTime.Period.MaxValue
+  href: NodaTime.Period.html#NodaTime_Period_MaxValue
+  name: MaxValue
+  nameWithType: Period.MaxValue
+  fullName: NodaTime.Period.MaxValue
+- uid: System.Numerics.IMinMaxValue{NodaTime.Period}.MaxValue
+  commentId: P:System.Numerics.IMinMaxValue{NodaTime.Period}.MaxValue
+  parent: System.Numerics.IMinMaxValue{NodaTime.Period}
+  definition: System.Numerics.IMinMaxValue`1.MaxValue
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1.maxvalue
+  name: MaxValue
+  nameWithType: IMinMaxValue<Period>.MaxValue
+  fullName: System.Numerics.IMinMaxValue<NodaTime.Period>.MaxValue
+  nameWithType.vb: IMinMaxValue(Of Period).MaxValue
+  fullName.vb: System.Numerics.IMinMaxValue(Of NodaTime.Period).MaxValue
+- uid: System.Numerics.IMinMaxValue`1.MaxValue
+  commentId: P:System.Numerics.IMinMaxValue`1.MaxValue
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1.maxvalue
+  name: MaxValue
+  nameWithType: IMinMaxValue<TSelf>.MaxValue
+  fullName: System.Numerics.IMinMaxValue<TSelf>.MaxValue
+  nameWithType.vb: IMinMaxValue(Of TSelf).MaxValue
+  fullName.vb: System.Numerics.IMinMaxValue(Of TSelf).MaxValue
+- uid: NodaTime.Period.MinValue*
+  commentId: Overload:NodaTime.Period.MinValue
+  href: NodaTime.Period.html#NodaTime_Period_MinValue
+  name: MinValue
+  nameWithType: Period.MinValue
+  fullName: NodaTime.Period.MinValue
+- uid: System.Numerics.IMinMaxValue{NodaTime.Period}.MinValue
+  commentId: P:System.Numerics.IMinMaxValue{NodaTime.Period}.MinValue
+  parent: System.Numerics.IMinMaxValue{NodaTime.Period}
+  definition: System.Numerics.IMinMaxValue`1.MinValue
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1.minvalue
+  name: MinValue
+  nameWithType: IMinMaxValue<Period>.MinValue
+  fullName: System.Numerics.IMinMaxValue<NodaTime.Period>.MinValue
+  nameWithType.vb: IMinMaxValue(Of Period).MinValue
+  fullName.vb: System.Numerics.IMinMaxValue(Of NodaTime.Period).MinValue
+- uid: System.Numerics.IMinMaxValue`1.MinValue
+  commentId: P:System.Numerics.IMinMaxValue`1.MinValue
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1.minvalue
+  name: MinValue
+  nameWithType: IMinMaxValue<TSelf>.MinValue
+  fullName: System.Numerics.IMinMaxValue<TSelf>.MinValue
+  nameWithType.vb: IMinMaxValue(Of TSelf).MinValue
+  fullName.vb: System.Numerics.IMinMaxValue(Of TSelf).MinValue
+- uid: NodaTime.Period.AdditiveIdentity*
+  commentId: Overload:NodaTime.Period.AdditiveIdentity
+  href: NodaTime.Period.html#NodaTime_Period_AdditiveIdentity
+  name: AdditiveIdentity
+  nameWithType: Period.AdditiveIdentity
+  fullName: NodaTime.Period.AdditiveIdentity
+- uid: System.Numerics.IAdditiveIdentity{NodaTime.Period,NodaTime.Period}.AdditiveIdentity
+  commentId: P:System.Numerics.IAdditiveIdentity{NodaTime.Period,NodaTime.Period}.AdditiveIdentity
+  parent: System.Numerics.IAdditiveIdentity{NodaTime.Period,NodaTime.Period}
+  definition: System.Numerics.IAdditiveIdentity`2.AdditiveIdentity
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2.additiveidentity
+  name: AdditiveIdentity
+  nameWithType: IAdditiveIdentity<Period, Period>.AdditiveIdentity
+  fullName: System.Numerics.IAdditiveIdentity<NodaTime.Period, NodaTime.Period>.AdditiveIdentity
+  nameWithType.vb: IAdditiveIdentity(Of Period, Period).AdditiveIdentity
+  fullName.vb: System.Numerics.IAdditiveIdentity(Of NodaTime.Period, NodaTime.Period).AdditiveIdentity
+- uid: System.Numerics.IAdditiveIdentity`2.AdditiveIdentity
+  commentId: P:System.Numerics.IAdditiveIdentity`2.AdditiveIdentity
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2.additiveidentity
+  name: AdditiveIdentity
+  nameWithType: IAdditiveIdentity<TSelf, TResult>.AdditiveIdentity
+  fullName: System.Numerics.IAdditiveIdentity<TSelf, TResult>.AdditiveIdentity
+  nameWithType.vb: IAdditiveIdentity(Of TSelf, TResult).AdditiveIdentity
+  fullName.vb: System.Numerics.IAdditiveIdentity(Of TSelf, TResult).AdditiveIdentity
+- uid: NodaTime.Period.NormalizingEqualityComparer*
+  commentId: Overload:NodaTime.Period.NormalizingEqualityComparer
+  href: NodaTime.Period.html#NodaTime_Period_NormalizingEqualityComparer
+  name: NormalizingEqualityComparer
+  nameWithType: Period.NormalizingEqualityComparer
+  fullName: NodaTime.Period.NormalizingEqualityComparer
+- uid: System.Collections.Generic.IEqualityComparer{NodaTime.Period}
+  commentId: T:System.Collections.Generic.IEqualityComparer{NodaTime.Period}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEqualityComparer`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1
+  name: IEqualityComparer<Period>
+  nameWithType: IEqualityComparer<Period>
+  fullName: System.Collections.Generic.IEqualityComparer<NodaTime.Period>
+  nameWithType.vb: IEqualityComparer(Of Period)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of NodaTime.Period)
+  name.vb: IEqualityComparer(Of Period)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1
+  - name: <
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.Collections.Generic.IEqualityComparer`1
+  commentId: T:System.Collections.Generic.IEqualityComparer`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1
+  name: IEqualityComparer<T>
+  nameWithType: IEqualityComparer<T>
+  fullName: System.Collections.Generic.IEqualityComparer<T>
+  nameWithType.vb: IEqualityComparer(Of T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T)
+  name.vb: IEqualityComparer(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: NodaTime.Period.Nanoseconds*
+  commentId: Overload:NodaTime.Period.Nanoseconds
+  href: NodaTime.Period.html#NodaTime_Period_Nanoseconds
+  name: Nanoseconds
+  nameWithType: Period.Nanoseconds
+  fullName: NodaTime.Period.Nanoseconds
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: NodaTime.Period.Ticks*
+  commentId: Overload:NodaTime.Period.Ticks
+  href: NodaTime.Period.html#NodaTime_Period_Ticks
+  name: Ticks
+  nameWithType: Period.Ticks
+  fullName: NodaTime.Period.Ticks
+- uid: NodaTime.Period.Milliseconds*
+  commentId: Overload:NodaTime.Period.Milliseconds
+  href: NodaTime.Period.html#NodaTime_Period_Milliseconds
+  name: Milliseconds
+  nameWithType: Period.Milliseconds
+  fullName: NodaTime.Period.Milliseconds
+- uid: NodaTime.Period.Seconds*
+  commentId: Overload:NodaTime.Period.Seconds
+  href: NodaTime.Period.html#NodaTime_Period_Seconds
+  name: Seconds
+  nameWithType: Period.Seconds
+  fullName: NodaTime.Period.Seconds
+- uid: NodaTime.Period.Minutes*
+  commentId: Overload:NodaTime.Period.Minutes
+  href: NodaTime.Period.html#NodaTime_Period_Minutes
+  name: Minutes
+  nameWithType: Period.Minutes
+  fullName: NodaTime.Period.Minutes
+- uid: NodaTime.Period.Hours*
+  commentId: Overload:NodaTime.Period.Hours
+  href: NodaTime.Period.html#NodaTime_Period_Hours
+  name: Hours
+  nameWithType: Period.Hours
+  fullName: NodaTime.Period.Hours
+- uid: NodaTime.Period.Days*
+  commentId: Overload:NodaTime.Period.Days
+  href: NodaTime.Period.html#NodaTime_Period_Days
+  name: Days
+  nameWithType: Period.Days
+  fullName: NodaTime.Period.Days
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: NodaTime.Period.Weeks*
+  commentId: Overload:NodaTime.Period.Weeks
+  href: NodaTime.Period.html#NodaTime_Period_Weeks
+  name: Weeks
+  nameWithType: Period.Weeks
+  fullName: NodaTime.Period.Weeks
+- uid: NodaTime.Period.Months*
+  commentId: Overload:NodaTime.Period.Months
+  href: NodaTime.Period.html#NodaTime_Period_Months
+  name: Months
+  nameWithType: Period.Months
+  fullName: NodaTime.Period.Months
+- uid: NodaTime.Period.Years*
+  commentId: Overload:NodaTime.Period.Years
+  href: NodaTime.Period.html#NodaTime_Period_Years
+  name: Years
+  nameWithType: Period.Years
+  fullName: NodaTime.Period.Years
+- uid: NodaTime.Period.FromYears*
+  commentId: Overload:NodaTime.Period.FromYears
+  href: NodaTime.Period.html#NodaTime_Period_FromYears_System_Int32_
+  name: FromYears
+  nameWithType: Period.FromYears
+  fullName: NodaTime.Period.FromYears
+- uid: NodaTime.Period.FromMonths*
+  commentId: Overload:NodaTime.Period.FromMonths
+  href: NodaTime.Period.html#NodaTime_Period_FromMonths_System_Int32_
+  name: FromMonths
+  nameWithType: Period.FromMonths
+  fullName: NodaTime.Period.FromMonths
+- uid: NodaTime.Period.FromWeeks*
+  commentId: Overload:NodaTime.Period.FromWeeks
+  href: NodaTime.Period.html#NodaTime_Period_FromWeeks_System_Int32_
+  name: FromWeeks
+  nameWithType: Period.FromWeeks
+  fullName: NodaTime.Period.FromWeeks
+- uid: NodaTime.Period.FromDays*
+  commentId: Overload:NodaTime.Period.FromDays
+  href: NodaTime.Period.html#NodaTime_Period_FromDays_System_Int32_
+  name: FromDays
+  nameWithType: Period.FromDays
+  fullName: NodaTime.Period.FromDays
+- uid: NodaTime.Period.FromHours*
+  commentId: Overload:NodaTime.Period.FromHours
+  href: NodaTime.Period.html#NodaTime_Period_FromHours_System_Int64_
+  name: FromHours
+  nameWithType: Period.FromHours
+  fullName: NodaTime.Period.FromHours
+- uid: NodaTime.Period.FromMinutes*
+  commentId: Overload:NodaTime.Period.FromMinutes
+  href: NodaTime.Period.html#NodaTime_Period_FromMinutes_System_Int64_
+  name: FromMinutes
+  nameWithType: Period.FromMinutes
+  fullName: NodaTime.Period.FromMinutes
+- uid: NodaTime.Period.FromSeconds*
+  commentId: Overload:NodaTime.Period.FromSeconds
+  href: NodaTime.Period.html#NodaTime_Period_FromSeconds_System_Int64_
+  name: FromSeconds
+  nameWithType: Period.FromSeconds
+  fullName: NodaTime.Period.FromSeconds
+- uid: NodaTime.Period.FromMilliseconds*
+  commentId: Overload:NodaTime.Period.FromMilliseconds
+  href: NodaTime.Period.html#NodaTime_Period_FromMilliseconds_System_Int64_
+  name: FromMilliseconds
+  nameWithType: Period.FromMilliseconds
+  fullName: NodaTime.Period.FromMilliseconds
+- uid: NodaTime.Period.FromTicks*
+  commentId: Overload:NodaTime.Period.FromTicks
+  href: NodaTime.Period.html#NodaTime_Period_FromTicks_System_Int64_
+  name: FromTicks
+  nameWithType: Period.FromTicks
+  fullName: NodaTime.Period.FromTicks
+- uid: NodaTime.Period.FromNanoseconds*
+  commentId: Overload:NodaTime.Period.FromNanoseconds
+  href: NodaTime.Period.html#NodaTime_Period_FromNanoseconds_System_Int64_
+  name: FromNanoseconds
+  nameWithType: Period.FromNanoseconds
+  fullName: NodaTime.Period.FromNanoseconds
+- uid: NodaTime.Period.op_Addition*
+  commentId: Overload:NodaTime.Period.op_Addition
+  href: NodaTime.Period.html#NodaTime_Period_op_Addition_NodaTime_Period_NodaTime_Period_
+  name: operator +
+  nameWithType: Period.operator +
+  fullName: NodaTime.Period.operator +
+  nameWithType.vb: Period.+
+  fullName.vb: NodaTime.Period.+
+  name.vb: +
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Period.op_Addition*
+    name: +
+    href: NodaTime.Period.html#NodaTime_Period_op_Addition_NodaTime_Period_NodaTime_Period_
+- uid: System.Numerics.IAdditionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}.op_Addition(NodaTime.Period,NodaTime.Period)
+  commentId: M:System.Numerics.IAdditionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}.op_Addition(NodaTime.Period,NodaTime.Period)
+  parent: System.Numerics.IAdditionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}
+  definition: System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3.op_addition
+  name: operator +(Period, Period)
+  nameWithType: IAdditionOperators<Period, Period, Period>.operator +(Period, Period)
+  fullName: System.Numerics.IAdditionOperators<NodaTime.Period, NodaTime.Period, NodaTime.Period>.operator +(NodaTime.Period, NodaTime.Period)
+  nameWithType.vb: IAdditionOperators(Of Period, Period, Period).+(Period, Period)
+  fullName.vb: System.Numerics.IAdditionOperators(Of NodaTime.Period, NodaTime.Period, NodaTime.Period).+(NodaTime.Period, NodaTime.Period)
+  name.vb: +(Period, Period)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IAdditionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}.op_Addition(NodaTime.Period,NodaTime.Period)
+    name: +
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3.op_addition
+  - name: (
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+  spec.vb:
+  - name: +
+  - name: (
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)
+  commentId: M:System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3.op_addition
+  name: operator +(TSelf, TOther)
+  nameWithType: IAdditionOperators<TSelf, TOther, TResult>.operator +(TSelf, TOther)
+  fullName: System.Numerics.IAdditionOperators<TSelf, TOther, TResult>.operator +(TSelf, TOther)
+  nameWithType.vb: IAdditionOperators(Of TSelf, TOther, TResult).+(TSelf, TOther)
+  fullName.vb: System.Numerics.IAdditionOperators(Of TSelf, TOther, TResult).+(TSelf, TOther)
+  name.vb: +(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)
+    name: +
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3.op_addition
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: +
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.Period.Add*
+  commentId: Overload:NodaTime.Period.Add
+  href: NodaTime.Period.html#NodaTime_Period_Add_NodaTime_Period_NodaTime_Period_
+  name: Add
+  nameWithType: Period.Add
+  fullName: NodaTime.Period.Add
+- uid: System.Collections.Generic.IComparer`1
+  commentId: T:System.Collections.Generic.IComparer`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icomparer-1
+  name: IComparer<T>
+  nameWithType: IComparer<T>
+  fullName: System.Collections.Generic.IComparer<T>
+  nameWithType.vb: IComparer(Of T)
+  fullName.vb: System.Collections.Generic.IComparer(Of T)
+  name.vb: IComparer(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icomparer-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icomparer-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: NodaTime.Period.CreateComparer*
+  commentId: Overload:NodaTime.Period.CreateComparer
+  href: NodaTime.Period.html#NodaTime_Period_CreateComparer_NodaTime_LocalDateTime_
+  name: CreateComparer
+  nameWithType: Period.CreateComparer
+  fullName: NodaTime.Period.CreateComparer
+- uid: System.Collections.Generic.IComparer{NodaTime.Period}
+  commentId: T:System.Collections.Generic.IComparer{NodaTime.Period}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IComparer`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icomparer-1
+  name: IComparer<Period>
+  nameWithType: IComparer<Period>
+  fullName: System.Collections.Generic.IComparer<NodaTime.Period>
+  nameWithType.vb: IComparer(Of Period)
+  fullName.vb: System.Collections.Generic.IComparer(Of NodaTime.Period)
+  name.vb: IComparer(Of Period)
+  spec.csharp:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icomparer-1
+  - name: <
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IComparer`1
+    name: IComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icomparer-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: NodaTime.Period.op_Subtraction*
+  commentId: Overload:NodaTime.Period.op_Subtraction
+  href: NodaTime.Period.html#NodaTime_Period_op_Subtraction_NodaTime_Period_NodaTime_Period_
+  name: operator -
+  nameWithType: Period.operator -
+  fullName: NodaTime.Period.operator -
+  nameWithType.vb: Period.-
+  fullName.vb: NodaTime.Period.-
+  name.vb: '-'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Period.op_Subtraction*
+    name: '-'
+    href: NodaTime.Period.html#NodaTime_Period_op_Subtraction_NodaTime_Period_NodaTime_Period_
+- uid: System.Numerics.ISubtractionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}.op_Subtraction(NodaTime.Period,NodaTime.Period)
+  commentId: M:System.Numerics.ISubtractionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}.op_Subtraction(NodaTime.Period,NodaTime.Period)
+  parent: System.Numerics.ISubtractionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}
+  definition: System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  name: operator -(Period, Period)
+  nameWithType: ISubtractionOperators<Period, Period, Period>.operator -(Period, Period)
+  fullName: System.Numerics.ISubtractionOperators<NodaTime.Period, NodaTime.Period, NodaTime.Period>.operator -(NodaTime.Period, NodaTime.Period)
+  nameWithType.vb: ISubtractionOperators(Of Period, Period, Period).-(Period, Period)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of NodaTime.Period, NodaTime.Period, NodaTime.Period).-(NodaTime.Period, NodaTime.Period)
+  name.vb: -(Period, Period)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.ISubtractionOperators{NodaTime.Period,NodaTime.Period,NodaTime.Period}.op_Subtraction(NodaTime.Period,NodaTime.Period)
+    name: '-'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  - name: (
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+  spec.vb:
+  - name: '-'
+  - name: (
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)
+  commentId: M:System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  name: operator -(TSelf, TOther)
+  nameWithType: ISubtractionOperators<TSelf, TOther, TResult>.operator -(TSelf, TOther)
+  fullName: System.Numerics.ISubtractionOperators<TSelf, TOther, TResult>.operator -(TSelf, TOther)
+  nameWithType.vb: ISubtractionOperators(Of TSelf, TOther, TResult).-(TSelf, TOther)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of TSelf, TOther, TResult).-(TSelf, TOther)
+  name.vb: -(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)
+    name: '-'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: '-'
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.Period.op_UnaryNegation*
+  commentId: Overload:NodaTime.Period.op_UnaryNegation
+  href: NodaTime.Period.html#NodaTime_Period_op_UnaryNegation_NodaTime_Period_
+  name: operator -
+  nameWithType: Period.operator -
+  fullName: NodaTime.Period.operator -
+  nameWithType.vb: Period.-
+  fullName.vb: NodaTime.Period.-
+  name.vb: '-'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Period.op_UnaryNegation*
+    name: '-'
+    href: NodaTime.Period.html#NodaTime_Period_op_UnaryNegation_NodaTime_Period_
+- uid: System.Numerics.IUnaryNegationOperators{NodaTime.Period,NodaTime.Period}.op_UnaryNegation(NodaTime.Period)
+  commentId: M:System.Numerics.IUnaryNegationOperators{NodaTime.Period,NodaTime.Period}.op_UnaryNegation(NodaTime.Period)
+  parent: System.Numerics.IUnaryNegationOperators{NodaTime.Period,NodaTime.Period}
+  definition: System.Numerics.IUnaryNegationOperators`2.op_UnaryNegation(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2.op_unarynegation
+  name: operator -(Period)
+  nameWithType: IUnaryNegationOperators<Period, Period>.operator -(Period)
+  fullName: System.Numerics.IUnaryNegationOperators<NodaTime.Period, NodaTime.Period>.operator -(NodaTime.Period)
+  nameWithType.vb: IUnaryNegationOperators(Of Period, Period).-(Period)
+  fullName.vb: System.Numerics.IUnaryNegationOperators(Of NodaTime.Period, NodaTime.Period).-(NodaTime.Period)
+  name.vb: -(Period)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IUnaryNegationOperators{NodaTime.Period,NodaTime.Period}.op_UnaryNegation(NodaTime.Period)
+    name: '-'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2.op_unarynegation
+  - name: (
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+  spec.vb:
+  - name: '-'
+  - name: (
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.Numerics.IUnaryNegationOperators`2.op_UnaryNegation(`0)
+  commentId: M:System.Numerics.IUnaryNegationOperators`2.op_UnaryNegation(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2.op_unarynegation
+  name: operator -(TSelf)
+  nameWithType: IUnaryNegationOperators<TSelf, TResult>.operator -(TSelf)
+  fullName: System.Numerics.IUnaryNegationOperators<TSelf, TResult>.operator -(TSelf)
+  nameWithType.vb: IUnaryNegationOperators(Of TSelf, TResult).-(TSelf)
+  fullName.vb: System.Numerics.IUnaryNegationOperators(Of TSelf, TResult).-(TSelf)
+  name.vb: -(TSelf)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IUnaryNegationOperators`2.op_UnaryNegation(`0)
+    name: '-'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2.op_unarynegation
+  - name: (
+  - name: TSelf
+  - name: )
+  spec.vb:
+  - name: '-'
+  - name: (
+  - name: TSelf
+  - name: )
+- uid: NodaTime.Period.Subtract*
+  commentId: Overload:NodaTime.Period.Subtract
+  href: NodaTime.Period.html#NodaTime_Period_Subtract_NodaTime_Period_NodaTime_Period_
+  name: Subtract
+  nameWithType: Period.Subtract
+  fullName: NodaTime.Period.Subtract
+- uid: NodaTime.LocalDate
+  commentId: T:NodaTime.LocalDate
+  parent: NodaTime
+  href: NodaTime.LocalDate.html
+  name: LocalDate
+  nameWithType: LocalDate
+  fullName: NodaTime.LocalDate
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: NodaTime.Period.DaysBetween*
+  commentId: Overload:NodaTime.Period.DaysBetween
+  href: NodaTime.Period.html#NodaTime_Period_DaysBetween_NodaTime_LocalDate_NodaTime_LocalDate_
+  name: DaysBetween
+  nameWithType: Period.DaysBetween
+  fullName: NodaTime.Period.DaysBetween
+- uid: NodaTime.Period.Between*
+  commentId: Overload:NodaTime.Period.Between
+  href: NodaTime.Period.html#NodaTime_Period_Between_NodaTime_LocalDateTime_NodaTime_LocalDateTime_NodaTime_PeriodUnits_
+  name: Between
+  nameWithType: Period.Between
+  fullName: NodaTime.Period.Between
+- uid: NodaTime.PeriodUnits
+  commentId: T:NodaTime.PeriodUnits
+  parent: NodaTime
+  href: NodaTime.PeriodUnits.html
+  name: PeriodUnits
+  nameWithType: PeriodUnits
+  fullName: NodaTime.PeriodUnits
+- uid: NodaTime.LocalTime
+  commentId: T:NodaTime.LocalTime
+  parent: NodaTime
+  href: NodaTime.LocalTime.html
+  name: LocalTime
+  nameWithType: LocalTime
+  fullName: NodaTime.LocalTime
+- uid: NodaTime.YearMonth
+  commentId: T:NodaTime.YearMonth
+  parent: NodaTime
+  href: NodaTime.YearMonth.html
+  name: YearMonth
+  nameWithType: YearMonth
+  fullName: NodaTime.YearMonth
+- uid: NodaTime.Period.HasTimeComponent*
+  commentId: Overload:NodaTime.Period.HasTimeComponent
+  href: NodaTime.Period.html#NodaTime_Period_HasTimeComponent
+  name: HasTimeComponent
+  nameWithType: Period.HasTimeComponent
+  fullName: NodaTime.Period.HasTimeComponent
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: NodaTime.Period.HasDateComponent*
+  commentId: Overload:NodaTime.Period.HasDateComponent
+  href: NodaTime.Period.html#NodaTime_Period_HasDateComponent
+  name: HasDateComponent
+  nameWithType: Period.HasDateComponent
+  fullName: NodaTime.Period.HasDateComponent
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: System.OverflowException
+  commentId: T:System.OverflowException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.overflowexception
+  name: OverflowException
+  nameWithType: OverflowException
+  fullName: System.OverflowException
+- uid: NodaTime.Period.ToDuration*
+  commentId: Overload:NodaTime.Period.ToDuration
+  href: NodaTime.Period.html#NodaTime_Period_ToDuration
+  name: ToDuration
+  nameWithType: Period.ToDuration
+  fullName: NodaTime.Period.ToDuration
+- uid: NodaTime.PeriodBuilder
+  commentId: T:NodaTime.PeriodBuilder
+  parent: NodaTime
+  href: NodaTime.PeriodBuilder.html
+  name: PeriodBuilder
+  nameWithType: PeriodBuilder
+  fullName: NodaTime.PeriodBuilder
+- uid: NodaTime.Period.ToBuilder*
+  commentId: Overload:NodaTime.Period.ToBuilder
+  href: NodaTime.Period.html#NodaTime_Period_ToBuilder
+  name: ToBuilder
+  nameWithType: Period.ToBuilder
+  fullName: NodaTime.Period.ToBuilder
+- uid: System.Int64.MaxValue
+  commentId: F:System.Int64.MaxValue
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64.maxvalue
+  name: MaxValue
+  nameWithType: long.MaxValue
+  fullName: long.MaxValue
+  nameWithType.vb: Long.MaxValue
+  fullName.vb: Long.MaxValue
+- uid: NodaTime.Period.Normalize*
+  commentId: Overload:NodaTime.Period.Normalize
+  href: NodaTime.Period.html#NodaTime_Period_Normalize
+  name: Normalize
+  nameWithType: Period.Normalize
+  fullName: NodaTime.Period.Normalize
+- uid: NodaTime.Text.PeriodPattern.Roundtrip
+  commentId: P:NodaTime.Text.PeriodPattern.Roundtrip
+  href: NodaTime.Text.PeriodPattern.html#NodaTime_Text_PeriodPattern_Roundtrip
+  name: Roundtrip
+  nameWithType: PeriodPattern.Roundtrip
+  fullName: NodaTime.Text.PeriodPattern.Roundtrip
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: NodaTime.Period.ToString*
+  commentId: Overload:NodaTime.Period.ToString
+  href: NodaTime.Period.html#NodaTime_Period_ToString
+  name: ToString
+  nameWithType: Period.ToString
+  fullName: NodaTime.Period.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: NodaTime.Period.op_UnaryPlus*
+  commentId: Overload:NodaTime.Period.op_UnaryPlus
+  href: NodaTime.Period.html#NodaTime_Period_op_UnaryPlus_NodaTime_Period_
+  name: operator +
+  nameWithType: Period.operator +
+  fullName: NodaTime.Period.operator +
+  nameWithType.vb: Period.+
+  fullName.vb: NodaTime.Period.+
+  name.vb: +
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Period.op_UnaryPlus*
+    name: +
+    href: NodaTime.Period.html#NodaTime_Period_op_UnaryPlus_NodaTime_Period_
+- uid: System.Numerics.IUnaryPlusOperators{NodaTime.Period,NodaTime.Period}.op_UnaryPlus(NodaTime.Period)
+  commentId: M:System.Numerics.IUnaryPlusOperators{NodaTime.Period,NodaTime.Period}.op_UnaryPlus(NodaTime.Period)
+  parent: System.Numerics.IUnaryPlusOperators{NodaTime.Period,NodaTime.Period}
+  definition: System.Numerics.IUnaryPlusOperators`2.op_UnaryPlus(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2.op_unaryplus
+  name: operator +(Period)
+  nameWithType: IUnaryPlusOperators<Period, Period>.operator +(Period)
+  fullName: System.Numerics.IUnaryPlusOperators<NodaTime.Period, NodaTime.Period>.operator +(NodaTime.Period)
+  nameWithType.vb: IUnaryPlusOperators(Of Period, Period).+(Period)
+  fullName.vb: System.Numerics.IUnaryPlusOperators(Of NodaTime.Period, NodaTime.Period).+(NodaTime.Period)
+  name.vb: +(Period)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IUnaryPlusOperators{NodaTime.Period,NodaTime.Period}.op_UnaryPlus(NodaTime.Period)
+    name: +
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2.op_unaryplus
+  - name: (
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+  spec.vb:
+  - name: +
+  - name: (
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.Numerics.IUnaryPlusOperators`2.op_UnaryPlus(`0)
+  commentId: M:System.Numerics.IUnaryPlusOperators`2.op_UnaryPlus(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2.op_unaryplus
+  name: operator +(TSelf)
+  nameWithType: IUnaryPlusOperators<TSelf, TResult>.operator +(TSelf)
+  fullName: System.Numerics.IUnaryPlusOperators<TSelf, TResult>.operator +(TSelf)
+  nameWithType.vb: IUnaryPlusOperators(Of TSelf, TResult).+(TSelf)
+  fullName.vb: System.Numerics.IUnaryPlusOperators(Of TSelf, TResult).+(TSelf)
+  name.vb: +(TSelf)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IUnaryPlusOperators`2.op_UnaryPlus(`0)
+    name: +
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2.op_unaryplus
+  - name: (
+  - name: TSelf
+  - name: )
+  spec.vb:
+  - name: +
+  - name: (
+  - name: TSelf
+  - name: )
+- uid: NodaTime.Period.Equals(NodaTime.Period)
+  commentId: M:NodaTime.Period.Equals(NodaTime.Period)
+  href: NodaTime.Period.html#NodaTime_Period_Equals_NodaTime_Period_
+  name: Equals(Period)
+  nameWithType: Period.Equals(Period)
+  fullName: NodaTime.Period.Equals(NodaTime.Period)
+  spec.csharp:
+  - uid: NodaTime.Period.Equals(NodaTime.Period)
+    name: Equals
+    href: NodaTime.Period.html#NodaTime_Period_Equals_NodaTime_Period_
+  - name: (
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Period.Equals(NodaTime.Period)
+    name: Equals
+    href: NodaTime.Period.html#NodaTime_Period_Equals_NodaTime_Period_
+  - name: (
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NodaTime.Period.Equals*
+  commentId: Overload:NodaTime.Period.Equals
+  href: NodaTime.Period.html#NodaTime_Period_Equals_System_Object_
+  name: Equals
+  nameWithType: Period.Equals
+  fullName: NodaTime.Period.Equals
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: NodaTime.Period.GetHashCode*
+  commentId: Overload:NodaTime.Period.GetHashCode
+  href: NodaTime.Period.html#NodaTime_Period_GetHashCode
+  name: GetHashCode
+  nameWithType: Period.GetHashCode
+  fullName: NodaTime.Period.GetHashCode
+- uid: System.IEquatable{NodaTime.Period}.Equals(NodaTime.Period)
+  commentId: M:System.IEquatable{NodaTime.Period}.Equals(NodaTime.Period)
+  parent: System.IEquatable{NodaTime.Period}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(Period)
+  nameWithType: IEquatable<Period>.Equals(Period)
+  fullName: System.IEquatable<NodaTime.Period>.Equals(NodaTime.Period)
+  nameWithType.vb: IEquatable(Of Period).Equals(Period)
+  fullName.vb: System.IEquatable(Of NodaTime.Period).Equals(NodaTime.Period)
+  spec.csharp:
+  - uid: System.IEquatable{NodaTime.Period}.Equals(NodaTime.Period)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{NodaTime.Period}.Equals(NodaTime.Period)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: NodaTime.Period
+    name: Period
+    href: NodaTime.Period.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: NodaTime.Period.op_Equality*
+  commentId: Overload:NodaTime.Period.op_Equality
+  href: NodaTime.Period.html#NodaTime_Period_op_Equality_NodaTime_Period_NodaTime_Period_
+  name: operator ==
+  nameWithType: Period.operator ==
+  fullName: NodaTime.Period.operator ==
+  nameWithType.vb: Period.=
+  fullName.vb: NodaTime.Period.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Period.op_Equality*
+    name: ==
+    href: NodaTime.Period.html#NodaTime_Period_op_Equality_NodaTime_Period_NodaTime_Period_
+- uid: NodaTime.Period.op_Inequality*
+  commentId: Overload:NodaTime.Period.op_Inequality
+  href: NodaTime.Period.html#NodaTime_Period_op_Inequality_NodaTime_Period_NodaTime_Period_
+  name: operator !=
+  nameWithType: Period.operator !=
+  fullName: NodaTime.Period.operator !=
+  nameWithType.vb: Period.<>
+  fullName.vb: NodaTime.Period.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Period.op_Inequality*
+    name: '!='
+    href: NodaTime.Period.html#NodaTime_Period_op_Inequality_NodaTime_Period_NodaTime_Period_
+shouldSkipMarkup: true
+...
