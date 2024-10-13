@@ -7,6 +7,26 @@ details.
 See the [end of this page](#tzdb-updates) for the policy on which
 versions receive patch updates for TZDB releases.
 
+## 3.2.0, release 2024-10-13 with tzdb 2024b
+
+Changes since 3.1.x:
+
+- Various minor docs/examples fixes
+- More LocalDateTime ISO patterns with reduced precision (
+- More LocalTime ISO formats
+- Support for configurable "2 digit year max value" in patterns
+- Fixed arguments passed to base constructors in AmbiguousTimeException and SkippedTimeException
+- Add the unparsed value (and index) to UnparsableValueException
+- Made previous UnparsableValueException constructors obsolete
+- Optimizations for text handling
+- Added .NET 8 target
+- Added Instant.ToUnixTimeSecondsAndNanoseconds
+- Added Duration.ToInt128Nanoseconds and Duration.FromNanoseconds(Int128) (.NET 8 only)
+- Conditionalized the dependency on System.Runtime.CompilerServices.Unsafe
+- Added Period.MinValue and Period.MaxValue
+- Added generic math support (.NET 8 only)
+- Added TimeProvider extension methods (.NET 8 only)
+
 ## 3.1.12, released 2024-09-05 with tzdb 2024b
 
 This patch release simply updates the built-in TZDB time
