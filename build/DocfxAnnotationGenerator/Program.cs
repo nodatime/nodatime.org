@@ -47,7 +47,13 @@ namespace DocfxAnnotationGenerator
         {
             this.root = root;
             package = Path.GetFileName(root);
-            versions = Directory.GetDirectories(root).Select(dir => Path.GetRelativePath(root, dir)).ToList();
+            versions = Directory.GetDirectories(root)
+                .Select(dir => Path.GetRelativePath(root, dir))
+                // This should be fine until we get to a major or minor version of 10.
+                // We don't include the patch version anyway.
+                .OrderBy(v => v, StringComparer.Ordinal)
+                .ToList();
+            Console.WriteLine($"Versions: {string.Join(", ", versions)}");
             var packageName = Path.GetFileName(root);
 
             Console.WriteLine("Loading docfx metadata");
