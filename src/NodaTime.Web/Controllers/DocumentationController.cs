@@ -11,12 +11,10 @@ namespace NodaTime.Web.Controllers
     public class DocumentationController : Controller
     {
         private readonly MarkdownLoader loader;
-        private readonly TryDotNetOptions tryDotNetOptions;
 
-        public DocumentationController(MarkdownLoader loader, TryDotNetOptions tryDotNetOptions)
+        public DocumentationController(MarkdownLoader loader)
         {
             this.loader = loader;
-            this.tryDotNetOptions = tryDotNetOptions;
         }
 
         public IActionResult ViewDocumentation(string bundle, string url)
@@ -29,7 +27,7 @@ namespace NodaTime.Web.Controllers
             var page = loader.TryGetBundle(bundle)?.TryGetPage(url);
             if (page != null)
             {
-                return View("Docs", new MarkdownPageViewModel(tryDotNetOptions.IFrameSrc, origin, page));
+                return View("Docs", new MarkdownPageViewModel(origin, page));
             }
             var resource = loader.TryGetBundle(bundle)?.TryGetResource(url);
             if (resource != null)

@@ -70,7 +70,6 @@ namespace NodaTime.Web
             var storageOptions = Configuration.GetSection("Storage").Get<StorageOptions>() ?? throw new ArgumentException("Must have storage options");
             storageOptions.ConfigureServices(services);
             services.AddHttpClient();
-            services.AddSingleton(Configuration.GetSection("TryDotNet").Get<TryDotNetOptions>() ?? throw new ArgumentException("Must specify TryDotNet options"));
             services.AddSingleton<MarkdownLoader>();
             services.AddMemoryCache();
         }

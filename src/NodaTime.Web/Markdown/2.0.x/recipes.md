@@ -9,32 +9,13 @@ These examples typically use explicitly-typed local variables so that you can te
 all the types involved easily. You can use implicitly-typed local variables (`var`)
 in your own code, of course.
 
-Try it live!
-====
-
-To run any recipe immediately, just hit the "Copy to editor" button and then the "Run" button.
-You can then modify the code - including using Intellisense to explore the API, by pressing Ctrl-Space -
-and rerun it to see the results.
-
-<div style="height:250px; padding:8px 0px">
-    <iframe style="position:relative;top:0px;width:100%;height:100%"
-            id="trydotnet-editor"></iframe>
-</div>
-<div><button id="trydotnet-run" class="trydotnetbutton">Run!</button></div>
-<div>
-    <p class="trydotnet-outputlabel">Output:</p>
-    <pre><code id="trydotnet-output"></code></pre>
-</div>
-<div class="trydotnetbanner">
-    <p>Powered by <a href="https://github.com/dotnet/try/wiki">Try .NET</a> currently in select preview</p>
-</div>
 
 How old is Jon?
 ====
 
 Jon was born on June 19th, 1976 (Gregorian). How old is he now, in the UK time zone?
 
-```csharp-trydotnet
+```csharp
 LocalDate birthDate = new LocalDate(1976, 6, 19);
 DateTimeZone zone = DateTimeZoneProviders.Tzdb["Europe/London"];
 ZonedClock clock = SystemClock.Instance.InZone(zone);
@@ -48,9 +29,6 @@ Console.WriteLine(
 Note that a `using` directive for `NodaTime.Extensions` is required for this,
 as `InZone` is an extension method in `NodaTime.Extensions.ClockExtensions`.
 
-(Also note that running this recipe in Try .NET may show an old date, if the
-result is cached from a previous run. We're working on it!)
-
 How can I get to the start or end of a month?
 ====
 
@@ -58,7 +36,7 @@ Use the [`DateAdjusters`](noda-type://NodaTime.DateAdjusters) factory class to o
 directly (it's just a `Func<LocalDate, LocalDate>`) or use the `With` method to apply it in a fluent
 style:
 
-```csharp-trydotnet
+```csharp
 LocalDate today = new LocalDate(2014, 6, 27);
 LocalDate endOfMonth = today.With(DateAdjusters.EndOfMonth);
 Console.WriteLine(endOfMonth); // 2014-06-30
@@ -66,7 +44,7 @@ Console.WriteLine(endOfMonth); // 2014-06-30
 
 Date adjusters also work with `LocalDateTime` and `OffsetDateTime` values. For example:
 
-```csharp-trydotnet
+```csharp
 LocalDateTime now = new LocalDateTime(2014, 6, 27, 7, 14, 25);
 LocalDateTime startOfMonth = now.With(DateAdjusters.StartOfMonth);
 Console.WriteLine(startOfMonth); // 2014-06-01T07:14:25
@@ -78,7 +56,7 @@ How can I truncate a time to a particular unit?
 Use the [`TimeAdjusters`](noda-type://NodaTime.TimeAdjusters) factory class to obtain a suitable adjuster, which can be applied to a
 `LocalTime`, `LocalDateTime` or `OffsetDateTime`:
 
-```csharp-trydotnet
+```csharp
 LocalDateTime now = new LocalDateTime(2014, 6, 27, 7, 14, 25, 500);
 LocalDateTime truncated = now.With(TimeAdjusters.TruncateToMinute); // 2014-06-27T07:14:00
 ```
