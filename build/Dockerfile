@@ -5,7 +5,7 @@ WORKDIR /source
 
 RUN git clone https://github.com/nodatime/nodatime.git
 RUN git clone https://github.com/nodatime/nodatime.serialization.git
-COPY . nodatime
+COPY . nodatime.org
 
 # See https://github.com/saucecontrol/InheritDoc/issues/15
 ENV NUGET_XMLDOC_MODE=none
