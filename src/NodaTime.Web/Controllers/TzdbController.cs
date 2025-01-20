@@ -59,6 +59,6 @@ namespace NodaTime.Web.Controllers
         }
 
         private string GetDownloadUrl(TzdbDownload download) =>
-            $"{Request.Scheme}://{Request.Host}/tzdb/{download.Name}";
+            $"https://{Request.Host}/tzdb/{download.Name}";
     }
 }

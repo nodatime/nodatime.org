@@ -23,7 +23,7 @@ namespace NodaTime.Web.Controllers
             {
                 url += "index";
             }
-            string origin = $"{Request.Scheme}://{Request.Host}";
+            string origin = $"https://{Request.Host}";
             var page = loader.TryGetBundle(bundle)?.TryGetPage(url);
             if (page != null)
             {
