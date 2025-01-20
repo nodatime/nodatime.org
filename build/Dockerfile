@@ -3,11 +3,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 WORKDIR /source
 
-# Note: we expect to build this from a parent
-# directory including clones of all three repos.
-COPY nodatime nodatime
-COPY nodatime.org nodatime.org
-COPY nodatime.serialization nodatime.serialization
+RUN git clone https://github.com/nodatime/nodatime.git
+RUN git clone https://github.com/nodatime/nodatime.serialization.git
+COPY . nodatime
 
 # See https://github.com/saucecontrol/InheritDoc/issues/15
 ENV NUGET_XMLDOC_MODE=none
