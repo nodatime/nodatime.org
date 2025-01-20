@@ -33,6 +33,7 @@ namespace NodaTime.Web
         private static readonly MediaTypeHeaderValue TextHtml = new MediaTypeHeaderValue("text/html");
 
         private IConfigurationRoot Configuration { get; set; }
+        private NetworkOptions NetworkOptions { get; }
 
         public Startup(IWebHostEnvironment env)
         {
@@ -42,6 +43,7 @@ namespace NodaTime.Web
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+            NetworkOptions = Configuration.GetSection("Network").Get<NetworkOptions>() ?? throw new ArgumentException("Must specify network options");
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -49,6 +51,8 @@ namespace NodaTime.Web
             // Add framework services.
             // TODO: Use endpoint routing at some point.
             services.AddMvc(options => options.EnableEndpointRouting = false);
+
+            NetworkOptions.ConfigureServices(services);
 
             // TODO: Add actual health checks, maybe.
             services.AddHealthChecks();
@@ -74,6 +78,7 @@ namespace NodaTime.Web
         {
             // Note: health checks come before HTTPS redirection so we get a 200 even on HTTP.
             app.UseHealthChecks("/healthz");
+            NetworkOptions.Configure(app, env);
 
             app.UseSingleLineResponseLogging();
             app.UseReferralNotFoundLogging();
@@ -86,6 +91,7 @@ namespace NodaTime.Web
             else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
             app.UseDefaultFiles();
