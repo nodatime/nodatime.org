@@ -72,7 +72,6 @@ namespace NodaTime.Web
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            // Note: health checks come before HTTPS redirection so we get a 200 even on HTTP.
             app.UseHealthChecks("/healthz");
 
             app.UseReferralNotFoundLogging();
