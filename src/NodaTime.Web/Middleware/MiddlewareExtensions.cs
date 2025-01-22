@@ -11,9 +11,6 @@ namespace NodaTime.Web.Middleware
     /// </summary>
     public static class MiddlewareExtensions
     {
-        public static IApplicationBuilder UseSingleLineResponseLogging(this IApplicationBuilder builder) =>
-            builder.UseMiddleware<SingleLineResponseLoggingMiddleware>();
-
         public static IApplicationBuilder UseReferralNotFoundLogging(this IApplicationBuilder builder) =>
             builder.UseMiddleware<ReferralNotFoundLoggingMiddleware>();
     }
