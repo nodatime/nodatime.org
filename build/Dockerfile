@@ -18,5 +18,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /source/nodatime.org/src/NodaTime.Web/bin/Release/net8.0/publish ./
 
-ENV ASPNETCORE_URLS=http://*:8080
 ENTRYPOINT ["dotnet", "NodaTime.Web.dll"]
