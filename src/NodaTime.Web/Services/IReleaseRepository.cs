@@ -8,14 +8,13 @@ namespace NodaTime.Web.Services
 {
     public interface IReleaseRepository
     {
-        IReadOnlyList<ReleaseDownload> AllReleases { get; }
+        IReadOnlyList<StructuredVersion> AllReleases { get; }
         IReadOnlyList<string> CurrentMinorVersions { get; }
         IReadOnlyList<string> OldMinorVersions { get; }
 
         /// <summary>
-        /// The download file for the latest release. This is always the
-        /// binary download, e.g. NodaTime-1.3.4.zip, not the source download.
+        /// The versin of the latest release.
         /// </summary>
-        ReleaseDownload LatestRelease { get; }
+        StructuredVersion LatestRelease { get; }
     }
 }
