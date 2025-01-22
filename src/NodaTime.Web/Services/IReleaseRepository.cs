@@ -13,7 +13,7 @@ namespace NodaTime.Web.Services
         IReadOnlyList<string> OldMinorVersions { get; }
 
         /// <summary>
-        /// The versin of the latest release.
+        /// The version of the latest release.
         /// </summary>
         StructuredVersion LatestRelease { get; }
     }

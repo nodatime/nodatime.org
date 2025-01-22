@@ -5,16 +5,10 @@
 using CommonMark;
 using CommonMark.Formatters;
 using CommonMark.Syntax;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using NodaTime.Web.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace NodaTime.Web.Services

@@ -1,15 +1,10 @@
 ﻿// Copyright 2016 The Noda Time Authors. All rights reserved.
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using NodaTime.Web.Models;
 using NuGet.Common;
 using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace NodaTime.Web.Services
 {

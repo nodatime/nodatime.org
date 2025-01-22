@@ -24,6 +24,7 @@ namespace NodaTime.Web.SmokeTest
         [TestCase("1.0.x/api/NodaTime.DateTimeZone.html", "The mapping is unambiguous")]
         // Note: not the full URL as that depends on the server URL
         [TestCase("tzdb/index.txt", "/tzdb/tzdb2018h.nzd")]
+        [TestCase("css/site.css", "Calluna Sans Regular")]
         public async Task TextPage(string path, string expectedContent)
         {
             var client = new HttpClient();
