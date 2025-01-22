@@ -2,6 +2,7 @@
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.using System;
 
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using NUnit.Framework;
@@ -20,7 +21,7 @@ namespace NodaTime.Web.SmokeTest
         private const int ServerStartupSeconds = 5;
         private static readonly TimeSpan GracefulShutdown = TimeSpan.FromSeconds(5);
 
-        public IWebHost Host { get; private set; }
+        public WebApplication App { get; private set; }
         public string BaseUrl { get; private set; }
         private CancellationTokenSource serverCancellation;
         private Task serverTask;
@@ -39,15 +40,12 @@ namespace NodaTime.Web.SmokeTest
         {
             serverCancellation = new CancellationTokenSource();
             var contentRoot = FindNodaTimeWebProject();
-            Host = Program.CreateWebHostBuilder(new string[0])
-                .UseContentRoot(contentRoot)
-                .UseEnvironment(Program.SmokeTestEnvironment)
-                .Build();
-            serverTask = Host.StartAsync(serverCancellation.Token);
+            App = Program.CreateWebApplication(new WebApplicationOptions { ContentRootPath = contentRoot, EnvironmentName = "Development" });
+            serverTask = App.StartAsync(serverCancellation.Token);
             // Wait for the server to start up, and the TZDB/release caches to populate.
             // (The benchmark cache takes longer, but we're not too worried about them.)
-            Thread.Sleep(5000);
-            BaseUrl = Host.ServerFeatures.Get<IServerAddressesFeature>().Addresses.FirstOrDefault();
+            Thread.Sleep(TimeSpan.FromSeconds(ServerStartupSeconds));
+            BaseUrl = ((IApplicationBuilder)App).ServerFeatures.Get<IServerAddressesFeature>().Addresses.FirstOrDefault();
             if (BaseUrl == null)
             {
                 throw new Exception("Couldn't find server addresses; server startup error?");

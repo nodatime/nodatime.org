@@ -6,35 +6,36 @@ using NodaTime.Web.Configuration;
 using NodaTime.Web.Services;
 using NodaTime.Web.ViewModels;
 
-namespace NodaTime.Web.Controllers
+namespace NodaTime.Web.Controllers;
+
+public class DocumentationController : Controller
 {
-    public class DocumentationController : Controller
+    private readonly MarkdownLoader loader;
+
+    public DocumentationController(MarkdownLoader loader)
     {
-        private readonly MarkdownLoader loader;
+        this.loader = loader;
+    }
 
-        public DocumentationController(MarkdownLoader loader)
+    [Route("/{bundle=developer}/{*url}")]
+    [Route("/{bundle}/userguide/{*url}")]
+    public IActionResult ViewDocumentation(string bundle, string url)
+    {           
+        if (url == null || url.EndsWith("/"))
         {
-            this.loader = loader;
+            url += "index";
         }
-
-        public IActionResult ViewDocumentation(string bundle, string url)
-        {           
-            if (url == null || url.EndsWith("/"))
-            {
-                url += "index";
-            }
-            string origin = $"https://{Request.Host}";
-            var page = loader.TryGetBundle(bundle)?.TryGetPage(url);
-            if (page != null)
-            {
-                return View("Docs", new MarkdownPageViewModel(origin, page));
-            }
-            var resource = loader.TryGetBundle(bundle)?.TryGetResource(url);
-            if (resource != null)
-            {
-                return File(resource.GetContent(), resource.ContentType);
-            }
-            return NotFound();
+        string origin = $"https://{Request.Host}";
+        var page = loader.TryGetBundle(bundle)?.TryGetPage(url);
+        if (page != null)
+        {
+            return View("Docs", new MarkdownPageViewModel(origin, page));
         }
+        var resource = loader.TryGetBundle(bundle)?.TryGetResource(url);
+        if (resource != null)
+        {
+            return File(resource.GetContent(), resource.ContentType);
+        }
+        return NotFound();
     }
 }

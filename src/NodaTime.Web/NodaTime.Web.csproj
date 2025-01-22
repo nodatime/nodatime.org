@@ -1,20 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <ImplicitUsings>enable</ImplicitUsings>
     <TargetFramework>net8.0</TargetFramework>
-    <PreserveCompilationContext>true</PreserveCompilationContext>
-    <Deterministic>True</Deterministic>
-    <IsPackable>False</IsPackable>
-    <LangVersion>preview</LangVersion>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- ASP.NET Core dependencies -->
-    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
-
     <!-- Public NodaTime dependencies -->
     <PackageReference Include="NodaTime" Version="3.1.11" />
 
@@ -27,16 +19,17 @@
     <PackageReference Include="Google.Protobuf" Version="3.25.3" />
     <PackageReference Include="CommonMark.NET" Version="0.15.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  
+    <PackageReference Include="NuGet.Protocol" Version="6.12.1" />
+    <PackageReference Include="NReco.Logging.File" Version="1.2.2" />
+
     <!-- Handling of non-code folders -->
     <None Update="wwwroot\**\*;docfx\**\*;Markdown\**\*;Views\**\*;Areas\**\Views">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
   </ItemGroup>
 
-  <ItemGroup Condition="$(UseBlazor)">
-    <ProjectReference Include="..\NodaTime.Web.Blazor\NodaTime.Web.Blazor.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Server" Version="0.5.1" />
+  <ItemGroup>
+    <Folder Include="DataProtection\" />
   </ItemGroup>
   
 </Project>
