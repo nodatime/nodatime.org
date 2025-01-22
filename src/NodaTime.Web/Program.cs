@@ -3,7 +3,6 @@
 // as found in the LICENSE.txt file.
 
 using Google.Cloud.Logging.Console;
-using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.StaticFiles;
@@ -11,7 +10,6 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Net.Http.Headers;
 using NodaTime;
 using NodaTime.Web.Configuration;
-using NodaTime.Web.Controllers;
 using NodaTime.Web.DataProtection;
 using NodaTime.Web.Middleware;
 using NodaTime.Web.Services;
