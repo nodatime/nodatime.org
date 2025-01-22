@@ -3,41 +3,35 @@
 // as found in the LICENSE.txt file.
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using NodaTime.Text;
 using NodaTime.Web.Models;
+using NuGet.Common;
+using NuGet.Protocol;
+using NuGet.Protocol.Core.Types;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace NodaTime.Web.Services
 {
     public class ReleaseRepository : IReleaseRepository
     {
-        private static readonly JsonSerializerSettings jsonParseSettings = new JsonSerializerSettings { DateParseHandling = DateParseHandling.None };
-
-        private const string ObjectPrefix = "releases/";
+        private static NullLogger nullLogger = new NullLogger();
 
         private static readonly Duration CacheRefreshTime = Duration.FromMinutes(6);
         private readonly TimerCache<CacheValue> cache;
-        private readonly IHttpClientFactory httpClientFactory;
 
         public ReleaseRepository(
             IHostApplicationLifetime lifetime,
-            ILoggerFactory loggerFactory,
-            IHttpClientFactory httpClientFactory)
+            ILoggerFactory loggerFactory)
         {
-            this.httpClientFactory = httpClientFactory;
             cache = new TimerCache<CacheValue>("releases", lifetime, CacheRefreshTime, FetchReleases, loggerFactory, FetchReleases());
             cache.Start();
         }
 
-        public IReadOnlyList<ReleaseDownload> AllReleases => cache.Value.Releases;
+        public IReadOnlyList<StructuredVersion> AllReleases => cache.Value.Releases;
         public IReadOnlyList<string> CurrentMinorVersions => cache.Value.CurrentMinorVersions;
         public IReadOnlyList<string> OldMinorVersions => cache.Value.OldMinorVersions;
-        public ReleaseDownload LatestRelease => cache.Value.LatestRelease;
+        public StructuredVersion LatestRelease => cache.Value.LatestRelease;
 
         private CacheValue FetchReleases()
         {
@@ -46,49 +40,46 @@ namespace NodaTime.Web.Services
 
         private async Task<CacheValue> FetchReleasesAsync()
         {
-            using (var client = httpClientFactory.CreateClient())
+
+
+            var repository = Repository.Factory.GetCoreV3("https://api.nuget.org/v3/index.json");
+            var packageFinder = await repository.GetResourceAsync<FindPackageByIdResource>();
+            var cache = new SourceCacheContext { NoCache = true, RefreshMemoryCache = true };
+
+            var allVersions = await packageFinder.GetAllVersionsAsync("NodaTime", cache, nullLogger, default);
+            var releases = new List<StructuredVersion>();
+            foreach (var version in allVersions.Select(v => v.ToNormalizedString()))
             {
-                var json = await client.GetStringAsync("https://azuresearch-usnc.nuget.org/query?q=PackageId:NodaTime");
-                var jobject = JsonConvert.DeserializeObject<JObject>(json, jsonParseSettings)!;
-                var versions = jobject["data"]![0]!["versions"]!.ToList();
-
-                var releases = new List<ReleaseDownload>();
-                foreach (var versionObject in versions)
+                if (version.StartsWith("0."))
                 {
-                    string url = (string) versionObject["@id"]!;
-                    string version = (string)versionObject["version"]!;
-
-                    // Skip anything before 1.0
-                    if (version.StartsWith("0."))
-                    {
-                        continue;
-                    }
-                    releases.Add(new ReleaseDownload(new StructuredVersion(version), url));
+                    continue;
                 }
-                return new CacheValue(releases);
+                releases.Add(new StructuredVersion(version));
             }
+            
+            return new CacheValue(releases);
         }
 
         private class CacheValue
         {
-            public List<ReleaseDownload> Releases { get; }
-            public ReleaseDownload LatestRelease { get; }
+            public List<StructuredVersion> Releases { get; }
+            public StructuredVersion LatestRelease { get; }
             public List<string> CurrentMinorVersions { get; }
             public List<string> OldMinorVersions { get; }
 
-            public CacheValue(List<ReleaseDownload> releases)
+            public CacheValue(List<StructuredVersion> releases)
             {
                 Releases = releases;
                 // "Latest" is in terms of version, not release date. (So if
                 // 1.4 comes out after 2.0, 2.0 is still latest.)
                 // Pre-release versions are excluded.
                 LatestRelease = releases
-                    .Where(r => r.Version.Prerelease == null)
-                    .OrderByDescending(r => r.Version)
+                    .Where(r => r.Prerelease == null)
+                    .OrderByDescending(r => r)
                     .First();
                 var allMinorReleasesGroupedByMajor = releases
-                    .Where(r => r.Version.Prerelease == null)
-                    .Select(r => new { r.Version.Major, r.Version.Minor })
+                    .Where(r => r.Prerelease == null)
+                    .Select(r => new { r.Major, r.Minor })
                     .Distinct()
                     .OrderByDescending(v => v.Major).ThenByDescending(v => v.Minor)
                     .GroupBy(v => v.Major);
