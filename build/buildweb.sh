@@ -13,7 +13,7 @@ cd $ROOT/build
 export MSBUILDDISABLENODEREUSE=1
 
 skip_api_build=false
-if [[ "$1" != "--skip-api" ]]
+if [[ "$1" == "--skip-api" ]]
 then
   skip_api_build=true
 fi
