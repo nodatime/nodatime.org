@@ -2,10 +2,6 @@
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
 
-#if BLAZOR
-using Microsoft.AspNetCore.Blazor.Server;
-using Microsoft.AspNetCore.ResponseCompression;
-#endif
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -53,16 +49,6 @@ namespace NodaTime.Web
             // TODO: Add actual health checks, maybe.
             services.AddHealthChecks();
 
-#if BLAZOR
-            services.AddResponseCompression(options =>
-            {
-                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
-                {
-                    MediaTypeNames.Application.Octet,
-                    WasmMediaTypeNames.Application.Wasm,
-                });
-            });
-#endif
             var storageOptions = Configuration.GetSection("Storage").Get<StorageOptions>() ?? throw new ArgumentException("Must have storage options");
             storageOptions.ConfigureServices(services);
             services.AddHttpClient();
@@ -161,9 +147,6 @@ namespace NodaTime.Web
             // (This loads pages synchronously; start it running after prodding the repositories,
             // which load asynchronously.)
             app.ApplicationServices.GetRequiredService<MarkdownLoader>();
-#if BLAZOR
-            app.Map("/blazor", child => child.UseBlazor<NodaTime.Web.Blazor.Program>());
-#endif
         }
 
         /// Sets the Cache-Control header for static content, conditionally allowing the browser to use the content
