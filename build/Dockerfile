@@ -7,6 +7,9 @@ RUN git clone https://github.com/nodatime/nodatime.git
 RUN git clone https://github.com/nodatime/nodatime.serialization.git
 COPY . nodatime.org
 
+ARG build_environment
+ENV BUILD_ENVIRONMENT=$build_environment
+
 # See https://github.com/saucecontrol/InheritDoc/issues/15
 ENV NUGET_XMLDOC_MODE=none
 

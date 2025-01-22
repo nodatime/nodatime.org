@@ -12,8 +12,24 @@ cd $ROOT/build
 # to node reuse.
 export MSBUILDDISABLENODEREUSE=1
 
-# Build the API docs with docfx
+skip_api_build=false
 if [[ "$1" != "--skip-api" ]]
+then
+  skip_api_build=true
+fi
+
+echo "Building with BUILD_ENVIRONMENT=$BUILD_ENVIRONMENT"
+
+if [[ "$BUILD_ENVIRONMENT" == "EXPERIMENTAL" ]]
+then
+  skip_api_build=true
+  rm -rf $ROOT/src/NodaTime.Web/docfx
+  mkdir $ROOT/src/NodaTime.Web/docfx
+  echo "Test document" > $ROOT/src/NodaTime.Web/docfx/docfx.txt
+fi
+
+# Build the API docs with docfx
+if [[ "$skip_api_build" != "true" ]]
 then
   ./buildapidocs.sh
   rm -rf $ROOT/src/NodaTime.Web/docfx
@@ -32,7 +48,7 @@ dotnet publish -nologo -clp:NoSummary -v quiet -c Release $ROOT/src/NodaTime.Web
 
 # Run a smoke test to check it still works, but without using GCS
 # Skip this if we don't have API docs.
-if [[ "$1" != "--skip-api" ]]
+if [[ "$skip_api_build" != "true" ]]
 then
   STORAGE__BUCKET=local:fakestorage ASPNETCORE_URLS=http://127.0.0.1:8080 dotnet test ../src/NodaTime.Web.SmokeTest
 fi
