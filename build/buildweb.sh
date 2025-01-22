@@ -31,7 +31,11 @@ dotnet publish -nologo -clp:NoSummary -v quiet -c Release $ROOT/src/NodaTime.Web
 # sed -i 's/\\/\//g' $WEB_DIR/NodaTime.Web.Blazor.blazor.config
 
 # Run a smoke test to check it still works, but without using GCS
-STORAGE__BUCKET=local:fakestorage dotnet test ../src/NodaTime.Web.SmokeTest
+# Skip this if we don't have API docs.
+if [[ "$1" != "--skip-api" ]]
+then
+  STORAGE__BUCKET=local:fakestorage dotnet test ../src/NodaTime.Web.SmokeTest
+fi
 
 # Add diagnostic text files
 # commit.txt only contains commit info

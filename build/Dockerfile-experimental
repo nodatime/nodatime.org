@@ -1,0 +1,23 @@
+# https://hub.docker.com/_/microsoft-dotnet
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+WORKDIR /source
+
+RUN git clone https://github.com/nodatime/nodatime.git --depth 1
+RUN git clone https://github.com/nodatime/nodatime.serialization.git --depth 1
+COPY . nodatime.org
+
+# See https://github.com/saucecontrol/InheritDoc/issues/15
+ENV NUGET_XMLDOC_MODE=none
+
+WORKDIR /source/nodatime.org/build
+RUN chmod +x *.sh
+RUN mkdir ../src/NodaTime.Web/docfx
+RUN /bin/bash -c "./buildweb.sh --skip-api"
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+WORKDIR /app
+COPY --from=build /source/nodatime.org/src/NodaTime.Web/bin/Release/net8.0/publish ./
+
+ENV ASPNETCORE_URLS=http://*:8080
+ENTRYPOINT ["dotnet", "NodaTime.Web.dll"]
