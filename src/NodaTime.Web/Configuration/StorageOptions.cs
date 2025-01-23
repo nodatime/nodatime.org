@@ -39,8 +39,8 @@ public class StorageOptions
             services.AddSingleton<IStorageRepository>(new GoogleCloudStorageRepository(Bucket!));
         }
 
-        services.AddSingleton<IReleaseRepository, ReleaseRepository>();
-        services.AddSingleton<ITzdbRepository, TzdbRepository>();
-        services.AddSingletonWithArguments<IBenchmarkRepository, BenchmarkRepository>(BenchmarkLimit ?? int.MaxValue);
+        services.AddSingleton<ReleaseRepository>();
+        services.AddSingleton<TzdbRepository>();
+        services.AddSingletonWithArguments<BenchmarkRepository>(BenchmarkLimit ?? int.MaxValue);
     }
 }

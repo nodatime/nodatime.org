@@ -2,9 +2,6 @@
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
 
-using System.Collections.Generic;
-using System.IO;
-
 namespace NodaTime.Web.Services
 {
     /// <summary>
@@ -13,9 +10,11 @@ namespace NodaTime.Web.Services
     /// </summary>
     public interface IStorageRepository
     {
-        IEnumerable<StorageFile> ListFiles(string prefix);
+        IAsyncEnumerable<StorageFile> ListFilesAsync(string prefix);
         StorageFile GetObject(string name);
+        Task<StorageFile> GetObjectAsync(string name, CancellationToken cancellationToken);
         void DownloadObject(string name, Stream stream);
+        Task DownloadObjectAsync(string name, Stream stream, CancellationToken cancellationToken);
         string GetDownloadUrl(string name);
     }
 }

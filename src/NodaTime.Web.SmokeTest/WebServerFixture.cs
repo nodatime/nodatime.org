@@ -36,11 +36,11 @@ namespace NodaTime.Web.SmokeTest
         }
 
         [OneTimeSetUp]
-        public void StartServer()
+        public async Task StartServer()
         {
             serverCancellation = new CancellationTokenSource();
             var contentRoot = FindNodaTimeWebProject();
-            App = Program.CreateWebApplication(new WebApplicationOptions { ContentRootPath = contentRoot, EnvironmentName = "Development" });
+            App = await Program.CreateWebApplication(new WebApplicationOptions { ContentRootPath = contentRoot, EnvironmentName = "Development" });
             serverTask = App.StartAsync(serverCancellation.Token);
             // Wait for the server to start up, and the TZDB/release caches to populate.
             // (The benchmark cache takes longer, but we're not too worried about them.)

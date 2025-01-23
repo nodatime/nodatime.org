@@ -15,4 +15,9 @@ internal static class ServiceCollectionExtensions
         where TImplementation : class, TService =>
         services.AddSingleton<TService, TImplementation>(
             provider => ActivatorUtilities.CreateInstance<TImplementation>(provider, parameters));
+
+    internal static IServiceCollection AddSingletonWithArguments<TService>(
+        this IServiceCollection services, params object[] parameters)
+        where TService : class =>
+        services.AddSingleton(provider => ActivatorUtilities.CreateInstance<TService>(provider, parameters));
 }

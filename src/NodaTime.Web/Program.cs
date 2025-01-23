@@ -21,14 +21,14 @@ public class Program
     public const string SmokeTestEnvironment = "SmokeTests";
     private static readonly MediaTypeHeaderValue TextHtml = new MediaTypeHeaderValue("text/html");
 
-    internal static void Main(string[] args)
+    internal static async Task Main(string[] args)
     {
-        var app = CreateWebApplication(new WebApplicationOptions { Args = args });
+        var app = await CreateWebApplication(new WebApplicationOptions { Args = args });
         // Now start serving.
         app.Run();
     }
 
-    public static WebApplication CreateWebApplication(WebApplicationOptions options)
+    public static async Task<WebApplication> CreateWebApplication(WebApplicationOptions options)
     {
         var builder = WebApplication.CreateBuilder(options);
 
@@ -47,7 +47,7 @@ public class Program
             // This isn't needed normally, but when the smoke tests launch the server,
             // we need to say that the controllers are still in *this* assembly.
             .AddControllers().AddApplicationPart(typeof(Program).Assembly).Services
-            .AddSingleton<MarkdownLoader>()
+            .AddSingleton<MarkdownLoader>();
         ;
         var storageOptions = builder.Configuration.GetSection("Storage").Get<StorageOptions>() ?? throw new ArgumentException("Must have storage options");
         storageOptions.ConfigureServices(builder.Services);
@@ -75,6 +75,11 @@ public class Program
             app.UseExceptionHandler("/Error");
             app.UseResponseCompression();
         }
+
+        app.UseCacheRefreshingMiddleware(options => options
+            .Add<BenchmarkRepository>(Duration.FromMinutes(15))
+            .Add<TzdbRepository>(Duration.FromMinutes(6))
+            .Add<ReleaseRepository>(Duration.FromMinutes(7)));
 
         app.UseHealthChecks("/health");
         app.UseReferralNotFoundLogging();
@@ -111,8 +116,8 @@ public class Program
         // The fact that the rewrite options are fixed after initialization means
         // that until the next web site push, we'll end up redirecting /api and /userguide
         // to the previous latest release, but that's probably okay. (It'll only be temporary.)
-        var releaseRepository = app.Services.GetRequiredService<IReleaseRepository>();
-        // FIXME - make sure we've actually loaded the release by this point...
+        var releaseRepository = app.Services.GetRequiredService<ReleaseRepository>();
+        await releaseRepository.Refresh(default);
         var latestRelease = releaseRepository.CurrentMinorVersions.First(); // e.g. 2.4.x
 
         // Captures "unstable" or a specific version - used several times below.
@@ -142,9 +147,9 @@ public class Program
         app.UseRouting();
 
         // Force the set of benchmarks to be first loaded on startup.
-        app.Services.GetRequiredService<IBenchmarkRepository>();
+        app.Services.GetRequiredService<BenchmarkRepository>();
         // Force the set of TZDB data to be first loaded on startup.
-        app.Services.GetRequiredService<ITzdbRepository>();
+        app.Services.GetRequiredService<TzdbRepository>();
         // Force all the Markdown to be loaded on startup.
         // (This loads pages synchronously; start it running after prodding the repositories,
         // which load asynchronously.)

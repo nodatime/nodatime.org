@@ -12,9 +12,9 @@ namespace NodaTime.Web.Controllers;
 [AddHeader("X-Robots-Tag", "noindex")]
 public class BenchmarksController : Controller
 {
-    private readonly IBenchmarkRepository repository;
+    private readonly BenchmarkRepository repository;
 
-    public BenchmarksController(IBenchmarkRepository repository)
+    public BenchmarksController(BenchmarkRepository repository)
     {
         this.repository = repository;
     }
