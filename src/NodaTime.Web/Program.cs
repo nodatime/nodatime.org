@@ -149,7 +149,14 @@ public class Program
         // Force the set of benchmarks to start being loaded on startup.
         using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5)))
         {
-            await app.Services.GetRequiredService<BenchmarkRepository>().Refresh(cts.Token);
+            try
+            {
+                await app.Services.GetRequiredService<BenchmarkRepository>().Refresh(cts.Token);
+            }
+            catch (OperationCanceledException)
+            {
+                // This is expected when we're loading without a limit, from GCS.
+            }
         }
         // Force the TZDB repository to be downloaded on startup.
         await app.Services.GetRequiredService<TzdbRepository>().Refresh(default);
