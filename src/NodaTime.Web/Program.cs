@@ -146,10 +146,13 @@ public class Program
         // static content or controllers working, but not both.
         app.UseRouting();
 
-        // Force the set of benchmarks to be first loaded on startup.
-        app.Services.GetRequiredService<BenchmarkRepository>();
-        // Force the set of TZDB data to be first loaded on startup.
-        app.Services.GetRequiredService<TzdbRepository>();
+        // Force the set of benchmarks to start being loaded on startup.
+        using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5)))
+        {
+            await app.Services.GetRequiredService<BenchmarkRepository>().Refresh(cts.Token);
+        }
+        // Force the TZDB repository to be downloaded on startup.
+        await app.Services.GetRequiredService<TzdbRepository>().Refresh(default);
         // Force all the Markdown to be loaded on startup.
         // (This loads pages synchronously; start it running after prodding the repositories,
         // which load asynchronously.)
