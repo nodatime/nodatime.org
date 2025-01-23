@@ -14,9 +14,9 @@ namespace NodaTime.Web.Controllers;
 public class HomeController : Controller
 {
     private readonly MarkdownBundle markdownBundle;
-    private readonly ITzdbRepository repository;
+    private readonly TzdbRepository repository;
 
-    public HomeController(MarkdownLoader markdownLoader, ITzdbRepository repository)
+    public HomeController(MarkdownLoader markdownLoader, TzdbRepository repository)
     {        
         markdownBundle = markdownLoader.TryGetBundle("root")
             ?? throw new ArgumentException("Couldn't get root bundle", nameof(markdownLoader));

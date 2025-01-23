@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using NodaTime.Helpers;
 using NodaTime.Web.Models;
 using NodaTime.Web.Services;
-using System;
-using System.Linq;
 
 namespace NodaTime.Web.Controllers
 {
@@ -15,9 +13,9 @@ namespace NodaTime.Web.Controllers
     public class TzdbController : Controller
     {
         private const string ContentType = "application/octet-stream";
-        private readonly ITzdbRepository tzdbRepository;
+        private readonly TzdbRepository tzdbRepository;
 
-        public TzdbController(ITzdbRepository tzdbRepository)
+        public TzdbController(TzdbRepository tzdbRepository)
         {
             this.tzdbRepository = tzdbRepository;
         }

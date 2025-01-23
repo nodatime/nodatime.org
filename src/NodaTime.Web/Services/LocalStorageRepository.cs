@@ -3,11 +3,6 @@
 // as found in the LICENSE.txt file.
 
 using Google;
-using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace NodaTime.Web.Services
 {
@@ -43,6 +38,15 @@ namespace NodaTime.Web.Services
             }
         }
 
+        public async Task DownloadObjectAsync(string name, Stream stream, CancellationToken cancellationToken)
+        {
+            var path = Path.Combine(absoluteRoot, name);
+            using (var input = File.OpenRead(path))
+            {
+                await input.CopyToAsync(stream, cancellationToken);
+            }
+        }
+
         public string GetDownloadUrl(string name) => $"fakestorage://{name}";
 
         public StorageFile GetObject(string name)
@@ -58,7 +62,10 @@ namespace NodaTime.Web.Services
             return new StorageFile(name, null, info.LastWriteTimeUtc, "fake-crc32");
         }
 
-        public IEnumerable<StorageFile> ListFiles(string prefix) =>
-            allFiles.Where(name => name.StartsWith(prefix)).Select(GetObject);
+        public Task<StorageFile> GetObjectAsync(string name, CancellationToken cancellationToken) =>
+            Task.FromResult(GetObject(name));
+
+        public IAsyncEnumerable<StorageFile> ListFilesAsync(string prefix) =>
+            allFiles.Where(name => name.StartsWith(prefix)).Select(GetObject).ToAsyncEnumerable();
     }
 }

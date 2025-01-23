@@ -2,12 +2,8 @@
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
 
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using System.Collections.Concurrent;
 using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace NodaTime.Web.Middleware
 {

@@ -4,10 +4,6 @@
 
 using Google.Api.Gax;
 using Google.Cloud.Storage.V1;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace NodaTime.Web.Services
 {
@@ -28,12 +24,18 @@ namespace NodaTime.Web.Services
         public void DownloadObject(string name, Stream stream) =>
             client.DownloadObject(bucket, name, stream);
 
+        public Task DownloadObjectAsync(string name, Stream stream, CancellationToken cancellationToken) =>
+            client.DownloadObjectAsync(bucket, name, stream, cancellationToken: cancellationToken);
+
         public StorageFile GetObject(string name) =>
             ConvertObject(client.GetObject(bucket, name));
 
-        public IEnumerable<StorageFile> ListFiles(string prefix) =>
-            client.ListObjects(bucket, prefix)
-                .Select(ConvertObject);
+        public async Task<StorageFile> GetObjectAsync(string name, CancellationToken cancellationToken) =>
+            ConvertObject(await client.GetObjectAsync(bucket, name, cancellationToken: cancellationToken));
+
+        public IAsyncEnumerable<StorageFile> ListFilesAsync(string prefix) => client
+            .ListObjectsAsync(bucket, prefix)
+            .Select(ConvertObject);
 
         public string GetDownloadUrl(string name) => $"https://storage.googleapis.com/{bucket}/{name}";
 

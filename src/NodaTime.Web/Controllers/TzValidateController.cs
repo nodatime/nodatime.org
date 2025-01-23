@@ -16,9 +16,9 @@ namespace NodaTime.Web.Controllers
     [AddHeader("X-Robots-Tag", "noindex")]
     public class TzValidateController : Controller
     {
-        private readonly ITzdbRepository repository;
+        private readonly TzdbRepository repository;
 
-        public TzValidateController(ITzdbRepository repository) =>
+        public TzValidateController(TzdbRepository repository) =>
             this.repository = repository;
 
         private static readonly Regex NzdNamePattern = new Regex(@"tzdb(\d+.)\.nzd");
