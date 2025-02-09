@@ -19,11 +19,13 @@ namespace SnippetExtractor
     {
         // Additional imports, for Console.WriteLine and to make
         // up for the fact that the script isn't in a namespace
+        // (and new versions of NUnit).
         private static readonly string[] ExtraUsings =
         {
              "using System;",
              "using NodaTime;",
-             "using NodaTime.Demo;"
+             "using NodaTime.Demo;",
+             "using Assert = NUnit.Framework.Legacy.ClassicAssert;"
         };
 
         private readonly ScriptOptions buildOptions;
@@ -72,7 +74,7 @@ namespace SnippetExtractor
             var tree = compilation.SyntaxTrees.Single();
             var model = compilation.GetSemanticModel(tree);
 
-            var assertType = model.Compilation.GetTypeByMetadataName("NUnit.Framework.Assert");
+            var assertType = model.Compilation.GetTypeByMetadataName("NUnit.Framework.Legacy.ClassicAssert");
             var snippetType = model.Compilation.GetTypeByMetadataName("NodaTime.Demo.Snippet");
             var root = tree.GetRoot();
 
