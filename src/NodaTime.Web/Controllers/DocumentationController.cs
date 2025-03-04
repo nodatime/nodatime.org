@@ -2,7 +2,6 @@
 // Use of this source code is governed by the Apache License 2.0,
 // as found in the LICENSE.txt file.
 using Microsoft.AspNetCore.Mvc;
-using NodaTime.Web.Configuration;
 using NodaTime.Web.Services;
 using NodaTime.Web.ViewModels;
 
@@ -17,10 +16,14 @@ public class DocumentationController : Controller
         this.loader = loader;
     }
 
-    [Route("/{bundle=developer}/{*url}")]
+    [Route("/developer/{*url}")]
     [Route("/{bundle}/userguide/{*url}")]
     public IActionResult ViewDocumentation(string bundle, string url)
-    {           
+    {
+        if (bundle == null)
+        {
+            bundle = "developer";
+        }
         if (url == null || url.EndsWith("/"))
         {
             url += "index";

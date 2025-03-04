@@ -26,7 +26,7 @@ public class HomeController : Controller
     [Route("/versions")]
     public IActionResult Versions() => View("Docs", markdownBundle.TryGetPage("versions"));
 
-    [Route("/{id?}")]
+    [Route("/")]
     public IActionResult Index() => View();
 
     [Route("/error")]
