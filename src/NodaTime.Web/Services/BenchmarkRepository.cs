@@ -97,6 +97,12 @@ public class BenchmarkRepository : IRefreshableCache
             var limit = repository.limit;
             CacheEntry previous = this;
 
+            // We can just keep returning the current entry if we're asked not to do anything.
+            if (limit == 0 && Environments.Count == 0 && RunsById.Count == 0)
+            {
+                return this;
+            }
+
             // If we don't have previous work to finish off, check for new benchmarks.
             if (pendingContainersToBeDownloaded is null)
             {
