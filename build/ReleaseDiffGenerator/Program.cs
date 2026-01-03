@@ -30,6 +30,7 @@ namespace ReleaseDiffGenerator
                 .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
 
+            Console.WriteLine($"Versions: {string.Join(", ", versions)}");
             var releases = versions.Select(version => Release.Load(Path.Combine(packageDirectory, version, "api"), version)).ToArray();
             // Generate diffs pair-wise
             for (int i = 1; i < versions.Count; i++)
@@ -41,6 +42,7 @@ namespace ReleaseDiffGenerator
 
         static void GenerateDiffs(Release oldRelease, Release newRelease, string destination)
         {
+            Console.WriteLine($"Creating diff from {oldRelease.Version} to {newRelease.Version}");
             var oldMemberUids = new HashSet<string>(oldRelease.MembersByUid.Keys);
             var newMemberUids = new HashSet<string>(newRelease.MembersByUid.Keys);
 
