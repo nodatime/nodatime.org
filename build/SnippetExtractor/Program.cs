@@ -96,7 +96,7 @@ namespace SnippetExtractor
             // TODO: Sort out better ways of doing async + LINQ. This must be a solved problem.
             // System.Interactive.Async perhaps?
             var snippetFileTasks = project.Documents
-                .Select(doc => SnippetFileSyntaxTree.CreateAsync(doc))
+                .Select(SnippetFileSyntaxTree.CreateAsync)
                 .ToList();
             var snippetFiles = await Task.WhenAll(snippetFileTasks);
             return snippetFiles.SelectMany(file => file.GetSnippets());
