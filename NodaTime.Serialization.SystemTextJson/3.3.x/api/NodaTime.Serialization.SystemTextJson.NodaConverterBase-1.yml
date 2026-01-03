@@ -1,0 +1,1458 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1
+  commentId: T:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1
+  id: NodaConverterBase`1
+  parent: NodaTime.Serialization.SystemTextJson
+  children:
+  - NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.#ctor
+  - NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.CanConvert(System.Type)
+  - NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  - NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  - NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.ReadJsonImpl(System.Text.Json.Utf8JsonReader@,System.Text.Json.JsonSerializerOptions)
+  - NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  - NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  - NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteJsonImpl(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  - NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteJsonPropertyNameImpl(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  langs:
+  - csharp
+  - vb
+  name: NodaConverterBase<T>
+  nameWithType: NodaConverterBase<T>
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>
+  type: Class
+  assemblies:
+  - NodaTime.Serialization.SystemTextJson
+  namespace: NodaTime.Serialization.SystemTextJson
+  summary: >-
+    Base class for all the System.Text.Json converters which handle value types (which is most of them).
+
+    This deals handles all the boilerplate code dealing with nullity.
+  example: []
+  syntax:
+    content: 'public abstract class NodaConverterBase<T> : JsonConverter<T>'
+    typeParameters:
+    - id: T
+      description: The type to convert to/from JSON.
+    content.vb: Public MustInherit Class NodaConverterBase(Of T) Inherits JsonConverter(Of T)
+  inheritance:
+  - System.Object
+  - System.Text.Json.Serialization.JsonConverter
+  - System.Text.Json.Serialization.JsonConverter{{T}}
+  derivedClasses:
+  - NodaTime.Serialization.SystemTextJson.NodaPatternConverter`1
+  inheritedMembers:
+  - System.Text.Json.Serialization.JsonConverter{{T}}.HandleNull
+  - System.Text.Json.Serialization.JsonConverter{{T}}.Type
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  nameWithType.vb: NodaConverterBase(Of T)
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T)
+  name.vb: NodaConverterBase(Of T)
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.#ctor
+  commentId: M:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.#ctor
+  id: '#ctor'
+  parent: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1
+  langs:
+  - csharp
+  - vb
+  name: NodaConverterBase()
+  nameWithType: NodaConverterBase<T>.NodaConverterBase()
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.NodaConverterBase()
+  type: Constructor
+  assemblies:
+  - NodaTime.Serialization.SystemTextJson
+  namespace: NodaTime.Serialization.SystemTextJson
+  summary: Default constructor.
+  example: []
+  syntax:
+    content: protected NodaConverterBase()
+    content.vb: Protected Sub New()
+  overload: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.#ctor*
+  nameWithType.vb: NodaConverterBase(Of T).New()
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).New()
+  name.vb: New()
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.CanConvert(System.Type)
+  commentId: M:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.CanConvert(System.Type)
+  id: CanConvert(System.Type)
+  parent: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1
+  langs:
+  - csharp
+  - vb
+  name: CanConvert(Type)
+  nameWithType: NodaConverterBase<T>.CanConvert(Type)
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.CanConvert(System.Type)
+  type: Method
+  assemblies:
+  - NodaTime.Serialization.SystemTextJson
+  namespace: NodaTime.Serialization.SystemTextJson
+  summary: Returns whether or not this converter supports the given type.
+  example: []
+  syntax:
+    content: public override bool CanConvert(Type objectType)
+    parameters:
+    - id: objectType
+      type: System.Type
+      description: The type to check for compatibility.
+    return:
+      type: System.Boolean
+      description: >-
+        True if the given type is supported by this converter (not including the nullable form for
+            value types); false otherwise.
+    content.vb: Public Overrides Function CanConvert(objectType As Type) As Boolean
+  overridden: System.Text.Json.Serialization.JsonConverter{{T}}.CanConvert(System.Type)
+  overload: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.CanConvert*
+  nameWithType.vb: NodaConverterBase(Of T).CanConvert(Type)
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).CanConvert(System.Type)
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  commentId: M:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  id: Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  parent: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1
+  langs:
+  - csharp
+  - vb
+  name: Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  nameWithType: NodaConverterBase<T>.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.Read(ref System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  type: Method
+  assemblies:
+  - NodaTime.Serialization.SystemTextJson
+  namespace: NodaTime.Serialization.SystemTextJson
+  summary: Converts the JSON stored in a reader into the relevant Noda Time type.
+  example: []
+  syntax:
+    content: public override T Read(ref Utf8JsonReader reader, Type objectType, JsonSerializerOptions options)
+    parameters:
+    - id: reader
+      type: System.Text.Json.Utf8JsonReader
+      description: The json reader to read data from.
+    - id: objectType
+      type: System.Type
+      description: The type to convert the JSON to.
+    - id: options
+      type: System.Text.Json.JsonSerializerOptions
+      description: A serializer options to use for any embedded deserialization.
+    return:
+      type: '{T}'
+      description: The deserialized value.
+    content.vb: Public Overrides Function Read(reader As Utf8JsonReader, objectType As Type, options As JsonSerializerOptions) As T
+  overridden: System.Text.Json.Serialization.JsonConverter{{T}}.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  overload: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.Read*
+  exceptions:
+  - type: NodaTime.Utility.InvalidNodaDataException
+    commentId: T:NodaTime.Utility.InvalidNodaDataException
+    description: The JSON was invalid for this converter.
+  nameWithType.vb: NodaConverterBase(Of T).Read(Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).Read(System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  name.vb: Read(Utf8JsonReader, Type, JsonSerializerOptions)
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  commentId: M:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  id: ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  parent: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1
+  langs:
+  - csharp
+  - vb
+  name: ReadAsPropertyName(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  nameWithType: NodaConverterBase<T>.ReadAsPropertyName(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.ReadAsPropertyName(ref System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  type: Method
+  assemblies:
+  - NodaTime.Serialization.SystemTextJson
+  namespace: NodaTime.Serialization.SystemTextJson
+  summary: Converts the JSON stored in a reader into the relevant Noda Time type.
+  example: []
+  syntax:
+    content: public override T ReadAsPropertyName(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    parameters:
+    - id: reader
+      type: System.Text.Json.Utf8JsonReader
+      description: The json reader to read data from.
+    - id: typeToConvert
+      type: System.Type
+      description: The type to convert the JSON to.
+    - id: options
+      type: System.Text.Json.JsonSerializerOptions
+      description: A serializer options to use for any embedded deserialization.
+    return:
+      type: '{T}'
+      description: The deserialized value.
+    content.vb: Public Overrides Function ReadAsPropertyName(reader As Utf8JsonReader, typeToConvert As Type, options As JsonSerializerOptions) As T
+  overridden: System.Text.Json.Serialization.JsonConverter{{T}}.ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  overload: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.ReadAsPropertyName*
+  exceptions:
+  - type: NodaTime.Utility.InvalidNodaDataException
+    commentId: T:NodaTime.Utility.InvalidNodaDataException
+    description: The JSON was invalid for this converter.
+  nameWithType.vb: NodaConverterBase(Of T).ReadAsPropertyName(Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).ReadAsPropertyName(System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  name.vb: ReadAsPropertyName(Utf8JsonReader, Type, JsonSerializerOptions)
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.ReadJsonImpl(System.Text.Json.Utf8JsonReader@,System.Text.Json.JsonSerializerOptions)
+  commentId: M:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.ReadJsonImpl(System.Text.Json.Utf8JsonReader@,System.Text.Json.JsonSerializerOptions)
+  id: ReadJsonImpl(System.Text.Json.Utf8JsonReader@,System.Text.Json.JsonSerializerOptions)
+  parent: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1
+  langs:
+  - csharp
+  - vb
+  name: ReadJsonImpl(ref Utf8JsonReader, JsonSerializerOptions)
+  nameWithType: NodaConverterBase<T>.ReadJsonImpl(ref Utf8JsonReader, JsonSerializerOptions)
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.ReadJsonImpl(ref System.Text.Json.Utf8JsonReader, System.Text.Json.JsonSerializerOptions)
+  type: Method
+  assemblies:
+  - NodaTime.Serialization.SystemTextJson
+  namespace: NodaTime.Serialization.SystemTextJson
+  summary: >-
+    Implemented by concrete subclasses, this performs the final conversion from a non-null JSON value to
+
+    a value of type T.
+  example: []
+  syntax:
+    content: protected abstract T ReadJsonImpl(ref Utf8JsonReader reader, JsonSerializerOptions options)
+    parameters:
+    - id: reader
+      type: System.Text.Json.Utf8JsonReader
+      description: The JSON reader to pull data from
+    - id: options
+      type: System.Text.Json.JsonSerializerOptions
+      description: The serializer options to use for nested serialization
+    return:
+      type: '{T}'
+      description: The deserialized value of type T.
+    content.vb: Protected MustOverride Function ReadJsonImpl(reader As Utf8JsonReader, options As JsonSerializerOptions) As T
+  overload: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.ReadJsonImpl*
+  nameWithType.vb: NodaConverterBase(Of T).ReadJsonImpl(Utf8JsonReader, JsonSerializerOptions)
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).ReadJsonImpl(System.Text.Json.Utf8JsonReader, System.Text.Json.JsonSerializerOptions)
+  name.vb: ReadJsonImpl(Utf8JsonReader, JsonSerializerOptions)
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  commentId: M:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  id: Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  parent: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1
+  langs:
+  - csharp
+  - vb
+  name: Write(Utf8JsonWriter, T, JsonSerializerOptions)
+  nameWithType: NodaConverterBase<T>.Write(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.Write(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+  type: Method
+  assemblies:
+  - NodaTime.Serialization.SystemTextJson
+  namespace: NodaTime.Serialization.SystemTextJson
+  summary: Writes the given value to a Utf8JsonWriter.
+  example: []
+  syntax:
+    content: public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+    parameters:
+    - id: writer
+      type: System.Text.Json.Utf8JsonWriter
+      description: The writer to write the JSON to.
+    - id: value
+      type: '{T}'
+      description: The value to write.
+    - id: options
+      type: System.Text.Json.JsonSerializerOptions
+      description: The serializer options to use for any embedded serialization.
+    content.vb: Public Overrides Sub Write(writer As Utf8JsonWriter, value As T, options As JsonSerializerOptions)
+  overridden: System.Text.Json.Serialization.JsonConverter{{T}}.Write(System.Text.Json.Utf8JsonWriter,{T},System.Text.Json.JsonSerializerOptions)
+  overload: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.Write*
+  nameWithType.vb: NodaConverterBase(Of T).Write(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).Write(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  commentId: M:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  id: WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  parent: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1
+  langs:
+  - csharp
+  - vb
+  name: WriteAsPropertyName(Utf8JsonWriter, T, JsonSerializerOptions)
+  nameWithType: NodaConverterBase<T>.WriteAsPropertyName(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+  type: Method
+  assemblies:
+  - NodaTime.Serialization.SystemTextJson
+  namespace: NodaTime.Serialization.SystemTextJson
+  summary: Writes the value as a string to a Utf8JsonWriter.
+  example: []
+  syntax:
+    content: public override void WriteAsPropertyName(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+    parameters:
+    - id: writer
+      type: System.Text.Json.Utf8JsonWriter
+      description: The writer to write the JSON to.
+    - id: value
+      type: '{T}'
+      description: The value to write.
+    - id: options
+      type: System.Text.Json.JsonSerializerOptions
+      description: The serializer options to use for any embedded serialization.
+    content.vb: Public Overrides Sub WriteAsPropertyName(writer As Utf8JsonWriter, value As T, options As JsonSerializerOptions)
+  overridden: System.Text.Json.Serialization.JsonConverter{{T}}.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,{T},System.Text.Json.JsonSerializerOptions)
+  overload: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteAsPropertyName*
+  nameWithType.vb: NodaConverterBase(Of T).WriteAsPropertyName(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).WriteAsPropertyName(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteJsonImpl(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  commentId: M:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteJsonImpl(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  id: WriteJsonImpl(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  parent: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1
+  langs:
+  - csharp
+  - vb
+  name: WriteJsonImpl(Utf8JsonWriter, T, JsonSerializerOptions)
+  nameWithType: NodaConverterBase<T>.WriteJsonImpl(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.WriteJsonImpl(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+  type: Method
+  assemblies:
+  - NodaTime.Serialization.SystemTextJson
+  namespace: NodaTime.Serialization.SystemTextJson
+  summary: >-
+    Implemented by concrete subclasses, this performs the final write operation for a non-null value of type T
+
+    to JSON.
+  example: []
+  syntax:
+    content: protected abstract void WriteJsonImpl(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+    parameters:
+    - id: writer
+      type: System.Text.Json.Utf8JsonWriter
+      description: The writer to write JSON data to
+    - id: value
+      type: '{T}'
+      description: The value to serialize
+    - id: options
+      type: System.Text.Json.JsonSerializerOptions
+      description: The serializer options to use for nested serialization
+    content.vb: Protected MustOverride Sub WriteJsonImpl(writer As Utf8JsonWriter, value As T, options As JsonSerializerOptions)
+  overload: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteJsonImpl*
+  nameWithType.vb: NodaConverterBase(Of T).WriteJsonImpl(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).WriteJsonImpl(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteJsonPropertyNameImpl(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  commentId: M:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteJsonPropertyNameImpl(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  id: WriteJsonPropertyNameImpl(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  parent: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1
+  langs:
+  - csharp
+  - vb
+  name: WriteJsonPropertyNameImpl(Utf8JsonWriter, T, JsonSerializerOptions)
+  nameWithType: NodaConverterBase<T>.WriteJsonPropertyNameImpl(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.WriteJsonPropertyNameImpl(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+  type: Method
+  assemblies:
+  - NodaTime.Serialization.SystemTextJson
+  namespace: NodaTime.Serialization.SystemTextJson
+  summary: >-
+    Implemented by concrete subclasses, this performs the final write operation for a non-null value of type T
+
+    to JSON, writing the value as a property name. The default implementation throws <xref href="System.NotImplementedException" data-throw-if-not-resolved="false"></xref>
+
+    for compatibility purposes, but all concrete classes within this package override and implement the method fully.
+  example: []
+  syntax:
+    content: protected virtual void WriteJsonPropertyNameImpl(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+    parameters:
+    - id: writer
+      type: System.Text.Json.Utf8JsonWriter
+      description: The writer to write JSON data to
+    - id: value
+      type: '{T}'
+      description: The value to serialize
+    - id: options
+      type: System.Text.Json.JsonSerializerOptions
+      description: The serializer options to use for nested serialization
+    content.vb: Protected Overridable Sub WriteJsonPropertyNameImpl(writer As Utf8JsonWriter, value As T, options As JsonSerializerOptions)
+  overload: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteJsonPropertyNameImpl*
+  nameWithType.vb: NodaConverterBase(Of T).WriteJsonPropertyNameImpl(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).WriteJsonPropertyNameImpl(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+references:
+- uid: NodaTime.Serialization.SystemTextJson
+  commentId: N:NodaTime.Serialization.SystemTextJson
+  href: NodaTime.html
+  name: NodaTime.Serialization.SystemTextJson
+  nameWithType: NodaTime.Serialization.SystemTextJson
+  fullName: NodaTime.Serialization.SystemTextJson
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Serialization
+    name: Serialization
+    href: NodaTime.Serialization.html
+  - name: .
+  - uid: NodaTime.Serialization.SystemTextJson
+    name: SystemTextJson
+    href: NodaTime.Serialization.SystemTextJson.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Serialization
+    name: Serialization
+    href: NodaTime.Serialization.html
+  - name: .
+  - uid: NodaTime.Serialization.SystemTextJson
+    name: SystemTextJson
+    href: NodaTime.Serialization.SystemTextJson.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Text.Json.Serialization.JsonConverter
+  commentId: T:System.Text.Json.Serialization.JsonConverter
+  parent: System.Text.Json.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter
+  name: JsonConverter
+  nameWithType: JsonConverter
+  fullName: System.Text.Json.Serialization.JsonConverter
+- uid: System.Text.Json.Serialization.JsonConverter{{T}}
+  commentId: T:System.Text.Json.Serialization.JsonConverter{`0}
+  parent: System.Text.Json.Serialization
+  definition: System.Text.Json.Serialization.JsonConverter`1
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1
+  name: JsonConverter<T>
+  nameWithType: JsonConverter<T>
+  fullName: System.Text.Json.Serialization.JsonConverter<T>
+  nameWithType.vb: JsonConverter(Of T)
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T)
+  name.vb: JsonConverter(Of T)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.JsonConverter`1
+    name: JsonConverter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Text.Json.Serialization.JsonConverter`1
+    name: JsonConverter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Text.Json.Serialization.JsonConverter{{T}}.HandleNull
+  commentId: P:System.Text.Json.Serialization.JsonConverter{`0}.HandleNull
+  parent: System.Text.Json.Serialization.JsonConverter{{T}}
+  definition: System.Text.Json.Serialization.JsonConverter`1.HandleNull
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.handlenull
+  name: HandleNull
+  nameWithType: JsonConverter<T>.HandleNull
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.HandleNull
+  nameWithType.vb: JsonConverter(Of T).HandleNull
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).HandleNull
+- uid: System.Text.Json.Serialization.JsonConverter{{T}}.Type
+  commentId: P:System.Text.Json.Serialization.JsonConverter{`0}.Type
+  parent: System.Text.Json.Serialization.JsonConverter{{T}}
+  definition: System.Text.Json.Serialization.JsonConverter`1.Type
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.type
+  name: Type
+  nameWithType: JsonConverter<T>.Type
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.Type
+  nameWithType.vb: JsonConverter(Of T).Type
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).Type
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Text.Json.Serialization
+  commentId: N:System.Text.Json.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text.Json.Serialization
+  nameWithType: System.Text.Json.Serialization
+  fullName: System.Text.Json.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  - name: .
+  - uid: System.Text.Json.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  - name: .
+  - uid: System.Text.Json.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization
+- uid: System.Text.Json.Serialization.JsonConverter`1
+  commentId: T:System.Text.Json.Serialization.JsonConverter`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1
+  name: JsonConverter<T>
+  nameWithType: JsonConverter<T>
+  fullName: System.Text.Json.Serialization.JsonConverter<T>
+  nameWithType.vb: JsonConverter(Of T)
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T)
+  name.vb: JsonConverter(Of T)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.JsonConverter`1
+    name: JsonConverter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Text.Json.Serialization.JsonConverter`1
+    name: JsonConverter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Text.Json.Serialization.JsonConverter`1.HandleNull
+  commentId: P:System.Text.Json.Serialization.JsonConverter`1.HandleNull
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.handlenull
+  name: HandleNull
+  nameWithType: JsonConverter<T>.HandleNull
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.HandleNull
+  nameWithType.vb: JsonConverter(Of T).HandleNull
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).HandleNull
+- uid: System.Text.Json.Serialization.JsonConverter`1.Type
+  commentId: P:System.Text.Json.Serialization.JsonConverter`1.Type
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.type
+  name: Type
+  nameWithType: JsonConverter<T>.Type
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.Type
+  nameWithType.vb: JsonConverter(Of T).Type
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).Type
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.#ctor*
+  commentId: Overload:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.#ctor
+  href: NodaTime.Serialization.SystemTextJson.NodaConverterBase-1.html#NodaTime_Serialization_SystemTextJson_NodaConverterBase_1__ctor
+  name: NodaConverterBase
+  nameWithType: NodaConverterBase<T>.NodaConverterBase
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.NodaConverterBase
+  nameWithType.vb: NodaConverterBase(Of T).New
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).New
+  name.vb: New
+- uid: System.Text.Json.Serialization.JsonConverter{{T}}.CanConvert(System.Type)
+  commentId: M:System.Text.Json.Serialization.JsonConverter{`0}.CanConvert(System.Type)
+  parent: System.Text.Json.Serialization.JsonConverter{{T}}
+  definition: System.Text.Json.Serialization.JsonConverter`1.CanConvert(System.Type)
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.canconvert
+  name: CanConvert(Type)
+  nameWithType: JsonConverter<T>.CanConvert(Type)
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.CanConvert(System.Type)
+  nameWithType.vb: JsonConverter(Of T).CanConvert(Type)
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).CanConvert(System.Type)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.JsonConverter{`0}.CanConvert(System.Type)
+    name: CanConvert
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.canconvert
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: System.Text.Json.Serialization.JsonConverter{`0}.CanConvert(System.Type)
+    name: CanConvert
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.canconvert
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.CanConvert*
+  commentId: Overload:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.CanConvert
+  href: NodaTime.Serialization.SystemTextJson.NodaConverterBase-1.html#NodaTime_Serialization_SystemTextJson_NodaConverterBase_1_CanConvert_System_Type_
+  name: CanConvert
+  nameWithType: NodaConverterBase<T>.CanConvert
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.CanConvert
+  nameWithType.vb: NodaConverterBase(Of T).CanConvert
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).CanConvert
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Text.Json.Serialization.JsonConverter`1.CanConvert(System.Type)
+  commentId: M:System.Text.Json.Serialization.JsonConverter`1.CanConvert(System.Type)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.canconvert
+  name: CanConvert(Type)
+  nameWithType: JsonConverter<T>.CanConvert(Type)
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.CanConvert(System.Type)
+  nameWithType.vb: JsonConverter(Of T).CanConvert(Type)
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).CanConvert(System.Type)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.JsonConverter`1.CanConvert(System.Type)
+    name: CanConvert
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.canconvert
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: System.Text.Json.Serialization.JsonConverter`1.CanConvert(System.Type)
+    name: CanConvert
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.canconvert
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: NodaTime.Utility.InvalidNodaDataException
+  commentId: T:NodaTime.Utility.InvalidNodaDataException
+  isExternal: true
+  href: https://github.com/nodatime/nodatime/blob/0a5d46c41a654ab70ceb0b85208d98a17938a50b/src/NodaTime/Utility/InvalidNodaDataException.cs
+  name: InvalidNodaDataException
+  nameWithType: InvalidNodaDataException
+  fullName: NodaTime.Utility.InvalidNodaDataException
+- uid: System.Text.Json.Serialization.JsonConverter{{T}}.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  commentId: M:System.Text.Json.Serialization.JsonConverter{`0}.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  parent: System.Text.Json.Serialization.JsonConverter{{T}}
+  definition: System.Text.Json.Serialization.JsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.read
+  name: Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  nameWithType: JsonConverter<T>.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.Read(ref System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  nameWithType.vb: JsonConverter(Of T).Read(Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).Read(System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  name.vb: Read(Utf8JsonReader, Type, JsonSerializerOptions)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.JsonConverter{`0}.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+    name: Read
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.read
+  - name: (
+  - name: ref
+  - name: " "
+  - uid: System.Text.Json.Utf8JsonReader
+    name: Utf8JsonReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonreader
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+  spec.vb:
+  - uid: System.Text.Json.Serialization.JsonConverter{`0}.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+    name: Read
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.read
+  - name: (
+  - uid: System.Text.Json.Utf8JsonReader
+    name: Utf8JsonReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonreader
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.Read*
+  commentId: Overload:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.Read
+  href: NodaTime.Serialization.SystemTextJson.NodaConverterBase-1.html#NodaTime_Serialization_SystemTextJson_NodaConverterBase_1_Read_System_Text_Json_Utf8JsonReader__System_Type_System_Text_Json_JsonSerializerOptions_
+  name: Read
+  nameWithType: NodaConverterBase<T>.Read
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.Read
+  nameWithType.vb: NodaConverterBase(Of T).Read
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).Read
+- uid: System.Text.Json.Utf8JsonReader
+  commentId: T:System.Text.Json.Utf8JsonReader
+  parent: System.Text.Json
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonreader
+  name: Utf8JsonReader
+  nameWithType: Utf8JsonReader
+  fullName: System.Text.Json.Utf8JsonReader
+- uid: System.Text.Json.JsonSerializerOptions
+  commentId: T:System.Text.Json.JsonSerializerOptions
+  parent: System.Text.Json
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  name: JsonSerializerOptions
+  nameWithType: JsonSerializerOptions
+  fullName: System.Text.Json.JsonSerializerOptions
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Text.Json.Serialization.JsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  commentId: M:System.Text.Json.Serialization.JsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.read
+  name: Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  nameWithType: JsonConverter<T>.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.Read(ref System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  nameWithType.vb: JsonConverter(Of T).Read(Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).Read(System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  name.vb: Read(Utf8JsonReader, Type, JsonSerializerOptions)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.JsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+    name: Read
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.read
+  - name: (
+  - name: ref
+  - name: " "
+  - uid: System.Text.Json.Utf8JsonReader
+    name: Utf8JsonReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonreader
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+  spec.vb:
+  - uid: System.Text.Json.Serialization.JsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+    name: Read
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.read
+  - name: (
+  - uid: System.Text.Json.Utf8JsonReader
+    name: Utf8JsonReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonreader
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+- uid: System.Text.Json
+  commentId: N:System.Text.Json
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text.Json
+  nameWithType: System.Text.Json
+  fullName: System.Text.Json
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Text.Json.Serialization.JsonConverter{{T}}.ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  commentId: M:System.Text.Json.Serialization.JsonConverter{`0}.ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  parent: System.Text.Json.Serialization.JsonConverter{{T}}
+  definition: System.Text.Json.Serialization.JsonConverter`1.ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.readaspropertyname
+  name: ReadAsPropertyName(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  nameWithType: JsonConverter<T>.ReadAsPropertyName(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.ReadAsPropertyName(ref System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  nameWithType.vb: JsonConverter(Of T).ReadAsPropertyName(Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).ReadAsPropertyName(System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  name.vb: ReadAsPropertyName(Utf8JsonReader, Type, JsonSerializerOptions)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.JsonConverter{`0}.ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+    name: ReadAsPropertyName
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.readaspropertyname
+  - name: (
+  - name: ref
+  - name: " "
+  - uid: System.Text.Json.Utf8JsonReader
+    name: Utf8JsonReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonreader
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+  spec.vb:
+  - uid: System.Text.Json.Serialization.JsonConverter{`0}.ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+    name: ReadAsPropertyName
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.readaspropertyname
+  - name: (
+  - uid: System.Text.Json.Utf8JsonReader
+    name: Utf8JsonReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonreader
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.ReadAsPropertyName*
+  commentId: Overload:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.ReadAsPropertyName
+  href: NodaTime.Serialization.SystemTextJson.NodaConverterBase-1.html#NodaTime_Serialization_SystemTextJson_NodaConverterBase_1_ReadAsPropertyName_System_Text_Json_Utf8JsonReader__System_Type_System_Text_Json_JsonSerializerOptions_
+  name: ReadAsPropertyName
+  nameWithType: NodaConverterBase<T>.ReadAsPropertyName
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.ReadAsPropertyName
+  nameWithType.vb: NodaConverterBase(Of T).ReadAsPropertyName
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).ReadAsPropertyName
+- uid: System.Text.Json.Serialization.JsonConverter`1.ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  commentId: M:System.Text.Json.Serialization.JsonConverter`1.ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.readaspropertyname
+  name: ReadAsPropertyName(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  nameWithType: JsonConverter<T>.ReadAsPropertyName(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.ReadAsPropertyName(ref System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  nameWithType.vb: JsonConverter(Of T).ReadAsPropertyName(Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).ReadAsPropertyName(System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  name.vb: ReadAsPropertyName(Utf8JsonReader, Type, JsonSerializerOptions)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.JsonConverter`1.ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+    name: ReadAsPropertyName
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.readaspropertyname
+  - name: (
+  - name: ref
+  - name: " "
+  - uid: System.Text.Json.Utf8JsonReader
+    name: Utf8JsonReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonreader
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+  spec.vb:
+  - uid: System.Text.Json.Serialization.JsonConverter`1.ReadAsPropertyName(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+    name: ReadAsPropertyName
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.readaspropertyname
+  - name: (
+  - uid: System.Text.Json.Utf8JsonReader
+    name: Utf8JsonReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonreader
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.ReadJsonImpl*
+  commentId: Overload:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.ReadJsonImpl
+  href: NodaTime.Serialization.SystemTextJson.NodaConverterBase-1.html#NodaTime_Serialization_SystemTextJson_NodaConverterBase_1_ReadJsonImpl_System_Text_Json_Utf8JsonReader__System_Text_Json_JsonSerializerOptions_
+  name: ReadJsonImpl
+  nameWithType: NodaConverterBase<T>.ReadJsonImpl
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.ReadJsonImpl
+  nameWithType.vb: NodaConverterBase(Of T).ReadJsonImpl
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).ReadJsonImpl
+- uid: System.Text.Json.Serialization.JsonConverter{{T}}.Write(System.Text.Json.Utf8JsonWriter,{T},System.Text.Json.JsonSerializerOptions)
+  commentId: M:System.Text.Json.Serialization.JsonConverter{`0}.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  parent: System.Text.Json.Serialization.JsonConverter{{T}}
+  definition: System.Text.Json.Serialization.JsonConverter`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.write
+  name: Write(Utf8JsonWriter, T, JsonSerializerOptions)
+  nameWithType: JsonConverter<T>.Write(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.Write(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+  nameWithType.vb: JsonConverter(Of T).Write(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).Write(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.JsonConverter{`0}.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+    name: Write
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.write
+  - name: (
+  - uid: System.Text.Json.Utf8JsonWriter
+    name: Utf8JsonWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonwriter
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+  spec.vb:
+  - uid: System.Text.Json.Serialization.JsonConverter{`0}.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+    name: Write
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.write
+  - name: (
+  - uid: System.Text.Json.Utf8JsonWriter
+    name: Utf8JsonWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonwriter
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.Write*
+  commentId: Overload:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.Write
+  href: NodaTime.Serialization.SystemTextJson.NodaConverterBase-1.html#NodaTime_Serialization_SystemTextJson_NodaConverterBase_1_Write_System_Text_Json_Utf8JsonWriter__0_System_Text_Json_JsonSerializerOptions_
+  name: Write
+  nameWithType: NodaConverterBase<T>.Write
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.Write
+  nameWithType.vb: NodaConverterBase(Of T).Write
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).Write
+- uid: System.Text.Json.Utf8JsonWriter
+  commentId: T:System.Text.Json.Utf8JsonWriter
+  parent: System.Text.Json
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonwriter
+  name: Utf8JsonWriter
+  nameWithType: Utf8JsonWriter
+  fullName: System.Text.Json.Utf8JsonWriter
+- uid: System.Text.Json.Serialization.JsonConverter`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  commentId: M:System.Text.Json.Serialization.JsonConverter`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.write
+  name: Write(Utf8JsonWriter, T, JsonSerializerOptions)
+  nameWithType: JsonConverter<T>.Write(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.Write(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+  nameWithType.vb: JsonConverter(Of T).Write(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).Write(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.JsonConverter`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+    name: Write
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.write
+  - name: (
+  - uid: System.Text.Json.Utf8JsonWriter
+    name: Utf8JsonWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonwriter
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+  spec.vb:
+  - uid: System.Text.Json.Serialization.JsonConverter`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+    name: Write
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.write
+  - name: (
+  - uid: System.Text.Json.Utf8JsonWriter
+    name: Utf8JsonWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonwriter
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+- uid: System.Text.Json.Serialization.JsonConverter{{T}}.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,{T},System.Text.Json.JsonSerializerOptions)
+  commentId: M:System.Text.Json.Serialization.JsonConverter{`0}.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  parent: System.Text.Json.Serialization.JsonConverter{{T}}
+  definition: System.Text.Json.Serialization.JsonConverter`1.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.writeaspropertyname
+  name: WriteAsPropertyName(Utf8JsonWriter, T, JsonSerializerOptions)
+  nameWithType: JsonConverter<T>.WriteAsPropertyName(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+  nameWithType.vb: JsonConverter(Of T).WriteAsPropertyName(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).WriteAsPropertyName(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.JsonConverter{`0}.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+    name: WriteAsPropertyName
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.writeaspropertyname
+  - name: (
+  - uid: System.Text.Json.Utf8JsonWriter
+    name: Utf8JsonWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonwriter
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+  spec.vb:
+  - uid: System.Text.Json.Serialization.JsonConverter{`0}.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+    name: WriteAsPropertyName
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.writeaspropertyname
+  - name: (
+  - uid: System.Text.Json.Utf8JsonWriter
+    name: Utf8JsonWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonwriter
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteAsPropertyName*
+  commentId: Overload:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteAsPropertyName
+  href: NodaTime.Serialization.SystemTextJson.NodaConverterBase-1.html#NodaTime_Serialization_SystemTextJson_NodaConverterBase_1_WriteAsPropertyName_System_Text_Json_Utf8JsonWriter__0_System_Text_Json_JsonSerializerOptions_
+  name: WriteAsPropertyName
+  nameWithType: NodaConverterBase<T>.WriteAsPropertyName
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.WriteAsPropertyName
+  nameWithType.vb: NodaConverterBase(Of T).WriteAsPropertyName
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).WriteAsPropertyName
+- uid: System.Text.Json.Serialization.JsonConverter`1.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  commentId: M:System.Text.Json.Serialization.JsonConverter`1.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.writeaspropertyname
+  name: WriteAsPropertyName(Utf8JsonWriter, T, JsonSerializerOptions)
+  nameWithType: JsonConverter<T>.WriteAsPropertyName(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.JsonConverter<T>.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+  nameWithType.vb: JsonConverter(Of T).WriteAsPropertyName(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.JsonConverter(Of T).WriteAsPropertyName(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.JsonConverter`1.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+    name: WriteAsPropertyName
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.writeaspropertyname
+  - name: (
+  - uid: System.Text.Json.Utf8JsonWriter
+    name: Utf8JsonWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonwriter
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+  spec.vb:
+  - uid: System.Text.Json.Serialization.JsonConverter`1.WriteAsPropertyName(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+    name: WriteAsPropertyName
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonconverter-1.writeaspropertyname
+  - name: (
+  - uid: System.Text.Json.Utf8JsonWriter
+    name: Utf8JsonWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonwriter
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.Json.JsonSerializerOptions
+    name: JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteJsonImpl*
+  commentId: Overload:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteJsonImpl
+  href: NodaTime.Serialization.SystemTextJson.NodaConverterBase-1.html#NodaTime_Serialization_SystemTextJson_NodaConverterBase_1_WriteJsonImpl_System_Text_Json_Utf8JsonWriter__0_System_Text_Json_JsonSerializerOptions_
+  name: WriteJsonImpl
+  nameWithType: NodaConverterBase<T>.WriteJsonImpl
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.WriteJsonImpl
+  nameWithType.vb: NodaConverterBase(Of T).WriteJsonImpl
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).WriteJsonImpl
+- uid: System.NotImplementedException
+  commentId: T:System.NotImplementedException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.notimplementedexception
+  name: NotImplementedException
+  nameWithType: NotImplementedException
+  fullName: System.NotImplementedException
+- uid: NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteJsonPropertyNameImpl*
+  commentId: Overload:NodaTime.Serialization.SystemTextJson.NodaConverterBase`1.WriteJsonPropertyNameImpl
+  href: NodaTime.Serialization.SystemTextJson.NodaConverterBase-1.html#NodaTime_Serialization_SystemTextJson_NodaConverterBase_1_WriteJsonPropertyNameImpl_System_Text_Json_Utf8JsonWriter__0_System_Text_Json_JsonSerializerOptions_
+  name: WriteJsonPropertyNameImpl
+  nameWithType: NodaConverterBase<T>.WriteJsonPropertyNameImpl
+  fullName: NodaTime.Serialization.SystemTextJson.NodaConverterBase<T>.WriteJsonPropertyNameImpl
+  nameWithType.vb: NodaConverterBase(Of T).WriteJsonPropertyNameImpl
+  fullName.vb: NodaTime.Serialization.SystemTextJson.NodaConverterBase(Of T).WriteJsonPropertyNameImpl
+shouldSkipMarkup: true

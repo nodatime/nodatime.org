@@ -1,0 +1,789 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.TimeZones.ZoneEqualityComparer
+  commentId: T:NodaTime.TimeZones.ZoneEqualityComparer
+  id: ZoneEqualityComparer
+  parent: NodaTime.TimeZones
+  children:
+  - NodaTime.TimeZones.ZoneEqualityComparer.Equals(NodaTime.DateTimeZone,NodaTime.DateTimeZone)
+  - NodaTime.TimeZones.ZoneEqualityComparer.ForInterval(NodaTime.Interval)
+  - NodaTime.TimeZones.ZoneEqualityComparer.GetHashCode(NodaTime.DateTimeZone)
+  - NodaTime.TimeZones.ZoneEqualityComparer.WithOptions(NodaTime.TimeZones.ZoneEqualityComparer.Options)
+  langs:
+  - csharp
+  - vb
+  name: ZoneEqualityComparer
+  nameWithType: ZoneEqualityComparer
+  fullName: NodaTime.TimeZones.ZoneEqualityComparer
+  type: Class
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: >-
+    Equality comparer for time zones, comparing specific aspects of the zone intervals within
+
+    a time zone for a specific interval of the time line.
+  remarks: >-
+    The default behaviour of this comparator is to consider two time zones to be equal if they share the same wall
+
+    offsets at all points within a given time interval, regardless of other aspects of each
+
+    <xref href="NodaTime.TimeZones.ZoneInterval" data-throw-if-not-resolved="false"></xref> within the two time zones. This behaviour can be changed using the
+
+    <xref href="NodaTime.TimeZones.ZoneEqualityComparer.WithOptions(NodaTime.TimeZones.ZoneEqualityComparer.Options)" data-throw-if-not-resolved="false"></xref> method.
+  example: []
+  syntax:
+    content: 'public sealed class ZoneEqualityComparer : IEqualityComparer<DateTimeZone?>'
+    content.vb: Public NotInheritable Class ZoneEqualityComparer Implements IEqualityComparer(Of DateTimeZone)
+  inheritance:
+  - System.Object
+  implements:
+  - System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: NodaTime.TimeZones.ZoneEqualityComparer.ForInterval(NodaTime.Interval)
+  commentId: M:NodaTime.TimeZones.ZoneEqualityComparer.ForInterval(NodaTime.Interval)
+  id: ForInterval(NodaTime.Interval)
+  parent: NodaTime.TimeZones.ZoneEqualityComparer
+  langs:
+  - csharp
+  - vb
+  name: ForInterval(Interval)
+  nameWithType: ZoneEqualityComparer.ForInterval(Interval)
+  fullName: NodaTime.TimeZones.ZoneEqualityComparer.ForInterval(NodaTime.Interval)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: Returns a <xref href="NodaTime.TimeZones.ZoneEqualityComparer" data-throw-if-not-resolved="false"></xref> for the given interval with the default options.
+  remarks: >-
+    The default behaviour of this comparator is to consider two time zones to be equal if they share the same wall
+
+    offsets at all points within a given interval.
+
+    To specify non-default options, call the <xref href="NodaTime.TimeZones.ZoneEqualityComparer.WithOptions(NodaTime.TimeZones.ZoneEqualityComparer.Options)" data-throw-if-not-resolved="false"></xref> method on the result
+
+    of this method.
+  example: []
+  syntax:
+    content: public static ZoneEqualityComparer ForInterval(Interval interval)
+    parameters:
+    - id: interval
+      type: NodaTime.Interval
+      description: The interval over which to compare time zones. This must have both a start and an end.
+    return:
+      type: NodaTime.TimeZones.ZoneEqualityComparer
+      description: A ZoneEqualityComparer for the given interval with the default options.
+    content.vb: Public Shared Function ForInterval(interval As Interval) As ZoneEqualityComparer
+  overload: NodaTime.TimeZones.ZoneEqualityComparer.ForInterval*
+- uid: NodaTime.TimeZones.ZoneEqualityComparer.WithOptions(NodaTime.TimeZones.ZoneEqualityComparer.Options)
+  commentId: M:NodaTime.TimeZones.ZoneEqualityComparer.WithOptions(NodaTime.TimeZones.ZoneEqualityComparer.Options)
+  id: WithOptions(NodaTime.TimeZones.ZoneEqualityComparer.Options)
+  parent: NodaTime.TimeZones.ZoneEqualityComparer
+  langs:
+  - csharp
+  - vb
+  name: WithOptions(Options)
+  nameWithType: ZoneEqualityComparer.WithOptions(ZoneEqualityComparer.Options)
+  fullName: NodaTime.TimeZones.ZoneEqualityComparer.WithOptions(NodaTime.TimeZones.ZoneEqualityComparer.Options)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: >-
+    Returns a comparer operating over the same interval as this one, but with the given
+
+    set of options.
+  remarks: This method does not modify the comparer on which it's called.
+  example: []
+  syntax:
+    content: public ZoneEqualityComparer WithOptions(ZoneEqualityComparer.Options options)
+    parameters:
+    - id: options
+      type: NodaTime.TimeZones.ZoneEqualityComparer.Options
+      description: New set of options, which must consist of flags defined within the <xref href="NodaTime.TimeZones.ZoneEqualityComparer.Options" data-throw-if-not-resolved="false"></xref> enum.
+    return:
+      type: NodaTime.TimeZones.ZoneEqualityComparer
+      description: A comparer operating over the same interval as this one, but with the given set of options.
+    content.vb: Public Function WithOptions(options As ZoneEqualityComparer.Options) As ZoneEqualityComparer
+  overload: NodaTime.TimeZones.ZoneEqualityComparer.WithOptions*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The specified options are invalid.
+- uid: NodaTime.TimeZones.ZoneEqualityComparer.Equals(NodaTime.DateTimeZone,NodaTime.DateTimeZone)
+  commentId: M:NodaTime.TimeZones.ZoneEqualityComparer.Equals(NodaTime.DateTimeZone,NodaTime.DateTimeZone)
+  id: Equals(NodaTime.DateTimeZone,NodaTime.DateTimeZone)
+  parent: NodaTime.TimeZones.ZoneEqualityComparer
+  langs:
+  - csharp
+  - vb
+  name: Equals(DateTimeZone?, DateTimeZone?)
+  nameWithType: ZoneEqualityComparer.Equals(DateTimeZone?, DateTimeZone?)
+  fullName: NodaTime.TimeZones.ZoneEqualityComparer.Equals(NodaTime.DateTimeZone?, NodaTime.DateTimeZone?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: Compares two time zones for equality according to the options and interval provided to this comparer.
+  example: []
+  syntax:
+    content: public bool Equals(DateTimeZone? x, DateTimeZone? y)
+    parameters:
+    - id: x
+      type: NodaTime.DateTimeZone
+      description: The first <xref href="NodaTime.DateTimeZone" data-throw-if-not-resolved="false"></xref> to compare.
+    - id: y
+      type: NodaTime.DateTimeZone
+      description: The second <xref href="NodaTime.DateTimeZone" data-throw-if-not-resolved="false"></xref> to compare.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the specified time zones are equal under the options and interval of this comparer; otherwise, <code>false</code>.
+    content.vb: Public Function Equals(x As DateTimeZone, y As DateTimeZone) As Boolean
+  overload: NodaTime.TimeZones.ZoneEqualityComparer.Equals*
+  implements:
+  - System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}.Equals(NodaTime.DateTimeZone,NodaTime.DateTimeZone)
+  nameWithType.vb: ZoneEqualityComparer.Equals(DateTimeZone, DateTimeZone)
+  fullName.vb: NodaTime.TimeZones.ZoneEqualityComparer.Equals(NodaTime.DateTimeZone, NodaTime.DateTimeZone)
+  name.vb: Equals(DateTimeZone, DateTimeZone)
+- uid: NodaTime.TimeZones.ZoneEqualityComparer.GetHashCode(NodaTime.DateTimeZone)
+  commentId: M:NodaTime.TimeZones.ZoneEqualityComparer.GetHashCode(NodaTime.DateTimeZone)
+  id: GetHashCode(NodaTime.DateTimeZone)
+  parent: NodaTime.TimeZones.ZoneEqualityComparer
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode(DateTimeZone?)
+  nameWithType: ZoneEqualityComparer.GetHashCode(DateTimeZone?)
+  fullName: NodaTime.TimeZones.ZoneEqualityComparer.GetHashCode(NodaTime.DateTimeZone?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: Returns a hash code for the specified time zone.
+  remarks: >-
+    The hash code generated by any instance of <code>ZoneEqualityComparer</code> will be equal to the hash code
+
+    generated by any other instance constructed with the same options and interval, for the same time zone (or equal ones).
+
+    Two instances of <code>ZoneEqualityComparer</code> with different options or intervals may (but may not) produce
+
+    different hash codes for the same zone.
+  example: []
+  syntax:
+    content: public int GetHashCode(DateTimeZone? obj)
+    parameters:
+    - id: obj
+      type: NodaTime.DateTimeZone
+      description: The time zone to compute a hash code for.
+    return:
+      type: System.Int32
+      description: A hash code for the specified object.
+    content.vb: Public Function GetHashCode(obj As DateTimeZone) As Integer
+  overload: NodaTime.TimeZones.ZoneEqualityComparer.GetHashCode*
+  implements:
+  - System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}.GetHashCode(NodaTime.DateTimeZone)
+  nameWithType.vb: ZoneEqualityComparer.GetHashCode(DateTimeZone)
+  fullName.vb: NodaTime.TimeZones.ZoneEqualityComparer.GetHashCode(NodaTime.DateTimeZone)
+  name.vb: GetHashCode(DateTimeZone)
+references:
+- uid: NodaTime.TimeZones.ZoneInterval
+  commentId: T:NodaTime.TimeZones.ZoneInterval
+  parent: NodaTime.TimeZones
+  href: NodaTime.TimeZones.ZoneInterval.html
+  name: ZoneInterval
+  nameWithType: ZoneInterval
+  fullName: NodaTime.TimeZones.ZoneInterval
+- uid: NodaTime.TimeZones.ZoneEqualityComparer.WithOptions(NodaTime.TimeZones.ZoneEqualityComparer.Options)
+  commentId: M:NodaTime.TimeZones.ZoneEqualityComparer.WithOptions(NodaTime.TimeZones.ZoneEqualityComparer.Options)
+  href: NodaTime.TimeZones.ZoneEqualityComparer.html#NodaTime_TimeZones_ZoneEqualityComparer_WithOptions_NodaTime_TimeZones_ZoneEqualityComparer_Options_
+  name: WithOptions(Options)
+  nameWithType: ZoneEqualityComparer.WithOptions(ZoneEqualityComparer.Options)
+  fullName: NodaTime.TimeZones.ZoneEqualityComparer.WithOptions(NodaTime.TimeZones.ZoneEqualityComparer.Options)
+  spec.csharp:
+  - uid: NodaTime.TimeZones.ZoneEqualityComparer.WithOptions(NodaTime.TimeZones.ZoneEqualityComparer.Options)
+    name: WithOptions
+    href: NodaTime.TimeZones.ZoneEqualityComparer.html#NodaTime_TimeZones_ZoneEqualityComparer_WithOptions_NodaTime_TimeZones_ZoneEqualityComparer_Options_
+  - name: (
+  - uid: NodaTime.TimeZones.ZoneEqualityComparer.Options
+    name: Options
+    href: NodaTime.TimeZones.ZoneEqualityComparer.Options.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.TimeZones.ZoneEqualityComparer.WithOptions(NodaTime.TimeZones.ZoneEqualityComparer.Options)
+    name: WithOptions
+    href: NodaTime.TimeZones.ZoneEqualityComparer.html#NodaTime_TimeZones_ZoneEqualityComparer_WithOptions_NodaTime_TimeZones_ZoneEqualityComparer_Options_
+  - name: (
+  - uid: NodaTime.TimeZones.ZoneEqualityComparer.Options
+    name: Options
+    href: NodaTime.TimeZones.ZoneEqualityComparer.Options.html
+  - name: )
+- uid: NodaTime.TimeZones
+  commentId: N:NodaTime.TimeZones
+  href: NodaTime.html
+  name: NodaTime.TimeZones
+  nameWithType: NodaTime.TimeZones
+  fullName: NodaTime.TimeZones
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.TimeZones
+    name: TimeZones
+    href: NodaTime.TimeZones.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.TimeZones
+    name: TimeZones
+    href: NodaTime.TimeZones.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}
+  commentId: T:System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEqualityComparer`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1
+  name: IEqualityComparer<DateTimeZone>
+  nameWithType: IEqualityComparer<DateTimeZone>
+  fullName: System.Collections.Generic.IEqualityComparer<NodaTime.DateTimeZone>
+  nameWithType.vb: IEqualityComparer(Of DateTimeZone)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of NodaTime.DateTimeZone)
+  name.vb: IEqualityComparer(Of DateTimeZone)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1
+  - name: <
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.IEqualityComparer`1
+  commentId: T:System.Collections.Generic.IEqualityComparer`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1
+  name: IEqualityComparer<T>
+  nameWithType: IEqualityComparer<T>
+  fullName: System.Collections.Generic.IEqualityComparer<T>
+  nameWithType.vb: IEqualityComparer(Of T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T)
+  name.vb: IEqualityComparer(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: NodaTime.TimeZones.ZoneEqualityComparer
+  commentId: T:NodaTime.TimeZones.ZoneEqualityComparer
+  parent: NodaTime.TimeZones
+  href: NodaTime.TimeZones.ZoneEqualityComparer.html
+  name: ZoneEqualityComparer
+  nameWithType: ZoneEqualityComparer
+  fullName: NodaTime.TimeZones.ZoneEqualityComparer
+- uid: NodaTime.TimeZones.ZoneEqualityComparer.ForInterval*
+  commentId: Overload:NodaTime.TimeZones.ZoneEqualityComparer.ForInterval
+  href: NodaTime.TimeZones.ZoneEqualityComparer.html#NodaTime_TimeZones_ZoneEqualityComparer_ForInterval_NodaTime_Interval_
+  name: ForInterval
+  nameWithType: ZoneEqualityComparer.ForInterval
+  fullName: NodaTime.TimeZones.ZoneEqualityComparer.ForInterval
+- uid: NodaTime.Interval
+  commentId: T:NodaTime.Interval
+  parent: NodaTime
+  href: NodaTime.Interval.html
+  name: Interval
+  nameWithType: Interval
+  fullName: NodaTime.Interval
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: NodaTime.TimeZones.ZoneEqualityComparer.Options
+  commentId: T:NodaTime.TimeZones.ZoneEqualityComparer.Options
+  parent: NodaTime.TimeZones
+  href: NodaTime.TimeZones.ZoneEqualityComparer.html
+  name: ZoneEqualityComparer.Options
+  nameWithType: ZoneEqualityComparer.Options
+  fullName: NodaTime.TimeZones.ZoneEqualityComparer.Options
+  spec.csharp:
+  - uid: NodaTime.TimeZones.ZoneEqualityComparer
+    name: ZoneEqualityComparer
+    href: NodaTime.TimeZones.ZoneEqualityComparer.html
+  - name: .
+  - uid: NodaTime.TimeZones.ZoneEqualityComparer.Options
+    name: Options
+    href: NodaTime.TimeZones.ZoneEqualityComparer.Options.html
+  spec.vb:
+  - uid: NodaTime.TimeZones.ZoneEqualityComparer
+    name: ZoneEqualityComparer
+    href: NodaTime.TimeZones.ZoneEqualityComparer.html
+  - name: .
+  - uid: NodaTime.TimeZones.ZoneEqualityComparer.Options
+    name: Options
+    href: NodaTime.TimeZones.ZoneEqualityComparer.Options.html
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: NodaTime.TimeZones.ZoneEqualityComparer.WithOptions*
+  commentId: Overload:NodaTime.TimeZones.ZoneEqualityComparer.WithOptions
+  href: NodaTime.TimeZones.ZoneEqualityComparer.html#NodaTime_TimeZones_ZoneEqualityComparer_WithOptions_NodaTime_TimeZones_ZoneEqualityComparer_Options_
+  name: WithOptions
+  nameWithType: ZoneEqualityComparer.WithOptions
+  fullName: NodaTime.TimeZones.ZoneEqualityComparer.WithOptions
+- uid: NodaTime.DateTimeZone
+  commentId: T:NodaTime.DateTimeZone
+  parent: NodaTime
+  href: NodaTime.DateTimeZone.html
+  name: DateTimeZone
+  nameWithType: DateTimeZone
+  fullName: NodaTime.DateTimeZone
+- uid: NodaTime.TimeZones.ZoneEqualityComparer.Equals*
+  commentId: Overload:NodaTime.TimeZones.ZoneEqualityComparer.Equals
+  href: NodaTime.TimeZones.ZoneEqualityComparer.html#NodaTime_TimeZones_ZoneEqualityComparer_Equals_NodaTime_DateTimeZone_NodaTime_DateTimeZone_
+  name: Equals
+  nameWithType: ZoneEqualityComparer.Equals
+  fullName: NodaTime.TimeZones.ZoneEqualityComparer.Equals
+- uid: System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}.Equals(NodaTime.DateTimeZone,NodaTime.DateTimeZone)
+  commentId: M:System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}.Equals(NodaTime.DateTimeZone,NodaTime.DateTimeZone)
+  parent: System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}
+  definition: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1.equals
+  name: Equals(DateTimeZone, DateTimeZone)
+  nameWithType: IEqualityComparer<DateTimeZone>.Equals(DateTimeZone, DateTimeZone)
+  fullName: System.Collections.Generic.IEqualityComparer<NodaTime.DateTimeZone>.Equals(NodaTime.DateTimeZone, NodaTime.DateTimeZone)
+  nameWithType.vb: IEqualityComparer(Of DateTimeZone).Equals(DateTimeZone, DateTimeZone)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of NodaTime.DateTimeZone).Equals(NodaTime.DateTimeZone, NodaTime.DateTimeZone)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}.Equals(NodaTime.DateTimeZone,NodaTime.DateTimeZone)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1.equals
+  - name: (
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}.Equals(NodaTime.DateTimeZone,NodaTime.DateTimeZone)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1.equals
+  - name: (
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+  commentId: M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1.equals
+  name: Equals(T, T)
+  nameWithType: IEqualityComparer<T>.Equals(T, T)
+  fullName: System.Collections.Generic.IEqualityComparer<T>.Equals(T, T)
+  nameWithType.vb: IEqualityComparer(Of T).Equals(T, T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T).Equals(T, T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1.equals
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1.equals
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: NodaTime.TimeZones.ZoneEqualityComparer.GetHashCode*
+  commentId: Overload:NodaTime.TimeZones.ZoneEqualityComparer.GetHashCode
+  href: NodaTime.TimeZones.ZoneEqualityComparer.html#NodaTime_TimeZones_ZoneEqualityComparer_GetHashCode_NodaTime_DateTimeZone_
+  name: GetHashCode
+  nameWithType: ZoneEqualityComparer.GetHashCode
+  fullName: NodaTime.TimeZones.ZoneEqualityComparer.GetHashCode
+- uid: System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}.GetHashCode(NodaTime.DateTimeZone)
+  commentId: M:System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}.GetHashCode(NodaTime.DateTimeZone)
+  parent: System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}
+  definition: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1.gethashcode
+  name: GetHashCode(DateTimeZone)
+  nameWithType: IEqualityComparer<DateTimeZone>.GetHashCode(DateTimeZone)
+  fullName: System.Collections.Generic.IEqualityComparer<NodaTime.DateTimeZone>.GetHashCode(NodaTime.DateTimeZone)
+  nameWithType.vb: IEqualityComparer(Of DateTimeZone).GetHashCode(DateTimeZone)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of NodaTime.DateTimeZone).GetHashCode(NodaTime.DateTimeZone)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}.GetHashCode(NodaTime.DateTimeZone)
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1.gethashcode
+  - name: (
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer{NodaTime.DateTimeZone}.GetHashCode(NodaTime.DateTimeZone)
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1.gethashcode
+  - name: (
+  - uid: NodaTime.DateTimeZone
+    name: DateTimeZone
+    href: NodaTime.DateTimeZone.html
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+  commentId: M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1.gethashcode
+  name: GetHashCode(T)
+  nameWithType: IEqualityComparer<T>.GetHashCode(T)
+  fullName: System.Collections.Generic.IEqualityComparer<T>.GetHashCode(T)
+  nameWithType.vb: IEqualityComparer(Of T).GetHashCode(T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T).GetHashCode(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1.gethashcode
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1.gethashcode
+  - name: (
+  - name: T
+  - name: )
+shouldSkipMarkup: true

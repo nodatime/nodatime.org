@@ -1,0 +1,1612 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Text.ZonedDateTimePattern
+  commentId: T:NodaTime.Text.ZonedDateTimePattern
+  id: ZonedDateTimePattern
+  parent: NodaTime.Text
+  children:
+  - NodaTime.Text.ZonedDateTimePattern.AppendFormat(NodaTime.ZonedDateTime,System.Text.StringBuilder)
+  - NodaTime.Text.ZonedDateTimePattern.Create(System.String,System.Globalization.CultureInfo,NodaTime.TimeZones.ZoneLocalMappingResolver,NodaTime.IDateTimeZoneProvider,NodaTime.ZonedDateTime)
+  - NodaTime.Text.ZonedDateTimePattern.CreateWithCurrentCulture(System.String,NodaTime.IDateTimeZoneProvider)
+  - NodaTime.Text.ZonedDateTimePattern.CreateWithInvariantCulture(System.String,NodaTime.IDateTimeZoneProvider)
+  - NodaTime.Text.ZonedDateTimePattern.ExtendedFormatOnlyIso
+  - NodaTime.Text.ZonedDateTimePattern.Format(NodaTime.ZonedDateTime)
+  - NodaTime.Text.ZonedDateTimePattern.GeneralFormatOnlyIso
+  - NodaTime.Text.ZonedDateTimePattern.Parse(System.String)
+  - NodaTime.Text.ZonedDateTimePattern.PatternText
+  - NodaTime.Text.ZonedDateTimePattern.Resolver
+  - NodaTime.Text.ZonedDateTimePattern.TemplateValue
+  - NodaTime.Text.ZonedDateTimePattern.TwoDigitYearMax
+  - NodaTime.Text.ZonedDateTimePattern.WithCalendar(NodaTime.CalendarSystem)
+  - NodaTime.Text.ZonedDateTimePattern.WithCulture(System.Globalization.CultureInfo)
+  - NodaTime.Text.ZonedDateTimePattern.WithPatternText(System.String)
+  - NodaTime.Text.ZonedDateTimePattern.WithResolver(NodaTime.TimeZones.ZoneLocalMappingResolver)
+  - NodaTime.Text.ZonedDateTimePattern.WithTemplateValue(NodaTime.ZonedDateTime)
+  - NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax(System.Int32)
+  - NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(NodaTime.IDateTimeZoneProvider)
+  - NodaTime.Text.ZonedDateTimePattern.ZoneProvider
+  langs:
+  - csharp
+  - vb
+  name: ZonedDateTimePattern
+  nameWithType: ZonedDateTimePattern
+  fullName: NodaTime.Text.ZonedDateTimePattern
+  type: Class
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Represents a pattern for parsing and formatting <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> values.
+  example: []
+  syntax:
+    content: 'public sealed class ZonedDateTimePattern : IPattern<ZonedDateTime>'
+    content.vb: Public NotInheritable Class ZonedDateTimePattern Implements IPattern(Of ZonedDateTime)
+  inheritance:
+  - System.Object
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.ZonedDateTime}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: NodaTime.Text.ZonedDateTimePattern.GeneralFormatOnlyIso
+  commentId: P:NodaTime.Text.ZonedDateTimePattern.GeneralFormatOnlyIso
+  id: GeneralFormatOnlyIso
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: GeneralFormatOnlyIso
+  nameWithType: ZonedDateTimePattern.GeneralFormatOnlyIso
+  fullName: NodaTime.Text.ZonedDateTimePattern.GeneralFormatOnlyIso
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Gets an zoned local date/time pattern based on ISO-8601 (down to the second) including offset from UTC and zone ID.
+
+    It corresponds to a custom pattern of "uuuu'-'MM'-'dd'T'HH':'mm':'ss z '('o&lt;g&gt;')'" and is available
+
+    as the 'G' standard pattern.
+  remarks: >-
+    The calendar system is not formatted as part of this pattern, and it cannot be used for parsing as no time zone
+
+    provider is included. Call <xref href="NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(NodaTime.IDateTimeZoneProvider)" data-throw-if-not-resolved="false"></xref> on the value of this property to obtain a
+
+    pattern which can be used for parsing.
+  example: []
+  syntax:
+    content: public static ZonedDateTimePattern GeneralFormatOnlyIso { get; }
+    parameters: []
+    return:
+      type: NodaTime.Text.ZonedDateTimePattern
+      description: An zoned local date/time pattern based on ISO-8601 (down to the second) including offset from UTC and zone ID.
+    content.vb: Public Shared ReadOnly Property GeneralFormatOnlyIso As ZonedDateTimePattern
+  overload: NodaTime.Text.ZonedDateTimePattern.GeneralFormatOnlyIso*
+- uid: NodaTime.Text.ZonedDateTimePattern.ExtendedFormatOnlyIso
+  commentId: P:NodaTime.Text.ZonedDateTimePattern.ExtendedFormatOnlyIso
+  id: ExtendedFormatOnlyIso
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: ExtendedFormatOnlyIso
+  nameWithType: ZonedDateTimePattern.ExtendedFormatOnlyIso
+  fullName: NodaTime.Text.ZonedDateTimePattern.ExtendedFormatOnlyIso
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Returns an invariant zoned date/time pattern based on ISO-8601 (down to the nanosecond) including offset from UTC and zone ID.
+
+    It corresponds to a custom pattern of "uuuu'-'MM'-'dd'T'HH':'mm':'ss;FFFFFFFFF z '('o&lt;g&gt;')'" and is available
+
+    as the 'F' standard pattern.
+  remarks: >-
+    The calendar system is not formatted as part of this pattern, and it cannot be used for parsing as no time zone
+
+    provider is included. Call <xref href="NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(NodaTime.IDateTimeZoneProvider)" data-throw-if-not-resolved="false"></xref> on the value of this property to obtain a
+
+    pattern which can be used for parsing.
+  example: []
+  syntax:
+    content: public static ZonedDateTimePattern ExtendedFormatOnlyIso { get; }
+    parameters: []
+    return:
+      type: NodaTime.Text.ZonedDateTimePattern
+      description: An invariant zoned date/time pattern based on ISO-8601 (down to the nanosecond) including offset from UTC and zone ID.
+    content.vb: Public Shared ReadOnly Property ExtendedFormatOnlyIso As ZonedDateTimePattern
+  overload: NodaTime.Text.ZonedDateTimePattern.ExtendedFormatOnlyIso*
+- uid: NodaTime.Text.ZonedDateTimePattern.PatternText
+  commentId: P:NodaTime.Text.ZonedDateTimePattern.PatternText
+  id: PatternText
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: PatternText
+  nameWithType: ZonedDateTimePattern.PatternText
+  fullName: NodaTime.Text.ZonedDateTimePattern.PatternText
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Gets the pattern text for this pattern, as supplied on creation.
+  example: []
+  syntax:
+    content: public string PatternText { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The pattern text for this pattern, as supplied on creation.
+    content.vb: Public ReadOnly Property PatternText As String
+  overload: NodaTime.Text.ZonedDateTimePattern.PatternText*
+- uid: NodaTime.Text.ZonedDateTimePattern.TemplateValue
+  commentId: P:NodaTime.Text.ZonedDateTimePattern.TemplateValue
+  id: TemplateValue
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: TemplateValue
+  nameWithType: ZonedDateTimePattern.TemplateValue
+  fullName: NodaTime.Text.ZonedDateTimePattern.TemplateValue
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Gets the value used as a template for parsing: any field values unspecified
+
+    in the pattern are taken from the template.
+  example: []
+  syntax:
+    content: public ZonedDateTime TemplateValue { get; }
+    parameters: []
+    return:
+      type: NodaTime.ZonedDateTime
+      description: The value used as a template for parsing.
+    content.vb: Public ReadOnly Property TemplateValue As ZonedDateTime
+  overload: NodaTime.Text.ZonedDateTimePattern.TemplateValue*
+- uid: NodaTime.Text.ZonedDateTimePattern.Resolver
+  commentId: P:NodaTime.Text.ZonedDateTimePattern.Resolver
+  id: Resolver
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: Resolver
+  nameWithType: ZonedDateTimePattern.Resolver
+  fullName: NodaTime.Text.ZonedDateTimePattern.Resolver
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Gets the resolver which is used to map local date/times to zoned date/times,
+
+    handling skipped and ambiguous times appropriately (where the offset isn't specified in the pattern).
+
+    This may be null, in which case the pattern can only be used for formatting (not parsing).
+  example: []
+  syntax:
+    content: public ZoneLocalMappingResolver? Resolver { get; }
+    parameters: []
+    return:
+      type: NodaTime.TimeZones.ZoneLocalMappingResolver
+      description: The resolver which is used to map local date/times to zoned date/times.
+    content.vb: Public ReadOnly Property Resolver As ZoneLocalMappingResolver
+  overload: NodaTime.Text.ZonedDateTimePattern.Resolver*
+- uid: NodaTime.Text.ZonedDateTimePattern.ZoneProvider
+  commentId: P:NodaTime.Text.ZonedDateTimePattern.ZoneProvider
+  id: ZoneProvider
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: ZoneProvider
+  nameWithType: ZonedDateTimePattern.ZoneProvider
+  fullName: NodaTime.Text.ZonedDateTimePattern.ZoneProvider
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Gets the provider which is used to look up time zones when parsing a pattern
+
+    which contains a time zone identifier. This may be null, in which case the pattern can
+
+    only be used for formatting (not parsing).
+  example: []
+  syntax:
+    content: public IDateTimeZoneProvider? ZoneProvider { get; }
+    parameters: []
+    return:
+      type: NodaTime.IDateTimeZoneProvider
+      description: >-
+        The provider which is used to look up time zones when parsing a pattern
+            which contains a time zone identifier.
+    content.vb: Public ReadOnly Property ZoneProvider As IDateTimeZoneProvider
+  overload: NodaTime.Text.ZonedDateTimePattern.ZoneProvider*
+- uid: NodaTime.Text.ZonedDateTimePattern.TwoDigitYearMax
+  commentId: P:NodaTime.Text.ZonedDateTimePattern.TwoDigitYearMax
+  id: TwoDigitYearMax
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: TwoDigitYearMax
+  nameWithType: ZonedDateTimePattern.TwoDigitYearMax
+  fullName: NodaTime.Text.ZonedDateTimePattern.TwoDigitYearMax
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Maximum two-digit-year in the template to treat as the current century.
+
+    If the value parsed is higher than this, the result is adjusted to the previous century.
+
+    This value defaults to 30. To create a pattern with a different value, use <xref href="NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax(System.Int32)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public int TwoDigitYearMax { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The value used for the maximum two-digit-year, in the range 0-99 inclusive.
+    content.vb: Public ReadOnly Property TwoDigitYearMax As Integer
+  overload: NodaTime.Text.ZonedDateTimePattern.TwoDigitYearMax*
+- uid: NodaTime.Text.ZonedDateTimePattern.Parse(System.String)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.Parse(System.String)
+  id: Parse(System.String)
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: Parse(string)
+  nameWithType: ZonedDateTimePattern.Parse(string)
+  fullName: NodaTime.Text.ZonedDateTimePattern.Parse(string)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Parses the given text value according to the rules of this pattern.
+  remarks: >-
+    This method never throws an exception (barring a bug in Noda Time itself). Even errors such as
+
+    the argument being null are wrapped in a parse result.
+  example: []
+  syntax:
+    content: public ParseResult<ZonedDateTime> Parse(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text value to parse.
+    return:
+      type: NodaTime.Text.ParseResult{NodaTime.ZonedDateTime}
+      description: The result of parsing, which may be successful or unsuccessful.
+    content.vb: Public Function Parse(text As String) As ParseResult(Of ZonedDateTime)
+  overload: NodaTime.Text.ZonedDateTimePattern.Parse*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.Parse(System.String)
+  nameWithType.vb: ZonedDateTimePattern.Parse(String)
+  fullName.vb: NodaTime.Text.ZonedDateTimePattern.Parse(String)
+  name.vb: Parse(String)
+- uid: NodaTime.Text.ZonedDateTimePattern.Format(NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.Format(NodaTime.ZonedDateTime)
+  id: Format(NodaTime.ZonedDateTime)
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: Format(ZonedDateTime)
+  nameWithType: ZonedDateTimePattern.Format(ZonedDateTime)
+  fullName: NodaTime.Text.ZonedDateTimePattern.Format(NodaTime.ZonedDateTime)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Formats the given zoned date/time as text according to the rules of this pattern.
+  example: []
+  syntax:
+    content: public string Format(ZonedDateTime value)
+    parameters:
+    - id: value
+      type: NodaTime.ZonedDateTime
+      description: The zoned date/time to format.
+    return:
+      type: System.String
+      description: The zoned date/time formatted according to this pattern.
+    content.vb: Public Function Format(value As ZonedDateTime) As String
+  overload: NodaTime.Text.ZonedDateTimePattern.Format*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.Format(NodaTime.ZonedDateTime)
+- uid: NodaTime.Text.ZonedDateTimePattern.AppendFormat(NodaTime.ZonedDateTime,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.AppendFormat(NodaTime.ZonedDateTime,System.Text.StringBuilder)
+  id: AppendFormat(NodaTime.ZonedDateTime,System.Text.StringBuilder)
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: AppendFormat(ZonedDateTime, StringBuilder)
+  nameWithType: ZonedDateTimePattern.AppendFormat(ZonedDateTime, StringBuilder)
+  fullName: NodaTime.Text.ZonedDateTimePattern.AppendFormat(NodaTime.ZonedDateTime, System.Text.StringBuilder)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Formats the given value as text according to the rules of this pattern,
+
+    appending to the given <xref href="System.Text.StringBuilder" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public StringBuilder AppendFormat(ZonedDateTime value, StringBuilder builder)
+    parameters:
+    - id: value
+      type: NodaTime.ZonedDateTime
+      description: The value to format.
+    - id: builder
+      type: System.Text.StringBuilder
+      description: The <code>StringBuilder</code> to append to.
+    return:
+      type: System.Text.StringBuilder
+      description: The builder passed in as <code class="paramref">builder</code>.
+    content.vb: Public Function AppendFormat(value As ZonedDateTime, builder As StringBuilder) As StringBuilder
+  overload: NodaTime.Text.ZonedDateTimePattern.AppendFormat*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.AppendFormat(NodaTime.ZonedDateTime,System.Text.StringBuilder)
+- uid: NodaTime.Text.ZonedDateTimePattern.Create(System.String,System.Globalization.CultureInfo,NodaTime.TimeZones.ZoneLocalMappingResolver,NodaTime.IDateTimeZoneProvider,NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.Create(System.String,System.Globalization.CultureInfo,NodaTime.TimeZones.ZoneLocalMappingResolver,NodaTime.IDateTimeZoneProvider,NodaTime.ZonedDateTime)
+  id: Create(System.String,System.Globalization.CultureInfo,NodaTime.TimeZones.ZoneLocalMappingResolver,NodaTime.IDateTimeZoneProvider,NodaTime.ZonedDateTime)
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: Create(string, CultureInfo, ZoneLocalMappingResolver?, IDateTimeZoneProvider?, ZonedDateTime)
+  nameWithType: ZonedDateTimePattern.Create(string, CultureInfo, ZoneLocalMappingResolver?, IDateTimeZoneProvider?, ZonedDateTime)
+  fullName: NodaTime.Text.ZonedDateTimePattern.Create(string, System.Globalization.CultureInfo, NodaTime.TimeZones.ZoneLocalMappingResolver?, NodaTime.IDateTimeZoneProvider?, NodaTime.ZonedDateTime)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Creates a pattern for the given pattern text, culture, resolver, time zone provider, and template value.
+  remarks: >-
+    See the user guide for the available pattern text options.
+
+    If <code class="paramref">zoneProvider</code> is null, the resulting pattern can be used for formatting
+
+    but not parsing.
+  example: []
+  syntax:
+    content: public static ZonedDateTimePattern Create(string patternText, CultureInfo cultureInfo, ZoneLocalMappingResolver? resolver, IDateTimeZoneProvider? zoneProvider, ZonedDateTime templateValue)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: Pattern text to create the pattern for
+    - id: cultureInfo
+      type: System.Globalization.CultureInfo
+      description: The culture to use in the pattern
+    - id: resolver
+      type: NodaTime.TimeZones.ZoneLocalMappingResolver
+      description: Resolver to apply when mapping local date/time values into the zone.
+    - id: zoneProvider
+      type: NodaTime.IDateTimeZoneProvider
+      description: Time zone provider, used when parsing text which contains a time zone identifier.
+    - id: templateValue
+      type: NodaTime.ZonedDateTime
+      description: Template value to use for unspecified fields
+    return:
+      type: NodaTime.Text.ZonedDateTimePattern
+      description: A pattern for parsing and formatting zoned date/times.
+    content.vb: Public Shared Function Create(patternText As String, cultureInfo As CultureInfo, resolver As ZoneLocalMappingResolver, zoneProvider As IDateTimeZoneProvider, templateValue As ZonedDateTime) As ZonedDateTimePattern
+  overload: NodaTime.Text.ZonedDateTimePattern.Create*
+  exceptions:
+  - type: NodaTime.Text.InvalidPatternException
+    commentId: T:NodaTime.Text.InvalidPatternException
+    description: The pattern text was invalid.
+  nameWithType.vb: ZonedDateTimePattern.Create(String, CultureInfo, ZoneLocalMappingResolver, IDateTimeZoneProvider, ZonedDateTime)
+  fullName.vb: NodaTime.Text.ZonedDateTimePattern.Create(String, System.Globalization.CultureInfo, NodaTime.TimeZones.ZoneLocalMappingResolver, NodaTime.IDateTimeZoneProvider, NodaTime.ZonedDateTime)
+  name.vb: Create(String, CultureInfo, ZoneLocalMappingResolver, IDateTimeZoneProvider, ZonedDateTime)
+- uid: NodaTime.Text.ZonedDateTimePattern.CreateWithInvariantCulture(System.String,NodaTime.IDateTimeZoneProvider)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.CreateWithInvariantCulture(System.String,NodaTime.IDateTimeZoneProvider)
+  id: CreateWithInvariantCulture(System.String,NodaTime.IDateTimeZoneProvider)
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: CreateWithInvariantCulture(string, IDateTimeZoneProvider?)
+  nameWithType: ZonedDateTimePattern.CreateWithInvariantCulture(string, IDateTimeZoneProvider?)
+  fullName: NodaTime.Text.ZonedDateTimePattern.CreateWithInvariantCulture(string, NodaTime.IDateTimeZoneProvider?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Creates a pattern for the given pattern text and time zone provider, using a strict resolver, the invariant
+
+    culture, and a default template value of midnight January 1st 2000 UTC.
+  remarks: >-
+    The resolver is only used if the pattern text doesn't include an offset.
+
+    If <code class="paramref">zoneProvider</code> is null, the resulting pattern can be used for formatting
+
+    but not parsing.
+  example: []
+  syntax:
+    content: public static ZonedDateTimePattern CreateWithInvariantCulture(string patternText, IDateTimeZoneProvider? zoneProvider)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: Pattern text to create the pattern for
+    - id: zoneProvider
+      type: NodaTime.IDateTimeZoneProvider
+      description: Time zone provider, used when parsing text which contains a time zone identifier.
+    return:
+      type: NodaTime.Text.ZonedDateTimePattern
+      description: A pattern for parsing and formatting zoned date/times.
+    content.vb: Public Shared Function CreateWithInvariantCulture(patternText As String, zoneProvider As IDateTimeZoneProvider) As ZonedDateTimePattern
+  overload: NodaTime.Text.ZonedDateTimePattern.CreateWithInvariantCulture*
+  nameWithType.vb: ZonedDateTimePattern.CreateWithInvariantCulture(String, IDateTimeZoneProvider)
+  fullName.vb: NodaTime.Text.ZonedDateTimePattern.CreateWithInvariantCulture(String, NodaTime.IDateTimeZoneProvider)
+  name.vb: CreateWithInvariantCulture(String, IDateTimeZoneProvider)
+- uid: NodaTime.Text.ZonedDateTimePattern.CreateWithCurrentCulture(System.String,NodaTime.IDateTimeZoneProvider)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.CreateWithCurrentCulture(System.String,NodaTime.IDateTimeZoneProvider)
+  id: CreateWithCurrentCulture(System.String,NodaTime.IDateTimeZoneProvider)
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: CreateWithCurrentCulture(string, IDateTimeZoneProvider?)
+  nameWithType: ZonedDateTimePattern.CreateWithCurrentCulture(string, IDateTimeZoneProvider?)
+  fullName: NodaTime.Text.ZonedDateTimePattern.CreateWithCurrentCulture(string, NodaTime.IDateTimeZoneProvider?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Creates a pattern for the given pattern text and time zone provider, using a strict resolver, the current
+
+    culture, and a default template value of midnight January 1st 2000 UTC.
+  remarks: >-
+    The resolver is only used if the pattern text doesn't include an offset.
+
+    If <code class="paramref">zoneProvider</code> is null, the resulting pattern can be used for formatting
+
+    but not parsing. Note that the current culture is captured at the time this method is called
+
+    - it is not captured at the point of parsing or formatting values.
+  example: []
+  syntax:
+    content: public static ZonedDateTimePattern CreateWithCurrentCulture(string patternText, IDateTimeZoneProvider? zoneProvider)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: Pattern text to create the pattern for
+    - id: zoneProvider
+      type: NodaTime.IDateTimeZoneProvider
+      description: Time zone provider, used when parsing text which contains a time zone identifier.
+    return:
+      type: NodaTime.Text.ZonedDateTimePattern
+      description: A pattern for parsing and formatting zoned date/times.
+    content.vb: Public Shared Function CreateWithCurrentCulture(patternText As String, zoneProvider As IDateTimeZoneProvider) As ZonedDateTimePattern
+  overload: NodaTime.Text.ZonedDateTimePattern.CreateWithCurrentCulture*
+  nameWithType.vb: ZonedDateTimePattern.CreateWithCurrentCulture(String, IDateTimeZoneProvider)
+  fullName.vb: NodaTime.Text.ZonedDateTimePattern.CreateWithCurrentCulture(String, NodaTime.IDateTimeZoneProvider)
+  name.vb: CreateWithCurrentCulture(String, IDateTimeZoneProvider)
+- uid: NodaTime.Text.ZonedDateTimePattern.WithPatternText(System.String)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.WithPatternText(System.String)
+  id: WithPatternText(System.String)
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: WithPatternText(string)
+  nameWithType: ZonedDateTimePattern.WithPatternText(string)
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithPatternText(string)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Creates a pattern for the same original localization information as this pattern, but with the specified
+
+    pattern text.
+  example: []
+  syntax:
+    content: public ZonedDateTimePattern WithPatternText(string patternText)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: The pattern text to use in the new pattern.
+    return:
+      type: NodaTime.Text.ZonedDateTimePattern
+      description: A new pattern with the given pattern text.
+    content.vb: Public Function WithPatternText(patternText As String) As ZonedDateTimePattern
+  overload: NodaTime.Text.ZonedDateTimePattern.WithPatternText*
+  nameWithType.vb: ZonedDateTimePattern.WithPatternText(String)
+  fullName.vb: NodaTime.Text.ZonedDateTimePattern.WithPatternText(String)
+  name.vb: WithPatternText(String)
+- uid: NodaTime.Text.ZonedDateTimePattern.WithCulture(System.Globalization.CultureInfo)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.WithCulture(System.Globalization.CultureInfo)
+  id: WithCulture(System.Globalization.CultureInfo)
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: WithCulture(CultureInfo)
+  nameWithType: ZonedDateTimePattern.WithCulture(CultureInfo)
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithCulture(System.Globalization.CultureInfo)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Creates a pattern for the same original pattern text as this pattern, but with the specified
+
+    culture.
+  example: []
+  syntax:
+    content: public ZonedDateTimePattern WithCulture(CultureInfo cultureInfo)
+    parameters:
+    - id: cultureInfo
+      type: System.Globalization.CultureInfo
+      description: The culture to use in the new pattern.
+    return:
+      type: NodaTime.Text.ZonedDateTimePattern
+      description: A new pattern with the given culture.
+    content.vb: Public Function WithCulture(cultureInfo As CultureInfo) As ZonedDateTimePattern
+  overload: NodaTime.Text.ZonedDateTimePattern.WithCulture*
+- uid: NodaTime.Text.ZonedDateTimePattern.WithResolver(NodaTime.TimeZones.ZoneLocalMappingResolver)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.WithResolver(NodaTime.TimeZones.ZoneLocalMappingResolver)
+  id: WithResolver(NodaTime.TimeZones.ZoneLocalMappingResolver)
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: WithResolver(ZoneLocalMappingResolver?)
+  nameWithType: ZonedDateTimePattern.WithResolver(ZoneLocalMappingResolver?)
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithResolver(NodaTime.TimeZones.ZoneLocalMappingResolver?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Creates a pattern for the same original pattern text as this pattern, but with the specified
+
+    resolver.
+  example: []
+  syntax:
+    content: public ZonedDateTimePattern WithResolver(ZoneLocalMappingResolver? resolver)
+    parameters:
+    - id: resolver
+      type: NodaTime.TimeZones.ZoneLocalMappingResolver
+      description: The new local mapping resolver to use.
+    return:
+      type: NodaTime.Text.ZonedDateTimePattern
+      description: A new pattern with the given resolver.
+    content.vb: Public Function WithResolver(resolver As ZoneLocalMappingResolver) As ZonedDateTimePattern
+  overload: NodaTime.Text.ZonedDateTimePattern.WithResolver*
+  nameWithType.vb: ZonedDateTimePattern.WithResolver(ZoneLocalMappingResolver)
+  fullName.vb: NodaTime.Text.ZonedDateTimePattern.WithResolver(NodaTime.TimeZones.ZoneLocalMappingResolver)
+  name.vb: WithResolver(ZoneLocalMappingResolver)
+- uid: NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(NodaTime.IDateTimeZoneProvider)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(NodaTime.IDateTimeZoneProvider)
+  id: WithZoneProvider(NodaTime.IDateTimeZoneProvider)
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: WithZoneProvider(IDateTimeZoneProvider?)
+  nameWithType: ZonedDateTimePattern.WithZoneProvider(IDateTimeZoneProvider?)
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(NodaTime.IDateTimeZoneProvider?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Creates a pattern for the same original pattern text as this pattern, but with the specified
+
+    time zone provider.
+  remarks: >-
+    If <code class="paramref">newZoneProvider</code> is null, the resulting pattern can be used for formatting
+
+    but not parsing.
+  example: []
+  syntax:
+    content: public ZonedDateTimePattern WithZoneProvider(IDateTimeZoneProvider? newZoneProvider)
+    parameters:
+    - id: newZoneProvider
+      type: NodaTime.IDateTimeZoneProvider
+      description: The new time zone provider to use.
+    return:
+      type: NodaTime.Text.ZonedDateTimePattern
+      description: A new pattern with the given time zone provider.
+    content.vb: Public Function WithZoneProvider(newZoneProvider As IDateTimeZoneProvider) As ZonedDateTimePattern
+  overload: NodaTime.Text.ZonedDateTimePattern.WithZoneProvider*
+  nameWithType.vb: ZonedDateTimePattern.WithZoneProvider(IDateTimeZoneProvider)
+  fullName.vb: NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(NodaTime.IDateTimeZoneProvider)
+  name.vb: WithZoneProvider(IDateTimeZoneProvider)
+- uid: NodaTime.Text.ZonedDateTimePattern.WithTemplateValue(NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.WithTemplateValue(NodaTime.ZonedDateTime)
+  id: WithTemplateValue(NodaTime.ZonedDateTime)
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: WithTemplateValue(ZonedDateTime)
+  nameWithType: ZonedDateTimePattern.WithTemplateValue(ZonedDateTime)
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithTemplateValue(NodaTime.ZonedDateTime)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Creates a pattern like this one, but with the specified template value.
+  example: []
+  syntax:
+    content: public ZonedDateTimePattern WithTemplateValue(ZonedDateTime newTemplateValue)
+    parameters:
+    - id: newTemplateValue
+      type: NodaTime.ZonedDateTime
+      description: The template value for the new pattern, used to fill in unspecified fields.
+    return:
+      type: NodaTime.Text.ZonedDateTimePattern
+      description: A new pattern with the given template value.
+    content.vb: Public Function WithTemplateValue(newTemplateValue As ZonedDateTime) As ZonedDateTimePattern
+  overload: NodaTime.Text.ZonedDateTimePattern.WithTemplateValue*
+- uid: NodaTime.Text.ZonedDateTimePattern.WithCalendar(NodaTime.CalendarSystem)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.WithCalendar(NodaTime.CalendarSystem)
+  id: WithCalendar(NodaTime.CalendarSystem)
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: WithCalendar(CalendarSystem)
+  nameWithType: ZonedDateTimePattern.WithCalendar(CalendarSystem)
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithCalendar(NodaTime.CalendarSystem)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Creates a pattern like this one, but with the template value modified to use
+
+    the specified calendar system.
+  remarks: >-
+    <p>
+
+    Care should be taken in two (relatively rare) scenarios. Although the default template value
+
+    is supported by all Noda Time calendar systems, if a pattern is created with a different
+
+    template value and then this method is called with a calendar system which doesn't support that
+
+    date, an exception will be thrown. Additionally, if the pattern only specifies some date fields,
+
+    it's possible that the new template value will not be suitable for all values.
+
+    </p>
+  example: []
+  syntax:
+    content: public ZonedDateTimePattern WithCalendar(CalendarSystem calendar)
+    parameters:
+    - id: calendar
+      type: NodaTime.CalendarSystem
+      description: The calendar system to convert the template value into.
+    return:
+      type: NodaTime.Text.ZonedDateTimePattern
+      description: A new pattern with a template value in the specified calendar system.
+    content.vb: Public Function WithCalendar(calendar As CalendarSystem) As ZonedDateTimePattern
+  overload: NodaTime.Text.ZonedDateTimePattern.WithCalendar*
+- uid: NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax(System.Int32)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax(System.Int32)
+  id: WithTwoDigitYearMax(System.Int32)
+  parent: NodaTime.Text.ZonedDateTimePattern
+  langs:
+  - csharp
+  - vb
+  name: WithTwoDigitYearMax(int)
+  nameWithType: ZonedDateTimePattern.WithTwoDigitYearMax(int)
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax(int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Creates a pattern like this one, but with a different <xref href="NodaTime.Text.ZonedDateTimePattern.TwoDigitYearMax" data-throw-if-not-resolved="false"></xref> value.
+  example: []
+  syntax:
+    content: public ZonedDateTimePattern WithTwoDigitYearMax(int twoDigitYearMax)
+    parameters:
+    - id: twoDigitYearMax
+      type: System.Int32
+      description: The value to use for <xref href="NodaTime.Text.ZonedDateTimePattern.TwoDigitYearMax" data-throw-if-not-resolved="false"></xref> in the new pattern, in the range 0-99 inclusive.
+    return:
+      type: NodaTime.Text.ZonedDateTimePattern
+      description: A new pattern with the specified maximum two-digit-year.
+    content.vb: Public Function WithTwoDigitYearMax(twoDigitYearMax As Integer) As ZonedDateTimePattern
+  overload: NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax*
+  nameWithType.vb: ZonedDateTimePattern.WithTwoDigitYearMax(Integer)
+  fullName.vb: NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax(Integer)
+  name.vb: WithTwoDigitYearMax(Integer)
+references:
+- uid: NodaTime.ZonedDateTime
+  commentId: T:NodaTime.ZonedDateTime
+  parent: NodaTime
+  href: NodaTime.ZonedDateTime.html
+  name: ZonedDateTime
+  nameWithType: ZonedDateTime
+  fullName: NodaTime.ZonedDateTime
+- uid: System.Globalization.CultureInfo
+  commentId: T:System.Globalization.CultureInfo
+  parent: System.Globalization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo
+  name: CultureInfo
+  nameWithType: CultureInfo
+  fullName: System.Globalization.CultureInfo
+- uid: NodaTime.Text
+  commentId: N:NodaTime.Text
+  href: NodaTime.html
+  name: NodaTime.Text
+  nameWithType: NodaTime.Text
+  fullName: NodaTime.Text
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Text
+    name: Text
+    href: NodaTime.Text.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Text
+    name: Text
+    href: NodaTime.Text.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: NodaTime.Text.IPattern{NodaTime.ZonedDateTime}
+  commentId: T:NodaTime.Text.IPattern{NodaTime.ZonedDateTime}
+  parent: NodaTime.Text
+  definition: NodaTime.Text.IPattern`1
+  href: NodaTime.Text.IPattern-1.html
+  name: IPattern<ZonedDateTime>
+  nameWithType: IPattern<ZonedDateTime>
+  fullName: NodaTime.Text.IPattern<NodaTime.ZonedDateTime>
+  nameWithType.vb: IPattern(Of ZonedDateTime)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.ZonedDateTime)
+  name.vb: IPattern(Of ZonedDateTime)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: <
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.Globalization
+  commentId: N:System.Globalization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Globalization
+  nameWithType: System.Globalization
+  fullName: System.Globalization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Globalization
+    name: Globalization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Globalization
+    name: Globalization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NodaTime.Text.IPattern`1
+  commentId: T:NodaTime.Text.IPattern`1
+  href: NodaTime.Text.IPattern-1.html
+  name: IPattern<T>
+  nameWithType: IPattern<T>
+  fullName: NodaTime.Text.IPattern<T>
+  nameWithType.vb: IPattern(Of T)
+  fullName.vb: NodaTime.Text.IPattern(Of T)
+  name.vb: IPattern(Of T)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(NodaTime.IDateTimeZoneProvider)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(NodaTime.IDateTimeZoneProvider)
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithZoneProvider_NodaTime_IDateTimeZoneProvider_
+  name: WithZoneProvider(IDateTimeZoneProvider)
+  nameWithType: ZonedDateTimePattern.WithZoneProvider(IDateTimeZoneProvider)
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(NodaTime.IDateTimeZoneProvider)
+  spec.csharp:
+  - uid: NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(NodaTime.IDateTimeZoneProvider)
+    name: WithZoneProvider
+    href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithZoneProvider_NodaTime_IDateTimeZoneProvider_
+  - name: (
+  - uid: NodaTime.IDateTimeZoneProvider
+    name: IDateTimeZoneProvider
+    href: NodaTime.IDateTimeZoneProvider.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.ZonedDateTimePattern.WithZoneProvider(NodaTime.IDateTimeZoneProvider)
+    name: WithZoneProvider
+    href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithZoneProvider_NodaTime_IDateTimeZoneProvider_
+  - name: (
+  - uid: NodaTime.IDateTimeZoneProvider
+    name: IDateTimeZoneProvider
+    href: NodaTime.IDateTimeZoneProvider.html
+  - name: )
+- uid: NodaTime.Text.ZonedDateTimePattern.GeneralFormatOnlyIso*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.GeneralFormatOnlyIso
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_GeneralFormatOnlyIso
+  name: GeneralFormatOnlyIso
+  nameWithType: ZonedDateTimePattern.GeneralFormatOnlyIso
+  fullName: NodaTime.Text.ZonedDateTimePattern.GeneralFormatOnlyIso
+- uid: NodaTime.Text.ZonedDateTimePattern
+  commentId: T:NodaTime.Text.ZonedDateTimePattern
+  parent: NodaTime.Text
+  href: NodaTime.Text.ZonedDateTimePattern.html
+  name: ZonedDateTimePattern
+  nameWithType: ZonedDateTimePattern
+  fullName: NodaTime.Text.ZonedDateTimePattern
+- uid: NodaTime.Text.ZonedDateTimePattern.ExtendedFormatOnlyIso*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.ExtendedFormatOnlyIso
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_ExtendedFormatOnlyIso
+  name: ExtendedFormatOnlyIso
+  nameWithType: ZonedDateTimePattern.ExtendedFormatOnlyIso
+  fullName: NodaTime.Text.ZonedDateTimePattern.ExtendedFormatOnlyIso
+- uid: NodaTime.Text.ZonedDateTimePattern.PatternText*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.PatternText
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_PatternText
+  name: PatternText
+  nameWithType: ZonedDateTimePattern.PatternText
+  fullName: NodaTime.Text.ZonedDateTimePattern.PatternText
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: NodaTime.Text.ZonedDateTimePattern.TemplateValue*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.TemplateValue
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_TemplateValue
+  name: TemplateValue
+  nameWithType: ZonedDateTimePattern.TemplateValue
+  fullName: NodaTime.Text.ZonedDateTimePattern.TemplateValue
+- uid: NodaTime.Text.ZonedDateTimePattern.Resolver*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.Resolver
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_Resolver
+  name: Resolver
+  nameWithType: ZonedDateTimePattern.Resolver
+  fullName: NodaTime.Text.ZonedDateTimePattern.Resolver
+- uid: NodaTime.TimeZones.ZoneLocalMappingResolver
+  commentId: T:NodaTime.TimeZones.ZoneLocalMappingResolver
+  parent: NodaTime.TimeZones
+  href: NodaTime.TimeZones.ZoneLocalMappingResolver.html
+  name: ZoneLocalMappingResolver
+  nameWithType: ZoneLocalMappingResolver
+  fullName: NodaTime.TimeZones.ZoneLocalMappingResolver
+- uid: NodaTime.TimeZones
+  commentId: N:NodaTime.TimeZones
+  href: NodaTime.html
+  name: NodaTime.TimeZones
+  nameWithType: NodaTime.TimeZones
+  fullName: NodaTime.TimeZones
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.TimeZones
+    name: TimeZones
+    href: NodaTime.TimeZones.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.TimeZones
+    name: TimeZones
+    href: NodaTime.TimeZones.html
+- uid: NodaTime.Text.ZonedDateTimePattern.ZoneProvider*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.ZoneProvider
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_ZoneProvider
+  name: ZoneProvider
+  nameWithType: ZonedDateTimePattern.ZoneProvider
+  fullName: NodaTime.Text.ZonedDateTimePattern.ZoneProvider
+- uid: NodaTime.IDateTimeZoneProvider
+  commentId: T:NodaTime.IDateTimeZoneProvider
+  parent: NodaTime
+  href: NodaTime.IDateTimeZoneProvider.html
+  name: IDateTimeZoneProvider
+  nameWithType: IDateTimeZoneProvider
+  fullName: NodaTime.IDateTimeZoneProvider
+- uid: NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax(System.Int32)
+  commentId: M:NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax(System.Int32)
+  isExternal: true
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithTwoDigitYearMax_System_Int32_
+  name: WithTwoDigitYearMax(int)
+  nameWithType: ZonedDateTimePattern.WithTwoDigitYearMax(int)
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax(int)
+  nameWithType.vb: ZonedDateTimePattern.WithTwoDigitYearMax(Integer)
+  fullName.vb: NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax(Integer)
+  name.vb: WithTwoDigitYearMax(Integer)
+  spec.csharp:
+  - uid: NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax(System.Int32)
+    name: WithTwoDigitYearMax
+    href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithTwoDigitYearMax_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax(System.Int32)
+    name: WithTwoDigitYearMax
+    href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithTwoDigitYearMax_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: NodaTime.Text.ZonedDateTimePattern.TwoDigitYearMax*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.TwoDigitYearMax
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_TwoDigitYearMax
+  name: TwoDigitYearMax
+  nameWithType: ZonedDateTimePattern.TwoDigitYearMax
+  fullName: NodaTime.Text.ZonedDateTimePattern.TwoDigitYearMax
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: NodaTime.Text.ZonedDateTimePattern.Parse*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.Parse
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_Parse_System_String_
+  name: Parse
+  nameWithType: ZonedDateTimePattern.Parse
+  fullName: NodaTime.Text.ZonedDateTimePattern.Parse
+- uid: NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.Parse(System.String)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.Parse(System.String)
+  parent: NodaTime.Text.IPattern{NodaTime.ZonedDateTime}
+  definition: NodaTime.Text.IPattern`1.Parse(System.String)
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  name: Parse(string)
+  nameWithType: IPattern<ZonedDateTime>.Parse(string)
+  fullName: NodaTime.Text.IPattern<NodaTime.ZonedDateTime>.Parse(string)
+  nameWithType.vb: IPattern(Of ZonedDateTime).Parse(String)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.ZonedDateTime).Parse(String)
+  name.vb: Parse(String)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.Parse(System.String)
+    name: Parse
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.Parse(System.String)
+    name: Parse
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NodaTime.Text.ParseResult{NodaTime.ZonedDateTime}
+  commentId: T:NodaTime.Text.ParseResult{NodaTime.ZonedDateTime}
+  parent: NodaTime.Text
+  definition: NodaTime.Text.ParseResult`1
+  href: NodaTime.Text.ParseResult-1.html
+  name: ParseResult<ZonedDateTime>
+  nameWithType: ParseResult<ZonedDateTime>
+  fullName: NodaTime.Text.ParseResult<NodaTime.ZonedDateTime>
+  nameWithType.vb: ParseResult(Of ZonedDateTime)
+  fullName.vb: NodaTime.Text.ParseResult(Of NodaTime.ZonedDateTime)
+  name.vb: ParseResult(Of ZonedDateTime)
+  spec.csharp:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    href: NodaTime.Text.ParseResult-1.html
+  - name: <
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    href: NodaTime.Text.ParseResult-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+- uid: NodaTime.Text.IPattern`1.Parse(System.String)
+  commentId: M:NodaTime.Text.IPattern`1.Parse(System.String)
+  isExternal: true
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  name: Parse(string)
+  nameWithType: IPattern<T>.Parse(string)
+  fullName: NodaTime.Text.IPattern<T>.Parse(string)
+  nameWithType.vb: IPattern(Of T).Parse(String)
+  fullName.vb: NodaTime.Text.IPattern(Of T).Parse(String)
+  name.vb: Parse(String)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NodaTime.Text.ParseResult`1
+  commentId: T:NodaTime.Text.ParseResult`1
+  parent: NodaTime.Text
+  href: NodaTime.Text.ParseResult-1.html
+  name: ParseResult<T>
+  nameWithType: ParseResult<T>
+  fullName: NodaTime.Text.ParseResult<T>
+  nameWithType.vb: ParseResult(Of T)
+  fullName.vb: NodaTime.Text.ParseResult(Of T)
+  name.vb: ParseResult(Of T)
+  spec.csharp:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    href: NodaTime.Text.ParseResult-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    href: NodaTime.Text.ParseResult-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: NodaTime.Text.ZonedDateTimePattern.Format*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.Format
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_Format_NodaTime_ZonedDateTime_
+  name: Format
+  nameWithType: ZonedDateTimePattern.Format
+  fullName: NodaTime.Text.ZonedDateTimePattern.Format
+- uid: NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.Format(NodaTime.ZonedDateTime)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.Format(NodaTime.ZonedDateTime)
+  parent: NodaTime.Text.IPattern{NodaTime.ZonedDateTime}
+  definition: NodaTime.Text.IPattern`1.Format(`0)
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  name: Format(ZonedDateTime)
+  nameWithType: IPattern<ZonedDateTime>.Format(ZonedDateTime)
+  fullName: NodaTime.Text.IPattern<NodaTime.ZonedDateTime>.Format(NodaTime.ZonedDateTime)
+  nameWithType.vb: IPattern(Of ZonedDateTime).Format(ZonedDateTime)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.ZonedDateTime).Format(NodaTime.ZonedDateTime)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.Format(NodaTime.ZonedDateTime)
+    name: Format
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.Format(NodaTime.ZonedDateTime)
+    name: Format
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: )
+- uid: NodaTime.Text.IPattern`1.Format(`0)
+  commentId: M:NodaTime.Text.IPattern`1.Format(`0)
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  name: Format(T)
+  nameWithType: IPattern<T>.Format(T)
+  fullName: NodaTime.Text.IPattern<T>.Format(T)
+  nameWithType.vb: IPattern(Of T).Format(T)
+  fullName.vb: NodaTime.Text.IPattern(Of T).Format(T)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  - name: (
+  - name: T
+  - name: )
+- uid: System.Text.StringBuilder
+  commentId: T:System.Text.StringBuilder
+  parent: System.Text
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  name: StringBuilder
+  nameWithType: StringBuilder
+  fullName: System.Text.StringBuilder
+- uid: NodaTime.Text.ZonedDateTimePattern.AppendFormat*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.AppendFormat
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_AppendFormat_NodaTime_ZonedDateTime_System_Text_StringBuilder_
+  name: AppendFormat
+  nameWithType: ZonedDateTimePattern.AppendFormat
+  fullName: NodaTime.Text.ZonedDateTimePattern.AppendFormat
+- uid: NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.AppendFormat(NodaTime.ZonedDateTime,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.AppendFormat(NodaTime.ZonedDateTime,System.Text.StringBuilder)
+  parent: NodaTime.Text.IPattern{NodaTime.ZonedDateTime}
+  definition: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  name: AppendFormat(ZonedDateTime, StringBuilder)
+  nameWithType: IPattern<ZonedDateTime>.AppendFormat(ZonedDateTime, StringBuilder)
+  fullName: NodaTime.Text.IPattern<NodaTime.ZonedDateTime>.AppendFormat(NodaTime.ZonedDateTime, System.Text.StringBuilder)
+  nameWithType.vb: IPattern(Of ZonedDateTime).AppendFormat(ZonedDateTime, StringBuilder)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.ZonedDateTime).AppendFormat(NodaTime.ZonedDateTime, System.Text.StringBuilder)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.AppendFormat(NodaTime.ZonedDateTime,System.Text.StringBuilder)
+    name: AppendFormat
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern{NodaTime.ZonedDateTime}.AppendFormat(NodaTime.ZonedDateTime,System.Text.StringBuilder)
+    name: AppendFormat
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  - name: (
+  - uid: NodaTime.ZonedDateTime
+    name: ZonedDateTime
+    href: NodaTime.ZonedDateTime.html
+  - name: ','
+  - name: " "
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+- uid: System.Text
+  commentId: N:System.Text
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text
+  nameWithType: System.Text
+  fullName: System.Text
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+- uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  isExternal: true
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  name: AppendFormat(T, StringBuilder)
+  nameWithType: IPattern<T>.AppendFormat(T, StringBuilder)
+  fullName: NodaTime.Text.IPattern<T>.AppendFormat(T, System.Text.StringBuilder)
+  nameWithType.vb: IPattern(Of T).AppendFormat(T, StringBuilder)
+  fullName.vb: NodaTime.Text.IPattern(Of T).AppendFormat(T, System.Text.StringBuilder)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+- uid: NodaTime.Text.InvalidPatternException
+  commentId: T:NodaTime.Text.InvalidPatternException
+  href: NodaTime.Text.InvalidPatternException.html
+  name: InvalidPatternException
+  nameWithType: InvalidPatternException
+  fullName: NodaTime.Text.InvalidPatternException
+- uid: NodaTime.Text.ZonedDateTimePattern.Create*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.Create
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_Create_System_String_System_Globalization_CultureInfo_NodaTime_TimeZones_ZoneLocalMappingResolver_NodaTime_IDateTimeZoneProvider_NodaTime_ZonedDateTime_
+  name: Create
+  nameWithType: ZonedDateTimePattern.Create
+  fullName: NodaTime.Text.ZonedDateTimePattern.Create
+- uid: NodaTime.Text.ZonedDateTimePattern.CreateWithInvariantCulture*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.CreateWithInvariantCulture
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_CreateWithInvariantCulture_System_String_NodaTime_IDateTimeZoneProvider_
+  name: CreateWithInvariantCulture
+  nameWithType: ZonedDateTimePattern.CreateWithInvariantCulture
+  fullName: NodaTime.Text.ZonedDateTimePattern.CreateWithInvariantCulture
+- uid: NodaTime.Text.ZonedDateTimePattern.CreateWithCurrentCulture*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.CreateWithCurrentCulture
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_CreateWithCurrentCulture_System_String_NodaTime_IDateTimeZoneProvider_
+  name: CreateWithCurrentCulture
+  nameWithType: ZonedDateTimePattern.CreateWithCurrentCulture
+  fullName: NodaTime.Text.ZonedDateTimePattern.CreateWithCurrentCulture
+- uid: NodaTime.Text.ZonedDateTimePattern.WithPatternText*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.WithPatternText
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithPatternText_System_String_
+  name: WithPatternText
+  nameWithType: ZonedDateTimePattern.WithPatternText
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithPatternText
+- uid: NodaTime.Text.ZonedDateTimePattern.WithCulture*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.WithCulture
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithCulture_System_Globalization_CultureInfo_
+  name: WithCulture
+  nameWithType: ZonedDateTimePattern.WithCulture
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithCulture
+- uid: NodaTime.Text.ZonedDateTimePattern.WithResolver*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.WithResolver
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithResolver_NodaTime_TimeZones_ZoneLocalMappingResolver_
+  name: WithResolver
+  nameWithType: ZonedDateTimePattern.WithResolver
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithResolver
+- uid: NodaTime.Text.ZonedDateTimePattern.WithZoneProvider*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.WithZoneProvider
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithZoneProvider_NodaTime_IDateTimeZoneProvider_
+  name: WithZoneProvider
+  nameWithType: ZonedDateTimePattern.WithZoneProvider
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithZoneProvider
+- uid: NodaTime.Text.ZonedDateTimePattern.WithTemplateValue*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.WithTemplateValue
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithTemplateValue_NodaTime_ZonedDateTime_
+  name: WithTemplateValue
+  nameWithType: ZonedDateTimePattern.WithTemplateValue
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithTemplateValue
+- uid: NodaTime.Text.ZonedDateTimePattern.WithCalendar*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.WithCalendar
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithCalendar_NodaTime_CalendarSystem_
+  name: WithCalendar
+  nameWithType: ZonedDateTimePattern.WithCalendar
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithCalendar
+- uid: NodaTime.CalendarSystem
+  commentId: T:NodaTime.CalendarSystem
+  parent: NodaTime
+  href: NodaTime.CalendarSystem.html
+  name: CalendarSystem
+  nameWithType: CalendarSystem
+  fullName: NodaTime.CalendarSystem
+- uid: NodaTime.Text.ZonedDateTimePattern.TwoDigitYearMax
+  commentId: P:NodaTime.Text.ZonedDateTimePattern.TwoDigitYearMax
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_TwoDigitYearMax
+  name: TwoDigitYearMax
+  nameWithType: ZonedDateTimePattern.TwoDigitYearMax
+  fullName: NodaTime.Text.ZonedDateTimePattern.TwoDigitYearMax
+- uid: NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax*
+  commentId: Overload:NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax
+  href: NodaTime.Text.ZonedDateTimePattern.html#NodaTime_Text_ZonedDateTimePattern_WithTwoDigitYearMax_System_Int32_
+  name: WithTwoDigitYearMax
+  nameWithType: ZonedDateTimePattern.WithTwoDigitYearMax
+  fullName: NodaTime.Text.ZonedDateTimePattern.WithTwoDigitYearMax
+shouldSkipMarkup: true

@@ -1,0 +1,697 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Calendars.IWeekYearRule
+  commentId: T:NodaTime.Calendars.IWeekYearRule
+  id: IWeekYearRule
+  parent: NodaTime.Calendars
+  children:
+  - NodaTime.Calendars.IWeekYearRule.GetLocalDate(System.Int32,System.Int32,NodaTime.IsoDayOfWeek,NodaTime.CalendarSystem)
+  - NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear(NodaTime.LocalDate)
+  - NodaTime.Calendars.IWeekYearRule.GetWeekYear(NodaTime.LocalDate)
+  - NodaTime.Calendars.IWeekYearRule.GetWeeksInWeekYear(System.Int32,NodaTime.CalendarSystem)
+  langs:
+  - csharp
+  - vb
+  name: IWeekYearRule
+  nameWithType: IWeekYearRule
+  fullName: NodaTime.Calendars.IWeekYearRule
+  type: Interface
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Calendars
+  summary: >-
+    A rule determining how "week years" are arranged, including the weeks within the week year.
+
+    Implementations provided by Noda Time itself can be obtained via the <xref href="NodaTime.Calendars.WeekYearRules" data-throw-if-not-resolved="false"></xref>
+
+    class.
+  remarks: >-
+    <p>
+
+    Dates are usually identified within a calendar system by a calendar year, a month within that
+
+    calendar year, and a day within that month. For example, the date of birth of Ada Lovelace can be identified
+
+    within the Gregorian calendar system as the year 1815, the month December (12), and the day 10. However,
+
+    dates can also be identified (again within a calendar system) by week-year, week and day-of-week. How
+
+    that identification occurs depends on which rule you use - but again as an example, within the Gregorian
+
+    calendar system, using the ISO-8601 week year rule, the date of Ada Lovelace's birth is week-year 1815,
+
+    week 49, day-of-week Sunday.
+
+    </p>
+
+    <p>
+
+    The calendar year of a date and the week-year of a date are the same in most rules for most dates, but aren't
+
+    always. When they differ, it is usually because a day near the start of the calendar year is deemed to belong
+
+    to the last week of the previous week-year - or conversely because a day near the end of the calendar year is
+
+    deemed to belong to the first week of the following week-year. Some rules may be more radical -
+
+    a UK tax year rule could number weeks from April 6th onwards, such that any date earlier than that in the calendar
+
+    year would belong to the previous week-year.
+
+    </p>
+
+    <p>
+
+    The mapping of dates into week-year, week and day-of-week is always relative to a specific calendar system.
+
+    For example, years in the Hebrew calendar system vary very significantly in length due to leap months, and this
+
+    is reflected in the number of weeks within the week-years - as low as 50, and as high as 55.
+
+    </p>
+
+    <p>
+
+    This class allows conversions between the two schemes of identifying dates: <xref href="NodaTime.Calendars.IWeekYearRule.GetWeekYear(NodaTime.LocalDate)" data-throw-if-not-resolved="false"></xref>
+
+    and <xref href="NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear(NodaTime.LocalDate)" data-throw-if-not-resolved="false"></xref> allow the week-year and week to be obtained for a date, and
+
+    <xref href="NodaTime.Calendars.IWeekYearRule.GetLocalDate(System.Int32%2cSystem.Int32%2cNodaTime.IsoDayOfWeek%2cNodaTime.CalendarSystem)" data-throw-if-not-resolved="false"></xref> allows the reverse mapping. Note that
+
+    the calendar system does not need to be specified in the former methods as a <xref href="NodaTime.LocalDate" data-throw-if-not-resolved="false"></xref> already
+
+    contains calendar information, and there is no method to obtain the day-of-week as that is not affected by the
+
+    week year rule being used.
+
+    </p>
+
+    <p>
+
+    All implementations within Noda Time are immutable, and it is advised that any external implementations
+
+    should be immutable too.
+
+    </p>
+  example: []
+  syntax:
+    content: public interface IWeekYearRule
+    content.vb: Public Interface IWeekYearRule
+  extensionMethods:
+  - NodaTime.Calendars.IWeekYearRule.NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(System.Int32,System.Int32,NodaTime.IsoDayOfWeek)
+  - NodaTime.Calendars.IWeekYearRule.NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(System.Int32)
+- uid: NodaTime.Calendars.IWeekYearRule.GetLocalDate(System.Int32,System.Int32,NodaTime.IsoDayOfWeek,NodaTime.CalendarSystem)
+  commentId: M:NodaTime.Calendars.IWeekYearRule.GetLocalDate(System.Int32,System.Int32,NodaTime.IsoDayOfWeek,NodaTime.CalendarSystem)
+  id: GetLocalDate(System.Int32,System.Int32,NodaTime.IsoDayOfWeek,NodaTime.CalendarSystem)
+  parent: NodaTime.Calendars.IWeekYearRule
+  langs:
+  - csharp
+  - vb
+  name: GetLocalDate(int, int, IsoDayOfWeek, CalendarSystem)
+  nameWithType: IWeekYearRule.GetLocalDate(int, int, IsoDayOfWeek, CalendarSystem)
+  fullName: NodaTime.Calendars.IWeekYearRule.GetLocalDate(int, int, NodaTime.IsoDayOfWeek, NodaTime.CalendarSystem)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Calendars
+  summary: >-
+    Creates a <xref href="NodaTime.LocalDate" data-throw-if-not-resolved="false"></xref> from a given week-year, week within that week-year,
+
+    and day-of-week, for the specified calendar system.
+  remarks: >-
+    <p>
+
+    Wherever reasonable, implementations should ensure that all valid dates
+
+    can be constructed via this method. In other words, given a <xref href="NodaTime.LocalDate" data-throw-if-not-resolved="false"></xref> <code>date</code>,
+
+    <code>rule.GetLocalDate(rule.GetWeekYear(date), rule.GetWeekOfWeekYear(date), date.IsoDayOfWeek, date.Calendar)</code>
+
+    should always return <code>date</code>. This is true for all rules within Noda Time, but third party
+
+    implementations may choose to simplify their implementations by restricting them to appropriate portions
+
+    of time.
+
+    </p>
+
+    <p>
+
+    Implementations may restrict which calendar systems supplied here, but the implementations provided by
+
+    Noda Time work with all available calendar systems.
+
+    </p>
+  example: []
+  syntax:
+    content: LocalDate GetLocalDate(int weekYear, int weekOfWeekYear, IsoDayOfWeek dayOfWeek, CalendarSystem calendar)
+    parameters:
+    - id: weekYear
+      type: System.Int32
+      description: >-
+        The week-year of the new date. Implementations provided by Noda Time allow any
+            year which is a valid calendar year, and sometimes one less than the minimum calendar year
+            and/or one more than the maximum calendar year, to allow for dates near the start of a calendar
+            year to fall in the previous week year, and similarly for dates near the end of a calendar year.
+    - id: weekOfWeekYear
+      type: System.Int32
+      description: >-
+        The week of week-year of the new date. Valid values for this parameter
+            may vary depending on <code class="paramref">weekYear</code>, as the length of a year in weeks varies.
+    - id: dayOfWeek
+      type: NodaTime.IsoDayOfWeek
+      description: >-
+        The day-of-week of the new date. Valid values for this parameter may vary
+            depending on <code class="paramref">weekYear</code> and <code class="paramref">weekOfWeekYear</code>.
+    - id: calendar
+      type: NodaTime.CalendarSystem
+      description: The calendar system for the date.
+    return:
+      type: NodaTime.LocalDate
+      description: A <xref href="NodaTime.LocalDate" data-throw-if-not-resolved="false"></xref> corresponding to the specified values.
+    content.vb: Function GetLocalDate(weekYear As Integer, weekOfWeekYear As Integer, dayOfWeek As IsoDayOfWeek, calendar As CalendarSystem) As LocalDate
+  overload: NodaTime.Calendars.IWeekYearRule.GetLocalDate*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The parameters do not combine to form a valid date.
+  nameWithType.vb: IWeekYearRule.GetLocalDate(Integer, Integer, IsoDayOfWeek, CalendarSystem)
+  fullName.vb: NodaTime.Calendars.IWeekYearRule.GetLocalDate(Integer, Integer, NodaTime.IsoDayOfWeek, NodaTime.CalendarSystem)
+  name.vb: GetLocalDate(Integer, Integer, IsoDayOfWeek, CalendarSystem)
+- uid: NodaTime.Calendars.IWeekYearRule.GetWeekYear(NodaTime.LocalDate)
+  commentId: M:NodaTime.Calendars.IWeekYearRule.GetWeekYear(NodaTime.LocalDate)
+  id: GetWeekYear(NodaTime.LocalDate)
+  parent: NodaTime.Calendars.IWeekYearRule
+  langs:
+  - csharp
+  - vb
+  name: GetWeekYear(LocalDate)
+  nameWithType: IWeekYearRule.GetWeekYear(LocalDate)
+  fullName: NodaTime.Calendars.IWeekYearRule.GetWeekYear(NodaTime.LocalDate)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Calendars
+  summary: Calculates the week-year in which the given date occurs, according to this rule.
+  example: []
+  syntax:
+    content: int GetWeekYear(LocalDate date)
+    parameters:
+    - id: date
+      type: NodaTime.LocalDate
+      description: The date to compute the week-year of.
+    return:
+      type: System.Int32
+      description: The week-year of <code class="paramref">date</code>, according to this rule.
+    content.vb: Function GetWeekYear([date] As LocalDate) As Integer
+  overload: NodaTime.Calendars.IWeekYearRule.GetWeekYear*
+- uid: NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear(NodaTime.LocalDate)
+  commentId: M:NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear(NodaTime.LocalDate)
+  id: GetWeekOfWeekYear(NodaTime.LocalDate)
+  parent: NodaTime.Calendars.IWeekYearRule
+  langs:
+  - csharp
+  - vb
+  name: GetWeekOfWeekYear(LocalDate)
+  nameWithType: IWeekYearRule.GetWeekOfWeekYear(LocalDate)
+  fullName: NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear(NodaTime.LocalDate)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Calendars
+  summary: Calculates the week of the week-year in which the given date occurs, according to this rule.
+  example: []
+  syntax:
+    content: int GetWeekOfWeekYear(LocalDate date)
+    parameters:
+    - id: date
+      type: NodaTime.LocalDate
+      description: The date to compute the week of.
+    return:
+      type: System.Int32
+      description: The week of the week-year of <code class="paramref">date</code>, according to this rule.
+    content.vb: Function GetWeekOfWeekYear([date] As LocalDate) As Integer
+  overload: NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear*
+- uid: NodaTime.Calendars.IWeekYearRule.GetWeeksInWeekYear(System.Int32,NodaTime.CalendarSystem)
+  commentId: M:NodaTime.Calendars.IWeekYearRule.GetWeeksInWeekYear(System.Int32,NodaTime.CalendarSystem)
+  id: GetWeeksInWeekYear(System.Int32,NodaTime.CalendarSystem)
+  parent: NodaTime.Calendars.IWeekYearRule
+  langs:
+  - csharp
+  - vb
+  name: GetWeeksInWeekYear(int, CalendarSystem)
+  nameWithType: IWeekYearRule.GetWeeksInWeekYear(int, CalendarSystem)
+  fullName: NodaTime.Calendars.IWeekYearRule.GetWeeksInWeekYear(int, NodaTime.CalendarSystem)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Calendars
+  summary: Returns the number of weeks in the given week-year, within the specified calendar system.
+  example: []
+  syntax:
+    content: int GetWeeksInWeekYear(int weekYear, CalendarSystem calendar)
+    parameters:
+    - id: weekYear
+      type: System.Int32
+      description: The week-year to find the range of.
+    - id: calendar
+      type: NodaTime.CalendarSystem
+      description: The calendar system the calculation is relative to.
+    return:
+      type: System.Int32
+      description: The number of weeks in the given week-year within the given calendar.
+    content.vb: Function GetWeeksInWeekYear(weekYear As Integer, calendar As CalendarSystem) As Integer
+  overload: NodaTime.Calendars.IWeekYearRule.GetWeeksInWeekYear*
+  nameWithType.vb: IWeekYearRule.GetWeeksInWeekYear(Integer, CalendarSystem)
+  fullName.vb: NodaTime.Calendars.IWeekYearRule.GetWeeksInWeekYear(Integer, NodaTime.CalendarSystem)
+  name.vb: GetWeeksInWeekYear(Integer, CalendarSystem)
+references:
+- uid: NodaTime.Calendars.WeekYearRules
+  commentId: T:NodaTime.Calendars.WeekYearRules
+  href: NodaTime.Calendars.WeekYearRules.html
+  name: WeekYearRules
+  nameWithType: WeekYearRules
+  fullName: NodaTime.Calendars.WeekYearRules
+- uid: NodaTime.Calendars.IWeekYearRule.GetWeekYear(NodaTime.LocalDate)
+  commentId: M:NodaTime.Calendars.IWeekYearRule.GetWeekYear(NodaTime.LocalDate)
+  href: NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetWeekYear_NodaTime_LocalDate_
+  name: GetWeekYear(LocalDate)
+  nameWithType: IWeekYearRule.GetWeekYear(LocalDate)
+  fullName: NodaTime.Calendars.IWeekYearRule.GetWeekYear(NodaTime.LocalDate)
+  spec.csharp:
+  - uid: NodaTime.Calendars.IWeekYearRule.GetWeekYear(NodaTime.LocalDate)
+    name: GetWeekYear
+    href: NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetWeekYear_NodaTime_LocalDate_
+  - name: (
+  - uid: NodaTime.LocalDate
+    name: LocalDate
+    href: NodaTime.LocalDate.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Calendars.IWeekYearRule.GetWeekYear(NodaTime.LocalDate)
+    name: GetWeekYear
+    href: NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetWeekYear_NodaTime_LocalDate_
+  - name: (
+  - uid: NodaTime.LocalDate
+    name: LocalDate
+    href: NodaTime.LocalDate.html
+  - name: )
+- uid: NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear(NodaTime.LocalDate)
+  commentId: M:NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear(NodaTime.LocalDate)
+  href: NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetWeekOfWeekYear_NodaTime_LocalDate_
+  name: GetWeekOfWeekYear(LocalDate)
+  nameWithType: IWeekYearRule.GetWeekOfWeekYear(LocalDate)
+  fullName: NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear(NodaTime.LocalDate)
+  spec.csharp:
+  - uid: NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear(NodaTime.LocalDate)
+    name: GetWeekOfWeekYear
+    href: NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetWeekOfWeekYear_NodaTime_LocalDate_
+  - name: (
+  - uid: NodaTime.LocalDate
+    name: LocalDate
+    href: NodaTime.LocalDate.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear(NodaTime.LocalDate)
+    name: GetWeekOfWeekYear
+    href: NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetWeekOfWeekYear_NodaTime_LocalDate_
+  - name: (
+  - uid: NodaTime.LocalDate
+    name: LocalDate
+    href: NodaTime.LocalDate.html
+  - name: )
+- uid: NodaTime.Calendars.IWeekYearRule.GetLocalDate(System.Int32,System.Int32,NodaTime.IsoDayOfWeek,NodaTime.CalendarSystem)
+  commentId: M:NodaTime.Calendars.IWeekYearRule.GetLocalDate(System.Int32,System.Int32,NodaTime.IsoDayOfWeek,NodaTime.CalendarSystem)
+  isExternal: true
+  href: NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetLocalDate_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_NodaTime_CalendarSystem_
+  name: GetLocalDate(int, int, IsoDayOfWeek, CalendarSystem)
+  nameWithType: IWeekYearRule.GetLocalDate(int, int, IsoDayOfWeek, CalendarSystem)
+  fullName: NodaTime.Calendars.IWeekYearRule.GetLocalDate(int, int, NodaTime.IsoDayOfWeek, NodaTime.CalendarSystem)
+  nameWithType.vb: IWeekYearRule.GetLocalDate(Integer, Integer, IsoDayOfWeek, CalendarSystem)
+  fullName.vb: NodaTime.Calendars.IWeekYearRule.GetLocalDate(Integer, Integer, NodaTime.IsoDayOfWeek, NodaTime.CalendarSystem)
+  name.vb: GetLocalDate(Integer, Integer, IsoDayOfWeek, CalendarSystem)
+  spec.csharp:
+  - uid: NodaTime.Calendars.IWeekYearRule.GetLocalDate(System.Int32,System.Int32,NodaTime.IsoDayOfWeek,NodaTime.CalendarSystem)
+    name: GetLocalDate
+    href: NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetLocalDate_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_NodaTime_CalendarSystem_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: NodaTime.IsoDayOfWeek
+    name: IsoDayOfWeek
+    href: NodaTime.IsoDayOfWeek.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.CalendarSystem
+    name: CalendarSystem
+    href: NodaTime.CalendarSystem.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Calendars.IWeekYearRule.GetLocalDate(System.Int32,System.Int32,NodaTime.IsoDayOfWeek,NodaTime.CalendarSystem)
+    name: GetLocalDate
+    href: NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetLocalDate_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_NodaTime_CalendarSystem_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: NodaTime.IsoDayOfWeek
+    name: IsoDayOfWeek
+    href: NodaTime.IsoDayOfWeek.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.CalendarSystem
+    name: CalendarSystem
+    href: NodaTime.CalendarSystem.html
+  - name: )
+- uid: NodaTime.LocalDate
+  commentId: T:NodaTime.LocalDate
+  parent: NodaTime
+  href: NodaTime.LocalDate.html
+  name: LocalDate
+  nameWithType: LocalDate
+  fullName: NodaTime.LocalDate
+- uid: NodaTime.Calendars
+  commentId: N:NodaTime.Calendars
+  href: NodaTime.html
+  name: NodaTime.Calendars
+  nameWithType: NodaTime.Calendars
+  fullName: NodaTime.Calendars
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Calendars
+    name: Calendars
+    href: NodaTime.Calendars.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Calendars
+    name: Calendars
+    href: NodaTime.Calendars.html
+- uid: NodaTime.Calendars.IWeekYearRule.NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(System.Int32,System.Int32,NodaTime.IsoDayOfWeek)
+  commentId: M:NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(NodaTime.Calendars.IWeekYearRule,System.Int32,System.Int32,NodaTime.IsoDayOfWeek)
+  parent: NodaTime.Calendars.WeekYearRuleExtensions
+  definition: NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(NodaTime.Calendars.IWeekYearRule,System.Int32,System.Int32,NodaTime.IsoDayOfWeek)
+  href: NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetLocalDate_NodaTime_Calendars_IWeekYearRule_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_
+  name: GetLocalDate(IWeekYearRule, int, int, IsoDayOfWeek)
+  nameWithType: WeekYearRuleExtensions.GetLocalDate(IWeekYearRule, int, int, IsoDayOfWeek)
+  fullName: NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(NodaTime.Calendars.IWeekYearRule, int, int, NodaTime.IsoDayOfWeek)
+  nameWithType.vb: WeekYearRuleExtensions.GetLocalDate(IWeekYearRule, Integer, Integer, IsoDayOfWeek)
+  fullName.vb: NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(NodaTime.Calendars.IWeekYearRule, Integer, Integer, NodaTime.IsoDayOfWeek)
+  name.vb: GetLocalDate(IWeekYearRule, Integer, Integer, IsoDayOfWeek)
+  spec.csharp:
+  - uid: NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(NodaTime.Calendars.IWeekYearRule,System.Int32,System.Int32,NodaTime.IsoDayOfWeek)
+    name: GetLocalDate
+    href: NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetLocalDate_NodaTime_Calendars_IWeekYearRule_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_
+  - name: (
+  - uid: NodaTime.Calendars.IWeekYearRule
+    name: IWeekYearRule
+    href: NodaTime.Calendars.IWeekYearRule.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: NodaTime.IsoDayOfWeek
+    name: IsoDayOfWeek
+    href: NodaTime.IsoDayOfWeek.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(NodaTime.Calendars.IWeekYearRule,System.Int32,System.Int32,NodaTime.IsoDayOfWeek)
+    name: GetLocalDate
+    href: NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetLocalDate_NodaTime_Calendars_IWeekYearRule_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_
+  - name: (
+  - uid: NodaTime.Calendars.IWeekYearRule
+    name: IWeekYearRule
+    href: NodaTime.Calendars.IWeekYearRule.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: NodaTime.IsoDayOfWeek
+    name: IsoDayOfWeek
+    href: NodaTime.IsoDayOfWeek.html
+  - name: )
+- uid: NodaTime.Calendars.IWeekYearRule.NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(System.Int32)
+  commentId: M:NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(NodaTime.Calendars.IWeekYearRule,System.Int32)
+  parent: NodaTime.Calendars.WeekYearRuleExtensions
+  definition: NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(NodaTime.Calendars.IWeekYearRule,System.Int32)
+  href: NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetWeeksInWeekYear_NodaTime_Calendars_IWeekYearRule_System_Int32_
+  name: GetWeeksInWeekYear(IWeekYearRule, int)
+  nameWithType: WeekYearRuleExtensions.GetWeeksInWeekYear(IWeekYearRule, int)
+  fullName: NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(NodaTime.Calendars.IWeekYearRule, int)
+  nameWithType.vb: WeekYearRuleExtensions.GetWeeksInWeekYear(IWeekYearRule, Integer)
+  fullName.vb: NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(NodaTime.Calendars.IWeekYearRule, Integer)
+  name.vb: GetWeeksInWeekYear(IWeekYearRule, Integer)
+  spec.csharp:
+  - uid: NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(NodaTime.Calendars.IWeekYearRule,System.Int32)
+    name: GetWeeksInWeekYear
+    href: NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetWeeksInWeekYear_NodaTime_Calendars_IWeekYearRule_System_Int32_
+  - name: (
+  - uid: NodaTime.Calendars.IWeekYearRule
+    name: IWeekYearRule
+    href: NodaTime.Calendars.IWeekYearRule.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(NodaTime.Calendars.IWeekYearRule,System.Int32)
+    name: GetWeeksInWeekYear
+    href: NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetWeeksInWeekYear_NodaTime_Calendars_IWeekYearRule_System_Int32_
+  - name: (
+  - uid: NodaTime.Calendars.IWeekYearRule
+    name: IWeekYearRule
+    href: NodaTime.Calendars.IWeekYearRule.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(NodaTime.Calendars.IWeekYearRule,System.Int32,System.Int32,NodaTime.IsoDayOfWeek)
+  commentId: M:NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(NodaTime.Calendars.IWeekYearRule,System.Int32,System.Int32,NodaTime.IsoDayOfWeek)
+  isExternal: true
+  href: NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetLocalDate_NodaTime_Calendars_IWeekYearRule_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_
+  name: GetLocalDate(IWeekYearRule, int, int, IsoDayOfWeek)
+  nameWithType: WeekYearRuleExtensions.GetLocalDate(IWeekYearRule, int, int, IsoDayOfWeek)
+  fullName: NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(NodaTime.Calendars.IWeekYearRule, int, int, NodaTime.IsoDayOfWeek)
+  nameWithType.vb: WeekYearRuleExtensions.GetLocalDate(IWeekYearRule, Integer, Integer, IsoDayOfWeek)
+  fullName.vb: NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(NodaTime.Calendars.IWeekYearRule, Integer, Integer, NodaTime.IsoDayOfWeek)
+  name.vb: GetLocalDate(IWeekYearRule, Integer, Integer, IsoDayOfWeek)
+  spec.csharp:
+  - uid: NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(NodaTime.Calendars.IWeekYearRule,System.Int32,System.Int32,NodaTime.IsoDayOfWeek)
+    name: GetLocalDate
+    href: NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetLocalDate_NodaTime_Calendars_IWeekYearRule_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_
+  - name: (
+  - uid: NodaTime.Calendars.IWeekYearRule
+    name: IWeekYearRule
+    href: NodaTime.Calendars.IWeekYearRule.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: NodaTime.IsoDayOfWeek
+    name: IsoDayOfWeek
+    href: NodaTime.IsoDayOfWeek.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Calendars.WeekYearRuleExtensions.GetLocalDate(NodaTime.Calendars.IWeekYearRule,System.Int32,System.Int32,NodaTime.IsoDayOfWeek)
+    name: GetLocalDate
+    href: NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetLocalDate_NodaTime_Calendars_IWeekYearRule_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_
+  - name: (
+  - uid: NodaTime.Calendars.IWeekYearRule
+    name: IWeekYearRule
+    href: NodaTime.Calendars.IWeekYearRule.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: NodaTime.IsoDayOfWeek
+    name: IsoDayOfWeek
+    href: NodaTime.IsoDayOfWeek.html
+  - name: )
+- uid: NodaTime.Calendars.WeekYearRuleExtensions
+  commentId: T:NodaTime.Calendars.WeekYearRuleExtensions
+  parent: NodaTime.Calendars
+  href: NodaTime.Calendars.WeekYearRuleExtensions.html
+  name: WeekYearRuleExtensions
+  nameWithType: WeekYearRuleExtensions
+  fullName: NodaTime.Calendars.WeekYearRuleExtensions
+- uid: NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(NodaTime.Calendars.IWeekYearRule,System.Int32)
+  commentId: M:NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(NodaTime.Calendars.IWeekYearRule,System.Int32)
+  isExternal: true
+  href: NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetWeeksInWeekYear_NodaTime_Calendars_IWeekYearRule_System_Int32_
+  name: GetWeeksInWeekYear(IWeekYearRule, int)
+  nameWithType: WeekYearRuleExtensions.GetWeeksInWeekYear(IWeekYearRule, int)
+  fullName: NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(NodaTime.Calendars.IWeekYearRule, int)
+  nameWithType.vb: WeekYearRuleExtensions.GetWeeksInWeekYear(IWeekYearRule, Integer)
+  fullName.vb: NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(NodaTime.Calendars.IWeekYearRule, Integer)
+  name.vb: GetWeeksInWeekYear(IWeekYearRule, Integer)
+  spec.csharp:
+  - uid: NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(NodaTime.Calendars.IWeekYearRule,System.Int32)
+    name: GetWeeksInWeekYear
+    href: NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetWeeksInWeekYear_NodaTime_Calendars_IWeekYearRule_System_Int32_
+  - name: (
+  - uid: NodaTime.Calendars.IWeekYearRule
+    name: IWeekYearRule
+    href: NodaTime.Calendars.IWeekYearRule.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Calendars.WeekYearRuleExtensions.GetWeeksInWeekYear(NodaTime.Calendars.IWeekYearRule,System.Int32)
+    name: GetWeeksInWeekYear
+    href: NodaTime.Calendars.WeekYearRuleExtensions.html#NodaTime_Calendars_WeekYearRuleExtensions_GetWeeksInWeekYear_NodaTime_Calendars_IWeekYearRule_System_Int32_
+  - name: (
+  - uid: NodaTime.Calendars.IWeekYearRule
+    name: IWeekYearRule
+    href: NodaTime.Calendars.IWeekYearRule.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: NodaTime.Calendars.IWeekYearRule.GetLocalDate*
+  commentId: Overload:NodaTime.Calendars.IWeekYearRule.GetLocalDate
+  href: NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetLocalDate_System_Int32_System_Int32_NodaTime_IsoDayOfWeek_NodaTime_CalendarSystem_
+  name: GetLocalDate
+  nameWithType: IWeekYearRule.GetLocalDate
+  fullName: NodaTime.Calendars.IWeekYearRule.GetLocalDate
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: NodaTime.IsoDayOfWeek
+  commentId: T:NodaTime.IsoDayOfWeek
+  parent: NodaTime
+  href: NodaTime.IsoDayOfWeek.html
+  name: IsoDayOfWeek
+  nameWithType: IsoDayOfWeek
+  fullName: NodaTime.IsoDayOfWeek
+- uid: NodaTime.CalendarSystem
+  commentId: T:NodaTime.CalendarSystem
+  parent: NodaTime
+  href: NodaTime.CalendarSystem.html
+  name: CalendarSystem
+  nameWithType: CalendarSystem
+  fullName: NodaTime.CalendarSystem
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NodaTime.Calendars.IWeekYearRule.GetWeekYear*
+  commentId: Overload:NodaTime.Calendars.IWeekYearRule.GetWeekYear
+  href: NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetWeekYear_NodaTime_LocalDate_
+  name: GetWeekYear
+  nameWithType: IWeekYearRule.GetWeekYear
+  fullName: NodaTime.Calendars.IWeekYearRule.GetWeekYear
+- uid: NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear*
+  commentId: Overload:NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear
+  href: NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetWeekOfWeekYear_NodaTime_LocalDate_
+  name: GetWeekOfWeekYear
+  nameWithType: IWeekYearRule.GetWeekOfWeekYear
+  fullName: NodaTime.Calendars.IWeekYearRule.GetWeekOfWeekYear
+- uid: NodaTime.Calendars.IWeekYearRule.GetWeeksInWeekYear*
+  commentId: Overload:NodaTime.Calendars.IWeekYearRule.GetWeeksInWeekYear
+  href: NodaTime.Calendars.IWeekYearRule.html#NodaTime_Calendars_IWeekYearRule_GetWeeksInWeekYear_System_Int32_NodaTime_CalendarSystem_
+  name: GetWeeksInWeekYear
+  nameWithType: IWeekYearRule.GetWeeksInWeekYear
+  fullName: NodaTime.Calendars.IWeekYearRule.GetWeeksInWeekYear
+shouldSkipMarkup: true

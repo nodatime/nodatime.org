@@ -1,0 +1,185 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.TimeZones.SkippedTimeResolver
+  commentId: T:NodaTime.TimeZones.SkippedTimeResolver
+  id: SkippedTimeResolver
+  parent: NodaTime.TimeZones
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: SkippedTimeResolver
+  nameWithType: SkippedTimeResolver
+  fullName: NodaTime.TimeZones.SkippedTimeResolver
+  type: Delegate
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.TimeZones
+  summary: >-
+    Resolves a <xref href="NodaTime.LocalDateTime" data-throw-if-not-resolved="false"></xref> to a <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> in the situation
+
+    where the requested local time does not exist in the target time zone.
+  remarks: >-
+    <p>
+
+    This delegate is used by <xref href="NodaTime.TimeZones.Resolvers.CreateMappingResolver(NodaTime.TimeZones.AmbiguousTimeResolver%2cNodaTime.TimeZones.SkippedTimeResolver)" data-throw-if-not-resolved="false"></xref> when handling the situation where the
+
+    requested local time does not exist, due to clocks moving forward in a time zone transition (usually due to a
+
+    spring daylight saving transition).
+
+    </p>
+
+    <p>
+
+    The returned value will necessarily represent a different local date and time to the target one, but
+
+    the exact form of mapping is up to the delegate implementation. For example, it could return a value
+
+    as close to the target local date and time as possible, or the time immediately after the transition.
+
+    Alternatively, it can throw a <xref href="NodaTime.SkippedTimeException" data-throw-if-not-resolved="false"></xref> to implement a policy of "reject
+
+    skipped times."
+
+    </p>
+
+    <p>See the <xref href="NodaTime.TimeZones.Resolvers" data-throw-if-not-resolved="false"></xref> class for predefined implementations.</p>
+
+    <p>
+
+    Implementations of this delegate can reasonably
+
+    assume that the target local date and time really is skipped; the behaviour when the local date and time
+
+    can be directly mapped into the target time zone is undefined.
+
+    </p>
+  example: []
+  syntax:
+    content: public delegate ZonedDateTime SkippedTimeResolver(LocalDateTime localDateTime, DateTimeZone zone, ZoneInterval intervalBefore, ZoneInterval intervalAfter)
+    parameters:
+    - id: localDateTime
+      type: NodaTime.LocalDateTime
+      description: The local date and time to map to the given time zone
+    - id: zone
+      type: NodaTime.DateTimeZone
+      description: The target time zone
+    - id: intervalBefore
+      type: NodaTime.TimeZones.ZoneInterval
+      description: The zone interval directly before the target local date and time would have occurred
+    - id: intervalAfter
+      type: NodaTime.TimeZones.ZoneInterval
+      description: The zone interval directly after the target local date and time would have occurred
+    return:
+      type: NodaTime.ZonedDateTime
+      description: A <xref href="NodaTime.ZonedDateTime" data-throw-if-not-resolved="false"></xref> in the target time zone.
+    content.vb: Public Delegate Function SkippedTimeResolver(localDateTime As LocalDateTime, zone As DateTimeZone, intervalBefore As ZoneInterval, intervalAfter As ZoneInterval) As ZonedDateTime
+  exceptions:
+  - type: NodaTime.SkippedTimeException
+    commentId: T:NodaTime.SkippedTimeException
+    description: The implementation rejects requests to map skipped times.
+references:
+- uid: NodaTime.LocalDateTime
+  commentId: T:NodaTime.LocalDateTime
+  parent: NodaTime
+  href: NodaTime.LocalDateTime.html
+  name: LocalDateTime
+  nameWithType: LocalDateTime
+  fullName: NodaTime.LocalDateTime
+- uid: NodaTime.ZonedDateTime
+  commentId: T:NodaTime.ZonedDateTime
+  parent: NodaTime
+  href: NodaTime.ZonedDateTime.html
+  name: ZonedDateTime
+  nameWithType: ZonedDateTime
+  fullName: NodaTime.ZonedDateTime
+- uid: NodaTime.TimeZones.Resolvers.CreateMappingResolver(NodaTime.TimeZones.AmbiguousTimeResolver,NodaTime.TimeZones.SkippedTimeResolver)
+  commentId: M:NodaTime.TimeZones.Resolvers.CreateMappingResolver(NodaTime.TimeZones.AmbiguousTimeResolver,NodaTime.TimeZones.SkippedTimeResolver)
+  href: NodaTime.TimeZones.Resolvers.html#NodaTime_TimeZones_Resolvers_CreateMappingResolver_NodaTime_TimeZones_AmbiguousTimeResolver_NodaTime_TimeZones_SkippedTimeResolver_
+  name: CreateMappingResolver(AmbiguousTimeResolver, SkippedTimeResolver)
+  nameWithType: Resolvers.CreateMappingResolver(AmbiguousTimeResolver, SkippedTimeResolver)
+  fullName: NodaTime.TimeZones.Resolvers.CreateMappingResolver(NodaTime.TimeZones.AmbiguousTimeResolver, NodaTime.TimeZones.SkippedTimeResolver)
+  spec.csharp:
+  - uid: NodaTime.TimeZones.Resolvers.CreateMappingResolver(NodaTime.TimeZones.AmbiguousTimeResolver,NodaTime.TimeZones.SkippedTimeResolver)
+    name: CreateMappingResolver
+    href: NodaTime.TimeZones.Resolvers.html#NodaTime_TimeZones_Resolvers_CreateMappingResolver_NodaTime_TimeZones_AmbiguousTimeResolver_NodaTime_TimeZones_SkippedTimeResolver_
+  - name: (
+  - uid: NodaTime.TimeZones.AmbiguousTimeResolver
+    name: AmbiguousTimeResolver
+    href: NodaTime.TimeZones.AmbiguousTimeResolver.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.TimeZones.SkippedTimeResolver
+    name: SkippedTimeResolver
+    href: NodaTime.TimeZones.SkippedTimeResolver.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.TimeZones.Resolvers.CreateMappingResolver(NodaTime.TimeZones.AmbiguousTimeResolver,NodaTime.TimeZones.SkippedTimeResolver)
+    name: CreateMappingResolver
+    href: NodaTime.TimeZones.Resolvers.html#NodaTime_TimeZones_Resolvers_CreateMappingResolver_NodaTime_TimeZones_AmbiguousTimeResolver_NodaTime_TimeZones_SkippedTimeResolver_
+  - name: (
+  - uid: NodaTime.TimeZones.AmbiguousTimeResolver
+    name: AmbiguousTimeResolver
+    href: NodaTime.TimeZones.AmbiguousTimeResolver.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.TimeZones.SkippedTimeResolver
+    name: SkippedTimeResolver
+    href: NodaTime.TimeZones.SkippedTimeResolver.html
+  - name: )
+- uid: NodaTime.SkippedTimeException
+  commentId: T:NodaTime.SkippedTimeException
+  href: NodaTime.SkippedTimeException.html
+  name: SkippedTimeException
+  nameWithType: SkippedTimeException
+  fullName: NodaTime.SkippedTimeException
+- uid: NodaTime.TimeZones.Resolvers
+  commentId: T:NodaTime.TimeZones.Resolvers
+  href: NodaTime.TimeZones.Resolvers.html
+  name: Resolvers
+  nameWithType: Resolvers
+  fullName: NodaTime.TimeZones.Resolvers
+- uid: NodaTime.TimeZones
+  commentId: N:NodaTime.TimeZones
+  href: NodaTime.html
+  name: NodaTime.TimeZones
+  nameWithType: NodaTime.TimeZones
+  fullName: NodaTime.TimeZones
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.TimeZones
+    name: TimeZones
+    href: NodaTime.TimeZones.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.TimeZones
+    name: TimeZones
+    href: NodaTime.TimeZones.html
+- uid: NodaTime.DateTimeZone
+  commentId: T:NodaTime.DateTimeZone
+  parent: NodaTime
+  href: NodaTime.DateTimeZone.html
+  name: DateTimeZone
+  nameWithType: DateTimeZone
+  fullName: NodaTime.DateTimeZone
+- uid: NodaTime.TimeZones.ZoneInterval
+  commentId: T:NodaTime.TimeZones.ZoneInterval
+  parent: NodaTime.TimeZones
+  href: NodaTime.TimeZones.ZoneInterval.html
+  name: ZoneInterval
+  nameWithType: ZoneInterval
+  fullName: NodaTime.TimeZones.ZoneInterval
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+shouldSkipMarkup: true

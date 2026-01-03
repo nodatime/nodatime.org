@@ -1,0 +1,1806 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Interval
+  commentId: T:NodaTime.Interval
+  id: Interval
+  parent: NodaTime
+  children:
+  - NodaTime.Interval.#ctor(NodaTime.Instant,NodaTime.Instant)
+  - NodaTime.Interval.#ctor(System.Nullable{NodaTime.Instant},System.Nullable{NodaTime.Instant})
+  - NodaTime.Interval.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  - NodaTime.Interval.Contains(NodaTime.Instant)
+  - NodaTime.Interval.Deconstruct(System.Nullable{NodaTime.Instant}@,System.Nullable{NodaTime.Instant}@)
+  - NodaTime.Interval.Duration
+  - NodaTime.Interval.End
+  - NodaTime.Interval.Equals(NodaTime.Interval)
+  - NodaTime.Interval.Equals(System.Object)
+  - NodaTime.Interval.GetHashCode
+  - NodaTime.Interval.HasEnd
+  - NodaTime.Interval.HasStart
+  - NodaTime.Interval.Start
+  - NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#GetSchema
+  - NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  - NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  - NodaTime.Interval.ToString
+  - NodaTime.Interval.op_Equality(NodaTime.Interval,NodaTime.Interval)
+  - NodaTime.Interval.op_Inequality(NodaTime.Interval,NodaTime.Interval)
+  langs:
+  - csharp
+  - vb
+  name: Interval
+  nameWithType: Interval
+  fullName: NodaTime.Interval
+  type: Struct
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: An interval between two instants in time (start and end).
+  remarks: >-
+    <p>
+
+    Equality is defined in a component-wise fashion: two intervals are considered equal if their start instants are
+
+    equal to each other and their end instants are equal to each other. Ordering between intervals is not defined.
+
+    </p>
+
+    <p>
+
+    The interval includes the start instant and excludes the end instant. However, an interval
+
+    may be missing its start or end, in which case the interval is deemed to be infinite in that
+
+    direction.
+
+    </p>
+
+    <p>
+
+    The end may equal the start (resulting in an empty interval), but will not be before the start.
+
+    </p>
+
+    <p>The default value of this type is an empty interval with a start and end of
+
+    <xref href="NodaTime.NodaConstants.UnixEpoch" data-throw-if-not-resolved="false"></xref>.</p>
+  example: []
+  syntax:
+    content: 'public readonly struct Interval : IEquatable<Interval>, IXmlSerializable, IEqualityOperators<Interval, Interval, bool>'
+    content.vb: Public Structure Interval Implements IEquatable(Of Interval), IXmlSerializable, IEqualityOperators(Of Interval, Interval, Boolean)
+  implements:
+  - System.IEquatable{NodaTime.Interval}
+  - System.Xml.Serialization.IXmlSerializable
+  - System.Numerics.IEqualityOperators{NodaTime.Interval,NodaTime.Interval,System.Boolean}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: NodaTime.Interval.#ctor(NodaTime.Instant,NodaTime.Instant)
+  commentId: M:NodaTime.Interval.#ctor(NodaTime.Instant,NodaTime.Instant)
+  id: '#ctor(NodaTime.Instant,NodaTime.Instant)'
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Interval(Instant, Instant)
+  nameWithType: Interval.Interval(Instant, Instant)
+  fullName: NodaTime.Interval.Interval(NodaTime.Instant, NodaTime.Instant)
+  type: Constructor
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Initializes a new instance of the <xref href="NodaTime.Interval" data-throw-if-not-resolved="false"></xref> struct.
+
+    The interval includes the <code class="paramref">start</code> instant and excludes the
+
+    <code class="paramref">end</code> instant. The end may equal the start (resulting in an empty interval), but must not be before the start.
+  example: []
+  syntax:
+    content: public Interval(Instant start, Instant end)
+    parameters:
+    - id: start
+      type: NodaTime.Instant
+      description: The start <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref>.
+    - id: end
+      type: NodaTime.Instant
+      description: The end <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Sub New(start As Instant, [end] As Instant)
+  overload: NodaTime.Interval.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: <code class="paramref">end</code> is earlier than <code class="paramref">start</code>.
+  nameWithType.vb: Interval.New(Instant, Instant)
+  fullName.vb: NodaTime.Interval.New(NodaTime.Instant, NodaTime.Instant)
+  name.vb: New(Instant, Instant)
+- uid: NodaTime.Interval.#ctor(System.Nullable{NodaTime.Instant},System.Nullable{NodaTime.Instant})
+  commentId: M:NodaTime.Interval.#ctor(System.Nullable{NodaTime.Instant},System.Nullable{NodaTime.Instant})
+  id: '#ctor(System.Nullable{NodaTime.Instant},System.Nullable{NodaTime.Instant})'
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Interval(Instant?, Instant?)
+  nameWithType: Interval.Interval(Instant?, Instant?)
+  fullName: NodaTime.Interval.Interval(NodaTime.Instant?, NodaTime.Instant?)
+  type: Constructor
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Initializes a new instance of the <xref href="NodaTime.Interval" data-throw-if-not-resolved="false"></xref> struct from two nullable <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref>
+
+    values.
+  remarks: >-
+    If the start is null, the interval is deemed to stretch to the start of time. If the end is null,
+
+    the interval is deemed to stretch to the end of time.
+  example: []
+  syntax:
+    content: public Interval(Instant? start, Instant? end)
+    parameters:
+    - id: start
+      type: System.Nullable{NodaTime.Instant}
+      description: The start <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref> or null.
+    - id: end
+      type: System.Nullable{NodaTime.Instant}
+      description: The end <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref> or null.
+    content.vb: Public Sub New(start As Instant?, [end] As Instant?)
+  overload: NodaTime.Interval.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      <code class="paramref">end</code> is earlier than <code class="paramref">start</code>,
+          if they are both non-null.
+  nameWithType.vb: Interval.New(Instant?, Instant?)
+  fullName.vb: NodaTime.Interval.New(NodaTime.Instant?, NodaTime.Instant?)
+  name.vb: New(Instant?, Instant?)
+- uid: NodaTime.Interval.Start
+  commentId: P:NodaTime.Interval.Start
+  id: Start
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Start
+  nameWithType: Interval.Start
+  fullName: NodaTime.Interval.Start
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the start instant - the inclusive lower bound of the interval.
+  remarks: This will never be later than <xref href="NodaTime.Interval.End" data-throw-if-not-resolved="false"></xref>, though it may be equal to it.
+  example: []
+  syntax:
+    content: public Instant Start { get; }
+    parameters: []
+    return:
+      type: NodaTime.Instant
+      description: The start <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public ReadOnly Property Start As Instant
+  overload: NodaTime.Interval.Start*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The interval extends to the start of time.
+  seealso:
+  - linkId: NodaTime.Interval.HasStart
+    commentId: P:NodaTime.Interval.HasStart
+- uid: NodaTime.Interval.HasStart
+  commentId: P:NodaTime.Interval.HasStart
+  id: HasStart
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: HasStart
+  nameWithType: Interval.HasStart
+  fullName: NodaTime.Interval.HasStart
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns <code>true</code> if this interval has a fixed start point, or <code>false</code> if it
+
+    extends to the start of time.
+  example: []
+  syntax:
+    content: public bool HasStart { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: >-
+        <code>true</code> if this interval has a fixed start point, or <code>false</code> if it
+            extends to the start of time.
+    content.vb: Public ReadOnly Property HasStart As Boolean
+  overload: NodaTime.Interval.HasStart*
+- uid: NodaTime.Interval.End
+  commentId: P:NodaTime.Interval.End
+  id: End
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: End
+  nameWithType: Interval.End
+  fullName: NodaTime.Interval.End
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the end instant - the exclusive upper bound of the interval.
+  example: []
+  syntax:
+    content: public Instant End { get; }
+    parameters: []
+    return:
+      type: NodaTime.Instant
+      description: The end <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public ReadOnly Property [End] As Instant
+  overload: NodaTime.Interval.End*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The interval extends to the end of time.
+  seealso:
+  - linkId: NodaTime.Interval.HasEnd
+    commentId: P:NodaTime.Interval.HasEnd
+- uid: NodaTime.Interval.HasEnd
+  commentId: P:NodaTime.Interval.HasEnd
+  id: HasEnd
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: HasEnd
+  nameWithType: Interval.HasEnd
+  fullName: NodaTime.Interval.HasEnd
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns <code>true</code> if this interval has a fixed end point, or <code>false</code> if it
+
+    extends to the end of time.
+  example: []
+  syntax:
+    content: public bool HasEnd { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: >-
+        <code>true</code> if this interval has a fixed end point, or <code>false</code> if it
+            extends to the end of time.
+    content.vb: Public ReadOnly Property HasEnd As Boolean
+  overload: NodaTime.Interval.HasEnd*
+- uid: NodaTime.Interval.Duration
+  commentId: P:NodaTime.Interval.Duration
+  id: Duration
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Duration
+  nameWithType: Interval.Duration
+  fullName: NodaTime.Interval.Duration
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the duration of the interval.
+  remarks: This will always be a non-negative duration, though it may be zero.
+  example: []
+  syntax:
+    content: public Duration Duration { get; }
+    parameters: []
+    return:
+      type: NodaTime.Duration
+      description: The duration of the interval.
+    content.vb: Public ReadOnly Property Duration As Duration
+  overload: NodaTime.Interval.Duration*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The interval extends to the start or end of time.
+- uid: NodaTime.Interval.Contains(NodaTime.Instant)
+  commentId: M:NodaTime.Interval.Contains(NodaTime.Instant)
+  id: Contains(NodaTime.Instant)
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Contains(Instant)
+  nameWithType: Interval.Contains(Instant)
+  fullName: NodaTime.Interval.Contains(NodaTime.Instant)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns whether or not this interval contains the given instant.
+  example: []
+  syntax:
+    content: public bool Contains(Instant instant)
+    parameters:
+    - id: instant
+      type: NodaTime.Instant
+      description: Instant to test.
+    return:
+      type: System.Boolean
+      description: True if this interval contains the given instant; false otherwise.
+    content.vb: Public Function Contains(instant As Instant) As Boolean
+  overload: NodaTime.Interval.Contains*
+- uid: NodaTime.Interval.Deconstruct(System.Nullable{NodaTime.Instant}@,System.Nullable{NodaTime.Instant}@)
+  commentId: M:NodaTime.Interval.Deconstruct(System.Nullable{NodaTime.Instant}@,System.Nullable{NodaTime.Instant}@)
+  id: Deconstruct(System.Nullable{NodaTime.Instant}@,System.Nullable{NodaTime.Instant}@)
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Deconstruct(out Instant?, out Instant?)
+  nameWithType: Interval.Deconstruct(out Instant?, out Instant?)
+  fullName: NodaTime.Interval.Deconstruct(out NodaTime.Instant?, out NodaTime.Instant?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Deconstruct this value into its components.
+  example: []
+  syntax:
+    content: public void Deconstruct(out Instant? start, out Instant? end)
+    parameters:
+    - id: start
+      type: System.Nullable{NodaTime.Instant}
+      description: The start of the interval.
+    - id: end
+      type: System.Nullable{NodaTime.Instant}
+      description: The end of the interval.
+    content.vb: Public Sub Deconstruct(start As Instant?, [end] As Instant?)
+  overload: NodaTime.Interval.Deconstruct*
+  nameWithType.vb: Interval.Deconstruct(Instant?, Instant?)
+  fullName.vb: NodaTime.Interval.Deconstruct(NodaTime.Instant?, NodaTime.Instant?)
+  name.vb: Deconstruct(Instant?, Instant?)
+- uid: NodaTime.Interval.Equals(NodaTime.Interval)
+  commentId: M:NodaTime.Interval.Equals(NodaTime.Interval)
+  id: Equals(NodaTime.Interval)
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Equals(Interval)
+  nameWithType: Interval.Equals(Interval)
+  fullName: NodaTime.Interval.Equals(NodaTime.Interval)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Indicates whether the value of this interval is equal to the value of the specified interval.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public bool Equals(Interval other)
+    parameters:
+    - id: other
+      type: NodaTime.Interval
+      description: The value to compare with this instance.
+    return:
+      type: System.Boolean
+      description: >-
+        true if the value of this instant is equal to the value of the <code class="paramref">other</code> parameter;
+
+        otherwise, false.
+    content.vb: Public Function Equals(other As Interval) As Boolean
+  overload: NodaTime.Interval.Equals*
+  implements:
+  - System.IEquatable{NodaTime.Interval}.Equals(NodaTime.Interval)
+- uid: NodaTime.Interval.Equals(System.Object)
+  commentId: M:NodaTime.Interval.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: Interval.Equals(object?)
+  fullName: NodaTime.Interval.Equals(object?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Determines whether the specified <xref href="System.Object" data-throw-if-not-resolved="false"></xref> is equal to this instance.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> to compare with this instance.
+    return:
+      type: System.Boolean
+      description: >-
+        <code>true</code> if the specified <xref href="System.Object" data-throw-if-not-resolved="false"></xref> is equal to this instance;
+
+        otherwise, <code>false</code>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: NodaTime.Interval.Equals*
+  nameWithType.vb: Interval.Equals(Object)
+  fullName.vb: NodaTime.Interval.Equals(Object)
+  name.vb: Equals(Object)
+- uid: NodaTime.Interval.GetHashCode
+  commentId: M:NodaTime.Interval.GetHashCode
+  id: GetHashCode
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: Interval.GetHashCode()
+  fullName: NodaTime.Interval.GetHashCode()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns the hash code for this instance.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A 32-bit signed integer that is the hash code for this instance.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: NodaTime.Interval.GetHashCode*
+- uid: NodaTime.Interval.ToString
+  commentId: M:NodaTime.Interval.ToString
+  id: ToString
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Interval.ToString()
+  fullName: NodaTime.Interval.ToString()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns a string representation of this interval, in extended ISO-8601 format: the format
+
+    is "start/end" where each instant uses a format of "uuuu'-'MM'-'dd'T'HH':'mm':'ss;FFFFFFFFF'Z'".
+
+    If the start or end is infinite, the relevant part uses "StartOfTime" or "EndOfTime" to
+
+    represent this.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string representation of this interval.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: NodaTime.Interval.ToString*
+- uid: NodaTime.Interval.op_Equality(NodaTime.Interval,NodaTime.Interval)
+  commentId: M:NodaTime.Interval.op_Equality(NodaTime.Interval,NodaTime.Interval)
+  id: op_Equality(NodaTime.Interval,NodaTime.Interval)
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: operator ==(Interval, Interval)
+  nameWithType: Interval.operator ==(Interval, Interval)
+  fullName: NodaTime.Interval.operator ==(NodaTime.Interval, NodaTime.Interval)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator ==.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public static bool operator ==(Interval left, Interval right)
+    parameters:
+    - id: left
+      type: NodaTime.Interval
+      description: The left.
+    - id: right
+      type: NodaTime.Interval
+      description: The right.
+    return:
+      type: System.Boolean
+      description: The result of the operator.
+    content.vb: Public Shared Operator =(left As Interval, right As Interval) As Boolean
+  overload: NodaTime.Interval.op_Equality*
+  implements:
+  - System.Numerics.IEqualityOperators{NodaTime.Interval,NodaTime.Interval,System.Boolean}.op_Equality(NodaTime.Interval,NodaTime.Interval)
+  nameWithType.vb: Interval.=(Interval, Interval)
+  fullName.vb: NodaTime.Interval.=(NodaTime.Interval, NodaTime.Interval)
+  name.vb: =(Interval, Interval)
+- uid: NodaTime.Interval.op_Inequality(NodaTime.Interval,NodaTime.Interval)
+  commentId: M:NodaTime.Interval.op_Inequality(NodaTime.Interval,NodaTime.Interval)
+  id: op_Inequality(NodaTime.Interval,NodaTime.Interval)
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: operator !=(Interval, Interval)
+  nameWithType: Interval.operator !=(Interval, Interval)
+  fullName: NodaTime.Interval.operator !=(NodaTime.Interval, NodaTime.Interval)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator !=.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public static bool operator !=(Interval left, Interval right)
+    parameters:
+    - id: left
+      type: NodaTime.Interval
+      description: The left.
+    - id: right
+      type: NodaTime.Interval
+      description: The right.
+    return:
+      type: System.Boolean
+      description: The result of the operator.
+    content.vb: Public Shared Operator <>(left As Interval, right As Interval) As Boolean
+  overload: NodaTime.Interval.op_Inequality*
+  implements:
+  - System.Numerics.IEqualityOperators{NodaTime.Interval,NodaTime.Interval,System.Boolean}.op_Inequality(NodaTime.Interval,NodaTime.Interval)
+  nameWithType.vb: Interval.<>(Interval, Interval)
+  fullName.vb: NodaTime.Interval.<>(NodaTime.Interval, NodaTime.Interval)
+  name.vb: <>(Interval, Interval)
+- uid: NodaTime.Interval.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  commentId: M:NodaTime.Interval.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  id: AddSchema(System.Xml.Schema.XmlSchemaSet)
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: AddSchema(XmlSchemaSet)
+  nameWithType: Interval.AddSchema(XmlSchemaSet)
+  fullName: NodaTime.Interval.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Adds the XML schema type describing the structure of the <xref href="NodaTime.Interval" data-throw-if-not-resolved="false"></xref> XML serialization to the given <code class="paramref">xmlSchemaSet</code>.
+  example: []
+  syntax:
+    content: public static XmlQualifiedName AddSchema(XmlSchemaSet xmlSchemaSet)
+    parameters:
+    - id: xmlSchemaSet
+      type: System.Xml.Schema.XmlSchemaSet
+      description: The XML schema set provided by <xref href="System.Xml.Serialization.XmlSchemaExporter" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Xml.XmlQualifiedName
+      description: The qualified name of the schema type that was added to the <code class="paramref">xmlSchemaSet</code>.
+    content.vb: Public Shared Function AddSchema(xmlSchemaSet As XmlSchemaSet) As XmlQualifiedName
+  overload: NodaTime.Interval.AddSchema*
+- uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#GetSchema
+  commentId: M:NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#GetSchema
+  id: System#Xml#Serialization#IXmlSerializable#GetSchema
+  isEii: true
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.GetSchema()
+  nameWithType: Interval.IXmlSerializable.GetSchema()
+  fullName: NodaTime.Interval.System.Xml.Serialization.IXmlSerializable.GetSchema()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: This method is reserved and should not be used. When implementing the <code>IXmlSerializable</code> interface, you should return <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> (<code>Nothing</code> in Visual Basic) from this method, and instead, if specifying a custom schema is required, apply the <xref href="System.Xml.Serialization.XmlSchemaProviderAttribute" data-throw-if-not-resolved="false"></xref> to the class.
+  example: []
+  syntax:
+    content: XmlSchema IXmlSerializable.GetSchema()
+    return:
+      type: System.Xml.Schema.XmlSchema
+      description: An <xref href="System.Xml.Schema.XmlSchema" data-throw-if-not-resolved="false"></xref> that describes the XML representation of the object that is produced by the <xref href="System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)" data-throw-if-not-resolved="false"></xref> method and consumed by the <xref href="System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)" data-throw-if-not-resolved="false"></xref> method.
+    content.vb: ''
+  overload: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#GetSchema*
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+- uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  commentId: M:NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  id: System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  isEii: true
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.ReadXml(XmlReader)
+  nameWithType: Interval.IXmlSerializable.ReadXml(XmlReader)
+  fullName: NodaTime.Interval.System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Generates an object from its XML representation.
+  example: []
+  syntax:
+    content: void IXmlSerializable.ReadXml(XmlReader reader)
+    parameters:
+    - id: reader
+      type: System.Xml.XmlReader
+      description: The <xref href="System.Xml.XmlReader" data-throw-if-not-resolved="false"></xref> stream from which the object is deserialized.
+    content.vb: ''
+  overload: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#ReadXml*
+  implements:
+  - System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+- uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  commentId: M:NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  id: System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  isEii: true
+  parent: NodaTime.Interval
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.WriteXml(XmlWriter)
+  nameWithType: Interval.IXmlSerializable.WriteXml(XmlWriter)
+  fullName: NodaTime.Interval.System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Converts an object into its XML representation.
+  example: []
+  syntax:
+    content: void IXmlSerializable.WriteXml(XmlWriter writer)
+    parameters:
+    - id: writer
+      type: System.Xml.XmlWriter
+      description: The <xref href="System.Xml.XmlWriter" data-throw-if-not-resolved="false"></xref> stream to which the object is serialized.
+    content.vb: ''
+  overload: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#WriteXml*
+  implements:
+  - System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+references:
+- uid: NodaTime.NodaConstants.UnixEpoch
+  commentId: P:NodaTime.NodaConstants.UnixEpoch
+  href: NodaTime.NodaConstants.html#NodaTime_NodaConstants_UnixEpoch
+  name: UnixEpoch
+  nameWithType: NodaConstants.UnixEpoch
+  fullName: NodaTime.NodaConstants.UnixEpoch
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.IEquatable{NodaTime.Interval}
+  commentId: T:System.IEquatable{NodaTime.Interval}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Interval>
+  nameWithType: IEquatable<Interval>
+  fullName: System.IEquatable<NodaTime.Interval>
+  nameWithType.vb: IEquatable(Of Interval)
+  fullName.vb: System.IEquatable(Of NodaTime.Interval)
+  name.vb: IEquatable(Of Interval)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: )
+- uid: System.Xml.Serialization.IXmlSerializable
+  commentId: T:System.Xml.Serialization.IXmlSerializable
+  parent: System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable
+  nameWithType: IXmlSerializable
+  fullName: System.Xml.Serialization.IXmlSerializable
+- uid: System.Numerics.IEqualityOperators{NodaTime.Interval,NodaTime.Interval,System.Boolean}
+  commentId: T:System.Numerics.IEqualityOperators{NodaTime.Interval,NodaTime.Interval,System.Boolean}
+  parent: System.Numerics
+  definition: System.Numerics.IEqualityOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  name: IEqualityOperators<Interval, Interval, bool>
+  nameWithType: IEqualityOperators<Interval, Interval, bool>
+  fullName: System.Numerics.IEqualityOperators<NodaTime.Interval, NodaTime.Interval, bool>
+  nameWithType.vb: IEqualityOperators(Of Interval, Interval, Boolean)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.Interval, NodaTime.Interval, Boolean)
+  name.vb: IEqualityOperators(Of Interval, Interval, Boolean)
+  spec.csharp:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: <
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Xml.Serialization
+  commentId: N:System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Serialization
+  nameWithType: System.Xml.Serialization
+  fullName: System.Xml.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+- uid: System.Numerics.IEqualityOperators`3
+  commentId: T:System.Numerics.IEqualityOperators`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  name: IEqualityOperators<TSelf, TOther, TResult>
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult)
+  name.vb: IEqualityOperators(Of TSelf, TOther, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics
+  commentId: N:System.Numerics
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Numerics
+  nameWithType: System.Numerics
+  fullName: System.Numerics
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: NodaTime.Interval
+  commentId: T:NodaTime.Interval
+  parent: NodaTime
+  href: NodaTime.Interval.html
+  name: Interval
+  nameWithType: Interval
+  fullName: NodaTime.Interval
+- uid: NodaTime.Instant
+  commentId: T:NodaTime.Instant
+  parent: NodaTime
+  href: NodaTime.Instant.html
+  name: Instant
+  nameWithType: Instant
+  fullName: NodaTime.Instant
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: NodaTime.Interval.#ctor*
+  commentId: Overload:NodaTime.Interval.#ctor
+  href: NodaTime.Interval.html#NodaTime_Interval__ctor_NodaTime_Instant_NodaTime_Instant_
+  name: Interval
+  nameWithType: Interval.Interval
+  fullName: NodaTime.Interval.Interval
+  nameWithType.vb: Interval.New
+  fullName.vb: NodaTime.Interval.New
+  name.vb: New
+- uid: System.Nullable{NodaTime.Instant}
+  commentId: T:System.Nullable{NodaTime.Instant}
+  parent: System
+  definition: System.Nullable`1
+  href: NodaTime.Instant.html
+  name: Instant?
+  nameWithType: Instant?
+  fullName: NodaTime.Instant?
+  spec.csharp:
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: '?'
+  spec.vb:
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: NodaTime.Interval.HasStart
+  commentId: P:NodaTime.Interval.HasStart
+  href: NodaTime.Interval.html#NodaTime_Interval_HasStart
+  name: HasStart
+  nameWithType: Interval.HasStart
+  fullName: NodaTime.Interval.HasStart
+- uid: NodaTime.Interval.End
+  commentId: P:NodaTime.Interval.End
+  href: NodaTime.Interval.html#NodaTime_Interval_End
+  name: End
+  nameWithType: Interval.End
+  fullName: NodaTime.Interval.End
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: NodaTime.Interval.Start*
+  commentId: Overload:NodaTime.Interval.Start
+  href: NodaTime.Interval.html#NodaTime_Interval_Start
+  name: Start
+  nameWithType: Interval.Start
+  fullName: NodaTime.Interval.Start
+- uid: NodaTime.Interval.HasStart*
+  commentId: Overload:NodaTime.Interval.HasStart
+  href: NodaTime.Interval.html#NodaTime_Interval_HasStart
+  name: HasStart
+  nameWithType: Interval.HasStart
+  fullName: NodaTime.Interval.HasStart
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: NodaTime.Interval.HasEnd
+  commentId: P:NodaTime.Interval.HasEnd
+  href: NodaTime.Interval.html#NodaTime_Interval_HasEnd
+  name: HasEnd
+  nameWithType: Interval.HasEnd
+  fullName: NodaTime.Interval.HasEnd
+- uid: NodaTime.Interval.End*
+  commentId: Overload:NodaTime.Interval.End
+  href: NodaTime.Interval.html#NodaTime_Interval_End
+  name: End
+  nameWithType: Interval.End
+  fullName: NodaTime.Interval.End
+- uid: NodaTime.Interval.HasEnd*
+  commentId: Overload:NodaTime.Interval.HasEnd
+  href: NodaTime.Interval.html#NodaTime_Interval_HasEnd
+  name: HasEnd
+  nameWithType: Interval.HasEnd
+  fullName: NodaTime.Interval.HasEnd
+- uid: NodaTime.Interval.Duration*
+  commentId: Overload:NodaTime.Interval.Duration
+  href: NodaTime.Interval.html#NodaTime_Interval_Duration
+  name: Duration
+  nameWithType: Interval.Duration
+  fullName: NodaTime.Interval.Duration
+- uid: NodaTime.Duration
+  commentId: T:NodaTime.Duration
+  parent: NodaTime
+  href: NodaTime.Duration.html
+  name: Duration
+  nameWithType: Duration
+  fullName: NodaTime.Duration
+- uid: NodaTime.Interval.Contains*
+  commentId: Overload:NodaTime.Interval.Contains
+  href: NodaTime.Interval.html#NodaTime_Interval_Contains_NodaTime_Instant_
+  name: Contains
+  nameWithType: Interval.Contains
+  fullName: NodaTime.Interval.Contains
+- uid: NodaTime.Interval.Deconstruct*
+  commentId: Overload:NodaTime.Interval.Deconstruct
+  href: NodaTime.Interval.html#NodaTime_Interval_Deconstruct_System_Nullable_NodaTime_Instant___System_Nullable_NodaTime_Instant___
+  name: Deconstruct
+  nameWithType: Interval.Deconstruct
+  fullName: NodaTime.Interval.Deconstruct
+- uid: NodaTime.Interval.Equals*
+  commentId: Overload:NodaTime.Interval.Equals
+  href: NodaTime.Interval.html#NodaTime_Interval_Equals_NodaTime_Interval_
+  name: Equals
+  nameWithType: Interval.Equals
+  fullName: NodaTime.Interval.Equals
+- uid: System.IEquatable{NodaTime.Interval}.Equals(NodaTime.Interval)
+  commentId: M:System.IEquatable{NodaTime.Interval}.Equals(NodaTime.Interval)
+  parent: System.IEquatable{NodaTime.Interval}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(Interval)
+  nameWithType: IEquatable<Interval>.Equals(Interval)
+  fullName: System.IEquatable<NodaTime.Interval>.Equals(NodaTime.Interval)
+  nameWithType.vb: IEquatable(Of Interval).Equals(Interval)
+  fullName.vb: System.IEquatable(Of NodaTime.Interval).Equals(NodaTime.Interval)
+  spec.csharp:
+  - uid: System.IEquatable{NodaTime.Interval}.Equals(NodaTime.Interval)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{NodaTime.Interval}.Equals(NodaTime.Interval)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: NodaTime.Interval.GetHashCode*
+  commentId: Overload:NodaTime.Interval.GetHashCode
+  href: NodaTime.Interval.html#NodaTime_Interval_GetHashCode
+  name: GetHashCode
+  nameWithType: Interval.GetHashCode
+  fullName: NodaTime.Interval.GetHashCode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: NodaTime.Interval.ToString*
+  commentId: Overload:NodaTime.Interval.ToString
+  href: NodaTime.Interval.html#NodaTime_Interval_ToString
+  name: ToString
+  nameWithType: Interval.ToString
+  fullName: NodaTime.Interval.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: NodaTime.Interval.op_Equality*
+  commentId: Overload:NodaTime.Interval.op_Equality
+  href: NodaTime.Interval.html#NodaTime_Interval_op_Equality_NodaTime_Interval_NodaTime_Interval_
+  name: operator ==
+  nameWithType: Interval.operator ==
+  fullName: NodaTime.Interval.operator ==
+  nameWithType.vb: Interval.=
+  fullName.vb: NodaTime.Interval.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Interval.op_Equality*
+    name: ==
+    href: NodaTime.Interval.html#NodaTime_Interval_op_Equality_NodaTime_Interval_NodaTime_Interval_
+- uid: System.Numerics.IEqualityOperators{NodaTime.Interval,NodaTime.Interval,System.Boolean}.op_Equality(NodaTime.Interval,NodaTime.Interval)
+  commentId: M:System.Numerics.IEqualityOperators{NodaTime.Interval,NodaTime.Interval,System.Boolean}.op_Equality(NodaTime.Interval,NodaTime.Interval)
+  parent: System.Numerics.IEqualityOperators{NodaTime.Interval,NodaTime.Interval,System.Boolean}
+  definition: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  name: operator ==(Interval, Interval)
+  nameWithType: IEqualityOperators<Interval, Interval, bool>.operator ==(Interval, Interval)
+  fullName: System.Numerics.IEqualityOperators<NodaTime.Interval, NodaTime.Interval, bool>.operator ==(NodaTime.Interval, NodaTime.Interval)
+  nameWithType.vb: IEqualityOperators(Of Interval, Interval, Boolean).=(Interval, Interval)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.Interval, NodaTime.Interval, Boolean).=(NodaTime.Interval, NodaTime.Interval)
+  name.vb: =(Interval, Interval)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators{NodaTime.Interval,NodaTime.Interval,System.Boolean}.op_Equality(NodaTime.Interval,NodaTime.Interval)
+    name: ==
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  - name: (
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: )
+  spec.vb:
+  - name: =
+  - name: (
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: )
+- uid: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  commentId: M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  name: operator ==(TSelf, TOther)
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>.operator ==(TSelf, TOther)
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>.operator ==(TSelf, TOther)
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult).=(TSelf, TOther)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult).=(TSelf, TOther)
+  name.vb: =(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+    name: ==
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: =
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.Interval.op_Inequality*
+  commentId: Overload:NodaTime.Interval.op_Inequality
+  href: NodaTime.Interval.html#NodaTime_Interval_op_Inequality_NodaTime_Interval_NodaTime_Interval_
+  name: operator !=
+  nameWithType: Interval.operator !=
+  fullName: NodaTime.Interval.operator !=
+  nameWithType.vb: Interval.<>
+  fullName.vb: NodaTime.Interval.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Interval.op_Inequality*
+    name: '!='
+    href: NodaTime.Interval.html#NodaTime_Interval_op_Inequality_NodaTime_Interval_NodaTime_Interval_
+- uid: System.Numerics.IEqualityOperators{NodaTime.Interval,NodaTime.Interval,System.Boolean}.op_Inequality(NodaTime.Interval,NodaTime.Interval)
+  commentId: M:System.Numerics.IEqualityOperators{NodaTime.Interval,NodaTime.Interval,System.Boolean}.op_Inequality(NodaTime.Interval,NodaTime.Interval)
+  parent: System.Numerics.IEqualityOperators{NodaTime.Interval,NodaTime.Interval,System.Boolean}
+  definition: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  name: operator !=(Interval, Interval)
+  nameWithType: IEqualityOperators<Interval, Interval, bool>.operator !=(Interval, Interval)
+  fullName: System.Numerics.IEqualityOperators<NodaTime.Interval, NodaTime.Interval, bool>.operator !=(NodaTime.Interval, NodaTime.Interval)
+  nameWithType.vb: IEqualityOperators(Of Interval, Interval, Boolean).<>(Interval, Interval)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.Interval, NodaTime.Interval, Boolean).<>(NodaTime.Interval, NodaTime.Interval)
+  name.vb: <>(Interval, Interval)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators{NodaTime.Interval,NodaTime.Interval,System.Boolean}.op_Inequality(NodaTime.Interval,NodaTime.Interval)
+    name: '!='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  - name: (
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: )
+  spec.vb:
+  - name: <>
+  - name: (
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Interval
+    name: Interval
+    href: NodaTime.Interval.html
+  - name: )
+- uid: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  commentId: M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  name: operator !=(TSelf, TOther)
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>.operator !=(TSelf, TOther)
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>.operator !=(TSelf, TOther)
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult).<>(TSelf, TOther)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult).<>(TSelf, TOther)
+  name.vb: <>(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+    name: '!='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: <>
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: System.Xml.Serialization.XmlSchemaExporter
+  commentId: T:System.Xml.Serialization.XmlSchemaExporter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.xmlschemaexporter
+  name: XmlSchemaExporter
+  nameWithType: XmlSchemaExporter
+  fullName: System.Xml.Serialization.XmlSchemaExporter
+- uid: NodaTime.Interval.AddSchema*
+  commentId: Overload:NodaTime.Interval.AddSchema
+  href: NodaTime.Interval.html#NodaTime_Interval_AddSchema_System_Xml_Schema_XmlSchemaSet_
+  name: AddSchema
+  nameWithType: Interval.AddSchema
+  fullName: NodaTime.Interval.AddSchema
+- uid: System.Xml.Schema.XmlSchemaSet
+  commentId: T:System.Xml.Schema.XmlSchemaSet
+  parent: System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.schema.xmlschemaset
+  name: XmlSchemaSet
+  nameWithType: XmlSchemaSet
+  fullName: System.Xml.Schema.XmlSchemaSet
+- uid: System.Xml.XmlQualifiedName
+  commentId: T:System.Xml.XmlQualifiedName
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlqualifiedname
+  name: XmlQualifiedName
+  nameWithType: XmlQualifiedName
+  fullName: System.Xml.XmlQualifiedName
+- uid: System.Xml.Schema
+  commentId: N:System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Schema
+  nameWithType: System.Xml.Schema
+  fullName: System.Xml.Schema
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Schema
+    name: Schema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.schema
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Schema
+    name: Schema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.schema
+- uid: System.Xml
+  commentId: N:System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml
+  nameWithType: System.Xml
+  fullName: System.Xml
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+- uid: System.Xml.Serialization.XmlSchemaProviderAttribute
+  commentId: T:System.Xml.Serialization.XmlSchemaProviderAttribute
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.xmlschemaproviderattribute
+  name: XmlSchemaProviderAttribute
+  nameWithType: XmlSchemaProviderAttribute
+  fullName: System.Xml.Serialization.XmlSchemaProviderAttribute
+- uid: System.Xml.Schema.XmlSchema
+  commentId: T:System.Xml.Schema.XmlSchema
+  parent: System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.schema.xmlschema
+  name: XmlSchema
+  nameWithType: XmlSchema
+  fullName: System.Xml.Schema.XmlSchema
+- uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  commentId: M:System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  parent: System.Xml.Serialization.IXmlSerializable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  name: WriteXml(XmlWriter)
+  nameWithType: IXmlSerializable.WriteXml(XmlWriter)
+  fullName: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  - name: )
+  spec.vb:
+  - uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  - name: )
+- uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  commentId: M:System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  parent: System.Xml.Serialization.IXmlSerializable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  name: ReadXml(XmlReader)
+  nameWithType: IXmlSerializable.ReadXml(XmlReader)
+  fullName: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  - name: )
+  spec.vb:
+  - uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  - name: )
+- uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#GetSchema*
+  commentId: Overload:NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#GetSchema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.GetSchema
+  nameWithType: Interval.IXmlSerializable.GetSchema
+  fullName: NodaTime.Interval.System.Xml.Serialization.IXmlSerializable.GetSchema
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#GetSchema*
+    name: GetSchema
+    href: NodaTime.Interval.html#NodaTime_Interval_System_Xml_Serialization_IXmlSerializable_GetSchema
+- uid: System.Xml.XmlReader
+  commentId: T:System.Xml.XmlReader
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  name: XmlReader
+  nameWithType: XmlReader
+  fullName: System.Xml.XmlReader
+- uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#ReadXml*
+  commentId: Overload:NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#ReadXml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.ReadXml
+  nameWithType: Interval.IXmlSerializable.ReadXml
+  fullName: NodaTime.Interval.System.Xml.Serialization.IXmlSerializable.ReadXml
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#ReadXml*
+    name: ReadXml
+    href: NodaTime.Interval.html#NodaTime_Interval_System_Xml_Serialization_IXmlSerializable_ReadXml_System_Xml_XmlReader_
+- uid: System.Xml.XmlWriter
+  commentId: T:System.Xml.XmlWriter
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  name: XmlWriter
+  nameWithType: XmlWriter
+  fullName: System.Xml.XmlWriter
+- uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#WriteXml*
+  commentId: Overload:NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#WriteXml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.WriteXml
+  nameWithType: Interval.IXmlSerializable.WriteXml
+  fullName: NodaTime.Interval.System.Xml.Serialization.IXmlSerializable.WriteXml
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.Interval.System#Xml#Serialization#IXmlSerializable#WriteXml*
+    name: WriteXml
+    href: NodaTime.Interval.html#NodaTime_Interval_System_Xml_Serialization_IXmlSerializable_WriteXml_System_Xml_XmlWriter_
+shouldSkipMarkup: true

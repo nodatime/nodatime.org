@@ -1,0 +1,1259 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Text.InstantPattern
+  commentId: T:NodaTime.Text.InstantPattern
+  id: InstantPattern
+  parent: NodaTime.Text
+  children:
+  - NodaTime.Text.InstantPattern.AppendFormat(NodaTime.Instant,System.Text.StringBuilder)
+  - NodaTime.Text.InstantPattern.Create(System.String,System.Globalization.CultureInfo)
+  - NodaTime.Text.InstantPattern.CreateWithCurrentCulture(System.String)
+  - NodaTime.Text.InstantPattern.CreateWithInvariantCulture(System.String)
+  - NodaTime.Text.InstantPattern.ExtendedIso
+  - NodaTime.Text.InstantPattern.Format(NodaTime.Instant)
+  - NodaTime.Text.InstantPattern.General
+  - NodaTime.Text.InstantPattern.Parse(System.String)
+  - NodaTime.Text.InstantPattern.PatternText
+  - NodaTime.Text.InstantPattern.TemplateValue
+  - NodaTime.Text.InstantPattern.TwoDigitYearMax
+  - NodaTime.Text.InstantPattern.WithCulture(System.Globalization.CultureInfo)
+  - NodaTime.Text.InstantPattern.WithTemplateValue(NodaTime.Instant)
+  - NodaTime.Text.InstantPattern.WithTwoDigitYearMax(System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: InstantPattern
+  nameWithType: InstantPattern
+  fullName: NodaTime.Text.InstantPattern
+  type: Class
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Represents a pattern for parsing and formatting <xref href="NodaTime.Instant" data-throw-if-not-resolved="false"></xref> values.
+  example: []
+  syntax:
+    content: 'public sealed class InstantPattern : IPattern<Instant>'
+    content.vb: Public NotInheritable Class InstantPattern Implements IPattern(Of Instant)
+  inheritance:
+  - System.Object
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.Instant}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: NodaTime.Text.InstantPattern.General
+  commentId: P:NodaTime.Text.InstantPattern.General
+  id: General
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: General
+  nameWithType: InstantPattern.General
+  fullName: NodaTime.Text.InstantPattern.General
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Gets the general pattern, which always uses an invariant culture. The general pattern represents
+
+    an instant as a UTC date/time in ISO-8601 style "uuuu-MM-ddTHH:mm:ss'Z'".
+  example: []
+  syntax:
+    content: public static InstantPattern General { get; }
+    parameters: []
+    return:
+      type: NodaTime.Text.InstantPattern
+      description: The general pattern, which always uses an invariant culture.
+    content.vb: Public Shared ReadOnly Property General As InstantPattern
+  overload: NodaTime.Text.InstantPattern.General*
+- uid: NodaTime.Text.InstantPattern.ExtendedIso
+  commentId: P:NodaTime.Text.InstantPattern.ExtendedIso
+  id: ExtendedIso
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: ExtendedIso
+  nameWithType: InstantPattern.ExtendedIso
+  fullName: NodaTime.Text.InstantPattern.ExtendedIso
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Gets an invariant instant pattern which is ISO-8601 compatible, providing up to 9 decimal places
+
+    of sub-second accuracy. (These digits are omitted when unnecessary.)
+
+    This corresponds to the text pattern "uuuu'-'MM'-'dd'T'HH':'mm':'ss;FFFFFFFFF'Z'".
+  example: []
+  syntax:
+    content: public static InstantPattern ExtendedIso { get; }
+    parameters: []
+    return:
+      type: NodaTime.Text.InstantPattern
+      description: >-
+        An invariant instant pattern which is ISO-8601 compatible, providing up to 9 decimal places
+            of sub-second accuracy.
+    content.vb: Public Shared ReadOnly Property ExtendedIso As InstantPattern
+  overload: NodaTime.Text.InstantPattern.ExtendedIso*
+- uid: NodaTime.Text.InstantPattern.PatternText
+  commentId: P:NodaTime.Text.InstantPattern.PatternText
+  id: PatternText
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: PatternText
+  nameWithType: InstantPattern.PatternText
+  fullName: NodaTime.Text.InstantPattern.PatternText
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Gets the pattern text for this pattern, as supplied on creation.
+  example: []
+  syntax:
+    content: public string PatternText { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The pattern text for this pattern, as supplied on creation.
+    content.vb: Public ReadOnly Property PatternText As String
+  overload: NodaTime.Text.InstantPattern.PatternText*
+- uid: NodaTime.Text.InstantPattern.TemplateValue
+  commentId: P:NodaTime.Text.InstantPattern.TemplateValue
+  id: TemplateValue
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: TemplateValue
+  nameWithType: InstantPattern.TemplateValue
+  fullName: NodaTime.Text.InstantPattern.TemplateValue
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Gets the value used as a template for parsing: any field values unspecified
+
+    in the pattern are taken from the template.
+  example: []
+  syntax:
+    content: public Instant TemplateValue { get; }
+    parameters: []
+    return:
+      type: NodaTime.Instant
+      description: The value used as a template for parsing.
+    content.vb: Public ReadOnly Property TemplateValue As Instant
+  overload: NodaTime.Text.InstantPattern.TemplateValue*
+- uid: NodaTime.Text.InstantPattern.TwoDigitYearMax
+  commentId: P:NodaTime.Text.InstantPattern.TwoDigitYearMax
+  id: TwoDigitYearMax
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: TwoDigitYearMax
+  nameWithType: InstantPattern.TwoDigitYearMax
+  fullName: NodaTime.Text.InstantPattern.TwoDigitYearMax
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Maximum two-digit-year in the template to treat as the current century.
+
+    If the value parsed is higher than this, the result is adjusted to the previous century.
+
+    This value defaults to 30. To create a pattern with a different value, use <xref href="NodaTime.Text.InstantPattern.WithTwoDigitYearMax(System.Int32)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public int TwoDigitYearMax { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The value used for the maximum two-digit-year, in the range 0-99 inclusive.
+    content.vb: Public ReadOnly Property TwoDigitYearMax As Integer
+  overload: NodaTime.Text.InstantPattern.TwoDigitYearMax*
+- uid: NodaTime.Text.InstantPattern.Parse(System.String)
+  commentId: M:NodaTime.Text.InstantPattern.Parse(System.String)
+  id: Parse(System.String)
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: Parse(string)
+  nameWithType: InstantPattern.Parse(string)
+  fullName: NodaTime.Text.InstantPattern.Parse(string)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Parses the given text value according to the rules of this pattern.
+  remarks: >-
+    This method never throws an exception (barring a bug in Noda Time itself). Even errors such as
+
+    the argument being null are wrapped in a parse result.
+  example: []
+  syntax:
+    content: public ParseResult<Instant> Parse(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text value to parse.
+    return:
+      type: NodaTime.Text.ParseResult{NodaTime.Instant}
+      description: The result of parsing, which may be successful or unsuccessful.
+    content.vb: Public Function Parse(text As String) As ParseResult(Of Instant)
+  overload: NodaTime.Text.InstantPattern.Parse*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.Instant}.Parse(System.String)
+  nameWithType.vb: InstantPattern.Parse(String)
+  fullName.vb: NodaTime.Text.InstantPattern.Parse(String)
+  name.vb: Parse(String)
+- uid: NodaTime.Text.InstantPattern.Format(NodaTime.Instant)
+  commentId: M:NodaTime.Text.InstantPattern.Format(NodaTime.Instant)
+  id: Format(NodaTime.Instant)
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: Format(Instant)
+  nameWithType: InstantPattern.Format(Instant)
+  fullName: NodaTime.Text.InstantPattern.Format(NodaTime.Instant)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Formats the given instant as text according to the rules of this pattern.
+  example: []
+  syntax:
+    content: public string Format(Instant value)
+    parameters:
+    - id: value
+      type: NodaTime.Instant
+      description: The instant to format.
+    return:
+      type: System.String
+      description: The instant formatted according to this pattern.
+    content.vb: Public Function Format(value As Instant) As String
+  overload: NodaTime.Text.InstantPattern.Format*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.Instant}.Format(NodaTime.Instant)
+- uid: NodaTime.Text.InstantPattern.AppendFormat(NodaTime.Instant,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.InstantPattern.AppendFormat(NodaTime.Instant,System.Text.StringBuilder)
+  id: AppendFormat(NodaTime.Instant,System.Text.StringBuilder)
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: AppendFormat(Instant, StringBuilder)
+  nameWithType: InstantPattern.AppendFormat(Instant, StringBuilder)
+  fullName: NodaTime.Text.InstantPattern.AppendFormat(NodaTime.Instant, System.Text.StringBuilder)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Formats the given value as text according to the rules of this pattern,
+
+    appending to the given <xref href="System.Text.StringBuilder" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public StringBuilder AppendFormat(Instant value, StringBuilder builder)
+    parameters:
+    - id: value
+      type: NodaTime.Instant
+      description: The value to format.
+    - id: builder
+      type: System.Text.StringBuilder
+      description: The <code>StringBuilder</code> to append to.
+    return:
+      type: System.Text.StringBuilder
+      description: The builder passed in as <code class="paramref">builder</code>.
+    content.vb: Public Function AppendFormat(value As Instant, builder As StringBuilder) As StringBuilder
+  overload: NodaTime.Text.InstantPattern.AppendFormat*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.Instant}.AppendFormat(NodaTime.Instant,System.Text.StringBuilder)
+- uid: NodaTime.Text.InstantPattern.Create(System.String,System.Globalization.CultureInfo)
+  commentId: M:NodaTime.Text.InstantPattern.Create(System.String,System.Globalization.CultureInfo)
+  id: Create(System.String,System.Globalization.CultureInfo)
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: Create(string, CultureInfo)
+  nameWithType: InstantPattern.Create(string, CultureInfo)
+  fullName: NodaTime.Text.InstantPattern.Create(string, System.Globalization.CultureInfo)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Creates a pattern for the given pattern text and culture.
+  remarks: See the user guide for the available pattern text options.
+  example: []
+  syntax:
+    content: public static InstantPattern Create(string patternText, CultureInfo cultureInfo)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: Pattern text to create the pattern for
+    - id: cultureInfo
+      type: System.Globalization.CultureInfo
+      description: The culture to use in the pattern
+    return:
+      type: NodaTime.Text.InstantPattern
+      description: A pattern for parsing and formatting instants.
+    content.vb: Public Shared Function Create(patternText As String, cultureInfo As CultureInfo) As InstantPattern
+  overload: NodaTime.Text.InstantPattern.Create*
+  exceptions:
+  - type: NodaTime.Text.InvalidPatternException
+    commentId: T:NodaTime.Text.InvalidPatternException
+    description: The pattern text was invalid.
+  nameWithType.vb: InstantPattern.Create(String, CultureInfo)
+  fullName.vb: NodaTime.Text.InstantPattern.Create(String, System.Globalization.CultureInfo)
+  name.vb: Create(String, CultureInfo)
+- uid: NodaTime.Text.InstantPattern.CreateWithCurrentCulture(System.String)
+  commentId: M:NodaTime.Text.InstantPattern.CreateWithCurrentCulture(System.String)
+  id: CreateWithCurrentCulture(System.String)
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: CreateWithCurrentCulture(string)
+  nameWithType: InstantPattern.CreateWithCurrentCulture(string)
+  fullName: NodaTime.Text.InstantPattern.CreateWithCurrentCulture(string)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Creates a pattern for the given pattern text in the current thread's current culture.
+  remarks: >-
+    See the user guide for the available pattern text options. Note that the current culture
+
+    is captured at the time this method is called - it is not captured at the point of parsing
+
+    or formatting values.
+  example: []
+  syntax:
+    content: public static InstantPattern CreateWithCurrentCulture(string patternText)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: Pattern text to create the pattern for
+    return:
+      type: NodaTime.Text.InstantPattern
+      description: A pattern for parsing and formatting instants.
+    content.vb: Public Shared Function CreateWithCurrentCulture(patternText As String) As InstantPattern
+  overload: NodaTime.Text.InstantPattern.CreateWithCurrentCulture*
+  exceptions:
+  - type: NodaTime.Text.InvalidPatternException
+    commentId: T:NodaTime.Text.InvalidPatternException
+    description: The pattern text was invalid.
+  nameWithType.vb: InstantPattern.CreateWithCurrentCulture(String)
+  fullName.vb: NodaTime.Text.InstantPattern.CreateWithCurrentCulture(String)
+  name.vb: CreateWithCurrentCulture(String)
+- uid: NodaTime.Text.InstantPattern.CreateWithInvariantCulture(System.String)
+  commentId: M:NodaTime.Text.InstantPattern.CreateWithInvariantCulture(System.String)
+  id: CreateWithInvariantCulture(System.String)
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: CreateWithInvariantCulture(string)
+  nameWithType: InstantPattern.CreateWithInvariantCulture(string)
+  fullName: NodaTime.Text.InstantPattern.CreateWithInvariantCulture(string)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Creates a pattern for the given pattern text in the invariant culture.
+  remarks: See the user guide for the available pattern text options.
+  example: []
+  syntax:
+    content: public static InstantPattern CreateWithInvariantCulture(string patternText)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: Pattern text to create the pattern for
+    return:
+      type: NodaTime.Text.InstantPattern
+      description: A pattern for parsing and formatting instants.
+    content.vb: Public Shared Function CreateWithInvariantCulture(patternText As String) As InstantPattern
+  overload: NodaTime.Text.InstantPattern.CreateWithInvariantCulture*
+  exceptions:
+  - type: NodaTime.Text.InvalidPatternException
+    commentId: T:NodaTime.Text.InvalidPatternException
+    description: The pattern text was invalid.
+  nameWithType.vb: InstantPattern.CreateWithInvariantCulture(String)
+  fullName.vb: NodaTime.Text.InstantPattern.CreateWithInvariantCulture(String)
+  name.vb: CreateWithInvariantCulture(String)
+- uid: NodaTime.Text.InstantPattern.WithCulture(System.Globalization.CultureInfo)
+  commentId: M:NodaTime.Text.InstantPattern.WithCulture(System.Globalization.CultureInfo)
+  id: WithCulture(System.Globalization.CultureInfo)
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: WithCulture(CultureInfo)
+  nameWithType: InstantPattern.WithCulture(CultureInfo)
+  fullName: NodaTime.Text.InstantPattern.WithCulture(System.Globalization.CultureInfo)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Creates a pattern for the same original pattern text as this pattern, but with the specified
+
+    culture.
+  example: []
+  syntax:
+    content: public InstantPattern WithCulture(CultureInfo cultureInfo)
+    parameters:
+    - id: cultureInfo
+      type: System.Globalization.CultureInfo
+      description: The culture to use in the new pattern.
+    return:
+      type: NodaTime.Text.InstantPattern
+      description: A new pattern with the given culture.
+    content.vb: Public Function WithCulture(cultureInfo As CultureInfo) As InstantPattern
+  overload: NodaTime.Text.InstantPattern.WithCulture*
+- uid: NodaTime.Text.InstantPattern.WithTemplateValue(NodaTime.Instant)
+  commentId: M:NodaTime.Text.InstantPattern.WithTemplateValue(NodaTime.Instant)
+  id: WithTemplateValue(NodaTime.Instant)
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: WithTemplateValue(Instant)
+  nameWithType: InstantPattern.WithTemplateValue(Instant)
+  fullName: NodaTime.Text.InstantPattern.WithTemplateValue(NodaTime.Instant)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Creates a pattern like this one, but with the specified template value.
+  example: []
+  syntax:
+    content: public InstantPattern WithTemplateValue(Instant newTemplateValue)
+    parameters:
+    - id: newTemplateValue
+      type: NodaTime.Instant
+      description: The template value for the new pattern, used to fill in unspecified fields.
+    return:
+      type: NodaTime.Text.InstantPattern
+      description: A new pattern with the given template value.
+    content.vb: Public Function WithTemplateValue(newTemplateValue As Instant) As InstantPattern
+  overload: NodaTime.Text.InstantPattern.WithTemplateValue*
+- uid: NodaTime.Text.InstantPattern.WithTwoDigitYearMax(System.Int32)
+  commentId: M:NodaTime.Text.InstantPattern.WithTwoDigitYearMax(System.Int32)
+  id: WithTwoDigitYearMax(System.Int32)
+  parent: NodaTime.Text.InstantPattern
+  langs:
+  - csharp
+  - vb
+  name: WithTwoDigitYearMax(int)
+  nameWithType: InstantPattern.WithTwoDigitYearMax(int)
+  fullName: NodaTime.Text.InstantPattern.WithTwoDigitYearMax(int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Creates a pattern like this one, but with a different <xref href="NodaTime.Text.InstantPattern.TwoDigitYearMax" data-throw-if-not-resolved="false"></xref> value.
+  example: []
+  syntax:
+    content: public InstantPattern WithTwoDigitYearMax(int twoDigitYearMax)
+    parameters:
+    - id: twoDigitYearMax
+      type: System.Int32
+      description: The value to use for <xref href="NodaTime.Text.InstantPattern.TwoDigitYearMax" data-throw-if-not-resolved="false"></xref> in the new pattern, in the range 0-99 inclusive.
+    return:
+      type: NodaTime.Text.InstantPattern
+      description: A new pattern with the specified maximum two-digit-year.
+    content.vb: Public Function WithTwoDigitYearMax(twoDigitYearMax As Integer) As InstantPattern
+  overload: NodaTime.Text.InstantPattern.WithTwoDigitYearMax*
+  nameWithType.vb: InstantPattern.WithTwoDigitYearMax(Integer)
+  fullName.vb: NodaTime.Text.InstantPattern.WithTwoDigitYearMax(Integer)
+  name.vb: WithTwoDigitYearMax(Integer)
+references:
+- uid: NodaTime.Instant
+  commentId: T:NodaTime.Instant
+  parent: NodaTime
+  href: NodaTime.Instant.html
+  name: Instant
+  nameWithType: Instant
+  fullName: NodaTime.Instant
+- uid: System.Globalization.CultureInfo
+  commentId: T:System.Globalization.CultureInfo
+  parent: System.Globalization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo
+  name: CultureInfo
+  nameWithType: CultureInfo
+  fullName: System.Globalization.CultureInfo
+- uid: NodaTime.Text
+  commentId: N:NodaTime.Text
+  href: NodaTime.html
+  name: NodaTime.Text
+  nameWithType: NodaTime.Text
+  fullName: NodaTime.Text
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Text
+    name: Text
+    href: NodaTime.Text.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Text
+    name: Text
+    href: NodaTime.Text.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: NodaTime.Text.IPattern{NodaTime.Instant}
+  commentId: T:NodaTime.Text.IPattern{NodaTime.Instant}
+  parent: NodaTime.Text
+  definition: NodaTime.Text.IPattern`1
+  href: NodaTime.Text.IPattern-1.html
+  name: IPattern<Instant>
+  nameWithType: IPattern<Instant>
+  fullName: NodaTime.Text.IPattern<NodaTime.Instant>
+  nameWithType.vb: IPattern(Of Instant)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.Instant)
+  name.vb: IPattern(Of Instant)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: <
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.Globalization
+  commentId: N:System.Globalization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Globalization
+  nameWithType: System.Globalization
+  fullName: System.Globalization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Globalization
+    name: Globalization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Globalization
+    name: Globalization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NodaTime.Text.IPattern`1
+  commentId: T:NodaTime.Text.IPattern`1
+  href: NodaTime.Text.IPattern-1.html
+  name: IPattern<T>
+  nameWithType: IPattern<T>
+  fullName: NodaTime.Text.IPattern<T>
+  nameWithType.vb: IPattern(Of T)
+  fullName.vb: NodaTime.Text.IPattern(Of T)
+  name.vb: IPattern(Of T)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: NodaTime.Text.InstantPattern.General*
+  commentId: Overload:NodaTime.Text.InstantPattern.General
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_General
+  name: General
+  nameWithType: InstantPattern.General
+  fullName: NodaTime.Text.InstantPattern.General
+- uid: NodaTime.Text.InstantPattern
+  commentId: T:NodaTime.Text.InstantPattern
+  parent: NodaTime.Text
+  href: NodaTime.Text.InstantPattern.html
+  name: InstantPattern
+  nameWithType: InstantPattern
+  fullName: NodaTime.Text.InstantPattern
+- uid: NodaTime.Text.InstantPattern.ExtendedIso*
+  commentId: Overload:NodaTime.Text.InstantPattern.ExtendedIso
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_ExtendedIso
+  name: ExtendedIso
+  nameWithType: InstantPattern.ExtendedIso
+  fullName: NodaTime.Text.InstantPattern.ExtendedIso
+- uid: NodaTime.Text.InstantPattern.PatternText*
+  commentId: Overload:NodaTime.Text.InstantPattern.PatternText
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_PatternText
+  name: PatternText
+  nameWithType: InstantPattern.PatternText
+  fullName: NodaTime.Text.InstantPattern.PatternText
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: NodaTime.Text.InstantPattern.TemplateValue*
+  commentId: Overload:NodaTime.Text.InstantPattern.TemplateValue
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_TemplateValue
+  name: TemplateValue
+  nameWithType: InstantPattern.TemplateValue
+  fullName: NodaTime.Text.InstantPattern.TemplateValue
+- uid: NodaTime.Text.InstantPattern.WithTwoDigitYearMax(System.Int32)
+  commentId: M:NodaTime.Text.InstantPattern.WithTwoDigitYearMax(System.Int32)
+  isExternal: true
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_WithTwoDigitYearMax_System_Int32_
+  name: WithTwoDigitYearMax(int)
+  nameWithType: InstantPattern.WithTwoDigitYearMax(int)
+  fullName: NodaTime.Text.InstantPattern.WithTwoDigitYearMax(int)
+  nameWithType.vb: InstantPattern.WithTwoDigitYearMax(Integer)
+  fullName.vb: NodaTime.Text.InstantPattern.WithTwoDigitYearMax(Integer)
+  name.vb: WithTwoDigitYearMax(Integer)
+  spec.csharp:
+  - uid: NodaTime.Text.InstantPattern.WithTwoDigitYearMax(System.Int32)
+    name: WithTwoDigitYearMax
+    href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_WithTwoDigitYearMax_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.InstantPattern.WithTwoDigitYearMax(System.Int32)
+    name: WithTwoDigitYearMax
+    href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_WithTwoDigitYearMax_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: NodaTime.Text.InstantPattern.TwoDigitYearMax*
+  commentId: Overload:NodaTime.Text.InstantPattern.TwoDigitYearMax
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_TwoDigitYearMax
+  name: TwoDigitYearMax
+  nameWithType: InstantPattern.TwoDigitYearMax
+  fullName: NodaTime.Text.InstantPattern.TwoDigitYearMax
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: NodaTime.Text.InstantPattern.Parse*
+  commentId: Overload:NodaTime.Text.InstantPattern.Parse
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_Parse_System_String_
+  name: Parse
+  nameWithType: InstantPattern.Parse
+  fullName: NodaTime.Text.InstantPattern.Parse
+- uid: NodaTime.Text.IPattern{NodaTime.Instant}.Parse(System.String)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.Instant}.Parse(System.String)
+  parent: NodaTime.Text.IPattern{NodaTime.Instant}
+  definition: NodaTime.Text.IPattern`1.Parse(System.String)
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  name: Parse(string)
+  nameWithType: IPattern<Instant>.Parse(string)
+  fullName: NodaTime.Text.IPattern<NodaTime.Instant>.Parse(string)
+  nameWithType.vb: IPattern(Of Instant).Parse(String)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.Instant).Parse(String)
+  name.vb: Parse(String)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern{NodaTime.Instant}.Parse(System.String)
+    name: Parse
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern{NodaTime.Instant}.Parse(System.String)
+    name: Parse
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NodaTime.Text.ParseResult{NodaTime.Instant}
+  commentId: T:NodaTime.Text.ParseResult{NodaTime.Instant}
+  parent: NodaTime.Text
+  definition: NodaTime.Text.ParseResult`1
+  href: NodaTime.Text.ParseResult-1.html
+  name: ParseResult<Instant>
+  nameWithType: ParseResult<Instant>
+  fullName: NodaTime.Text.ParseResult<NodaTime.Instant>
+  nameWithType.vb: ParseResult(Of Instant)
+  fullName.vb: NodaTime.Text.ParseResult(Of NodaTime.Instant)
+  name.vb: ParseResult(Of Instant)
+  spec.csharp:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    href: NodaTime.Text.ParseResult-1.html
+  - name: <
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    href: NodaTime.Text.ParseResult-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: )
+- uid: NodaTime.Text.IPattern`1.Parse(System.String)
+  commentId: M:NodaTime.Text.IPattern`1.Parse(System.String)
+  isExternal: true
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  name: Parse(string)
+  nameWithType: IPattern<T>.Parse(string)
+  fullName: NodaTime.Text.IPattern<T>.Parse(string)
+  nameWithType.vb: IPattern(Of T).Parse(String)
+  fullName.vb: NodaTime.Text.IPattern(Of T).Parse(String)
+  name.vb: Parse(String)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NodaTime.Text.ParseResult`1
+  commentId: T:NodaTime.Text.ParseResult`1
+  parent: NodaTime.Text
+  href: NodaTime.Text.ParseResult-1.html
+  name: ParseResult<T>
+  nameWithType: ParseResult<T>
+  fullName: NodaTime.Text.ParseResult<T>
+  nameWithType.vb: ParseResult(Of T)
+  fullName.vb: NodaTime.Text.ParseResult(Of T)
+  name.vb: ParseResult(Of T)
+  spec.csharp:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    href: NodaTime.Text.ParseResult-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    href: NodaTime.Text.ParseResult-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: NodaTime.Text.InstantPattern.Format*
+  commentId: Overload:NodaTime.Text.InstantPattern.Format
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_Format_NodaTime_Instant_
+  name: Format
+  nameWithType: InstantPattern.Format
+  fullName: NodaTime.Text.InstantPattern.Format
+- uid: NodaTime.Text.IPattern{NodaTime.Instant}.Format(NodaTime.Instant)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.Instant}.Format(NodaTime.Instant)
+  parent: NodaTime.Text.IPattern{NodaTime.Instant}
+  definition: NodaTime.Text.IPattern`1.Format(`0)
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  name: Format(Instant)
+  nameWithType: IPattern<Instant>.Format(Instant)
+  fullName: NodaTime.Text.IPattern<NodaTime.Instant>.Format(NodaTime.Instant)
+  nameWithType.vb: IPattern(Of Instant).Format(Instant)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.Instant).Format(NodaTime.Instant)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern{NodaTime.Instant}.Format(NodaTime.Instant)
+    name: Format
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern{NodaTime.Instant}.Format(NodaTime.Instant)
+    name: Format
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: )
+- uid: NodaTime.Text.IPattern`1.Format(`0)
+  commentId: M:NodaTime.Text.IPattern`1.Format(`0)
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  name: Format(T)
+  nameWithType: IPattern<T>.Format(T)
+  fullName: NodaTime.Text.IPattern<T>.Format(T)
+  nameWithType.vb: IPattern(Of T).Format(T)
+  fullName.vb: NodaTime.Text.IPattern(Of T).Format(T)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  - name: (
+  - name: T
+  - name: )
+- uid: System.Text.StringBuilder
+  commentId: T:System.Text.StringBuilder
+  parent: System.Text
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  name: StringBuilder
+  nameWithType: StringBuilder
+  fullName: System.Text.StringBuilder
+- uid: NodaTime.Text.InstantPattern.AppendFormat*
+  commentId: Overload:NodaTime.Text.InstantPattern.AppendFormat
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_AppendFormat_NodaTime_Instant_System_Text_StringBuilder_
+  name: AppendFormat
+  nameWithType: InstantPattern.AppendFormat
+  fullName: NodaTime.Text.InstantPattern.AppendFormat
+- uid: NodaTime.Text.IPattern{NodaTime.Instant}.AppendFormat(NodaTime.Instant,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.Instant}.AppendFormat(NodaTime.Instant,System.Text.StringBuilder)
+  parent: NodaTime.Text.IPattern{NodaTime.Instant}
+  definition: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  name: AppendFormat(Instant, StringBuilder)
+  nameWithType: IPattern<Instant>.AppendFormat(Instant, StringBuilder)
+  fullName: NodaTime.Text.IPattern<NodaTime.Instant>.AppendFormat(NodaTime.Instant, System.Text.StringBuilder)
+  nameWithType.vb: IPattern(Of Instant).AppendFormat(Instant, StringBuilder)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.Instant).AppendFormat(NodaTime.Instant, System.Text.StringBuilder)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern{NodaTime.Instant}.AppendFormat(NodaTime.Instant,System.Text.StringBuilder)
+    name: AppendFormat
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: ','
+  - name: " "
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern{NodaTime.Instant}.AppendFormat(NodaTime.Instant,System.Text.StringBuilder)
+    name: AppendFormat
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  - name: (
+  - uid: NodaTime.Instant
+    name: Instant
+    href: NodaTime.Instant.html
+  - name: ','
+  - name: " "
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+- uid: System.Text
+  commentId: N:System.Text
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text
+  nameWithType: System.Text
+  fullName: System.Text
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+- uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  isExternal: true
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  name: AppendFormat(T, StringBuilder)
+  nameWithType: IPattern<T>.AppendFormat(T, StringBuilder)
+  fullName: NodaTime.Text.IPattern<T>.AppendFormat(T, System.Text.StringBuilder)
+  nameWithType.vb: IPattern(Of T).AppendFormat(T, StringBuilder)
+  fullName.vb: NodaTime.Text.IPattern(Of T).AppendFormat(T, System.Text.StringBuilder)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+- uid: NodaTime.Text.InvalidPatternException
+  commentId: T:NodaTime.Text.InvalidPatternException
+  href: NodaTime.Text.InvalidPatternException.html
+  name: InvalidPatternException
+  nameWithType: InvalidPatternException
+  fullName: NodaTime.Text.InvalidPatternException
+- uid: NodaTime.Text.InstantPattern.Create*
+  commentId: Overload:NodaTime.Text.InstantPattern.Create
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_Create_System_String_System_Globalization_CultureInfo_
+  name: Create
+  nameWithType: InstantPattern.Create
+  fullName: NodaTime.Text.InstantPattern.Create
+- uid: NodaTime.Text.InstantPattern.CreateWithCurrentCulture*
+  commentId: Overload:NodaTime.Text.InstantPattern.CreateWithCurrentCulture
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_CreateWithCurrentCulture_System_String_
+  name: CreateWithCurrentCulture
+  nameWithType: InstantPattern.CreateWithCurrentCulture
+  fullName: NodaTime.Text.InstantPattern.CreateWithCurrentCulture
+- uid: NodaTime.Text.InstantPattern.CreateWithInvariantCulture*
+  commentId: Overload:NodaTime.Text.InstantPattern.CreateWithInvariantCulture
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_CreateWithInvariantCulture_System_String_
+  name: CreateWithInvariantCulture
+  nameWithType: InstantPattern.CreateWithInvariantCulture
+  fullName: NodaTime.Text.InstantPattern.CreateWithInvariantCulture
+- uid: NodaTime.Text.InstantPattern.WithCulture*
+  commentId: Overload:NodaTime.Text.InstantPattern.WithCulture
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_WithCulture_System_Globalization_CultureInfo_
+  name: WithCulture
+  nameWithType: InstantPattern.WithCulture
+  fullName: NodaTime.Text.InstantPattern.WithCulture
+- uid: NodaTime.Text.InstantPattern.WithTemplateValue*
+  commentId: Overload:NodaTime.Text.InstantPattern.WithTemplateValue
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_WithTemplateValue_NodaTime_Instant_
+  name: WithTemplateValue
+  nameWithType: InstantPattern.WithTemplateValue
+  fullName: NodaTime.Text.InstantPattern.WithTemplateValue
+- uid: NodaTime.Text.InstantPattern.TwoDigitYearMax
+  commentId: P:NodaTime.Text.InstantPattern.TwoDigitYearMax
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_TwoDigitYearMax
+  name: TwoDigitYearMax
+  nameWithType: InstantPattern.TwoDigitYearMax
+  fullName: NodaTime.Text.InstantPattern.TwoDigitYearMax
+- uid: NodaTime.Text.InstantPattern.WithTwoDigitYearMax*
+  commentId: Overload:NodaTime.Text.InstantPattern.WithTwoDigitYearMax
+  href: NodaTime.Text.InstantPattern.html#NodaTime_Text_InstantPattern_WithTwoDigitYearMax_System_Int32_
+  name: WithTwoDigitYearMax
+  nameWithType: InstantPattern.WithTwoDigitYearMax
+  fullName: NodaTime.Text.InstantPattern.WithTwoDigitYearMax
+shouldSkipMarkup: true

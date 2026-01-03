@@ -1,0 +1,4395 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Offset
+  commentId: T:NodaTime.Offset
+  id: Offset
+  parent: NodaTime
+  children:
+  - NodaTime.Offset.Add(NodaTime.Offset,NodaTime.Offset)
+  - NodaTime.Offset.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  - NodaTime.Offset.AdditiveIdentity
+  - NodaTime.Offset.CompareTo(NodaTime.Offset)
+  - NodaTime.Offset.Equals(NodaTime.Offset)
+  - NodaTime.Offset.Equals(System.Object)
+  - NodaTime.Offset.FromHours(System.Int32)
+  - NodaTime.Offset.FromHoursAndMinutes(System.Int32,System.Int32)
+  - NodaTime.Offset.FromMilliseconds(System.Int32)
+  - NodaTime.Offset.FromNanoseconds(System.Int64)
+  - NodaTime.Offset.FromSeconds(System.Int32)
+  - NodaTime.Offset.FromTicks(System.Int64)
+  - NodaTime.Offset.FromTimeSpan(System.TimeSpan)
+  - NodaTime.Offset.GetHashCode
+  - NodaTime.Offset.Max(NodaTime.Offset,NodaTime.Offset)
+  - NodaTime.Offset.MaxValue
+  - NodaTime.Offset.Milliseconds
+  - NodaTime.Offset.Min(NodaTime.Offset,NodaTime.Offset)
+  - NodaTime.Offset.MinValue
+  - NodaTime.Offset.Minus(NodaTime.Offset)
+  - NodaTime.Offset.Nanoseconds
+  - NodaTime.Offset.Negate(NodaTime.Offset)
+  - NodaTime.Offset.Plus(NodaTime.Offset)
+  - NodaTime.Offset.Seconds
+  - NodaTime.Offset.Subtract(NodaTime.Offset,NodaTime.Offset)
+  - NodaTime.Offset.System#IComparable#CompareTo(System.Object)
+  - NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MaxValue
+  - NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MinValue
+  - NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#GetSchema
+  - NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  - NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  - NodaTime.Offset.Ticks
+  - NodaTime.Offset.ToString
+  - NodaTime.Offset.ToString(System.String,System.IFormatProvider)
+  - NodaTime.Offset.ToTimeSpan
+  - NodaTime.Offset.Zero
+  - NodaTime.Offset.op_Addition(NodaTime.Offset,NodaTime.Offset)
+  - NodaTime.Offset.op_Equality(NodaTime.Offset,NodaTime.Offset)
+  - NodaTime.Offset.op_GreaterThan(NodaTime.Offset,NodaTime.Offset)
+  - NodaTime.Offset.op_GreaterThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  - NodaTime.Offset.op_Inequality(NodaTime.Offset,NodaTime.Offset)
+  - NodaTime.Offset.op_LessThan(NodaTime.Offset,NodaTime.Offset)
+  - NodaTime.Offset.op_LessThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  - NodaTime.Offset.op_Subtraction(NodaTime.Offset,NodaTime.Offset)
+  - NodaTime.Offset.op_UnaryNegation(NodaTime.Offset)
+  - NodaTime.Offset.op_UnaryPlus(NodaTime.Offset)
+  langs:
+  - csharp
+  - vb
+  name: Offset
+  nameWithType: Offset
+  fullName: NodaTime.Offset
+  type: Struct
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    An offset from UTC in seconds. A positive value means that the local time is
+
+    ahead of UTC (e.g. for Europe); a negative value means that the local time is behind
+
+    UTC (e.g. for America).
+  remarks: >-
+    <p>
+
+    Offsets are always in the range of [-18, +18] hours. (Note that the ends are inclusive,
+
+    so an offset of 18 hours can be represented, but an offset of 18 hours and one second cannot.)
+
+    This allows all offsets within TZDB to be represented. The BCL <xref href="System.DateTimeOffset" data-throw-if-not-resolved="false"></xref> type
+
+    only allows offsets up to 14 hours, which means some historical data within TZDB could not be
+
+    represented.
+
+    </p>
+
+    <p>Offsets are represented with a granularity of one second. This allows all offsets within TZDB
+
+    to be represented. It is possible that it could present issues to some other time zone data sources,
+
+    but only in very rare historical cases (or fictional ones).</p>
+
+    <p>Equality and ordering are defined in the natural way by comparing the underlying number
+
+    of seconds. For example, this means that offsets for America are ordered before offsets in Europe.</p>
+
+    <p>The default value of this type is <xref href="NodaTime.Offset.Zero" data-throw-if-not-resolved="false"></xref>.</p>
+  example: []
+  syntax:
+    content: >-
+      [TypeConverter(typeof(OffsetTypeConverter))]
+
+      public readonly struct Offset : IEquatable<Offset>, IComparable<Offset>, IFormattable, IComparable, IXmlSerializable, IAdditionOperators<Offset, Offset, Offset>, ISubtractionOperators<Offset, Offset, Offset>, IUnaryNegationOperators<Offset, Offset>, IUnaryPlusOperators<Offset, Offset>, IComparisonOperators<Offset, Offset, bool>, IEqualityOperators<Offset, Offset, bool>, IMinMaxValue<Offset>, IAdditiveIdentity<Offset, Offset>
+    content.vb: >-
+      <TypeConverter(GetType(OffsetTypeConverter))>
+
+      Public Structure Offset Implements IEquatable(Of Offset), IComparable(Of Offset), IFormattable, IComparable, IXmlSerializable, IAdditionOperators(Of Offset, Offset, Offset), ISubtractionOperators(Of Offset, Offset, Offset), IUnaryNegationOperators(Of Offset, Offset), IUnaryPlusOperators(Of Offset, Offset), IComparisonOperators(Of Offset, Offset, Boolean), IEqualityOperators(Of Offset, Offset, Boolean), IMinMaxValue(Of Offset), IAdditiveIdentity(Of Offset, Offset)
+  implements:
+  - System.IEquatable{NodaTime.Offset}
+  - System.IComparable{NodaTime.Offset}
+  - System.IFormattable
+  - System.IComparable
+  - System.Xml.Serialization.IXmlSerializable
+  - System.Numerics.IAdditionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}
+  - System.Numerics.ISubtractionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}
+  - System.Numerics.IUnaryNegationOperators{NodaTime.Offset,NodaTime.Offset}
+  - System.Numerics.IUnaryPlusOperators{NodaTime.Offset,NodaTime.Offset}
+  - System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}
+  - System.Numerics.IEqualityOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}
+  - System.Numerics.IMinMaxValue{NodaTime.Offset}
+  - System.Numerics.IAdditiveIdentity{NodaTime.Offset,NodaTime.Offset}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: NodaTime.Offset.Zero
+  commentId: F:NodaTime.Offset.Zero
+  id: Zero
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Zero
+  nameWithType: Offset.Zero
+  fullName: NodaTime.Offset.Zero
+  type: Field
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: An offset of zero seconds - effectively the permanent offset for UTC.
+  example: []
+  syntax:
+    content: public static readonly Offset Zero
+    return:
+      type: NodaTime.Offset
+    content.vb: Public Shared ReadOnly Zero As Offset
+- uid: NodaTime.Offset.MinValue
+  commentId: F:NodaTime.Offset.MinValue
+  id: MinValue
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: MinValue
+  nameWithType: Offset.MinValue
+  fullName: NodaTime.Offset.MinValue
+  type: Field
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: The minimum permitted offset; 18 hours before UTC.
+  example: []
+  syntax:
+    content: public static readonly Offset MinValue
+    return:
+      type: NodaTime.Offset
+    content.vb: Public Shared ReadOnly MinValue As Offset
+- uid: NodaTime.Offset.MaxValue
+  commentId: F:NodaTime.Offset.MaxValue
+  id: MaxValue
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: MaxValue
+  nameWithType: Offset.MaxValue
+  fullName: NodaTime.Offset.MaxValue
+  type: Field
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: The maximum permitted offset; 18 hours after UTC.
+  example: []
+  syntax:
+    content: public static readonly Offset MaxValue
+    return:
+      type: NodaTime.Offset
+    content.vb: Public Shared ReadOnly MaxValue As Offset
+- uid: NodaTime.Offset.AdditiveIdentity
+  commentId: P:NodaTime.Offset.AdditiveIdentity
+  id: AdditiveIdentity
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: AdditiveIdentity
+  nameWithType: Offset.AdditiveIdentity
+  fullName: NodaTime.Offset.AdditiveIdentity
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the additive identity.
+  example: []
+  syntax:
+    content: public static Offset AdditiveIdentity { get; }
+    parameters: []
+    return:
+      type: NodaTime.Offset
+    content.vb: Public Shared ReadOnly Property AdditiveIdentity As Offset
+  overload: NodaTime.Offset.AdditiveIdentity*
+  implements:
+  - System.Numerics.IAdditiveIdentity{NodaTime.Offset,NodaTime.Offset}.AdditiveIdentity
+- uid: NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MinValue
+  commentId: P:NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MinValue
+  id: System#Numerics#IMinMaxValue{NodaTime#Offset}#MinValue
+  isEii: true
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: IMinMaxValue<Offset>.MinValue
+  nameWithType: Offset.IMinMaxValue<Offset>.MinValue
+  fullName: NodaTime.Offset.System.Numerics.IMinMaxValue<NodaTime.Offset>.MinValue
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: The minimum permitted offset; 18 hours before UTC.
+  example: []
+  syntax:
+    content: static Offset IMinMaxValue<Offset>.MinValue { get; }
+    parameters: []
+    return:
+      type: NodaTime.Offset
+    content.vb: Shared ReadOnly Property System.Numerics.IMinMaxValue<NodaTime.Offset>.MinValue As Offset
+  overload: NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MinValue*
+  implements:
+  - System.Numerics.IMinMaxValue{NodaTime.Offset}.MinValue
+  nameWithType.vb: Offset.System.Numerics.IMinMaxValue<NodaTime.Offset>.MinValue
+  name.vb: System.Numerics.IMinMaxValue<NodaTime.Offset>.MinValue
+- uid: NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MaxValue
+  commentId: P:NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MaxValue
+  id: System#Numerics#IMinMaxValue{NodaTime#Offset}#MaxValue
+  isEii: true
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: IMinMaxValue<Offset>.MaxValue
+  nameWithType: Offset.IMinMaxValue<Offset>.MaxValue
+  fullName: NodaTime.Offset.System.Numerics.IMinMaxValue<NodaTime.Offset>.MaxValue
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: The maximum permitted offset; 18 hours after UTC.
+  example: []
+  syntax:
+    content: static Offset IMinMaxValue<Offset>.MaxValue { get; }
+    parameters: []
+    return:
+      type: NodaTime.Offset
+    content.vb: Shared ReadOnly Property System.Numerics.IMinMaxValue<NodaTime.Offset>.MaxValue As Offset
+  overload: NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MaxValue*
+  implements:
+  - System.Numerics.IMinMaxValue{NodaTime.Offset}.MaxValue
+  nameWithType.vb: Offset.System.Numerics.IMinMaxValue<NodaTime.Offset>.MaxValue
+  name.vb: System.Numerics.IMinMaxValue<NodaTime.Offset>.MaxValue
+- uid: NodaTime.Offset.Seconds
+  commentId: P:NodaTime.Offset.Seconds
+  id: Seconds
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Seconds
+  nameWithType: Offset.Seconds
+  fullName: NodaTime.Offset.Seconds
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of seconds represented by this offset, which may be negative.
+  example: []
+  syntax:
+    content: public int Seconds { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The number of seconds represented by this offset, which may be negative.
+    content.vb: Public ReadOnly Property Seconds As Integer
+  overload: NodaTime.Offset.Seconds*
+- uid: NodaTime.Offset.Milliseconds
+  commentId: P:NodaTime.Offset.Milliseconds
+  id: Milliseconds
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Milliseconds
+  nameWithType: Offset.Milliseconds
+  fullName: NodaTime.Offset.Milliseconds
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of milliseconds represented by this offset, which may be negative.
+  remarks: >-
+    Offsets are only accurate to second precision; the number of seconds is simply multiplied
+
+    by 1,000 to give the number of milliseconds.
+  example: []
+  syntax:
+    content: public int Milliseconds { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The number of milliseconds represented by this offset, which may be negative.
+    content.vb: Public ReadOnly Property Milliseconds As Integer
+  overload: NodaTime.Offset.Milliseconds*
+- uid: NodaTime.Offset.Ticks
+  commentId: P:NodaTime.Offset.Ticks
+  id: Ticks
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Ticks
+  nameWithType: Offset.Ticks
+  fullName: NodaTime.Offset.Ticks
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of ticks represented by this offset, which may be negative.
+  remarks: >-
+    Offsets are only accurate to second precision; the number of seconds is simply multiplied
+
+    by 10,000,000 to give the number of ticks.
+  example: []
+  syntax:
+    content: public long Ticks { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of ticks.
+    content.vb: Public ReadOnly Property Ticks As Long
+  overload: NodaTime.Offset.Ticks*
+- uid: NodaTime.Offset.Nanoseconds
+  commentId: P:NodaTime.Offset.Nanoseconds
+  id: Nanoseconds
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Nanoseconds
+  nameWithType: Offset.Nanoseconds
+  fullName: NodaTime.Offset.Nanoseconds
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the number of nanoseconds represented by this offset, which may be negative.
+  remarks: >-
+    Offsets are only accurate to second precision; the number of seconds is simply multiplied
+
+    by 1,000,000,000 to give the number of nanoseconds.
+  example: []
+  syntax:
+    content: public long Nanoseconds { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: The number of nanoseconds.
+    content.vb: Public ReadOnly Property Nanoseconds As Long
+  overload: NodaTime.Offset.Nanoseconds*
+- uid: NodaTime.Offset.Max(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:NodaTime.Offset.Max(NodaTime.Offset,NodaTime.Offset)
+  id: Max(NodaTime.Offset,NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Max(Offset, Offset)
+  nameWithType: Offset.Max(Offset, Offset)
+  fullName: NodaTime.Offset.Max(NodaTime.Offset, NodaTime.Offset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns the greater offset of the given two, i.e. the one which will give a later local
+
+    time when added to an instant.
+  example: []
+  syntax:
+    content: public static Offset Max(Offset x, Offset y)
+    parameters:
+    - id: x
+      type: NodaTime.Offset
+      description: The first offset
+    - id: y
+      type: NodaTime.Offset
+      description: The second offset
+    return:
+      type: NodaTime.Offset
+      description: The greater offset of <code class="paramref">x</code> and <code class="paramref">y</code>.
+    content.vb: Public Shared Function Max(x As Offset, y As Offset) As Offset
+  overload: NodaTime.Offset.Max*
+- uid: NodaTime.Offset.Min(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:NodaTime.Offset.Min(NodaTime.Offset,NodaTime.Offset)
+  id: Min(NodaTime.Offset,NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Min(Offset, Offset)
+  nameWithType: Offset.Min(Offset, Offset)
+  fullName: NodaTime.Offset.Min(NodaTime.Offset, NodaTime.Offset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns the lower offset of the given two, i.e. the one which will give an earlier local
+
+    time when added to an instant.
+  example: []
+  syntax:
+    content: public static Offset Min(Offset x, Offset y)
+    parameters:
+    - id: x
+      type: NodaTime.Offset
+      description: The first offset
+    - id: y
+      type: NodaTime.Offset
+      description: The second offset
+    return:
+      type: NodaTime.Offset
+      description: The lower offset of <code class="paramref">x</code> and <code class="paramref">y</code>.
+    content.vb: Public Shared Function Min(x As Offset, y As Offset) As Offset
+  overload: NodaTime.Offset.Min*
+- uid: NodaTime.Offset.op_UnaryNegation(NodaTime.Offset)
+  commentId: M:NodaTime.Offset.op_UnaryNegation(NodaTime.Offset)
+  id: op_UnaryNegation(NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: operator -(Offset)
+  nameWithType: Offset.operator -(Offset)
+  fullName: NodaTime.Offset.operator -(NodaTime.Offset)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Implements the unary operator - (negation).
+  example: []
+  syntax:
+    content: public static Offset operator -(Offset offset)
+    parameters:
+    - id: offset
+      type: NodaTime.Offset
+      description: The offset to negate.
+    return:
+      type: NodaTime.Offset
+      description: A new <xref href="NodaTime.Offset" data-throw-if-not-resolved="false"></xref> instance with a negated value.
+    content.vb: Public Shared Operator -(offset As Offset) As Offset
+  overload: NodaTime.Offset.op_UnaryNegation*
+  implements:
+  - System.Numerics.IUnaryNegationOperators{NodaTime.Offset,NodaTime.Offset}.op_UnaryNegation(NodaTime.Offset)
+  nameWithType.vb: Offset.-(Offset)
+  fullName.vb: NodaTime.Offset.-(NodaTime.Offset)
+  name.vb: -(Offset)
+- uid: NodaTime.Offset.Negate(NodaTime.Offset)
+  commentId: M:NodaTime.Offset.Negate(NodaTime.Offset)
+  id: Negate(NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Negate(Offset)
+  nameWithType: Offset.Negate(Offset)
+  fullName: NodaTime.Offset.Negate(NodaTime.Offset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the negation of the specified offset. This is the method form of the unary minus operator.
+  example: []
+  syntax:
+    content: public static Offset Negate(Offset offset)
+    parameters:
+    - id: offset
+      type: NodaTime.Offset
+      description: The offset to negate.
+    return:
+      type: NodaTime.Offset
+      description: The negation of the specified offset.
+    content.vb: Public Shared Function Negate(offset As Offset) As Offset
+  overload: NodaTime.Offset.Negate*
+- uid: NodaTime.Offset.op_UnaryPlus(NodaTime.Offset)
+  commentId: M:NodaTime.Offset.op_UnaryPlus(NodaTime.Offset)
+  id: op_UnaryPlus(NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: operator +(Offset)
+  nameWithType: Offset.operator +(Offset)
+  fullName: NodaTime.Offset.operator +(NodaTime.Offset)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Implements the unary operator + .
+  remarks: >-
+    There is no method form of this operator; the <xref href="NodaTime.Offset.Plus(NodaTime.Offset)" data-throw-if-not-resolved="false"></xref> method is an instance
+        method for addition, and is more useful than a method form of this would be.
+  example: []
+  syntax:
+    content: public static Offset operator +(Offset offset)
+    parameters:
+    - id: offset
+      type: NodaTime.Offset
+      description: The operand.
+    return:
+      type: NodaTime.Offset
+      description: The same <xref href="NodaTime.Offset" data-throw-if-not-resolved="false"></xref> instance
+    content.vb: Public Shared Operator +(offset As Offset) As Offset
+  overload: NodaTime.Offset.op_UnaryPlus*
+  implements:
+  - System.Numerics.IUnaryPlusOperators{NodaTime.Offset,NodaTime.Offset}.op_UnaryPlus(NodaTime.Offset)
+  nameWithType.vb: Offset.+(Offset)
+  fullName.vb: NodaTime.Offset.+(NodaTime.Offset)
+  name.vb: +(Offset)
+- uid: NodaTime.Offset.op_Addition(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:NodaTime.Offset.op_Addition(NodaTime.Offset,NodaTime.Offset)
+  id: op_Addition(NodaTime.Offset,NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: operator +(Offset, Offset)
+  nameWithType: Offset.operator +(Offset, Offset)
+  fullName: NodaTime.Offset.operator +(NodaTime.Offset, NodaTime.Offset)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Implements the operator + (addition).
+  example: []
+  syntax:
+    content: public static Offset operator +(Offset left, Offset right)
+    parameters:
+    - id: left
+      type: NodaTime.Offset
+      description: The left hand side of the operator.
+    - id: right
+      type: NodaTime.Offset
+      description: The right hand side of the operator.
+    return:
+      type: NodaTime.Offset
+      description: A new <xref href="NodaTime.Offset" data-throw-if-not-resolved="false"></xref> representing the sum of the given values.
+    content.vb: Public Shared Operator +(left As Offset, right As Offset) As Offset
+  overload: NodaTime.Offset.op_Addition*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The result of the operation is outside the range of Offset.
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The result of the operation is outside the range of Offset.
+  implements:
+  - System.Numerics.IAdditionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}.op_Addition(NodaTime.Offset,NodaTime.Offset)
+  nameWithType.vb: Offset.+(Offset, Offset)
+  fullName.vb: NodaTime.Offset.+(NodaTime.Offset, NodaTime.Offset)
+  name.vb: +(Offset, Offset)
+- uid: NodaTime.Offset.Add(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:NodaTime.Offset.Add(NodaTime.Offset,NodaTime.Offset)
+  id: Add(NodaTime.Offset,NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Add(Offset, Offset)
+  nameWithType: Offset.Add(Offset, Offset)
+  fullName: NodaTime.Offset.Add(NodaTime.Offset, NodaTime.Offset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Adds one Offset to another. Friendly alternative to <code>operator+()</code>.
+  example: []
+  syntax:
+    content: public static Offset Add(Offset left, Offset right)
+    parameters:
+    - id: left
+      type: NodaTime.Offset
+      description: The left hand side of the operator.
+    - id: right
+      type: NodaTime.Offset
+      description: The right hand side of the operator.
+    return:
+      type: NodaTime.Offset
+      description: A new <xref href="NodaTime.Offset" data-throw-if-not-resolved="false"></xref> representing the sum of the given values.
+    content.vb: Public Shared Function Add(left As Offset, right As Offset) As Offset
+  overload: NodaTime.Offset.Add*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The result of the operation is outside the range of Offset.
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The result of the operation is outside the range of Offset.
+- uid: NodaTime.Offset.Plus(NodaTime.Offset)
+  commentId: M:NodaTime.Offset.Plus(NodaTime.Offset)
+  id: Plus(NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Plus(Offset)
+  nameWithType: Offset.Plus(Offset)
+  fullName: NodaTime.Offset.Plus(NodaTime.Offset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the result of adding another Offset to this one, for a fluent alternative to <code>operator+()</code>.
+  example: []
+  syntax:
+    content: public Offset Plus(Offset other)
+    parameters:
+    - id: other
+      type: NodaTime.Offset
+      description: The offset to add
+    return:
+      type: NodaTime.Offset
+      description: The result of adding the other offset to this one.
+    content.vb: Public Function Plus(other As Offset) As Offset
+  overload: NodaTime.Offset.Plus*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The result of the operation is outside the range of Offset.
+- uid: NodaTime.Offset.op_Subtraction(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:NodaTime.Offset.op_Subtraction(NodaTime.Offset,NodaTime.Offset)
+  id: op_Subtraction(NodaTime.Offset,NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: operator -(Offset, Offset)
+  nameWithType: Offset.operator -(Offset, Offset)
+  fullName: NodaTime.Offset.operator -(NodaTime.Offset, NodaTime.Offset)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Implements the operator - (subtraction).
+  example: []
+  syntax:
+    content: public static Offset operator -(Offset minuend, Offset subtrahend)
+    parameters:
+    - id: minuend
+      type: NodaTime.Offset
+      description: The left hand side of the operator.
+    - id: subtrahend
+      type: NodaTime.Offset
+      description: The right hand side of the operator.
+    return:
+      type: NodaTime.Offset
+      description: A new <xref href="NodaTime.Offset" data-throw-if-not-resolved="false"></xref> representing the difference of the given values.
+    content.vb: Public Shared Operator -(minuend As Offset, subtrahend As Offset) As Offset
+  overload: NodaTime.Offset.op_Subtraction*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The result of the operation is outside the range of Offset.
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The result of the operation is outside the range of Offset.
+  implements:
+  - System.Numerics.ISubtractionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}.op_Subtraction(NodaTime.Offset,NodaTime.Offset)
+  nameWithType.vb: Offset.-(Offset, Offset)
+  fullName.vb: NodaTime.Offset.-(NodaTime.Offset, NodaTime.Offset)
+  name.vb: -(Offset, Offset)
+- uid: NodaTime.Offset.Subtract(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:NodaTime.Offset.Subtract(NodaTime.Offset,NodaTime.Offset)
+  id: Subtract(NodaTime.Offset,NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Subtract(Offset, Offset)
+  nameWithType: Offset.Subtract(Offset, Offset)
+  fullName: NodaTime.Offset.Subtract(NodaTime.Offset, NodaTime.Offset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Subtracts one Offset from another. Friendly alternative to <code>operator-()</code>.
+  example: []
+  syntax:
+    content: public static Offset Subtract(Offset minuend, Offset subtrahend)
+    parameters:
+    - id: minuend
+      type: NodaTime.Offset
+      description: The left hand side of the operator.
+    - id: subtrahend
+      type: NodaTime.Offset
+      description: The right hand side of the operator.
+    return:
+      type: NodaTime.Offset
+      description: A new <xref href="NodaTime.Offset" data-throw-if-not-resolved="false"></xref> representing the difference of the given values.
+    content.vb: Public Shared Function Subtract(minuend As Offset, subtrahend As Offset) As Offset
+  overload: NodaTime.Offset.Subtract*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The result of the operation is outside the range of Offset.
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The result of the operation is outside the range of Offset.
+- uid: NodaTime.Offset.Minus(NodaTime.Offset)
+  commentId: M:NodaTime.Offset.Minus(NodaTime.Offset)
+  id: Minus(NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Minus(Offset)
+  nameWithType: Offset.Minus(Offset)
+  fullName: NodaTime.Offset.Minus(NodaTime.Offset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns the result of subtracting another Offset from this one, for a fluent alternative to <code>operator-()</code>.
+  example: []
+  syntax:
+    content: public Offset Minus(Offset other)
+    parameters:
+    - id: other
+      type: NodaTime.Offset
+      description: The offset to subtract
+    return:
+      type: NodaTime.Offset
+      description: The result of subtracting the other offset from this one.
+    content.vb: Public Function Minus(other As Offset) As Offset
+  overload: NodaTime.Offset.Minus*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The result of the operation is outside the range of Offset.
+- uid: NodaTime.Offset.op_Equality(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:NodaTime.Offset.op_Equality(NodaTime.Offset,NodaTime.Offset)
+  id: op_Equality(NodaTime.Offset,NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: operator ==(Offset, Offset)
+  nameWithType: Offset.operator ==(Offset, Offset)
+  fullName: NodaTime.Offset.operator ==(NodaTime.Offset, NodaTime.Offset)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator == (equality).
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public static bool operator ==(Offset left, Offset right)
+    parameters:
+    - id: left
+      type: NodaTime.Offset
+      description: The left hand side of the operator.
+    - id: right
+      type: NodaTime.Offset
+      description: The right hand side of the operator.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if values are equal to each other, otherwise <code>false</code>.
+    content.vb: Public Shared Operator =(left As Offset, right As Offset) As Boolean
+  overload: NodaTime.Offset.op_Equality*
+  implements:
+  - System.Numerics.IEqualityOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_Equality(NodaTime.Offset,NodaTime.Offset)
+  nameWithType.vb: Offset.=(Offset, Offset)
+  fullName.vb: NodaTime.Offset.=(NodaTime.Offset, NodaTime.Offset)
+  name.vb: =(Offset, Offset)
+- uid: NodaTime.Offset.op_Inequality(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:NodaTime.Offset.op_Inequality(NodaTime.Offset,NodaTime.Offset)
+  id: op_Inequality(NodaTime.Offset,NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: operator !=(Offset, Offset)
+  nameWithType: Offset.operator !=(Offset, Offset)
+  fullName: NodaTime.Offset.operator !=(NodaTime.Offset, NodaTime.Offset)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator != (inequality).
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public static bool operator !=(Offset left, Offset right)
+    parameters:
+    - id: left
+      type: NodaTime.Offset
+      description: The left hand side of the operator.
+    - id: right
+      type: NodaTime.Offset
+      description: The right hand side of the operator.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if values are not equal to each other, otherwise <code>false</code>.
+    content.vb: Public Shared Operator <>(left As Offset, right As Offset) As Boolean
+  overload: NodaTime.Offset.op_Inequality*
+  implements:
+  - System.Numerics.IEqualityOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_Inequality(NodaTime.Offset,NodaTime.Offset)
+  nameWithType.vb: Offset.<>(Offset, Offset)
+  fullName.vb: NodaTime.Offset.<>(NodaTime.Offset, NodaTime.Offset)
+  name.vb: <>(Offset, Offset)
+- uid: NodaTime.Offset.op_LessThan(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:NodaTime.Offset.op_LessThan(NodaTime.Offset,NodaTime.Offset)
+  id: op_LessThan(NodaTime.Offset,NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: operator <(Offset, Offset)
+  nameWithType: Offset.operator <(Offset, Offset)
+  fullName: NodaTime.Offset.operator <(NodaTime.Offset, NodaTime.Offset)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator &lt; (less than).
+
+    See the type documentation for a description of ordering semantics.
+  example: []
+  syntax:
+    content: public static bool operator <(Offset left, Offset right)
+    parameters:
+    - id: left
+      type: NodaTime.Offset
+      description: The left hand side of the operator.
+    - id: right
+      type: NodaTime.Offset
+      description: The right hand side of the operator.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the left value is less than the right value, otherwise <code>false</code>.
+    content.vb: Public Shared Operator <(left As Offset, right As Offset) As Boolean
+  overload: NodaTime.Offset.op_LessThan*
+  implements:
+  - System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_LessThan(NodaTime.Offset,NodaTime.Offset)
+  nameWithType.vb: Offset.<(Offset, Offset)
+  fullName.vb: NodaTime.Offset.<(NodaTime.Offset, NodaTime.Offset)
+  name.vb: <(Offset, Offset)
+- uid: NodaTime.Offset.op_LessThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:NodaTime.Offset.op_LessThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  id: op_LessThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: operator <=(Offset, Offset)
+  nameWithType: Offset.operator <=(Offset, Offset)
+  fullName: NodaTime.Offset.operator <=(NodaTime.Offset, NodaTime.Offset)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator &lt;= (less than or equal).
+
+    See the type documentation for a description of ordering semantics.
+  example: []
+  syntax:
+    content: public static bool operator <=(Offset left, Offset right)
+    parameters:
+    - id: left
+      type: NodaTime.Offset
+      description: The left hand side of the operator.
+    - id: right
+      type: NodaTime.Offset
+      description: The right hand side of the operator.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the left value is less than or equal to the right value, otherwise <code>false</code>.
+    content.vb: Public Shared Operator <=(left As Offset, right As Offset) As Boolean
+  overload: NodaTime.Offset.op_LessThanOrEqual*
+  implements:
+  - System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_LessThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  nameWithType.vb: Offset.<=(Offset, Offset)
+  fullName.vb: NodaTime.Offset.<=(NodaTime.Offset, NodaTime.Offset)
+  name.vb: <=(Offset, Offset)
+- uid: NodaTime.Offset.op_GreaterThan(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:NodaTime.Offset.op_GreaterThan(NodaTime.Offset,NodaTime.Offset)
+  id: op_GreaterThan(NodaTime.Offset,NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: operator >(Offset, Offset)
+  nameWithType: Offset.operator >(Offset, Offset)
+  fullName: NodaTime.Offset.operator >(NodaTime.Offset, NodaTime.Offset)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator &gt; (greater than).
+
+    See the type documentation for a description of ordering semantics.
+  example: []
+  syntax:
+    content: public static bool operator >(Offset left, Offset right)
+    parameters:
+    - id: left
+      type: NodaTime.Offset
+      description: The left hand side of the operator.
+    - id: right
+      type: NodaTime.Offset
+      description: The right hand side of the operator.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the left value is greater than the right value, otherwise <code>false</code>.
+    content.vb: Public Shared Operator >(left As Offset, right As Offset) As Boolean
+  overload: NodaTime.Offset.op_GreaterThan*
+  implements:
+  - System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_GreaterThan(NodaTime.Offset,NodaTime.Offset)
+  nameWithType.vb: Offset.>(Offset, Offset)
+  fullName.vb: NodaTime.Offset.>(NodaTime.Offset, NodaTime.Offset)
+  name.vb: '>(Offset, Offset)'
+- uid: NodaTime.Offset.op_GreaterThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:NodaTime.Offset.op_GreaterThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  id: op_GreaterThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: operator >=(Offset, Offset)
+  nameWithType: Offset.operator >=(Offset, Offset)
+  fullName: NodaTime.Offset.operator >=(NodaTime.Offset, NodaTime.Offset)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator &gt;= (greater than or equal).
+
+    See the type documentation for a description of ordering semantics.
+  example: []
+  syntax:
+    content: public static bool operator >=(Offset left, Offset right)
+    parameters:
+    - id: left
+      type: NodaTime.Offset
+      description: The left hand side of the operator.
+    - id: right
+      type: NodaTime.Offset
+      description: The right hand side of the operator.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the left value is greater than or equal to the right value, otherwise <code>false</code>.
+    content.vb: Public Shared Operator >=(left As Offset, right As Offset) As Boolean
+  overload: NodaTime.Offset.op_GreaterThanOrEqual*
+  implements:
+  - System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_GreaterThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  nameWithType.vb: Offset.>=(Offset, Offset)
+  fullName.vb: NodaTime.Offset.>=(NodaTime.Offset, NodaTime.Offset)
+  name.vb: '>=(Offset, Offset)'
+- uid: NodaTime.Offset.CompareTo(NodaTime.Offset)
+  commentId: M:NodaTime.Offset.CompareTo(NodaTime.Offset)
+  id: CompareTo(NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: CompareTo(Offset)
+  nameWithType: Offset.CompareTo(Offset)
+  fullName: NodaTime.Offset.CompareTo(NodaTime.Offset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Compares the current object with another object of the same type.
+
+    See the type documentation for a description of ordering semantics.
+  example: []
+  syntax:
+    content: public int CompareTo(Offset other)
+    parameters:
+    - id: other
+      type: NodaTime.Offset
+      description: An object to compare with this object.
+    return:
+      type: System.Int32
+      description: >-
+        A 32-bit signed integer that indicates the relative order of the objects being compared.
+
+        The return value has the following meanings:
+
+        <table><thead><tr><th class="term">Value</th><th class="description">Meaning</th></tr></thead><tbody><tr><td class="term">&lt; 0</td><td class="description">This object is less than the <code class="paramref">other</code> parameter.</td></tr><tr><td class="term">0</td><td class="description">This object is equal to <code class="paramref">other</code>.</td></tr><tr><td class="term">&gt; 0</td><td class="description">This object is greater than <code class="paramref">other</code>.</td></tr></tbody></table>
+    content.vb: Public Function CompareTo(other As Offset) As Integer
+  overload: NodaTime.Offset.CompareTo*
+  implements:
+  - System.IComparable{NodaTime.Offset}.CompareTo(NodaTime.Offset)
+- uid: NodaTime.Offset.System#IComparable#CompareTo(System.Object)
+  commentId: M:NodaTime.Offset.System#IComparable#CompareTo(System.Object)
+  id: System#IComparable#CompareTo(System.Object)
+  isEii: true
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: IComparable.CompareTo(object?)
+  nameWithType: Offset.IComparable.CompareTo(object?)
+  fullName: NodaTime.Offset.System.IComparable.CompareTo(object?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implementation of <xref href="System.IComparable.CompareTo(System.Object)" data-throw-if-not-resolved="false"></xref> to compare two offsets.
+
+    See the type documentation for a description of ordering semantics.
+  remarks: This uses explicit interface implementation to avoid it being called accidentally. The generic implementation should usually be preferred.
+  example: []
+  syntax:
+    content: int IComparable.CompareTo(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare this value with.
+    return:
+      type: System.Int32
+      description: >-
+        The result of comparing this instant with another one; see <xref href="NodaTime.Offset.CompareTo(NodaTime.Offset)" data-throw-if-not-resolved="false"></xref> for general details.
+            If <code class="paramref">obj</code> is null, this method returns a value greater than 0.
+    content.vb: ''
+  overload: NodaTime.Offset.System#IComparable#CompareTo*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">obj</code> is non-null but does not refer to an instance of <xref href="NodaTime.Offset" data-throw-if-not-resolved="false"></xref>.
+  implements:
+  - System.IComparable.CompareTo(System.Object)
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+- uid: NodaTime.Offset.Equals(NodaTime.Offset)
+  commentId: M:NodaTime.Offset.Equals(NodaTime.Offset)
+  id: Equals(NodaTime.Offset)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Equals(Offset)
+  nameWithType: Offset.Equals(Offset)
+  fullName: NodaTime.Offset.Equals(NodaTime.Offset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Indicates whether the current object is equal to another object of the same type.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public bool Equals(Offset other)
+    parameters:
+    - id: other
+      type: NodaTime.Offset
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: >-
+        true if the current object is equal to the <code class="paramref">other</code> parameter;
+
+        otherwise, false.
+    content.vb: Public Function Equals(other As Offset) As Boolean
+  overload: NodaTime.Offset.Equals*
+  implements:
+  - System.IEquatable{NodaTime.Offset}.Equals(NodaTime.Offset)
+- uid: NodaTime.Offset.Equals(System.Object)
+  commentId: M:NodaTime.Offset.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: Offset.Equals(object?)
+  fullName: NodaTime.Offset.Equals(object?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Determines whether the specified <xref href="System.Object" data-throw-if-not-resolved="false"></xref> is equal to this instance.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> to compare with this instance.
+    return:
+      type: System.Boolean
+      description: >-
+        <code>true</code> if the specified <xref href="System.Object" data-throw-if-not-resolved="false"></xref> is equal to this instance;
+
+        otherwise, <code>false</code>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: NodaTime.Offset.Equals*
+  nameWithType.vb: Offset.Equals(Object)
+  fullName.vb: NodaTime.Offset.Equals(Object)
+  name.vb: Equals(Object)
+- uid: NodaTime.Offset.GetHashCode
+  commentId: M:NodaTime.Offset.GetHashCode
+  id: GetHashCode
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: Offset.GetHashCode()
+  fullName: NodaTime.Offset.GetHashCode()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns a hash code for this instance.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: >-
+        A hash code for this instance, suitable for use in hashing algorithms and data
+
+        structures like a hash table.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: NodaTime.Offset.GetHashCode*
+- uid: NodaTime.Offset.ToString
+  commentId: M:NodaTime.Offset.ToString
+  id: ToString
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Offset.ToString()
+  fullName: NodaTime.Offset.ToString()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns a <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents this instance.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: >-
+        The value of the current instance in the default format pattern ("g"), using the current thread's
+
+        culture to obtain a format provider.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: NodaTime.Offset.ToString*
+- uid: NodaTime.Offset.ToString(System.String,System.IFormatProvider)
+  commentId: M:NodaTime.Offset.ToString(System.String,System.IFormatProvider)
+  id: ToString(System.String,System.IFormatProvider)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: ToString(string?, IFormatProvider?)
+  nameWithType: Offset.ToString(string?, IFormatProvider?)
+  fullName: NodaTime.Offset.ToString(string?, System.IFormatProvider?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Formats the value of the current instance using the specified pattern.
+  example: []
+  syntax:
+    content: public string ToString(string? patternText, IFormatProvider? formatProvider)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: >-
+        The <xref href="System.String" data-throw-if-not-resolved="false"></xref> specifying the pattern to use,
+            or null to use the default format pattern ("g").
+    - id: formatProvider
+      type: System.IFormatProvider
+      description: >-
+        The <xref href="System.IFormatProvider" data-throw-if-not-resolved="false"></xref> to use when formatting the value,
+            or null to use the current thread's culture to obtain a format provider.
+    return:
+      type: System.String
+      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> containing the value of the current instance in the specified format.
+    content.vb: Public Function ToString(patternText As String, formatProvider As IFormatProvider) As String
+  overload: NodaTime.Offset.ToString*
+  implements:
+  - System.IFormattable.ToString(System.String,System.IFormatProvider)
+  nameWithType.vb: Offset.ToString(String, IFormatProvider)
+  fullName.vb: NodaTime.Offset.ToString(String, System.IFormatProvider)
+  name.vb: ToString(String, IFormatProvider)
+- uid: NodaTime.Offset.FromSeconds(System.Int32)
+  commentId: M:NodaTime.Offset.FromSeconds(System.Int32)
+  id: FromSeconds(System.Int32)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: FromSeconds(int)
+  nameWithType: Offset.FromSeconds(int)
+  fullName: NodaTime.Offset.FromSeconds(int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns an offset for the given seconds value, which may be negative.
+  example: []
+  syntax:
+    content: public static Offset FromSeconds(int seconds)
+    parameters:
+    - id: seconds
+      type: System.Int32
+      description: The int seconds value.
+    return:
+      type: NodaTime.Offset
+      description: An offset representing the given number of seconds.
+    content.vb: Public Shared Function FromSeconds(seconds As Integer) As Offset
+  overload: NodaTime.Offset.FromSeconds*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      The specified number of seconds is outside the range of
+          [-18, +18] hours.
+  nameWithType.vb: Offset.FromSeconds(Integer)
+  fullName.vb: NodaTime.Offset.FromSeconds(Integer)
+  name.vb: FromSeconds(Integer)
+- uid: NodaTime.Offset.FromMilliseconds(System.Int32)
+  commentId: M:NodaTime.Offset.FromMilliseconds(System.Int32)
+  id: FromMilliseconds(System.Int32)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: FromMilliseconds(int)
+  nameWithType: Offset.FromMilliseconds(int)
+  fullName: NodaTime.Offset.FromMilliseconds(int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns an offset for the given milliseconds value, which may be negative.
+  remarks: >-
+    Offsets are only accurate to second precision; the given number of milliseconds is simply divided
+
+    by 1,000 to give the number of seconds - any remainder is truncated.
+  example: []
+  syntax:
+    content: public static Offset FromMilliseconds(int milliseconds)
+    parameters:
+    - id: milliseconds
+      type: System.Int32
+      description: The int milliseconds value.
+    return:
+      type: NodaTime.Offset
+      description: An offset representing the given number of milliseconds, to the (truncated) second.
+    content.vb: Public Shared Function FromMilliseconds(milliseconds As Integer) As Offset
+  overload: NodaTime.Offset.FromMilliseconds*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      The specified number of milliseconds is outside the range of
+          [-18, +18] hours.
+  nameWithType.vb: Offset.FromMilliseconds(Integer)
+  fullName.vb: NodaTime.Offset.FromMilliseconds(Integer)
+  name.vb: FromMilliseconds(Integer)
+- uid: NodaTime.Offset.FromTicks(System.Int64)
+  commentId: M:NodaTime.Offset.FromTicks(System.Int64)
+  id: FromTicks(System.Int64)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: FromTicks(long)
+  nameWithType: Offset.FromTicks(long)
+  fullName: NodaTime.Offset.FromTicks(long)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns an offset for the given number of ticks, which may be negative.
+  remarks: >-
+    Offsets are only accurate to second precision; the given number of ticks is simply divided
+
+    by 10,000,000 to give the number of seconds - any remainder is truncated.
+  example: []
+  syntax:
+    content: public static Offset FromTicks(long ticks)
+    parameters:
+    - id: ticks
+      type: System.Int64
+      description: The number of ticks specifying the length of the new offset.
+    return:
+      type: NodaTime.Offset
+      description: An offset representing the given number of ticks, to the (truncated) second.
+    content.vb: Public Shared Function FromTicks(ticks As Long) As Offset
+  overload: NodaTime.Offset.FromTicks*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      The specified number of ticks is outside the range of
+          [-18, +18] hours.
+  nameWithType.vb: Offset.FromTicks(Long)
+  fullName.vb: NodaTime.Offset.FromTicks(Long)
+  name.vb: FromTicks(Long)
+- uid: NodaTime.Offset.FromNanoseconds(System.Int64)
+  commentId: M:NodaTime.Offset.FromNanoseconds(System.Int64)
+  id: FromNanoseconds(System.Int64)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: FromNanoseconds(long)
+  nameWithType: Offset.FromNanoseconds(long)
+  fullName: NodaTime.Offset.FromNanoseconds(long)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns an offset for the given number of nanoseconds, which may be negative.
+  remarks: >-
+    Offsets are only accurate to second precision; the given number of nanoseconds is simply divided
+
+    by 1,000,000,000 to give the number of seconds - any remainder is truncated towards zero.
+  example: []
+  syntax:
+    content: public static Offset FromNanoseconds(long nanoseconds)
+    parameters:
+    - id: nanoseconds
+      type: System.Int64
+      description: The number of nanoseconds specifying the length of the new offset.
+    return:
+      type: NodaTime.Offset
+      description: An offset representing the given number of nanoseconds, to the (truncated) second.
+    content.vb: Public Shared Function FromNanoseconds(nanoseconds As Long) As Offset
+  overload: NodaTime.Offset.FromNanoseconds*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      The specified number of nanoseconds is outside the range of
+          [-18, +18] hours.
+  nameWithType.vb: Offset.FromNanoseconds(Long)
+  fullName.vb: NodaTime.Offset.FromNanoseconds(Long)
+  name.vb: FromNanoseconds(Long)
+- uid: NodaTime.Offset.FromHours(System.Int32)
+  commentId: M:NodaTime.Offset.FromHours(System.Int32)
+  id: FromHours(System.Int32)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: FromHours(int)
+  nameWithType: Offset.FromHours(int)
+  fullName: NodaTime.Offset.FromHours(int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns an offset for the specified number of hours, which may be negative.
+  example: []
+  syntax:
+    content: public static Offset FromHours(int hours)
+    parameters:
+    - id: hours
+      type: System.Int32
+      description: The number of hours to represent in the new offset.
+    return:
+      type: NodaTime.Offset
+      description: An offset representing the given value.
+    content.vb: Public Shared Function FromHours(hours As Integer) As Offset
+  overload: NodaTime.Offset.FromHours*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      The specified number of hours is outside the range of
+          [-18, +18].
+  nameWithType.vb: Offset.FromHours(Integer)
+  fullName.vb: NodaTime.Offset.FromHours(Integer)
+  name.vb: FromHours(Integer)
+- uid: NodaTime.Offset.FromHoursAndMinutes(System.Int32,System.Int32)
+  commentId: M:NodaTime.Offset.FromHoursAndMinutes(System.Int32,System.Int32)
+  id: FromHoursAndMinutes(System.Int32,System.Int32)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: FromHoursAndMinutes(int, int)
+  nameWithType: Offset.FromHoursAndMinutes(int, int)
+  fullName: NodaTime.Offset.FromHoursAndMinutes(int, int)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns an offset for the specified number of hours and minutes.
+  remarks: >-
+    The result simply takes the hours and minutes and converts each component into milliseconds
+
+    separately. As a result, a negative offset should usually be obtained by making both arguments
+
+    negative. For example, to obtain "three hours and ten minutes behind UTC" you might call
+
+    <code>Offset.FromHoursAndMinutes(-3, -10)</code>.
+  example: []
+  syntax:
+    content: public static Offset FromHoursAndMinutes(int hours, int minutes)
+    parameters:
+    - id: hours
+      type: System.Int32
+      description: The number of hours to represent in the new offset.
+    - id: minutes
+      type: System.Int32
+      description: The number of minutes to represent in the new offset.
+    return:
+      type: NodaTime.Offset
+      description: An offset representing the given value.
+    content.vb: Public Shared Function FromHoursAndMinutes(hours As Integer, minutes As Integer) As Offset
+  overload: NodaTime.Offset.FromHoursAndMinutes*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The result of the operation is outside the range of Offset.
+  nameWithType.vb: Offset.FromHoursAndMinutes(Integer, Integer)
+  fullName.vb: NodaTime.Offset.FromHoursAndMinutes(Integer, Integer)
+  name.vb: FromHoursAndMinutes(Integer, Integer)
+- uid: NodaTime.Offset.ToTimeSpan
+  commentId: M:NodaTime.Offset.ToTimeSpan
+  id: ToTimeSpan
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: ToTimeSpan()
+  nameWithType: Offset.ToTimeSpan()
+  fullName: NodaTime.Offset.ToTimeSpan()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Converts this offset to a .NET standard <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref> value.
+  example: []
+  syntax:
+    content: public TimeSpan ToTimeSpan()
+    return:
+      type: System.TimeSpan
+      description: An equivalent <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref> to this value.
+    content.vb: Public Function ToTimeSpan() As TimeSpan
+  overload: NodaTime.Offset.ToTimeSpan*
+- uid: NodaTime.Offset.FromTimeSpan(System.TimeSpan)
+  commentId: M:NodaTime.Offset.FromTimeSpan(System.TimeSpan)
+  id: FromTimeSpan(System.TimeSpan)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: FromTimeSpan(TimeSpan)
+  nameWithType: Offset.FromTimeSpan(TimeSpan)
+  fullName: NodaTime.Offset.FromTimeSpan(System.TimeSpan)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Converts the given <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref> to an offset, with fractional seconds truncated.
+  example: []
+  syntax:
+    content: public static Offset FromTimeSpan(TimeSpan timeSpan)
+    parameters:
+    - id: timeSpan
+      type: System.TimeSpan
+      description: The timespan to convert
+    return:
+      type: NodaTime.Offset
+      description: An offset for the same time as the given time span.
+    content.vb: Public Shared Function FromTimeSpan(timeSpan As TimeSpan) As Offset
+  overload: NodaTime.Offset.FromTimeSpan*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The given time span falls outside the range of +/- 18 hours.
+- uid: NodaTime.Offset.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  commentId: M:NodaTime.Offset.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  id: AddSchema(System.Xml.Schema.XmlSchemaSet)
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: AddSchema(XmlSchemaSet)
+  nameWithType: Offset.AddSchema(XmlSchemaSet)
+  fullName: NodaTime.Offset.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Adds the XML schema type describing the structure of the <xref href="NodaTime.Offset" data-throw-if-not-resolved="false"></xref> XML serialization to the given <code class="paramref">xmlSchemaSet</code>.
+  example: []
+  syntax:
+    content: public static XmlQualifiedName AddSchema(XmlSchemaSet xmlSchemaSet)
+    parameters:
+    - id: xmlSchemaSet
+      type: System.Xml.Schema.XmlSchemaSet
+      description: The XML schema set provided by <xref href="System.Xml.Serialization.XmlSchemaExporter" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Xml.XmlQualifiedName
+      description: The qualified name of the schema type that was added to the <code class="paramref">xmlSchemaSet</code>.
+    content.vb: Public Shared Function AddSchema(xmlSchemaSet As XmlSchemaSet) As XmlQualifiedName
+  overload: NodaTime.Offset.AddSchema*
+- uid: NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#GetSchema
+  commentId: M:NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#GetSchema
+  id: System#Xml#Serialization#IXmlSerializable#GetSchema
+  isEii: true
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.GetSchema()
+  nameWithType: Offset.IXmlSerializable.GetSchema()
+  fullName: NodaTime.Offset.System.Xml.Serialization.IXmlSerializable.GetSchema()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: This method is reserved and should not be used. When implementing the <code>IXmlSerializable</code> interface, you should return <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> (<code>Nothing</code> in Visual Basic) from this method, and instead, if specifying a custom schema is required, apply the <xref href="System.Xml.Serialization.XmlSchemaProviderAttribute" data-throw-if-not-resolved="false"></xref> to the class.
+  example: []
+  syntax:
+    content: XmlSchema IXmlSerializable.GetSchema()
+    return:
+      type: System.Xml.Schema.XmlSchema
+      description: An <xref href="System.Xml.Schema.XmlSchema" data-throw-if-not-resolved="false"></xref> that describes the XML representation of the object that is produced by the <xref href="System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)" data-throw-if-not-resolved="false"></xref> method and consumed by the <xref href="System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)" data-throw-if-not-resolved="false"></xref> method.
+    content.vb: ''
+  overload: NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#GetSchema*
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+- uid: NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  commentId: M:NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  id: System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  isEii: true
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.ReadXml(XmlReader)
+  nameWithType: Offset.IXmlSerializable.ReadXml(XmlReader)
+  fullName: NodaTime.Offset.System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Generates an object from its XML representation.
+  example: []
+  syntax:
+    content: void IXmlSerializable.ReadXml(XmlReader reader)
+    parameters:
+    - id: reader
+      type: System.Xml.XmlReader
+      description: The <xref href="System.Xml.XmlReader" data-throw-if-not-resolved="false"></xref> stream from which the object is deserialized.
+    content.vb: ''
+  overload: NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#ReadXml*
+  implements:
+  - System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+- uid: NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  commentId: M:NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  id: System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  isEii: true
+  parent: NodaTime.Offset
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.WriteXml(XmlWriter)
+  nameWithType: Offset.IXmlSerializable.WriteXml(XmlWriter)
+  fullName: NodaTime.Offset.System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Converts an object into its XML representation.
+  example: []
+  syntax:
+    content: void IXmlSerializable.WriteXml(XmlWriter writer)
+    parameters:
+    - id: writer
+      type: System.Xml.XmlWriter
+      description: The <xref href="System.Xml.XmlWriter" data-throw-if-not-resolved="false"></xref> stream to which the object is serialized.
+    content.vb: ''
+  overload: NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#WriteXml*
+  implements:
+  - System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+references:
+- uid: System.DateTimeOffset
+  commentId: T:System.DateTimeOffset
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetimeoffset
+  name: DateTimeOffset
+  nameWithType: DateTimeOffset
+  fullName: System.DateTimeOffset
+- uid: NodaTime.Offset.Zero
+  commentId: F:NodaTime.Offset.Zero
+  href: NodaTime.Offset.html#NodaTime_Offset_Zero
+  name: Zero
+  nameWithType: Offset.Zero
+  fullName: NodaTime.Offset.Zero
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.IEquatable{NodaTime.Offset}
+  commentId: T:System.IEquatable{NodaTime.Offset}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Offset>
+  nameWithType: IEquatable<Offset>
+  fullName: System.IEquatable<NodaTime.Offset>
+  nameWithType.vb: IEquatable(Of Offset)
+  fullName.vb: System.IEquatable(Of NodaTime.Offset)
+  name.vb: IEquatable(Of Offset)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.IComparable{NodaTime.Offset}
+  commentId: T:System.IComparable{NodaTime.Offset}
+  parent: System
+  definition: System.IComparable`1
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  name: IComparable<Offset>
+  nameWithType: IComparable<Offset>
+  fullName: System.IComparable<NodaTime.Offset>
+  nameWithType.vb: IComparable(Of Offset)
+  fullName.vb: System.IComparable(Of NodaTime.Offset)
+  name.vb: IComparable(Of Offset)
+  spec.csharp:
+  - uid: System.IComparable`1
+    name: IComparable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  - name: <
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IComparable`1
+    name: IComparable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.IFormattable
+  commentId: T:System.IFormattable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iformattable
+  name: IFormattable
+  nameWithType: IFormattable
+  fullName: System.IFormattable
+- uid: System.IComparable
+  commentId: T:System.IComparable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable
+  name: IComparable
+  nameWithType: IComparable
+  fullName: System.IComparable
+- uid: System.Xml.Serialization.IXmlSerializable
+  commentId: T:System.Xml.Serialization.IXmlSerializable
+  parent: System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable
+  nameWithType: IXmlSerializable
+  fullName: System.Xml.Serialization.IXmlSerializable
+- uid: System.Numerics.IAdditionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}
+  commentId: T:System.Numerics.IAdditionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}
+  parent: System.Numerics
+  definition: System.Numerics.IAdditionOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  name: IAdditionOperators<Offset, Offset, Offset>
+  nameWithType: IAdditionOperators<Offset, Offset, Offset>
+  fullName: System.Numerics.IAdditionOperators<NodaTime.Offset, NodaTime.Offset, NodaTime.Offset>
+  nameWithType.vb: IAdditionOperators(Of Offset, Offset, Offset)
+  fullName.vb: System.Numerics.IAdditionOperators(Of NodaTime.Offset, NodaTime.Offset, NodaTime.Offset)
+  name.vb: IAdditionOperators(Of Offset, Offset, Offset)
+  spec.csharp:
+  - uid: System.Numerics.IAdditionOperators`3
+    name: IAdditionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  - name: <
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IAdditionOperators`3
+    name: IAdditionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.ISubtractionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}
+  commentId: T:System.Numerics.ISubtractionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}
+  parent: System.Numerics
+  definition: System.Numerics.ISubtractionOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  name: ISubtractionOperators<Offset, Offset, Offset>
+  nameWithType: ISubtractionOperators<Offset, Offset, Offset>
+  fullName: System.Numerics.ISubtractionOperators<NodaTime.Offset, NodaTime.Offset, NodaTime.Offset>
+  nameWithType.vb: ISubtractionOperators(Of Offset, Offset, Offset)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of NodaTime.Offset, NodaTime.Offset, NodaTime.Offset)
+  name.vb: ISubtractionOperators(Of Offset, Offset, Offset)
+  spec.csharp:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: <
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.IUnaryNegationOperators{NodaTime.Offset,NodaTime.Offset}
+  commentId: T:System.Numerics.IUnaryNegationOperators{NodaTime.Offset,NodaTime.Offset}
+  parent: System.Numerics
+  definition: System.Numerics.IUnaryNegationOperators`2
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2
+  name: IUnaryNegationOperators<Offset, Offset>
+  nameWithType: IUnaryNegationOperators<Offset, Offset>
+  fullName: System.Numerics.IUnaryNegationOperators<NodaTime.Offset, NodaTime.Offset>
+  nameWithType.vb: IUnaryNegationOperators(Of Offset, Offset)
+  fullName.vb: System.Numerics.IUnaryNegationOperators(Of NodaTime.Offset, NodaTime.Offset)
+  name.vb: IUnaryNegationOperators(Of Offset, Offset)
+  spec.csharp:
+  - uid: System.Numerics.IUnaryNegationOperators`2
+    name: IUnaryNegationOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2
+  - name: <
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IUnaryNegationOperators`2
+    name: IUnaryNegationOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.IUnaryPlusOperators{NodaTime.Offset,NodaTime.Offset}
+  commentId: T:System.Numerics.IUnaryPlusOperators{NodaTime.Offset,NodaTime.Offset}
+  parent: System.Numerics
+  definition: System.Numerics.IUnaryPlusOperators`2
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2
+  name: IUnaryPlusOperators<Offset, Offset>
+  nameWithType: IUnaryPlusOperators<Offset, Offset>
+  fullName: System.Numerics.IUnaryPlusOperators<NodaTime.Offset, NodaTime.Offset>
+  nameWithType.vb: IUnaryPlusOperators(Of Offset, Offset)
+  fullName.vb: System.Numerics.IUnaryPlusOperators(Of NodaTime.Offset, NodaTime.Offset)
+  name.vb: IUnaryPlusOperators(Of Offset, Offset)
+  spec.csharp:
+  - uid: System.Numerics.IUnaryPlusOperators`2
+    name: IUnaryPlusOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2
+  - name: <
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IUnaryPlusOperators`2
+    name: IUnaryPlusOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}
+  commentId: T:System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}
+  parent: System.Numerics
+  definition: System.Numerics.IComparisonOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3
+  name: IComparisonOperators<Offset, Offset, bool>
+  nameWithType: IComparisonOperators<Offset, Offset, bool>
+  fullName: System.Numerics.IComparisonOperators<NodaTime.Offset, NodaTime.Offset, bool>
+  nameWithType.vb: IComparisonOperators(Of Offset, Offset, Boolean)
+  fullName.vb: System.Numerics.IComparisonOperators(Of NodaTime.Offset, NodaTime.Offset, Boolean)
+  name.vb: IComparisonOperators(Of Offset, Offset, Boolean)
+  spec.csharp:
+  - uid: System.Numerics.IComparisonOperators`3
+    name: IComparisonOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3
+  - name: <
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IComparisonOperators`3
+    name: IComparisonOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Numerics.IEqualityOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}
+  commentId: T:System.Numerics.IEqualityOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}
+  parent: System.Numerics
+  definition: System.Numerics.IEqualityOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  name: IEqualityOperators<Offset, Offset, bool>
+  nameWithType: IEqualityOperators<Offset, Offset, bool>
+  fullName: System.Numerics.IEqualityOperators<NodaTime.Offset, NodaTime.Offset, bool>
+  nameWithType.vb: IEqualityOperators(Of Offset, Offset, Boolean)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.Offset, NodaTime.Offset, Boolean)
+  name.vb: IEqualityOperators(Of Offset, Offset, Boolean)
+  spec.csharp:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: <
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Numerics.IMinMaxValue{NodaTime.Offset}
+  commentId: T:System.Numerics.IMinMaxValue{NodaTime.Offset}
+  parent: System.Numerics
+  definition: System.Numerics.IMinMaxValue`1
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  name: IMinMaxValue<Offset>
+  nameWithType: IMinMaxValue<Offset>
+  fullName: System.Numerics.IMinMaxValue<NodaTime.Offset>
+  nameWithType.vb: IMinMaxValue(Of Offset)
+  fullName.vb: System.Numerics.IMinMaxValue(Of NodaTime.Offset)
+  name.vb: IMinMaxValue(Of Offset)
+  spec.csharp:
+  - uid: System.Numerics.IMinMaxValue`1
+    name: IMinMaxValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  - name: <
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IMinMaxValue`1
+    name: IMinMaxValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.IAdditiveIdentity{NodaTime.Offset,NodaTime.Offset}
+  commentId: T:System.Numerics.IAdditiveIdentity{NodaTime.Offset,NodaTime.Offset}
+  parent: System.Numerics
+  definition: System.Numerics.IAdditiveIdentity`2
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2
+  name: IAdditiveIdentity<Offset, Offset>
+  nameWithType: IAdditiveIdentity<Offset, Offset>
+  fullName: System.Numerics.IAdditiveIdentity<NodaTime.Offset, NodaTime.Offset>
+  nameWithType.vb: IAdditiveIdentity(Of Offset, Offset)
+  fullName.vb: System.Numerics.IAdditiveIdentity(Of NodaTime.Offset, NodaTime.Offset)
+  name.vb: IAdditiveIdentity(Of Offset, Offset)
+  spec.csharp:
+  - uid: System.Numerics.IAdditiveIdentity`2
+    name: IAdditiveIdentity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2
+  - name: <
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IAdditiveIdentity`2
+    name: IAdditiveIdentity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.IComparable`1
+  commentId: T:System.IComparable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  name: IComparable<T>
+  nameWithType: IComparable<T>
+  fullName: System.IComparable<T>
+  nameWithType.vb: IComparable(Of T)
+  fullName.vb: System.IComparable(Of T)
+  name.vb: IComparable(Of T)
+  spec.csharp:
+  - uid: System.IComparable`1
+    name: IComparable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IComparable`1
+    name: IComparable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Xml.Serialization
+  commentId: N:System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Serialization
+  nameWithType: System.Xml.Serialization
+  fullName: System.Xml.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+- uid: System.Numerics.IAdditionOperators`3
+  commentId: T:System.Numerics.IAdditionOperators`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  name: IAdditionOperators<TSelf, TOther, TResult>
+  nameWithType: IAdditionOperators<TSelf, TOther, TResult>
+  fullName: System.Numerics.IAdditionOperators<TSelf, TOther, TResult>
+  nameWithType.vb: IAdditionOperators(Of TSelf, TOther, TResult)
+  fullName.vb: System.Numerics.IAdditionOperators(Of TSelf, TOther, TResult)
+  name.vb: IAdditionOperators(Of TSelf, TOther, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IAdditionOperators`3
+    name: IAdditionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IAdditionOperators`3
+    name: IAdditionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics
+  commentId: N:System.Numerics
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Numerics
+  nameWithType: System.Numerics
+  fullName: System.Numerics
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+- uid: System.Numerics.ISubtractionOperators`3
+  commentId: T:System.Numerics.ISubtractionOperators`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  name: ISubtractionOperators<TSelf, TOther, TResult>
+  nameWithType: ISubtractionOperators<TSelf, TOther, TResult>
+  fullName: System.Numerics.ISubtractionOperators<TSelf, TOther, TResult>
+  nameWithType.vb: ISubtractionOperators(Of TSelf, TOther, TResult)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of TSelf, TOther, TResult)
+  name.vb: ISubtractionOperators(Of TSelf, TOther, TResult)
+  spec.csharp:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.ISubtractionOperators`3
+    name: ISubtractionOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics.IUnaryNegationOperators`2
+  commentId: T:System.Numerics.IUnaryNegationOperators`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2
+  name: IUnaryNegationOperators<TSelf, TResult>
+  nameWithType: IUnaryNegationOperators<TSelf, TResult>
+  fullName: System.Numerics.IUnaryNegationOperators<TSelf, TResult>
+  nameWithType.vb: IUnaryNegationOperators(Of TSelf, TResult)
+  fullName.vb: System.Numerics.IUnaryNegationOperators(Of TSelf, TResult)
+  name.vb: IUnaryNegationOperators(Of TSelf, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IUnaryNegationOperators`2
+    name: IUnaryNegationOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IUnaryNegationOperators`2
+    name: IUnaryNegationOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics.IUnaryPlusOperators`2
+  commentId: T:System.Numerics.IUnaryPlusOperators`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2
+  name: IUnaryPlusOperators<TSelf, TResult>
+  nameWithType: IUnaryPlusOperators<TSelf, TResult>
+  fullName: System.Numerics.IUnaryPlusOperators<TSelf, TResult>
+  nameWithType.vb: IUnaryPlusOperators(Of TSelf, TResult)
+  fullName.vb: System.Numerics.IUnaryPlusOperators(Of TSelf, TResult)
+  name.vb: IUnaryPlusOperators(Of TSelf, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IUnaryPlusOperators`2
+    name: IUnaryPlusOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IUnaryPlusOperators`2
+    name: IUnaryPlusOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics.IComparisonOperators`3
+  commentId: T:System.Numerics.IComparisonOperators`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3
+  name: IComparisonOperators<TSelf, TOther, TResult>
+  nameWithType: IComparisonOperators<TSelf, TOther, TResult>
+  fullName: System.Numerics.IComparisonOperators<TSelf, TOther, TResult>
+  nameWithType.vb: IComparisonOperators(Of TSelf, TOther, TResult)
+  fullName.vb: System.Numerics.IComparisonOperators(Of TSelf, TOther, TResult)
+  name.vb: IComparisonOperators(Of TSelf, TOther, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IComparisonOperators`3
+    name: IComparisonOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IComparisonOperators`3
+    name: IComparisonOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics.IEqualityOperators`3
+  commentId: T:System.Numerics.IEqualityOperators`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  name: IEqualityOperators<TSelf, TOther, TResult>
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult)
+  name.vb: IEqualityOperators(Of TSelf, TOther, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics.IMinMaxValue`1
+  commentId: T:System.Numerics.IMinMaxValue`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  name: IMinMaxValue<TSelf>
+  nameWithType: IMinMaxValue<TSelf>
+  fullName: System.Numerics.IMinMaxValue<TSelf>
+  nameWithType.vb: IMinMaxValue(Of TSelf)
+  fullName.vb: System.Numerics.IMinMaxValue(Of TSelf)
+  name.vb: IMinMaxValue(Of TSelf)
+  spec.csharp:
+  - uid: System.Numerics.IMinMaxValue`1
+    name: IMinMaxValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  - name: <
+  - name: TSelf
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IMinMaxValue`1
+    name: IMinMaxValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: )
+- uid: System.Numerics.IAdditiveIdentity`2
+  commentId: T:System.Numerics.IAdditiveIdentity`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2
+  name: IAdditiveIdentity<TSelf, TResult>
+  nameWithType: IAdditiveIdentity<TSelf, TResult>
+  fullName: System.Numerics.IAdditiveIdentity<TSelf, TResult>
+  nameWithType.vb: IAdditiveIdentity(Of TSelf, TResult)
+  fullName.vb: System.Numerics.IAdditiveIdentity(Of TSelf, TResult)
+  name.vb: IAdditiveIdentity(Of TSelf, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IAdditiveIdentity`2
+    name: IAdditiveIdentity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IAdditiveIdentity`2
+    name: IAdditiveIdentity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: NodaTime.Offset
+  commentId: T:NodaTime.Offset
+  parent: NodaTime
+  href: NodaTime.Offset.html
+  name: Offset
+  nameWithType: Offset
+  fullName: NodaTime.Offset
+- uid: NodaTime.Offset.AdditiveIdentity*
+  commentId: Overload:NodaTime.Offset.AdditiveIdentity
+  href: NodaTime.Offset.html#NodaTime_Offset_AdditiveIdentity
+  name: AdditiveIdentity
+  nameWithType: Offset.AdditiveIdentity
+  fullName: NodaTime.Offset.AdditiveIdentity
+- uid: System.Numerics.IAdditiveIdentity{NodaTime.Offset,NodaTime.Offset}.AdditiveIdentity
+  commentId: P:System.Numerics.IAdditiveIdentity{NodaTime.Offset,NodaTime.Offset}.AdditiveIdentity
+  parent: System.Numerics.IAdditiveIdentity{NodaTime.Offset,NodaTime.Offset}
+  definition: System.Numerics.IAdditiveIdentity`2.AdditiveIdentity
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2.additiveidentity
+  name: AdditiveIdentity
+  nameWithType: IAdditiveIdentity<Offset, Offset>.AdditiveIdentity
+  fullName: System.Numerics.IAdditiveIdentity<NodaTime.Offset, NodaTime.Offset>.AdditiveIdentity
+  nameWithType.vb: IAdditiveIdentity(Of Offset, Offset).AdditiveIdentity
+  fullName.vb: System.Numerics.IAdditiveIdentity(Of NodaTime.Offset, NodaTime.Offset).AdditiveIdentity
+- uid: System.Numerics.IAdditiveIdentity`2.AdditiveIdentity
+  commentId: P:System.Numerics.IAdditiveIdentity`2.AdditiveIdentity
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditiveidentity-2.additiveidentity
+  name: AdditiveIdentity
+  nameWithType: IAdditiveIdentity<TSelf, TResult>.AdditiveIdentity
+  fullName: System.Numerics.IAdditiveIdentity<TSelf, TResult>.AdditiveIdentity
+  nameWithType.vb: IAdditiveIdentity(Of TSelf, TResult).AdditiveIdentity
+  fullName.vb: System.Numerics.IAdditiveIdentity(Of TSelf, TResult).AdditiveIdentity
+- uid: NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MinValue*
+  commentId: Overload:NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MinValue
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  name: IMinMaxValue<Offset>.MinValue
+  nameWithType: Offset.IMinMaxValue<Offset>.MinValue
+  fullName: NodaTime.Offset.System.Numerics.IMinMaxValue<NodaTime.Offset>.MinValue
+  nameWithType.vb: Offset.System.Numerics.IMinMaxValue<NodaTime.Offset>.MinValue
+  name.vb: System.Numerics.IMinMaxValue<NodaTime.Offset>.MinValue
+  spec.csharp:
+  - uid: System.Numerics.IMinMaxValue`1*
+    name: IMinMaxValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  - name: <
+  - uid: NodaTime.Offset*
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: '>'
+  - name: .
+  - uid: NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MinValue*
+    name: MinValue
+    href: NodaTime.Offset.html#NodaTime_Offset_System_Numerics_IMinMaxValue_NodaTime_Offset__MinValue
+- uid: System.Numerics.IMinMaxValue{NodaTime.Offset}.MinValue
+  commentId: P:System.Numerics.IMinMaxValue{NodaTime.Offset}.MinValue
+  parent: System.Numerics.IMinMaxValue{NodaTime.Offset}
+  definition: System.Numerics.IMinMaxValue`1.MinValue
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1.minvalue
+  name: MinValue
+  nameWithType: IMinMaxValue<Offset>.MinValue
+  fullName: System.Numerics.IMinMaxValue<NodaTime.Offset>.MinValue
+  nameWithType.vb: IMinMaxValue(Of Offset).MinValue
+  fullName.vb: System.Numerics.IMinMaxValue(Of NodaTime.Offset).MinValue
+- uid: System.Numerics.IMinMaxValue`1.MinValue
+  commentId: P:System.Numerics.IMinMaxValue`1.MinValue
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1.minvalue
+  name: MinValue
+  nameWithType: IMinMaxValue<TSelf>.MinValue
+  fullName: System.Numerics.IMinMaxValue<TSelf>.MinValue
+  nameWithType.vb: IMinMaxValue(Of TSelf).MinValue
+  fullName.vb: System.Numerics.IMinMaxValue(Of TSelf).MinValue
+- uid: NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MaxValue*
+  commentId: Overload:NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MaxValue
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  name: IMinMaxValue<Offset>.MaxValue
+  nameWithType: Offset.IMinMaxValue<Offset>.MaxValue
+  fullName: NodaTime.Offset.System.Numerics.IMinMaxValue<NodaTime.Offset>.MaxValue
+  nameWithType.vb: Offset.System.Numerics.IMinMaxValue<NodaTime.Offset>.MaxValue
+  name.vb: System.Numerics.IMinMaxValue<NodaTime.Offset>.MaxValue
+  spec.csharp:
+  - uid: System.Numerics.IMinMaxValue`1*
+    name: IMinMaxValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1
+  - name: <
+  - uid: NodaTime.Offset*
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: '>'
+  - name: .
+  - uid: NodaTime.Offset.System#Numerics#IMinMaxValue{NodaTime#Offset}#MaxValue*
+    name: MaxValue
+    href: NodaTime.Offset.html#NodaTime_Offset_System_Numerics_IMinMaxValue_NodaTime_Offset__MaxValue
+- uid: System.Numerics.IMinMaxValue{NodaTime.Offset}.MaxValue
+  commentId: P:System.Numerics.IMinMaxValue{NodaTime.Offset}.MaxValue
+  parent: System.Numerics.IMinMaxValue{NodaTime.Offset}
+  definition: System.Numerics.IMinMaxValue`1.MaxValue
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1.maxvalue
+  name: MaxValue
+  nameWithType: IMinMaxValue<Offset>.MaxValue
+  fullName: System.Numerics.IMinMaxValue<NodaTime.Offset>.MaxValue
+  nameWithType.vb: IMinMaxValue(Of Offset).MaxValue
+  fullName.vb: System.Numerics.IMinMaxValue(Of NodaTime.Offset).MaxValue
+- uid: System.Numerics.IMinMaxValue`1.MaxValue
+  commentId: P:System.Numerics.IMinMaxValue`1.MaxValue
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iminmaxvalue-1.maxvalue
+  name: MaxValue
+  nameWithType: IMinMaxValue<TSelf>.MaxValue
+  fullName: System.Numerics.IMinMaxValue<TSelf>.MaxValue
+  nameWithType.vb: IMinMaxValue(Of TSelf).MaxValue
+  fullName.vb: System.Numerics.IMinMaxValue(Of TSelf).MaxValue
+- uid: NodaTime.Offset.Seconds*
+  commentId: Overload:NodaTime.Offset.Seconds
+  href: NodaTime.Offset.html#NodaTime_Offset_Seconds
+  name: Seconds
+  nameWithType: Offset.Seconds
+  fullName: NodaTime.Offset.Seconds
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: NodaTime.Offset.Milliseconds*
+  commentId: Overload:NodaTime.Offset.Milliseconds
+  href: NodaTime.Offset.html#NodaTime_Offset_Milliseconds
+  name: Milliseconds
+  nameWithType: Offset.Milliseconds
+  fullName: NodaTime.Offset.Milliseconds
+- uid: NodaTime.Offset.Ticks*
+  commentId: Overload:NodaTime.Offset.Ticks
+  href: NodaTime.Offset.html#NodaTime_Offset_Ticks
+  name: Ticks
+  nameWithType: Offset.Ticks
+  fullName: NodaTime.Offset.Ticks
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: NodaTime.Offset.Nanoseconds*
+  commentId: Overload:NodaTime.Offset.Nanoseconds
+  href: NodaTime.Offset.html#NodaTime_Offset_Nanoseconds
+  name: Nanoseconds
+  nameWithType: Offset.Nanoseconds
+  fullName: NodaTime.Offset.Nanoseconds
+- uid: NodaTime.Offset.Max*
+  commentId: Overload:NodaTime.Offset.Max
+  href: NodaTime.Offset.html#NodaTime_Offset_Max_NodaTime_Offset_NodaTime_Offset_
+  name: Max
+  nameWithType: Offset.Max
+  fullName: NodaTime.Offset.Max
+- uid: NodaTime.Offset.Min*
+  commentId: Overload:NodaTime.Offset.Min
+  href: NodaTime.Offset.html#NodaTime_Offset_Min_NodaTime_Offset_NodaTime_Offset_
+  name: Min
+  nameWithType: Offset.Min
+  fullName: NodaTime.Offset.Min
+- uid: NodaTime.Offset.op_UnaryNegation*
+  commentId: Overload:NodaTime.Offset.op_UnaryNegation
+  href: NodaTime.Offset.html#NodaTime_Offset_op_UnaryNegation_NodaTime_Offset_
+  name: operator -
+  nameWithType: Offset.operator -
+  fullName: NodaTime.Offset.operator -
+  nameWithType.vb: Offset.-
+  fullName.vb: NodaTime.Offset.-
+  name.vb: '-'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Offset.op_UnaryNegation*
+    name: '-'
+    href: NodaTime.Offset.html#NodaTime_Offset_op_UnaryNegation_NodaTime_Offset_
+- uid: System.Numerics.IUnaryNegationOperators{NodaTime.Offset,NodaTime.Offset}.op_UnaryNegation(NodaTime.Offset)
+  commentId: M:System.Numerics.IUnaryNegationOperators{NodaTime.Offset,NodaTime.Offset}.op_UnaryNegation(NodaTime.Offset)
+  parent: System.Numerics.IUnaryNegationOperators{NodaTime.Offset,NodaTime.Offset}
+  definition: System.Numerics.IUnaryNegationOperators`2.op_UnaryNegation(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2.op_unarynegation
+  name: operator -(Offset)
+  nameWithType: IUnaryNegationOperators<Offset, Offset>.operator -(Offset)
+  fullName: System.Numerics.IUnaryNegationOperators<NodaTime.Offset, NodaTime.Offset>.operator -(NodaTime.Offset)
+  nameWithType.vb: IUnaryNegationOperators(Of Offset, Offset).-(Offset)
+  fullName.vb: System.Numerics.IUnaryNegationOperators(Of NodaTime.Offset, NodaTime.Offset).-(NodaTime.Offset)
+  name.vb: -(Offset)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IUnaryNegationOperators{NodaTime.Offset,NodaTime.Offset}.op_UnaryNegation(NodaTime.Offset)
+    name: '-'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2.op_unarynegation
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - name: '-'
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.IUnaryNegationOperators`2.op_UnaryNegation(`0)
+  commentId: M:System.Numerics.IUnaryNegationOperators`2.op_UnaryNegation(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2.op_unarynegation
+  name: operator -(TSelf)
+  nameWithType: IUnaryNegationOperators<TSelf, TResult>.operator -(TSelf)
+  fullName: System.Numerics.IUnaryNegationOperators<TSelf, TResult>.operator -(TSelf)
+  nameWithType.vb: IUnaryNegationOperators(Of TSelf, TResult).-(TSelf)
+  fullName.vb: System.Numerics.IUnaryNegationOperators(Of TSelf, TResult).-(TSelf)
+  name.vb: -(TSelf)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IUnaryNegationOperators`2.op_UnaryNegation(`0)
+    name: '-'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunarynegationoperators-2.op_unarynegation
+  - name: (
+  - name: TSelf
+  - name: )
+  spec.vb:
+  - name: '-'
+  - name: (
+  - name: TSelf
+  - name: )
+- uid: NodaTime.Offset.Negate*
+  commentId: Overload:NodaTime.Offset.Negate
+  href: NodaTime.Offset.html#NodaTime_Offset_Negate_NodaTime_Offset_
+  name: Negate
+  nameWithType: Offset.Negate
+  fullName: NodaTime.Offset.Negate
+- uid: NodaTime.Offset.Plus(NodaTime.Offset)
+  commentId: M:NodaTime.Offset.Plus(NodaTime.Offset)
+  href: NodaTime.Offset.html#NodaTime_Offset_Plus_NodaTime_Offset_
+  name: Plus(Offset)
+  nameWithType: Offset.Plus(Offset)
+  fullName: NodaTime.Offset.Plus(NodaTime.Offset)
+  spec.csharp:
+  - uid: NodaTime.Offset.Plus(NodaTime.Offset)
+    name: Plus
+    href: NodaTime.Offset.html#NodaTime_Offset_Plus_NodaTime_Offset_
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Offset.Plus(NodaTime.Offset)
+    name: Plus
+    href: NodaTime.Offset.html#NodaTime_Offset_Plus_NodaTime_Offset_
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: NodaTime.Offset.op_UnaryPlus*
+  commentId: Overload:NodaTime.Offset.op_UnaryPlus
+  href: NodaTime.Offset.html#NodaTime_Offset_op_UnaryPlus_NodaTime_Offset_
+  name: operator +
+  nameWithType: Offset.operator +
+  fullName: NodaTime.Offset.operator +
+  nameWithType.vb: Offset.+
+  fullName.vb: NodaTime.Offset.+
+  name.vb: +
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Offset.op_UnaryPlus*
+    name: +
+    href: NodaTime.Offset.html#NodaTime_Offset_op_UnaryPlus_NodaTime_Offset_
+- uid: System.Numerics.IUnaryPlusOperators{NodaTime.Offset,NodaTime.Offset}.op_UnaryPlus(NodaTime.Offset)
+  commentId: M:System.Numerics.IUnaryPlusOperators{NodaTime.Offset,NodaTime.Offset}.op_UnaryPlus(NodaTime.Offset)
+  parent: System.Numerics.IUnaryPlusOperators{NodaTime.Offset,NodaTime.Offset}
+  definition: System.Numerics.IUnaryPlusOperators`2.op_UnaryPlus(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2.op_unaryplus
+  name: operator +(Offset)
+  nameWithType: IUnaryPlusOperators<Offset, Offset>.operator +(Offset)
+  fullName: System.Numerics.IUnaryPlusOperators<NodaTime.Offset, NodaTime.Offset>.operator +(NodaTime.Offset)
+  nameWithType.vb: IUnaryPlusOperators(Of Offset, Offset).+(Offset)
+  fullName.vb: System.Numerics.IUnaryPlusOperators(Of NodaTime.Offset, NodaTime.Offset).+(NodaTime.Offset)
+  name.vb: +(Offset)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IUnaryPlusOperators{NodaTime.Offset,NodaTime.Offset}.op_UnaryPlus(NodaTime.Offset)
+    name: +
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2.op_unaryplus
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - name: +
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.IUnaryPlusOperators`2.op_UnaryPlus(`0)
+  commentId: M:System.Numerics.IUnaryPlusOperators`2.op_UnaryPlus(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2.op_unaryplus
+  name: operator +(TSelf)
+  nameWithType: IUnaryPlusOperators<TSelf, TResult>.operator +(TSelf)
+  fullName: System.Numerics.IUnaryPlusOperators<TSelf, TResult>.operator +(TSelf)
+  nameWithType.vb: IUnaryPlusOperators(Of TSelf, TResult).+(TSelf)
+  fullName.vb: System.Numerics.IUnaryPlusOperators(Of TSelf, TResult).+(TSelf)
+  name.vb: +(TSelf)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IUnaryPlusOperators`2.op_UnaryPlus(`0)
+    name: +
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iunaryplusoperators-2.op_unaryplus
+  - name: (
+  - name: TSelf
+  - name: )
+  spec.vb:
+  - name: +
+  - name: (
+  - name: TSelf
+  - name: )
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: NodaTime.Offset.op_Addition*
+  commentId: Overload:NodaTime.Offset.op_Addition
+  href: NodaTime.Offset.html#NodaTime_Offset_op_Addition_NodaTime_Offset_NodaTime_Offset_
+  name: operator +
+  nameWithType: Offset.operator +
+  fullName: NodaTime.Offset.operator +
+  nameWithType.vb: Offset.+
+  fullName.vb: NodaTime.Offset.+
+  name.vb: +
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Offset.op_Addition*
+    name: +
+    href: NodaTime.Offset.html#NodaTime_Offset_op_Addition_NodaTime_Offset_NodaTime_Offset_
+- uid: System.Numerics.IAdditionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}.op_Addition(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:System.Numerics.IAdditionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}.op_Addition(NodaTime.Offset,NodaTime.Offset)
+  parent: System.Numerics.IAdditionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}
+  definition: System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3.op_addition
+  name: operator +(Offset, Offset)
+  nameWithType: IAdditionOperators<Offset, Offset, Offset>.operator +(Offset, Offset)
+  fullName: System.Numerics.IAdditionOperators<NodaTime.Offset, NodaTime.Offset, NodaTime.Offset>.operator +(NodaTime.Offset, NodaTime.Offset)
+  nameWithType.vb: IAdditionOperators(Of Offset, Offset, Offset).+(Offset, Offset)
+  fullName.vb: System.Numerics.IAdditionOperators(Of NodaTime.Offset, NodaTime.Offset, NodaTime.Offset).+(NodaTime.Offset, NodaTime.Offset)
+  name.vb: +(Offset, Offset)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IAdditionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}.op_Addition(NodaTime.Offset,NodaTime.Offset)
+    name: +
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3.op_addition
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - name: +
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)
+  commentId: M:System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3.op_addition
+  name: operator +(TSelf, TOther)
+  nameWithType: IAdditionOperators<TSelf, TOther, TResult>.operator +(TSelf, TOther)
+  fullName: System.Numerics.IAdditionOperators<TSelf, TOther, TResult>.operator +(TSelf, TOther)
+  nameWithType.vb: IAdditionOperators(Of TSelf, TOther, TResult).+(TSelf, TOther)
+  fullName.vb: System.Numerics.IAdditionOperators(Of TSelf, TOther, TResult).+(TSelf, TOther)
+  name.vb: +(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)
+    name: +
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iadditionoperators-3.op_addition
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: +
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.Offset.Add*
+  commentId: Overload:NodaTime.Offset.Add
+  href: NodaTime.Offset.html#NodaTime_Offset_Add_NodaTime_Offset_NodaTime_Offset_
+  name: Add
+  nameWithType: Offset.Add
+  fullName: NodaTime.Offset.Add
+- uid: NodaTime.Offset.Plus*
+  commentId: Overload:NodaTime.Offset.Plus
+  href: NodaTime.Offset.html#NodaTime_Offset_Plus_NodaTime_Offset_
+  name: Plus
+  nameWithType: Offset.Plus
+  fullName: NodaTime.Offset.Plus
+- uid: NodaTime.Offset.op_Subtraction*
+  commentId: Overload:NodaTime.Offset.op_Subtraction
+  href: NodaTime.Offset.html#NodaTime_Offset_op_Subtraction_NodaTime_Offset_NodaTime_Offset_
+  name: operator -
+  nameWithType: Offset.operator -
+  fullName: NodaTime.Offset.operator -
+  nameWithType.vb: Offset.-
+  fullName.vb: NodaTime.Offset.-
+  name.vb: '-'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Offset.op_Subtraction*
+    name: '-'
+    href: NodaTime.Offset.html#NodaTime_Offset_op_Subtraction_NodaTime_Offset_NodaTime_Offset_
+- uid: System.Numerics.ISubtractionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}.op_Subtraction(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:System.Numerics.ISubtractionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}.op_Subtraction(NodaTime.Offset,NodaTime.Offset)
+  parent: System.Numerics.ISubtractionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}
+  definition: System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  name: operator -(Offset, Offset)
+  nameWithType: ISubtractionOperators<Offset, Offset, Offset>.operator -(Offset, Offset)
+  fullName: System.Numerics.ISubtractionOperators<NodaTime.Offset, NodaTime.Offset, NodaTime.Offset>.operator -(NodaTime.Offset, NodaTime.Offset)
+  nameWithType.vb: ISubtractionOperators(Of Offset, Offset, Offset).-(Offset, Offset)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of NodaTime.Offset, NodaTime.Offset, NodaTime.Offset).-(NodaTime.Offset, NodaTime.Offset)
+  name.vb: -(Offset, Offset)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.ISubtractionOperators{NodaTime.Offset,NodaTime.Offset,NodaTime.Offset}.op_Subtraction(NodaTime.Offset,NodaTime.Offset)
+    name: '-'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - name: '-'
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)
+  commentId: M:System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  name: operator -(TSelf, TOther)
+  nameWithType: ISubtractionOperators<TSelf, TOther, TResult>.operator -(TSelf, TOther)
+  fullName: System.Numerics.ISubtractionOperators<TSelf, TOther, TResult>.operator -(TSelf, TOther)
+  nameWithType.vb: ISubtractionOperators(Of TSelf, TOther, TResult).-(TSelf, TOther)
+  fullName.vb: System.Numerics.ISubtractionOperators(Of TSelf, TOther, TResult).-(TSelf, TOther)
+  name.vb: -(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)
+    name: '-'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.isubtractionoperators-3.op_subtraction
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: '-'
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.Offset.Subtract*
+  commentId: Overload:NodaTime.Offset.Subtract
+  href: NodaTime.Offset.html#NodaTime_Offset_Subtract_NodaTime_Offset_NodaTime_Offset_
+  name: Subtract
+  nameWithType: Offset.Subtract
+  fullName: NodaTime.Offset.Subtract
+- uid: NodaTime.Offset.Minus*
+  commentId: Overload:NodaTime.Offset.Minus
+  href: NodaTime.Offset.html#NodaTime_Offset_Minus_NodaTime_Offset_
+  name: Minus
+  nameWithType: Offset.Minus
+  fullName: NodaTime.Offset.Minus
+- uid: NodaTime.Offset.op_Equality*
+  commentId: Overload:NodaTime.Offset.op_Equality
+  href: NodaTime.Offset.html#NodaTime_Offset_op_Equality_NodaTime_Offset_NodaTime_Offset_
+  name: operator ==
+  nameWithType: Offset.operator ==
+  fullName: NodaTime.Offset.operator ==
+  nameWithType.vb: Offset.=
+  fullName.vb: NodaTime.Offset.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Offset.op_Equality*
+    name: ==
+    href: NodaTime.Offset.html#NodaTime_Offset_op_Equality_NodaTime_Offset_NodaTime_Offset_
+- uid: System.Numerics.IEqualityOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_Equality(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:System.Numerics.IEqualityOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_Equality(NodaTime.Offset,NodaTime.Offset)
+  parent: System.Numerics.IEqualityOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}
+  definition: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  name: operator ==(Offset, Offset)
+  nameWithType: IEqualityOperators<Offset, Offset, bool>.operator ==(Offset, Offset)
+  fullName: System.Numerics.IEqualityOperators<NodaTime.Offset, NodaTime.Offset, bool>.operator ==(NodaTime.Offset, NodaTime.Offset)
+  nameWithType.vb: IEqualityOperators(Of Offset, Offset, Boolean).=(Offset, Offset)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.Offset, NodaTime.Offset, Boolean).=(NodaTime.Offset, NodaTime.Offset)
+  name.vb: =(Offset, Offset)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_Equality(NodaTime.Offset,NodaTime.Offset)
+    name: ==
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - name: =
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  commentId: M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  name: operator ==(TSelf, TOther)
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>.operator ==(TSelf, TOther)
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>.operator ==(TSelf, TOther)
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult).=(TSelf, TOther)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult).=(TSelf, TOther)
+  name.vb: =(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+    name: ==
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: =
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.Offset.op_Inequality*
+  commentId: Overload:NodaTime.Offset.op_Inequality
+  href: NodaTime.Offset.html#NodaTime_Offset_op_Inequality_NodaTime_Offset_NodaTime_Offset_
+  name: operator !=
+  nameWithType: Offset.operator !=
+  fullName: NodaTime.Offset.operator !=
+  nameWithType.vb: Offset.<>
+  fullName.vb: NodaTime.Offset.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Offset.op_Inequality*
+    name: '!='
+    href: NodaTime.Offset.html#NodaTime_Offset_op_Inequality_NodaTime_Offset_NodaTime_Offset_
+- uid: System.Numerics.IEqualityOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_Inequality(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:System.Numerics.IEqualityOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_Inequality(NodaTime.Offset,NodaTime.Offset)
+  parent: System.Numerics.IEqualityOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}
+  definition: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  name: operator !=(Offset, Offset)
+  nameWithType: IEqualityOperators<Offset, Offset, bool>.operator !=(Offset, Offset)
+  fullName: System.Numerics.IEqualityOperators<NodaTime.Offset, NodaTime.Offset, bool>.operator !=(NodaTime.Offset, NodaTime.Offset)
+  nameWithType.vb: IEqualityOperators(Of Offset, Offset, Boolean).<>(Offset, Offset)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.Offset, NodaTime.Offset, Boolean).<>(NodaTime.Offset, NodaTime.Offset)
+  name.vb: <>(Offset, Offset)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_Inequality(NodaTime.Offset,NodaTime.Offset)
+    name: '!='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - name: <>
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  commentId: M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  name: operator !=(TSelf, TOther)
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>.operator !=(TSelf, TOther)
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>.operator !=(TSelf, TOther)
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult).<>(TSelf, TOther)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult).<>(TSelf, TOther)
+  name.vb: <>(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+    name: '!='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: <>
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.Offset.op_LessThan*
+  commentId: Overload:NodaTime.Offset.op_LessThan
+  href: NodaTime.Offset.html#NodaTime_Offset_op_LessThan_NodaTime_Offset_NodaTime_Offset_
+  name: operator <
+  nameWithType: Offset.operator <
+  fullName: NodaTime.Offset.operator <
+  nameWithType.vb: Offset.<
+  fullName.vb: NodaTime.Offset.<
+  name.vb: <
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Offset.op_LessThan*
+    name: <
+    href: NodaTime.Offset.html#NodaTime_Offset_op_LessThan_NodaTime_Offset_NodaTime_Offset_
+- uid: System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_LessThan(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_LessThan(NodaTime.Offset,NodaTime.Offset)
+  parent: System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}
+  definition: System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthan
+  name: operator <(Offset, Offset)
+  nameWithType: IComparisonOperators<Offset, Offset, bool>.operator <(Offset, Offset)
+  fullName: System.Numerics.IComparisonOperators<NodaTime.Offset, NodaTime.Offset, bool>.operator <(NodaTime.Offset, NodaTime.Offset)
+  nameWithType.vb: IComparisonOperators(Of Offset, Offset, Boolean).<(Offset, Offset)
+  fullName.vb: System.Numerics.IComparisonOperators(Of NodaTime.Offset, NodaTime.Offset, Boolean).<(NodaTime.Offset, NodaTime.Offset)
+  name.vb: <(Offset, Offset)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_LessThan(NodaTime.Offset,NodaTime.Offset)
+    name: <
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthan
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - name: <
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)
+  commentId: M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthan
+  name: operator <(TSelf, TOther)
+  nameWithType: IComparisonOperators<TSelf, TOther, TResult>.operator <(TSelf, TOther)
+  fullName: System.Numerics.IComparisonOperators<TSelf, TOther, TResult>.operator <(TSelf, TOther)
+  nameWithType.vb: IComparisonOperators(Of TSelf, TOther, TResult).<(TSelf, TOther)
+  fullName.vb: System.Numerics.IComparisonOperators(Of TSelf, TOther, TResult).<(TSelf, TOther)
+  name.vb: <(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)
+    name: <
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthan
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: <
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.Offset.op_LessThanOrEqual*
+  commentId: Overload:NodaTime.Offset.op_LessThanOrEqual
+  href: NodaTime.Offset.html#NodaTime_Offset_op_LessThanOrEqual_NodaTime_Offset_NodaTime_Offset_
+  name: operator <=
+  nameWithType: Offset.operator <=
+  fullName: NodaTime.Offset.operator <=
+  nameWithType.vb: Offset.<=
+  fullName.vb: NodaTime.Offset.<=
+  name.vb: <=
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Offset.op_LessThanOrEqual*
+    name: <=
+    href: NodaTime.Offset.html#NodaTime_Offset_op_LessThanOrEqual_NodaTime_Offset_NodaTime_Offset_
+- uid: System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_LessThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_LessThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  parent: System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}
+  definition: System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthanorequal
+  name: operator <=(Offset, Offset)
+  nameWithType: IComparisonOperators<Offset, Offset, bool>.operator <=(Offset, Offset)
+  fullName: System.Numerics.IComparisonOperators<NodaTime.Offset, NodaTime.Offset, bool>.operator <=(NodaTime.Offset, NodaTime.Offset)
+  nameWithType.vb: IComparisonOperators(Of Offset, Offset, Boolean).<=(Offset, Offset)
+  fullName.vb: System.Numerics.IComparisonOperators(Of NodaTime.Offset, NodaTime.Offset, Boolean).<=(NodaTime.Offset, NodaTime.Offset)
+  name.vb: <=(Offset, Offset)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_LessThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+    name: <=
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthanorequal
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - name: <=
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)
+  commentId: M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthanorequal
+  name: operator <=(TSelf, TOther)
+  nameWithType: IComparisonOperators<TSelf, TOther, TResult>.operator <=(TSelf, TOther)
+  fullName: System.Numerics.IComparisonOperators<TSelf, TOther, TResult>.operator <=(TSelf, TOther)
+  nameWithType.vb: IComparisonOperators(Of TSelf, TOther, TResult).<=(TSelf, TOther)
+  fullName.vb: System.Numerics.IComparisonOperators(Of TSelf, TOther, TResult).<=(TSelf, TOther)
+  name.vb: <=(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)
+    name: <=
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_lessthanorequal
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: <=
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.Offset.op_GreaterThan*
+  commentId: Overload:NodaTime.Offset.op_GreaterThan
+  href: NodaTime.Offset.html#NodaTime_Offset_op_GreaterThan_NodaTime_Offset_NodaTime_Offset_
+  name: operator >
+  nameWithType: Offset.operator >
+  fullName: NodaTime.Offset.operator >
+  nameWithType.vb: Offset.>
+  fullName.vb: NodaTime.Offset.>
+  name.vb: '>'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Offset.op_GreaterThan*
+    name: '>'
+    href: NodaTime.Offset.html#NodaTime_Offset_op_GreaterThan_NodaTime_Offset_NodaTime_Offset_
+- uid: System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_GreaterThan(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_GreaterThan(NodaTime.Offset,NodaTime.Offset)
+  parent: System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}
+  definition: System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthan
+  name: operator >(Offset, Offset)
+  nameWithType: IComparisonOperators<Offset, Offset, bool>.operator >(Offset, Offset)
+  fullName: System.Numerics.IComparisonOperators<NodaTime.Offset, NodaTime.Offset, bool>.operator >(NodaTime.Offset, NodaTime.Offset)
+  nameWithType.vb: IComparisonOperators(Of Offset, Offset, Boolean).>(Offset, Offset)
+  fullName.vb: System.Numerics.IComparisonOperators(Of NodaTime.Offset, NodaTime.Offset, Boolean).>(NodaTime.Offset, NodaTime.Offset)
+  name.vb: '>(Offset, Offset)'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_GreaterThan(NodaTime.Offset,NodaTime.Offset)
+    name: '>'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthan
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - name: '>'
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)
+  commentId: M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthan
+  name: operator >(TSelf, TOther)
+  nameWithType: IComparisonOperators<TSelf, TOther, TResult>.operator >(TSelf, TOther)
+  fullName: System.Numerics.IComparisonOperators<TSelf, TOther, TResult>.operator >(TSelf, TOther)
+  nameWithType.vb: IComparisonOperators(Of TSelf, TOther, TResult).>(TSelf, TOther)
+  fullName.vb: System.Numerics.IComparisonOperators(Of TSelf, TOther, TResult).>(TSelf, TOther)
+  name.vb: '>(TSelf, TOther)'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)
+    name: '>'
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthan
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: '>'
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.Offset.op_GreaterThanOrEqual*
+  commentId: Overload:NodaTime.Offset.op_GreaterThanOrEqual
+  href: NodaTime.Offset.html#NodaTime_Offset_op_GreaterThanOrEqual_NodaTime_Offset_NodaTime_Offset_
+  name: operator >=
+  nameWithType: Offset.operator >=
+  fullName: NodaTime.Offset.operator >=
+  nameWithType.vb: Offset.>=
+  fullName.vb: NodaTime.Offset.>=
+  name.vb: '>='
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.Offset.op_GreaterThanOrEqual*
+    name: '>='
+    href: NodaTime.Offset.html#NodaTime_Offset_op_GreaterThanOrEqual_NodaTime_Offset_NodaTime_Offset_
+- uid: System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_GreaterThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  commentId: M:System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_GreaterThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+  parent: System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}
+  definition: System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthanorequal
+  name: operator >=(Offset, Offset)
+  nameWithType: IComparisonOperators<Offset, Offset, bool>.operator >=(Offset, Offset)
+  fullName: System.Numerics.IComparisonOperators<NodaTime.Offset, NodaTime.Offset, bool>.operator >=(NodaTime.Offset, NodaTime.Offset)
+  nameWithType.vb: IComparisonOperators(Of Offset, Offset, Boolean).>=(Offset, Offset)
+  fullName.vb: System.Numerics.IComparisonOperators(Of NodaTime.Offset, NodaTime.Offset, Boolean).>=(NodaTime.Offset, NodaTime.Offset)
+  name.vb: '>=(Offset, Offset)'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators{NodaTime.Offset,NodaTime.Offset,System.Boolean}.op_GreaterThanOrEqual(NodaTime.Offset,NodaTime.Offset)
+    name: '>='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthanorequal
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - name: '>='
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)
+  commentId: M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthanorequal
+  name: operator >=(TSelf, TOther)
+  nameWithType: IComparisonOperators<TSelf, TOther, TResult>.operator >=(TSelf, TOther)
+  fullName: System.Numerics.IComparisonOperators<TSelf, TOther, TResult>.operator >=(TSelf, TOther)
+  nameWithType.vb: IComparisonOperators(Of TSelf, TOther, TResult).>=(TSelf, TOther)
+  fullName.vb: System.Numerics.IComparisonOperators(Of TSelf, TOther, TResult).>=(TSelf, TOther)
+  name.vb: '>=(TSelf, TOther)'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)
+    name: '>='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.icomparisonoperators-3.op_greaterthanorequal
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: '>='
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.Offset.CompareTo*
+  commentId: Overload:NodaTime.Offset.CompareTo
+  href: NodaTime.Offset.html#NodaTime_Offset_CompareTo_NodaTime_Offset_
+  name: CompareTo
+  nameWithType: Offset.CompareTo
+  fullName: NodaTime.Offset.CompareTo
+- uid: System.IComparable{NodaTime.Offset}.CompareTo(NodaTime.Offset)
+  commentId: M:System.IComparable{NodaTime.Offset}.CompareTo(NodaTime.Offset)
+  parent: System.IComparable{NodaTime.Offset}
+  definition: System.IComparable`1.CompareTo(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  name: CompareTo(Offset)
+  nameWithType: IComparable<Offset>.CompareTo(Offset)
+  fullName: System.IComparable<NodaTime.Offset>.CompareTo(NodaTime.Offset)
+  nameWithType.vb: IComparable(Of Offset).CompareTo(Offset)
+  fullName.vb: System.IComparable(Of NodaTime.Offset).CompareTo(NodaTime.Offset)
+  spec.csharp:
+  - uid: System.IComparable{NodaTime.Offset}.CompareTo(NodaTime.Offset)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - uid: System.IComparable{NodaTime.Offset}.CompareTo(NodaTime.Offset)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.IComparable`1.CompareTo(`0)
+  commentId: M:System.IComparable`1.CompareTo(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  name: CompareTo(T)
+  nameWithType: IComparable<T>.CompareTo(T)
+  fullName: System.IComparable<T>.CompareTo(T)
+  nameWithType.vb: IComparable(Of T).CompareTo(T)
+  fullName.vb: System.IComparable(Of T).CompareTo(T)
+  spec.csharp:
+  - uid: System.IComparable`1.CompareTo(`0)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IComparable`1.CompareTo(`0)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  - name: (
+  - name: T
+  - name: )
+- uid: System.IComparable.CompareTo(System.Object)
+  commentId: M:System.IComparable.CompareTo(System.Object)
+  parent: System.IComparable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable.compareto
+  name: CompareTo(object)
+  nameWithType: IComparable.CompareTo(object)
+  fullName: System.IComparable.CompareTo(object)
+  nameWithType.vb: IComparable.CompareTo(Object)
+  fullName.vb: System.IComparable.CompareTo(Object)
+  name.vb: CompareTo(Object)
+  spec.csharp:
+  - uid: System.IComparable.CompareTo(System.Object)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable.compareto
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.IComparable.CompareTo(System.Object)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable.compareto
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NodaTime.Offset.CompareTo(NodaTime.Offset)
+  commentId: M:NodaTime.Offset.CompareTo(NodaTime.Offset)
+  href: NodaTime.Offset.html#NodaTime_Offset_CompareTo_NodaTime_Offset_
+  name: CompareTo(Offset)
+  nameWithType: Offset.CompareTo(Offset)
+  fullName: NodaTime.Offset.CompareTo(NodaTime.Offset)
+  spec.csharp:
+  - uid: NodaTime.Offset.CompareTo(NodaTime.Offset)
+    name: CompareTo
+    href: NodaTime.Offset.html#NodaTime_Offset_CompareTo_NodaTime_Offset_
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Offset.CompareTo(NodaTime.Offset)
+    name: CompareTo
+    href: NodaTime.Offset.html#NodaTime_Offset_CompareTo_NodaTime_Offset_
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: NodaTime.Offset.System#IComparable#CompareTo*
+  commentId: Overload:NodaTime.Offset.System#IComparable#CompareTo
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable
+  name: IComparable.CompareTo
+  nameWithType: Offset.IComparable.CompareTo
+  fullName: NodaTime.Offset.System.IComparable.CompareTo
+  spec.csharp:
+  - uid: System.IComparable*
+    name: IComparable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable
+  - name: .
+  - uid: NodaTime.Offset.System#IComparable#CompareTo*
+    name: CompareTo
+    href: NodaTime.Offset.html#NodaTime_Offset_System_IComparable_CompareTo_System_Object_
+- uid: NodaTime.Offset.Equals*
+  commentId: Overload:NodaTime.Offset.Equals
+  href: NodaTime.Offset.html#NodaTime_Offset_Equals_NodaTime_Offset_
+  name: Equals
+  nameWithType: Offset.Equals
+  fullName: NodaTime.Offset.Equals
+- uid: System.IEquatable{NodaTime.Offset}.Equals(NodaTime.Offset)
+  commentId: M:System.IEquatable{NodaTime.Offset}.Equals(NodaTime.Offset)
+  parent: System.IEquatable{NodaTime.Offset}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(Offset)
+  nameWithType: IEquatable<Offset>.Equals(Offset)
+  fullName: System.IEquatable<NodaTime.Offset>.Equals(NodaTime.Offset)
+  nameWithType.vb: IEquatable(Of Offset).Equals(Offset)
+  fullName.vb: System.IEquatable(Of NodaTime.Offset).Equals(NodaTime.Offset)
+  spec.csharp:
+  - uid: System.IEquatable{NodaTime.Offset}.Equals(NodaTime.Offset)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{NodaTime.Offset}.Equals(NodaTime.Offset)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: NodaTime.Offset.GetHashCode*
+  commentId: Overload:NodaTime.Offset.GetHashCode
+  href: NodaTime.Offset.html#NodaTime_Offset_GetHashCode
+  name: GetHashCode
+  nameWithType: Offset.GetHashCode
+  fullName: NodaTime.Offset.GetHashCode
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: NodaTime.Offset.ToString*
+  commentId: Overload:NodaTime.Offset.ToString
+  href: NodaTime.Offset.html#NodaTime_Offset_ToString
+  name: ToString
+  nameWithType: Offset.ToString
+  fullName: NodaTime.Offset.ToString
+- uid: System.IFormatProvider
+  commentId: T:System.IFormatProvider
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  name: IFormatProvider
+  nameWithType: IFormatProvider
+  fullName: System.IFormatProvider
+- uid: System.IFormattable.ToString(System.String,System.IFormatProvider)
+  commentId: M:System.IFormattable.ToString(System.String,System.IFormatProvider)
+  parent: System.IFormattable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iformattable.tostring
+  name: ToString(string, IFormatProvider)
+  nameWithType: IFormattable.ToString(string, IFormatProvider)
+  fullName: System.IFormattable.ToString(string, System.IFormatProvider)
+  nameWithType.vb: IFormattable.ToString(String, IFormatProvider)
+  fullName.vb: System.IFormattable.ToString(String, System.IFormatProvider)
+  name.vb: ToString(String, IFormatProvider)
+  spec.csharp:
+  - uid: System.IFormattable.ToString(System.String,System.IFormatProvider)
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformattable.tostring
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IFormattable.ToString(System.String,System.IFormatProvider)
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformattable.tostring
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: NodaTime.Offset.FromSeconds*
+  commentId: Overload:NodaTime.Offset.FromSeconds
+  href: NodaTime.Offset.html#NodaTime_Offset_FromSeconds_System_Int32_
+  name: FromSeconds
+  nameWithType: Offset.FromSeconds
+  fullName: NodaTime.Offset.FromSeconds
+- uid: NodaTime.Offset.FromMilliseconds*
+  commentId: Overload:NodaTime.Offset.FromMilliseconds
+  href: NodaTime.Offset.html#NodaTime_Offset_FromMilliseconds_System_Int32_
+  name: FromMilliseconds
+  nameWithType: Offset.FromMilliseconds
+  fullName: NodaTime.Offset.FromMilliseconds
+- uid: NodaTime.Offset.FromTicks*
+  commentId: Overload:NodaTime.Offset.FromTicks
+  href: NodaTime.Offset.html#NodaTime_Offset_FromTicks_System_Int64_
+  name: FromTicks
+  nameWithType: Offset.FromTicks
+  fullName: NodaTime.Offset.FromTicks
+- uid: NodaTime.Offset.FromNanoseconds*
+  commentId: Overload:NodaTime.Offset.FromNanoseconds
+  href: NodaTime.Offset.html#NodaTime_Offset_FromNanoseconds_System_Int64_
+  name: FromNanoseconds
+  nameWithType: Offset.FromNanoseconds
+  fullName: NodaTime.Offset.FromNanoseconds
+- uid: NodaTime.Offset.FromHours*
+  commentId: Overload:NodaTime.Offset.FromHours
+  href: NodaTime.Offset.html#NodaTime_Offset_FromHours_System_Int32_
+  name: FromHours
+  nameWithType: Offset.FromHours
+  fullName: NodaTime.Offset.FromHours
+- uid: NodaTime.Offset.FromHoursAndMinutes*
+  commentId: Overload:NodaTime.Offset.FromHoursAndMinutes
+  href: NodaTime.Offset.html#NodaTime_Offset_FromHoursAndMinutes_System_Int32_System_Int32_
+  name: FromHoursAndMinutes
+  nameWithType: Offset.FromHoursAndMinutes
+  fullName: NodaTime.Offset.FromHoursAndMinutes
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: NodaTime.Offset.ToTimeSpan*
+  commentId: Overload:NodaTime.Offset.ToTimeSpan
+  href: NodaTime.Offset.html#NodaTime_Offset_ToTimeSpan
+  name: ToTimeSpan
+  nameWithType: Offset.ToTimeSpan
+  fullName: NodaTime.Offset.ToTimeSpan
+- uid: NodaTime.Offset.FromTimeSpan*
+  commentId: Overload:NodaTime.Offset.FromTimeSpan
+  href: NodaTime.Offset.html#NodaTime_Offset_FromTimeSpan_System_TimeSpan_
+  name: FromTimeSpan
+  nameWithType: Offset.FromTimeSpan
+  fullName: NodaTime.Offset.FromTimeSpan
+- uid: System.Xml.Serialization.XmlSchemaExporter
+  commentId: T:System.Xml.Serialization.XmlSchemaExporter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.xmlschemaexporter
+  name: XmlSchemaExporter
+  nameWithType: XmlSchemaExporter
+  fullName: System.Xml.Serialization.XmlSchemaExporter
+- uid: NodaTime.Offset.AddSchema*
+  commentId: Overload:NodaTime.Offset.AddSchema
+  href: NodaTime.Offset.html#NodaTime_Offset_AddSchema_System_Xml_Schema_XmlSchemaSet_
+  name: AddSchema
+  nameWithType: Offset.AddSchema
+  fullName: NodaTime.Offset.AddSchema
+- uid: System.Xml.Schema.XmlSchemaSet
+  commentId: T:System.Xml.Schema.XmlSchemaSet
+  parent: System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.schema.xmlschemaset
+  name: XmlSchemaSet
+  nameWithType: XmlSchemaSet
+  fullName: System.Xml.Schema.XmlSchemaSet
+- uid: System.Xml.XmlQualifiedName
+  commentId: T:System.Xml.XmlQualifiedName
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlqualifiedname
+  name: XmlQualifiedName
+  nameWithType: XmlQualifiedName
+  fullName: System.Xml.XmlQualifiedName
+- uid: System.Xml.Schema
+  commentId: N:System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Schema
+  nameWithType: System.Xml.Schema
+  fullName: System.Xml.Schema
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Schema
+    name: Schema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.schema
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Schema
+    name: Schema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.schema
+- uid: System.Xml
+  commentId: N:System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml
+  nameWithType: System.Xml
+  fullName: System.Xml
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+- uid: System.Xml.Serialization.XmlSchemaProviderAttribute
+  commentId: T:System.Xml.Serialization.XmlSchemaProviderAttribute
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.xmlschemaproviderattribute
+  name: XmlSchemaProviderAttribute
+  nameWithType: XmlSchemaProviderAttribute
+  fullName: System.Xml.Serialization.XmlSchemaProviderAttribute
+- uid: System.Xml.Schema.XmlSchema
+  commentId: T:System.Xml.Schema.XmlSchema
+  parent: System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.schema.xmlschema
+  name: XmlSchema
+  nameWithType: XmlSchema
+  fullName: System.Xml.Schema.XmlSchema
+- uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  commentId: M:System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  parent: System.Xml.Serialization.IXmlSerializable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  name: WriteXml(XmlWriter)
+  nameWithType: IXmlSerializable.WriteXml(XmlWriter)
+  fullName: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  - name: )
+  spec.vb:
+  - uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  - name: )
+- uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  commentId: M:System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  parent: System.Xml.Serialization.IXmlSerializable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  name: ReadXml(XmlReader)
+  nameWithType: IXmlSerializable.ReadXml(XmlReader)
+  fullName: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  - name: )
+  spec.vb:
+  - uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  - name: )
+- uid: NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#GetSchema*
+  commentId: Overload:NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#GetSchema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.GetSchema
+  nameWithType: Offset.IXmlSerializable.GetSchema
+  fullName: NodaTime.Offset.System.Xml.Serialization.IXmlSerializable.GetSchema
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#GetSchema*
+    name: GetSchema
+    href: NodaTime.Offset.html#NodaTime_Offset_System_Xml_Serialization_IXmlSerializable_GetSchema
+- uid: System.Xml.XmlReader
+  commentId: T:System.Xml.XmlReader
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  name: XmlReader
+  nameWithType: XmlReader
+  fullName: System.Xml.XmlReader
+- uid: NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#ReadXml*
+  commentId: Overload:NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#ReadXml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.ReadXml
+  nameWithType: Offset.IXmlSerializable.ReadXml
+  fullName: NodaTime.Offset.System.Xml.Serialization.IXmlSerializable.ReadXml
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#ReadXml*
+    name: ReadXml
+    href: NodaTime.Offset.html#NodaTime_Offset_System_Xml_Serialization_IXmlSerializable_ReadXml_System_Xml_XmlReader_
+- uid: System.Xml.XmlWriter
+  commentId: T:System.Xml.XmlWriter
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  name: XmlWriter
+  nameWithType: XmlWriter
+  fullName: System.Xml.XmlWriter
+- uid: NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#WriteXml*
+  commentId: Overload:NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#WriteXml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.WriteXml
+  nameWithType: Offset.IXmlSerializable.WriteXml
+  fullName: NodaTime.Offset.System.Xml.Serialization.IXmlSerializable.WriteXml
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.Offset.System#Xml#Serialization#IXmlSerializable#WriteXml*
+    name: WriteXml
+    href: NodaTime.Offset.html#NodaTime_Offset_System_Xml_Serialization_IXmlSerializable_WriteXml_System_Xml_XmlWriter_
+shouldSkipMarkup: true

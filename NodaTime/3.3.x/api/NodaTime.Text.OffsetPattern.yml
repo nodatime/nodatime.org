@@ -1,0 +1,1064 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.Text.OffsetPattern
+  commentId: T:NodaTime.Text.OffsetPattern
+  id: OffsetPattern
+  parent: NodaTime.Text
+  children:
+  - NodaTime.Text.OffsetPattern.AppendFormat(NodaTime.Offset,System.Text.StringBuilder)
+  - NodaTime.Text.OffsetPattern.Create(System.String,System.Globalization.CultureInfo)
+  - NodaTime.Text.OffsetPattern.CreateWithCurrentCulture(System.String)
+  - NodaTime.Text.OffsetPattern.CreateWithInvariantCulture(System.String)
+  - NodaTime.Text.OffsetPattern.Format(NodaTime.Offset)
+  - NodaTime.Text.OffsetPattern.GeneralInvariant
+  - NodaTime.Text.OffsetPattern.GeneralInvariantWithZ
+  - NodaTime.Text.OffsetPattern.Parse(System.String)
+  - NodaTime.Text.OffsetPattern.PatternText
+  - NodaTime.Text.OffsetPattern.WithCulture(System.Globalization.CultureInfo)
+  langs:
+  - csharp
+  - vb
+  name: OffsetPattern
+  nameWithType: OffsetPattern
+  fullName: NodaTime.Text.OffsetPattern
+  type: Class
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Represents a pattern for parsing and formatting <xref href="NodaTime.Offset" data-throw-if-not-resolved="false"></xref> values.
+  example: []
+  syntax:
+    content: 'public sealed class OffsetPattern : IPattern<Offset>'
+    content.vb: Public NotInheritable Class OffsetPattern Implements IPattern(Of Offset)
+  inheritance:
+  - System.Object
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.Offset}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: NodaTime.Text.OffsetPattern.GeneralInvariant
+  commentId: P:NodaTime.Text.OffsetPattern.GeneralInvariant
+  id: GeneralInvariant
+  parent: NodaTime.Text.OffsetPattern
+  langs:
+  - csharp
+  - vb
+  name: GeneralInvariant
+  nameWithType: OffsetPattern.GeneralInvariant
+  fullName: NodaTime.Text.OffsetPattern.GeneralInvariant
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: The "general" offset pattern (e.g. +HH, +HH:mm, +HH:mm:ss, +HH:mm:ss.fff) for the invariant culture.
+  example: []
+  syntax:
+    content: public static OffsetPattern GeneralInvariant { get; }
+    parameters: []
+    return:
+      type: NodaTime.Text.OffsetPattern
+      description: The "general" offset pattern for the invariant culture.
+    content.vb: Public Shared ReadOnly Property GeneralInvariant As OffsetPattern
+  overload: NodaTime.Text.OffsetPattern.GeneralInvariant*
+- uid: NodaTime.Text.OffsetPattern.GeneralInvariantWithZ
+  commentId: P:NodaTime.Text.OffsetPattern.GeneralInvariantWithZ
+  id: GeneralInvariantWithZ
+  parent: NodaTime.Text.OffsetPattern
+  langs:
+  - csharp
+  - vb
+  name: GeneralInvariantWithZ
+  nameWithType: OffsetPattern.GeneralInvariantWithZ
+  fullName: NodaTime.Text.OffsetPattern.GeneralInvariantWithZ
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    The "general" offset pattern (e.g. +HH, +HH:mm, +HH:mm:ss, +HH:mm:ss.fff) for the invariant culture,
+
+    but producing (and allowing) Z as a value for a zero offset.
+  example: []
+  syntax:
+    content: public static OffsetPattern GeneralInvariantWithZ { get; }
+    parameters: []
+    return:
+      type: NodaTime.Text.OffsetPattern
+      description: The "general" offset pattern for the invariant culture but producing (and allowing) Z as a value for a zero offset.
+    content.vb: Public Shared ReadOnly Property GeneralInvariantWithZ As OffsetPattern
+  overload: NodaTime.Text.OffsetPattern.GeneralInvariantWithZ*
+- uid: NodaTime.Text.OffsetPattern.PatternText
+  commentId: P:NodaTime.Text.OffsetPattern.PatternText
+  id: PatternText
+  parent: NodaTime.Text.OffsetPattern
+  langs:
+  - csharp
+  - vb
+  name: PatternText
+  nameWithType: OffsetPattern.PatternText
+  fullName: NodaTime.Text.OffsetPattern.PatternText
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Gets the pattern text for this pattern, as supplied on creation.
+  example: []
+  syntax:
+    content: public string PatternText { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The pattern text for this pattern, as supplied on creation.
+    content.vb: Public ReadOnly Property PatternText As String
+  overload: NodaTime.Text.OffsetPattern.PatternText*
+- uid: NodaTime.Text.OffsetPattern.Parse(System.String)
+  commentId: M:NodaTime.Text.OffsetPattern.Parse(System.String)
+  id: Parse(System.String)
+  parent: NodaTime.Text.OffsetPattern
+  langs:
+  - csharp
+  - vb
+  name: Parse(string)
+  nameWithType: OffsetPattern.Parse(string)
+  fullName: NodaTime.Text.OffsetPattern.Parse(string)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Parses the given text value according to the rules of this pattern.
+  remarks: >-
+    This method never throws an exception (barring a bug in Noda Time itself). Even errors such as
+
+    the argument being null are wrapped in a parse result.
+  example: []
+  syntax:
+    content: public ParseResult<Offset> Parse(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text value to parse.
+    return:
+      type: NodaTime.Text.ParseResult{NodaTime.Offset}
+      description: The result of parsing, which may be successful or unsuccessful.
+    content.vb: Public Function Parse(text As String) As ParseResult(Of Offset)
+  overload: NodaTime.Text.OffsetPattern.Parse*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.Offset}.Parse(System.String)
+  nameWithType.vb: OffsetPattern.Parse(String)
+  fullName.vb: NodaTime.Text.OffsetPattern.Parse(String)
+  name.vb: Parse(String)
+- uid: NodaTime.Text.OffsetPattern.Format(NodaTime.Offset)
+  commentId: M:NodaTime.Text.OffsetPattern.Format(NodaTime.Offset)
+  id: Format(NodaTime.Offset)
+  parent: NodaTime.Text.OffsetPattern
+  langs:
+  - csharp
+  - vb
+  name: Format(Offset)
+  nameWithType: OffsetPattern.Format(Offset)
+  fullName: NodaTime.Text.OffsetPattern.Format(NodaTime.Offset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Formats the given offset as text according to the rules of this pattern.
+  example: []
+  syntax:
+    content: public string Format(Offset value)
+    parameters:
+    - id: value
+      type: NodaTime.Offset
+      description: The offset to format.
+    return:
+      type: System.String
+      description: The offset formatted according to this pattern.
+    content.vb: Public Function Format(value As Offset) As String
+  overload: NodaTime.Text.OffsetPattern.Format*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.Offset}.Format(NodaTime.Offset)
+- uid: NodaTime.Text.OffsetPattern.AppendFormat(NodaTime.Offset,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.OffsetPattern.AppendFormat(NodaTime.Offset,System.Text.StringBuilder)
+  id: AppendFormat(NodaTime.Offset,System.Text.StringBuilder)
+  parent: NodaTime.Text.OffsetPattern
+  langs:
+  - csharp
+  - vb
+  name: AppendFormat(Offset, StringBuilder)
+  nameWithType: OffsetPattern.AppendFormat(Offset, StringBuilder)
+  fullName: NodaTime.Text.OffsetPattern.AppendFormat(NodaTime.Offset, System.Text.StringBuilder)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Formats the given value as text according to the rules of this pattern,
+
+    appending to the given <xref href="System.Text.StringBuilder" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public StringBuilder AppendFormat(Offset value, StringBuilder builder)
+    parameters:
+    - id: value
+      type: NodaTime.Offset
+      description: The value to format.
+    - id: builder
+      type: System.Text.StringBuilder
+      description: The <code>StringBuilder</code> to append to.
+    return:
+      type: System.Text.StringBuilder
+      description: The builder passed in as <code class="paramref">builder</code>.
+    content.vb: Public Function AppendFormat(value As Offset, builder As StringBuilder) As StringBuilder
+  overload: NodaTime.Text.OffsetPattern.AppendFormat*
+  implements:
+  - NodaTime.Text.IPattern{NodaTime.Offset}.AppendFormat(NodaTime.Offset,System.Text.StringBuilder)
+- uid: NodaTime.Text.OffsetPattern.Create(System.String,System.Globalization.CultureInfo)
+  commentId: M:NodaTime.Text.OffsetPattern.Create(System.String,System.Globalization.CultureInfo)
+  id: Create(System.String,System.Globalization.CultureInfo)
+  parent: NodaTime.Text.OffsetPattern
+  langs:
+  - csharp
+  - vb
+  name: Create(string, CultureInfo)
+  nameWithType: OffsetPattern.Create(string, CultureInfo)
+  fullName: NodaTime.Text.OffsetPattern.Create(string, System.Globalization.CultureInfo)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Creates a pattern for the given pattern text and culture.
+  remarks: See the user guide for the available pattern text options.
+  example: []
+  syntax:
+    content: public static OffsetPattern Create(string patternText, CultureInfo cultureInfo)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: Pattern text to create the pattern for
+    - id: cultureInfo
+      type: System.Globalization.CultureInfo
+      description: The culture to use in the pattern
+    return:
+      type: NodaTime.Text.OffsetPattern
+      description: A pattern for parsing and formatting offsets.
+    content.vb: Public Shared Function Create(patternText As String, cultureInfo As CultureInfo) As OffsetPattern
+  overload: NodaTime.Text.OffsetPattern.Create*
+  exceptions:
+  - type: NodaTime.Text.InvalidPatternException
+    commentId: T:NodaTime.Text.InvalidPatternException
+    description: The pattern text was invalid.
+  nameWithType.vb: OffsetPattern.Create(String, CultureInfo)
+  fullName.vb: NodaTime.Text.OffsetPattern.Create(String, System.Globalization.CultureInfo)
+  name.vb: Create(String, CultureInfo)
+- uid: NodaTime.Text.OffsetPattern.CreateWithCurrentCulture(System.String)
+  commentId: M:NodaTime.Text.OffsetPattern.CreateWithCurrentCulture(System.String)
+  id: CreateWithCurrentCulture(System.String)
+  parent: NodaTime.Text.OffsetPattern
+  langs:
+  - csharp
+  - vb
+  name: CreateWithCurrentCulture(string)
+  nameWithType: OffsetPattern.CreateWithCurrentCulture(string)
+  fullName: NodaTime.Text.OffsetPattern.CreateWithCurrentCulture(string)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Creates a pattern for the given pattern text in the current thread's current culture.
+  remarks: >-
+    See the user guide for the available pattern text options. Note that the current culture
+
+    is captured at the time this method is called - it is not captured at the point of parsing
+
+    or formatting values.
+  example: []
+  syntax:
+    content: public static OffsetPattern CreateWithCurrentCulture(string patternText)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: Pattern text to create the pattern for
+    return:
+      type: NodaTime.Text.OffsetPattern
+      description: A pattern for parsing and formatting offsets.
+    content.vb: Public Shared Function CreateWithCurrentCulture(patternText As String) As OffsetPattern
+  overload: NodaTime.Text.OffsetPattern.CreateWithCurrentCulture*
+  exceptions:
+  - type: NodaTime.Text.InvalidPatternException
+    commentId: T:NodaTime.Text.InvalidPatternException
+    description: The pattern text was invalid.
+  nameWithType.vb: OffsetPattern.CreateWithCurrentCulture(String)
+  fullName.vb: NodaTime.Text.OffsetPattern.CreateWithCurrentCulture(String)
+  name.vb: CreateWithCurrentCulture(String)
+- uid: NodaTime.Text.OffsetPattern.CreateWithInvariantCulture(System.String)
+  commentId: M:NodaTime.Text.OffsetPattern.CreateWithInvariantCulture(System.String)
+  id: CreateWithInvariantCulture(System.String)
+  parent: NodaTime.Text.OffsetPattern
+  langs:
+  - csharp
+  - vb
+  name: CreateWithInvariantCulture(string)
+  nameWithType: OffsetPattern.CreateWithInvariantCulture(string)
+  fullName: NodaTime.Text.OffsetPattern.CreateWithInvariantCulture(string)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: Creates a pattern for the given pattern text in the invariant culture.
+  remarks: See the user guide for the available pattern text options.
+  example: []
+  syntax:
+    content: public static OffsetPattern CreateWithInvariantCulture(string patternText)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: Pattern text to create the pattern for
+    return:
+      type: NodaTime.Text.OffsetPattern
+      description: A pattern for parsing and formatting offsets.
+    content.vb: Public Shared Function CreateWithInvariantCulture(patternText As String) As OffsetPattern
+  overload: NodaTime.Text.OffsetPattern.CreateWithInvariantCulture*
+  exceptions:
+  - type: NodaTime.Text.InvalidPatternException
+    commentId: T:NodaTime.Text.InvalidPatternException
+    description: The pattern text was invalid.
+  nameWithType.vb: OffsetPattern.CreateWithInvariantCulture(String)
+  fullName.vb: NodaTime.Text.OffsetPattern.CreateWithInvariantCulture(String)
+  name.vb: CreateWithInvariantCulture(String)
+- uid: NodaTime.Text.OffsetPattern.WithCulture(System.Globalization.CultureInfo)
+  commentId: M:NodaTime.Text.OffsetPattern.WithCulture(System.Globalization.CultureInfo)
+  id: WithCulture(System.Globalization.CultureInfo)
+  parent: NodaTime.Text.OffsetPattern
+  langs:
+  - csharp
+  - vb
+  name: WithCulture(CultureInfo)
+  nameWithType: OffsetPattern.WithCulture(CultureInfo)
+  fullName: NodaTime.Text.OffsetPattern.WithCulture(System.Globalization.CultureInfo)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime.Text
+  summary: >-
+    Creates a pattern for the same original pattern text as this pattern, but with the specified
+
+    culture.
+  example: []
+  syntax:
+    content: public OffsetPattern WithCulture(CultureInfo cultureInfo)
+    parameters:
+    - id: cultureInfo
+      type: System.Globalization.CultureInfo
+      description: The culture to use in the new pattern.
+    return:
+      type: NodaTime.Text.OffsetPattern
+      description: A new pattern with the given culture.
+    content.vb: Public Function WithCulture(cultureInfo As CultureInfo) As OffsetPattern
+  overload: NodaTime.Text.OffsetPattern.WithCulture*
+references:
+- uid: NodaTime.Offset
+  commentId: T:NodaTime.Offset
+  parent: NodaTime
+  href: NodaTime.Offset.html
+  name: Offset
+  nameWithType: Offset
+  fullName: NodaTime.Offset
+- uid: System.Globalization.CultureInfo
+  commentId: T:System.Globalization.CultureInfo
+  parent: System.Globalization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo
+  name: CultureInfo
+  nameWithType: CultureInfo
+  fullName: System.Globalization.CultureInfo
+- uid: NodaTime.Text
+  commentId: N:NodaTime.Text
+  href: NodaTime.html
+  name: NodaTime.Text
+  nameWithType: NodaTime.Text
+  fullName: NodaTime.Text
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Text
+    name: Text
+    href: NodaTime.Text.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Text
+    name: Text
+    href: NodaTime.Text.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: NodaTime.Text.IPattern{NodaTime.Offset}
+  commentId: T:NodaTime.Text.IPattern{NodaTime.Offset}
+  parent: NodaTime.Text
+  definition: NodaTime.Text.IPattern`1
+  href: NodaTime.Text.IPattern-1.html
+  name: IPattern<Offset>
+  nameWithType: IPattern<Offset>
+  fullName: NodaTime.Text.IPattern<NodaTime.Offset>
+  nameWithType.vb: IPattern(Of Offset)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.Offset)
+  name.vb: IPattern(Of Offset)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: <
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.Globalization
+  commentId: N:System.Globalization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Globalization
+  nameWithType: System.Globalization
+  fullName: System.Globalization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Globalization
+    name: Globalization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Globalization
+    name: Globalization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NodaTime.Text.IPattern`1
+  commentId: T:NodaTime.Text.IPattern`1
+  href: NodaTime.Text.IPattern-1.html
+  name: IPattern<T>
+  nameWithType: IPattern<T>
+  fullName: NodaTime.Text.IPattern<T>
+  nameWithType.vb: IPattern(Of T)
+  fullName.vb: NodaTime.Text.IPattern(Of T)
+  name.vb: IPattern(Of T)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1
+    name: IPattern
+    href: NodaTime.Text.IPattern-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: NodaTime.Text.OffsetPattern.GeneralInvariant*
+  commentId: Overload:NodaTime.Text.OffsetPattern.GeneralInvariant
+  href: NodaTime.Text.OffsetPattern.html#NodaTime_Text_OffsetPattern_GeneralInvariant
+  name: GeneralInvariant
+  nameWithType: OffsetPattern.GeneralInvariant
+  fullName: NodaTime.Text.OffsetPattern.GeneralInvariant
+- uid: NodaTime.Text.OffsetPattern
+  commentId: T:NodaTime.Text.OffsetPattern
+  parent: NodaTime.Text
+  href: NodaTime.Text.OffsetPattern.html
+  name: OffsetPattern
+  nameWithType: OffsetPattern
+  fullName: NodaTime.Text.OffsetPattern
+- uid: NodaTime.Text.OffsetPattern.GeneralInvariantWithZ*
+  commentId: Overload:NodaTime.Text.OffsetPattern.GeneralInvariantWithZ
+  href: NodaTime.Text.OffsetPattern.html#NodaTime_Text_OffsetPattern_GeneralInvariantWithZ
+  name: GeneralInvariantWithZ
+  nameWithType: OffsetPattern.GeneralInvariantWithZ
+  fullName: NodaTime.Text.OffsetPattern.GeneralInvariantWithZ
+- uid: NodaTime.Text.OffsetPattern.PatternText*
+  commentId: Overload:NodaTime.Text.OffsetPattern.PatternText
+  href: NodaTime.Text.OffsetPattern.html#NodaTime_Text_OffsetPattern_PatternText
+  name: PatternText
+  nameWithType: OffsetPattern.PatternText
+  fullName: NodaTime.Text.OffsetPattern.PatternText
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: NodaTime.Text.OffsetPattern.Parse*
+  commentId: Overload:NodaTime.Text.OffsetPattern.Parse
+  href: NodaTime.Text.OffsetPattern.html#NodaTime_Text_OffsetPattern_Parse_System_String_
+  name: Parse
+  nameWithType: OffsetPattern.Parse
+  fullName: NodaTime.Text.OffsetPattern.Parse
+- uid: NodaTime.Text.IPattern{NodaTime.Offset}.Parse(System.String)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.Offset}.Parse(System.String)
+  parent: NodaTime.Text.IPattern{NodaTime.Offset}
+  definition: NodaTime.Text.IPattern`1.Parse(System.String)
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  name: Parse(string)
+  nameWithType: IPattern<Offset>.Parse(string)
+  fullName: NodaTime.Text.IPattern<NodaTime.Offset>.Parse(string)
+  nameWithType.vb: IPattern(Of Offset).Parse(String)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.Offset).Parse(String)
+  name.vb: Parse(String)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern{NodaTime.Offset}.Parse(System.String)
+    name: Parse
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern{NodaTime.Offset}.Parse(System.String)
+    name: Parse
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NodaTime.Text.ParseResult{NodaTime.Offset}
+  commentId: T:NodaTime.Text.ParseResult{NodaTime.Offset}
+  parent: NodaTime.Text
+  definition: NodaTime.Text.ParseResult`1
+  href: NodaTime.Text.ParseResult-1.html
+  name: ParseResult<Offset>
+  nameWithType: ParseResult<Offset>
+  fullName: NodaTime.Text.ParseResult<NodaTime.Offset>
+  nameWithType.vb: ParseResult(Of Offset)
+  fullName.vb: NodaTime.Text.ParseResult(Of NodaTime.Offset)
+  name.vb: ParseResult(Of Offset)
+  spec.csharp:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    href: NodaTime.Text.ParseResult-1.html
+  - name: <
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    href: NodaTime.Text.ParseResult-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: NodaTime.Text.IPattern`1.Parse(System.String)
+  commentId: M:NodaTime.Text.IPattern`1.Parse(System.String)
+  isExternal: true
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  name: Parse(string)
+  nameWithType: IPattern<T>.Parse(string)
+  fullName: NodaTime.Text.IPattern<T>.Parse(string)
+  nameWithType.vb: IPattern(Of T).Parse(String)
+  fullName.vb: NodaTime.Text.IPattern(Of T).Parse(String)
+  name.vb: Parse(String)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Parse(System.String)
+    name: Parse
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NodaTime.Text.ParseResult`1
+  commentId: T:NodaTime.Text.ParseResult`1
+  parent: NodaTime.Text
+  href: NodaTime.Text.ParseResult-1.html
+  name: ParseResult<T>
+  nameWithType: ParseResult<T>
+  fullName: NodaTime.Text.ParseResult<T>
+  nameWithType.vb: ParseResult(Of T)
+  fullName.vb: NodaTime.Text.ParseResult(Of T)
+  name.vb: ParseResult(Of T)
+  spec.csharp:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    href: NodaTime.Text.ParseResult-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NodaTime.Text.ParseResult`1
+    name: ParseResult
+    href: NodaTime.Text.ParseResult-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: NodaTime.Text.OffsetPattern.Format*
+  commentId: Overload:NodaTime.Text.OffsetPattern.Format
+  href: NodaTime.Text.OffsetPattern.html#NodaTime_Text_OffsetPattern_Format_NodaTime_Offset_
+  name: Format
+  nameWithType: OffsetPattern.Format
+  fullName: NodaTime.Text.OffsetPattern.Format
+- uid: NodaTime.Text.IPattern{NodaTime.Offset}.Format(NodaTime.Offset)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.Offset}.Format(NodaTime.Offset)
+  parent: NodaTime.Text.IPattern{NodaTime.Offset}
+  definition: NodaTime.Text.IPattern`1.Format(`0)
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  name: Format(Offset)
+  nameWithType: IPattern<Offset>.Format(Offset)
+  fullName: NodaTime.Text.IPattern<NodaTime.Offset>.Format(NodaTime.Offset)
+  nameWithType.vb: IPattern(Of Offset).Format(Offset)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.Offset).Format(NodaTime.Offset)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern{NodaTime.Offset}.Format(NodaTime.Offset)
+    name: Format
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern{NodaTime.Offset}.Format(NodaTime.Offset)
+    name: Format
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: )
+- uid: NodaTime.Text.IPattern`1.Format(`0)
+  commentId: M:NodaTime.Text.IPattern`1.Format(`0)
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  name: Format(T)
+  nameWithType: IPattern<T>.Format(T)
+  fullName: NodaTime.Text.IPattern<T>.Format(T)
+  nameWithType.vb: IPattern(Of T).Format(T)
+  fullName.vb: NodaTime.Text.IPattern(Of T).Format(T)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.Format(`0)
+    name: Format
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_Format__0_
+  - name: (
+  - name: T
+  - name: )
+- uid: System.Text.StringBuilder
+  commentId: T:System.Text.StringBuilder
+  parent: System.Text
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  name: StringBuilder
+  nameWithType: StringBuilder
+  fullName: System.Text.StringBuilder
+- uid: NodaTime.Text.OffsetPattern.AppendFormat*
+  commentId: Overload:NodaTime.Text.OffsetPattern.AppendFormat
+  href: NodaTime.Text.OffsetPattern.html#NodaTime_Text_OffsetPattern_AppendFormat_NodaTime_Offset_System_Text_StringBuilder_
+  name: AppendFormat
+  nameWithType: OffsetPattern.AppendFormat
+  fullName: NodaTime.Text.OffsetPattern.AppendFormat
+- uid: NodaTime.Text.IPattern{NodaTime.Offset}.AppendFormat(NodaTime.Offset,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.IPattern{NodaTime.Offset}.AppendFormat(NodaTime.Offset,System.Text.StringBuilder)
+  parent: NodaTime.Text.IPattern{NodaTime.Offset}
+  definition: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  name: AppendFormat(Offset, StringBuilder)
+  nameWithType: IPattern<Offset>.AppendFormat(Offset, StringBuilder)
+  fullName: NodaTime.Text.IPattern<NodaTime.Offset>.AppendFormat(NodaTime.Offset, System.Text.StringBuilder)
+  nameWithType.vb: IPattern(Of Offset).AppendFormat(Offset, StringBuilder)
+  fullName.vb: NodaTime.Text.IPattern(Of NodaTime.Offset).AppendFormat(NodaTime.Offset, System.Text.StringBuilder)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern{NodaTime.Offset}.AppendFormat(NodaTime.Offset,System.Text.StringBuilder)
+    name: AppendFormat
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern{NodaTime.Offset}.AppendFormat(NodaTime.Offset,System.Text.StringBuilder)
+    name: AppendFormat
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  - name: (
+  - uid: NodaTime.Offset
+    name: Offset
+    href: NodaTime.Offset.html
+  - name: ','
+  - name: " "
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+- uid: System.Text
+  commentId: N:System.Text
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text
+  nameWithType: System.Text
+  fullName: System.Text
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+- uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  commentId: M:NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+  isExternal: true
+  href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  name: AppendFormat(T, StringBuilder)
+  nameWithType: IPattern<T>.AppendFormat(T, StringBuilder)
+  fullName: NodaTime.Text.IPattern<T>.AppendFormat(T, System.Text.StringBuilder)
+  nameWithType.vb: IPattern(Of T).AppendFormat(T, StringBuilder)
+  fullName.vb: NodaTime.Text.IPattern(Of T).AppendFormat(T, System.Text.StringBuilder)
+  spec.csharp:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+  spec.vb:
+  - uid: NodaTime.Text.IPattern`1.AppendFormat(`0,System.Text.StringBuilder)
+    name: AppendFormat
+    href: NodaTime.Text.IPattern-1.html#NodaTime_Text_IPattern_1_AppendFormat__0_System_Text_StringBuilder_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+- uid: NodaTime.Text.InvalidPatternException
+  commentId: T:NodaTime.Text.InvalidPatternException
+  href: NodaTime.Text.InvalidPatternException.html
+  name: InvalidPatternException
+  nameWithType: InvalidPatternException
+  fullName: NodaTime.Text.InvalidPatternException
+- uid: NodaTime.Text.OffsetPattern.Create*
+  commentId: Overload:NodaTime.Text.OffsetPattern.Create
+  href: NodaTime.Text.OffsetPattern.html#NodaTime_Text_OffsetPattern_Create_System_String_System_Globalization_CultureInfo_
+  name: Create
+  nameWithType: OffsetPattern.Create
+  fullName: NodaTime.Text.OffsetPattern.Create
+- uid: NodaTime.Text.OffsetPattern.CreateWithCurrentCulture*
+  commentId: Overload:NodaTime.Text.OffsetPattern.CreateWithCurrentCulture
+  href: NodaTime.Text.OffsetPattern.html#NodaTime_Text_OffsetPattern_CreateWithCurrentCulture_System_String_
+  name: CreateWithCurrentCulture
+  nameWithType: OffsetPattern.CreateWithCurrentCulture
+  fullName: NodaTime.Text.OffsetPattern.CreateWithCurrentCulture
+- uid: NodaTime.Text.OffsetPattern.CreateWithInvariantCulture*
+  commentId: Overload:NodaTime.Text.OffsetPattern.CreateWithInvariantCulture
+  href: NodaTime.Text.OffsetPattern.html#NodaTime_Text_OffsetPattern_CreateWithInvariantCulture_System_String_
+  name: CreateWithInvariantCulture
+  nameWithType: OffsetPattern.CreateWithInvariantCulture
+  fullName: NodaTime.Text.OffsetPattern.CreateWithInvariantCulture
+- uid: NodaTime.Text.OffsetPattern.WithCulture*
+  commentId: Overload:NodaTime.Text.OffsetPattern.WithCulture
+  href: NodaTime.Text.OffsetPattern.html#NodaTime_Text_OffsetPattern_WithCulture_System_Globalization_CultureInfo_
+  name: WithCulture
+  nameWithType: OffsetPattern.WithCulture
+  fullName: NodaTime.Text.OffsetPattern.WithCulture
+shouldSkipMarkup: true

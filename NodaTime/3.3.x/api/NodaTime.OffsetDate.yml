@@ -1,0 +1,2140 @@
+### YamlMime:ManagedReference
+items:
+- uid: NodaTime.OffsetDate
+  commentId: T:NodaTime.OffsetDate
+  id: OffsetDate
+  parent: NodaTime
+  children:
+  - NodaTime.OffsetDate.#ctor(NodaTime.LocalDate,NodaTime.Offset)
+  - NodaTime.OffsetDate.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  - NodaTime.OffsetDate.At(NodaTime.LocalTime)
+  - NodaTime.OffsetDate.Calendar
+  - NodaTime.OffsetDate.Date
+  - NodaTime.OffsetDate.Day
+  - NodaTime.OffsetDate.DayOfWeek
+  - NodaTime.OffsetDate.DayOfYear
+  - NodaTime.OffsetDate.Deconstruct(NodaTime.LocalDate@,NodaTime.Offset@)
+  - NodaTime.OffsetDate.Equals(NodaTime.OffsetDate)
+  - NodaTime.OffsetDate.Equals(System.Object)
+  - NodaTime.OffsetDate.Era
+  - NodaTime.OffsetDate.GetHashCode
+  - NodaTime.OffsetDate.Month
+  - NodaTime.OffsetDate.Offset
+  - NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#GetSchema
+  - NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  - NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  - NodaTime.OffsetDate.ToString
+  - NodaTime.OffsetDate.ToString(System.String,System.IFormatProvider)
+  - NodaTime.OffsetDate.With(System.Func{NodaTime.LocalDate,NodaTime.LocalDate})
+  - NodaTime.OffsetDate.WithCalendar(NodaTime.CalendarSystem)
+  - NodaTime.OffsetDate.WithOffset(NodaTime.Offset)
+  - NodaTime.OffsetDate.Year
+  - NodaTime.OffsetDate.YearOfEra
+  - NodaTime.OffsetDate.op_Equality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  - NodaTime.OffsetDate.op_Inequality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  langs:
+  - csharp
+  - vb
+  name: OffsetDate
+  nameWithType: OffsetDate
+  fullName: NodaTime.OffsetDate
+  type: Struct
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    A combination of a <xref href="NodaTime.LocalDate" data-throw-if-not-resolved="false"></xref> and an <xref href="NodaTime.OffsetDate.Offset" data-throw-if-not-resolved="false"></xref>, to represent
+
+    a date at a specific offset from UTC but without any time-of-day information.
+  remarks: >-
+    <p>
+
+    Equality is defined in a component-wise fashion: two values are the same if they represent equal dates
+
+    (including being in the same calendar) and equal offsets from UTC.
+
+    Ordering between offset dates is not defined.
+
+    </p>
+
+    <p>The default value of this type is 0001-01-01 (January 1st, 1 C.E.) in the ISO calendar with a UTC offset of zero.</p>
+  example: []
+  syntax:
+    content: >-
+      [TypeConverter(typeof(OffsetDateTypeConverter))]
+
+      public readonly struct OffsetDate : IEquatable<OffsetDate>, IXmlSerializable, IFormattable, IEqualityOperators<OffsetDate, OffsetDate, bool>
+    content.vb: >-
+      <TypeConverter(GetType(OffsetDateTypeConverter))>
+
+      Public Structure OffsetDate Implements IEquatable(Of OffsetDate), IXmlSerializable, IFormattable, IEqualityOperators(Of OffsetDate, OffsetDate, Boolean)
+  implements:
+  - System.IEquatable{NodaTime.OffsetDate}
+  - System.Xml.Serialization.IXmlSerializable
+  - System.IFormattable
+  - System.Numerics.IEqualityOperators{NodaTime.OffsetDate,NodaTime.OffsetDate,System.Boolean}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: NodaTime.OffsetDate.#ctor(NodaTime.LocalDate,NodaTime.Offset)
+  commentId: M:NodaTime.OffsetDate.#ctor(NodaTime.LocalDate,NodaTime.Offset)
+  id: '#ctor(NodaTime.LocalDate,NodaTime.Offset)'
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: OffsetDate(LocalDate, Offset)
+  nameWithType: OffsetDate.OffsetDate(LocalDate, Offset)
+  fullName: NodaTime.OffsetDate.OffsetDate(NodaTime.LocalDate, NodaTime.Offset)
+  type: Constructor
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Constructs an instance of the specified date and offset.
+  example: []
+  syntax:
+    content: public OffsetDate(LocalDate date, Offset offset)
+    parameters:
+    - id: date
+      type: NodaTime.LocalDate
+      description: The date part of the value.
+    - id: offset
+      type: NodaTime.Offset
+      description: The offset part of the value.
+    content.vb: Public Sub New([date] As LocalDate, offset As Offset)
+  overload: NodaTime.OffsetDate.#ctor*
+  nameWithType.vb: OffsetDate.New(LocalDate, Offset)
+  fullName.vb: NodaTime.OffsetDate.New(NodaTime.LocalDate, NodaTime.Offset)
+  name.vb: New(LocalDate, Offset)
+- uid: NodaTime.OffsetDate.Date
+  commentId: P:NodaTime.OffsetDate.Date
+  id: Date
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: Date
+  nameWithType: OffsetDate.Date
+  fullName: NodaTime.OffsetDate.Date
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the local date represented by this value.
+  example: []
+  syntax:
+    content: public LocalDate Date { get; }
+    parameters: []
+    return:
+      type: NodaTime.LocalDate
+      description: The local date represented by this value.
+    content.vb: Public ReadOnly Property [Date] As LocalDate
+  overload: NodaTime.OffsetDate.Date*
+- uid: NodaTime.OffsetDate.Offset
+  commentId: P:NodaTime.OffsetDate.Offset
+  id: Offset
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: Offset
+  nameWithType: OffsetDate.Offset
+  fullName: NodaTime.OffsetDate.Offset
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the offset from UTC of this value.
+  example: []
+  syntax:
+    content: public Offset Offset { get; }
+    parameters: []
+    return:
+      type: NodaTime.Offset
+      description: The offset from UTC of this value.
+    content.vb: Public ReadOnly Property Offset As Offset
+  overload: NodaTime.OffsetDate.Offset*
+- uid: NodaTime.OffsetDate.Calendar
+  commentId: P:NodaTime.OffsetDate.Calendar
+  id: Calendar
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: Calendar
+  nameWithType: OffsetDate.Calendar
+  fullName: NodaTime.OffsetDate.Calendar
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the calendar system associated with this offset date.
+  example: []
+  syntax:
+    content: public CalendarSystem Calendar { get; }
+    parameters: []
+    return:
+      type: NodaTime.CalendarSystem
+      description: The calendar system associated with this offset date.
+    content.vb: Public ReadOnly Property Calendar As CalendarSystem
+  overload: NodaTime.OffsetDate.Calendar*
+- uid: NodaTime.OffsetDate.Year
+  commentId: P:NodaTime.OffsetDate.Year
+  id: Year
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: Year
+  nameWithType: OffsetDate.Year
+  fullName: NodaTime.OffsetDate.Year
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the year of this offset date.
+  remarks: >-
+    This returns the "absolute year", so, for the ISO calendar,
+        a value of 0 means 1 BC, for example.
+  example: []
+  syntax:
+    content: public int Year { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The year of this offset date.
+    content.vb: Public ReadOnly Property Year As Integer
+  overload: NodaTime.OffsetDate.Year*
+- uid: NodaTime.OffsetDate.Month
+  commentId: P:NodaTime.OffsetDate.Month
+  id: Month
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: Month
+  nameWithType: OffsetDate.Month
+  fullName: NodaTime.OffsetDate.Month
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the month of this offset date within the year.
+  example: []
+  syntax:
+    content: public int Month { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The month of this offset date within the year.
+    content.vb: Public ReadOnly Property Month As Integer
+  overload: NodaTime.OffsetDate.Month*
+- uid: NodaTime.OffsetDate.Day
+  commentId: P:NodaTime.OffsetDate.Day
+  id: Day
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: Day
+  nameWithType: OffsetDate.Day
+  fullName: NodaTime.OffsetDate.Day
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the day of this offset date within the month.
+  example: []
+  syntax:
+    content: public int Day { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The day of this offset date within the month.
+    content.vb: Public ReadOnly Property Day As Integer
+  overload: NodaTime.OffsetDate.Day*
+- uid: NodaTime.OffsetDate.DayOfWeek
+  commentId: P:NodaTime.OffsetDate.DayOfWeek
+  id: DayOfWeek
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: DayOfWeek
+  nameWithType: OffsetDate.DayOfWeek
+  fullName: NodaTime.OffsetDate.DayOfWeek
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the week day of this offset date expressed as an <xref href="NodaTime.IsoDayOfWeek" data-throw-if-not-resolved="false"></xref> value.
+  example: []
+  syntax:
+    content: public IsoDayOfWeek DayOfWeek { get; }
+    parameters: []
+    return:
+      type: NodaTime.IsoDayOfWeek
+      description: The week day of this offset date expressed as an <code>IsoDayOfWeek</code>.
+    content.vb: Public ReadOnly Property DayOfWeek As IsoDayOfWeek
+  overload: NodaTime.OffsetDate.DayOfWeek*
+- uid: NodaTime.OffsetDate.YearOfEra
+  commentId: P:NodaTime.OffsetDate.YearOfEra
+  id: YearOfEra
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: YearOfEra
+  nameWithType: OffsetDate.YearOfEra
+  fullName: NodaTime.OffsetDate.YearOfEra
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the year of this offset date within the era.
+  example: []
+  syntax:
+    content: public int YearOfEra { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The year of this offset date within the era.
+    content.vb: Public ReadOnly Property YearOfEra As Integer
+  overload: NodaTime.OffsetDate.YearOfEra*
+- uid: NodaTime.OffsetDate.Era
+  commentId: P:NodaTime.OffsetDate.Era
+  id: Era
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: Era
+  nameWithType: OffsetDate.Era
+  fullName: NodaTime.OffsetDate.Era
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the era of this offset date.
+  example: []
+  syntax:
+    content: public Era Era { get; }
+    parameters: []
+    return:
+      type: NodaTime.Calendars.Era
+      description: The era of this offset date.
+    content.vb: Public ReadOnly Property Era As Era
+  overload: NodaTime.OffsetDate.Era*
+- uid: NodaTime.OffsetDate.DayOfYear
+  commentId: P:NodaTime.OffsetDate.DayOfYear
+  id: DayOfYear
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: DayOfYear
+  nameWithType: OffsetDate.DayOfYear
+  fullName: NodaTime.OffsetDate.DayOfYear
+  type: Property
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Gets the day of this offset date within the year.
+  example: []
+  syntax:
+    content: public int DayOfYear { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The day of this offset date within the year.
+    content.vb: Public ReadOnly Property DayOfYear As Integer
+  overload: NodaTime.OffsetDate.DayOfYear*
+- uid: NodaTime.OffsetDate.WithOffset(NodaTime.Offset)
+  commentId: M:NodaTime.OffsetDate.WithOffset(NodaTime.Offset)
+  id: WithOffset(NodaTime.Offset)
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: WithOffset(Offset)
+  nameWithType: OffsetDate.WithOffset(Offset)
+  fullName: NodaTime.OffsetDate.WithOffset(NodaTime.Offset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Creates a new <xref href="NodaTime.OffsetDate" data-throw-if-not-resolved="false"></xref> for the same date, but with the specified UTC offset.
+  example: []
+  syntax:
+    content: public OffsetDate WithOffset(Offset offset)
+    parameters:
+    - id: offset
+      type: NodaTime.Offset
+      description: The new UTC offset.
+    return:
+      type: NodaTime.OffsetDate
+      description: A new <code>OffsetDate</code> for the same date, but with the specified UTC offset.
+    content.vb: Public Function WithOffset(offset As Offset) As OffsetDate
+  overload: NodaTime.OffsetDate.WithOffset*
+- uid: NodaTime.OffsetDate.With(System.Func{NodaTime.LocalDate,NodaTime.LocalDate})
+  commentId: M:NodaTime.OffsetDate.With(System.Func{NodaTime.LocalDate,NodaTime.LocalDate})
+  id: With(System.Func{NodaTime.LocalDate,NodaTime.LocalDate})
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: With(Func<LocalDate, LocalDate>)
+  nameWithType: OffsetDate.With(Func<LocalDate, LocalDate>)
+  fullName: NodaTime.OffsetDate.With(System.Func<NodaTime.LocalDate, NodaTime.LocalDate>)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns this offset date, with the given date adjuster applied to it, maintaining the existing offset.
+  remarks: >-
+    If the adjuster attempts to construct an
+
+    invalid date (such as by trying to set a day-of-month of 30 in February), any exception thrown by
+
+    that construction attempt will be propagated through this method.
+  example: []
+  syntax:
+    content: public OffsetDate With(Func<LocalDate, LocalDate> adjuster)
+    parameters:
+    - id: adjuster
+      type: System.Func{NodaTime.LocalDate,NodaTime.LocalDate}
+      description: The adjuster to apply.
+    return:
+      type: NodaTime.OffsetDate
+      description: The adjusted offset date.
+    content.vb: Public Function [With](adjuster As Func(Of LocalDate, LocalDate)) As OffsetDate
+  overload: NodaTime.OffsetDate.With*
+  nameWithType.vb: OffsetDate.With(Func(Of LocalDate, LocalDate))
+  fullName.vb: NodaTime.OffsetDate.With(System.Func(Of NodaTime.LocalDate, NodaTime.LocalDate))
+  name.vb: With(Func(Of LocalDate, LocalDate))
+- uid: NodaTime.OffsetDate.WithCalendar(NodaTime.CalendarSystem)
+  commentId: M:NodaTime.OffsetDate.WithCalendar(NodaTime.CalendarSystem)
+  id: WithCalendar(NodaTime.CalendarSystem)
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: WithCalendar(CalendarSystem)
+  nameWithType: OffsetDate.WithCalendar(CalendarSystem)
+  fullName: NodaTime.OffsetDate.WithCalendar(NodaTime.CalendarSystem)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Creates a new <xref href="NodaTime.OffsetDate" data-throw-if-not-resolved="false"></xref> representing the same physical date and offset, but in a different calendar.
+
+    The returned value is likely to have different date field values to this one.
+
+    For example, January 1st 1970 in the Gregorian calendar was December 19th 1969 in the Julian calendar.
+  example: []
+  syntax:
+    content: public OffsetDate WithCalendar(CalendarSystem calendar)
+    parameters:
+    - id: calendar
+      type: NodaTime.CalendarSystem
+      description: The calendar system to convert this offset date to.
+    return:
+      type: NodaTime.OffsetDate
+      description: The converted <code>OffsetDate</code>.
+    content.vb: Public Function WithCalendar(calendar As CalendarSystem) As OffsetDate
+  overload: NodaTime.OffsetDate.WithCalendar*
+- uid: NodaTime.OffsetDate.At(NodaTime.LocalTime)
+  commentId: M:NodaTime.OffsetDate.At(NodaTime.LocalTime)
+  id: At(NodaTime.LocalTime)
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: At(LocalTime)
+  nameWithType: OffsetDate.At(LocalTime)
+  fullName: NodaTime.OffsetDate.At(NodaTime.LocalTime)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Combines this <xref href="NodaTime.OffsetDate" data-throw-if-not-resolved="false"></xref> with the given <xref href="NodaTime.LocalTime" data-throw-if-not-resolved="false"></xref>
+
+    into an <xref href="NodaTime.OffsetDateTime" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public OffsetDateTime At(LocalTime time)
+    parameters:
+    - id: time
+      type: NodaTime.LocalTime
+      description: The time to combine with this date.
+    return:
+      type: NodaTime.OffsetDateTime
+      description: The <xref href="NodaTime.OffsetDateTime" data-throw-if-not-resolved="false"></xref> representation of the given time on this date.
+    content.vb: Public Function At(time As LocalTime) As OffsetDateTime
+  overload: NodaTime.OffsetDate.At*
+- uid: NodaTime.OffsetDate.GetHashCode
+  commentId: M:NodaTime.OffsetDate.GetHashCode
+  id: GetHashCode
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: OffsetDate.GetHashCode()
+  fullName: NodaTime.OffsetDate.GetHashCode()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Returns a hash code for this offset date.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A hash code for this offset date.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: NodaTime.OffsetDate.GetHashCode*
+- uid: NodaTime.OffsetDate.Equals(System.Object)
+  commentId: M:NodaTime.OffsetDate.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: OffsetDate.Equals(object?)
+  fullName: NodaTime.OffsetDate.Equals(object?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Compares two <xref href="NodaTime.OffsetDate" data-throw-if-not-resolved="false"></xref> values for equality.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare this offset date with.
+    return:
+      type: System.Boolean
+      description: True if the given value is another offset date equal to this one; false otherwise.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: NodaTime.OffsetDate.Equals*
+  nameWithType.vb: OffsetDate.Equals(Object)
+  fullName.vb: NodaTime.OffsetDate.Equals(Object)
+  name.vb: Equals(Object)
+- uid: NodaTime.OffsetDate.Equals(NodaTime.OffsetDate)
+  commentId: M:NodaTime.OffsetDate.Equals(NodaTime.OffsetDate)
+  id: Equals(NodaTime.OffsetDate)
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: Equals(OffsetDate)
+  nameWithType: OffsetDate.Equals(OffsetDate)
+  fullName: NodaTime.OffsetDate.Equals(NodaTime.OffsetDate)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Compares two <xref href="NodaTime.OffsetDate" data-throw-if-not-resolved="false"></xref> values for equality.
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public bool Equals(OffsetDate other)
+    parameters:
+    - id: other
+      type: NodaTime.OffsetDate
+      description: The value to compare this offset date with.
+    return:
+      type: System.Boolean
+      description: True if the given value is another offset date equal to this one; false otherwise.
+    content.vb: Public Function Equals(other As OffsetDate) As Boolean
+  overload: NodaTime.OffsetDate.Equals*
+  implements:
+  - System.IEquatable{NodaTime.OffsetDate}.Equals(NodaTime.OffsetDate)
+- uid: NodaTime.OffsetDate.op_Equality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  commentId: M:NodaTime.OffsetDate.op_Equality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  id: op_Equality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: operator ==(OffsetDate, OffsetDate)
+  nameWithType: OffsetDate.operator ==(OffsetDate, OffsetDate)
+  fullName: NodaTime.OffsetDate.operator ==(NodaTime.OffsetDate, NodaTime.OffsetDate)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator == (equality).
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public static bool operator ==(OffsetDate left, OffsetDate right)
+    parameters:
+    - id: left
+      type: NodaTime.OffsetDate
+      description: The left hand side of the operator.
+    - id: right
+      type: NodaTime.OffsetDate
+      description: The right hand side of the operator.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if values are equal to each other, otherwise <code>false</code>.
+    content.vb: Public Shared Operator =(left As OffsetDate, right As OffsetDate) As Boolean
+  overload: NodaTime.OffsetDate.op_Equality*
+  implements:
+  - System.Numerics.IEqualityOperators{NodaTime.OffsetDate,NodaTime.OffsetDate,System.Boolean}.op_Equality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  nameWithType.vb: OffsetDate.=(OffsetDate, OffsetDate)
+  fullName.vb: NodaTime.OffsetDate.=(NodaTime.OffsetDate, NodaTime.OffsetDate)
+  name.vb: =(OffsetDate, OffsetDate)
+- uid: NodaTime.OffsetDate.op_Inequality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  commentId: M:NodaTime.OffsetDate.op_Inequality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  id: op_Inequality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: operator !=(OffsetDate, OffsetDate)
+  nameWithType: OffsetDate.operator !=(OffsetDate, OffsetDate)
+  fullName: NodaTime.OffsetDate.operator !=(NodaTime.OffsetDate, NodaTime.OffsetDate)
+  type: Operator
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: >-
+    Implements the operator != (inequality).
+
+    See the type documentation for a description of equality semantics.
+  example: []
+  syntax:
+    content: public static bool operator !=(OffsetDate left, OffsetDate right)
+    parameters:
+    - id: left
+      type: NodaTime.OffsetDate
+      description: The left hand side of the operator.
+    - id: right
+      type: NodaTime.OffsetDate
+      description: The right hand side of the operator.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if values are not equal to each other, otherwise <code>false</code>.
+    content.vb: Public Shared Operator <>(left As OffsetDate, right As OffsetDate) As Boolean
+  overload: NodaTime.OffsetDate.op_Inequality*
+  implements:
+  - System.Numerics.IEqualityOperators{NodaTime.OffsetDate,NodaTime.OffsetDate,System.Boolean}.op_Inequality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  nameWithType.vb: OffsetDate.<>(OffsetDate, OffsetDate)
+  fullName.vb: NodaTime.OffsetDate.<>(NodaTime.OffsetDate, NodaTime.OffsetDate)
+  name.vb: <>(OffsetDate, OffsetDate)
+- uid: NodaTime.OffsetDate.ToString
+  commentId: M:NodaTime.OffsetDate.ToString
+  id: ToString
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: OffsetDate.ToString()
+  fullName: NodaTime.OffsetDate.ToString()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Returns a <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents this instance.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: >-
+        The value of the current instance in the default format pattern ("G"), using the current thread's
+
+        culture to obtain a format provider.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: NodaTime.OffsetDate.ToString*
+- uid: NodaTime.OffsetDate.ToString(System.String,System.IFormatProvider)
+  commentId: M:NodaTime.OffsetDate.ToString(System.String,System.IFormatProvider)
+  id: ToString(System.String,System.IFormatProvider)
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: ToString(string?, IFormatProvider?)
+  nameWithType: OffsetDate.ToString(string?, IFormatProvider?)
+  fullName: NodaTime.OffsetDate.ToString(string?, System.IFormatProvider?)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Formats the value of the current instance using the specified pattern.
+  example: []
+  syntax:
+    content: public string ToString(string? patternText, IFormatProvider? formatProvider)
+    parameters:
+    - id: patternText
+      type: System.String
+      description: >-
+        The <xref href="System.String" data-throw-if-not-resolved="false"></xref> specifying the pattern to use,
+            or null to use the default format pattern ("G").
+    - id: formatProvider
+      type: System.IFormatProvider
+      description: >-
+        The <xref href="System.IFormatProvider" data-throw-if-not-resolved="false"></xref> to use when formatting the value,
+            or null to use the current thread's culture to obtain a format provider.
+    return:
+      type: System.String
+      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> containing the value of the current instance in the specified format.
+    content.vb: Public Function ToString(patternText As String, formatProvider As IFormatProvider) As String
+  overload: NodaTime.OffsetDate.ToString*
+  implements:
+  - System.IFormattable.ToString(System.String,System.IFormatProvider)
+  nameWithType.vb: OffsetDate.ToString(String, IFormatProvider)
+  fullName.vb: NodaTime.OffsetDate.ToString(String, System.IFormatProvider)
+  name.vb: ToString(String, IFormatProvider)
+- uid: NodaTime.OffsetDate.Deconstruct(NodaTime.LocalDate@,NodaTime.Offset@)
+  commentId: M:NodaTime.OffsetDate.Deconstruct(NodaTime.LocalDate@,NodaTime.Offset@)
+  id: Deconstruct(NodaTime.LocalDate@,NodaTime.Offset@)
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: Deconstruct(out LocalDate, out Offset)
+  nameWithType: OffsetDate.Deconstruct(out LocalDate, out Offset)
+  fullName: NodaTime.OffsetDate.Deconstruct(out NodaTime.LocalDate, out NodaTime.Offset)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Deconstruct this value into its components.
+  example: []
+  syntax:
+    content: public void Deconstruct(out LocalDate localDate, out Offset offset)
+    parameters:
+    - id: localDate
+      type: NodaTime.LocalDate
+      description: The <xref href="NodaTime.LocalDate" data-throw-if-not-resolved="false"></xref> component.
+    - id: offset
+      type: NodaTime.Offset
+      description: The <xref href="NodaTime.OffsetDate.Offset" data-throw-if-not-resolved="false"></xref> component.
+    content.vb: Public Sub Deconstruct(localDate As LocalDate, offset As Offset)
+  overload: NodaTime.OffsetDate.Deconstruct*
+  nameWithType.vb: OffsetDate.Deconstruct(LocalDate, Offset)
+  fullName.vb: NodaTime.OffsetDate.Deconstruct(NodaTime.LocalDate, NodaTime.Offset)
+  name.vb: Deconstruct(LocalDate, Offset)
+- uid: NodaTime.OffsetDate.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  commentId: M:NodaTime.OffsetDate.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  id: AddSchema(System.Xml.Schema.XmlSchemaSet)
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: AddSchema(XmlSchemaSet)
+  nameWithType: OffsetDate.AddSchema(XmlSchemaSet)
+  fullName: NodaTime.OffsetDate.AddSchema(System.Xml.Schema.XmlSchemaSet)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Adds the XML schema type describing the structure of the <xref href="NodaTime.OffsetDate" data-throw-if-not-resolved="false"></xref> XML serialization to the given <code class="paramref">xmlSchemaSet</code>.
+  example: []
+  syntax:
+    content: public static XmlQualifiedName AddSchema(XmlSchemaSet xmlSchemaSet)
+    parameters:
+    - id: xmlSchemaSet
+      type: System.Xml.Schema.XmlSchemaSet
+      description: The XML schema set provided by <xref href="System.Xml.Serialization.XmlSchemaExporter" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Xml.XmlQualifiedName
+      description: The qualified name of the schema type that was added to the <code class="paramref">xmlSchemaSet</code>.
+    content.vb: Public Shared Function AddSchema(xmlSchemaSet As XmlSchemaSet) As XmlQualifiedName
+  overload: NodaTime.OffsetDate.AddSchema*
+- uid: NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#GetSchema
+  commentId: M:NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#GetSchema
+  id: System#Xml#Serialization#IXmlSerializable#GetSchema
+  isEii: true
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.GetSchema()
+  nameWithType: OffsetDate.IXmlSerializable.GetSchema()
+  fullName: NodaTime.OffsetDate.System.Xml.Serialization.IXmlSerializable.GetSchema()
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: This method is reserved and should not be used. When implementing the <code>IXmlSerializable</code> interface, you should return <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> (<code>Nothing</code> in Visual Basic) from this method, and instead, if specifying a custom schema is required, apply the <xref href="System.Xml.Serialization.XmlSchemaProviderAttribute" data-throw-if-not-resolved="false"></xref> to the class.
+  example: []
+  syntax:
+    content: XmlSchema IXmlSerializable.GetSchema()
+    return:
+      type: System.Xml.Schema.XmlSchema
+      description: An <xref href="System.Xml.Schema.XmlSchema" data-throw-if-not-resolved="false"></xref> that describes the XML representation of the object that is produced by the <xref href="System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)" data-throw-if-not-resolved="false"></xref> method and consumed by the <xref href="System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)" data-throw-if-not-resolved="false"></xref> method.
+    content.vb: ''
+  overload: NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#GetSchema*
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+- uid: NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  commentId: M:NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  id: System#Xml#Serialization#IXmlSerializable#ReadXml(System.Xml.XmlReader)
+  isEii: true
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.ReadXml(XmlReader)
+  nameWithType: OffsetDate.IXmlSerializable.ReadXml(XmlReader)
+  fullName: NodaTime.OffsetDate.System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Generates an object from its XML representation.
+  example: []
+  syntax:
+    content: void IXmlSerializable.ReadXml(XmlReader reader)
+    parameters:
+    - id: reader
+      type: System.Xml.XmlReader
+      description: The <xref href="System.Xml.XmlReader" data-throw-if-not-resolved="false"></xref> stream from which the object is deserialized.
+    content.vb: ''
+  overload: NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#ReadXml*
+  implements:
+  - System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+- uid: NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  commentId: M:NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  id: System#Xml#Serialization#IXmlSerializable#WriteXml(System.Xml.XmlWriter)
+  isEii: true
+  parent: NodaTime.OffsetDate
+  langs:
+  - csharp
+  - vb
+  name: IXmlSerializable.WriteXml(XmlWriter)
+  nameWithType: OffsetDate.IXmlSerializable.WriteXml(XmlWriter)
+  fullName: NodaTime.OffsetDate.System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  type: Method
+  assemblies:
+  - NodaTime
+  namespace: NodaTime
+  summary: Converts an object into its XML representation.
+  example: []
+  syntax:
+    content: void IXmlSerializable.WriteXml(XmlWriter writer)
+    parameters:
+    - id: writer
+      type: System.Xml.XmlWriter
+      description: The <xref href="System.Xml.XmlWriter" data-throw-if-not-resolved="false"></xref> stream to which the object is serialized.
+    content.vb: ''
+  overload: NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#WriteXml*
+  implements:
+  - System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+references:
+- uid: NodaTime.LocalDate
+  commentId: T:NodaTime.LocalDate
+  parent: NodaTime
+  href: NodaTime.LocalDate.html
+  name: LocalDate
+  nameWithType: LocalDate
+  fullName: NodaTime.LocalDate
+- uid: NodaTime.OffsetDate.Offset
+  commentId: P:NodaTime.OffsetDate.Offset
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_Offset
+  name: Offset
+  nameWithType: OffsetDate.Offset
+  fullName: NodaTime.OffsetDate.Offset
+- uid: NodaTime
+  commentId: N:NodaTime
+  href: NodaTime.html
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: System.IEquatable{NodaTime.OffsetDate}
+  commentId: T:System.IEquatable{NodaTime.OffsetDate}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<OffsetDate>
+  nameWithType: IEquatable<OffsetDate>
+  fullName: System.IEquatable<NodaTime.OffsetDate>
+  nameWithType.vb: IEquatable(Of OffsetDate)
+  fullName.vb: System.IEquatable(Of NodaTime.OffsetDate)
+  name.vb: IEquatable(Of OffsetDate)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: )
+- uid: System.Xml.Serialization.IXmlSerializable
+  commentId: T:System.Xml.Serialization.IXmlSerializable
+  parent: System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable
+  nameWithType: IXmlSerializable
+  fullName: System.Xml.Serialization.IXmlSerializable
+- uid: System.IFormattable
+  commentId: T:System.IFormattable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iformattable
+  name: IFormattable
+  nameWithType: IFormattable
+  fullName: System.IFormattable
+- uid: System.Numerics.IEqualityOperators{NodaTime.OffsetDate,NodaTime.OffsetDate,System.Boolean}
+  commentId: T:System.Numerics.IEqualityOperators{NodaTime.OffsetDate,NodaTime.OffsetDate,System.Boolean}
+  parent: System.Numerics
+  definition: System.Numerics.IEqualityOperators`3
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  name: IEqualityOperators<OffsetDate, OffsetDate, bool>
+  nameWithType: IEqualityOperators<OffsetDate, OffsetDate, bool>
+  fullName: System.Numerics.IEqualityOperators<NodaTime.OffsetDate, NodaTime.OffsetDate, bool>
+  nameWithType.vb: IEqualityOperators(Of OffsetDate, OffsetDate, Boolean)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.OffsetDate, NodaTime.OffsetDate, Boolean)
+  name.vb: IEqualityOperators(Of OffsetDate, OffsetDate, Boolean)
+  spec.csharp:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: <
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Xml.Serialization
+  commentId: N:System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Serialization
+  nameWithType: System.Xml.Serialization
+  fullName: System.Xml.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+- uid: System.Numerics.IEqualityOperators`3
+  commentId: T:System.Numerics.IEqualityOperators`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  name: IEqualityOperators<TSelf, TOther, TResult>
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult)
+  name.vb: IEqualityOperators(Of TSelf, TOther, TResult)
+  spec.csharp:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: <
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Numerics.IEqualityOperators`3
+    name: IEqualityOperators
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Numerics
+  commentId: N:System.Numerics
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Numerics
+  nameWithType: System.Numerics
+  fullName: System.Numerics
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: NodaTime.OffsetDate.#ctor*
+  commentId: Overload:NodaTime.OffsetDate.#ctor
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate__ctor_NodaTime_LocalDate_NodaTime_Offset_
+  name: OffsetDate
+  nameWithType: OffsetDate.OffsetDate
+  fullName: NodaTime.OffsetDate.OffsetDate
+  nameWithType.vb: OffsetDate.New
+  fullName.vb: NodaTime.OffsetDate.New
+  name.vb: New
+- uid: NodaTime.Offset
+  commentId: T:NodaTime.Offset
+  parent: NodaTime
+  href: NodaTime.Offset.html
+  name: Offset
+  nameWithType: Offset
+  fullName: NodaTime.Offset
+- uid: NodaTime.OffsetDate.Date*
+  commentId: Overload:NodaTime.OffsetDate.Date
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_Date
+  name: Date
+  nameWithType: OffsetDate.Date
+  fullName: NodaTime.OffsetDate.Date
+- uid: NodaTime.OffsetDate.Offset*
+  commentId: Overload:NodaTime.OffsetDate.Offset
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_Offset
+  name: Offset
+  nameWithType: OffsetDate.Offset
+  fullName: NodaTime.OffsetDate.Offset
+- uid: NodaTime.OffsetDate.Calendar*
+  commentId: Overload:NodaTime.OffsetDate.Calendar
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_Calendar
+  name: Calendar
+  nameWithType: OffsetDate.Calendar
+  fullName: NodaTime.OffsetDate.Calendar
+- uid: NodaTime.CalendarSystem
+  commentId: T:NodaTime.CalendarSystem
+  parent: NodaTime
+  href: NodaTime.CalendarSystem.html
+  name: CalendarSystem
+  nameWithType: CalendarSystem
+  fullName: NodaTime.CalendarSystem
+- uid: NodaTime.OffsetDate.Year*
+  commentId: Overload:NodaTime.OffsetDate.Year
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_Year
+  name: Year
+  nameWithType: OffsetDate.Year
+  fullName: NodaTime.OffsetDate.Year
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: NodaTime.OffsetDate.Month*
+  commentId: Overload:NodaTime.OffsetDate.Month
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_Month
+  name: Month
+  nameWithType: OffsetDate.Month
+  fullName: NodaTime.OffsetDate.Month
+- uid: NodaTime.OffsetDate.Day*
+  commentId: Overload:NodaTime.OffsetDate.Day
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_Day
+  name: Day
+  nameWithType: OffsetDate.Day
+  fullName: NodaTime.OffsetDate.Day
+- uid: NodaTime.IsoDayOfWeek
+  commentId: T:NodaTime.IsoDayOfWeek
+  parent: NodaTime
+  href: NodaTime.IsoDayOfWeek.html
+  name: IsoDayOfWeek
+  nameWithType: IsoDayOfWeek
+  fullName: NodaTime.IsoDayOfWeek
+- uid: NodaTime.OffsetDate.DayOfWeek*
+  commentId: Overload:NodaTime.OffsetDate.DayOfWeek
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_DayOfWeek
+  name: DayOfWeek
+  nameWithType: OffsetDate.DayOfWeek
+  fullName: NodaTime.OffsetDate.DayOfWeek
+- uid: NodaTime.OffsetDate.YearOfEra*
+  commentId: Overload:NodaTime.OffsetDate.YearOfEra
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_YearOfEra
+  name: YearOfEra
+  nameWithType: OffsetDate.YearOfEra
+  fullName: NodaTime.OffsetDate.YearOfEra
+- uid: NodaTime.OffsetDate.Era*
+  commentId: Overload:NodaTime.OffsetDate.Era
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_Era
+  name: Era
+  nameWithType: OffsetDate.Era
+  fullName: NodaTime.OffsetDate.Era
+- uid: NodaTime.Calendars.Era
+  commentId: T:NodaTime.Calendars.Era
+  parent: NodaTime.Calendars
+  href: NodaTime.Calendars.Era.html
+  name: Era
+  nameWithType: Era
+  fullName: NodaTime.Calendars.Era
+- uid: NodaTime.Calendars
+  commentId: N:NodaTime.Calendars
+  href: NodaTime.html
+  name: NodaTime.Calendars
+  nameWithType: NodaTime.Calendars
+  fullName: NodaTime.Calendars
+  spec.csharp:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Calendars
+    name: Calendars
+    href: NodaTime.Calendars.html
+  spec.vb:
+  - uid: NodaTime
+    name: NodaTime
+    href: NodaTime.html
+  - name: .
+  - uid: NodaTime.Calendars
+    name: Calendars
+    href: NodaTime.Calendars.html
+- uid: NodaTime.OffsetDate.DayOfYear*
+  commentId: Overload:NodaTime.OffsetDate.DayOfYear
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_DayOfYear
+  name: DayOfYear
+  nameWithType: OffsetDate.DayOfYear
+  fullName: NodaTime.OffsetDate.DayOfYear
+- uid: NodaTime.OffsetDate
+  commentId: T:NodaTime.OffsetDate
+  parent: NodaTime
+  href: NodaTime.OffsetDate.html
+  name: OffsetDate
+  nameWithType: OffsetDate
+  fullName: NodaTime.OffsetDate
+- uid: NodaTime.OffsetDate.WithOffset*
+  commentId: Overload:NodaTime.OffsetDate.WithOffset
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_WithOffset_NodaTime_Offset_
+  name: WithOffset
+  nameWithType: OffsetDate.WithOffset
+  fullName: NodaTime.OffsetDate.WithOffset
+- uid: NodaTime.OffsetDate.With*
+  commentId: Overload:NodaTime.OffsetDate.With
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_With_System_Func_NodaTime_LocalDate_NodaTime_LocalDate__
+  name: With
+  nameWithType: OffsetDate.With
+  fullName: NodaTime.OffsetDate.With
+- uid: System.Func{NodaTime.LocalDate,NodaTime.LocalDate}
+  commentId: T:System.Func{NodaTime.LocalDate,NodaTime.LocalDate}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<LocalDate, LocalDate>
+  nameWithType: Func<LocalDate, LocalDate>
+  fullName: System.Func<NodaTime.LocalDate, NodaTime.LocalDate>
+  nameWithType.vb: Func(Of LocalDate, LocalDate)
+  fullName.vb: System.Func(Of NodaTime.LocalDate, NodaTime.LocalDate)
+  name.vb: Func(Of LocalDate, LocalDate)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: NodaTime.LocalDate
+    name: LocalDate
+    href: NodaTime.LocalDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.LocalDate
+    name: LocalDate
+    href: NodaTime.LocalDate.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NodaTime.LocalDate
+    name: LocalDate
+    href: NodaTime.LocalDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.LocalDate
+    name: LocalDate
+    href: NodaTime.LocalDate.html
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: NodaTime.OffsetDate.WithCalendar*
+  commentId: Overload:NodaTime.OffsetDate.WithCalendar
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_WithCalendar_NodaTime_CalendarSystem_
+  name: WithCalendar
+  nameWithType: OffsetDate.WithCalendar
+  fullName: NodaTime.OffsetDate.WithCalendar
+- uid: NodaTime.LocalTime
+  commentId: T:NodaTime.LocalTime
+  parent: NodaTime
+  href: NodaTime.LocalTime.html
+  name: LocalTime
+  nameWithType: LocalTime
+  fullName: NodaTime.LocalTime
+- uid: NodaTime.OffsetDateTime
+  commentId: T:NodaTime.OffsetDateTime
+  parent: NodaTime
+  href: NodaTime.OffsetDateTime.html
+  name: OffsetDateTime
+  nameWithType: OffsetDateTime
+  fullName: NodaTime.OffsetDateTime
+- uid: NodaTime.OffsetDate.At*
+  commentId: Overload:NodaTime.OffsetDate.At
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_At_NodaTime_LocalTime_
+  name: At
+  nameWithType: OffsetDate.At
+  fullName: NodaTime.OffsetDate.At
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: NodaTime.OffsetDate.GetHashCode*
+  commentId: Overload:NodaTime.OffsetDate.GetHashCode
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_GetHashCode
+  name: GetHashCode
+  nameWithType: OffsetDate.GetHashCode
+  fullName: NodaTime.OffsetDate.GetHashCode
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NodaTime.OffsetDate.Equals*
+  commentId: Overload:NodaTime.OffsetDate.Equals
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_Equals_System_Object_
+  name: Equals
+  nameWithType: OffsetDate.Equals
+  fullName: NodaTime.OffsetDate.Equals
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.IEquatable{NodaTime.OffsetDate}.Equals(NodaTime.OffsetDate)
+  commentId: M:System.IEquatable{NodaTime.OffsetDate}.Equals(NodaTime.OffsetDate)
+  parent: System.IEquatable{NodaTime.OffsetDate}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(OffsetDate)
+  nameWithType: IEquatable<OffsetDate>.Equals(OffsetDate)
+  fullName: System.IEquatable<NodaTime.OffsetDate>.Equals(NodaTime.OffsetDate)
+  nameWithType.vb: IEquatable(Of OffsetDate).Equals(OffsetDate)
+  fullName.vb: System.IEquatable(Of NodaTime.OffsetDate).Equals(NodaTime.OffsetDate)
+  spec.csharp:
+  - uid: System.IEquatable{NodaTime.OffsetDate}.Equals(NodaTime.OffsetDate)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{NodaTime.OffsetDate}.Equals(NodaTime.OffsetDate)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: NodaTime.OffsetDate.op_Equality*
+  commentId: Overload:NodaTime.OffsetDate.op_Equality
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_op_Equality_NodaTime_OffsetDate_NodaTime_OffsetDate_
+  name: operator ==
+  nameWithType: OffsetDate.operator ==
+  fullName: NodaTime.OffsetDate.operator ==
+  nameWithType.vb: OffsetDate.=
+  fullName.vb: NodaTime.OffsetDate.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.OffsetDate.op_Equality*
+    name: ==
+    href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_op_Equality_NodaTime_OffsetDate_NodaTime_OffsetDate_
+- uid: System.Numerics.IEqualityOperators{NodaTime.OffsetDate,NodaTime.OffsetDate,System.Boolean}.op_Equality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  commentId: M:System.Numerics.IEqualityOperators{NodaTime.OffsetDate,NodaTime.OffsetDate,System.Boolean}.op_Equality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  parent: System.Numerics.IEqualityOperators{NodaTime.OffsetDate,NodaTime.OffsetDate,System.Boolean}
+  definition: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  name: operator ==(OffsetDate, OffsetDate)
+  nameWithType: IEqualityOperators<OffsetDate, OffsetDate, bool>.operator ==(OffsetDate, OffsetDate)
+  fullName: System.Numerics.IEqualityOperators<NodaTime.OffsetDate, NodaTime.OffsetDate, bool>.operator ==(NodaTime.OffsetDate, NodaTime.OffsetDate)
+  nameWithType.vb: IEqualityOperators(Of OffsetDate, OffsetDate, Boolean).=(OffsetDate, OffsetDate)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.OffsetDate, NodaTime.OffsetDate, Boolean).=(NodaTime.OffsetDate, NodaTime.OffsetDate)
+  name.vb: =(OffsetDate, OffsetDate)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators{NodaTime.OffsetDate,NodaTime.OffsetDate,System.Boolean}.op_Equality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+    name: ==
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  - name: (
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: )
+  spec.vb:
+  - name: =
+  - name: (
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: )
+- uid: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  commentId: M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  name: operator ==(TSelf, TOther)
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>.operator ==(TSelf, TOther)
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>.operator ==(TSelf, TOther)
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult).=(TSelf, TOther)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult).=(TSelf, TOther)
+  name.vb: =(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)
+    name: ==
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_equality
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: =
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: NodaTime.OffsetDate.op_Inequality*
+  commentId: Overload:NodaTime.OffsetDate.op_Inequality
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_op_Inequality_NodaTime_OffsetDate_NodaTime_OffsetDate_
+  name: operator !=
+  nameWithType: OffsetDate.operator !=
+  fullName: NodaTime.OffsetDate.operator !=
+  nameWithType.vb: OffsetDate.<>
+  fullName.vb: NodaTime.OffsetDate.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: NodaTime.OffsetDate.op_Inequality*
+    name: '!='
+    href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_op_Inequality_NodaTime_OffsetDate_NodaTime_OffsetDate_
+- uid: System.Numerics.IEqualityOperators{NodaTime.OffsetDate,NodaTime.OffsetDate,System.Boolean}.op_Inequality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  commentId: M:System.Numerics.IEqualityOperators{NodaTime.OffsetDate,NodaTime.OffsetDate,System.Boolean}.op_Inequality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+  parent: System.Numerics.IEqualityOperators{NodaTime.OffsetDate,NodaTime.OffsetDate,System.Boolean}
+  definition: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  name: operator !=(OffsetDate, OffsetDate)
+  nameWithType: IEqualityOperators<OffsetDate, OffsetDate, bool>.operator !=(OffsetDate, OffsetDate)
+  fullName: System.Numerics.IEqualityOperators<NodaTime.OffsetDate, NodaTime.OffsetDate, bool>.operator !=(NodaTime.OffsetDate, NodaTime.OffsetDate)
+  nameWithType.vb: IEqualityOperators(Of OffsetDate, OffsetDate, Boolean).<>(OffsetDate, OffsetDate)
+  fullName.vb: System.Numerics.IEqualityOperators(Of NodaTime.OffsetDate, NodaTime.OffsetDate, Boolean).<>(NodaTime.OffsetDate, NodaTime.OffsetDate)
+  name.vb: <>(OffsetDate, OffsetDate)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators{NodaTime.OffsetDate,NodaTime.OffsetDate,System.Boolean}.op_Inequality(NodaTime.OffsetDate,NodaTime.OffsetDate)
+    name: '!='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  - name: (
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: )
+  spec.vb:
+  - name: <>
+  - name: (
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.OffsetDate
+    name: OffsetDate
+    href: NodaTime.OffsetDate.html
+  - name: )
+- uid: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  commentId: M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  name: operator !=(TSelf, TOther)
+  nameWithType: IEqualityOperators<TSelf, TOther, TResult>.operator !=(TSelf, TOther)
+  fullName: System.Numerics.IEqualityOperators<TSelf, TOther, TResult>.operator !=(TSelf, TOther)
+  nameWithType.vb: IEqualityOperators(Of TSelf, TOther, TResult).<>(TSelf, TOther)
+  fullName.vb: System.Numerics.IEqualityOperators(Of TSelf, TOther, TResult).<>(TSelf, TOther)
+  name.vb: <>(TSelf, TOther)
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)
+    name: '!='
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.iequalityoperators-3.op_inequality
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+  spec.vb:
+  - name: <>
+  - name: (
+  - name: TSelf
+  - name: ','
+  - name: " "
+  - name: TOther
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: NodaTime.OffsetDate.ToString*
+  commentId: Overload:NodaTime.OffsetDate.ToString
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_ToString
+  name: ToString
+  nameWithType: OffsetDate.ToString
+  fullName: NodaTime.OffsetDate.ToString
+- uid: System.IFormatProvider
+  commentId: T:System.IFormatProvider
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  name: IFormatProvider
+  nameWithType: IFormatProvider
+  fullName: System.IFormatProvider
+- uid: System.IFormattable.ToString(System.String,System.IFormatProvider)
+  commentId: M:System.IFormattable.ToString(System.String,System.IFormatProvider)
+  parent: System.IFormattable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iformattable.tostring
+  name: ToString(string, IFormatProvider)
+  nameWithType: IFormattable.ToString(string, IFormatProvider)
+  fullName: System.IFormattable.ToString(string, System.IFormatProvider)
+  nameWithType.vb: IFormattable.ToString(String, IFormatProvider)
+  fullName.vb: System.IFormattable.ToString(String, System.IFormatProvider)
+  name.vb: ToString(String, IFormatProvider)
+  spec.csharp:
+  - uid: System.IFormattable.ToString(System.String,System.IFormatProvider)
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformattable.tostring
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IFormattable.ToString(System.String,System.IFormatProvider)
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformattable.tostring
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: NodaTime.OffsetDate.Deconstruct*
+  commentId: Overload:NodaTime.OffsetDate.Deconstruct
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_Deconstruct_NodaTime_LocalDate__NodaTime_Offset__
+  name: Deconstruct
+  nameWithType: OffsetDate.Deconstruct
+  fullName: NodaTime.OffsetDate.Deconstruct
+- uid: System.Xml.Serialization.XmlSchemaExporter
+  commentId: T:System.Xml.Serialization.XmlSchemaExporter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.xmlschemaexporter
+  name: XmlSchemaExporter
+  nameWithType: XmlSchemaExporter
+  fullName: System.Xml.Serialization.XmlSchemaExporter
+- uid: NodaTime.OffsetDate.AddSchema*
+  commentId: Overload:NodaTime.OffsetDate.AddSchema
+  href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_AddSchema_System_Xml_Schema_XmlSchemaSet_
+  name: AddSchema
+  nameWithType: OffsetDate.AddSchema
+  fullName: NodaTime.OffsetDate.AddSchema
+- uid: System.Xml.Schema.XmlSchemaSet
+  commentId: T:System.Xml.Schema.XmlSchemaSet
+  parent: System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.schema.xmlschemaset
+  name: XmlSchemaSet
+  nameWithType: XmlSchemaSet
+  fullName: System.Xml.Schema.XmlSchemaSet
+- uid: System.Xml.XmlQualifiedName
+  commentId: T:System.Xml.XmlQualifiedName
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlqualifiedname
+  name: XmlQualifiedName
+  nameWithType: XmlQualifiedName
+  fullName: System.Xml.XmlQualifiedName
+- uid: System.Xml.Schema
+  commentId: N:System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Schema
+  nameWithType: System.Xml.Schema
+  fullName: System.Xml.Schema
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Schema
+    name: Schema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.schema
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Schema
+    name: Schema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.schema
+- uid: System.Xml
+  commentId: N:System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml
+  nameWithType: System.Xml
+  fullName: System.Xml
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+- uid: System.Xml.Serialization.XmlSchemaProviderAttribute
+  commentId: T:System.Xml.Serialization.XmlSchemaProviderAttribute
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.xmlschemaproviderattribute
+  name: XmlSchemaProviderAttribute
+  nameWithType: XmlSchemaProviderAttribute
+  fullName: System.Xml.Serialization.XmlSchemaProviderAttribute
+- uid: System.Xml.Schema.XmlSchema
+  commentId: T:System.Xml.Schema.XmlSchema
+  parent: System.Xml.Schema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.schema.xmlschema
+  name: XmlSchema
+  nameWithType: XmlSchema
+  fullName: System.Xml.Schema.XmlSchema
+- uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  commentId: M:System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  parent: System.Xml.Serialization.IXmlSerializable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  name: WriteXml(XmlWriter)
+  nameWithType: IXmlSerializable.WriteXml(XmlWriter)
+  fullName: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  - name: )
+  spec.vb:
+  - uid: System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.writexml
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  - name: )
+- uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  commentId: M:System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  parent: System.Xml.Serialization.IXmlSerializable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  name: ReadXml(XmlReader)
+  nameWithType: IXmlSerializable.ReadXml(XmlReader)
+  fullName: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  - name: )
+  spec.vb:
+  - uid: System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable.readxml
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  - name: )
+- uid: NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#GetSchema*
+  commentId: Overload:NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#GetSchema
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.GetSchema
+  nameWithType: OffsetDate.IXmlSerializable.GetSchema
+  fullName: NodaTime.OffsetDate.System.Xml.Serialization.IXmlSerializable.GetSchema
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#GetSchema*
+    name: GetSchema
+    href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_System_Xml_Serialization_IXmlSerializable_GetSchema
+- uid: System.Xml.XmlReader
+  commentId: T:System.Xml.XmlReader
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlreader
+  name: XmlReader
+  nameWithType: XmlReader
+  fullName: System.Xml.XmlReader
+- uid: NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#ReadXml*
+  commentId: Overload:NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#ReadXml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.ReadXml
+  nameWithType: OffsetDate.IXmlSerializable.ReadXml
+  fullName: NodaTime.OffsetDate.System.Xml.Serialization.IXmlSerializable.ReadXml
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#ReadXml*
+    name: ReadXml
+    href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_System_Xml_Serialization_IXmlSerializable_ReadXml_System_Xml_XmlReader_
+- uid: System.Xml.XmlWriter
+  commentId: T:System.Xml.XmlWriter
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwriter
+  name: XmlWriter
+  nameWithType: XmlWriter
+  fullName: System.Xml.XmlWriter
+- uid: NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#WriteXml*
+  commentId: Overload:NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#WriteXml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable.WriteXml
+  nameWithType: OffsetDate.IXmlSerializable.WriteXml
+  fullName: NodaTime.OffsetDate.System.Xml.Serialization.IXmlSerializable.WriteXml
+  spec.csharp:
+  - uid: System.Xml.Serialization.IXmlSerializable*
+    name: IXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  - name: .
+  - uid: NodaTime.OffsetDate.System#Xml#Serialization#IXmlSerializable#WriteXml*
+    name: WriteXml
+    href: NodaTime.OffsetDate.html#NodaTime_OffsetDate_System_Xml_Serialization_IXmlSerializable_WriteXml_System_Xml_XmlWriter_
+shouldSkipMarkup: true
