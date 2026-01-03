@@ -57,7 +57,7 @@ fi
 # commit.txt only contains commit info
 # build.txt is the commit info and build time
 # At some point we probably only want one of these.
-declare -r publish=$ROOT/src/NodaTime.Web/bin/Release/net8.0/publish
+declare -r publish=$ROOT/src/NodaTime.Web/bin/Release/net10.0/publish
 declare -r nodatime_org_commit=$(git -C $ROOT rev-parse HEAD)
 declare -r nodatime_commit=$(git -C $ROOT/../nodatime rev-parse HEAD)
 declare -r nodatime_serialization_commit=$(git -C $ROOT/../nodatime.serialization rev-parse HEAD)
