@@ -7,6 +7,17 @@ details.
 See the [end of this page](#tzdb-updates) for the policy on which
 versions receive patch updates for TZDB releases.
 
+## 3.3.0, released 2026-01-03 with tzdb 2025c
+
+Changes since 3.2.x:
+
+- Removal of the net6.0 target framework, as .NET 6.0 has been EOL for over a year
+- Added `Period.NanosecondsBetween` method
+- Documentation fixes
+- Added a new namespace, `NodaTime.HighPerformance`, containing
+  `Duration64` and `Instant64` types (for high-performance scenarios
+  where the larger size (in memory) of `Duration` and `Instant` is problematic
+
 ## 3.2.3, released 2025-12-11 with tzdb 2025c
 
 This patch release simply updates the built-in TZDB time
