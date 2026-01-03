@@ -33,6 +33,16 @@ The NodaTime.Globalization namespace contains types related to culture-sensitive
 aspects of behaviour, principally for the sake of text formatting and parsing.
 
 ---
+uid: NodaTime.HighPerformance
+summary: *content
+---
+The NodaTime.HighPerformance namespace contains types with similar
+functionality to the regular types in the NodaTime namespace, but
+with a reduced range in order to require less memory. These types
+also have improved performance in terms of execution time for
+operations, but are limited in functionality as well as range.
+
+---
 uid: NodaTime.Text
 summary: *content
 ---
