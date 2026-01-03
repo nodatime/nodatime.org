@@ -76,7 +76,7 @@ cp tmp/metadata/NodaTime.Testing/unstable/fullapi/NodaTime.Testing.* tmp/metadat
 rm -rf tmp/metadata/NodaTime.Testing/unstable/fullapi
 
 echo "Building all tools"
-dotnet build -nologo -clp:NoSummary -v quiet Tools.sln
+dotnet build -nologo -clp:NoSummary -v quiet Tools.slnx
 
 # Create diffs between versions and other annotations, just for NodaTime
 dotnet run --project ReleaseDiffGenerator -- tmp/metadata/NodaTime
@@ -86,7 +86,7 @@ dotnet run --project DocfxAnnotationGenerator -- tmp/metadata/*
 
 # Extract snippets from NodaTime.Demo (unstable only, for now)
 dotnet publish -nologo -clp:NoSummary -c Debug -v quiet ../../nodatime/src/NodaTime.Demo
-dotnet run --project SnippetExtractor -- ../../nodatime/src/NodaTime.sln NodaTime.Demo tmp/metadata/NodaTime/unstable/overwrite
+dotnet run --project SnippetExtractor -- ../../nodatime/src/NodaTime.slnx NodaTime.Demo tmp/metadata/NodaTime/unstable/overwrite
 
 # Reorganize the files to suit docfx build
 # NodaTime and NodaTime.Testing
