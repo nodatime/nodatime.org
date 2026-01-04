@@ -20,14 +20,6 @@ fi
 
 echo "Building with BUILD_ENVIRONMENT=$BUILD_ENVIRONMENT"
 
-if [[ "$BUILD_ENVIRONMENT" == "EXPERIMENTAL" ]]
-then
-  skip_api_build=true
-  rm -rf $ROOT/src/NodaTime.Web/docfx
-  mkdir $ROOT/src/NodaTime.Web/docfx
-  echo "Test document" > $ROOT/src/NodaTime.Web/docfx/docfx.txt
-fi
-
 # Build the API docs with docfx
 if [[ "$skip_api_build" != "true" ]]
 then
@@ -35,6 +27,9 @@ then
   rm -rf $ROOT/src/NodaTime.Web/docfx
   cp -r tmp/site $ROOT/src/NodaTime.Web/docfx
 fi
+
+echo "Unstable TOC"
+cat tmp/web/unstable/api/toc.yml
 
 # Build the web site ASP.NET Core
 rm -rf $ROOT/src/NodaTime.Web/bin/Release
