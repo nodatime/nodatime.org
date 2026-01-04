@@ -64,3 +64,6 @@ echo "nodatime.serialization: $nodatime_serialization_commit" >> $publish/wwwroo
 
 echo "Built at $(date -u -Iseconds)" > $publish/wwwroot/build.txt
 cat $publish/wwwroot/commit.txt >> $publish/wwwroot/build.txt
+
+echo Unstable TOC html
+cat $publish/docfx/unstable/api/toc.html
