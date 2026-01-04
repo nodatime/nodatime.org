@@ -42,7 +42,7 @@ namespace ReleaseDiffGenerator
 
         static void GenerateDiffs(Release oldRelease, Release newRelease, string destination)
         {
-            Console.WriteLine($"Creating diff from {oldRelease.Version} to {newRelease.Version}");
+            Console.WriteLine($"Creating diff from {oldRelease.Version} to {newRelease.Version} in {destination}");
             var oldMemberUids = new HashSet<string>(oldRelease.MembersByUid.Keys);
             var newMemberUids = new HashSet<string>(newRelease.MembersByUid.Keys);
 
@@ -94,6 +94,10 @@ namespace ReleaseDiffGenerator
             {
                 toc.Insert(insertLine, $"- name: Changes from {oldRelease.Version}");
                 toc.Insert(insertLine + 1, "  href: changes.md");
+            }
+            else
+            {
+                Console.WriteLine("TOC already contains changes line. This should only happen locally.");
             }
             File.WriteAllLines(tocFile, toc);
         }
