@@ -1,4 +1,4 @@
-#!/bin/bash
+`#!/bin/bash
 
 set -e
 
@@ -27,9 +27,6 @@ then
   rm -rf $ROOT/src/NodaTime.Web/docfx
   cp -r tmp/site $ROOT/src/NodaTime.Web/docfx
 fi
-
-echo "Unstable TOC"
-cat tmp/web/unstable/api/toc.yml
 
 # Build the web site ASP.NET Core
 rm -rf $ROOT/src/NodaTime.Web/bin/Release
@@ -64,6 +61,3 @@ echo "nodatime.serialization: $nodatime_serialization_commit" >> $publish/wwwroo
 
 echo "Built at $(date -u -Iseconds)" > $publish/wwwroot/build.txt
 cat $publish/wwwroot/commit.txt >> $publish/wwwroot/build.txt
-
-echo Unstable TOC html
-cat $publish/docfx/unstable/api/toc.html
