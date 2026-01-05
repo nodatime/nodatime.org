@@ -26,7 +26,11 @@ Search the issue tracker for open issues with the right milestone (e.g.
 - Commit this change, and push it in a PR that describes the changes in this release
 - In GitHub, create branch `3.1.x` from main. (This is automatically a "protected" branch.)
 - Create a release in GitHub, with a new tag `3.1.0` against the new branch
-  - A GitHub action will automatically build and push to NuGet
+
+In the future, this will hopefully go back to pushing to NuGet, but we haven't sorted out code signing yet.
+
+Instead, for now, fetch the tag locally and build/push following the same steps that are in `build/tzdbupdate/update-*.sh`.
+(These change a little over time, so aren't duplicated here. We may extract them as a script at some point...)
         
 ## Post-release
 
