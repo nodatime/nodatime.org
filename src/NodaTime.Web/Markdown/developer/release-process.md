@@ -48,7 +48,7 @@ As tools have aged, this has become infeasible - but we can easily add new versi
 - Commit and push the changes:
   - `cd history`
   - `git add --all`
-  - `git commit -m "Add history for 3.1.x"
+  - `git commit -m "Add history for 3.1.x"`
   - `git push`
 
 ### Web site pages (nodatime.org repo; best done in VS using the NodaTime.Web solution)
@@ -59,7 +59,6 @@ As tools have aged, this has become infeasible - but we can easily add new versi
 - Create a new `unstable` directory and copy index.json from `3.1.x`
 - Edit `unstable/index.json` to have a name of `unstable` and a
   parent of `3.1.x`
-- Edit `build/docfx/docfx-web.json` to add the new version
 
 ## Time zone update scripts (nodatime repo)
 
