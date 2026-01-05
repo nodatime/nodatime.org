@@ -30,6 +30,10 @@ Search the issue tracker for open issues with the right milestone (e.g.
         
 ## Post-release
 
+Make a single change in the main branch in the nodatime repo:
+
+- Update the `Directory.Build.props` in the root directory to set `PackageValidationBaselineVersion` equal to `Version`
+
 Make changes in the main branch in the nodatime.org repo:
 
 ### History branch (nodatime.org repo)
