@@ -138,7 +138,7 @@ The range for [`Duration64`](noda-type://NodaTime.HighPerformance.Duration) is d
 "a signed 64-bit integer number of nanoseconds".
 
 This means the range is from -106751:23:47:16.854775808 (days:hours:minutes:seconds) to 106751:23:47:16.854775807 inclusive.
-This is roughly ±292 years.
+This is roughly +/- 292 years.
 
 Period
 ----
