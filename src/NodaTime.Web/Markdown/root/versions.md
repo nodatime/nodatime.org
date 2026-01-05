@@ -1,11 +1,57 @@
-@Title="Version history"
+@Title="Versions"
+
+# Versioning and support policies
+
+The Noda Time project generally follows [Semantic Versioning](https://semver.org/) policies.
+New major versions are very rare as we don't want to break users. New minor versions with
+new features but no breaking changes are *relatively* rare (once every year or two) as the
+project is mostly stable.
+
+Almost all patch versions are due to new releases of the TZDB, as described below. Any bugs
+that can be fixed in a patch version will usually only be fixed in the latest-released minor
+version, but it doesn't come up often.
+
+## Runtime support
+
+We endeavour to support both .NET Framework and .NET, as far as they're supported by Microsoft.
+In a new major release, any runtimes which are no longer supported by Microsoft may be removed
+as targets.
+
+In a new minor release, any runtimes which haven't been supported by Microsoft for over a year
+may be removed. For example, in the January 2026 release of 3.3.0, we removed the target of net6.0
+as .NET 6 support ended in November 2024.
+In practice, *most* applications using an obsolete version of .NET will continue to work
+via the .NET Standard target. If your application uses any features that aren't in .NET Standard
+(e.g. `DateOnly`) then they'll need to be updated to use a supported version of .NET - which is a good
+idea anyway.
+
+We don't promise to support every possible way of deploying .NET applications, but please
+[file an issue](https://github.com/nodatime/nodatime/issues/new) if you're trying to use Noda Time in
+an esoteric environment and run into problems.
+
+## Update policy for time zone data
+
+New time zone data is released by IANA as required. The latest data
+is always available via the Noda Time web site as described in the
+[user guide](/userguide/tzdb). Additionally, NuGet packages are
+updated with a patch release to include the latest data.
+
+The latest minor release for each supported major version is always updated.
+Additionally, if the latest minor release is less than 6 months old, the
+previous minor release is also updated. In other words, if you check
+once every 6 months to make sure you're on the latest minor release,
+you should always get patch releases containing TZDB updates.
+
+The 1.x and 2.x series of Noda Time are no longer being updated to include new versions
+of TZDB. However, they are still compatible with the new NZD files: if you fetch
+the NZD file from the web site (as [described in the user guide](/unstable/userguide/tzdb))
+you can use the latest time zone data with old versions of Noda Time.
+
+# Version history
 
 User-visible changes from 1.0.0-beta1 onwards. See the
 [project repository](https://github.com/nodatime/nodatime) for more
 details.
-
-See the [end of this page](#tzdb-updates) for the policy on which
-versions receive patch updates for TZDB releases.
 
 ## 3.3.0, released 2026-01-03 with tzdb 2025c
 
@@ -1035,21 +1081,3 @@ Bug fixes:
 ## 1.0.0-beta1, released 2012-04-12 with tzdb 2012c
 
 - Initial beta release
-
-# <a id="tzdb-updates"></a>Update policy for time zone data
-
-New time zone data is released by IANA as required. The latest data
-is always available via the Noda Time web site as described in the
-[user guide](/userguide/tzdb). Additionally, NuGet packages are
-updated with a patch release to include the latest data.
-
-The latest minor release for each supported major version is always updated.
-Additionally, if the latest minor release is less than 6 months old, the
-previous minor release is also updated. In other words, if you check
-once every 6 months to make sure you're on the latest minor release,
-you should always get patch releases containing TZDB updates.
-
-The 1.x and 2.x series of Noda Time are no longer being updated to include new versions
-of TZDB. However, they are still compatible with the new NZD files: if you fetch
-the NZD file from the web site (as [described in the user guide](/unstable/userguide/tzdb))
-you can use the latest time zone data with old versions of Noda Time.
