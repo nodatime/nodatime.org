@@ -26,6 +26,11 @@ namespace NodaTime.Web.Controllers
             var release = tzdbRepository.GetRelease(id);
             if (release == null)
             {
+                if (id == "latest.nzd")
+                {
+                    var download = tzdbRepository.GetReleases().First();
+                    return RedirectPreserveMethod(download.Name);
+                }
                 return NotFound();
             }
             return File(release.GetContent(), ContentType, release.Name);

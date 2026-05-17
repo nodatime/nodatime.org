@@ -50,7 +50,12 @@ don't have to build the file yourself either.
 
 The URL [https://nodatime.org/tzdb/latest.txt](/tzdb/latest.txt)
 returns a plaintext response containing the URL of the latest NZD file.
-This may be used for automation.
+
+The URL [https://nodatime.org/tzdb/latest.nzd](/tzdb/latest.nzd)
+points to the latest NZD file (using an HTTP 307 redirect).
+
+These URLs may be used for automation. The latter URL might be slightly more convenient
+as redirects are typically followed automatically by HTTP clients.
 
 Using a NodaZoneData file
 -------------------------
