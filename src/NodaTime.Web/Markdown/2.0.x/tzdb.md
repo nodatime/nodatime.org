@@ -52,10 +52,27 @@ The URL [https://nodatime.org/tzdb/latest.txt](/tzdb/latest.txt)
 returns a plaintext response containing the URL of the latest NZD file.
 
 The URL [https://nodatime.org/tzdb/latest.nzd](/tzdb/latest.nzd)
-points to the latest NZD file (using an HTTP 307 redirect).
+returns the latest NZD file. Using the `If-None-Match` HTTP header is mandatory.
+The ETag to provide is the `VersionId` of the NZD file.
 
-These URLs may be used for automation. The latter URL might be slightly more convenient
-as redirects are typically followed automatically by HTTP clients.
+For example, when the latest NZD file is version 2019a, requesting the file with
+`If-None-Match: "TZDB: 2019a (mapping: 13923)"` will return a 304 Not Modified response.
+
+```shell
+curl -i -H 'If-None-Match: "TZDB: 2019a (mapping: 13923)"' https://nodatime.org/tzdb/latest.nzd
+HTTP/1.1 304 Not Modified
+```
+Requesting the latest NZD file with an older ETag will return a 200 OK response with the latest NZD file.
+```shell
+curl -i -H 'If-None-Match: "TZDB: 2015b (mapping: 11360)"' https://nodatime.org/tzdb/latest.nzd
+HTTP/1.1 200 OK
+Content-Length: 135779
+Content-Type: application/octet-stream
+ETag: "TZDB: 2019a (mapping: 13923)"
+Content-Disposition: attachment; filename=tzdb2019a.nzd; filename*=UTF-8''tzdb2019a.nzd
+```
+
+These URLs may be used for automation.
 
 Using a NodaZoneData file
 -------------------------

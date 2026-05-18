@@ -3,6 +3,7 @@
 // as found in the LICENSE.txt file.
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using NodaTime.Helpers;
 using NodaTime.Web.Models;
 using NodaTime.Web.Services;
@@ -26,11 +27,6 @@ namespace NodaTime.Web.Controllers
             var release = tzdbRepository.GetRelease(id);
             if (release == null)
             {
-                if (id == "latest.nzd")
-                {
-                    var download = tzdbRepository.GetReleases().First();
-                    return RedirectPreserveMethod(download.Name);
-                }
                 return NotFound();
             }
             return File(release.GetContent(), ContentType, release.Name);
@@ -46,6 +42,28 @@ namespace NodaTime.Web.Controllers
                 Content = GetDownloadUrl(download),
                 StatusCode = 200
             };
+        }
+
+        [Route("/tzdb/latest.nzd")]
+        public IActionResult LatestNzd()
+        {
+            var latest = tzdbRepository.GetReleases().First();
+            var latestEtag = new EntityTagHeaderValue($"\"{latest.VersionId}\"");
+
+            var ifNoneMatch = HttpContext.Request.GetTypedHeaders().IfNoneMatch;
+            if (ifNoneMatch.Count == 0)
+            {
+                return BadRequest("The If-None-Match header is required to retrieve the latest NZD file. " +
+                                  "The VersionId of the TzdbDateTimeZoneSource is used for the ETag; make sure to include the quotes. " +
+                                  $"For example, requesting the latest NZD file with If-None-Match: {latestEtag.Tag} will return a 304 Not Modified response.");
+            }
+
+            if (ifNoneMatch.Any(etag => etag.Compare(latestEtag, useStrongComparison: true)))
+            {
+                return StatusCode(StatusCodes.Status304NotModified);
+            }
+
+            return File(latest.GetContent(), ContentType, latest.Name, lastModified: null, latestEtag);
         }
 
         [Route("/tzdb/index.txt")]

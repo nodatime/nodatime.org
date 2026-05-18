@@ -3,9 +3,7 @@
 // as found in the LICENSE.txt file.
 
 using NodaTime.Web.Services;
-using System;
-using System.IO;
-using System.Threading;
+using NodaTime.TimeZones;
 
 namespace NodaTime.Web.Models
 {
@@ -16,21 +14,25 @@ namespace NodaTime.Web.Models
     {
         public string Name { get; }
 
-        private readonly Lazy<byte[]> data;
+        private readonly Lazy<(byte[] Data, string VersionId)> content;
 
         public TzdbDownload(IStorageRepository storage, string name)
         {
             Name = Path.GetFileName(name);
-            data = new Lazy<byte[]>(LoadContent, LazyThreadSafetyMode.ExecutionAndPublication);
+            content = new Lazy<(byte[], string)>(LoadContent, LazyThreadSafetyMode.ExecutionAndPublication);
 
-            byte[] LoadContent()
+            (byte[] Data, string VersionId) LoadContent()
             {
                 var stream = new MemoryStream();
                 storage.DownloadObject(name, stream);
-                return stream.ToArray();
+                stream.Position = 0;
+                var source = TzdbDateTimeZoneSource.FromStream(stream);
+                return (stream.ToArray(), source.VersionId);
             }
         }
 
-        public Stream GetContent() => new MemoryStream(data.Value);
+        public Stream GetContent() => new MemoryStream(content.Value.Data);
+
+        public string VersionId => content.Value.VersionId;
     }
 }
