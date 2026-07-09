@@ -53,6 +53,13 @@ User-visible changes from 1.0.0-beta1 onwards. See the
 [project repository](https://github.com/nodatime/nodatime) for more
 details.
 
+## 3.3.3, released 2026-07-09 with tzdb 2026c
+
+This patch release simply updates the built-in TZDB time
+zone data to 2026c, using CLDR version 48.2 for Windows mappings.
+
+(Note: the 3.2.x line is no longer being updated with TZDB releases.)
+
 ## 3.3.2 and 3.2.5, released 2026-04-23 with tzdb 2026b
 
 This patch release simply updates the built-in TZDB time
