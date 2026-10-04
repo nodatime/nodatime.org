@@ -47,8 +47,6 @@ namespace NodaTime.Web.Services
             }
         }
 
-        public string GetDownloadUrl(string name) => $"fakestorage://{name}";
-
         public StorageFile GetObject(string name)
         {
             var path = Path.Combine(absoluteRoot, name);

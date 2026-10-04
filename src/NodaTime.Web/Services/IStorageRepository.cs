@@ -15,6 +15,5 @@ namespace NodaTime.Web.Services
         Task<StorageFile> GetObjectAsync(string name, CancellationToken cancellationToken);
         void DownloadObject(string name, Stream stream);
         Task DownloadObjectAsync(string name, Stream stream, CancellationToken cancellationToken);
-        string GetDownloadUrl(string name);
     }
 }
