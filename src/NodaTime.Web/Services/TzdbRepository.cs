@@ -12,9 +12,7 @@ namespace NodaTime.Web.Services;
 public class TzdbRepository : IRefreshableCache
 {
     private static readonly Regex PlausibleReleaseName = new Regex(@"^[-_a-zA-Z0-9.]+\.nzd$");
-    private static readonly Duration CacheRefreshTime = Duration.FromMinutes(7);
 
-    private readonly ILogger logger;
     private readonly IStorageRepository storage;
 
     // Keep this as a single replaceable field for all aspects.
@@ -26,7 +24,6 @@ public class TzdbRepository : IRefreshableCache
         IStorageRepository storage)
     {
         this.storage = storage;
-        this.logger = logger;
         currentEntry = new([]);
     }
 
