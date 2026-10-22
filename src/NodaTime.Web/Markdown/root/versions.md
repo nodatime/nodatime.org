@@ -53,10 +53,26 @@ User-visible changes from 1.0.0-beta1 onwards. See the
 [project repository](https://github.com/nodatime/nodatime) for more
 details.
 
+## 3.3.6, released 2026-10-22 with tzdb 2026e and CLDR v49
+
+This patch release continues to use TZDB 2026e, but updates the
+version of CLDR used for Windows mappings to 49. This fixes [issue 1904].
+
+Additionally, the following changes fix minor issues:
+
+- Check the validity of the template year when using it as a default; [issue 1919]
+- Introduce a calendar "default era" to use where necessary; [issue 1911]
+- Reduce memory consumption when parsing quoted pattern strings; [issue 1915]
+- Check whether a year is valid before finding the days in a month; [issue 1906]
+- Fix Badíʿ Ayyami Ha length calculations; [issue 1908]
+- Fix Badíʿ month arithmetic; [issue 1914]
+- Return parse failures instead of throwing exceptions for out-of-range period date field values; [issue 1903] and [issue 1909]
+- Return parse failures instead of throwing exceptions for some out-of-range date and offset values; [issue 1897]
+
 ## 3.3.5, released 2026-09-30 with tzdb 2026e
 
 This patch release simply updates the built-in TZDB time
-zone data to 2026d, using CLDR version 48.2 for Windows mappings.
+zone data to 2026e, using CLDR version 48.2 for Windows mappings.
 
 ## 3.3.4, released 2026-09-12 with tzdb 2026d
 
