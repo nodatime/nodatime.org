@@ -29,7 +29,8 @@ public class ReleaseRepository : IRefreshableCache
     public async Task Refresh(CancellationToken cancellationToken)
     {
         var repository = Repository.Factory.GetCoreV3("https://api.nuget.org/v3/index.json");
-        var packageFinder = await repository.GetResourceAsync<FindPackageByIdResource>();
+        var packageFinder = await repository.GetResourceAsync<FindPackageByIdResource>() ??
+            throw new InvalidOperationException("No package by ID resource");
         var cache = new SourceCacheContext { NoCache = true, RefreshMemoryCache = true };
 
         var allVersions = await packageFinder.GetAllVersionsAsync("NodaTime", cache, nullLogger, cancellationToken);
