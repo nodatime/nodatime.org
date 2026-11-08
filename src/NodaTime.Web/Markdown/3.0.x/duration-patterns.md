@@ -36,8 +36,16 @@ Bad (but legal) patterns would be:
 
 It's possible that a future release will be detect "bad" patterns and reject them more aggressively.
 
-Every total letter can be repeated up to 10 times, indicating the level of zero-padding applied.
-Total letter values are parsed for up to 10 digits.
+The total letter `D` can be repeated up to 8 times, and `H`, `M` and `S` up to 13 times.
+The repetition count specifies the minimum number of digits for both formatting and parsing, not a fixed width.
+Parsing consumes additional digits up to the corresponding limit.
+For example, `HH:mm` formats 1 hour and 30 minutes as `01:30`, and parses both `01:30` and `101:30`,
+but not `1:30`. Use `H:mm` to allow a single-digit hour value.
+
+Use a separator between a total value and a following numeric field.
+For example, `HHmm` does not split `1213` into 12 hours and 13 minutes: it consumes all four digits as hours,
+leaving no digits for the minutes. A pattern such as `HH:mm` avoids this ambiguity.
+
 Partial letters for hours, minutes and seconds can be repeated once or twice
 (so 'h' and 'hh' are valid, but 'hhh' is not); again, this is for zero-padding, so a value of 3 hours
 and 2 minutes formatted with 'H:m' would simply be "3:2", whereas formatted with 'H:mm' it would be "3:02".
