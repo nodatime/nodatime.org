@@ -42,9 +42,9 @@ Parsing consumes additional digits up to the corresponding limit.
 For example, `HH:mm` formats 1 hour and 30 minutes as `01:30`, and parses both `01:30` and `101:30`,
 but not `1:30`. Use `H:mm` to allow a single-digit hour value.
 
-Use a separator between a total value and a following numeric field.
+Use a separator between a total value and a following numeric field to avoid ambiguity.
 For example, `HHmm` does not split `1213` into 12 hours and 13 minutes: it consumes all four digits as hours,
-leaving no digits for the minutes. A pattern such as `HH:mm` avoids this ambiguity.
+leaving no digits for the minutes, and resulting in a parse failure. A pattern such as `HH:mm` avoids this failure. We acknowledge that Noda Time *could* allow such patterns, determine the minimum and maximum length of the total field, and handle situations like this. A later release may improve this, but for now it is recommended to use a separator.
 
 Partial letters for hours, minutes and seconds can be repeated once or twice
 (so 'h' and 'hh' are valid, but 'hhh' is not); again, this is for zero-padding, so a value of 3 hours
